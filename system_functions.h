@@ -48,14 +48,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses
       QString ssInductanceMeasureUnit;
       QString ssFrequencyMeasureUnit;
       QString ssLengthMeasureUnit;
-      bool isAWG;
-      bool isInsertImage;
-      bool isAdditionalResult;
       QString mainFontFamily;
       QString textFontFamily;
       int mainFontSize;
       int textFontSize;
       bool isAutomaticUpdate;
+      bool isEnglishLocale;
+      bool isConfirmExit;
+      bool isConfirmClear;
+      bool isAWG;
+      bool isInsertImage;
+      bool isAdditionalResult;
       int upDateInterval;
       QDate firstDate;
     };
@@ -65,6 +68,7 @@ QString getOSVersion();
 void showWarning(QString title, QString msg);
 void showInfo(QString title, QString msg);
 QStringList translateInstalling(QStringList *lang);
+QLocale getLanguageLocale (QString lang);
 void completeOptionsStructure(_OptionStruct *opt);
 QString formatLength(double length, double lengthMultiplyer);
 

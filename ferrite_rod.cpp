@@ -40,18 +40,27 @@ Ferrite_Rod::Ferrite_Rod(QWidget *parent) :
     ui->label_dw->setText(tmp_txt);
     tmp_txt = tr("Winding pitch") + " p:";
     ui->label_p->setText(tmp_txt);
+    dv = new QDoubleValidator;
+    ui->lineEdit_ind->setValidator(dv);
+    ui->lineEdit_Dr->setValidator(dv);
+    ui->lineEdit_Lr->setValidator(dv);
+    ui->lineEdit_mu->setValidator(dv);
+    ui->lineEdit_dc->setValidator(dv);
+    ui->lineEdit_s->setValidator(dv);
+    ui->lineEdit_dw->setValidator(dv);
+    ui->lineEdit_p->setValidator(dv);
 }
 
 Ferrite_Rod::~Ferrite_Rod()
 {
-    double I = ui->lineEdit_ind->text().toDouble()*fOpt->dwInductanceMultiplier;
-    double Dr = ui->lineEdit_Dr->text().toDouble()*fOpt->dwLengthMultiplier;
-    double Lr = ui->lineEdit_Lr->text().toDouble()*fOpt->dwLengthMultiplier;
-    double mu = ui->lineEdit_mu->text().toDouble();
-    double dc = ui->lineEdit_dc->text().toDouble()*fOpt->dwLengthMultiplier;
-    double s = ui->lineEdit_s->text().toDouble()*fOpt->dwLengthMultiplier;
-    double dw = ui->lineEdit_dw->text().toDouble()*fOpt->dwLengthMultiplier;
-    double p = ui->lineEdit_p->text().toDouble()*fOpt->dwLengthMultiplier;
+    double I = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
+    double Dr = loc.toDouble(ui->lineEdit_Dr->text())*fOpt->dwLengthMultiplier;
+    double Lr = loc.toDouble(ui->lineEdit_Lr->text())*fOpt->dwLengthMultiplier;
+    double mu = loc.toDouble(ui->lineEdit_mu->text());
+    double dc = loc.toDouble(ui->lineEdit_dc->text())*fOpt->dwLengthMultiplier;
+    double s = loc.toDouble(ui->lineEdit_s->text())*fOpt->dwLengthMultiplier;
+    double dw = loc.toDouble(ui->lineEdit_dw->text())*fOpt->dwLengthMultiplier;
+    double p = loc.toDouble(ui->lineEdit_p->text())*fOpt->dwLengthMultiplier;
 #if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
     QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
 #elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
@@ -73,6 +82,7 @@ Ferrite_Rod::~Ferrite_Rod()
     settings->endGroup();
     delete settings;
     delete fOpt;
+    delete dv;
     delete ui;
 }
 
@@ -108,19 +118,25 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     QPoint pos = settings->value("pos", QPoint(300, 300)).toPoint();
     QSize size = settings->value("size", QSize(100, 100)).toSize();
     settings->endGroup();
-    ui->lineEdit_ind->setText(QString::number(I / fOpt->dwInductanceMultiplier));
-    ui->lineEdit_Dr->setText(QString::number(Dr / fOpt->dwLengthMultiplier));
-    ui->lineEdit_Lr->setText(QString::number(Lr / fOpt->dwLengthMultiplier));
-    ui->lineEdit_mu->setText(QString::number(mu));
-    ui->lineEdit_dc->setText(QString::number(dc / fOpt->dwLengthMultiplier));
-    ui->lineEdit_s->setText(QString::number(s / fOpt->dwLengthMultiplier));
-    ui->lineEdit_dw->setText(QString::number(dw / fOpt->dwLengthMultiplier));
-    ui->lineEdit_p->setText(QString::number(p / fOpt->dwLengthMultiplier));
+    ui->lineEdit_ind->setText(loc.toString(I / fOpt->dwInductanceMultiplier));
+    ui->lineEdit_Dr->setText(loc.toString(Dr / fOpt->dwLengthMultiplier));
+    ui->lineEdit_Lr->setText(loc.toString(Lr / fOpt->dwLengthMultiplier));
+    ui->lineEdit_mu->setText(loc.toString(mu));
+    ui->lineEdit_dc->setText(loc.toString(dc / fOpt->dwLengthMultiplier));
+    ui->lineEdit_s->setText(loc.toString(s / fOpt->dwLengthMultiplier));
+    ui->lineEdit_dw->setText(loc.toString(dw / fOpt->dwLengthMultiplier));
+    ui->lineEdit_p->setText(loc.toString(p / fOpt->dwLengthMultiplier));
     ui->lineEdit_ind->setFocus();
     ui->lineEdit_ind->selectAll();
     resize(size);
     move(pos);
     delete settings;
+}
+
+void Ferrite_Rod::getCurrentLocale(QLocale locale){
+    this->loc = locale;
+    this->setLocale(loc);
+    dv->setLocale(loc);
 }
 
 void Ferrite_Rod::on_pushButton_close_clicked()
@@ -135,14 +151,19 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
         showWarning(tr("Warning"), tr("One or more inputs are empty!"));
         return;
     }
-    double I = ui->lineEdit_ind->text().toDouble()*fOpt->dwInductanceMultiplier;
-    double Dr = ui->lineEdit_Dr->text().toDouble()*fOpt->dwLengthMultiplier;
-    double Lr = ui->lineEdit_Lr->text().toDouble()*fOpt->dwLengthMultiplier;
-    double mu = ui->lineEdit_mu->text().toDouble();
-    double dc = ui->lineEdit_dc->text().toDouble()*fOpt->dwLengthMultiplier;
-    double s = ui->lineEdit_s->text().toDouble()*fOpt->dwLengthMultiplier;
-    double dw = ui->lineEdit_dw->text().toDouble()*fOpt->dwLengthMultiplier;
-    double p = ui->lineEdit_p->text().toDouble()*fOpt->dwLengthMultiplier;
+    bool ok1,ok2, ok3, ok4, ok5, ok6, ok7, ok8;
+    double I = loc.toDouble(ui->lineEdit_ind->text(), &ok1)*fOpt->dwInductanceMultiplier;
+    double Dr = loc.toDouble(ui->lineEdit_Dr->text(), &ok2)*fOpt->dwLengthMultiplier;
+    double Lr = loc.toDouble(ui->lineEdit_Lr->text(), &ok3)*fOpt->dwLengthMultiplier;
+    double mu = loc.toDouble(ui->lineEdit_mu->text(), &ok4);
+    double dc = loc.toDouble(ui->lineEdit_dc->text(), &ok5)*fOpt->dwLengthMultiplier;
+    double s = loc.toDouble(ui->lineEdit_s->text(), &ok6)*fOpt->dwLengthMultiplier;
+    double dw = loc.toDouble(ui->lineEdit_dw->text(), &ok7)*fOpt->dwLengthMultiplier;
+    double p = loc.toDouble(ui->lineEdit_p->text(), &ok8)*fOpt->dwLengthMultiplier;
+    if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)||(!ok6)||(!ok7)||(!ok8)){
+        showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+        return;
+    }
     if ((I == 0)||(Dr == 0)||(Lr == 0)||(mu == 0)||(dc == 0)||(dw == 0)||(p == 0)){
         showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
         return;
@@ -186,9 +207,14 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
     sResult += ui->label_p->text() + " = " + ui->lineEdit_p->text() + " " + ui->label_p_m->text() + "</p>";
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Number of turns of the coil") + " N = " + QString::number(result.N, 'f', fOpt->dwAccuracy) + "<br/>";
-    sResult += tr("Length of winding") + " lc = " + QString::number(result.thd, 'f', fOpt->dwAccuracy) + "<br/>";
-    sResult += tr("Effective magnetic permeability of the rod") + " μ<sub>eff</sub> = " + QString::number(result.sec, 'f', 0);
+    sResult += tr("Number of turns of the coil") + " N = " + loc.toString(result.N, 'f', fOpt->dwAccuracy) + "<br/>";
+    sResult += tr("Length of winding") + " lc = " + loc.toString(result.thd, 'f', fOpt->dwAccuracy) + "<br/>";
+    sResult += tr("Effective magnetic permeability of the rod") + " μ<sub>eff</sub> = " + loc.toString(result.sec, 'f', 0);
     sResult += "</p><hr>";
     emit sendResult(sResult);
+}
+
+void Ferrite_Rod::on_pushButton_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://coil32.net/ferrite-rod-core-coil.html"));
 }

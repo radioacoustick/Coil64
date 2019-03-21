@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Find_Permeability</class>
- <widget class="QDialog" name="Find_Permeability">
+ <class>Meander_pcb</class>
+ <widget class="QDialog" name="Meander_pcb">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -9,34 +9,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
-    <height>500</height>
+    <width>563</width>
+    <height>390</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>650</width>
-    <height>500</height>
+    <width>563</width>
+    <height>390</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>650</width>
-    <height>500</height>
+    <width>563</width>
+    <height>390</height>
    </size>
   </property>
-  <property name="contextMenuPolicy">
-   <enum>Qt::NoContextMenu</enum>
-  </property>
   <property name="windowTitle">
-   <string>Find the unknown ferrite toroid permeability</string>
+   <string>Meander coil on PCB</string>
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/menu_ico/res/ico1-ferrite2.png</normaloff>:/menu_ico/res/ico1-ferrite2.png</iconset>
-  </property>
-  <property name="locale">
-   <locale language="English" country="UnitedStates"/>
+    <normaloff>:/menu_ico/res/ico1-meandr.png</normaloff>:/menu_ico/res/ico1-meandr.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -49,7 +43,7 @@
           <string notr="true"/>
          </property>
          <property name="pixmap">
-          <pixmap resource="res.qrc">:/images/res/Coil6.png</pixmap>
+          <pixmap resource="res.qrc">:/images/res/meandr_pcb.png</pixmap>
          </property>
         </widget>
        </item>
@@ -57,19 +51,6 @@
         <widget class="Line" name="line_5">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_descript">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You should to wind a few turns on an unknown ferrite or powder iron toroid and should to mesure obtained inductance and dimentions of the ring. Enter the data and estimate the permeability and Al-factor of the toroid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -93,26 +74,18 @@
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title">
           <string>Data</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
            <layout class="QGridLayout" name="gridLayout">
-            <item row="1" column="2">
-             <widget class="QLabel" name="label_ind_m">
-              <property name="text">
-               <string notr="true">microH</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_ind">
-              <property name="text">
-               <string>Inductance</string>
-              </property>
-             </widget>
-            </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_N">
               <property name="text">
@@ -121,10 +94,14 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit_N"/>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_ind"/>
+             <widget class="QLineEdit" name="lineEdit_N">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -147,7 +124,14 @@
           <item>
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit_1"/>
+             <widget class="QLineEdit" name="lineEdit_1">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
             </item>
             <item row="1" column="2">
              <widget class="QLabel" name="label_02">
@@ -159,24 +143,41 @@
             <item row="1" column="0">
              <widget class="QLabel" name="label_2">
               <property name="text">
-               <string notr="true">D2</string>
+               <string notr="true">d</string>
               </property>
              </widget>
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_1">
               <property name="text">
-               <string notr="true">D1</string>
+               <string notr="true">a</string>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_2"/>
+             <widget class="QLineEdit" name="lineEdit_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
             </item>
             <item row="0" column="2">
              <widget class="QLabel" name="label_01">
               <property name="text">
                <string notr="true">mm</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineEdit_3">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
              </widget>
             </item>
@@ -194,8 +195,29 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEdit_3"/>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string notr="true">W</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_4">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLabel" name="label_04">
+              <property name="text">
+               <string notr="true">mm</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -218,13 +240,6 @@
       </spacer>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">

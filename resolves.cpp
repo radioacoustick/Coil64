@@ -37,6 +37,41 @@ double odCalc(double id){
     return od;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double convertfromAWG(QString AWG, bool *isOK){
+    QRegularExpression awgrule("([0]{1,4})|([1-3]{1}[0-9]{1})|(40)|([1-9]{1})");
+    double result = 0;
+    if (awgrule.match(AWG).hasMatch()){
+        QStringList captured = awgrule.match(AWG).capturedTexts();
+        QString cap = captured[0];
+        if (AWG == cap){
+            if (AWG == "0000") result = 11.684;
+            else if (AWG == "000") result = 10.40384;
+            else if (AWG == "00") result = 9.26592;
+            else {
+                double awg = AWG.toDouble();
+                result = 0.127 * pow(92, (36 - awg) / 39);
+            }
+            if (isOK != NULL) *isOK = true;
+        } else if (isOK != NULL) *isOK = false;
+    } else if (isOK != NULL) *isOK = false;
+    return result;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString converttoAWG(double d, bool *isOK){
+    QString result ="";
+    if (!(d > 12)){
+        if ((d <= 12) && (d >= 11)) result = "0000";
+        else if ((d < 11) && (d >= 10)) result = "000";
+        else if ((d < 10) && (d >= 8.6)) result = "00";
+        else if ((d < 8.6) && (d >= 0.07874)){
+            double AWG = round(-39 * log(d / 0.127) / log(92) + 36);
+            result = QString::number(AWG);
+        }
+        if (isOK != NULL) *isOK = true;
+    } else if (isOK != NULL) *isOK = false;
+    return result;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double find_spiral_length(int N, double Din, double k) {
     //Find the spiral length
     double Ltotal = 0;
@@ -65,6 +100,7 @@ double rosaKs(double x){
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void EF(double c, _Elliptic *result){
+    //the complete elliptic integrals of the first and second kind
     double a = 1;
     double b = sqrt(1 - pow(c, 2));
     double E = 1 - pow(c, 2) / 2;
@@ -84,12 +120,37 @@ void EF(double c, _Elliptic *result){
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double Mut(double r1, double r2, double x, double g){
+    //Mutual inductance of two coaxial circular filaments
+    //r1,r2-radii of the two circular filaments
+    //x-distance between the centres of the circular filaments
+    //Geometric Mean Distance
     double l = sqrt(pow(r2 - r1, 2) + pow(x, 2));
     double c = 2 * sqrt(r1 * r2) / sqrt(pow(r1 + r2, 2) + pow(l - g, 2));
     _Elliptic Ec;
     EF(c, &Ec);
     double result = -0.004 * M_PI * sqrt(r1 * r2) * ((c - 2 / c) * Ec.Fk + (2 / c) * Ec.Ek);
     return (result);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double SelfInductanceStraightWire(double l, double dw){
+    double r = 0.5 * dw * exp(0.25);
+    double result = 0.002 * (l * log((l + sqrt(l * l + r * r)) / r) - sqrt(l * l + r * r) + l / 4 + r);
+    return result;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double MutInductanceStraightWire(double L1, double l2, double D){
+    double tmpLength = 0;
+    L1 = L1 / 2;
+    l2 = l2 / 2;
+    if (L1 < l2){
+        tmpLength = L1;
+        L1 = l2;
+        l2 = tmpLength;
+    }
+    double result = 0.002 * (2 * L1 * log((L1 + l2 + sqrt((L1 + l2) * (L1 + l2) + D * D)) / D) + (L1 - l2) *
+                             log((L1 + l2 + sqrt((L1 + l2) * (L1 + l2) + D * D)) / (L1 - l2 + sqrt((L1 - l2) * (L1 - l2) + D * D))) +
+                             sqrt((L1 - l2) * (L1 - l2) + D * D) - sqrt((L1 + l2) * (L1 + l2) + D * D));
+    return result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double Ingrnd(double phi, double kphitheta, double sinpsi, double cos2psi, double rr, double y){
@@ -384,14 +445,81 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
     // NLayer (Number of layer); c (Winding thickness) mm
     // NumberInterLayer (Number of inter-layers);
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result){
+    //Calculation formulas of multilayer inductor with rectangular former https://coil32.net/multilayer-rectangular.html
+
+    double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd, Msub, lw, Km, Ks, Lcor, r;
+    int n, Nc, Nl, Jc, nLayer, jLayer;
+
+    a = a / 10;
+    b = b / 10;
+    l = l / 10;
+    dw = dw / 10;
+    k = k / 10;
+    n = 0;
+    Ltotal = 0;
+    a0 = a + k;
+    b0 = b + k;
+    lw = 0;
+    nLayer = 0;
+    Nl = floor(l / k); // Number of turns in layer
+    while (Ltotal < Ind){
+        n++;
+        Nc = (n - 1) % Nl; // Position of the turn on x
+        nLayer = floor((n - 1) / Nl); // Position of the turn on y
+        nx = Nc * k; // x-offset of current turn
+        ny = nLayer * k; // y-offset of current turn
+        lengthNa = a0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side a)
+        lengthNb = b0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side b)
+        lw = lw + 2 * (a0 + b0 + 2 * k * (nLayer));
+        Ladd = SelfInductanceStraightWire(lengthNa, dw) + SelfInductanceStraightWire(lengthNb, dw); // half of self-inductance of the current turn
+        Db = 2 * ny + a0; // distance to opposite cunductor of the same turn (side b)
+        Da = 2 * ny + b0; // distance to opposite cunductor of the same turn (side a)
+        Lsub = 2 * MutInductanceStraightWire(lengthNa, lengthNa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthNb, Db);
+        // half mutual inductance with opposite conductor of current turn
+        Madd = 0;
+        Msub = 0;
+        if (n > 1){
+            for (int j = n; j >= 2; j--){
+                Jc = (j - 2) % Nl; // position of previous turn on x
+                jx = Jc * k; // x-offset of previous turn
+                jLayer = floor((j - 2) / Nl); // Position of the turn on y
+                jy = k * jLayer; // y-offset of previous turn
+                lengthJa = a0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side a)
+                lengthJb = b0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side b)
+                D = sqrt(pow(nx - jx, 2) + pow(ny - jy, 2)); // distance to in-phase straight conductor of previous turn
+                Madd = Madd + 2 * MutInductanceStraightWire(lengthNa, lengthJa, D) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, D);
+                // half mutual inductance with in-phase conductor in previous turn
+                Db = sqrt(pow(nx - jx, 2) + pow(ny + jy + a0, 2));
+                // distance to opposite cunductor between the current turn and previous (side b)
+                Da = sqrt(pow(nx - jx, 2) + pow(ny + jy + b0, 2));
+                // distance to opposite cunductor between the current turn and previous (side a)
+                Msub = Msub + 2 * MutInductanceStraightWire(lengthNa, lengthJa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, Db);
+                // half mutual inductance with opposite conductor in previous turn
+            }
+        }
+        Ltotal = Ltotal + 2 * (Ladd - Lsub + Madd - Msub);
+        Ks = rosaKs(k / dw);
+        Km = rosaKm(n);
+        Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
+        Ltotal = Ltotal - Lcor;
+    }
+    r = (0.0175 * lw * 1E-4 * 4) / (M_PI * dw * dw);
+    result->N = n;
+    result->sec = nLayer + 1;
+    result->thd = lw * 0.01;
+    result->fourth = r;
+    result->five = (nLayer + 1) * k * 10;
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerI(double D, double lk, double dw, double k, double b, double gap, long Ng, _CoilResult *result){
+void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result){
     double bTmp, nTmp, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, n_g = 0, jg = 0, ind1, ind2, N1, N2;
     int n, Nl, j, Nc, Jc, nLayer, jLayer;
     ind1 = 0;
     D = D / 10;
     lk = lk / 10;
-    b = b / 10;
+    c = c / 10;
     nTmp = 0;
     bTmp = 0;
     dw = dw / 10;
@@ -406,7 +534,7 @@ void getMultiLayerI(double D, double lk, double dw, double k, double b, double g
     n = 0;
     Nl = (int) floor(lk / k);
     g = exp(-0.25) * dw / 2;
-    while (bTmp < (b + k)) {
+    while (bTmp < (c + k)) {
         n++;
         Nc = (n - 1) % Nl;
         nLayer = (int) floor((n - 1) / Nl);
@@ -436,7 +564,7 @@ void getMultiLayerI(double D, double lk, double dw, double k, double b, double g
             }
         }
         Ltotal = Ltotal + Lns + M;
-        if (nTmp < b) {
+        if (nTmp < c) {
             nTmp = (nLayer + 1) * k;
             ind1 = Ltotal;
         }
@@ -451,86 +579,160 @@ void getMultiLayerI(double D, double lk, double dw, double k, double b, double g
     result->fourth = N2;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void  getMultiLayerI_fromResistance (double D, double lk, double b, double k, double Rm, _CoilResult *result){
+void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result){
 
-  double dw, bTmp, nTmp, tmpR, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, N1, N2;
-  int n, Nl, j, Nc, Jc, nLayer = 0, jLayer;
+    double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd,
+            Msub, lw, Km, Ks, Lcor, cTmp, nTmp = 0, ind1 = 0, ind2, N1, N2;
+    int n, Nc, Nl, Jc, nLayer, jLayer;
 
-  double aWire[67][5] = {{0.06, 0.075, 0.09, 0.085, 0.09},
-                         {0.063, 0.078, 0.09, 0.085, 0.09}, {0.07, 0.084, 0.092, 0.092, 0.1}, {0.071, 0.088, 0.095, 0.095, 0.1},
-                         {0.08, 0.095, 0.105, 0.105, 0.11}, {0.09, 0.105, 0.12, 0.115, 0.12}, {0.1, 0.122, 0.13, 0.125, 0.13},
-                         {0.112, 0.134, 0.14, 0.125, 0.14}, {0.12, 0.144, 0.15, 0.145, 0.15}, {0.125, 0.149, 0.155, 0.15, 0.155},
-                         {0.13, 0.155, 0.16, 0.155, 0.16}, {0.14, 0.165, 0.17, 0.165, 0.17}, {0.15, 0.176, 0.19, 0.18, 0.19},
-                         {0.16, 0.187, 0.2, 0.19, 0.2}, {0.17, 0.197, 0.21, 0.2, 0.21}, {0.18, 0.21, 0.22, 0.21, 0.22},
-                         {0.19, 0.22, 0.23, 0.22, 0.23}, {0.2, 0.23, 0.24, 0.23, 0.24}, {0.21, 0.24, 0.25, 0.25, 0.25},
-                         {0.224, 0.256, 0.27, 0.26, 0.27}, {0.236, 0.26, 0.285, 0.27, 0.28}, {0.25, 0.284, 0.3, 0.275, 0.3},
-                         {0.265, 0.305, 0.315, 0.305, 0.31}, {0.28, 0.315, 0.33, 0.315, 0.33}, {0.3, 0.34, 0.35, 0.34, 0.34},
-                         {0.315, 0.35, 0.365, 0.352, 0.36}, {0.335, 0.375, 0.385, 0.375, 0.38}, {0.355, 0.395, 0.414, 0.395, 0.41},
-                         {0.38, 0.42, 0.44, 0.42, 0.44}, {0.4, 0.44, 0.46, 0.442, 0.46}, {0.425, 0.465, 0.485, 0.47, 0.47},
-                         {0.45, 0.49, 0.51, 0.495, 0.5}, {0.475, 0.525, 0.545, 0.495, 0.53}, {0.5, 0.55, 0.57, 0.55, 0.55},
-                         {0.53, 0.58, 0.6, 0.578, 0.6}, {0.56, 0.61, 0.63, 0.61, 0.62}, {0.6, 0.65, 0.67, 0.65, 0.66},
-                         {0.63, 0.68, 0.7, 0.68, 0.69}, {0.67, 0.72, 0.75, 0.72, 0.75}, {0.71, 0.76, 0.79, 0.77, 0.78},
-                         {0.75, 0.81, 0.84, 0.81, 0.83}, {0.8, 0.86, 0.89, 0.86, 0.89}, {0.85, 0.91, 0.94, 0.91, 0.94},
-                         {0.9, 0.96, 0.99, 0.96, 0.99}, {0.93, 0.99, 1.02, 0.99, 1.02}, {0.95, 1.01, 1.04, 1.02, 1.04},
-                         {1.0, 1.07, 1.1, 1.07, 1.11}, {1.06, 1.13, 1.16, 1.14, 1.16}, {1.08, 1.16, 1.19, 1.16, 1.19},
-                         {1.12, 1.19, 1.22, 1.2, 1.23}, {1.18, 1.26, 1.28, 1.26, 1.26}, {1.25, 1.33, 1.35, 1.33, 1.36},
-                         {1.32, 1.4, 1.42, 1.4, 1.42}, {1.4, 1.48, 1.51, 1.48, 1.51}, {1.45, 1.53, 1.56, 1.53, 1.56},
-                         {1.5, 1.58, 1.61, 1.58, 1.61}, {1.56, 1.63, 1.67, 1.64, 1.67}, {1.6, 1.68, 1.71, 1.68, 1.71},
-                         {1.7, 1.78, 1.81, 1.78, 1.81}, {1.74, 1.82, 1.85, 1.82, 1.85}, {1.8, 1.89, 1.92, 1.89, 1.92},
-                         {1.9, 1.99, 2.02, 1.99, 2.02}, {2.0, 2.1, 2.12, 2.1, 2.12}, {2.12, 2.21, 2.24, 2.22, 2.24},
-                         {2.24, 2.34, 2.46, 2.34, 2.46}, {2.36, 2.46, 2.48, 2.36, 2.48}, {2.5, 2.6, 2.63, 2.6, 2.62}};
-
-  D = D / 10;
-  lk = lk / 10;
-  k = k / 10;
-  b = b /10;
-  bTmp = 0;
-  nTmp = 0;
-  for (int z = 0; z < 67; ++z){
-    dw = aWire[z][0] / 10;
-    Ltotal = 0;
-    // initialize variable of total self-inductance
-    lw = 0;
-    r0 = (D + k) / 2;
+    a = a / 10;
+    b = b / 10;
+    l = l / 10;
+    c = c / 10;
+    dw = dw / 10;
+    k = k / 10;
     n = 0;
-    Nl = (int) floor(lk / k);
-    g = exp(-0.25) * dw / 2;
-    tmpR = 0;
-    while (tmpR < Rm){
-      n++;
-      Nc = (n - 1) %  Nl;
-      nLayer = (int) floor((n - 1) / Nl);
-      nx = Nc * k;
-      ny = r0 + k * nLayer;
-      Lns = Mut(ny, ny, g, 0);
-      // self inductance of current turn
-      lw = lw + 2 * M_PI * ny;
-      M = 0;
-      if (n > 1){
-        for (j = n; j >= 2; j--){
-          Jc = (j - 2) % Nl;
-          jx = Jc * k;
-          jLayer = (int) floor((j - 2) / Nl);
-          jy = r0 + k * jLayer;
-          M = M + 2 * Mut(ny, jy, nx - jx, g);
+    Ltotal = 0;
+    a0 = a + k;
+    b0 = b + k;
+    lw = 0;
+    nLayer = 0;
+    Nl = floor(l / k); // Number of turns in layer
+    while (cTmp < (c + k)) {
+        n++;
+        Nc = (n - 1) % Nl; // Position of the turn on x
+        nLayer = floor((n - 1) / Nl); // Position of the turn on y
+        nx = Nc * k; // x-offset of current turn
+        ny = nLayer * k; // y-offset of current turn
+        lengthNa = a0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side a)
+        lengthNb = b0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side b)
+        lw = lw + 2 * (a0 + b0 + 2 * k * (nLayer));
+        Ladd = SelfInductanceStraightWire(lengthNa, dw) + SelfInductanceStraightWire(lengthNb, dw); // half of self-inductance of the current turn
+        Db = 2 * ny + a0; // distance to opposite cunductor of the same turn (side b)
+        Da = 2 * ny + b0; // distance to opposite cunductor of the same turn (side a)
+        Lsub = 2 * MutInductanceStraightWire(lengthNa, lengthNa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthNb, Db);
+        // half mutual inductance with opposite conductor of current turn
+        Madd = 0;
+        Msub = 0;
+        if (n > 1){
+            for (int j = n; j >= 2; j--){
+                Jc = (j - 2) % Nl; // position of previous turn on x
+                jx = Jc * k; // x-offset of previous turn
+                jLayer = floor((j - 2) / Nl); // Position of the turn on y
+                jy = k * jLayer; // y-offset of previous turn
+                lengthJa = a0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side a)
+                lengthJb = b0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side b)
+                D = sqrt(pow(nx - jx, 2) + pow(ny - jy, 2)); // distance to in-phase straight conductor of previous turn
+                Madd = Madd + 2 * MutInductanceStraightWire(lengthNa, lengthJa, D) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, D);
+                // half mutual inductance with in-phase conductor in previous turn
+                Db = sqrt(pow(nx - jx, 2) + pow(ny + jy + a0, 2));
+                // distance to opposite cunductor between the current turn and previous (side b)
+                Da = sqrt(pow(nx - jx, 2) + pow(ny + jy + b0, 2));
+                // distance to opposite cunductor between the current turn and previous (side a)
+                Msub = Msub + 2 * MutInductanceStraightWire(lengthNa, lengthJa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, Db);
+                // half mutual inductance with opposite conductor in previous turn
+            }
         }
-      }
-      Ltotal = Ltotal + Lns + M;
-      tmpR = (0.0175 * lw * 1e-4 * 4) / (M_PI * dw * dw);
+        Ltotal = Ltotal + 2 * (Ladd - Lsub + Madd - Msub);
+        Ks = rosaKs(k / dw);
+        Km = rosaKm(n);
+        Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
+        Ltotal = Ltotal - Lcor;
+        if (nTmp < c) {
+            nTmp = (nLayer + 1) * k;
+            ind1 = Ltotal;
+        }
+        cTmp = (nLayer + 1) * k;
     }
-    bTmp = (nLayer + 1) * k;
-    if (bTmp > b)
-      break;
-    if (nTmp < b){
-      nTmp = (nLayer + 2) * k;
-      result->N = Ltotal;
+    N1 = n - Nl;
+    N2 = n + Nl;
+    ind2 = Ltotal;
+    result->N = ind1;
+    result->sec = ind2;
+    result->thd = N1;
+    result->fourth = N2;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result){
+
+    double dw, bTmp, nTmp, tmpR, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, N1, N2;
+    int n, Nl, j, Nc, Jc, nLayer = 0, jLayer;
+
+    double aWire[67][5] = {{0.06, 0.075, 0.09, 0.085, 0.09},
+                           {0.063, 0.078, 0.09, 0.085, 0.09}, {0.07, 0.084, 0.092, 0.092, 0.1}, {0.071, 0.088, 0.095, 0.095, 0.1},
+                           {0.08, 0.095, 0.105, 0.105, 0.11}, {0.09, 0.105, 0.12, 0.115, 0.12}, {0.1, 0.122, 0.13, 0.125, 0.13},
+                           {0.112, 0.134, 0.14, 0.125, 0.14}, {0.12, 0.144, 0.15, 0.145, 0.15}, {0.125, 0.149, 0.155, 0.15, 0.155},
+                           {0.13, 0.155, 0.16, 0.155, 0.16}, {0.14, 0.165, 0.17, 0.165, 0.17}, {0.15, 0.176, 0.19, 0.18, 0.19},
+                           {0.16, 0.187, 0.2, 0.19, 0.2}, {0.17, 0.197, 0.21, 0.2, 0.21}, {0.18, 0.21, 0.22, 0.21, 0.22},
+                           {0.19, 0.22, 0.23, 0.22, 0.23}, {0.2, 0.23, 0.24, 0.23, 0.24}, {0.21, 0.24, 0.25, 0.25, 0.25},
+                           {0.224, 0.256, 0.27, 0.26, 0.27}, {0.236, 0.26, 0.285, 0.27, 0.28}, {0.25, 0.284, 0.3, 0.275, 0.3},
+                           {0.265, 0.305, 0.315, 0.305, 0.31}, {0.28, 0.315, 0.33, 0.315, 0.33}, {0.3, 0.34, 0.35, 0.34, 0.34},
+                           {0.315, 0.35, 0.365, 0.352, 0.36}, {0.335, 0.375, 0.385, 0.375, 0.38}, {0.355, 0.395, 0.414, 0.395, 0.41},
+                           {0.38, 0.42, 0.44, 0.42, 0.44}, {0.4, 0.44, 0.46, 0.442, 0.46}, {0.425, 0.465, 0.485, 0.47, 0.47},
+                           {0.45, 0.49, 0.51, 0.495, 0.5}, {0.475, 0.525, 0.545, 0.495, 0.53}, {0.5, 0.55, 0.57, 0.55, 0.55},
+                           {0.53, 0.58, 0.6, 0.578, 0.6}, {0.56, 0.61, 0.63, 0.61, 0.62}, {0.6, 0.65, 0.67, 0.65, 0.66},
+                           {0.63, 0.68, 0.7, 0.68, 0.69}, {0.67, 0.72, 0.75, 0.72, 0.75}, {0.71, 0.76, 0.79, 0.77, 0.78},
+                           {0.75, 0.81, 0.84, 0.81, 0.83}, {0.8, 0.86, 0.89, 0.86, 0.89}, {0.85, 0.91, 0.94, 0.91, 0.94},
+                           {0.9, 0.96, 0.99, 0.96, 0.99}, {0.93, 0.99, 1.02, 0.99, 1.02}, {0.95, 1.01, 1.04, 1.02, 1.04},
+                           {1.0, 1.07, 1.1, 1.07, 1.11}, {1.06, 1.13, 1.16, 1.14, 1.16}, {1.08, 1.16, 1.19, 1.16, 1.19},
+                           {1.12, 1.19, 1.22, 1.2, 1.23}, {1.18, 1.26, 1.28, 1.26, 1.26}, {1.25, 1.33, 1.35, 1.33, 1.36},
+                           {1.32, 1.4, 1.42, 1.4, 1.42}, {1.4, 1.48, 1.51, 1.48, 1.51}, {1.45, 1.53, 1.56, 1.53, 1.56},
+                           {1.5, 1.58, 1.61, 1.58, 1.61}, {1.56, 1.63, 1.67, 1.64, 1.67}, {1.6, 1.68, 1.71, 1.68, 1.71},
+                           {1.7, 1.78, 1.81, 1.78, 1.81}, {1.74, 1.82, 1.85, 1.82, 1.85}, {1.8, 1.89, 1.92, 1.89, 1.92},
+                           {1.9, 1.99, 2.02, 1.99, 2.02}, {2.0, 2.1, 2.12, 2.1, 2.12}, {2.12, 2.21, 2.24, 2.22, 2.24},
+                           {2.24, 2.34, 2.46, 2.34, 2.46}, {2.36, 2.46, 2.48, 2.36, 2.48}, {2.5, 2.6, 2.63, 2.6, 2.62}};
+
+    D = D / 10;
+    lk = lk / 10;
+    k = k / 10;
+    c = c /10;
+    bTmp = 0;
+    nTmp = 0;
+    for (int z = 0; z < 67; ++z){
+        dw = aWire[z][0] / 10;
+        Ltotal = 0;
+        // initialize variable of total self-inductance
+        lw = 0;
+        r0 = (D + k) / 2;
+        n = 0;
+        Nl = (int) floor(lk / k);
+        g = exp(-0.25) * dw / 2;
+        tmpR = 0;
+        while (tmpR < Rm){
+            n++;
+            Nc = (n - 1) %  Nl;
+            nLayer = (int) floor((n - 1) / Nl);
+            nx = Nc * k;
+            ny = r0 + k * nLayer;
+            Lns = Mut(ny, ny, g, 0);
+            // self inductance of current turn
+            lw = lw + 2 * M_PI * ny;
+            M = 0;
+            if (n > 1){
+                for (j = n; j >= 2; j--){
+                    Jc = (j - 2) % Nl;
+                    jx = Jc * k;
+                    jLayer = (int) floor((j - 2) / Nl);
+                    jy = r0 + k * jLayer;
+                    M = M + 2 * Mut(ny, jy, nx - jx, g);
+                }
+            }
+            Ltotal = Ltotal + Lns + M;
+            tmpR = (0.0175 * lw * 1e-4 * 4) / (M_PI * dw * dw);
+        }
+        bTmp = (nLayer + 1) * k;
+        if (bTmp > c)
+            break;
+        if (nTmp < c){
+            nTmp = (nLayer + 2) * k;
+            result->N = Ltotal;
+        }
     }
-  }
-  N1 = n - Nl;
-  N2 = n + Nl;
-  result->sec = Ltotal;
-  result->thd = N1;
-  result->fourth = N2;
+    N1 = n - Nl;
+    N2 = n + Nl;
+    result->sec = Ltotal;
+    result->thd = N1;
+    result->fourth = N2;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, _CoilResult *result){
@@ -677,18 +879,18 @@ void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result) {
     result->sec = Length_spiral / 1000;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double CalcCONTUR0(double L, double C) {
+double CalcLC0(double L, double C) {
     double f = 1e3 / (2 * M_PI * sqrt(L * C));
     return f;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double CalcCONTUR1(double C, double f) {
+double CalcLC1(double C, double f) {
     double L1 = 1e3 / (2 * M_PI * f);
     double L = pow(L1, 2) / C;
     return L;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double CalcCONTUR2(double L, double f) {
+double CalcLC2(double L, double f) {
     double C1 = 1e3 / (2 * M_PI * f);
     double C = pow(C1, 2) / L;
     return C;
@@ -731,7 +933,7 @@ void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, doubl
         //The optimized version of Wheeler's Continuous Inductance formula for the one-layer coil corrected by Robert Weaver
         //[34] (http://electronbunker.ca/eb/CalcMethods3b.html)
         double i = 0.0002 * M_PI * Dk * N * N * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 *
-                k * k - 0.47 / pow((0.755 + 1 / k), 1.44)));
+                                                                                k * k - 0.47 / pow((0.755 + 1 / k), 1.44)));
 
         double Ks = rosaKs(p / dw);
         double Km = rosaKm(N);
@@ -758,4 +960,9 @@ void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, doubl
     result->sec = Lf_Lair;
     result->thd = lc;
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void findMeadrPCB_I(double a, double d, double h, double W, int N, _CoilResult *result){
+  result->N = 0.00266 * pow(a, 0.0603) * pow(h, 0.4429) * pow(N, 0.954) * pow(d, 0.606) * pow(W, -0.173);
+  result->sec = 2 * N * d + 2 * a;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

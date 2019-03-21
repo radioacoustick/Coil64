@@ -46,11 +46,15 @@ void Options::getOpt(_OptionStruct gOpt){
     ui->comboBox_wire->setCurrentIndex(oOpt->isAWG);
     ui->checkBox->setChecked(oOpt->isInsertImage);
     ui->checkBox_2->setChecked(oOpt->isAdditionalResult);
+    ui->checkBox_4->setChecked(oOpt->isConfirmExit);
+    ui->checkBox_5->setChecked(oOpt->isConfirmClear);
 
     ui->fontComboBox_1->setCurrentText(oOpt->mainFontFamily);
     ui->fontspinBox_1->setValue(oOpt->mainFontSize);
     ui->fontComboBox_2->setCurrentText(oOpt->textFontFamily);
     ui->fontspinBox_2->setValue(oOpt->textFontSize);
+
+    ui->radioButton_loc2->setChecked(oOpt->isEnglishLocale);
 
     ui->checkBox_3->setChecked(oOpt->isAutomaticUpdate);
     switch (oOpt->upDateInterval) {
@@ -91,11 +95,15 @@ void Options::on_pushButton_2_clicked()
     oOpt->isAWG = ui->comboBox_wire->currentIndex();
     oOpt->isInsertImage = ui->checkBox->isChecked();
     oOpt->isAdditionalResult = ui->checkBox_2->isChecked();
+    oOpt->isConfirmExit = ui->checkBox_4->isChecked();
+    oOpt->isConfirmClear = ui->checkBox_5->isChecked();
 
     oOpt->mainFontFamily = ui->fontComboBox_1->currentText();
     oOpt->textFontFamily = ui->fontComboBox_2->currentText();
     oOpt->mainFontSize = ui->fontspinBox_1->value();
     oOpt->textFontSize = ui->fontspinBox_2->value();
+
+    oOpt->isEnglishLocale = ui->radioButton_loc2->isChecked();
 
     oOpt->isAutomaticUpdate = ui->checkBox_3->isChecked();
     if (ui->radioButton_1->isChecked()){
@@ -124,4 +132,5 @@ void Options::on_pushButton_4_clicked()
     ui->comboBox_wire->setCurrentIndex(0);
     ui->checkBox->setChecked(true);
     ui->checkBox_2->setChecked(true);
+    ui->radioButton_loc1->setChecked(true);
 }

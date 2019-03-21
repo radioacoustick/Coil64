@@ -35,11 +35,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QPrinter>
 #include <QFileDialog>
 #include <QTextDocumentWriter>
+#include <QCloseEvent>
 
 #include "options.h"
 #include "about.h"
 #include "find_permeability.h"
 #include "ferrite_rod.h"
+#include "meander_pcb.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -61,11 +63,12 @@ public:
 
 signals:
     void sendOpt(_OptionStruct);
+    void sendLocale(QLocale);
 public slots:
     void on_actionCheck_for_update_triggered();
 
 private slots:
-    void closeEvent(QCloseEvent *);
+    void closeEvent(QCloseEvent *event);
 
     void on_listWidget_currentRowChanged(int currentRow);
     void on_tabWidget_currentChanged(int index);
@@ -108,6 +111,7 @@ private slots:
     void get_onelayerN_rectW_Result(_CoilResult result);
     void get_multilayerN_Result(_CoilResult result);
     void get_multilayerNgap_Result(_CoilResult result);
+    void get_multilayerN_Rect_Result(_CoilResult result);
     void get_ferrToroidN_Result(_CoilResult result);
     void get_pcbN_Result(_CoilResult result);
     void get_spiralN_Result(_CoilResult result);
@@ -115,7 +119,8 @@ private slots:
     void get_onelayerI_roundW_Result(_CoilResult result);
     void get_onelayerI_rectW_Result(_CoilResult result);
     void get_multilayerI_Result(_CoilResult result);
-    void get_multilayerIp_Result(_CoilResult result);
+    void get_multilayerIgap_Result(_CoilResult result);
+    void get_multilayerI_Rect_Result(_CoilResult result);
     void get_ferriteI_Result(_CoilResult result);
     void get_pcbI_Result(_CoilResult result);
     void get_spiralI_Result(_CoilResult result);
@@ -150,18 +155,20 @@ private slots:
 
     void on_actionFerrite_toroid_permeability_triggered();
     void on_actionCoil_on_a_ferrite_rod_triggered();
+    void on_actionPCB_meandr_coil_triggered();
 
     void getAddCalculationResult(QString result);
-
 
 private:
     Ui::MainWindow *mui;
     QNetworkAccessManager *net_manager;
+    QDoubleValidator *dv;
     _FormCoil FormCoil; //Enum variable of a coil form
     _Data *data; //Structure stores the data for calculating
     _OptionStruct *myOpt; //Options Structure contains all app settings
     QString lang; //Current app GUI language
     unsigned int calc_count; //Calculating number
+    QLocale loc;
 };
 
 #endif // MAINWINDOW_H

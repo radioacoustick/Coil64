@@ -1,4 +1,4 @@
-/* ferrite_rod.h - header text to Coil64 - Radio frequency inductor and choke calculator
+/* meander_pcb.h - header text to Coil64 - Radio frequency inductor and choke calculator
 Copyright (C) 2019 Kustarev V.
 
 This program is free software; you can redistribute it and/or modify
@@ -15,12 +15,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses
 */
 
-#ifndef FERRITE_ROD_H
-#define FERRITE_ROD_H
+#ifndef MEANDER_PCB_H
+#define MEANDER_PCB_H
 
 #include <QDialog>
-#include <QSettings>
 #include <QDoubleValidator>
+#include <QString>
+#include <QSettings>
 #include <QDesktopServices>
 #include <QUrl>
 
@@ -28,16 +29,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "resolves.h"
 
 namespace Ui {
-class Ferrite_Rod;
+class Meander_pcb;
 }
 
-class Ferrite_Rod : public QDialog
+class Meander_pcb : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Ferrite_Rod(QWidget *parent = 0);
-    ~Ferrite_Rod();
+    explicit Meander_pcb(QWidget *parent = 0);
+    ~Meander_pcb();
 
 signals:
     void sendResult(QString);
@@ -45,15 +46,16 @@ signals:
 private slots:
     void getOpt(_OptionStruct gOpt);
     void getCurrentLocale(QLocale locale);
-    void on_pushButton_close_clicked();
-    void on_pushButton_calculate_clicked();
+    void on_pushButton_2_clicked();
+    void on_pushButton_3_clicked();
+
     void on_pushButton_clicked();
 
 private:
-    Ui::Ferrite_Rod *ui;
+    Ui::Meander_pcb *ui;
     _OptionStruct *fOpt;
     QDoubleValidator *dv;
     QLocale loc;
 };
 
-#endif // FERRITE_ROD_H
+#endif // MEANDER_PCB_H

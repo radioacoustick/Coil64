@@ -41,14 +41,14 @@ SOURCES += main.cpp\
     about.cpp \
     system_functions.cpp \
     find_permeability.cpp \
-    ferrite_rod.cpp
+    ferrite_rod.cpp \
+    meander_pcb.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
     bessel.h \
     resolve_q.h \
     resolve_srf_cs.h \
-    customvalidator.h \
     mthread_calculate.h \
     options.h \
     about.h \
@@ -56,13 +56,15 @@ HEADERS  += mainwindow.h \
     system_functions.h \
     find_permeability.h \
     ferrite_rod.h \
-    version.h
+    version.h \
+    meander_pcb.h
 
 FORMS    += mainwindow.ui \
     options.ui \
     about.ui \
     find_permeability.ui \
-    ferrite_rod.ui
+    ferrite_rod.ui \
+    meander_pcb.ui
 
 RESOURCES += \
     res.qrc

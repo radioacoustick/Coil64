@@ -10,6 +10,8 @@
         <file>res/Coil8.png</file>
         <file>res/Coil10.png</file>
         <file>res/Ferrite-rod.png</file>
+        <file>res/Coil4_square.png</file>
+        <file>res/meandr_pcb.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -69,6 +71,8 @@
         <file>res/icons8-apple-logo-32.png</file>
         <file>res/icons8-linux-32.png</file>
         <file>res/icons8-windows-xp-32.png</file>
+        <file>res/ico1-multi-layer-rect.png</file>
+        <file>res/ico1-meandr.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

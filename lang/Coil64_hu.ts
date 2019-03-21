@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>About</name>
     <message>
-        <location filename="../about.ui" line="29"/>
+        <location filename="../about.ui" line="32"/>
         <source>About</source>
         <translation>Névjegy</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="98"/>
+        <location filename="../about.ui" line="101"/>
         <source>About program</source>
         <translation>A programról</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="110"/>
+        <location filename="../about.ui" line="113"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Radio frequency inductor and choke calculator&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rádiófrekvenciás induktor és fojtószámoló&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="127"/>
+        <location filename="../about.ui" line="130"/>
         <source>The app allows to calculate needed number of turns for desired value of inductance of homebrew inductor or to calculate the inductance value of a fabricated inductor. I hope this app could be useful for HAMs, Audiophiles and other radio enthusiasts who needs to make DIY inductors.</source>
         <translation>Az alkalmazás lehetővé teszi a homebrew induktivitás induktivitásának kívánt értékéhez szükséges számok számának kiszámítását, vagy a gyártott induktivitás induktivitási értékének kiszámítását. Remélem, ez az alkalmazás hasznos lehet a HAM-ok, az Audiophiles és más rádió-rajongók számára, akiknek DIY-induktorokat kell készíteniük.</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="155"/>
+        <location filename="../about.ui" line="158"/>
         <source>HomePage:</source>
         <translation>HomePage:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="184"/>
+        <location filename="../about.ui" line="187"/>
         <source>Author</source>
         <translation>Szerző</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="196"/>
+        <location filename="../about.ui" line="199"/>
         <source>Name: Valery Kustarev</source>
         <translation>Név: Valery Kustarev</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="256"/>
+        <location filename="../about.ui" line="259"/>
         <source>Thanks</source>
         <translation>Kösz</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="268"/>
+        <location filename="../about.ui" line="271"/>
         <source>Thanks for reports and program testing:</source>
         <translation>Köszönjük a jelentéseket és a program tesztelését:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="301"/>
+        <location filename="../about.ui" line="304"/>
         <source>Translations</source>
         <translation>fordítása</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="307"/>
+        <location filename="../about.ui" line="310"/>
         <source>I would like to thank the following people who volunteered to translate Coil64:</source>
         <translation>Szeretnék köszönetet mondani a következő embereknek, akik önként jelentkeztek a Coil64 fordítására:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="361"/>
+        <location filename="../about.ui" line="364"/>
         <source>The current version of the Coil64 has been compiled by using the following libraries:</source>
         <translation>A Coil64 jelenlegi verzióját az alábbi könyvtárak használatával állították össze:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="332"/>
+        <location filename="../about.ui" line="335"/>
         <source>License</source>
         <translation>Engedély</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="242"/>
+        <location filename="../about.ui" line="245"/>
         <source>I hope, Coil64 will be useful in your radioamateur creativity. 73!</source>
         <translation>Remélem, a Coil64 hasznos lesz a radioamutató kreativitásában. 73!</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="349"/>
+        <location filename="../about.ui" line="352"/>
         <source>Libraries</source>
         <translation>könyvtárak</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="442"/>
+        <location filename="../about.ui" line="445"/>
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
@@ -87,77 +87,77 @@
 <context>
     <name>Context</name>
     <message>
-        <location filename="../system_functions.cpp" line="247"/>
+        <location filename="../system_functions.cpp" line="272"/>
         <source>Hz</source>
         <translation>Hz</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="252"/>
+        <location filename="../system_functions.cpp" line="277"/>
         <source>kHz</source>
         <translation>kHz</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="257"/>
+        <location filename="../system_functions.cpp" line="282"/>
         <source>MHz</source>
         <translation>MHz</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="266"/>
+        <location filename="../system_functions.cpp" line="291"/>
         <source>pF</source>
         <translation>pF</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="271"/>
+        <location filename="../system_functions.cpp" line="296"/>
         <source>nF</source>
         <translation>nF</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="276"/>
+        <location filename="../system_functions.cpp" line="301"/>
         <source>microF</source>
         <translation>microF</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="285"/>
+        <location filename="../system_functions.cpp" line="310"/>
         <source>nH</source>
         <translation>nH</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="290"/>
+        <location filename="../system_functions.cpp" line="315"/>
         <source>microH</source>
         <translation>microH</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="295"/>
+        <location filename="../system_functions.cpp" line="320"/>
         <source>mH</source>
         <translation>mH</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="304"/>
+        <location filename="../system_functions.cpp" line="329"/>
         <source>mm</source>
         <translation>mm</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="309"/>
+        <location filename="../system_functions.cpp" line="334"/>
         <source>cm</source>
         <translation>cm</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="314"/>
+        <location filename="../system_functions.cpp" line="339"/>
         <source>in</source>
         <translation>in</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="319"/>
+        <location filename="../system_functions.cpp" line="344"/>
         <source>mil</source>
         <translation>mil</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="343"/>
+        <location filename="../system_functions.cpp" line="368"/>
         <source>m</source>
         <translation>m</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="353"/>
+        <location filename="../system_functions.cpp" line="378"/>
         <source>fit</source>
         <translation>fit</translation>
     </message>
@@ -167,7 +167,7 @@
     <message>
         <location filename="../ferrite_rod.ui" line="29"/>
         <source>Coil on a ferrite rod</source>
-        <translation type="unfinished">Tekercs egy ferrit rúdon</translation>
+        <translation>Tekercs egy ferrit rúdon</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="69"/>
@@ -195,12 +195,17 @@
         <translation>Tekercs paraméterei:</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.ui" line="479"/>
+        <location filename="../ferrite_rod.ui" line="502"/>
         <source>Calculate</source>
         <translation>Számítás</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.ui" line="496"/>
+        <location filename="../ferrite_rod.ui" line="509"/>
+        <source>Enter</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ferrite_rod.ui" line="522"/>
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
@@ -240,53 +245,59 @@
         <translation>Menettávolság</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="135"/>
-        <location filename="../ferrite_rod.cpp" line="147"/>
         <location filename="../ferrite_rod.cpp" line="151"/>
-        <location filename="../ferrite_rod.cpp" line="155"/>
-        <location filename="../ferrite_rod.cpp" line="159"/>
-        <location filename="../ferrite_rod.cpp" line="165"/>
-        <location filename="../ferrite_rod.cpp" line="169"/>
+        <location filename="../ferrite_rod.cpp" line="164"/>
+        <location filename="../ferrite_rod.cpp" line="168"/>
+        <location filename="../ferrite_rod.cpp" line="172"/>
+        <location filename="../ferrite_rod.cpp" line="176"/>
+        <location filename="../ferrite_rod.cpp" line="180"/>
+        <location filename="../ferrite_rod.cpp" line="186"/>
+        <location filename="../ferrite_rod.cpp" line="190"/>
         <source>Warning</source>
         <translation>Figyelem</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="135"/>
+        <location filename="../ferrite_rod.cpp" line="151"/>
         <source>One or more inputs are empty!</source>
         <translation>Egy vagy több bemenet üres!</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="147"/>
+        <location filename="../ferrite_rod.cpp" line="164"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Egy vagy több bemenet illegális formátumú!</translation>
+    </message>
+    <message>
+        <location filename="../ferrite_rod.cpp" line="168"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Egy vagy több bemenet egyenlő null!</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="169"/>
+        <location filename="../ferrite_rod.cpp" line="190"/>
         <source>Distance from coil edge to core edge less than 1/8 Lr</source>
         <translation>Távolság a tekercs élétől a széleiig kevesebb, mint 1/8 Lr</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="176"/>
+        <location filename="../ferrite_rod.cpp" line="197"/>
         <source>Input data</source>
         <translation>Beviteli adat</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="188"/>
+        <location filename="../ferrite_rod.cpp" line="209"/>
         <source>Result</source>
         <translation>Eredmények</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="189"/>
+        <location filename="../ferrite_rod.cpp" line="210"/>
         <source>Number of turns of the coil</source>
         <translation>A tekercs menetszáma</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="190"/>
+        <location filename="../ferrite_rod.cpp" line="211"/>
         <source>Length of winding</source>
         <translation>Tekercs hossza</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="191"/>
+        <location filename="../ferrite_rod.cpp" line="212"/>
         <source>Effective magnetic permeability of the rod</source>
         <translation>A rúd hatékony mágneses permeabilitása</translation>
     </message>
@@ -294,80 +305,86 @@
 <context>
     <name>Find_Permeability</name>
     <message>
-        <location filename="../find_permeability.ui" line="29"/>
+        <location filename="../find_permeability.ui" line="32"/>
         <source>Find the unknown ferrite toroid permeability</source>
         <translation>Keresse meg az ismeretlen ferrit toroid permeabilitást</translation>
     </message>
     <message>
-        <location filename="../find_permeability.ui" line="63"/>
+        <location filename="../find_permeability.ui" line="66"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You should to wind a few turns on an unknown ferrite or powder iron toroid and should to mesure obtained inductance and dimentions of the ring. Enter the data and estimate the permeability and Al-factor of the toroid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Néhány fordulatot le kell fújni egy ismeretlen ferrit vagy por vas-toroidra, és meg kell mérnie a kapott gyűrűnek a kapott induktivitását és szennyeződését. Adja meg az adatokat, és becsülje meg a toroid permeabilitását és Al-faktorát.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../find_permeability.ui" line="94"/>
+        <location filename="../find_permeability.ui" line="97"/>
         <source>Data</source>
         <translation>Adat</translation>
     </message>
     <message>
-        <location filename="../find_permeability.ui" line="109"/>
+        <location filename="../find_permeability.ui" line="112"/>
         <source>Inductance</source>
         <translation>Induktivitás</translation>
     </message>
     <message>
-        <location filename="../find_permeability.ui" line="116"/>
+        <location filename="../find_permeability.ui" line="119"/>
         <source>Number of turns</source>
         <translation>A tekercs menetszáma</translation>
     </message>
     <message>
-        <location filename="../find_permeability.ui" line="141"/>
-        <location filename="../find_permeability.cpp" line="123"/>
+        <location filename="../find_permeability.ui" line="144"/>
+        <location filename="../find_permeability.cpp" line="141"/>
         <source>Dimensions</source>
         <translation>Méretek</translation>
     </message>
     <message>
-        <location filename="../find_permeability.ui" line="265"/>
+        <location filename="../find_permeability.ui" line="291"/>
         <source>Calculate</source>
         <translation>Számítás</translation>
     </message>
     <message>
-        <location filename="../find_permeability.ui" line="285"/>
+        <location filename="../find_permeability.ui" line="311"/>
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
     <message>
-        <location filename="../find_permeability.cpp" line="97"/>
-        <location filename="../find_permeability.cpp" line="106"/>
         <location filename="../find_permeability.cpp" line="110"/>
+        <location filename="../find_permeability.cpp" line="120"/>
+        <location filename="../find_permeability.cpp" line="124"/>
+        <location filename="../find_permeability.cpp" line="128"/>
         <source>Warning</source>
         <translation>Figyelem</translation>
     </message>
     <message>
-        <location filename="../find_permeability.cpp" line="97"/>
+        <location filename="../find_permeability.cpp" line="110"/>
         <source>One or more inputs are empty!</source>
         <translation>Egy vagy több bemenet üres!</translation>
     </message>
     <message>
-        <location filename="../find_permeability.cpp" line="106"/>
+        <location filename="../find_permeability.cpp" line="120"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Egy vagy több bemenet illegális formátumú!</translation>
+    </message>
+    <message>
+        <location filename="../find_permeability.cpp" line="124"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Egy vagy több bemenet egyenlő null!</translation>
     </message>
     <message>
-        <location filename="../find_permeability.cpp" line="120"/>
+        <location filename="../find_permeability.cpp" line="138"/>
         <source>Input data</source>
         <translation>Beviteli adat</translation>
     </message>
     <message>
-        <location filename="../find_permeability.cpp" line="128"/>
+        <location filename="../find_permeability.cpp" line="146"/>
         <source>Result</source>
         <translation>Eredmények</translation>
     </message>
     <message>
-        <location filename="../find_permeability.cpp" line="129"/>
+        <location filename="../find_permeability.cpp" line="147"/>
         <source>Relative magnetic permeability of the toroid</source>
         <translation>A toroid relatív mágneses permeabilitása</translation>
     </message>
     <message>
-        <location filename="../find_permeability.cpp" line="130"/>
+        <location filename="../find_permeability.cpp" line="148"/>
         <source>Magnetic factor of the core</source>
         <translation>A mag mágneses tényezője</translation>
     </message>
@@ -380,813 +397,1141 @@
         <translation>Válasszon tekercset</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="116"/>
+        <location filename="../mainwindow.ui" line="122"/>
         <source>One layer coil with round wire</source>
         <translation>Egyrétegű tekercs kerek vezetékkel</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="126"/>
+        <location filename="../mainwindow.ui" line="132"/>
         <source>One layer coil with rect wire</source>
         <translation>Egyrétegű tekercs téglalap alakú vezetékkel</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="136"/>
+        <location filename="../mainwindow.ui" line="142"/>
         <source>Multilayer coil</source>
         <translation>Többrétegű tekercs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="146"/>
+        <location filename="../mainwindow.ui" line="152"/>
         <source>Multilayer coil with insulated pads</source>
         <translation>Többrétegű tekercs szigetelt párnákkal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="156"/>
+        <location filename="../mainwindow.ui" line="171"/>
         <source>Ferrite toroid coil</source>
         <translation>Ferritgyűrűs tekercs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="166"/>
+        <location filename="../mainwindow.ui" line="181"/>
         <source>PCB flat coil with square winding</source>
         <translation>Nyomtatott tekercs NYÁK-on, szögletes spirál</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="176"/>
+        <location filename="../mainwindow.ui" line="191"/>
         <source>Tesla flat spiral coil</source>
         <translation>Tesla lapos spirál tekercs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1548"/>
+        <location filename="../mainwindow.ui" line="1170"/>
+        <source>Enter</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1564"/>
         <source>About Coil64</source>
         <translation>A Coil64-ről</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1652"/>
+        <location filename="../mainwindow.ui" line="1668"/>
         <source>Ferrite toroid permeability</source>
         <translation>Ferrit toroid permeabilitás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="238"/>
+        <location filename="../mainwindow.ui" line="237"/>
         <source>Coil</source>
         <translation>Tekercs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="525"/>
-        <location filename="../mainwindow.cpp" line="575"/>
-        <location filename="../mainwindow.cpp" line="865"/>
-        <location filename="../mainwindow.cpp" line="919"/>
-        <location filename="../mainwindow.cpp" line="1103"/>
-        <location filename="../mainwindow.cpp" line="2812"/>
+        <location filename="../mainwindow.cpp" line="572"/>
+        <location filename="../mainwindow.cpp" line="621"/>
+        <location filename="../mainwindow.cpp" line="959"/>
+        <location filename="../mainwindow.cpp" line="1012"/>
+        <location filename="../mainwindow.cpp" line="1251"/>
+        <location filename="../mainwindow.cpp" line="3432"/>
         <source>Winding pitch</source>
         <translation>Menettávolság</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="523"/>
-        <location filename="../mainwindow.ui" line="925"/>
+        <location filename="../mainwindow.ui" line="522"/>
+        <location filename="../mainwindow.ui" line="924"/>
         <source>Wire material:</source>
         <translation>Huzal anyaga:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="529"/>
-        <location filename="../mainwindow.ui" line="931"/>
+        <location filename="../mainwindow.ui" line="528"/>
+        <location filename="../mainwindow.ui" line="930"/>
         <source>Copper</source>
         <translation>Réz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="539"/>
-        <location filename="../mainwindow.ui" line="941"/>
+        <location filename="../mainwindow.ui" line="538"/>
+        <location filename="../mainwindow.ui" line="940"/>
         <source>Silver</source>
         <translation>Ezüst</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="546"/>
-        <location filename="../mainwindow.ui" line="948"/>
+        <location filename="../mainwindow.ui" line="545"/>
+        <location filename="../mainwindow.ui" line="947"/>
         <source>Aluminum</source>
         <translation>Aluminium</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="553"/>
-        <location filename="../mainwindow.ui" line="955"/>
+        <location filename="../mainwindow.ui" line="552"/>
+        <location filename="../mainwindow.ui" line="954"/>
         <source>Tin</source>
         <translation>ón</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="576"/>
+        <location filename="../mainwindow.ui" line="575"/>
         <source>Ratio W/s:</source>
         <translation>Hányados W/s:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="637"/>
-        <location filename="../mainwindow.cpp" line="483"/>
-        <location filename="../mainwindow.cpp" line="1384"/>
-        <location filename="../mainwindow.cpp" line="1404"/>
-        <location filename="../mainwindow.cpp" line="2887"/>
-        <location filename="../mainwindow.cpp" line="2963"/>
-        <location filename="../mainwindow.cpp" line="3036"/>
-        <location filename="../mainwindow.cpp" line="3070"/>
-        <location filename="../mainwindow.cpp" line="3097"/>
-        <location filename="../mainwindow.cpp" line="3123"/>
-        <location filename="../mainwindow.cpp" line="3148"/>
+        <location filename="../mainwindow.ui" line="636"/>
+        <location filename="../mainwindow.cpp" line="530"/>
+        <location filename="../mainwindow.cpp" line="1546"/>
+        <location filename="../mainwindow.cpp" line="1566"/>
+        <location filename="../mainwindow.cpp" line="3505"/>
+        <location filename="../mainwindow.cpp" line="3581"/>
+        <location filename="../mainwindow.cpp" line="3654"/>
+        <location filename="../mainwindow.cpp" line="3688"/>
+        <location filename="../mainwindow.cpp" line="3721"/>
+        <location filename="../mainwindow.cpp" line="3748"/>
+        <location filename="../mainwindow.cpp" line="3774"/>
+        <location filename="../mainwindow.cpp" line="3799"/>
         <source>Inductance</source>
         <translation>Induktivitás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="971"/>
+        <location filename="../mainwindow.ui" line="970"/>
         <source>Select initial data of the calculation</source>
         <translation>Ismert adat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1013"/>
+        <location filename="../mainwindow.ui" line="1012"/>
         <source>LC circuit</source>
         <translation>Párhuzamos LC kör</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1021"/>
+        <location filename="../mainwindow.ui" line="1020"/>
         <source>Initial conditions of calculation of a circuit</source>
         <translation>Tervezés feltétele</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1027"/>
+        <location filename="../mainwindow.ui" line="1026"/>
         <source>The capacitance and the inductance are known</source>
         <translation>A kapacitás és az induktivitás ismert</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1037"/>
+        <location filename="../mainwindow.ui" line="1036"/>
         <source>The capacitance and the frequency are known </source>
         <translation>A kapacitás és a frekvencia ismert</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1044"/>
+        <location filename="../mainwindow.ui" line="1043"/>
         <source>The inductance and the frequency are known</source>
         <translation>Induktivitás és a frekvencia ismert</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
-        <location filename="../mainwindow.cpp" line="1394"/>
+        <location filename="../mainwindow.cpp" line="1548"/>
+        <location filename="../mainwindow.cpp" line="1556"/>
         <source>External capacitance</source>
         <translation>Külső kapacitás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1460"/>
+        <location filename="../mainwindow.ui" line="1475"/>
         <source>Additional calculating</source>
         <translation>További számítás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1164"/>
+        <location filename="../mainwindow.ui" line="1163"/>
         <source>Calculate</source>
         <translation>Számítás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1171"/>
-        <source>Return</source>
-        <translation></translation>
+        <location filename="../mainwindow.ui" line="162"/>
+        <source>Multilayer coil on a rectangular former</source>
+        <translation>Többrétegű tekercs egy téglalap alakú előlapon</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1197"/>
+        <location filename="../mainwindow.ui" line="1212"/>
         <source>Copy selected to clipboard</source>
         <translation>Kijelöltek vágólapra másolása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1220"/>
-        <location filename="../mainwindow.ui" line="1600"/>
-        <location filename="../mainwindow.ui" line="1603"/>
+        <location filename="../mainwindow.ui" line="1235"/>
+        <location filename="../mainwindow.ui" line="1616"/>
+        <location filename="../mainwindow.ui" line="1619"/>
         <source>Copy all to clipboard</source>
         <translation>Vágólapra másolás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1258"/>
-        <location filename="../mainwindow.ui" line="1574"/>
-        <location filename="../mainwindow.cpp" line="1306"/>
+        <location filename="../mainwindow.ui" line="1273"/>
+        <location filename="../mainwindow.ui" line="1590"/>
+        <location filename="../mainwindow.cpp" line="1468"/>
         <source>Save</source>
         <translation>Mentés</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1281"/>
-        <location filename="../mainwindow.ui" line="1671"/>
+        <location filename="../mainwindow.ui" line="1296"/>
+        <location filename="../mainwindow.ui" line="1687"/>
         <source>Clear all</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1304"/>
+        <location filename="../mainwindow.ui" line="1319"/>
         <source>Print all</source>
         <translation>Mindent nyomtat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1327"/>
+        <location filename="../mainwindow.ui" line="1342"/>
         <source>Show images in result</source>
         <translation>Kép megjelenítése az eredményben</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1356"/>
+        <location filename="../mainwindow.ui" line="1371"/>
         <source>Show additional results for single-layer coils</source>
         <translation>További adatok az egyrétegű tekercsről</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1379"/>
-        <location filename="../mainwindow.ui" line="1535"/>
+        <location filename="../mainwindow.ui" line="1394"/>
+        <location filename="../mainwindow.ui" line="1551"/>
         <source>Context help</source>
         <translation>Kontextusos segítség</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1433"/>
+        <location filename="../mainwindow.ui" line="1448"/>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1443"/>
+        <location filename="../mainwindow.ui" line="1458"/>
         <source>&amp;Customize</source>
         <translation>&amp;Testreszabás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1449"/>
+        <location filename="../mainwindow.ui" line="1464"/>
         <source>&amp;Help</source>
         <translation>&amp;Segítség</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1467"/>
+        <location filename="../mainwindow.ui" line="1483"/>
         <source>Actions</source>
         <translation>Művelet</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1506"/>
+        <location filename="../mainwindow.ui" line="1522"/>
         <source>&amp;Exit</source>
         <translation>&amp;Kijárat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1519"/>
-        <location filename="../mainwindow.ui" line="1522"/>
+        <location filename="../mainwindow.ui" line="1535"/>
+        <location filename="../mainwindow.ui" line="1538"/>
         <source>Options</source>
         <translation>Beállítások</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1561"/>
+        <location filename="../mainwindow.ui" line="1577"/>
         <source>Check for &amp;update</source>
         <translation>Frissítés&amp;ek keresése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1587"/>
+        <location filename="../mainwindow.ui" line="1603"/>
         <source>HomePage</source>
         <translation>HomePage</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1616"/>
+        <location filename="../mainwindow.ui" line="1632"/>
         <source>Print</source>
         <translation>Nyomtatás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1628"/>
+        <location filename="../mainwindow.ui" line="1644"/>
         <source>To null initial data</source>
         <translation>Alaphelyzet</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1661"/>
+        <location filename="../mainwindow.ui" line="1677"/>
         <source>Coil on a ferrite rod</source>
         <translation>Tekercs egy ferrit rúdon</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1237"/>
-        <location filename="../mainwindow.ui" line="1640"/>
-        <location filename="../mainwindow.cpp" line="1272"/>
+        <location filename="../mainwindow.ui" line="1696"/>
+        <source>Meander coil on PCB</source>
+        <translation>Közepes tekercs a PCB-n</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1252"/>
+        <location filename="../mainwindow.ui" line="1656"/>
+        <location filename="../mainwindow.cpp" line="1434"/>
         <source>Open</source>
         <translation>Nyitva</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="86"/>
-        <location filename="../mainwindow.cpp" line="257"/>
+        <location filename="../mainwindow.cpp" line="88"/>
+        <location filename="../mainwindow.cpp" line="278"/>
         <source>Language</source>
         <translation>Nyelv</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="373"/>
+        <location filename="../mainwindow.cpp" line="414"/>
+        <location filename="../mainwindow.cpp" line="437"/>
+        <location filename="../mainwindow.cpp" line="1703"/>
+        <location filename="../mainwindow.cpp" line="1712"/>
+        <location filename="../mainwindow.cpp" line="1726"/>
+        <location filename="../mainwindow.cpp" line="1731"/>
+        <location filename="../mainwindow.cpp" line="1737"/>
+        <location filename="../mainwindow.cpp" line="1742"/>
+        <location filename="../mainwindow.cpp" line="1764"/>
+        <location filename="../mainwindow.cpp" line="1776"/>
+        <location filename="../mainwindow.cpp" line="1782"/>
+        <location filename="../mainwindow.cpp" line="1787"/>
+        <location filename="../mainwindow.cpp" line="1793"/>
+        <location filename="../mainwindow.cpp" line="1804"/>
+        <location filename="../mainwindow.cpp" line="1823"/>
+        <location filename="../mainwindow.cpp" line="1828"/>
+        <location filename="../mainwindow.cpp" line="1840"/>
+        <location filename="../mainwindow.cpp" line="1852"/>
+        <location filename="../mainwindow.cpp" line="1857"/>
+        <location filename="../mainwindow.cpp" line="1862"/>
+        <location filename="../mainwindow.cpp" line="1878"/>
+        <location filename="../mainwindow.cpp" line="1883"/>
+        <location filename="../mainwindow.cpp" line="1889"/>
+        <location filename="../mainwindow.cpp" line="1900"/>
+        <location filename="../mainwindow.cpp" line="1918"/>
+        <location filename="../mainwindow.cpp" line="1937"/>
+        <location filename="../mainwindow.cpp" line="1942"/>
+        <location filename="../mainwindow.cpp" line="1947"/>
+        <location filename="../mainwindow.cpp" line="1952"/>
         <location filename="../mainwindow.cpp" line="1968"/>
-        <location filename="../mainwindow.cpp" line="1974"/>
-        <location filename="../mainwindow.cpp" line="1991"/>
-        <location filename="../mainwindow.cpp" line="1995"/>
-        <location filename="../mainwindow.cpp" line="1999"/>
-        <location filename="../mainwindow.cpp" line="2022"/>
-        <location filename="../mainwindow.cpp" line="2033"/>
-        <location filename="../mainwindow.cpp" line="2037"/>
-        <location filename="../mainwindow.cpp" line="2060"/>
-        <location filename="../mainwindow.cpp" line="2076"/>
-        <location filename="../mainwindow.cpp" line="2080"/>
-        <location filename="../mainwindow.cpp" line="2090"/>
+        <location filename="../mainwindow.cpp" line="1988"/>
+        <location filename="../mainwindow.cpp" line="1997"/>
+        <location filename="../mainwindow.cpp" line="2011"/>
+        <location filename="../mainwindow.cpp" line="2016"/>
+        <location filename="../mainwindow.cpp" line="2023"/>
+        <location filename="../mainwindow.cpp" line="2045"/>
+        <location filename="../mainwindow.cpp" line="2057"/>
+        <location filename="../mainwindow.cpp" line="2063"/>
+        <location filename="../mainwindow.cpp" line="2068"/>
+        <location filename="../mainwindow.cpp" line="2075"/>
+        <location filename="../mainwindow.cpp" line="2092"/>
+        <location filename="../mainwindow.cpp" line="2097"/>
+        <location filename="../mainwindow.cpp" line="2103"/>
         <location filename="../mainwindow.cpp" line="2108"/>
-        <location filename="../mainwindow.cpp" line="2112"/>
-        <location filename="../mainwindow.cpp" line="2122"/>
-        <location filename="../mainwindow.cpp" line="2139"/>
-        <location filename="../mainwindow.cpp" line="2143"/>
-        <location filename="../mainwindow.cpp" line="2157"/>
-        <location filename="../mainwindow.cpp" line="2192"/>
-        <location filename="../mainwindow.cpp" line="2198"/>
-        <location filename="../mainwindow.cpp" line="2215"/>
-        <location filename="../mainwindow.cpp" line="2219"/>
-        <location filename="../mainwindow.cpp" line="2223"/>
-        <location filename="../mainwindow.cpp" line="2246"/>
-        <location filename="../mainwindow.cpp" line="2257"/>
-        <location filename="../mainwindow.cpp" line="2261"/>
-        <location filename="../mainwindow.cpp" line="2283"/>
-        <location filename="../mainwindow.cpp" line="2305"/>
+        <location filename="../mainwindow.cpp" line="2113"/>
+        <location filename="../mainwindow.cpp" line="2118"/>
+        <location filename="../mainwindow.cpp" line="2129"/>
+        <location filename="../mainwindow.cpp" line="2148"/>
+        <location filename="../mainwindow.cpp" line="2153"/>
+        <location filename="../mainwindow.cpp" line="2165"/>
+        <location filename="../mainwindow.cpp" line="2175"/>
+        <location filename="../mainwindow.cpp" line="2187"/>
+        <location filename="../mainwindow.cpp" line="2199"/>
+        <location filename="../mainwindow.cpp" line="2204"/>
+        <location filename="../mainwindow.cpp" line="2209"/>
+        <location filename="../mainwindow.cpp" line="2225"/>
+        <location filename="../mainwindow.cpp" line="2231"/>
+        <location filename="../mainwindow.cpp" line="2242"/>
+        <location filename="../mainwindow.cpp" line="2265"/>
+        <location filename="../mainwindow.cpp" line="2270"/>
+        <location filename="../mainwindow.cpp" line="2286"/>
+        <location filename="../mainwindow.cpp" line="2303"/>
         <location filename="../mainwindow.cpp" line="2309"/>
-        <location filename="../mainwindow.cpp" line="2326"/>
-        <location filename="../mainwindow.cpp" line="2350"/>
-        <location filename="../mainwindow.cpp" line="2359"/>
-        <location filename="../mainwindow.cpp" line="2363"/>
-        <location filename="../mainwindow.cpp" line="2373"/>
-        <location filename="../mainwindow.cpp" line="2382"/>
-        <location filename="../mainwindow.cpp" line="2386"/>
-        <location filename="../mainwindow.cpp" line="2390"/>
-        <location filename="../mainwindow.cpp" line="2400"/>
-        <location filename="../mainwindow.cpp" line="2415"/>
-        <location filename="../mainwindow.cpp" line="2419"/>
+        <location filename="../mainwindow.cpp" line="2325"/>
+        <location filename="../mainwindow.cpp" line="2329"/>
+        <location filename="../mainwindow.cpp" line="2333"/>
+        <location filename="../mainwindow.cpp" line="2337"/>
+        <location filename="../mainwindow.cpp" line="2367"/>
+        <location filename="../mainwindow.cpp" line="2379"/>
+        <location filename="../mainwindow.cpp" line="2383"/>
+        <location filename="../mainwindow.cpp" line="2387"/>
+        <location filename="../mainwindow.cpp" line="2417"/>
+        <location filename="../mainwindow.cpp" line="2432"/>
         <location filename="../mainwindow.cpp" line="2436"/>
         <location filename="../mainwindow.cpp" line="2440"/>
-        <location filename="../mainwindow.cpp" line="2488"/>
+        <location filename="../mainwindow.cpp" line="2456"/>
+        <location filename="../mainwindow.cpp" line="2473"/>
+        <location filename="../mainwindow.cpp" line="2477"/>
+        <location filename="../mainwindow.cpp" line="2481"/>
+        <location filename="../mainwindow.cpp" line="2499"/>
+        <location filename="../mainwindow.cpp" line="2515"/>
+        <location filename="../mainwindow.cpp" line="2519"/>
+        <location filename="../mainwindow.cpp" line="2523"/>
+        <location filename="../mainwindow.cpp" line="2540"/>
+        <location filename="../mainwindow.cpp" line="2556"/>
+        <location filename="../mainwindow.cpp" line="2560"/>
+        <location filename="../mainwindow.cpp" line="2564"/>
+        <location filename="../mainwindow.cpp" line="2586"/>
+        <location filename="../mainwindow.cpp" line="2590"/>
+        <location filename="../mainwindow.cpp" line="2594"/>
+        <location filename="../mainwindow.cpp" line="2618"/>
+        <location filename="../mainwindow.cpp" line="2622"/>
+        <location filename="../mainwindow.cpp" line="2645"/>
+        <location filename="../mainwindow.cpp" line="2651"/>
+        <location filename="../mainwindow.cpp" line="2667"/>
+        <location filename="../mainwindow.cpp" line="2671"/>
+        <location filename="../mainwindow.cpp" line="2675"/>
+        <location filename="../mainwindow.cpp" line="2679"/>
+        <location filename="../mainwindow.cpp" line="2708"/>
+        <location filename="../mainwindow.cpp" line="2720"/>
+        <location filename="../mainwindow.cpp" line="2724"/>
+        <location filename="../mainwindow.cpp" line="2728"/>
+        <location filename="../mainwindow.cpp" line="2757"/>
+        <location filename="../mainwindow.cpp" line="2777"/>
+        <location filename="../mainwindow.cpp" line="2782"/>
+        <location filename="../mainwindow.cpp" line="2786"/>
+        <location filename="../mainwindow.cpp" line="2809"/>
+        <location filename="../mainwindow.cpp" line="2826"/>
+        <location filename="../mainwindow.cpp" line="2830"/>
+        <location filename="../mainwindow.cpp" line="2847"/>
+        <location filename="../mainwindow.cpp" line="2864"/>
+        <location filename="../mainwindow.cpp" line="2868"/>
+        <location filename="../mainwindow.cpp" line="2872"/>
+        <location filename="../mainwindow.cpp" line="2888"/>
+        <location filename="../mainwindow.cpp" line="2898"/>
+        <location filename="../mainwindow.cpp" line="2902"/>
+        <location filename="../mainwindow.cpp" line="2906"/>
+        <location filename="../mainwindow.cpp" line="2921"/>
+        <location filename="../mainwindow.cpp" line="2931"/>
+        <location filename="../mainwindow.cpp" line="2935"/>
+        <location filename="../mainwindow.cpp" line="2939"/>
+        <location filename="../mainwindow.cpp" line="2943"/>
+        <location filename="../mainwindow.cpp" line="2958"/>
+        <location filename="../mainwindow.cpp" line="2972"/>
+        <location filename="../mainwindow.cpp" line="2976"/>
+        <location filename="../mainwindow.cpp" line="2980"/>
+        <location filename="../mainwindow.cpp" line="3001"/>
+        <location filename="../mainwindow.cpp" line="3005"/>
+        <location filename="../mainwindow.cpp" line="3014"/>
+        <location filename="../mainwindow.cpp" line="3024"/>
+        <location filename="../mainwindow.cpp" line="3034"/>
+        <location filename="../mainwindow.cpp" line="3068"/>
         <source>Warning</source>
         <translation>Figyelem</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="373"/>
+        <location filename="../mainwindow.cpp" line="414"/>
         <source>Error. Can not open URL: </source>
         <translation>Hiba. Nem nyitható meg URL-cím:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="394"/>
-        <location filename="../mainwindow.cpp" line="400"/>
+        <location filename="../mainwindow.cpp" line="435"/>
+        <location filename="../mainwindow.cpp" line="443"/>
         <source>Information</source>
         <translation>Információ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="394"/>
+        <location filename="../mainwindow.cpp" line="435"/>
         <source>The version is up to date: </source>
         <translation>A verzió naprakész:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="397"/>
+        <location filename="../mainwindow.cpp" line="440"/>
         <source>There is a new version of the app.</source>
         <translation>Az alkalmazás új verziója van.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="398"/>
+        <location filename="../mainwindow.cpp" line="441"/>
         <source>Please visit the URL to download</source>
         <translation>Kérjük, látogasson el a letöltendő URL-címre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="501"/>
-        <location filename="../mainwindow.cpp" line="592"/>
-        <location filename="../mainwindow.cpp" line="641"/>
-        <location filename="../mainwindow.cpp" line="696"/>
-        <location filename="../mainwindow.cpp" line="776"/>
-        <location filename="../mainwindow.cpp" line="837"/>
-        <location filename="../mainwindow.cpp" line="936"/>
-        <location filename="../mainwindow.cpp" line="980"/>
-        <location filename="../mainwindow.cpp" line="1120"/>
+        <location filename="../mainwindow.cpp" line="548"/>
+        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="686"/>
+        <location filename="../mainwindow.cpp" line="740"/>
+        <location filename="../mainwindow.cpp" line="792"/>
+        <location filename="../mainwindow.cpp" line="871"/>
+        <location filename="../mainwindow.cpp" line="931"/>
+        <location filename="../mainwindow.cpp" line="1029"/>
+        <location filename="../mainwindow.cpp" line="1073"/>
+        <location filename="../mainwindow.cpp" line="1132"/>
+        <location filename="../mainwindow.cpp" line="1268"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="573"/>
-        <location filename="../mainwindow.cpp" line="667"/>
-        <location filename="../mainwindow.cpp" line="917"/>
-        <location filename="../mainwindow.cpp" line="1012"/>
+        <location filename="../mainwindow.cpp" line="619"/>
+        <location filename="../mainwindow.cpp" line="712"/>
+        <location filename="../mainwindow.cpp" line="1010"/>
+        <location filename="../mainwindow.cpp" line="1105"/>
         <source>Insulation thickness</source>
         <translation>Szigetelés vastagsága</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="714"/>
-        <location filename="../mainwindow.cpp" line="760"/>
-        <location filename="../mainwindow.cpp" line="1059"/>
-        <location filename="../mainwindow.cpp" line="1099"/>
-        <location filename="../mainwindow.cpp" line="1142"/>
-        <location filename="../mainwindow.cpp" line="2839"/>
+        <location filename="../mainwindow.cpp" line="810"/>
+        <location filename="../mainwindow.cpp" line="855"/>
+        <location filename="../mainwindow.cpp" line="1207"/>
+        <location filename="../mainwindow.cpp" line="1247"/>
+        <location filename="../mainwindow.cpp" line="1290"/>
+        <location filename="../mainwindow.cpp" line="3459"/>
         <source>Outside diameter</source>
         <translation>Külső átmérő</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="716"/>
-        <location filename="../mainwindow.cpp" line="762"/>
-        <location filename="../mainwindow.cpp" line="794"/>
-        <location filename="../mainwindow.cpp" line="1061"/>
-        <location filename="../mainwindow.cpp" line="1101"/>
-        <location filename="../mainwindow.cpp" line="1144"/>
+        <location filename="../mainwindow.cpp" line="812"/>
+        <location filename="../mainwindow.cpp" line="857"/>
+        <location filename="../mainwindow.cpp" line="889"/>
+        <location filename="../mainwindow.cpp" line="1209"/>
+        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1292"/>
         <source>Inside diameter</source>
         <translation>Belső átmérő</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="722"/>
-        <location filename="../mainwindow.cpp" line="1065"/>
+        <location filename="../mainwindow.cpp" line="818"/>
+        <location filename="../mainwindow.cpp" line="1213"/>
         <source>Init magnetic permeability</source>
         <translation>Kezdeti mágneses permeabilitás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="519"/>
-        <location filename="../mainwindow.cpp" line="567"/>
-        <location filename="../mainwindow.cpp" line="610"/>
-        <location filename="../mainwindow.cpp" line="659"/>
-        <location filename="../mainwindow.cpp" line="859"/>
-        <location filename="../mainwindow.cpp" line="911"/>
-        <location filename="../mainwindow.cpp" line="958"/>
-        <location filename="../mainwindow.cpp" line="1002"/>
+        <location filename="../mainwindow.cpp" line="566"/>
+        <location filename="../mainwindow.cpp" line="613"/>
+        <location filename="../mainwindow.cpp" line="656"/>
+        <location filename="../mainwindow.cpp" line="704"/>
+        <location filename="../mainwindow.cpp" line="953"/>
+        <location filename="../mainwindow.cpp" line="1004"/>
+        <location filename="../mainwindow.cpp" line="1051"/>
+        <location filename="../mainwindow.cpp" line="1095"/>
         <source>Former diameter</source>
         <translation>Tekercs belső átmérője</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="521"/>
-        <location filename="../mainwindow.cpp" line="614"/>
-        <location filename="../mainwindow.cpp" line="663"/>
-        <location filename="../mainwindow.cpp" line="720"/>
-        <location filename="../mainwindow.cpp" line="796"/>
-        <location filename="../mainwindow.cpp" line="861"/>
-        <location filename="../mainwindow.cpp" line="964"/>
-        <location filename="../mainwindow.cpp" line="1008"/>
-        <location filename="../mainwindow.cpp" line="1146"/>
-        <location filename="../mainwindow.cpp" line="1506"/>
+        <location filename="../mainwindow.cpp" line="568"/>
+        <location filename="../mainwindow.cpp" line="660"/>
+        <location filename="../mainwindow.cpp" line="708"/>
+        <location filename="../mainwindow.cpp" line="764"/>
+        <location filename="../mainwindow.cpp" line="816"/>
+        <location filename="../mainwindow.cpp" line="891"/>
+        <location filename="../mainwindow.cpp" line="955"/>
+        <location filename="../mainwindow.cpp" line="1057"/>
+        <location filename="../mainwindow.cpp" line="1101"/>
+        <location filename="../mainwindow.cpp" line="1162"/>
+        <location filename="../mainwindow.cpp" line="1294"/>
+        <location filename="../mainwindow.cpp" line="1668"/>
         <source>Wire diameter</source>
         <translation>Huzalátmérő</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="523"/>
-        <location filename="../mainwindow.cpp" line="616"/>
-        <location filename="../mainwindow.cpp" line="665"/>
-        <location filename="../mainwindow.cpp" line="863"/>
-        <location filename="../mainwindow.cpp" line="966"/>
-        <location filename="../mainwindow.cpp" line="1010"/>
+        <location filename="../mainwindow.cpp" line="570"/>
+        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="710"/>
+        <location filename="../mainwindow.cpp" line="766"/>
+        <location filename="../mainwindow.cpp" line="957"/>
+        <location filename="../mainwindow.cpp" line="1059"/>
+        <location filename="../mainwindow.cpp" line="1103"/>
+        <location filename="../mainwindow.cpp" line="1164"/>
         <source>Wire diameter with insulation</source>
         <translation>Huzalátmérő szigeteléssel</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
-        <location filename="../mainwindow.cpp" line="913"/>
+        <location filename="../mainwindow.cpp" line="615"/>
+        <location filename="../mainwindow.cpp" line="1006"/>
         <source>Wire width</source>
         <translation>Huzalszélesség</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="571"/>
-        <location filename="../mainwindow.cpp" line="915"/>
+        <location filename="../mainwindow.cpp" line="617"/>
+        <location filename="../mainwindow.cpp" line="1008"/>
         <source>Wire thickness</source>
         <translation>Huzalvastagság</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="612"/>
-        <location filename="../mainwindow.cpp" line="661"/>
-        <location filename="../mainwindow.cpp" line="960"/>
-        <location filename="../mainwindow.cpp" line="1004"/>
+        <location filename="../mainwindow.cpp" line="658"/>
+        <location filename="../mainwindow.cpp" line="706"/>
+        <location filename="../mainwindow.cpp" line="762"/>
+        <location filename="../mainwindow.cpp" line="1053"/>
+        <location filename="../mainwindow.cpp" line="1097"/>
+        <location filename="../mainwindow.cpp" line="1158"/>
         <source>Winding length</source>
         <translation>Tekercs hossza</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="669"/>
-        <location filename="../mainwindow.cpp" line="1014"/>
+        <location filename="../mainwindow.cpp" line="714"/>
+        <location filename="../mainwindow.cpp" line="1107"/>
         <source>Layers number beetween insulating pads</source>
         <translation>Rétegek száma közötti szigetelő betétek</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="718"/>
-        <location filename="../mainwindow.cpp" line="1063"/>
+        <location filename="../mainwindow.cpp" line="814"/>
+        <location filename="../mainwindow.cpp" line="1211"/>
         <source>Core height</source>
         <translation>Mag magasság</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="485"/>
-        <location filename="../mainwindow.cpp" line="821"/>
-        <location filename="../mainwindow.cpp" line="1396"/>
-        <location filename="../mainwindow.cpp" line="1406"/>
+        <location filename="../mainwindow.cpp" line="532"/>
+        <location filename="../mainwindow.cpp" line="915"/>
+        <location filename="../mainwindow.cpp" line="1558"/>
+        <location filename="../mainwindow.cpp" line="1568"/>
         <source>Frequency</source>
         <translation>Frekvencia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1968"/>
-        <location filename="../mainwindow.cpp" line="1974"/>
-        <location filename="../mainwindow.cpp" line="2022"/>
-        <location filename="../mainwindow.cpp" line="2060"/>
-        <location filename="../mainwindow.cpp" line="2090"/>
-        <location filename="../mainwindow.cpp" line="2122"/>
-        <location filename="../mainwindow.cpp" line="2192"/>
-        <location filename="../mainwindow.cpp" line="2198"/>
-        <location filename="../mainwindow.cpp" line="2246"/>
-        <location filename="../mainwindow.cpp" line="2283"/>
-        <location filename="../mainwindow.cpp" line="2326"/>
-        <location filename="../mainwindow.cpp" line="2350"/>
-        <location filename="../mainwindow.cpp" line="2373"/>
-        <location filename="../mainwindow.cpp" line="2400"/>
-        <location filename="../mainwindow.cpp" line="2436"/>
+        <location filename="../mainwindow.cpp" line="2303"/>
+        <location filename="../mainwindow.cpp" line="2309"/>
+        <location filename="../mainwindow.cpp" line="2367"/>
+        <location filename="../mainwindow.cpp" line="2417"/>
+        <location filename="../mainwindow.cpp" line="2456"/>
+        <location filename="../mainwindow.cpp" line="2499"/>
+        <location filename="../mainwindow.cpp" line="2540"/>
+        <location filename="../mainwindow.cpp" line="2645"/>
+        <location filename="../mainwindow.cpp" line="2651"/>
+        <location filename="../mainwindow.cpp" line="2708"/>
+        <location filename="../mainwindow.cpp" line="2757"/>
+        <location filename="../mainwindow.cpp" line="2809"/>
+        <location filename="../mainwindow.cpp" line="2847"/>
+        <location filename="../mainwindow.cpp" line="2888"/>
+        <location filename="../mainwindow.cpp" line="2921"/>
+        <location filename="../mainwindow.cpp" line="2958"/>
+        <location filename="../mainwindow.cpp" line="3001"/>
         <source>One or more inputs are empty!</source>
         <translation>Egy vagy több bemenet üres!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1991"/>
-        <location filename="../mainwindow.cpp" line="2033"/>
-        <location filename="../mainwindow.cpp" line="2076"/>
-        <location filename="../mainwindow.cpp" line="2108"/>
-        <location filename="../mainwindow.cpp" line="2139"/>
-        <location filename="../mainwindow.cpp" line="2215"/>
-        <location filename="../mainwindow.cpp" line="2257"/>
-        <location filename="../mainwindow.cpp" line="2305"/>
-        <location filename="../mainwindow.cpp" line="2359"/>
-        <location filename="../mainwindow.cpp" line="2382"/>
-        <location filename="../mainwindow.cpp" line="2415"/>
-        <location filename="../mainwindow.cpp" line="2440"/>
+        <location filename="../mainwindow.cpp" line="2329"/>
+        <location filename="../mainwindow.cpp" line="2383"/>
+        <location filename="../mainwindow.cpp" line="2436"/>
+        <location filename="../mainwindow.cpp" line="2477"/>
+        <location filename="../mainwindow.cpp" line="2519"/>
+        <location filename="../mainwindow.cpp" line="2560"/>
+        <location filename="../mainwindow.cpp" line="2590"/>
+        <location filename="../mainwindow.cpp" line="2622"/>
+        <location filename="../mainwindow.cpp" line="2671"/>
+        <location filename="../mainwindow.cpp" line="2724"/>
+        <location filename="../mainwindow.cpp" line="2782"/>
+        <location filename="../mainwindow.cpp" line="2830"/>
+        <location filename="../mainwindow.cpp" line="2868"/>
+        <location filename="../mainwindow.cpp" line="2902"/>
+        <location filename="../mainwindow.cpp" line="2935"/>
+        <location filename="../mainwindow.cpp" line="2976"/>
+        <location filename="../mainwindow.cpp" line="3005"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Egy vagy több bemenet egyenlő null!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2447"/>
+        <location filename="../mainwindow.cpp" line="3045"/>
         <source>LC tank calculation</source>
         <translation>Rezgőkör számítás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2451"/>
-        <location filename="../mainwindow.cpp" line="2503"/>
-        <location filename="../mainwindow.cpp" line="2584"/>
-        <location filename="../mainwindow.cpp" line="2658"/>
-        <location filename="../mainwindow.cpp" line="2710"/>
-        <location filename="../mainwindow.cpp" line="2764"/>
-        <location filename="../mainwindow.cpp" line="2802"/>
-        <location filename="../mainwindow.cpp" line="2829"/>
-        <location filename="../mainwindow.cpp" line="2864"/>
-        <location filename="../mainwindow.cpp" line="2945"/>
-        <location filename="../mainwindow.cpp" line="3021"/>
-        <location filename="../mainwindow.cpp" line="3053"/>
-        <location filename="../mainwindow.cpp" line="3087"/>
-        <location filename="../mainwindow.cpp" line="3113"/>
-        <location filename="../mainwindow.cpp" line="3139"/>
+        <location filename="../mainwindow.cpp" line="3049"/>
+        <location filename="../mainwindow.cpp" line="3083"/>
+        <location filename="../mainwindow.cpp" line="3162"/>
+        <location filename="../mainwindow.cpp" line="3236"/>
+        <location filename="../mainwindow.cpp" line="3286"/>
+        <location filename="../mainwindow.cpp" line="3338"/>
+        <location filename="../mainwindow.cpp" line="3384"/>
+        <location filename="../mainwindow.cpp" line="3422"/>
+        <location filename="../mainwindow.cpp" line="3449"/>
+        <location filename="../mainwindow.cpp" line="3484"/>
+        <location filename="../mainwindow.cpp" line="3563"/>
+        <location filename="../mainwindow.cpp" line="3639"/>
+        <location filename="../mainwindow.cpp" line="3671"/>
+        <location filename="../mainwindow.cpp" line="3705"/>
+        <location filename="../mainwindow.cpp" line="3738"/>
+        <location filename="../mainwindow.cpp" line="3764"/>
+        <location filename="../mainwindow.cpp" line="3790"/>
         <source>Input</source>
         <translation>Bemenet</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2456"/>
-        <location filename="../mainwindow.cpp" line="2524"/>
-        <location filename="../mainwindow.cpp" line="2600"/>
-        <location filename="../mainwindow.cpp" line="2666"/>
-        <location filename="../mainwindow.cpp" line="2720"/>
-        <location filename="../mainwindow.cpp" line="2773"/>
-        <location filename="../mainwindow.cpp" line="2809"/>
-        <location filename="../mainwindow.cpp" line="2836"/>
-        <location filename="../mainwindow.cpp" line="2884"/>
-        <location filename="../mainwindow.cpp" line="2960"/>
-        <location filename="../mainwindow.cpp" line="3029"/>
-        <location filename="../mainwindow.cpp" line="3068"/>
-        <location filename="../mainwindow.cpp" line="3095"/>
-        <location filename="../mainwindow.cpp" line="3121"/>
-        <location filename="../mainwindow.cpp" line="3146"/>
+        <location filename="../mainwindow.cpp" line="3054"/>
+        <location filename="../mainwindow.cpp" line="3102"/>
+        <location filename="../mainwindow.cpp" line="3178"/>
+        <location filename="../mainwindow.cpp" line="3244"/>
+        <location filename="../mainwindow.cpp" line="3296"/>
+        <location filename="../mainwindow.cpp" line="3347"/>
+        <location filename="../mainwindow.cpp" line="3393"/>
+        <location filename="../mainwindow.cpp" line="3429"/>
+        <location filename="../mainwindow.cpp" line="3456"/>
+        <location filename="../mainwindow.cpp" line="3502"/>
+        <location filename="../mainwindow.cpp" line="3578"/>
+        <location filename="../mainwindow.cpp" line="3647"/>
+        <location filename="../mainwindow.cpp" line="3686"/>
+        <location filename="../mainwindow.cpp" line="3719"/>
+        <location filename="../mainwindow.cpp" line="3746"/>
+        <location filename="../mainwindow.cpp" line="3772"/>
+        <location filename="../mainwindow.cpp" line="3797"/>
         <source>Result</source>
         <translation>Eredmények</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2461"/>
+        <location filename="../mainwindow.cpp" line="3018"/>
         <source>Frequency of a circuit</source>
         <translation>Rezonanciafrekvencia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2467"/>
+        <location filename="../mainwindow.cpp" line="3028"/>
         <source>Inductance of a circuit</source>
         <translation>A tekercs induktivitása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2477"/>
-        <location filename="../mainwindow.cpp" line="2557"/>
-        <location filename="../mainwindow.cpp" line="2633"/>
-        <location filename="../mainwindow.cpp" line="2920"/>
-        <location filename="../mainwindow.cpp" line="2996"/>
+        <location filename="../mainwindow.cpp" line="3057"/>
+        <location filename="../mainwindow.cpp" line="3135"/>
+        <location filename="../mainwindow.cpp" line="3211"/>
+        <location filename="../mainwindow.cpp" line="3538"/>
+        <location filename="../mainwindow.cpp" line="3614"/>
         <source>Characteristic impedance</source>
         <translation>Impedancia karakterisztika</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1503"/>
-        <location filename="../mainwindow.cpp" line="2477"/>
-        <location filename="../mainwindow.cpp" line="2537"/>
-        <location filename="../mainwindow.cpp" line="2548"/>
-        <location filename="../mainwindow.cpp" line="2557"/>
-        <location filename="../mainwindow.cpp" line="2613"/>
-        <location filename="../mainwindow.cpp" line="2624"/>
-        <location filename="../mainwindow.cpp" line="2633"/>
-        <location filename="../mainwindow.cpp" line="2677"/>
-        <location filename="../mainwindow.cpp" line="2730"/>
-        <location filename="../mainwindow.cpp" line="2900"/>
-        <location filename="../mainwindow.cpp" line="2911"/>
-        <location filename="../mainwindow.cpp" line="2920"/>
-        <location filename="../mainwindow.cpp" line="2976"/>
-        <location filename="../mainwindow.cpp" line="2987"/>
-        <location filename="../mainwindow.cpp" line="2996"/>
+        <location filename="../mainwindow.cpp" line="1665"/>
+        <location filename="../mainwindow.cpp" line="3057"/>
+        <location filename="../mainwindow.cpp" line="3115"/>
+        <location filename="../mainwindow.cpp" line="3126"/>
+        <location filename="../mainwindow.cpp" line="3135"/>
+        <location filename="../mainwindow.cpp" line="3191"/>
+        <location filename="../mainwindow.cpp" line="3202"/>
+        <location filename="../mainwindow.cpp" line="3211"/>
+        <location filename="../mainwindow.cpp" line="3255"/>
+        <location filename="../mainwindow.cpp" line="3306"/>
+        <location filename="../mainwindow.cpp" line="3368"/>
+        <location filename="../mainwindow.cpp" line="3518"/>
+        <location filename="../mainwindow.cpp" line="3529"/>
+        <location filename="../mainwindow.cpp" line="3538"/>
+        <location filename="../mainwindow.cpp" line="3594"/>
+        <location filename="../mainwindow.cpp" line="3605"/>
+        <location filename="../mainwindow.cpp" line="3614"/>
         <source>Ohm</source>
         <translation>Ohm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="798"/>
+        <location filename="../mainwindow.cpp" line="297"/>
+        <location filename="../mainwindow.cpp" line="1388"/>
+        <source>Confirmation</source>
+        <translation>Megerősítés</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="298"/>
+        <location filename="../mainwindow.cpp" line="1389"/>
+        <source>Are you sure?</source>
+        <translation>biztos vagy ebben?</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="301"/>
+        <location filename="../mainwindow.cpp" line="1392"/>
+        <source>Yes</source>
+        <translation>Igen</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="302"/>
+        <location filename="../mainwindow.cpp" line="1393"/>
+        <source>No</source>
+        <translation>Nem</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="437"/>
+        <source>Something gone wrong</source>
+        <translation>Valami elromlott</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="758"/>
+        <location filename="../mainwindow.cpp" line="1154"/>
+        <source>Former width</source>
+        <translation>Korábbi szélesség</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="760"/>
+        <location filename="../mainwindow.cpp" line="1156"/>
+        <source>Former height</source>
+        <translation>Korábbi magasság</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="893"/>
         <source>Gap between turns</source>
         <translation>A fordulók közötti szakadék</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="819"/>
+        <location filename="../mainwindow.cpp" line="913"/>
         <source>Number of turns</source>
         <translation>A tekercs menetszáma</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1105"/>
-        <location filename="../mainwindow.cpp" line="2813"/>
+        <location filename="../mainwindow.cpp" line="1253"/>
+        <location filename="../mainwindow.cpp" line="3433"/>
         <source>Width of a PCB trace</source>
         <translation>A vezetősáv szélessége</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1508"/>
+        <location filename="../mainwindow.cpp" line="1670"/>
         <source>mm</source>
         <translation>mm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2488"/>
+        <location filename="../mainwindow.cpp" line="1703"/>
+        <location filename="../mainwindow.cpp" line="1712"/>
+        <location filename="../mainwindow.cpp" line="1726"/>
+        <location filename="../mainwindow.cpp" line="1731"/>
+        <location filename="../mainwindow.cpp" line="1737"/>
+        <location filename="../mainwindow.cpp" line="1742"/>
+        <location filename="../mainwindow.cpp" line="1764"/>
+        <location filename="../mainwindow.cpp" line="1776"/>
+        <location filename="../mainwindow.cpp" line="1782"/>
+        <location filename="../mainwindow.cpp" line="1787"/>
+        <location filename="../mainwindow.cpp" line="1793"/>
+        <location filename="../mainwindow.cpp" line="1804"/>
+        <location filename="../mainwindow.cpp" line="1823"/>
+        <location filename="../mainwindow.cpp" line="1828"/>
+        <location filename="../mainwindow.cpp" line="1840"/>
+        <location filename="../mainwindow.cpp" line="1852"/>
+        <location filename="../mainwindow.cpp" line="1857"/>
+        <location filename="../mainwindow.cpp" line="1862"/>
+        <location filename="../mainwindow.cpp" line="1878"/>
+        <location filename="../mainwindow.cpp" line="1883"/>
+        <location filename="../mainwindow.cpp" line="1889"/>
+        <location filename="../mainwindow.cpp" line="1900"/>
+        <location filename="../mainwindow.cpp" line="1918"/>
+        <location filename="../mainwindow.cpp" line="1937"/>
+        <location filename="../mainwindow.cpp" line="1942"/>
+        <location filename="../mainwindow.cpp" line="1947"/>
+        <location filename="../mainwindow.cpp" line="1952"/>
+        <location filename="../mainwindow.cpp" line="1968"/>
+        <location filename="../mainwindow.cpp" line="1988"/>
+        <location filename="../mainwindow.cpp" line="1997"/>
+        <location filename="../mainwindow.cpp" line="2011"/>
+        <location filename="../mainwindow.cpp" line="2016"/>
+        <location filename="../mainwindow.cpp" line="2023"/>
+        <location filename="../mainwindow.cpp" line="2045"/>
+        <location filename="../mainwindow.cpp" line="2057"/>
+        <location filename="../mainwindow.cpp" line="2063"/>
+        <location filename="../mainwindow.cpp" line="2068"/>
+        <location filename="../mainwindow.cpp" line="2075"/>
+        <location filename="../mainwindow.cpp" line="2092"/>
+        <location filename="../mainwindow.cpp" line="2097"/>
+        <location filename="../mainwindow.cpp" line="2103"/>
+        <location filename="../mainwindow.cpp" line="2108"/>
+        <location filename="../mainwindow.cpp" line="2113"/>
+        <location filename="../mainwindow.cpp" line="2118"/>
+        <location filename="../mainwindow.cpp" line="2129"/>
+        <location filename="../mainwindow.cpp" line="2148"/>
+        <location filename="../mainwindow.cpp" line="2153"/>
+        <location filename="../mainwindow.cpp" line="2165"/>
+        <location filename="../mainwindow.cpp" line="2175"/>
+        <location filename="../mainwindow.cpp" line="2187"/>
+        <location filename="../mainwindow.cpp" line="2199"/>
+        <location filename="../mainwindow.cpp" line="2204"/>
+        <location filename="../mainwindow.cpp" line="2209"/>
+        <location filename="../mainwindow.cpp" line="2225"/>
+        <location filename="../mainwindow.cpp" line="2231"/>
+        <location filename="../mainwindow.cpp" line="2242"/>
+        <location filename="../mainwindow.cpp" line="2265"/>
+        <location filename="../mainwindow.cpp" line="2270"/>
+        <location filename="../mainwindow.cpp" line="2286"/>
+        <location filename="../mainwindow.cpp" line="2325"/>
+        <location filename="../mainwindow.cpp" line="2379"/>
+        <location filename="../mainwindow.cpp" line="2432"/>
+        <location filename="../mainwindow.cpp" line="2473"/>
+        <location filename="../mainwindow.cpp" line="2515"/>
+        <location filename="../mainwindow.cpp" line="2556"/>
+        <location filename="../mainwindow.cpp" line="2586"/>
+        <location filename="../mainwindow.cpp" line="2618"/>
+        <location filename="../mainwindow.cpp" line="2667"/>
+        <location filename="../mainwindow.cpp" line="2720"/>
+        <location filename="../mainwindow.cpp" line="2777"/>
+        <location filename="../mainwindow.cpp" line="2826"/>
+        <location filename="../mainwindow.cpp" line="2864"/>
+        <location filename="../mainwindow.cpp" line="2898"/>
+        <location filename="../mainwindow.cpp" line="2931"/>
+        <location filename="../mainwindow.cpp" line="2972"/>
+        <location filename="../mainwindow.cpp" line="3014"/>
+        <location filename="../mainwindow.cpp" line="3024"/>
+        <location filename="../mainwindow.cpp" line="3034"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Egy vagy több bemenet illegális formátumú!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3068"/>
         <source>Wrong data was entered</source>
         <translation>Hibás, vagy hiányzó adat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2530"/>
-        <location filename="../mainwindow.cpp" line="2606"/>
-        <location filename="../mainwindow.cpp" line="2682"/>
-        <location filename="../mainwindow.cpp" line="2735"/>
-        <location filename="../mainwindow.cpp" line="2779"/>
-        <location filename="../mainwindow.cpp" line="2845"/>
-        <location filename="../mainwindow.cpp" line="2893"/>
-        <location filename="../mainwindow.cpp" line="2969"/>
-        <location filename="../mainwindow.cpp" line="3154"/>
+        <location filename="../mainwindow.cpp" line="3108"/>
+        <location filename="../mainwindow.cpp" line="3184"/>
+        <location filename="../mainwindow.cpp" line="3260"/>
+        <location filename="../mainwindow.cpp" line="3311"/>
+        <location filename="../mainwindow.cpp" line="3358"/>
+        <location filename="../mainwindow.cpp" line="3399"/>
+        <location filename="../mainwindow.cpp" line="3465"/>
+        <location filename="../mainwindow.cpp" line="3511"/>
+        <location filename="../mainwindow.cpp" line="3587"/>
+        <location filename="../mainwindow.cpp" line="3805"/>
         <source>Length of wire without leads</source>
         <translation>Vezeték hossza végek nélkül</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2532"/>
-        <location filename="../mainwindow.cpp" line="2608"/>
-        <location filename="../mainwindow.cpp" line="2895"/>
-        <location filename="../mainwindow.cpp" line="2971"/>
+        <location filename="../mainwindow.cpp" line="3110"/>
+        <location filename="../mainwindow.cpp" line="3186"/>
+        <location filename="../mainwindow.cpp" line="3513"/>
+        <location filename="../mainwindow.cpp" line="3589"/>
         <source>Length of winding</source>
         <translation>Tekercs hossza</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2535"/>
-        <location filename="../mainwindow.cpp" line="2611"/>
-        <location filename="../mainwindow.cpp" line="2693"/>
-        <location filename="../mainwindow.cpp" line="2746"/>
-        <location filename="../mainwindow.cpp" line="2898"/>
-        <location filename="../mainwindow.cpp" line="2974"/>
+        <location filename="../mainwindow.cpp" line="3113"/>
+        <location filename="../mainwindow.cpp" line="3189"/>
+        <location filename="../mainwindow.cpp" line="3269"/>
+        <location filename="../mainwindow.cpp" line="3320"/>
+        <location filename="../mainwindow.cpp" line="3367"/>
+        <location filename="../mainwindow.cpp" line="3516"/>
+        <location filename="../mainwindow.cpp" line="3592"/>
         <source>Weight of wire</source>
         <translation>Súlya huzal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2535"/>
-        <location filename="../mainwindow.cpp" line="2611"/>
-        <location filename="../mainwindow.cpp" line="2693"/>
-        <location filename="../mainwindow.cpp" line="2746"/>
-        <location filename="../mainwindow.cpp" line="2898"/>
-        <location filename="../mainwindow.cpp" line="2974"/>
+        <location filename="../mainwindow.cpp" line="3113"/>
+        <location filename="../mainwindow.cpp" line="3189"/>
+        <location filename="../mainwindow.cpp" line="3269"/>
+        <location filename="../mainwindow.cpp" line="3320"/>
+        <location filename="../mainwindow.cpp" line="3367"/>
+        <location filename="../mainwindow.cpp" line="3516"/>
+        <location filename="../mainwindow.cpp" line="3592"/>
         <source>g</source>
         <translation>g</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2537"/>
-        <location filename="../mainwindow.cpp" line="2613"/>
-        <location filename="../mainwindow.cpp" line="2900"/>
-        <location filename="../mainwindow.cpp" line="2976"/>
+        <location filename="../mainwindow.cpp" line="3115"/>
+        <location filename="../mainwindow.cpp" line="3191"/>
+        <location filename="../mainwindow.cpp" line="3518"/>
+        <location filename="../mainwindow.cpp" line="3594"/>
         <source>Reactance of the coil</source>
         <translation>Reaktanciája a tekercs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2540"/>
-        <location filename="../mainwindow.cpp" line="2616"/>
-        <location filename="../mainwindow.cpp" line="2903"/>
-        <location filename="../mainwindow.cpp" line="2979"/>
+        <location filename="../mainwindow.cpp" line="3118"/>
+        <location filename="../mainwindow.cpp" line="3194"/>
+        <location filename="../mainwindow.cpp" line="3521"/>
+        <location filename="../mainwindow.cpp" line="3597"/>
         <source>Self capacitance</source>
         <translation>Saját kapacitás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2545"/>
-        <location filename="../mainwindow.cpp" line="2621"/>
-        <location filename="../mainwindow.cpp" line="2908"/>
-        <location filename="../mainwindow.cpp" line="2984"/>
+        <location filename="../mainwindow.cpp" line="3123"/>
+        <location filename="../mainwindow.cpp" line="3199"/>
+        <location filename="../mainwindow.cpp" line="3526"/>
+        <location filename="../mainwindow.cpp" line="3602"/>
         <source>Coil constructive Q-factor</source>
         <translation>Jósági tényező</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2548"/>
-        <location filename="../mainwindow.cpp" line="2624"/>
-        <location filename="../mainwindow.cpp" line="2911"/>
-        <location filename="../mainwindow.cpp" line="2987"/>
+        <location filename="../mainwindow.cpp" line="3126"/>
+        <location filename="../mainwindow.cpp" line="3202"/>
+        <location filename="../mainwindow.cpp" line="3529"/>
+        <location filename="../mainwindow.cpp" line="3605"/>
         <source>Loss resistance</source>
         <translation>Ellenállás veszteség</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2551"/>
-        <location filename="../mainwindow.cpp" line="2627"/>
-        <location filename="../mainwindow.cpp" line="2914"/>
-        <location filename="../mainwindow.cpp" line="2990"/>
+        <location filename="../mainwindow.cpp" line="3129"/>
+        <location filename="../mainwindow.cpp" line="3205"/>
+        <location filename="../mainwindow.cpp" line="3532"/>
+        <location filename="../mainwindow.cpp" line="3608"/>
         <source>Additional results for parallel LC circuit at the working frequency</source>
         <translation>További adatok a párhuzamos LC körről</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2473"/>
-        <location filename="../mainwindow.cpp" line="2553"/>
-        <location filename="../mainwindow.cpp" line="2629"/>
-        <location filename="../mainwindow.cpp" line="2916"/>
-        <location filename="../mainwindow.cpp" line="2992"/>
+        <location filename="../mainwindow.cpp" line="3038"/>
+        <location filename="../mainwindow.cpp" line="3131"/>
+        <location filename="../mainwindow.cpp" line="3207"/>
+        <location filename="../mainwindow.cpp" line="3534"/>
+        <location filename="../mainwindow.cpp" line="3610"/>
         <source>Circuit capacitance</source>
         <translation>A kondenzátor kapacitása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2560"/>
-        <location filename="../mainwindow.cpp" line="2636"/>
-        <location filename="../mainwindow.cpp" line="2923"/>
-        <location filename="../mainwindow.cpp" line="2999"/>
+        <location filename="../mainwindow.cpp" line="3138"/>
+        <location filename="../mainwindow.cpp" line="3214"/>
+        <location filename="../mainwindow.cpp" line="3541"/>
+        <location filename="../mainwindow.cpp" line="3617"/>
         <source>Equivalent resistance</source>
         <translation>Eredő impedancia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2562"/>
-        <location filename="../mainwindow.cpp" line="2638"/>
-        <location filename="../mainwindow.cpp" line="2925"/>
-        <location filename="../mainwindow.cpp" line="3001"/>
+        <location filename="../mainwindow.cpp" line="3140"/>
+        <location filename="../mainwindow.cpp" line="3216"/>
+        <location filename="../mainwindow.cpp" line="3543"/>
+        <location filename="../mainwindow.cpp" line="3619"/>
         <source>Bandwidth</source>
         <translation>Sávszélesség</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2562"/>
-        <location filename="../mainwindow.cpp" line="2638"/>
-        <location filename="../mainwindow.cpp" line="2925"/>
-        <location filename="../mainwindow.cpp" line="3001"/>
+        <location filename="../mainwindow.cpp" line="3140"/>
+        <location filename="../mainwindow.cpp" line="3216"/>
+        <location filename="../mainwindow.cpp" line="3543"/>
+        <location filename="../mainwindow.cpp" line="3619"/>
         <source>kHz</source>
         <translation>kHz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2565"/>
-        <location filename="../mainwindow.cpp" line="2641"/>
-        <location filename="../mainwindow.cpp" line="2928"/>
-        <location filename="../mainwindow.cpp" line="3004"/>
+        <location filename="../mainwindow.cpp" line="3143"/>
+        <location filename="../mainwindow.cpp" line="3219"/>
+        <location filename="../mainwindow.cpp" line="3546"/>
+        <location filename="../mainwindow.cpp" line="3622"/>
         <source>Working frequency</source>
         <translation>Üzemi frekvencia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2542"/>
-        <location filename="../mainwindow.cpp" line="2565"/>
-        <location filename="../mainwindow.cpp" line="2618"/>
-        <location filename="../mainwindow.cpp" line="2641"/>
-        <location filename="../mainwindow.cpp" line="2905"/>
-        <location filename="../mainwindow.cpp" line="2928"/>
-        <location filename="../mainwindow.cpp" line="2981"/>
-        <location filename="../mainwindow.cpp" line="3004"/>
+        <location filename="../mainwindow.cpp" line="3120"/>
+        <location filename="../mainwindow.cpp" line="3143"/>
+        <location filename="../mainwindow.cpp" line="3196"/>
+        <location filename="../mainwindow.cpp" line="3219"/>
+        <location filename="../mainwindow.cpp" line="3523"/>
+        <location filename="../mainwindow.cpp" line="3546"/>
+        <location filename="../mainwindow.cpp" line="3599"/>
+        <location filename="../mainwindow.cpp" line="3622"/>
         <source>Coil self-resonance frequency</source>
         <translation>Saját frekvencia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="962"/>
-        <location filename="../mainwindow.cpp" line="1006"/>
-        <location filename="../mainwindow.cpp" line="2670"/>
-        <location filename="../mainwindow.cpp" line="2723"/>
+        <location filename="../mainwindow.cpp" line="1055"/>
+        <location filename="../mainwindow.cpp" line="1099"/>
+        <location filename="../mainwindow.cpp" line="1160"/>
+        <location filename="../mainwindow.cpp" line="3248"/>
+        <location filename="../mainwindow.cpp" line="3299"/>
+        <location filename="../mainwindow.cpp" line="3352"/>
         <source>Thickness of the coil</source>
         <translation>Tekercs vastagsága</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2674"/>
-        <location filename="../mainwindow.cpp" line="2727"/>
+        <location filename="../mainwindow.cpp" line="3252"/>
+        <location filename="../mainwindow.cpp" line="3303"/>
         <source>Dimensions of inductor</source>
         <translation>Az induktivitás méretei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1501"/>
-        <location filename="../mainwindow.cpp" line="2677"/>
-        <location filename="../mainwindow.cpp" line="2730"/>
+        <location filename="../mainwindow.cpp" line="1663"/>
+        <location filename="../mainwindow.cpp" line="3255"/>
+        <location filename="../mainwindow.cpp" line="3306"/>
+        <location filename="../mainwindow.cpp" line="3368"/>
         <source>Resistance of the coil</source>
         <translation>Tekercs ellenállása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2560"/>
-        <location filename="../mainwindow.cpp" line="2636"/>
-        <location filename="../mainwindow.cpp" line="2923"/>
-        <location filename="../mainwindow.cpp" line="2999"/>
+        <location filename="../mainwindow.cpp" line="3138"/>
+        <location filename="../mainwindow.cpp" line="3214"/>
+        <location filename="../mainwindow.cpp" line="3541"/>
+        <location filename="../mainwindow.cpp" line="3617"/>
         <source>kOhm</source>
         <translation>kOhm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2694"/>
-        <location filename="../mainwindow.cpp" line="2747"/>
+        <location filename="../mainwindow.cpp" line="3270"/>
+        <location filename="../mainwindow.cpp" line="3321"/>
+        <location filename="../mainwindow.cpp" line="3351"/>
         <source>Number of layers</source>
         <translation>Rétegek száma</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2748"/>
+        <location filename="../mainwindow.cpp" line="3322"/>
         <source>Number of interlayers</source>
         <translation>Száma rétegek</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2784"/>
-        <location filename="../mainwindow.cpp" line="2785"/>
+        <location filename="../mainwindow.cpp" line="3404"/>
+        <location filename="../mainwindow.cpp" line="3405"/>
         <source>Coil can not be realized</source>
         <translation>A tekercs nem kivitelezhető</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2525"/>
-        <location filename="../mainwindow.cpp" line="2601"/>
-        <location filename="../mainwindow.cpp" line="2668"/>
-        <location filename="../mainwindow.cpp" line="2722"/>
-        <location filename="../mainwindow.cpp" line="2782"/>
-        <location filename="../mainwindow.cpp" line="2811"/>
-        <location filename="../mainwindow.cpp" line="2838"/>
-        <location filename="../mainwindow.cpp" line="3035"/>
-        <location filename="../mainwindow.cpp" line="3069"/>
+        <location filename="../mainwindow.cpp" line="3103"/>
+        <location filename="../mainwindow.cpp" line="3179"/>
+        <location filename="../mainwindow.cpp" line="3246"/>
+        <location filename="../mainwindow.cpp" line="3298"/>
+        <location filename="../mainwindow.cpp" line="3350"/>
+        <location filename="../mainwindow.cpp" line="3402"/>
+        <location filename="../mainwindow.cpp" line="3431"/>
+        <location filename="../mainwindow.cpp" line="3458"/>
+        <location filename="../mainwindow.cpp" line="3653"/>
+        <location filename="../mainwindow.cpp" line="3687"/>
+        <location filename="../mainwindow.cpp" line="3720"/>
         <source>Number of turns of the coil</source>
         <translation>A tekercs menetszáma</translation>
+    </message>
+</context>
+<context>
+    <name>Meander_pcb</name>
+    <message>
+        <location filename="../meander_pcb.ui" line="29"/>
+        <source>Meander coil on PCB</source>
+        <translation>Közepes tekercs a PCB-n</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.ui" line="84"/>
+        <source>Data</source>
+        <translation>Adat</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.ui" line="92"/>
+        <source>Number of turns</source>
+        <translation>A tekercs menetszáma</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.ui" line="121"/>
+        <location filename="../meander_pcb.cpp" line="139"/>
+        <source>Dimensions</source>
+        <translation>Méretek</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.ui" line="306"/>
+        <source>Calculate</source>
+        <translation>Számítás</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.ui" line="326"/>
+        <source>Close</source>
+        <translation>Bezárás</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.cpp" line="109"/>
+        <location filename="../meander_pcb.cpp" line="119"/>
+        <location filename="../meander_pcb.cpp" line="123"/>
+        <location filename="../meander_pcb.cpp" line="127"/>
+        <source>Warning</source>
+        <translation>Figyelem</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.cpp" line="109"/>
+        <source>One or more inputs are empty!</source>
+        <translation>Egy vagy több bemenet üres!</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.cpp" line="119"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Egy vagy több bemenet illegális formátumú!</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.cpp" line="123"/>
+        <source>One or more inputs are equal to null!</source>
+        <translation>Egy vagy több bemenet egyenlő null!</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.cpp" line="137"/>
+        <source>Input data</source>
+        <translation>Beviteli adat</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.cpp" line="145"/>
+        <source>Result</source>
+        <translation>Eredmények</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.cpp" line="146"/>
+        <source>Inductance</source>
+        <translation>Induktivitás</translation>
+    </message>
+    <message>
+        <location filename="../meander_pcb.cpp" line="148"/>
+        <source>Length of winding</source>
+        <translation>Tekercs hossza</translation>
     </message>
 </context>
 <context>
@@ -1202,182 +1547,207 @@
         <translation>További adatok az egyrétegű tekercsről</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="62"/>
+        <location filename="../options.ui" line="413"/>
         <source>Show images in results</source>
         <translation>Kép megjelenítése az eredményben</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="81"/>
+        <location filename="../options.ui" line="71"/>
         <source>Capacitance</source>
         <translation>Kapacitás</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="100"/>
+        <location filename="../options.ui" line="90"/>
         <source>pF</source>
         <translation>pF</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="105"/>
+        <location filename="../options.ui" line="95"/>
         <source>nF</source>
         <translation>nF</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="110"/>
+        <location filename="../options.ui" line="100"/>
         <source>microF</source>
         <translation>microF</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="121"/>
+        <location filename="../options.ui" line="111"/>
         <source>Accuracy</source>
         <translation>Pontosság</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="158"/>
+        <location filename="../options.ui" line="148"/>
         <source>Dimensions</source>
         <translation>Méretek</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="177"/>
+        <location filename="../options.ui" line="167"/>
         <source>mm</source>
         <translation>mm</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="182"/>
+        <location filename="../options.ui" line="172"/>
         <source>cm</source>
         <translation>cm</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="187"/>
+        <location filename="../options.ui" line="177"/>
         <source>inch</source>
         <translation>inch</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="192"/>
+        <location filename="../options.ui" line="182"/>
         <source>mil</source>
         <translation>mil</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="203"/>
+        <location filename="../options.ui" line="193"/>
         <source>Inductance</source>
         <translation>Induktivitás</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="225"/>
+        <location filename="../options.ui" line="215"/>
         <source>nH</source>
         <translation>nH</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="230"/>
+        <location filename="../options.ui" line="220"/>
         <source>microH</source>
         <translation>microH</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="235"/>
+        <location filename="../options.ui" line="225"/>
         <source>mH</source>
         <translation>mH</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="246"/>
+        <location filename="../options.ui" line="236"/>
         <source>Wire gauge</source>
         <translation>Drótmérő</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="265"/>
+        <location filename="../options.ui" line="255"/>
         <source>Metric</source>
         <translation>Metric</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="270"/>
+        <location filename="../options.ui" line="260"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="281"/>
+        <location filename="../options.ui" line="271"/>
         <source>Frequency</source>
         <translation>Frekvencia</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="303"/>
+        <location filename="../options.ui" line="293"/>
         <source>Hz</source>
         <translation>Hz</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="308"/>
+        <location filename="../options.ui" line="298"/>
         <source>kHz</source>
         <translation>kHz</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="313"/>
+        <location filename="../options.ui" line="303"/>
         <source>MHz</source>
         <translation>MHz</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="341"/>
+        <location filename="../options.ui" line="377"/>
         <source>Set to default</source>
         <translation>Állítsa be az alapértelmezett értéket</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="371"/>
+        <location filename="../options.ui" line="407"/>
         <source>Interface</source>
         <translation>Felület</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="377"/>
+        <location filename="../options.ui" line="430"/>
+        <source>Show confirm dialog before exit</source>
+        <translation>A megerősítés párbeszédablak megjelenítése kilépés előtt</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="440"/>
+        <source>Show confirm dialog to clear results</source>
+        <translation>A megerősítés párbeszédpanel megjelenítése az eredmények törléséhez</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="463"/>
         <source>Interface font</source>
         <translation>Betűtípus</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="432"/>
+        <location filename="../options.ui" line="524"/>
         <source>Output field font</source>
         <translation>Kimeneti mező betűtípusa</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="481"/>
+        <location filename="../options.ui" line="329"/>
+        <source>Decimal and thousand separators</source>
+        <translation>Tizedes és ezer elválasztó</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="335"/>
+        <source>As in the current locale</source>
+        <translation>Mint az aktuális helyszínen</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="345"/>
+        <source>As in the English locale</source>
+        <translation>Mint az angol nyelveken</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="573"/>
         <source>Check for update</source>
         <translation>Frissítések keresése</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="487"/>
+        <location filename="../options.ui" line="579"/>
         <source>Automatically check for update</source>
         <translation>Automatikus frissítés</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="504"/>
+        <location filename="../options.ui" line="596"/>
         <source>Checking interval</source>
         <translation>Ellenőrzés gyakorisága</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="510"/>
+        <location filename="../options.ui" line="602"/>
         <source>Once for 60 days</source>
         <translation>60 naponta</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="520"/>
+        <location filename="../options.ui" line="612"/>
         <source>Once for 120 days</source>
         <translation>120 naponta</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="530"/>
+        <location filename="../options.ui" line="622"/>
         <source>Once for 180 days</source>
         <translation>180 naponta</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="547"/>
+        <location filename="../options.ui" line="639"/>
         <source>Check for a new version</source>
         <translation>Új verzió keresése</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="565"/>
+        <location filename="../options.ui" line="657"/>
         <source>Check now!</source>
         <translation>Keresés most!</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="608"/>
+        <location filename="../options.ui" line="700"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="622"/>
+        <location filename="../options.ui" line="714"/>
         <source>Cancel</source>
         <translation>Megszünteti</translation>
     </message>

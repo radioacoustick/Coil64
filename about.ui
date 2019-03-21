@@ -25,6 +25,9 @@
     <height>469</height>
    </size>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::NoContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>About</string>
   </property>
@@ -446,7 +449,7 @@ p, li { white-space: pre-wrap; }
          <normaloff>:/menu_ico/res/icons8-unavailable-32.png</normaloff>:/menu_ico/res/icons8-unavailable-32.png</iconset>
        </property>
        <property name="shortcut">
-        <string notr="true"/>
+        <string notr="true">Esc</string>
        </property>
       </widget>
      </item>

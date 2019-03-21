@@ -96,11 +96,20 @@
            <property name="minimumSize">
             <size>
              <width>375</width>
-             <height>200</height>
+             <height>220</height>
             </size>
            </property>
            <property name="cursor" stdset="0">
             <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QListView::item:selected { background: palette(Highlight) }</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
            </property>
            <property name="sizeAdjustPolicy">
             <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -153,6 +162,15 @@
            </item>
            <item>
             <property name="text">
+             <string>Multilayer coil on a rectangular former</string>
+            </property>
+            <property name="icon">
+             <iconset resource="res.qrc">
+              <normaloff>:/menu_ico/res/ico1-multi-layer-rect.png</normaloff>:/menu_ico/res/ico1-multi-layer-rect.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Ferrite toroid coil</string>
             </property>
             <property name="icon">
@@ -185,22 +203,6 @@
          </item>
         </layout>
        </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Expanding</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>
@@ -1168,12 +1170,28 @@
            <normaloff>:/menu_ico/res/icons8-enter-key-64.png</normaloff>:/menu_ico/res/icons8-enter-key-64.png</iconset>
          </property>
          <property name="shortcut">
-          <string>Return</string>
+          <string>Enter</string>
          </property>
          <property name="autoExclusive">
           <bool>false</bool>
          </property>
+         <property name="default">
+          <bool>true</bool>
+         </property>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -1461,6 +1479,7 @@
     </property>
     <addaction name="actionFerrite_toroid_permeability"/>
     <addaction name="actionCoil_on_a_ferrite_rod"/>
+    <addaction name="actionPCB_meandr_coil"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -1487,7 +1506,7 @@
     <bool>true</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: red</string>
+    <string notr="true">color: blue</string>
    </property>
    <property name="inputMethodHints">
     <set>Qt::ImhNoPredictiveText</set>
@@ -1669,6 +1688,15 @@
    </property>
    <property name="text">
     <string>Clear all</string>
+   </property>
+  </action>
+  <action name="actionPCB_meandr_coil">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-meandr.png</normaloff>:/menu_ico/res/ico1-meandr.png</iconset>
+   </property>
+   <property name="text">
+    <string>Meander coil on PCB</string>
    </property>
   </action>
  </widget>

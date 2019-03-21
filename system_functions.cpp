@@ -223,6 +223,31 @@ QStringList translateInstalling(QStringList *lang){
     return langList;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QLocale getLanguageLocale (QString lang){
+ QLocale loc;
+ if (lang == "bg") loc = QLocale::Bulgarian;
+ else if (lang == "zh") loc =  QLocale::Chinese;
+ else if (lang == "hr") loc =  QLocale::Croatian;
+ else if (lang == "nl") loc =  QLocale::Dutch;
+ else if (lang == "en") loc =  QLocale::English;
+ else if (lang == "fa") loc =  QLocale::Persian;
+ else if (lang == "fr") loc =  QLocale::French;
+ else if (lang == "de") loc =  QLocale::German;
+ else if (lang == "el") loc =  QLocale::Greek;
+ else if (lang == "hu") loc =  QLocale::Hungarian;
+ else if (lang == "it") loc =  QLocale::Italian;
+ else if (lang == "mk") loc =  QLocale::Macedonian;
+ else if (lang == "pl") loc =  QLocale::Polish;
+ else if (lang == "pt") loc =  QLocale::Portuguese;
+ else if (lang == "ro") loc =  QLocale::Romanian;
+ else if (lang == "ru") loc =  QLocale::Russian;
+ else if (lang == "sr") loc =  QLocale::Serbian;
+ else if (lang == "es") loc =  QLocale::Spanish;
+ else if (lang == "tr") loc =  QLocale::Turkish;
+ else loc = QLocale::system();
+ return loc;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void showWarning(QString title, QString msg){
     QMessageBox msgBox;
     msgBox.setWindowTitle(title);

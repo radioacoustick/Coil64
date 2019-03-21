@@ -1,4 +1,4 @@
-/* find_permeability.cpp - source text to Coil64 - Radio frequency inductor and choke calculator
+/* meander_pcb.cpp - source text to Coil64 - Radio frequency inductor and choke calculator
 Copyright (C) 2019 Kustarev V.
 
 This program is free software; you can redistribute it and/or modify
@@ -15,32 +15,30 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses
 */
 
-#include "find_permeability.h"
-#include "ui_find_permeability.h"
+#include "meander_pcb.h"
+#include "ui_meander_pcb.h"
 
-
-
-Find_Permeability::Find_Permeability(QWidget *parent) :
+Meander_pcb::Meander_pcb(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Find_Permeability)
+    ui(new Ui::Meander_pcb)
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
     dv = new QDoubleValidator;
-    ui->lineEdit_ind->setValidator(dv);
-    ui->lineEdit_N->setValidator(dv);
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
+    ui->lineEdit_4->setValidator(dv);
+    ui->lineEdit_N->setValidator(dv);
 }
 
-Find_Permeability::~Find_Permeability()
+Meander_pcb::~Meander_pcb()
 {
-    double I = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
     double N = loc.toDouble(ui->lineEdit_N->text());
-    double D1 = loc.toDouble(ui->lineEdit_1->text())*fOpt->dwLengthMultiplier;
-    double D2 = loc.toDouble(ui->lineEdit_2->text())*fOpt->dwLengthMultiplier;
+    double a = loc.toDouble(ui->lineEdit_1->text())*fOpt->dwLengthMultiplier;
+    double d = loc.toDouble(ui->lineEdit_2->text())*fOpt->dwLengthMultiplier;
     double h = loc.toDouble(ui->lineEdit_3->text())*fOpt->dwLengthMultiplier;
+    double W = loc.toDouble(ui->lineEdit_4->text())*fOpt->dwLengthMultiplier;
 #if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
     QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
 #elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
@@ -48,26 +46,26 @@ Find_Permeability::~Find_Permeability()
 #else
     QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
 #endif
-    settings->beginGroup( "FindPermeability" );
+    settings->beginGroup( "Meander_PCB" );
     settings->setValue("pos", this->pos());
-    settings->setValue("L", I);
     settings->setValue("N", N);
-    settings->setValue("D1", D1);
-    settings->setValue("D2", D2);
+    settings->setValue("a", a);
+    settings->setValue("d", d);
     settings->setValue("h", h);
+    settings->setValue("W", W);
     settings->endGroup();
     delete settings;
-    delete dv;
     delete fOpt;
+    delete dv;
     delete ui;
 }
 
-void Find_Permeability::getOpt(_OptionStruct gOpt){
+void Meander_pcb::getOpt(_OptionStruct gOpt){
     *fOpt = gOpt;
-    ui->label_ind_m->setText(qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
     ui->label_01->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_02->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_03->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
+    ui->label_04->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     QFont f1 = this->font();
     f1.setFamily(fOpt->mainFontFamily);
     f1.setPixelSize(fOpt->mainFontSize);
@@ -79,85 +77,87 @@ void Find_Permeability::getOpt(_OptionStruct gOpt){
 #else
     QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
 #endif
-    settings->beginGroup( "FindPermeability" );
-    double I = settings->value("L", 0).toDouble();
+    settings->beginGroup( "Meander_PCB" );
     double N = settings->value("N", 0).toDouble();
-    double D1 = settings->value("D1", 0).toDouble();
-    double D2 = settings->value("D2", 0).toDouble();
+    double a = settings->value("a", 0).toDouble();
+    double d = settings->value("d", 0).toDouble();
     double h = settings->value("h", 0).toDouble();
+    double W = settings->value("W", 0).toDouble();
     QPoint pos = settings->value("pos", QPoint(300, 300)).toPoint();
     settings->endGroup();
-    ui->lineEdit_ind->setText(loc.toString(I / fOpt->dwInductanceMultiplier));
     ui->lineEdit_N->setText(loc.toString(N));
-    ui->lineEdit_1->setText(loc.toString(D1 / fOpt->dwLengthMultiplier));
-    ui->lineEdit_2->setText(loc.toString(D2 / fOpt->dwLengthMultiplier));
+    ui->lineEdit_1->setText(loc.toString(a / fOpt->dwLengthMultiplier));
+    ui->lineEdit_2->setText(loc.toString(d / fOpt->dwLengthMultiplier));
     ui->lineEdit_3->setText(loc.toString(h / fOpt->dwLengthMultiplier));
+    ui->lineEdit_4->setText(loc.toString(W / fOpt->dwLengthMultiplier));
     ui->lineEdit_N->setFocus();
     ui->lineEdit_N->selectAll();
     move(pos);
     delete settings;
 }
 
-void Find_Permeability::getCurrentLocale(QLocale locale){
+void Meander_pcb::getCurrentLocale(QLocale locale){
     this->loc = locale;
     this->setLocale(loc);
     dv->setLocale(loc);
 }
 
-void Find_Permeability::on_pushButton_clicked()
+void Meander_pcb::on_pushButton_clicked()
 {
-    if ((ui->lineEdit_ind->text().isEmpty())||(ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_1->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->lineEdit_3->text().isEmpty())){
+    if ((ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_1->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->lineEdit_3->text().isEmpty())
+            ||(ui->lineEdit_4->text().isEmpty())){
         showWarning(tr("Warning"), tr("One or more inputs are empty!"));
         return;
     }
     bool ok1,ok2, ok3, ok4, ok5;
-    double I = loc.toDouble(ui->lineEdit_ind->text(), &ok1)*fOpt->dwInductanceMultiplier;
-    double N = loc.toDouble(ui->lineEdit_N->text(), &ok2);
-    double D1 = loc.toDouble(ui->lineEdit_1->text(), &ok3)*fOpt->dwLengthMultiplier;
-    double D2 = loc.toDouble(ui->lineEdit_2->text(), &ok4)*fOpt->dwLengthMultiplier;
-    double h = loc.toDouble(ui->lineEdit_3->text(), &ok5)*fOpt->dwLengthMultiplier;
+    double N = loc.toDouble(ui->lineEdit_N->text(), &ok1);
+    double a = loc.toDouble(ui->lineEdit_1->text(), &ok2)*fOpt->dwLengthMultiplier;
+    double d = loc.toDouble(ui->lineEdit_2->text(), &ok3)*fOpt->dwLengthMultiplier;
+    double h = loc.toDouble(ui->lineEdit_3->text(), &ok4)*fOpt->dwLengthMultiplier;
+    double W = loc.toDouble(ui->lineEdit_4->text(), &ok5)*fOpt->dwLengthMultiplier;
     if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         return;
     }
-    if ((I == 0)||(N == 0)||(D1 == 0)||(D2 == 0)||(h == 0)){
+    if ((N == 0)||(a == 0)||(d == 0)||(h == 0) || (W == 0)){
         showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
         return;
     }
-    if (D1 < D2){
-        showWarning(tr("Warning"), "D1 < D2");
+    if (d <= W){
+        showWarning(tr("Warning"), "d <= W");
         return;
     }
     _CoilResult result;
-    findToroidPemeability(N, I, D1, D2, h, &result);
+    findMeadrPCB_I(a, d, h, W, N, &result);
 
     QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle() + "</h2><br/>";
     if (fOpt->isInsertImage){
-        sResult += "<img src=\":/images/res/Coil6.png\">";
+        sResult += "<img src=\":/images/res/meandr_pcb.png\">";
     }
     sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
-    sResult += ui->label_ind->text() + ": L = " + ui->lineEdit_ind->text() + " " + ui->label_ind_m->text() + "<br/>";
     sResult += ui->label_N->text() + ": N = " + ui->lineEdit_N->text() + "<br/>";
     sResult += "<u>" + tr("Dimensions") + ":</u><br/>";
     sResult += ui->label_1->text() + " = " + ui->lineEdit_1->text() + " " + ui->label_01->text() + "<br/>";
     sResult += ui->label_2->text() + " = " + ui->lineEdit_2->text() + " " + ui->label_02->text() + "<br/>";
-    sResult += ui->label_3->text() + " = " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "</p>";
+    sResult += ui->label_3->text() + " = " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "<br/>";
+    sResult += ui->label_4->text() + " = " + ui->lineEdit_4->text() + " " + ui->label_04->text() + "</p>";
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Relative magnetic permeability of the toroid") + " μ = " + loc.toString(result.N) + "<br/>";
-    sResult += tr("Magnetic factor of the core") + " AL = " + loc.toString(result.sec, 'f', 0);
+    sResult += tr("Inductance") + " L = " + loc.toString(result.N, 'f', fOpt->dwAccuracy) + " "
+            + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+    sResult += tr("Length of winding") + " l = " + loc.toString( (result.sec)/fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy ) + " " +
+            qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8());
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }
 
-
-
-void Find_Permeability::on_pushButton_2_clicked()
+void Meander_pcb::on_pushButton_2_clicked()
 {
     this->close();
 }
 
-void Find_Permeability::on_pushButton_3_clicked()
+void Meander_pcb::on_pushButton_3_clicked()
 {
-    QDesktopServices::openUrl(QUrl("https://coil32.net/ferrite-toroid-core.html"));
+    QDesktopServices::openUrl(QUrl("https://coil32.net/meandr-pcb-coil.html"));
 }
+

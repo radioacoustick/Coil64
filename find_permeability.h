@@ -19,10 +19,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define FIND_PERMEABILITY_H
 
 #include <QDialog>
-#include <QAbstractButton>
+#include <QDoubleValidator>
 #include <QString>
 #include <QSettings>
-
+#include <QDesktopServices>
+#include <QUrl>
 
 #include "system_functions.h"
 #include "resolves.h"
@@ -44,12 +45,16 @@ signals:
 
 private slots:
     void getOpt(_OptionStruct gOpt);
+    void getCurrentLocale(QLocale locale);
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
+    void on_pushButton_3_clicked();
 
 private:
     Ui::Find_Permeability *ui;
     _OptionStruct *fOpt;
+    QDoubleValidator *dv;
+    QLocale loc;
 };
 
 #endif // FIND_PERMEABILITY_H
