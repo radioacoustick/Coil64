@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1111</width>
-    <height>748</height>
+    <width>1187</width>
+    <height>716</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1156,12 +1156,6 @@
            <height>50</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
          <property name="text">
           <string>Calculate</string>
          </property>
@@ -1205,6 +1199,9 @@
         </property>
         <item>
          <widget class="QToolButton" name="toolButton_CopySel">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -1221,13 +1218,13 @@
            <iconset resource="res.qrc">
             <normaloff>:/menu_ico/res/icons8-inconsistency-32.png</normaloff>:/menu_ico/res/icons8-inconsistency-32.png</iconset>
           </property>
-          <property name="shortcut">
-           <string notr="true"/>
-          </property>
          </widget>
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_CopyAll">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -1243,9 +1240,6 @@
           <property name="icon">
            <iconset resource="res.qrc">
             <normaloff>:/menu_ico/res/icons8-copy-32.png</normaloff>:/menu_ico/res/icons8-copy-32.png</iconset>
-          </property>
-          <property name="shortcut">
-           <string notr="true"/>
           </property>
          </widget>
         </item>
@@ -1266,6 +1260,9 @@
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_Save">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -1289,6 +1286,9 @@
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_Clear">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -1312,6 +1312,9 @@
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_Print">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -1431,6 +1434,9 @@
         <property name="whatsThis">
          <string/>
         </property>
+        <property name="textInteractionFlags">
+         <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+        </property>
        </widget>
       </item>
      </layout>
@@ -1442,7 +1448,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1111</width>
+     <width>1187</width>
      <height>27</height>
     </rect>
    </property>
@@ -1480,6 +1486,7 @@
     <addaction name="actionFerrite_toroid_permeability"/>
     <addaction name="actionCoil_on_a_ferrite_rod"/>
     <addaction name="actionPCB_meandr_coil"/>
+    <addaction name="actionMetal_detector_search_coil"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -1621,9 +1628,6 @@
    <property name="iconText">
     <string>Copy all to clipboard</string>
    </property>
-   <property name="shortcut">
-    <string notr="true">Ctrl+C</string>
-   </property>
   </action>
   <action name="actionPrint">
    <property name="icon">
@@ -1697,6 +1701,15 @@
    </property>
    <property name="text">
     <string>Meander coil on PCB</string>
+   </property>
+  </action>
+  <action name="actionMetal_detector_search_coil">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-multiloop.png</normaloff>:/menu_ico/res/ico1-multiloop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Search coil of a metal detector</string>
    </property>
   </action>
  </widget>

@@ -12,6 +12,7 @@
         <file>res/Ferrite-rod.png</file>
         <file>res/Coil4_square.png</file>
         <file>res/meandr_pcb.png</file>
+        <file>res/multi_loop.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -37,6 +38,7 @@
         <file>res/flags/sr.png</file>
         <file>res/flags/tr.png</file>
         <file>res/flags/zh.png</file>
+        <file>res/flags/cs.png</file>
     </qresource>
     <qresource prefix="/menu_ico">
         <file>res/icons8-add-32.png</file>
@@ -73,6 +75,7 @@
         <file>res/icons8-windows-xp-32.png</file>
         <file>res/ico1-multi-layer-rect.png</file>
         <file>res/ico1-meandr.png</file>
+        <file>res/ico1-multiloop.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>
@@ -94,5 +97,6 @@
         <file>res/translations/Coil64_sr.qm</file>
         <file>res/translations/Coil64_tr.qm</file>
         <file>res/translations/Coil64_zh.qm</file>
+        <file>res/translations/Coil64_cs.qm</file>
     </qresource>
 </RCC>

@@ -1,11 +1,11 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             1,0,2,0
-#define VER_FILEVERSION_STR         "1.0.2\0"
+#define VER_FILEVERSION             1,0,3,0
+#define VER_FILEVERSION_STR         "1.0.3\0"
 
-#define VER_PRODUCTVERSION          1,0,2
-#define VER_PRODUCTVERSION_STR      "1.0.2\0"
+#define VER_PRODUCTVERSION          1,0,3
+#define VER_PRODUCTVERSION_STR      "1.0.3\0"
 
 #define VER_COMPANYNAME_STR         ""
 #define VER_FILEDESCRIPTION_STR     "Coil64 inductor calculator"

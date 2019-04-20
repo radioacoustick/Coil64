@@ -42,7 +42,8 @@ SOURCES += main.cpp\
     system_functions.cpp \
     find_permeability.cpp \
     ferrite_rod.cpp \
-    meander_pcb.cpp
+    meander_pcb.cpp \
+    multiloop.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -57,19 +58,22 @@ HEADERS  += mainwindow.h \
     find_permeability.h \
     ferrite_rod.h \
     version.h \
-    meander_pcb.h
+    meander_pcb.h \
+    multiloop.h
 
 FORMS    += mainwindow.ui \
     options.ui \
     about.ui \
     find_permeability.ui \
     ferrite_rod.ui \
-    meander_pcb.ui
+    meander_pcb.ui \
+    multiloop.ui
 
 RESOURCES += \
     res.qrc
 
 TRANSLATIONS += lang/Coil64_bg.ts \
+    lang/Coil64_cs.ts \
     lang/Coil64_de.ts \
     lang/Coil64_el.ts \
     lang/Coil64_en.ts \
@@ -92,3 +96,5 @@ TRANSLATIONS += lang/Coil64_bg.ts \
 
 win32:RC_FILE = resource.rc
 macx: ICON = res/coil32_icon_48.icns
+
+DISTFILES +=

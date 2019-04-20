@@ -255,6 +255,40 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreGeometry(settings->value("mainWindowGeometry").toByteArray());
     restoreState(settings->value("mainWindowState").toByteArray());
     mui->retranslateUi(this);
+
+    mui->textBrowser->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(mui->textBrowser, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(on_textBrowser_customContextMenuRequested(QPoint)));
+    mui->textBrowser->installEventFilter(this);
+    popupmenu = mui->textBrowser->createStandardContextMenu();
+    popupmenu->clear();
+    QAction *action0 = popupmenu->addAction(tr("Copy selected to clipboard"));
+    QAction *action1 = popupmenu->addAction(tr("Copy all to clipboard"));
+    popupmenu->addSeparator();
+    QAction *action2 = popupmenu->addAction(tr("Save"));
+    QAction *action3 = popupmenu->addAction(tr("Open"));
+    popupmenu->addSeparator();
+    QAction *action4 = popupmenu->addAction(tr("Clear all"));
+    action0->setShortcut(QKeySequence::Copy);
+    action0->setIcon(QPixmap(":/menu_ico/res/icons8-inconsistency-32.png"));
+    action1->setShortcut(QKeySequence(Qt::ALT + Qt::Key_A));
+    action1->setIcon(QPixmap(":/menu_ico/res/icons8-copy-32.png"));
+    action2->setShortcut(QKeySequence::Save);
+    action2->setIcon(QPixmap(":/menu_ico/res/icons8-save-32.png"));
+    action3->setShortcut(QKeySequence::Open);
+    action3->setIcon(QPixmap(":/menu_ico/res/icons8-opened-folder-32.png"));
+    action4->setShortcut(QKeySequence::Delete);
+    action4->setIcon(QPixmap(":/menu_ico/res/icons8-delete-30.png"));
+    mui->textBrowser->addAction(action0);
+    mui->textBrowser->addAction(action1);
+    mui->textBrowser->addAction(action2);
+    mui->textBrowser->addAction(action3);
+    mui->textBrowser->addAction(action4);
+    connect(action0, SIGNAL(triggered()), this, SLOT(on_toolButton_CopySel_clicked()));
+    connect(action1, SIGNAL(triggered()), this, SLOT(on_toolButton_CopyAll_clicked()));
+    connect(action2, SIGNAL(triggered()), this, SLOT(on_toolButton_Save_clicked()));
+    connect(action3, SIGNAL(triggered()), this, SLOT(on_toolButton_Open_clicked()));
+    connect(action4, SIGNAL(triggered()), this, SLOT(on_toolButton_Clear_clicked()));
+
     delete settings;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -277,16 +311,72 @@ void MainWindow::setLanguage(){
         child = actions.at(2);
         child->setText(tr("Language"));
     }
+    QList<QAction*> popupactions = popupmenu->actions();
+    QAction *actCopySelected = popupactions.at(0);
+    QAction *actCopyAll = popupactions.at(1);
+    QAction *actSave = popupactions.at(3);
+    QAction *actOpen = popupactions.at(4);
+    QAction *actClearAll = popupactions.at(6);
+    actCopySelected->setText(tr("Copy selected to clipboard"));
+    actCopyAll->setText(tr("Copy all to clipboard"));
+    actSave->setText(tr("Save"));
+    actOpen->setText(tr("Open"));
+    actClearAll->setText(tr("Clear all"));
     int tab = mui->tabWidget->currentIndex();
     on_tabWidget_currentChanged(tab);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 MainWindow::~MainWindow()
 {
+    delete popupmenu;
     delete data;
     delete myOpt;
     delete net_manager;
     delete mui;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_textBrowser_customContextMenuRequested(const QPoint &pos){
+    popupmenu->popup(mui->textBrowser->viewport()->mapToGlobal(pos));
+    QList<QAction*> popupactions = popupmenu->actions();
+    QAction *actCopySelected = popupactions.at(0);
+    QAction *actCopyAll = popupactions.at(1);
+    QAction *actSave = popupactions.at(3);
+    QAction *actOpen = popupactions.at(4);
+    QAction *actClearAll = popupactions.at(6);
+    if (mui->textBrowser->document()->isEmpty()){
+        actCopyAll->setEnabled(false);
+        actSave->setEnabled(false);
+        actOpen->setEnabled(true);
+        actClearAll->setEnabled(false);
+    } else {
+        actCopyAll->setEnabled(true);
+        actSave->setEnabled(true);
+        actOpen->setEnabled(true);
+        actClearAll->setEnabled(true);
+    }
+    QTextCursor c = mui->textBrowser->textCursor();
+    if (c.selectedText().isEmpty())
+        actCopySelected->setEnabled(false);
+    else
+        actCopySelected->setEnabled(true);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_textBrowser_textChanged(){
+    if (mui->textBrowser->document()->isEmpty()){
+        mui->toolButton_CopySel->setEnabled(false);
+        mui->toolButton_CopyAll->setEnabled(false);
+        mui->toolButton_Open->setEnabled(true);
+        mui->toolButton_Print->setEnabled(false);
+        mui->toolButton_Save->setEnabled(false);
+        mui->toolButton_Clear->setEnabled(false);
+    } else {
+        mui->toolButton_CopySel->setEnabled(true);
+        mui->toolButton_CopyAll->setEnabled(true);
+        mui->toolButton_Open->setEnabled(true);
+        mui->toolButton_Print->setEnabled(true);
+        mui->toolButton_Save->setEnabled(true);
+        mui->toolButton_Clear->setEnabled(true);
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::closeEvent(QCloseEvent *event){
@@ -387,11 +477,38 @@ void MainWindow::closeEvent(QCloseEvent *event){
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+bool MainWindow::eventFilter(QObject *watched, QEvent *event){
+    if (event->type() == QEvent::ShortcutOverride) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->modifiers().testFlag(Qt::ControlModifier) && keyEvent->key() == 'S') {
+            on_toolButton_Save_clicked();
+            event->ignore();
+            return true;
+        }
+        if (keyEvent->modifiers().testFlag(Qt::ControlModifier) && keyEvent->key() == 'O') {
+            on_toolButton_Open_clicked();
+            event->ignore();
+            return true;
+        }
+    }
+    return QMainWindow::eventFilter(watched, event);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::resetUiFont(){
     QFont f1 = this->font();
     f1.setFamily(myOpt->mainFontFamily);
     f1.setPixelSize(myOpt->mainFontSize);
     this->setFont(f1);
+    mui->listWidget->setFont(f1);
+    mui->toolButton_Clear->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_CopyAll->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_CopySel->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_Help->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_Open->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_Print->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_Save->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_showAdditional->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_showImg->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     QList<QAction*> actions;
     QAction* child;
     QList<QMenu*> menus = this->menuBar()->findChildren<QMenu*>();
@@ -1413,7 +1530,10 @@ void MainWindow::on_actionOptions_triggered()
 void MainWindow::on_actionCopy_triggered()
 {
     mui->textBrowser->selectAll();
-    mui->textBrowser->copy();;
+    mui->textBrowser->copy();
+    QTextCursor c = mui->textBrowser->textCursor();
+    c.movePosition(QTextCursor::Start);
+    mui->textBrowser->setTextCursor(c);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionOpen_triggered()
@@ -2387,6 +2507,10 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), "p < (w + 2i)");
                     return;
                 }
+                if ((ins == 0)&&(p <= w)){
+                    showWarning(tr("Warning"), "p <= w");
+                    return;
+                }
                 data->inductance = I;
                 data->frequency = f;
                 double Dk = D + t + ins;
@@ -2724,8 +2848,12 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
                     return;
                 }
-                if (p < w){
-                    showWarning(tr("Warning"), "p < w");
+                if (p < (w + 2*ins)){
+                    showWarning(tr("Warning"), "p < (w + 2i)");
+                    return;
+                }
+                if ((ins == 0)&&(p <= w)){
+                    showWarning(tr("Warning"), "p <= w");
                     return;
                 }
                 data->frequency = f;
@@ -3351,6 +3479,12 @@ void MainWindow::get_multilayerN_Rect_Result(_CoilResult result){
     Result += tr("Number of layers") + " Nl = " + loc.toString(result.sec) + "<br/>";
     Result += tr("Thickness of the coil") + " c = " + loc.toString(result.five) + " "
             + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    double a = loc.toDouble(mui->lineEdit_1->text())*myOpt->dwLengthMultiplier;
+    double width = (2 * result.five + a) / myOpt->dwLengthMultiplier;
+    double b = loc.toDouble(mui->lineEdit_2->text())*myOpt->dwLengthMultiplier;
+    double height = (2 * result.five + b) / myOpt->dwLengthMultiplier;
+    Result += tr("Dimensions of inductor") + ": " + mui->lineEdit_3->text() + "x" + loc.toString(ceil(width))
+            + "x" + loc.toString(ceil(height)) + " " + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
     QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
@@ -3846,6 +3980,18 @@ void MainWindow::on_actionPCB_meandr_coil_triggered()
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     fMeandr->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionMetal_detector_search_coil_triggered()
+{
+    Multiloop *fMultiloop = new Multiloop();
+    fMultiloop->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(fMultiloop, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), fMultiloop, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), fMultiloop, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    fMultiloop->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::getAddCalculationResult(QString result){

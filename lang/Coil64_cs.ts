@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="bg_BG">
+<TS version="2.1" language="cs_CZ">
 <context>
     <name>About</name>
     <message>
         <location filename="../about.ui" line="32"/>
         <source>About</source>
-        <translation>За програмата</translation>
+        <translation>O programu</translation>
     </message>
     <message>
         <location filename="../about.ui" line="101"/>
         <source>About program</source>
-        <translation>За програмата</translation>
+        <translation>O programu</translation>
     </message>
     <message>
         <location filename="../about.ui" line="113"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Radio frequency inductor and choke calculator&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Програмата за изчисляване на RF бобини и дросели.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>Kalkulačka vysokofrekvenčního induktoru a tlumivky</translation>
     </message>
     <message>
         <location filename="../about.ui" line="130"/>
         <source>The app allows to calculate needed number of turns for desired value of inductance of homebrew inductor or to calculate the inductance value of a fabricated inductor. I hope this app could be useful for HAMs, Audiophiles and other radio enthusiasts who needs to make DIY inductors.</source>
-        <translation>Приложението позволява да се изчисли необходимия брой завъртания за желаната стойност на индуктивността на индуктивния преобразувател или да се изчисли стойността на индуктивност на произвеждания индуктор. Надявам се, че това приложение може да бъде полезно за HAM, Audiophiles и други радио ентусиасти, които трябва да направят DIY индуктори.</translation>
+        <translation>Aplikace umožňuje vypočítat potřebný počet otáček pro požadovanou hodnotu indukčnosti induktoru homebrew nebo vypočítat hodnotu indukčnosti vyrobeného induktoru. Doufám, že tato aplikace by mohla být užitečná pro HAM, Audiophiles a další rádiové nadšence, kteří potřebují, aby DIY induktory.</translation>
     </message>
     <message>
         <location filename="../about.ui" line="158"/>
         <source>HomePage:</source>
-        <translation>Начална страница:</translation>
+        <translation>Domovská stránka:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="187"/>
         <source>Author</source>
-        <translation>Автор</translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <location filename="../about.ui" line="199"/>
         <source>Name: Valery Kustarev</source>
-        <translation>Име: Валерий Кустарев</translation>
-    </message>
-    <message>
-        <location filename="../about.ui" line="259"/>
-        <source>Thanks</source>
-        <translation>Благодаря</translation>
-    </message>
-    <message>
-        <location filename="../about.ui" line="271"/>
-        <source>Thanks for reports and program testing:</source>
-        <translation>Благодаря за отчетите и тестването на програмата:</translation>
-    </message>
-    <message>
-        <location filename="../about.ui" line="304"/>
-        <source>Translations</source>
-        <translation>Преводи</translation>
-    </message>
-    <message>
-        <location filename="../about.ui" line="310"/>
-        <source>I would like to thank the following people who volunteered to translate Coil64:</source>
-        <translation>Бих искал да благодаря на следните хора, които доброволно дадоха превод на Coil64:</translation>
-    </message>
-    <message>
-        <location filename="../about.ui" line="364"/>
-        <source>The current version of the Coil64 has been compiled by using the following libraries:</source>
-        <translation>Текущата версия на Coil64 е компилирана чрез следните библиотеки:</translation>
-    </message>
-    <message>
-        <location filename="../about.ui" line="335"/>
-        <source>License</source>
-        <translation>Разрешително</translation>
+        <translation>Jméno: Valery Kustarev</translation>
     </message>
     <message>
         <location filename="../about.ui" line="245"/>
         <source>I hope, Coil64 will be useful in your radioamateur creativity. 73!</source>
-        <translation>Надявам се, че Coil64 ще бъде полезна във вашето радиоаматьорско творчество. 73!</translation>
+        <translation>Doufám, že Coil64 bude užitečný ve vaší radioamatérské tvorivosti. 73!</translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="259"/>
+        <source>Thanks</source>
+        <translation>Díky</translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="271"/>
+        <source>Thanks for reports and program testing:</source>
+        <translation>Děkujeme za přehledy a testování programu:</translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="304"/>
+        <source>Translations</source>
+        <translation>Překlady</translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="310"/>
+        <source>I would like to thank the following people who volunteered to translate Coil64:</source>
+        <translation>Chtěl bych poděkovat následujícím lidem, kteří se dobrovolně rozhodli přeložit Coil64:</translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="335"/>
+        <source>License</source>
+        <translation>Licence</translation>
     </message>
     <message>
         <location filename="../about.ui" line="352"/>
         <source>Libraries</source>
-        <translation>Библиотеки</translation>
+        <translation>Knihovny</translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="364"/>
+        <source>The current version of the Coil64 has been compiled by using the following libraries:</source>
+        <translation>Aktuální verze Coil64 byla zkompilována pomocí následujících knihoven:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="445"/>
         <source>Close</source>
-        <translation>затварям</translation>
+        <translation>Zavřít</translation>
     </message>
 </context>
 <context>
@@ -144,7 +144,7 @@
     <message>
         <location filename="../system_functions.cpp" line="342"/>
         <source>in</source>
-        <translation>in</translation>
+        <translation>Palce</translation>
     </message>
     <message>
         <location filename="../system_functions.cpp" line="347"/>
@@ -167,37 +167,37 @@
     <message>
         <location filename="../ferrite_rod.ui" line="29"/>
         <source>Coil on a ferrite rod</source>
-        <translation>Намотка на феритов прът</translation>
+        <translation>Cívka na feritové tyči</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="69"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Restrictions of the calculating&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ограничения на изчисляването&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Omezení výpočtu&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="82"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;The winding pitch cannot exceed the doubled wire diameter&lt;/li&gt;&lt;li&gt;The coil diameter cannot be greater than doubled rod diameter&lt;/li&gt;&lt;li&gt;Winding length should be less than 3/4 length of the rod&lt;/li&gt;&lt;li&gt;When the coil is shifting it should not reach the edge of the core 1/8 of its length&lt;/li&gt;&lt;li&gt;The initial magnetic permeability of the rod should be greater than 100&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;Наклонът на намотката не може да надвишава двойния диаметър на проводника&lt;/li&gt;&lt;li&gt;Диаметърът на намотката не може да бъде по-голям от удвоения диаметър на пръта&lt;/li&gt;&lt;li&gt;Дължината на навиване трябва да бъде по-малка от 3/4 дължината на пръта&lt;/li&gt;&lt;li&gt;Когато бобината се измества, тя не трябва да достига ръба на ядрото 1/8 от дължината му&lt;/li&gt;&lt;li&gt;Началната магнитна пропускливост на пръта трябва да бъде по-голяма от 100&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;Rozteč vinutí nemůže překročit zdvojený průměr drátu&lt;/li&gt;&lt;li&gt;Průměr cívky nesmí být větší než zdvojený průměr tyče&lt;/li&gt;&lt;li&gt;Délka vinutí by měla být menší než 3/4 délky tyče&lt;/li&gt;&lt;li&gt;Když se cívka posouvá, neměla by dosáhnout hrany jádra 1/8 své délky&lt;/li&gt;&lt;li&gt;Počáteční magnetická permeabilita tyče by měla být větší než 100&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="105"/>
         <source>Inductance</source>
-        <translation>Индуктивност</translation>
+        <translation>Indukčnost</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="138"/>
         <source>Core parameters:</source>
-        <translation>Параметри на ядрото:</translation>
+        <translation>Parametry jádra:</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="272"/>
         <source>Coil parameters:</source>
-        <translation>Параметри на бобината:</translation>
+        <translation>Parametry cívky:</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="505"/>
         <source>Calculate</source>
-        <translation>Изчисли</translation>
+        <translation>Spočítat</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="512"/>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../ferrite_rod.ui" line="531"/>
         <source>Close</source>
-        <translation>затварям</translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="538"/>
@@ -217,37 +217,37 @@
     <message>
         <location filename="../ferrite_rod.cpp" line="28"/>
         <source>Rod diameter</source>
-        <translation>Диаметър на пръта</translation>
+        <translation>Průměr tyče</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="30"/>
         <source>Rod length</source>
-        <translation>Дължина на пръта</translation>
+        <translation>Délka tyče</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="32"/>
         <source>Magnetic permeability</source>
-        <translation>Магнитна пропускливост</translation>
+        <translation>Magnetická permeabilita</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="34"/>
         <source>Former diameter</source>
-        <translation>Диаметър на каркаса</translation>
+        <translation>Průměr profilu</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="37"/>
         <source>Shift</source>
-        <translation>Изместване</translation>
+        <translation>Posun</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="39"/>
         <source>Wire diameter</source>
-        <translation>Диаметр на проводника</translation>
+        <translation>Průměr drátu</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="41"/>
         <source>Winding pitch</source>
-        <translation>Стъпка на намотката</translation>
+        <translation>Stoupání vinutí</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="151"/>
@@ -259,52 +259,52 @@
         <location filename="../ferrite_rod.cpp" line="186"/>
         <location filename="../ferrite_rod.cpp" line="190"/>
         <source>Warning</source>
-        <translation>Внимание</translation>
+        <translation>Varování</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="151"/>
         <source>One or more inputs are empty!</source>
-        <translation>Един или повече входове са празни!</translation>
+        <translation>Jeden nebo více vstupů jsou prázdné!</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="164"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Един или повече входове са с незаконен формат!</translation>
+        <translation>Jeden nebo více vstupů má nelegální formát!</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="168"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Един или повече входове са равни на нула!</translation>
+        <translation>Jeden nebo více vstupů se rovná null!</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="190"/>
         <source>Distance from coil edge to core edge less than 1/8 Lr</source>
-        <translation>Разстояние от края на бобината до ръба на сърцевината по-малко от 1/8 Lr</translation>
+        <translation>Vzdálenost od hrany cívky k hraně jádra menší než 1/8 Lr</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="197"/>
         <source>Input data</source>
-        <translation>Входни данни</translation>
+        <translation>Vstupní data</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="209"/>
         <source>Result</source>
-        <translation>Резултат</translation>
+        <translation>Výsledek</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="210"/>
         <source>Number of turns of the coil</source>
-        <translation>Брой на навивките на бобината</translation>
+        <translation>Počet závitů cívky</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="211"/>
         <source>Length of winding</source>
-        <translation>Дължина на намотката</translation>
+        <translation>Délka vinutí</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="212"/>
         <source>Effective magnetic permeability of the rod</source>
-        <translation>Ефективна магнитна пропускливост на пръчката</translation>
+        <translation>Efektivní magnetická permeabilita tyče</translation>
     </message>
 </context>
 <context>
@@ -312,43 +312,43 @@
     <message>
         <location filename="../find_permeability.ui" line="38"/>
         <source>Find the unknown ferrite toroid permeability</source>
-        <translation>Намерете неизвестната феритова тороидна пропускливост</translation>
+        <translation>Najděte neznámou permeabilitu feritového toroidu</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="72"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You should to wind a few turns on an unknown ferrite or powder iron toroid and should to mesure obtained inductance and dimentions of the ring. Enter the data and estimate the permeability and Al-factor of the toroid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Трябва да навиете няколко завъртания на неизвестен ферит или прах железен тороид и трябва да се получи получена индуктивност и размери на пръстена. Въведете данните и оценете пропускливостта и Al-фактора на тороида.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Měli byste vetřít několik otáček na neznámém feritu nebo práškovém železném toroidu a mělo by se dosáhnout toho, aby se dosáhlo indukčnosti a rozložení prstence. Zadejte data a odhadněte permeabilitu a Al-faktor toroidu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="103"/>
         <source>Data</source>
-        <translation>Данни</translation>
+        <translation>Vstupní data</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="118"/>
         <source>Inductance</source>
-        <translation>Индуктивност</translation>
+        <translation>Indukčnost</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="125"/>
         <source>Number of turns</source>
-        <translation>Брой на навивките</translation>
+        <translation>Počet závitů cívky</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="150"/>
         <location filename="../find_permeability.cpp" line="141"/>
         <source>Dimensions</source>
-        <translation>Размери</translation>
+        <translation>Rozměry</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="300"/>
         <source>Calculate</source>
-        <translation>Изчисли</translation>
+        <translation>Spočítat</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="326"/>
         <source>Close</source>
-        <translation>Затварям</translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="110"/>
@@ -356,42 +356,42 @@
         <location filename="../find_permeability.cpp" line="124"/>
         <location filename="../find_permeability.cpp" line="128"/>
         <source>Warning</source>
-        <translation>Внимание</translation>
+        <translation>Varování</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="110"/>
         <source>One or more inputs are empty!</source>
-        <translation>Един или повече входове са празни!</translation>
+        <translation>Jeden nebo více vstupů jsou prázdné!</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="120"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Един или повече входове са с незаконен формат!</translation>
+        <translation>Jeden nebo více vstupů má nelegální formát!</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="124"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Един или повече входове са равни на нула!</translation>
+        <translation>Jeden nebo více vstupů se rovná null!</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="138"/>
         <source>Input data</source>
-        <translation>Входни данни</translation>
+        <translation>Vstupní data</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="146"/>
         <source>Result</source>
-        <translation>Резултат</translation>
+        <translation>Výsledek</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="147"/>
         <source>Relative magnetic permeability of the toroid</source>
-        <translation>Относителна магнитна пропускливост на тороида</translation>
+        <translation>Relativní magnetická permeabilita toroidu</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="148"/>
         <source>Magnetic factor of the core</source>
-        <translation>Магнитен фактор на ядрото</translation>
+        <translation>Magnetický faktor jádra</translation>
     </message>
 </context>
 <context>
@@ -399,107 +399,87 @@
     <message>
         <location filename="../mainwindow.ui" line="70"/>
         <source>Select the coil form</source>
-        <translation>Изберете формата на бобината</translation>
+        <translation>Výběr profilu cívky</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="125"/>
         <source>One layer coil with round wire</source>
-        <translation>Еднослойна бобина с кръгла тел</translation>
+        <translation>Jednovrstvá cívka s kruhovým drátem</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="135"/>
         <source>One layer coil with rect wire</source>
-        <translation>Еднослойна бобина с правожил</translation>
+        <translation>Jednovrstvá cívka s obdélníkovým drátem</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="145"/>
         <source>Multilayer coil</source>
-        <translation>Многослойна бобина</translation>
+        <translation>Vícevrstvá cívka</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="155"/>
         <source>Multilayer coil with insulated pads</source>
-        <translation>Многослойна бобина с изолирани подложки</translation>
+        <translation>Vícevrstvá cívka s izolovanými podložkami</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="165"/>
+        <source>Multilayer coil on a rectangular former</source>
+        <translation>Vícevrstvá cívka na pravoúhlém profilu</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="174"/>
         <source>Ferrite toroid coil</source>
-        <translation>Бобина на феритов пръстен</translation>
+        <translation>Civka na feritovém kroužku</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="184"/>
         <source>PCB flat coil with square winding</source>
-        <translation>Тънкослойна бобина с квадратни навивки</translation>
+        <translation>Plochá cívka na PCB čtvercová</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="194"/>
         <source>Tesla flat spiral coil</source>
-        <translation>Тесла плоска спирална намотка</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1167"/>
-        <source>Enter</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1559"/>
-        <source>About Coil64</source>
-        <translation>За Coil64</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1660"/>
-        <source>Ferrite toroid permeability</source>
-        <translation>Феритна тороидна пропускливост</translation>
+        <translation>Plochá spirálová cívka Tesla</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="240"/>
         <source>Coil</source>
-        <translation>Бобина</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="660"/>
-        <location filename="../mainwindow.cpp" line="709"/>
-        <location filename="../mainwindow.cpp" line="1047"/>
-        <location filename="../mainwindow.cpp" line="1100"/>
-        <location filename="../mainwindow.cpp" line="1339"/>
-        <location filename="../mainwindow.cpp" line="3529"/>
-        <source>Winding pitch</source>
-        <translation>Стъпка на намотката</translation>
+        <translation>Cívka</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="525"/>
         <location filename="../mainwindow.ui" line="927"/>
         <source>Wire material:</source>
-        <translation>Материал на проводник:</translation>
+        <translation>Materiál drátu:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <location filename="../mainwindow.ui" line="933"/>
         <source>Copper</source>
-        <translation>мед</translation>
+        <translation>Měď</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="541"/>
         <location filename="../mainwindow.ui" line="943"/>
         <source>Silver</source>
-        <translation>сребро</translation>
+        <translation>Stříbro</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="548"/>
         <location filename="../mainwindow.ui" line="950"/>
         <source>Aluminum</source>
-        <translation>Алумин</translation>
+        <translation>Hliník</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="555"/>
         <location filename="../mainwindow.ui" line="957"/>
         <source>Tin</source>
-        <translation>калай</translation>
+        <translation>Cín</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="578"/>
         <source>Ratio W/s:</source>
-        <translation>Съотношение W/s:</translation>
+        <translation>Poměr W/s:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="639"/>
@@ -515,64 +495,53 @@
         <location filename="../mainwindow.cpp" line="3871"/>
         <location filename="../mainwindow.cpp" line="3896"/>
         <source>Inductance</source>
-        <translation>Индуктивност</translation>
+        <translation>Indukčnost</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="973"/>
         <source>Select initial data of the calculation</source>
-        <translation>Избиране на изходните данни за изчисляване</translation>
+        <translation>Vyberte počáteční data výpočtu</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1015"/>
         <source>LC circuit</source>
-        <translation>Кръг (трептящ)</translation>
+        <translation>LC obvod</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1023"/>
         <source>Initial conditions of calculation of a circuit</source>
-        <translation>Начални условия за пресмятане на трептящ кръг</translation>
+        <translation>Výchozí podmínky pro výpočet obvodu</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1029"/>
         <source>The capacitance and the inductance are known</source>
-        <translation>Известни капацитет и индуктивност</translation>
+        <translation>Kapacita a indukce je známa</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1039"/>
         <source>The capacitance and the frequency are known </source>
-        <translation>Известни капацитет и честота</translation>
+        <translation>Kapacita a frekvence je známa</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1046"/>
         <source>The inductance and the frequency are known</source>
-        <translation>Известни индуктивност и честота </translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="1639"/>
-        <location filename="../mainwindow.cpp" line="1647"/>
-        <source>External capacitance</source>
-        <translation>Външен капацитет</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1469"/>
-        <source>Additional calculating</source>
-        <translation>Допълнително изчисляване</translation>
+        <translation>Indukčnost a frekvence jsou známy</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1160"/>
         <source>Calculate</source>
-        <translation>Изчисли</translation>
+        <translation>Spočítat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="165"/>
-        <source>Multilayer coil on a rectangular former</source>
-        <translation>Многослойна намотка на правоъгълник</translation>
+        <location filename="../mainwindow.ui" line="1167"/>
+        <source>Enter</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1209"/>
         <location filename="../mainwindow.cpp" line="264"/>
         <source>Copy selected to clipboard</source>
-        <translation>Копиране на маркираното в буфера</translation>
+        <translation>Kopírovat vybrané do schránky</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1229"/>
@@ -580,109 +549,7 @@
         <location filename="../mainwindow.ui" line="1614"/>
         <location filename="../mainwindow.cpp" line="265"/>
         <source>Copy all to clipboard</source>
-        <translation>Копиране на всичко в буфера</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1264"/>
-        <location filename="../mainwindow.ui" line="1585"/>
-        <location filename="../mainwindow.cpp" line="267"/>
-        <location filename="../mainwindow.cpp" line="1559"/>
-        <source>Save</source>
-        <translation>Запазване</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1287"/>
-        <location filename="../mainwindow.ui" line="1679"/>
-        <location filename="../mainwindow.cpp" line="270"/>
-        <source>Clear all</source>
-        <translation>Изчистване на всичко</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1310"/>
-        <source>Print all</source>
-        <translation>Печатане на всичко</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1333"/>
-        <source>Show images in result</source>
-        <translation>Да се показват картинки в резултатите</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1362"/>
-        <source>Show additional results for single-layer coils</source>
-        <translation>Да се показват допълнителни результати за однослойните бобини</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1385"/>
-        <location filename="../mainwindow.ui" line="1546"/>
-        <source>Context help</source>
-        <translation>Помощ за контекста</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1442"/>
-        <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1452"/>
-        <source>&amp;Customize</source>
-        <translation>&amp;Настройки</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1458"/>
-        <source>&amp;Help</source>
-        <translation>&amp;Помощ</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1478"/>
-        <source>Actions</source>
-        <translation>Мерки</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1517"/>
-        <source>&amp;Exit</source>
-        <translation>&amp;Изход</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1530"/>
-        <location filename="../mainwindow.ui" line="1533"/>
-        <source>Options</source>
-        <translation>Опции</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1572"/>
-        <source>Check for &amp;update</source>
-        <translation>Проверка за &amp;обновяване</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1598"/>
-        <source>HomePage</source>
-        <translation>Начална страница</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1624"/>
-        <source>Print</source>
-        <translation>Печатане</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1636"/>
-        <source>To null initial data</source>
-        <translation>Нулиране на изходните данни</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1669"/>
-        <source>Coil on a ferrite rod</source>
-        <translation>Намотка на феритов прът</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1688"/>
-        <source>Meander coil on PCB</source>
-        <translation>Меандър намотка на печатна платка</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1697"/>
-        <source>Search coil of a metal detector</source>
-        <translation>Търсене на намотка на металдетектора</translation>
+        <translation>Kopírovat vše do schránky</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1243"/>
@@ -690,13 +557,154 @@
         <location filename="../mainwindow.cpp" line="268"/>
         <location filename="../mainwindow.cpp" line="1525"/>
         <source>Open</source>
-        <translation>Отваряне</translation>
+        <translation>Otevřít</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1264"/>
+        <location filename="../mainwindow.ui" line="1585"/>
+        <location filename="../mainwindow.cpp" line="267"/>
+        <location filename="../mainwindow.cpp" line="1559"/>
+        <source>Save</source>
+        <translation>Uložit</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1287"/>
+        <location filename="../mainwindow.ui" line="1679"/>
+        <location filename="../mainwindow.cpp" line="270"/>
+        <source>Clear all</source>
+        <translation>Vyčistit vše</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1310"/>
+        <source>Print all</source>
+        <translation>Vytisknout vše</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1333"/>
+        <source>Show images in result</source>
+        <translation>Zobrazit obrázky ve výsledku</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1362"/>
+        <source>Show additional results for single-layer coils</source>
+        <translation>Zobrazit další výsledky pro jednovrstvé cívky</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1385"/>
+        <location filename="../mainwindow.ui" line="1546"/>
+        <source>Context help</source>
+        <translation>Kontextová nápověda</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1442"/>
+        <source>&amp;File</source>
+        <translation>&amp;Soubor</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1452"/>
+        <source>&amp;Customize</source>
+        <translation>&amp;Přispůsobit</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1458"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Nápověda</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1469"/>
+        <source>Additional calculating</source>
+        <translation>Další výpočet</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1478"/>
+        <source>Actions</source>
+        <translation>Akce</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1517"/>
+        <source>&amp;Exit</source>
+        <translation>&amp;Konec</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1530"/>
+        <location filename="../mainwindow.ui" line="1533"/>
+        <source>Options</source>
+        <translation>Volby</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1559"/>
+        <source>About Coil64</source>
+        <translation>O Coil64</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1572"/>
+        <source>Check for &amp;update</source>
+        <translation>Kontrola &amp;aktualizace</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1598"/>
+        <source>HomePage</source>
+        <translation>Domovská stránka</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1624"/>
+        <source>Print</source>
+        <translation>Vytisknout</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1636"/>
+        <source>To null initial data</source>
+        <translation>Vynulování výchozích dat</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1660"/>
+        <source>Ferrite toroid permeability</source>
+        <translation>Permeabilita feritového toroidu</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1669"/>
+        <source>Coil on a ferrite rod</source>
+        <translation>Cívka na feritové tyči</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1688"/>
+        <source>Meander coil on PCB</source>
+        <translation>Meandrová cívka na desce plošných spojů</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1697"/>
+        <source>Search coil of a metal detector</source>
+        <translation>Hledejte cívku detektoru kovů</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="90"/>
         <location filename="../mainwindow.cpp" line="312"/>
         <source>Language</source>
-        <translation>език</translation>
+        <translation>Jazyk</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="358"/>
+        <location filename="../mainwindow.cpp" line="1476"/>
+        <source>Confirmation</source>
+        <translation>Potvrzení</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="359"/>
+        <location filename="../mainwindow.cpp" line="1477"/>
+        <source>Are you sure?</source>
+        <translation>Jsi si jistá?</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="362"/>
+        <location filename="../mainwindow.cpp" line="1480"/>
+        <source>Yes</source>
+        <translation>Ano</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="363"/>
+        <location filename="../mainwindow.cpp" line="1481"/>
+        <source>No</source>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="502"/>
@@ -832,33 +840,46 @@
         <location filename="../mainwindow.cpp" line="3125"/>
         <location filename="../mainwindow.cpp" line="3159"/>
         <source>Warning</source>
-        <translation>Внимание</translation>
+        <translation>Varování</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="502"/>
         <source>Error. Can not open URL: </source>
-        <translation>Грешка. URL адресът не може да се отвори:</translation>
+        <translation>Chyba. Nelze otevřít adresu URL: </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="523"/>
         <location filename="../mainwindow.cpp" line="531"/>
         <source>Information</source>
-        <translation>Информация</translation>
+        <translation>Informace</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="523"/>
         <source>The version is up to date: </source>
-        <translation>Версията е актуална:</translation>
+        <translation>Verze je aktuální:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="525"/>
+        <source>Something gone wrong</source>
+        <translation>Něco se pokazilo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="528"/>
         <source>There is a new version of the app.</source>
-        <translation>Има нова версия на приложението.</translation>
+        <translation>K dispozici je nová verze aplikace.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="529"/>
         <source>Please visit the URL to download</source>
-        <translation>Моля, посетете URL адреса за изтегляне</translation>
+        <translation>Navštivte prosím adresu URL ke stažení</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="620"/>
+        <location filename="../mainwindow.cpp" line="1003"/>
+        <location filename="../mainwindow.cpp" line="1649"/>
+        <location filename="../mainwindow.cpp" line="1659"/>
+        <source>Frequency</source>
+        <translation>Frekvence</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="636"/>
@@ -876,40 +897,6 @@
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="707"/>
-        <location filename="../mainwindow.cpp" line="800"/>
-        <location filename="../mainwindow.cpp" line="1098"/>
-        <location filename="../mainwindow.cpp" line="1193"/>
-        <source>Insulation thickness</source>
-        <translation>Дебелина на изолацията</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="898"/>
-        <location filename="../mainwindow.cpp" line="943"/>
-        <location filename="../mainwindow.cpp" line="1295"/>
-        <location filename="../mainwindow.cpp" line="1335"/>
-        <location filename="../mainwindow.cpp" line="1378"/>
-        <location filename="../mainwindow.cpp" line="3556"/>
-        <source>Outside diameter</source>
-        <translation>Външен диаметър</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="900"/>
-        <location filename="../mainwindow.cpp" line="945"/>
-        <location filename="../mainwindow.cpp" line="977"/>
-        <location filename="../mainwindow.cpp" line="1297"/>
-        <location filename="../mainwindow.cpp" line="1337"/>
-        <location filename="../mainwindow.cpp" line="1380"/>
-        <source>Inside diameter</source>
-        <translation>Вътрешен диаметър</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="906"/>
-        <location filename="../mainwindow.cpp" line="1301"/>
-        <source>Init magnetic permeability</source>
-        <translation>Магнитна проницаемост</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="654"/>
         <location filename="../mainwindow.cpp" line="701"/>
         <location filename="../mainwindow.cpp" line="744"/>
@@ -919,7 +906,7 @@
         <location filename="../mainwindow.cpp" line="1139"/>
         <location filename="../mainwindow.cpp" line="1183"/>
         <source>Former diameter</source>
-        <translation>Диаметър на каркаса</translation>
+        <translation>Průměr profilu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="656"/>
@@ -935,7 +922,7 @@
         <location filename="../mainwindow.cpp" line="1382"/>
         <location filename="../mainwindow.cpp" line="1759"/>
         <source>Wire diameter</source>
-        <translation>Диаметр на проводника</translation>
+        <translation>Průměr drátu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="658"/>
@@ -947,19 +934,37 @@
         <location filename="../mainwindow.cpp" line="1191"/>
         <location filename="../mainwindow.cpp" line="1252"/>
         <source>Wire diameter with insulation</source>
-        <translation>Диаметър на проводника с изоляция</translation>
+        <translation>Průměr drátu s izolací</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="660"/>
+        <location filename="../mainwindow.cpp" line="709"/>
+        <location filename="../mainwindow.cpp" line="1047"/>
+        <location filename="../mainwindow.cpp" line="1100"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
+        <location filename="../mainwindow.cpp" line="3529"/>
+        <source>Winding pitch</source>
+        <translation>Stoupání vinutí</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="703"/>
         <location filename="../mainwindow.cpp" line="1094"/>
         <source>Wire width</source>
-        <translation>Ширина на проводника</translation>
+        <translation>Šířka drátu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="705"/>
         <location filename="../mainwindow.cpp" line="1096"/>
         <source>Wire thickness</source>
-        <translation>Дебелина на проводника</translation>
+        <translation>Tloušťka drátu</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="707"/>
+        <location filename="../mainwindow.cpp" line="800"/>
+        <location filename="../mainwindow.cpp" line="1098"/>
+        <location filename="../mainwindow.cpp" line="1193"/>
+        <source>Insulation thickness</source>
+        <translation>Tloušťka izolace</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="746"/>
@@ -969,135 +974,97 @@
         <location filename="../mainwindow.cpp" line="1185"/>
         <location filename="../mainwindow.cpp" line="1246"/>
         <source>Winding length</source>
-        <translation>Дължина на намотката</translation>
+        <translation>Délka vinutí</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="802"/>
         <location filename="../mainwindow.cpp" line="1195"/>
         <source>Layers number beetween insulating pads</source>
-        <translation>Брой на слоеве между изолационни подложки</translation>
+        <translation>Počet vrstev mezi izolačními podložkami</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="846"/>
+        <location filename="../mainwindow.cpp" line="1242"/>
+        <source>Former width</source>
+        <translation>Šířka profilu</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="848"/>
+        <location filename="../mainwindow.cpp" line="1244"/>
+        <source>Former height</source>
+        <translation>Výška profilu</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="898"/>
+        <location filename="../mainwindow.cpp" line="943"/>
+        <location filename="../mainwindow.cpp" line="1295"/>
+        <location filename="../mainwindow.cpp" line="1335"/>
+        <location filename="../mainwindow.cpp" line="1378"/>
+        <location filename="../mainwindow.cpp" line="3556"/>
+        <source>Outside diameter</source>
+        <translation>Vnější průměr</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="900"/>
+        <location filename="../mainwindow.cpp" line="945"/>
+        <location filename="../mainwindow.cpp" line="977"/>
+        <location filename="../mainwindow.cpp" line="1297"/>
+        <location filename="../mainwindow.cpp" line="1337"/>
+        <location filename="../mainwindow.cpp" line="1380"/>
+        <source>Inside diameter</source>
+        <translation>Vnitřní průměr</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="902"/>
         <location filename="../mainwindow.cpp" line="1299"/>
         <source>Core height</source>
-        <translation>Височина на сърцевината</translation>
+        <translation>Výška jádra</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="620"/>
-        <location filename="../mainwindow.cpp" line="1003"/>
-        <location filename="../mainwindow.cpp" line="1649"/>
-        <location filename="../mainwindow.cpp" line="1659"/>
-        <source>Frequency</source>
-        <translation>Честота</translation>
+        <location filename="../mainwindow.cpp" line="906"/>
+        <location filename="../mainwindow.cpp" line="1301"/>
+        <source>Init magnetic permeability</source>
+        <translation>Počáteční magnetická permeabilita</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2394"/>
-        <location filename="../mainwindow.cpp" line="2400"/>
-        <location filename="../mainwindow.cpp" line="2458"/>
-        <location filename="../mainwindow.cpp" line="2508"/>
-        <location filename="../mainwindow.cpp" line="2547"/>
-        <location filename="../mainwindow.cpp" line="2590"/>
-        <location filename="../mainwindow.cpp" line="2631"/>
-        <location filename="../mainwindow.cpp" line="2736"/>
-        <location filename="../mainwindow.cpp" line="2742"/>
-        <location filename="../mainwindow.cpp" line="2799"/>
-        <location filename="../mainwindow.cpp" line="2848"/>
-        <location filename="../mainwindow.cpp" line="2900"/>
-        <location filename="../mainwindow.cpp" line="2938"/>
-        <location filename="../mainwindow.cpp" line="2979"/>
-        <location filename="../mainwindow.cpp" line="3012"/>
-        <location filename="../mainwindow.cpp" line="3049"/>
-        <location filename="../mainwindow.cpp" line="3092"/>
-        <source>One or more inputs are empty!</source>
-        <translation>Един или повече входове са празни!</translation>
+        <location filename="../mainwindow.cpp" line="981"/>
+        <source>Gap between turns</source>
+        <translation>Mezera mezi vinutími</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2420"/>
-        <location filename="../mainwindow.cpp" line="2474"/>
-        <location filename="../mainwindow.cpp" line="2527"/>
-        <location filename="../mainwindow.cpp" line="2568"/>
-        <location filename="../mainwindow.cpp" line="2610"/>
-        <location filename="../mainwindow.cpp" line="2651"/>
-        <location filename="../mainwindow.cpp" line="2681"/>
-        <location filename="../mainwindow.cpp" line="2713"/>
-        <location filename="../mainwindow.cpp" line="2762"/>
-        <location filename="../mainwindow.cpp" line="2815"/>
-        <location filename="../mainwindow.cpp" line="2873"/>
-        <location filename="../mainwindow.cpp" line="2921"/>
-        <location filename="../mainwindow.cpp" line="2959"/>
-        <location filename="../mainwindow.cpp" line="2993"/>
-        <location filename="../mainwindow.cpp" line="3026"/>
-        <location filename="../mainwindow.cpp" line="3067"/>
-        <location filename="../mainwindow.cpp" line="3096"/>
-        <source>One or more inputs are equal to null!</source>
-        <translation>Един или повече входове са равни на нула!</translation>
+        <location filename="../mainwindow.cpp" line="1001"/>
+        <source>Number of turns</source>
+        <translation>Počet závitů cívky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3136"/>
-        <source>LC tank calculation</source>
-        <translation>Пресмятане на трептящ кръг</translation>
+        <location filename="../mainwindow.cpp" line="1143"/>
+        <location filename="../mainwindow.cpp" line="1187"/>
+        <location filename="../mainwindow.cpp" line="1248"/>
+        <location filename="../mainwindow.cpp" line="3339"/>
+        <location filename="../mainwindow.cpp" line="3390"/>
+        <location filename="../mainwindow.cpp" line="3443"/>
+        <source>Thickness of the coil</source>
+        <translation>Tloušťka cívky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3140"/>
-        <location filename="../mainwindow.cpp" line="3174"/>
-        <location filename="../mainwindow.cpp" line="3253"/>
-        <location filename="../mainwindow.cpp" line="3327"/>
-        <location filename="../mainwindow.cpp" line="3377"/>
-        <location filename="../mainwindow.cpp" line="3429"/>
-        <location filename="../mainwindow.cpp" line="3481"/>
-        <location filename="../mainwindow.cpp" line="3519"/>
-        <location filename="../mainwindow.cpp" line="3546"/>
-        <location filename="../mainwindow.cpp" line="3581"/>
-        <location filename="../mainwindow.cpp" line="3660"/>
-        <location filename="../mainwindow.cpp" line="3736"/>
-        <location filename="../mainwindow.cpp" line="3768"/>
-        <location filename="../mainwindow.cpp" line="3802"/>
-        <location filename="../mainwindow.cpp" line="3835"/>
-        <location filename="../mainwindow.cpp" line="3861"/>
-        <location filename="../mainwindow.cpp" line="3887"/>
-        <source>Input</source>
-        <translation>Вход</translation>
+        <location filename="../mainwindow.cpp" line="1341"/>
+        <location filename="../mainwindow.cpp" line="3530"/>
+        <source>Width of a PCB trace</source>
+        <translation>Šířka stopy PCB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3145"/>
-        <location filename="../mainwindow.cpp" line="3193"/>
-        <location filename="../mainwindow.cpp" line="3269"/>
-        <location filename="../mainwindow.cpp" line="3335"/>
-        <location filename="../mainwindow.cpp" line="3387"/>
-        <location filename="../mainwindow.cpp" line="3438"/>
-        <location filename="../mainwindow.cpp" line="3490"/>
-        <location filename="../mainwindow.cpp" line="3526"/>
-        <location filename="../mainwindow.cpp" line="3553"/>
-        <location filename="../mainwindow.cpp" line="3599"/>
-        <location filename="../mainwindow.cpp" line="3675"/>
-        <location filename="../mainwindow.cpp" line="3744"/>
-        <location filename="../mainwindow.cpp" line="3783"/>
-        <location filename="../mainwindow.cpp" line="3816"/>
-        <location filename="../mainwindow.cpp" line="3843"/>
-        <location filename="../mainwindow.cpp" line="3869"/>
-        <location filename="../mainwindow.cpp" line="3894"/>
-        <source>Result</source>
-        <translation>Резултат</translation>
+        <location filename="../mainwindow.cpp" line="1639"/>
+        <location filename="../mainwindow.cpp" line="1647"/>
+        <source>External capacitance</source>
+        <translation>Externí kapacita</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3109"/>
-        <source>Frequency of a circuit</source>
-        <translation>Честота на трептящия кръг</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="3119"/>
-        <source>Inductance of a circuit</source>
-        <translation>Индуктивност на трептящия кръг</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="3148"/>
-        <location filename="../mainwindow.cpp" line="3226"/>
-        <location filename="../mainwindow.cpp" line="3302"/>
-        <location filename="../mainwindow.cpp" line="3635"/>
-        <location filename="../mainwindow.cpp" line="3711"/>
-        <source>Characteristic impedance</source>
-        <translation>Характеристично съпротивление</translation>
+        <location filename="../mainwindow.cpp" line="1754"/>
+        <location filename="../mainwindow.cpp" line="3346"/>
+        <location filename="../mainwindow.cpp" line="3397"/>
+        <location filename="../mainwindow.cpp" line="3465"/>
+        <source>Resistance of the coil</source>
+        <translation>Odpor cívky při DC </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1756"/>
@@ -1119,63 +1086,6 @@
         <location filename="../mainwindow.cpp" line="3711"/>
         <source>Ohm</source>
         <translation>Ohm</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="358"/>
-        <location filename="../mainwindow.cpp" line="1476"/>
-        <source>Confirmation</source>
-        <translation>Потвърждаване</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="359"/>
-        <location filename="../mainwindow.cpp" line="1477"/>
-        <source>Are you sure?</source>
-        <translation>Сигурен ли си?</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="362"/>
-        <location filename="../mainwindow.cpp" line="1480"/>
-        <source>Yes</source>
-        <translation>Да</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="363"/>
-        <location filename="../mainwindow.cpp" line="1481"/>
-        <source>No</source>
-        <translation>Не</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="525"/>
-        <source>Something gone wrong</source>
-        <translation>Нещо се обърка</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="846"/>
-        <location filename="../mainwindow.cpp" line="1242"/>
-        <source>Former width</source>
-        <translation>Ширина на първата</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="848"/>
-        <location filename="../mainwindow.cpp" line="1244"/>
-        <source>Former height</source>
-        <translation>Височина на първата</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="981"/>
-        <source>Gap between turns</source>
-        <translation>Разлика между завоите</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="1001"/>
-        <source>Number of turns</source>
-        <translation>Брой на навивките</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="1341"/>
-        <location filename="../mainwindow.cpp" line="3530"/>
-        <source>Width of a PCB trace</source>
-        <translation>Широчина на печатния проводник</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1761"/>
@@ -1262,12 +1172,144 @@
         <location filename="../mainwindow.cpp" line="3115"/>
         <location filename="../mainwindow.cpp" line="3125"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Един или повече входове са с незаконен формат!</translation>
+        <translation>Jeden nebo více vstupů má nelegální formát!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2394"/>
+        <location filename="../mainwindow.cpp" line="2400"/>
+        <location filename="../mainwindow.cpp" line="2458"/>
+        <location filename="../mainwindow.cpp" line="2508"/>
+        <location filename="../mainwindow.cpp" line="2547"/>
+        <location filename="../mainwindow.cpp" line="2590"/>
+        <location filename="../mainwindow.cpp" line="2631"/>
+        <location filename="../mainwindow.cpp" line="2736"/>
+        <location filename="../mainwindow.cpp" line="2742"/>
+        <location filename="../mainwindow.cpp" line="2799"/>
+        <location filename="../mainwindow.cpp" line="2848"/>
+        <location filename="../mainwindow.cpp" line="2900"/>
+        <location filename="../mainwindow.cpp" line="2938"/>
+        <location filename="../mainwindow.cpp" line="2979"/>
+        <location filename="../mainwindow.cpp" line="3012"/>
+        <location filename="../mainwindow.cpp" line="3049"/>
+        <location filename="../mainwindow.cpp" line="3092"/>
+        <source>One or more inputs are empty!</source>
+        <translation>Jeden nebo více vstupů jsou prázdné!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="2420"/>
+        <location filename="../mainwindow.cpp" line="2474"/>
+        <location filename="../mainwindow.cpp" line="2527"/>
+        <location filename="../mainwindow.cpp" line="2568"/>
+        <location filename="../mainwindow.cpp" line="2610"/>
+        <location filename="../mainwindow.cpp" line="2651"/>
+        <location filename="../mainwindow.cpp" line="2681"/>
+        <location filename="../mainwindow.cpp" line="2713"/>
+        <location filename="../mainwindow.cpp" line="2762"/>
+        <location filename="../mainwindow.cpp" line="2815"/>
+        <location filename="../mainwindow.cpp" line="2873"/>
+        <location filename="../mainwindow.cpp" line="2921"/>
+        <location filename="../mainwindow.cpp" line="2959"/>
+        <location filename="../mainwindow.cpp" line="2993"/>
+        <location filename="../mainwindow.cpp" line="3026"/>
+        <location filename="../mainwindow.cpp" line="3067"/>
+        <location filename="../mainwindow.cpp" line="3096"/>
+        <source>One or more inputs are equal to null!</source>
+        <translation>Jeden nebo více vstupů se rovná null!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3109"/>
+        <source>Frequency of a circuit</source>
+        <translation>Frekvence obvodu</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3119"/>
+        <source>Inductance of a circuit</source>
+        <translation>Indukčnost obvodu</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3129"/>
+        <location filename="../mainwindow.cpp" line="3222"/>
+        <location filename="../mainwindow.cpp" line="3298"/>
+        <location filename="../mainwindow.cpp" line="3631"/>
+        <location filename="../mainwindow.cpp" line="3707"/>
+        <source>Circuit capacitance</source>
+        <translation>Kapacita obvodu</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3136"/>
+        <source>LC tank calculation</source>
+        <translation>Výpočet rezonančního obvodu</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3140"/>
+        <location filename="../mainwindow.cpp" line="3174"/>
+        <location filename="../mainwindow.cpp" line="3253"/>
+        <location filename="../mainwindow.cpp" line="3327"/>
+        <location filename="../mainwindow.cpp" line="3377"/>
+        <location filename="../mainwindow.cpp" line="3429"/>
+        <location filename="../mainwindow.cpp" line="3481"/>
+        <location filename="../mainwindow.cpp" line="3519"/>
+        <location filename="../mainwindow.cpp" line="3546"/>
+        <location filename="../mainwindow.cpp" line="3581"/>
+        <location filename="../mainwindow.cpp" line="3660"/>
+        <location filename="../mainwindow.cpp" line="3736"/>
+        <location filename="../mainwindow.cpp" line="3768"/>
+        <location filename="../mainwindow.cpp" line="3802"/>
+        <location filename="../mainwindow.cpp" line="3835"/>
+        <location filename="../mainwindow.cpp" line="3861"/>
+        <location filename="../mainwindow.cpp" line="3887"/>
+        <source>Input</source>
+        <translation>Vstupní data</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3145"/>
+        <location filename="../mainwindow.cpp" line="3193"/>
+        <location filename="../mainwindow.cpp" line="3269"/>
+        <location filename="../mainwindow.cpp" line="3335"/>
+        <location filename="../mainwindow.cpp" line="3387"/>
+        <location filename="../mainwindow.cpp" line="3438"/>
+        <location filename="../mainwindow.cpp" line="3490"/>
+        <location filename="../mainwindow.cpp" line="3526"/>
+        <location filename="../mainwindow.cpp" line="3553"/>
+        <location filename="../mainwindow.cpp" line="3599"/>
+        <location filename="../mainwindow.cpp" line="3675"/>
+        <location filename="../mainwindow.cpp" line="3744"/>
+        <location filename="../mainwindow.cpp" line="3783"/>
+        <location filename="../mainwindow.cpp" line="3816"/>
+        <location filename="../mainwindow.cpp" line="3843"/>
+        <location filename="../mainwindow.cpp" line="3869"/>
+        <location filename="../mainwindow.cpp" line="3894"/>
+        <source>Result</source>
+        <translation>Výsledek</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3148"/>
+        <location filename="../mainwindow.cpp" line="3226"/>
+        <location filename="../mainwindow.cpp" line="3302"/>
+        <location filename="../mainwindow.cpp" line="3635"/>
+        <location filename="../mainwindow.cpp" line="3711"/>
+        <source>Characteristic impedance</source>
+        <translation>Charakteristická impedance</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3159"/>
         <source>Wrong data was entered</source>
-        <translation>Неверяно въведени данни</translation>
+        <translation>Byla zadána nesprávná data</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3194"/>
+        <location filename="../mainwindow.cpp" line="3270"/>
+        <location filename="../mainwindow.cpp" line="3337"/>
+        <location filename="../mainwindow.cpp" line="3389"/>
+        <location filename="../mainwindow.cpp" line="3441"/>
+        <location filename="../mainwindow.cpp" line="3499"/>
+        <location filename="../mainwindow.cpp" line="3528"/>
+        <location filename="../mainwindow.cpp" line="3555"/>
+        <location filename="../mainwindow.cpp" line="3750"/>
+        <location filename="../mainwindow.cpp" line="3784"/>
+        <location filename="../mainwindow.cpp" line="3817"/>
+        <source>Number of turns of the coil</source>
+        <translation>Počet závitů cívky</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3199"/>
@@ -1281,7 +1323,7 @@
         <location filename="../mainwindow.cpp" line="3684"/>
         <location filename="../mainwindow.cpp" line="3902"/>
         <source>Length of wire without leads</source>
-        <translation>Дължина на тел без край</translation>
+        <translation>Délka drátu bez konců</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3201"/>
@@ -1289,7 +1331,7 @@
         <location filename="../mainwindow.cpp" line="3610"/>
         <location filename="../mainwindow.cpp" line="3686"/>
         <source>Length of winding</source>
-        <translation>Дължина на намотката</translation>
+        <translation>Délka vinutí</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3204"/>
@@ -1300,7 +1342,7 @@
         <location filename="../mainwindow.cpp" line="3613"/>
         <location filename="../mainwindow.cpp" line="3689"/>
         <source>Weight of wire</source>
-        <translation>Тегло на проводника</translation>
+        <translation>Hmotnost drátu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3204"/>
@@ -1319,7 +1361,7 @@
         <location filename="../mainwindow.cpp" line="3615"/>
         <location filename="../mainwindow.cpp" line="3691"/>
         <source>Reactance of the coil</source>
-        <translation>Съпротивление на бобината</translation>
+        <translation>Reaktance cívky</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3209"/>
@@ -1327,7 +1369,19 @@
         <location filename="../mainwindow.cpp" line="3618"/>
         <location filename="../mainwindow.cpp" line="3694"/>
         <source>Self capacitance</source>
-        <translation>Self-капацитет</translation>
+        <translation>Vlastní kapacita</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3211"/>
+        <location filename="../mainwindow.cpp" line="3234"/>
+        <location filename="../mainwindow.cpp" line="3287"/>
+        <location filename="../mainwindow.cpp" line="3310"/>
+        <location filename="../mainwindow.cpp" line="3620"/>
+        <location filename="../mainwindow.cpp" line="3643"/>
+        <location filename="../mainwindow.cpp" line="3696"/>
+        <location filename="../mainwindow.cpp" line="3719"/>
+        <source>Coil self-resonance frequency</source>
+        <translation>Vlastní rezonanční frekvence cívky</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3214"/>
@@ -1335,7 +1389,7 @@
         <location filename="../mainwindow.cpp" line="3623"/>
         <location filename="../mainwindow.cpp" line="3699"/>
         <source>Coil constructive Q-factor</source>
-        <translation>Конструктивно Q-фактор на бобина</translation>
+        <translation>Q-factor kvalita navrhované cívky</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3217"/>
@@ -1343,7 +1397,7 @@
         <location filename="../mainwindow.cpp" line="3626"/>
         <location filename="../mainwindow.cpp" line="3702"/>
         <source>Loss resistance</source>
-        <translation>резистентност загуба</translation>
+        <translation>Ztátový odpor</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3220"/>
@@ -1351,16 +1405,7 @@
         <location filename="../mainwindow.cpp" line="3629"/>
         <location filename="../mainwindow.cpp" line="3705"/>
         <source>Additional results for parallel LC circuit at the working frequency</source>
-        <translation>Допълнителни резултати за параллелния трептящ кръг на работната честота</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="3129"/>
-        <location filename="../mainwindow.cpp" line="3222"/>
-        <location filename="../mainwindow.cpp" line="3298"/>
-        <location filename="../mainwindow.cpp" line="3631"/>
-        <location filename="../mainwindow.cpp" line="3707"/>
-        <source>Circuit capacitance</source>
-        <translation>Капацитет на трептящия кръг</translation>
+        <translation>Další parametry paralelního LC obvodu na pracovní frekvenci</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3229"/>
@@ -1368,7 +1413,15 @@
         <location filename="../mainwindow.cpp" line="3638"/>
         <location filename="../mainwindow.cpp" line="3714"/>
         <source>Equivalent resistance</source>
-        <translation>Еквивалентно съпротивление на ненатоварения трептящ кръг</translation>
+        <translation>Ekvivalentní odpor</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="3229"/>
+        <location filename="../mainwindow.cpp" line="3305"/>
+        <location filename="../mainwindow.cpp" line="3638"/>
+        <location filename="../mainwindow.cpp" line="3714"/>
+        <source>kOhm</source>
+        <translation>kOhm</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3231"/>
@@ -1376,7 +1429,7 @@
         <location filename="../mainwindow.cpp" line="3640"/>
         <location filename="../mainwindow.cpp" line="3716"/>
         <source>Bandwidth</source>
-        <translation>Лента на пропускане на ненатоварения трептящ кръг</translation>
+        <translation>Šířka pásma</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3231"/>
@@ -1392,85 +1445,32 @@
         <location filename="../mainwindow.cpp" line="3643"/>
         <location filename="../mainwindow.cpp" line="3719"/>
         <source>Working frequency</source>
-        <translation>Работна честота</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="3211"/>
-        <location filename="../mainwindow.cpp" line="3234"/>
-        <location filename="../mainwindow.cpp" line="3287"/>
-        <location filename="../mainwindow.cpp" line="3310"/>
-        <location filename="../mainwindow.cpp" line="3620"/>
-        <location filename="../mainwindow.cpp" line="3643"/>
-        <location filename="../mainwindow.cpp" line="3696"/>
-        <location filename="../mainwindow.cpp" line="3719"/>
-        <source>Coil self-resonance frequency</source>
-        <translation>Самостоятелно резонансна честота на намотка</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="1143"/>
-        <location filename="../mainwindow.cpp" line="1187"/>
-        <location filename="../mainwindow.cpp" line="1248"/>
-        <location filename="../mainwindow.cpp" line="3339"/>
-        <location filename="../mainwindow.cpp" line="3390"/>
-        <location filename="../mainwindow.cpp" line="3443"/>
-        <source>Thickness of the coil</source>
-        <translation>Дебелина на бобината</translation>
+        <translation>Pracovní frekvence</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3343"/>
         <location filename="../mainwindow.cpp" line="3394"/>
         <location filename="../mainwindow.cpp" line="3449"/>
         <source>Dimensions of inductor</source>
-        <translation>Размери на индуктора</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="1754"/>
-        <location filename="../mainwindow.cpp" line="3346"/>
-        <location filename="../mainwindow.cpp" line="3397"/>
-        <location filename="../mainwindow.cpp" line="3465"/>
-        <source>Resistance of the coil</source>
-        <translation>Съпротивление на бобината</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="3229"/>
-        <location filename="../mainwindow.cpp" line="3305"/>
-        <location filename="../mainwindow.cpp" line="3638"/>
-        <location filename="../mainwindow.cpp" line="3714"/>
-        <source>kOhm</source>
-        <translation>kOhm</translation>
+        <translation>Rozměry induktoru</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3361"/>
         <location filename="../mainwindow.cpp" line="3412"/>
         <location filename="../mainwindow.cpp" line="3442"/>
         <source>Number of layers</source>
-        <translation>Брой на слоевете</translation>
+        <translation>Počet vrstev</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3413"/>
         <source>Number of interlayers</source>
-        <translation>Брой междинни слоеве</translation>
+        <translation>Počet mezivrstev</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3501"/>
         <location filename="../mainwindow.cpp" line="3502"/>
         <source>Coil can not be realized</source>
-        <translation>Бобината не може да се реализира</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="3194"/>
-        <location filename="../mainwindow.cpp" line="3270"/>
-        <location filename="../mainwindow.cpp" line="3337"/>
-        <location filename="../mainwindow.cpp" line="3389"/>
-        <location filename="../mainwindow.cpp" line="3441"/>
-        <location filename="../mainwindow.cpp" line="3499"/>
-        <location filename="../mainwindow.cpp" line="3528"/>
-        <location filename="../mainwindow.cpp" line="3555"/>
-        <location filename="../mainwindow.cpp" line="3750"/>
-        <location filename="../mainwindow.cpp" line="3784"/>
-        <location filename="../mainwindow.cpp" line="3817"/>
-        <source>Number of turns of the coil</source>
-        <translation>Брой на навивките на бобината</translation>
+        <translation>Cívka není realizovatelná</translation>
     </message>
 </context>
 <context>
@@ -1478,33 +1478,33 @@
     <message>
         <location filename="../meander_pcb.ui" line="29"/>
         <source>Meander coil on PCB</source>
-        <translation>Меандър намотка на печатна платка</translation>
+        <translation>Meandrová cívka na desce plošných spojů</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="84"/>
         <source>Data</source>
-        <translation>Данни</translation>
+        <translation>Vstupní data</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="92"/>
         <source>Number of turns</source>
-        <translation>Брой на навивките</translation>
+        <translation>Počet závitů cívky</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="121"/>
         <location filename="../meander_pcb.cpp" line="139"/>
         <source>Dimensions</source>
-        <translation>Размери</translation>
+        <translation>Rozměry</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="309"/>
         <source>Calculate</source>
-        <translation>Изчисли</translation>
+        <translation>Spočítat</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="335"/>
         <source>Close</source>
-        <translation>Затварям</translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="109"/>
@@ -1512,42 +1512,42 @@
         <location filename="../meander_pcb.cpp" line="123"/>
         <location filename="../meander_pcb.cpp" line="127"/>
         <source>Warning</source>
-        <translation>Внимание</translation>
+        <translation>Varování</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="109"/>
         <source>One or more inputs are empty!</source>
-        <translation>Един или повече входове са празни!</translation>
+        <translation>Jeden nebo více vstupů jsou prázdné!</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="119"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Един или повече входове са с незаконен формат!</translation>
+        <translation>Jeden nebo více vstupů má nelegální formát!</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="123"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Един или повече входове са равни на нула!</translation>
+        <translation>Jeden nebo více vstupů se rovná null!</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="137"/>
         <source>Input data</source>
-        <translation>Входни данни</translation>
+        <translation>Vstupní data</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="145"/>
         <source>Result</source>
-        <translation>Резултат</translation>
+        <translation>Výsledek</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="146"/>
         <source>Inductance</source>
-        <translation>Индуктивност</translation>
+        <translation>Indukčnost</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="148"/>
         <source>Length of winding</source>
-        <translation>Дължина на намотката</translation>
+        <translation>Délka vinutí</translation>
     </message>
 </context>
 <context>
@@ -1555,54 +1555,54 @@
     <message>
         <location filename="../multiloop.ui" line="35"/>
         <source>Search coil of a metal detector</source>
-        <translation>Търсене на намотка на металдетектора</translation>
+        <translation>Hledejte cívku detektoru kovů</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="105"/>
         <source>Reverse calculation</source>
-        <translation>Обратно изчисление</translation>
+        <translation>Reverzní výpočet</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="125"/>
         <source>Data</source>
-        <translation>Данни</translation>
+        <translation>Vstupní data</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="191"/>
         <location filename="../multiloop.cpp" line="153"/>
         <source>Dimensions</source>
-        <translation>Размери</translation>
+        <translation>Rozměry</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="369"/>
         <source>Calculate</source>
-        <translation>Изчисли</translation>
+        <translation>Spočítat</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="395"/>
         <source>Close</source>
-        <translation>затварям</translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="45"/>
         <location filename="../multiloop.cpp" line="214"/>
         <source>Number of turns</source>
-        <translation>Брой на навивките</translation>
+        <translation>Počet závitů cívky</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="47"/>
         <source>Inside diameter</source>
-        <translation>Вътрешен диаметър</translation>
+        <translation>Vnitřní průměr</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="49"/>
         <source>Wire diameter</source>
-        <translation>Диаметр на проводника</translation>
+        <translation>Průměr drátu</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="51"/>
         <source>Wire diameter with insulation</source>
-        <translation>Диаметър на проводника с изоляция</translation>
+        <translation>Průměr drátu s izolací</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="85"/>
@@ -1616,59 +1616,59 @@
         <location filename="../multiloop.cpp" line="135"/>
         <location filename="../multiloop.cpp" line="201"/>
         <source>Warning</source>
-        <translation>Внимание</translation>
+        <translation>Varování</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="111"/>
         <source>One or more inputs are empty!</source>
-        <translation>Един или повече входове са празни!</translation>
+        <translation>Jeden nebo více vstupů jsou prázdné!</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="127"/>
         <location filename="../multiloop.cpp" line="201"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Един или повече входове са с незаконен формат!</translation>
+        <translation>Jeden nebo více vstupů má nelegální formát!</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="131"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Един или повече входове са равни на нула!</translation>
+        <translation>Jeden nebo více vstupů se rovná null!</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="146"/>
         <source>Input data</source>
-        <translation>Входни данни</translation>
+        <translation>Vstupní data</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="158"/>
         <source>Result</source>
-        <translation>Резултат</translation>
+        <translation>Výsledek</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="160"/>
         <location filename="../multiloop.cpp" line="219"/>
         <source>Inductance</source>
-        <translation>Индуктивност</translation>
+        <translation>Indukčnost</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="163"/>
         <source>Number of turns of the coil</source>
-        <translation>Брой на навивките на бобината</translation>
+        <translation>Počet závitů cívky</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="165"/>
         <source>Mean diameter</source>
-        <translation>Среден диаметър</translation>
+        <translation>Průměrný průměr</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="167"/>
         <source>Thickness of the coil</source>
-        <translation>Дебелина на бобината</translation>
+        <translation>Tloušťka cívky</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="169"/>
         <source>Resistance of the coil</source>
-        <translation>Съпротивление на бобината</translation>
+        <translation>Odpor cívky při DC </translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="169"/>
@@ -1678,12 +1678,12 @@
     <message>
         <location filename="../multiloop.cpp" line="174"/>
         <source>Length of wire without leads</source>
-        <translation>Дължина на тел без край</translation>
+        <translation>Délka drátu bez konců</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="177"/>
         <source>Weight of wire</source>
-        <translation>Тегло на проводника</translation>
+        <translation>Hmotnost drátu</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="177"/>
@@ -1696,22 +1696,17 @@
     <message>
         <location filename="../options.ui" line="52"/>
         <source>Measurement Units</source>
-        <translation>Единици за измерване</translation>
+        <translation>Jednotky měření</translation>
     </message>
     <message>
         <location filename="../options.ui" line="58"/>
         <source>Show additional results for single layer coils</source>
-        <translation>Да се показват допълнителни результати за однослойните бобини</translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="443"/>
-        <source>Show images in results</source>
-        <translation>Да се показват картинки в резултатите</translation>
+        <translation>Zobrazit další výsledky pro jednovrstvé cívky</translation>
     </message>
     <message>
         <location filename="../options.ui" line="77"/>
         <source>Capacitance</source>
-        <translation>Капацитет</translation>
+        <translation>Kapacita</translation>
     </message>
     <message>
         <location filename="../options.ui" line="102"/>
@@ -1731,12 +1726,12 @@
     <message>
         <location filename="../options.ui" line="123"/>
         <source>Accuracy</source>
-        <translation>Точност</translation>
+        <translation>Přesnost</translation>
     </message>
     <message>
         <location filename="../options.ui" line="160"/>
         <source>Dimensions</source>
-        <translation>Размери</translation>
+        <translation>Rozměry</translation>
     </message>
     <message>
         <location filename="../options.ui" line="185"/>
@@ -1751,7 +1746,7 @@
     <message>
         <location filename="../options.ui" line="195"/>
         <source>inch</source>
-        <translation>inch</translation>
+        <translation>Palce</translation>
     </message>
     <message>
         <location filename="../options.ui" line="200"/>
@@ -1761,7 +1756,7 @@
     <message>
         <location filename="../options.ui" line="211"/>
         <source>Inductance</source>
-        <translation>Индуктивност</translation>
+        <translation>Indukčnost</translation>
     </message>
     <message>
         <location filename="../options.ui" line="239"/>
@@ -1781,12 +1776,12 @@
     <message>
         <location filename="../options.ui" line="260"/>
         <source>Wire gauge</source>
-        <translation>Устройство за проводник</translation>
+        <translation>Měřidlo drátu</translation>
     </message>
     <message>
         <location filename="../options.ui" line="285"/>
         <source>Metric</source>
-        <translation>метричен</translation>
+        <translation>Metrický</translation>
     </message>
     <message>
         <location filename="../options.ui" line="290"/>
@@ -1796,7 +1791,7 @@
     <message>
         <location filename="../options.ui" line="301"/>
         <source>Frequency</source>
-        <translation>Честота</translation>
+        <translation>Frekvence</translation>
     </message>
     <message>
         <location filename="../options.ui" line="323"/>
@@ -1814,89 +1809,94 @@
         <translation>MHz</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="407"/>
-        <source>Set to default</source>
-        <translation>Задайте по подразбиране</translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="437"/>
-        <source>Interface</source>
-        <translation>Изглед</translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="460"/>
-        <source>Show confirm dialog before exit</source>
-        <translation>Показване на диалоговия прозорец за потвърждение преди излизане</translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="470"/>
-        <source>Show confirm dialog to clear results</source>
-        <translation>Показване на диалоговия прозорец за потвърждение за изчистване на резултатите</translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="493"/>
-        <source>Interface font</source>
-        <translation>Шрифта на интерфейс</translation>
-    </message>
-    <message>
-        <location filename="../options.ui" line="554"/>
-        <source>Output field font</source>
-        <translation>Шрифта на полето изход</translation>
-    </message>
-    <message>
         <location filename="../options.ui" line="359"/>
         <source>Decimal and thousand separators</source>
-        <translation>Десетични и хиляди разделители</translation>
+        <translation>Desetinné a tisícové oddělovače</translation>
     </message>
     <message>
         <location filename="../options.ui" line="365"/>
         <source>As in the current locale</source>
-        <translation>Както и в текущия локал</translation>
+        <translation>Stejně jako v aktuálním prostředí</translation>
     </message>
     <message>
         <location filename="../options.ui" line="375"/>
         <source>As in the English locale</source>
-        <translation>Както и в английския локал</translation>
+        <translation>Stejně jako v anglickém prostředí</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="407"/>
+        <source>Set to default</source>
+        <translation>Nastavit na výchozí</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="437"/>
+        <source>Interface</source>
+        <translation>Rozhraní</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="443"/>
+        <source>Show images in results</source>
+        <translation>Zobrazit obrázky ve výsledku</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="460"/>
+        <source>Show confirm dialog before exit</source>
+        <translation>Před ukončením zobrazte dialog pro potvrzení</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="470"/>
+        <source>Show confirm dialog to clear results</source>
+        <translation>Zobrazí se potvrzovací dialog pro jasné výsledky</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="493"/>
+        <source>Interface font</source>
+        <translation>Rozhraní písma</translation>
+    </message>
+    <message>
+        <location filename="../options.ui" line="554"/>
+        <source>Output field font</source>
+        <translation>Výstupní pole písma</translation>
     </message>
     <message>
         <location filename="../options.ui" line="603"/>
         <source>Check for update</source>
-        <translation>Проверка за обновяване</translation>
+        <translation>Kontrola aktualizace</translation>
     </message>
     <message>
         <location filename="../options.ui" line="609"/>
         <source>Automatically check for update</source>
-        <translation>Автоматична проверка за обновяване</translation>
+        <translation>Automatická kontrola pro aktualizace</translation>
     </message>
     <message>
         <location filename="../options.ui" line="626"/>
         <source>Checking interval</source>
-        <translation>Интервал на проверката</translation>
+        <translation>Interval kontroly</translation>
     </message>
     <message>
         <location filename="../options.ui" line="632"/>
         <source>Once for 60 days</source>
-        <translation>Веднъж на 60 дена</translation>
+        <translation>Jednou za 60 dní</translation>
     </message>
     <message>
         <location filename="../options.ui" line="642"/>
         <source>Once for 120 days</source>
-        <translation>Веднъж на 120 дена</translation>
+        <translation>Jednou za 120 dní</translation>
     </message>
     <message>
         <location filename="../options.ui" line="652"/>
         <source>Once for 180 days</source>
-        <translation>Веднъж на 180 дена</translation>
+        <translation>Jednou za 180 dní</translation>
     </message>
     <message>
         <location filename="../options.ui" line="669"/>
         <source>Check for a new version</source>
-        <translation>Проверка за нова версия</translation>
+        <translation>Kontrola pro nové verze</translation>
     </message>
     <message>
         <location filename="../options.ui" line="687"/>
         <source>Check now!</source>
-        <translation>Провери сега!</translation>
+        <translation>Zkontrolovat nyní!</translation>
     </message>
     <message>
         <location filename="../options.ui" line="730"/>
@@ -1906,7 +1906,7 @@
     <message>
         <location filename="../options.ui" line="744"/>
         <source>Cancel</source>
-        <translation>Отказ</translation>
+        <translation>Zrušit</translation>
     </message>
 </context>
 </TS>

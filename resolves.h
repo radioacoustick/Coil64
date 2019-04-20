@@ -94,6 +94,8 @@ enum _FormCoil
     void findToroidPemeability(double N, double I, double Do, double Di, double h, _CoilResult *result);
     void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, double s, double dw, double p, _CoilResult *result);
     void findMeadrPCB_I(double a, double d, double h, double W, int N, _CoilResult *result);
+    double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *result);
+    int findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result);
 
 
     double CalcLC0(double L, double C);

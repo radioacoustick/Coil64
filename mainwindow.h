@@ -42,10 +42,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "find_permeability.h"
 #include "ferrite_rod.h"
 #include "meander_pcb.h"
+#include "multiloop.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
 #include "system_functions.h"
+
 
 
 namespace Ui {
@@ -69,7 +71,9 @@ public slots:
 
 private slots:
     void closeEvent(QCloseEvent *event);
-
+    bool eventFilter(QObject *watched, QEvent *event);
+    void on_textBrowser_customContextMenuRequested(const QPoint &pos);
+    void on_textBrowser_textChanged();
     void on_listWidget_currentRowChanged(int currentRow);
     void on_tabWidget_currentChanged(int index);
     void on_pushButton_Calculate_clicked();
@@ -156,6 +160,7 @@ private slots:
     void on_actionFerrite_toroid_permeability_triggered();
     void on_actionCoil_on_a_ferrite_rod_triggered();
     void on_actionPCB_meandr_coil_triggered();
+    void on_actionMetal_detector_search_coil_triggered();
 
     void getAddCalculationResult(QString result);
 
@@ -169,6 +174,7 @@ private:
     QString lang; //Current app GUI language
     unsigned int calc_count; //Calculating number
     QLocale loc;
+    QMenu *popupmenu;
 };
 
 #endif // MAINWINDOW_H

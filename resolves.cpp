@@ -449,7 +449,7 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
 void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result){
     //Calculation formulas of multilayer inductor with rectangular former https://coil32.net/multilayer-rectangular.html
 
-    double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd, Msub, lw, Km, Ks, Lcor, r;
+    double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd, Msub, lw, Km, Ks, Lcor, Rdc;
     int n, Nc, Nl, Jc, nLayer, jLayer;
 
     a = a / 10;
@@ -505,12 +505,12 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
         Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
         Ltotal = Ltotal - Lcor;
     }
-    r = (0.0175 * lw * 1E-4 * 4) / (M_PI * dw * dw);
-    result->N = n;
-    result->sec = nLayer + 1;
-    result->thd = lw * 0.01;
-    result->fourth = r;
-    result->five = (nLayer + 1) * k * 10;
+    Rdc = (0.0175 * lw * 1E-4 * 4) / (M_PI * dw * dw);
+    result->N = n; //number of turns
+    result->sec = nLayer + 1; //number of layers
+    result->thd = lw * 0.01; //length of wire
+    result->fourth = Rdc; //resistance to DC
+    result->five = (nLayer + 1) * k * 10; //coil thickness
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result){
@@ -582,7 +582,7 @@ void getMultiLayerI(double D, double lk, double dw, double k, double c, double g
 void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result){
 
     double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd,
-            Msub, lw, Km, Ks, Lcor, cTmp, nTmp = 0, ind1 = 0, ind2, N1, N2;
+            Msub, lw, Km, Ks, Lcor, cTmp = 0, nTmp = 0, ind1 = 0, ind2, N1, N2;
     int n, Nc, Nl, Jc, nLayer, jLayer;
 
     a = a / 10;
@@ -911,6 +911,7 @@ void findToroidPemeability(double N, double I, double Do, double Di, double h, _
 void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, double s, double dw, double p, _CoilResult *result) {
     //Based on "The Inductance of Ferrite Rod Antennas Issue" by Alan Payne
     //[10.1][10.2] http://g3rbj.co.uk/wp-content/uploads/2014/06/Web-The-Inductance-of-Ferrite-Rod-Antennas-issue-3.pdf
+
     double x2 = 2 * s / Lr;
     double N = 0;
     double Dk = dc + dw;
@@ -962,7 +963,43 @@ void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, doubl
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void findMeadrPCB_I(double a, double d, double h, double W, int N, _CoilResult *result){
-  result->N = 0.00266 * pow(a, 0.0603) * pow(h, 0.4429) * pow(N, 0.954) * pow(d, 0.606) * pow(W, -0.173);
-  result->sec = 2 * N * d + 2 * a;
+    //http://www.journal.ftn.kg.ac.rs/Vol_1-3/08-Stojanovic-Zivanov-Damnjanovic.pdf (The monomial equation [11])
+
+    result->N = 0.00266 * pow(a, 0.0603) * pow(h, 0.4429) * pow(N, 0.954) * pow(d, 0.606) * pow(W, -0.173);
+    result->sec = 2 * N * d + 2 * a;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *result){
+    //The author of the source code of this function is George Overton.
+    //The source code is used as an open with the consent of the author.
+    //The code is from the author's book "Inside the METAL DETECTOR" Appendix A
+    //https://www.facebook.com/Inside-the-Metal-Detector-222330481232886/
+    //https://www.geotech1.com
+
+    double c = sqrt(N) * dt;
+    double a = (Di + c) / 2;
+    double x = pow(c / 2 / a, 2);
+    double s1 = 0.0004 * M_PI * a;
+    double s2 = pow(N, 2);
+    double s3 = s1 * s2;
+    double s4 = 0.5 + x/12;
+    double s5 = log(8/x);
+    double s6 = (s4 * s5) - 0.85 + (0.2 * x);
+    double ind = s3 * s6; //Inductance (microH)
+    result->N = 2 * a; //Mean coil diameter (mm)
+    result->sec = c; //coil thickness (mm)
+    result->thd = 2e-3 * M_PI * a * N; //length of the wire (m)
+    result->fourth = (0.0175 * result->thd * 100 * 1E-4 * 4) / (M_PI * dw * dw * 0.01); //Resistance to DC (Ohm)
+    return ind;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result){
+    double tmpI = 0;
+    int N = 0;
+    while (tmpI <= I){
+        N++;
+        tmpI = findMultiloop_I(N, Di, dw, dt, result);
+    }
+    return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
