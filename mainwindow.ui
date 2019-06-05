@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/images/res/Coil32_Icon.ico</normaloff>:/images/res/Coil32_Icon.ico</iconset>
+    <normaloff>:/images/res/Coil64_Icon.ico</normaloff>:/images/res/Coil64_Icon.ico</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -138,6 +138,15 @@
              <iconset>
               <normalon>:/menu_ico/res/ico1-one-layer0.png</normalon>
              </iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>One layer coil on a poligonal former</string>
+            </property>
+            <property name="icon">
+             <iconset resource="res.qrc">
+              <normaloff>:/menu_ico/res/ico1-one-layer1.png</normaloff>:/menu_ico/res/ico1-one-layer1.png</iconset>
             </property>
            </item>
            <item>
@@ -1477,6 +1486,7 @@
     <addaction name="actionHelp"/>
     <addaction name="actionHomePage"/>
     <addaction name="separator"/>
+    <addaction name="actionDonate"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuAdditional_calculating">
@@ -1487,6 +1497,7 @@
     <addaction name="actionCoil_on_a_ferrite_rod"/>
     <addaction name="actionPCB_meandr_coil"/>
     <addaction name="actionMetal_detector_search_coil"/>
+    <addaction name="actionLoop_of_one_turn"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -1710,6 +1721,25 @@
    </property>
    <property name="text">
     <string>Search coil of a metal detector</string>
+   </property>
+  </action>
+  <action name="actionLoop_of_one_turn">
+   <property name="icon">
+    <iconset>
+     <normalon>:/menu_ico/res/ico1-loop.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>A one-turn loop coil</string>
+   </property>
+  </action>
+  <action name="actionDonate">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/icons8-donate-32.png</normaloff>:/menu_ico/res/icons8-donate-32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Donate</string>
    </property>
   </action>
  </widget>

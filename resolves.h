@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #ifndef RESOLVES_H
 #define RESOLVES_H
 
+#include <QObject>
 #include <QString>
 #include <QtMath>
 #include <QRegularExpression>
@@ -27,6 +28,7 @@ enum _FormCoil
 {
     _Onelayer = 0, //one-layer coil with round wire on a round former
     _Onelayer_p,   //one-layer coil with rect wire on a round former
+    _Onelayer_q,   //one-layer coil with round wire on a poligonal former
     _Multilayer,   //multilayer coil with round wire on a round former
     _Multilayer_p, //multilayer coil with round wire on a round former with insulating pads
     _Multilayer_r, //multilayer coil with round wire on a rect former
@@ -71,11 +73,13 @@ enum _FormCoil
       double ratio;
       double s;
       double Rdc;
+      int ns;
     };
 #pragma pack(pop)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw); //get Number of turns for One-layer coil with round wire
     double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double I, double *lw); //get Number of turns for One-layer coil with round wire
+    double getOneLayerN_Poligonal(double I, double D, double dw, double  h, double n, _CoilResult *result);
     void getMultiLayerN(double I, double D, double dw, double k, double lk, double gap, long Ng, _CoilResult *result); //get Number of turns for Multi-layer coil
     void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result);
     void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, _CoilResult *result); //get Number of turns for Ferrite toroid coil
@@ -84,6 +88,7 @@ enum _FormCoil
 
     double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw); //get Inductance for One-layer coil with round wire
     double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw); //get Inductance for One-layer coil with round wire
+    void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result);
     void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result); //get Inductance for Multi-layer coil
     void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result);
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result);
@@ -94,8 +99,16 @@ enum _FormCoil
     void findToroidPemeability(double N, double I, double Do, double Di, double h, _CoilResult *result);
     void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, double s, double dw, double p, _CoilResult *result);
     void findMeadrPCB_I(double a, double d, double h, double W, int N, _CoilResult *result);
+
     double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *result);
-    int findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result);
+    long findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result);
+
+    double findRoundLoop_I(double D, double dw);
+    double findRoundLoop_D(double Ind, double dw);
+    double findIsoIsoscelesTriangleLoop_I(double _a, double _b, double dw);
+    double findIsoIsoscelesTriangleLoop_a(double Ind, double dw);
+    double findRectangleLoop_I(double _a, double _b, double dw);
+    double findRectangleLoop_a(double Ind, double dw);
 
 
     double CalcLC0(double L, double C);
@@ -105,5 +118,6 @@ enum _FormCoil
     double odCalc(double id);
     double convertfromAWG (QString AWG, bool *isOK = NULL);
     QString converttoAWG (double d, bool *isOK = NULL);
+
 
 #endif // RESOLVES_H

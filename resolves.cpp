@@ -121,9 +121,9 @@ void EF(double c, _Elliptic *result){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double Mut(double r1, double r2, double x, double g){
     //Mutual inductance of two coaxial circular filaments
-    //r1,r2-radii of the two circular filaments
-    //x-distance between the centres of the circular filaments
-    //Geometric Mean Distance
+    //r1,r2 - radii of the two circular filaments
+    //x - distance between the centres of the circular filaments
+    //g - Geometric Mean Distance
     double l = sqrt(pow(r2 - r1, 2) + pow(x, 2));
     double c = 2 * sqrt(r1 * r2) / sqrt(pow(r1 + r2, 2) + pow(l - g, 2));
     _Elliptic Ec;
@@ -313,6 +313,40 @@ double solveHelicalInductance(double N, double p, double Dk, double dw, double w
     return (Result);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double I, double *lw){
+  double Ind, N_max, N_min, N, k, iDk, Kw, rA, rP;
+  k = 2;
+  N_min = 0;
+  rA = sqrt((1 / M_PI) * (0.5 * n * pow(0.5 * Dk,2) * sin(2 * M_PI / n)));
+  rP = (0.5 / M_PI) * (Dk * n * sin(M_PI / n));
+  Kw = sqrt(1 / 369);
+  iDk = 2 * (((Kw * pow(rP,2)) + ((2 - Kw) * pow(rA,2))) / (2 * rA));
+  N = sqrt(I / (0.0002 * M_PI * iDk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 /
+    pow((0.755 + 1 / k), 1.44)))));
+  _CoilResult res;
+  getOneLayerI_Poligonal(Dk, dw, p, N, n, &res);
+  Ind = res.sec;
+  while (Ind < I){
+    N_min = N;
+    N_max = 2 * N;
+    N = (N_max + N_min) / 2;
+    getOneLayerI_Poligonal(Dk, dw, p, N, n, &res);
+    Ind = res.sec;
+  }
+  N_max = N;
+  while (fabs(1 - (Ind / I)) > 0.001){
+    N = (N_min + N_max) / 2;
+    getOneLayerI_Poligonal(Dk, dw, p, N, n, &res);
+    Ind = res.sec;
+    if (Ind > I)
+      N_max = N;
+    else
+      N_min = N;
+  }
+  *lw = res.thd;
+  return N;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// PUBLIC FUNCTIONS REALIZATION
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw){
@@ -376,6 +410,29 @@ double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw){
     return solveHelicalInductance(N, p, Dk, 0, w, t, lw, false);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double getOneLayerN_Poligonal(double I, double Dk, double dw, double  h, double n, _CoilResult *result){
+
+  double N, lw;
+
+  N = deriveOneLayerPoligonalN(Dk, dw, h, n, I, &lw);
+  result->sec = h * N;
+  result->thd = lw;
+  return N;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result){
+
+  double Kw, rA, rP, L, iDk, lw;
+
+  L = N * h;
+  rA = sqrt((1 / M_PI) * (0.5 * n * pow(0.5 * Dk,2) * sin(2 * M_PI / n)));
+  rP = (0.5 / M_PI) * (Dk * n * sin(M_PI / n));
+  Kw = sqrt(1 / (1 + 368 * (L / Dk)));
+  iDk = 2 * (((Kw * pow(rP,2)) + ((2 - Kw) * pow(rA,2))) / (2 * rA));
+  result->sec = solveHelicalInductance(N, h, iDk, dw, 0, 0, &lw, true);
+  result->thd = lw;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getMultiLayerN(double I, double D, double dw, double k, double lk, double gap, long Ng, _CoilResult *result){
@@ -993,13 +1050,95 @@ double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *r
     return ind;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result){
+long findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result){
     double tmpI = 0;
-    int N = 0;
+    unsigned long int N = 0;
     while (tmpI <= I){
         N++;
         tmpI = findMultiloop_I(N, Di, dw, dt, result);
+        if ((N > 1e7) || ((N == 1) && (tmpI > I)))
+            return -1;
     }
     return N;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findRoundLoop_I(double D, double dw){
+    //
+
+    return 0.0002 * M_PI * D * (log(8 * D / dw) - 2);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findRoundLoop_D(double Ind, double dw){
+    double tmpI = 0;
+    double D = 2 * dw;
+    unsigned long int i = 0;
+    while (tmpI <= Ind){
+        i++;
+        tmpI = findRoundLoop_I(D, dw);
+        D += 0.01;
+        if ((D > 2e4) || ((i == 1) && (tmpI > Ind)))
+            return -1;
+    }
+    return D;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findIsoIsoscelesTriangleLoop_I(double _a, double _b, double dw){
+    //
+
+    double c = _a / 1000;
+    double b = _b / 1000;
+    double r = dw / 2000;
+
+    double a1 = 2 * c * log(2 * c / r);
+    double a2 = b * log(2 * c / r);
+    double a3 = 2 * (b + c) * asinh(b * b / (sqrt(4 * b * b * c * c - pow(b, 4))));
+    double a4 = 2 * c * asinh((2 * c * c - b * b) / (sqrt(4 * b * b * c * c - pow(b, 4))));
+    double a5 = 2 * c + b;
+    return 0.2 * (a1 + a2 - a3 - a4 - a5);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findIsoIsoscelesTriangleLoop_a(double Ind, double dw){
+    double tmpI = 0;
+    double  a = 2 * dw;
+    unsigned long int i = 0;
+    while (tmpI <= Ind){
+        i++;
+        tmpI = findIsoIsoscelesTriangleLoop_I(a, a, dw);
+        a += 0.01;
+        if ((a > 2e4) || ((i == 1) && (tmpI > Ind)))
+            return -1;
+    }
+    return a;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findRectangleLoop_I(double _a, double _b, double dw){
+    //
+
+    double a = _a / 1000;
+    double b = _b / 1000;
+    double r = dw / 2000;
+    double d = sqrt(a * a  + b * b);
+
+    double a1 = -2 * (a + b);
+    double a2 = 2 * d;
+    double a3 = b * log((b + d) / a);
+    double a4 = a * log((a + d) / b);
+    double a5 = b * log(2 * b / r);
+    double a6 = a * log(2 * a / r);
+    return 0.4 * (a1 + a2 - a3 - a4 + a5 + a6);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findRectangleLoop_a(double Ind, double dw){
+    double tmpI = 0;
+    double  a = 2 * dw;
+    unsigned long int i = 0;
+    while (tmpI <= Ind){
+        i++;
+        tmpI = findRectangleLoop_I(a, a, dw);
+        a += 0.01;
+        if ((a > 2e4) || ((i == 1) && (tmpI > Ind)))
+            return -1;
+    }
+    return a;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

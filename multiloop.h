@@ -2,6 +2,7 @@
 #define MULTILOOP_H
 
 #include <QDialog>
+#include <QThread>
 #include <QDoubleValidator>
 #include <QString>
 #include <QSettings>

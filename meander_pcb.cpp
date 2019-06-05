@@ -31,7 +31,7 @@ Meander_pcb::Meander_pcb(QWidget *parent) :
     ui->lineEdit_4->setValidator(dv);
     ui->lineEdit_N->setValidator(dv);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Meander_pcb::~Meander_pcb()
 {
     double N = loc.toDouble(ui->lineEdit_N->text());
@@ -39,13 +39,8 @@ Meander_pcb::~Meander_pcb()
     double d = loc.toDouble(ui->lineEdit_2->text())*fOpt->dwLengthMultiplier;
     double h = loc.toDouble(ui->lineEdit_3->text())*fOpt->dwLengthMultiplier;
     double W = loc.toDouble(ui->lineEdit_4->text())*fOpt->dwLengthMultiplier;
-#if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
-    QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
-    QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#else
-    QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
-#endif
+    QSettings *settings;
+    defineAppSettings(settings);
     settings->beginGroup( "Meander_PCB" );
     settings->setValue("pos", this->pos());
     settings->setValue("N", N);
@@ -59,7 +54,7 @@ Meander_pcb::~Meander_pcb()
     delete dv;
     delete ui;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Meander_pcb::getOpt(_OptionStruct gOpt){
     *fOpt = gOpt;
     ui->label_01->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
@@ -70,13 +65,8 @@ void Meander_pcb::getOpt(_OptionStruct gOpt){
     f1.setFamily(fOpt->mainFontFamily);
     f1.setPixelSize(fOpt->mainFontSize);
     this->setFont(f1);
-#if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
-    QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
-    QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#else
-    QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
-#endif
+    QSettings *settings;
+    defineAppSettings(settings);
     settings->beginGroup( "Meander_PCB" );
     double N = settings->value("N", 0).toDouble();
     double a = settings->value("a", 0).toDouble();
@@ -95,13 +85,13 @@ void Meander_pcb::getOpt(_OptionStruct gOpt){
     move(pos);
     delete settings;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Meander_pcb::getCurrentLocale(QLocale locale){
     this->loc = locale;
     this->setLocale(loc);
     dv->setLocale(loc);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Meander_pcb::on_pushButton_clicked()
 {
     if ((ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_1->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->lineEdit_3->text().isEmpty())
@@ -150,12 +140,12 @@ void Meander_pcb::on_pushButton_clicked()
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Meander_pcb::on_pushButton_2_clicked()
 {
     this->close();
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Meander_pcb::on_pushButton_3_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://coil32.net/meandr-pcb-coil.html"));

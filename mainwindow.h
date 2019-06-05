@@ -43,6 +43,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "ferrite_rod.h"
 #include "meander_pcb.h"
 #include "multiloop.h"
+#include "loop.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -113,6 +114,7 @@ private slots:
 
     void get_onelayerN_roundW_Result(_CoilResult result);
     void get_onelayerN_rectW_Result(_CoilResult result);
+    void get_onelayerN_Poligonal_Result(_CoilResult result);
     void get_multilayerN_Result(_CoilResult result);
     void get_multilayerNgap_Result(_CoilResult result);
     void get_multilayerN_Rect_Result(_CoilResult result);
@@ -122,6 +124,7 @@ private slots:
 
     void get_onelayerI_roundW_Result(_CoilResult result);
     void get_onelayerI_rectW_Result(_CoilResult result);
+    void get_onelayerI_Poligonal_Result(_CoilResult result);
     void get_multilayerI_Result(_CoilResult result);
     void get_multilayerIgap_Result(_CoilResult result);
     void get_multilayerI_Rect_Result(_CoilResult result);
@@ -140,6 +143,7 @@ private slots:
     void on_actionAbout_triggered();
     void on_actionHelp_triggered();
     void on_actionHomePage_triggered();
+    void on_actionDonate_triggered();
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
     void on_actionCopy_triggered();
@@ -161,6 +165,7 @@ private slots:
     void on_actionCoil_on_a_ferrite_rod_triggered();
     void on_actionPCB_meandr_coil_triggered();
     void on_actionMetal_detector_search_coil_triggered();
+    void on_actionLoop_of_one_turn_triggered();
 
     void getAddCalculationResult(QString result);
 

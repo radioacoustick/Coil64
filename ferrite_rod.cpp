@@ -50,7 +50,7 @@ Ferrite_Rod::Ferrite_Rod(QWidget *parent) :
     ui->lineEdit_dw->setValidator(dv);
     ui->lineEdit_p->setValidator(dv);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Ferrite_Rod::~Ferrite_Rod()
 {
     double I = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
@@ -61,13 +61,8 @@ Ferrite_Rod::~Ferrite_Rod()
     double s = loc.toDouble(ui->lineEdit_s->text())*fOpt->dwLengthMultiplier;
     double dw = loc.toDouble(ui->lineEdit_dw->text())*fOpt->dwLengthMultiplier;
     double p = loc.toDouble(ui->lineEdit_p->text())*fOpt->dwLengthMultiplier;
-#if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
-    QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
-    QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#else
-    QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
-#endif
+    QSettings *settings;
+    defineAppSettings(settings);
     settings->beginGroup( "FerriteRod" );
     settings->setValue("pos", this->pos());
     settings->setValue("size", size());
@@ -85,7 +80,7 @@ Ferrite_Rod::~Ferrite_Rod()
     delete dv;
     delete ui;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     *fOpt = gOpt;
     ui->label_ind_m->setText(qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
@@ -99,13 +94,8 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     f1.setFamily(fOpt->mainFontFamily);
     f1.setPixelSize(fOpt->mainFontSize);
     this->setFont(f1);
-#if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
-    QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
-    QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#else
-    QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
-#endif
+    QSettings *settings;
+    defineAppSettings(settings);
     settings->beginGroup( "FerriteRod" );
     double I = settings->value("L", 0).toDouble();
     double Dr = settings->value("Dr", 0).toDouble();
@@ -132,18 +122,18 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     move(pos);
     delete settings;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Ferrite_Rod::getCurrentLocale(QLocale locale){
     this->loc = locale;
     this->setLocale(loc);
     dv->setLocale(loc);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Ferrite_Rod::on_pushButton_close_clicked()
 {
     this->close();
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Ferrite_Rod::on_pushButton_calculate_clicked()
 {
     if ((ui->lineEdit_ind->text().isEmpty())||(ui->lineEdit_Dr->text().isEmpty())||(ui->lineEdit_Lr->text().isEmpty())||(ui->lineEdit_mu->text().isEmpty())
@@ -213,7 +203,7 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Ferrite_Rod::on_pushButton_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://coil32.net/ferrite-rod-core-coil.html"));

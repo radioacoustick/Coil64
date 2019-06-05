@@ -1,3 +1,20 @@
+/* multiloop.cpp - source text to Coil64 - Radio frequency inductor and choke calculator
+Copyright (C) 2019 Kustarev V.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses
+*/
+
 #include "multiloop.h"
 #include "ui_multiloop.h"
 
@@ -13,18 +30,13 @@ Multiloop::Multiloop(QWidget *parent) :
     ui->lineEdit_3->setValidator(dv);
     ui->lineEdit_N->setValidator(dv);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Multiloop::~Multiloop()
 {
     double Di = loc.toDouble(ui->lineEdit_1->text())*fOpt->dwLengthMultiplier;
     double dt = loc.toDouble(ui->lineEdit_3->text())*fOpt->dwLengthMultiplier;
-#if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
-    QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
-    QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#else
-    QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
-#endif
+    QSettings *settings;
+    defineAppSettings(settings);
     settings->beginGroup( "Multi_loop" );
     settings->setValue("pos", this->pos());
     settings->setValue("N", nTurns);
@@ -39,7 +51,7 @@ Multiloop::~Multiloop()
     delete dv;
     delete ui;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Multiloop::getOpt(_OptionStruct gOpt){
     *fOpt = gOpt;
     QString tmp_txt = tr("Number of turns") + " N:";
@@ -58,15 +70,10 @@ void Multiloop::getOpt(_OptionStruct gOpt){
     f1.setFamily(fOpt->mainFontFamily);
     f1.setPixelSize(fOpt->mainFontSize);
     this->setFont(f1);
-#if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
-    QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
-    QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#else
-    QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
-#endif
+    QSettings *settings;
+    defineAppSettings(settings);
     settings->beginGroup( "Multi_loop" );
-    nTurns = settings->value("N", 0).toInt();
+    nTurns = settings->value("N", 0).toULongLong();
     ind = settings->value("ind", 0).toDouble();
     double Di = settings->value("Di", 0).toDouble();
     dw = settings->value("d", 0).toDouble();
@@ -98,13 +105,13 @@ void Multiloop::getOpt(_OptionStruct gOpt){
     move(pos);
     delete settings;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Multiloop::getCurrentLocale(QLocale locale){
     this->loc = locale;
     this->setLocale(loc);
     dv->setLocale(loc);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Multiloop::on_pushButton_clicked()
 {
     if ((ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_1->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->lineEdit_3->text().isEmpty())){
@@ -139,6 +146,11 @@ void Multiloop::on_pushButton_clicked()
     _CoilResult result;
     if (!ui->checkBox_isReverce->isChecked()) ind = findMultiloop_I(nTurns, Di, dw, dt, &result);
     else nTurns = findMultiloop_N(ind, Di, dw, dt, &result);
+    if (nTurns == -1){
+        nTurns = 0;
+        showWarning(tr("Warning"),tr("Coil can not be realized") + "!");
+        return;
+    }
     QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle() + "</h2><br/>";
     if (fOpt->isInsertImage){
         sResult += "<img src=\":/images/res/multi_loop.png\">";
@@ -178,17 +190,17 @@ void Multiloop::on_pushButton_clicked()
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Multiloop::on_pushButton_2_clicked()
 {
     this->close();
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Multiloop::on_pushButton_3_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://coil32.net/metal-detector-search-coil.html"));
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Multiloop::on_lineEdit_2_editingFinished()
 {
     bool ok;
@@ -206,7 +218,7 @@ void Multiloop::on_lineEdit_2_editingFinished()
         ui->lineEdit_3->setText( loc.toString(k_m / fOpt->dwLengthMultiplier));
     }
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Multiloop::on_checkBox_isReverce_clicked()
 {
     QString tmp_txt;

@@ -1,4 +1,4 @@
-IDI_ICON1   ICON    DISCARDABLE "res/Coil32_Icon.ico"
+IDI_ICON1   ICON    DISCARDABLE "res/Coil64_Icon.ico"
 
 #include <windows.h>
 #include "version.h"

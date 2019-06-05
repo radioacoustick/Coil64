@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>856</width>
-    <height>485</height>
+    <height>471</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -31,6 +31,9 @@
   <property name="windowIcon">
    <iconset resource="res.qrc">
     <normaloff>:/menu_ico/res/ico1-ferrite-rod.png</normaloff>:/menu_ico/res/ico1-ferrite-rod.png</iconset>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

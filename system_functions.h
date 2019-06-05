@@ -18,12 +18,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #ifndef SYSTEM_FUNCTIONS_H
 #define SYSTEM_FUNCTIONS_H
 
+#include <QCoreApplication>
+#include <QProcess>
+#include <QSettings>
 #include <QString>
 #include <QSysInfo>
 #include <QMessageBox>
 #include <QLocale>
 #include <QDate>
 #include <QFile>
+#include <QDir>
 
 
 #include "definitions.h"
@@ -65,6 +69,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #pragma pack(pop)
 
 QString getOSVersion();
+bool isAppPortable();
+void defineAppSettings(QSettings *&settings);
 void showWarning(QString title, QString msg);
 void showInfo(QString title, QString msg);
 QStringList translateInstalling(QStringList *lang);

@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>580</width>
+    <width>600</width>
     <height>540</height>
    </rect>
   </property>
@@ -21,13 +21,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>580</width>
+    <width>600</width>
     <height>540</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>580</width>
+    <width>600</width>
     <height>540</height>
    </size>
   </property>
@@ -36,7 +36,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/images/res/Coil32_Icon.ico</normaloff>:/images/res/Coil32_Icon.ico</iconset>
+    <normaloff>:/images/res/Coil64_Icon.ico</normaloff>:/images/res/Coil64_Icon.ico</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -52,16 +52,6 @@
        <string>Measurement Units</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <widget class="QCheckBox" name="checkBox_2">
-         <property name="text">
-          <string>Show additional results for single layer coils</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
        <item>
         <widget class="Line" name="line">
          <property name="orientation">
@@ -120,7 +110,7 @@
          <item row="0" column="0">
           <widget class="QGroupBox" name="groupBox">
            <property name="title">
-            <string>Accuracy</string>
+            <string>Number of signs after decimal separator</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <property name="leftMargin">
@@ -437,6 +427,16 @@
        <string>Interface</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QCheckBox" name="checkBox_2">
+         <property name="text">
+          <string>Show additional results for single layer coils</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QCheckBox" name="checkBox">
          <property name="text">

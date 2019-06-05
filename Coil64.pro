@@ -29,7 +29,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Coil64
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
         mainwindow.cpp \
     resolves.cpp \
@@ -43,7 +42,8 @@ SOURCES += main.cpp\
     find_permeability.cpp \
     ferrite_rod.cpp \
     meander_pcb.cpp \
-    multiloop.cpp
+    multiloop.cpp \
+    loop.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -59,7 +59,8 @@ HEADERS  += mainwindow.h \
     ferrite_rod.h \
     version.h \
     meander_pcb.h \
-    multiloop.h
+    multiloop.h \
+    loop.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -67,7 +68,8 @@ FORMS    += mainwindow.ui \
     find_permeability.ui \
     ferrite_rod.ui \
     meander_pcb.ui \
-    multiloop.ui
+    multiloop.ui \
+    loop.ui
 
 RESOURCES += \
     res.qrc
@@ -94,7 +96,9 @@ TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_zh.ts
 
 
-win32:RC_FILE = resource.rc
-macx: ICON = res/coil32_icon_48.icns
-
-DISTFILES +=
+win32: RC_FILE = resource.rc
+macx: ICON = res/coil64_icon_48.icns
+unix: {
+  PKGCONFIG += openssl
+  QMAKE_LFLAGS += -static-libstdc++
+}

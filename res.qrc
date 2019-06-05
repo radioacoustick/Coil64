@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/images">
         <file>res/Coil2.png</file>
-        <file>res/Coil32_Icon.ico</file>
+        <file>res/Coil64_Icon.ico</file>
         <file>res/Coil2_square.png</file>
         <file>res/Coil4.png</file>
         <file>res/Coil4-0.png</file>
@@ -13,6 +13,10 @@
         <file>res/Coil4_square.png</file>
         <file>res/meandr_pcb.png</file>
         <file>res/multi_loop.png</file>
+        <file>res/Coil3.png</file>
+        <file>res/loop0.png</file>
+        <file>res/loop3.png</file>
+        <file>res/loop4.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -76,6 +80,9 @@
         <file>res/ico1-multi-layer-rect.png</file>
         <file>res/ico1-meandr.png</file>
         <file>res/ico1-multiloop.png</file>
+        <file>res/ico1-one-layer1.png</file>
+        <file>res/ico1-loop.png</file>
+        <file>res/icons8-donate-32.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

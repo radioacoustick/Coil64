@@ -33,7 +33,7 @@ Find_Permeability::Find_Permeability(QWidget *parent) :
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Find_Permeability::~Find_Permeability()
 {
     double I = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
@@ -41,13 +41,8 @@ Find_Permeability::~Find_Permeability()
     double D1 = loc.toDouble(ui->lineEdit_1->text())*fOpt->dwLengthMultiplier;
     double D2 = loc.toDouble(ui->lineEdit_2->text())*fOpt->dwLengthMultiplier;
     double h = loc.toDouble(ui->lineEdit_3->text())*fOpt->dwLengthMultiplier;
-#if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
-    QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
-    QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#else
-    QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
-#endif
+    QSettings *settings;
+    defineAppSettings(settings);
     settings->beginGroup( "FindPermeability" );
     settings->setValue("pos", this->pos());
     settings->setValue("L", I);
@@ -61,7 +56,7 @@ Find_Permeability::~Find_Permeability()
     delete fOpt;
     delete ui;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Find_Permeability::getOpt(_OptionStruct gOpt){
     *fOpt = gOpt;
     ui->label_ind_m->setText(qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
@@ -72,13 +67,8 @@ void Find_Permeability::getOpt(_OptionStruct gOpt){
     f1.setFamily(fOpt->mainFontFamily);
     f1.setPixelSize(fOpt->mainFontSize);
     this->setFont(f1);
-#if defined(Q_OS_MAC) || (Q_WS_X11) || defined(Q_OS_LINUX)
-    QSettings *settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
-    QSettings *settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
-#else
-    QSettings *settings = new QSettings(QDir::currentPath() + "/Coil64.conf", QSettings::IniFormat);
-#endif
+    QSettings *settings;
+    defineAppSettings(settings);
     settings->beginGroup( "FindPermeability" );
     double I = settings->value("L", 0).toDouble();
     double N = settings->value("N", 0).toDouble();
@@ -97,13 +87,13 @@ void Find_Permeability::getOpt(_OptionStruct gOpt){
     move(pos);
     delete settings;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Find_Permeability::getCurrentLocale(QLocale locale){
     this->loc = locale;
     this->setLocale(loc);
     dv->setLocale(loc);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Find_Permeability::on_pushButton_clicked()
 {
     if ((ui->lineEdit_ind->text().isEmpty())||(ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_1->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->lineEdit_3->text().isEmpty())){
@@ -149,14 +139,12 @@ void Find_Permeability::on_pushButton_clicked()
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }
-
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Find_Permeability::on_pushButton_2_clicked()
 {
     this->close();
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Find_Permeability::on_pushButton_3_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://coil32.net/ferrite-toroid-core.html"));

@@ -384,3 +384,40 @@ QString formatLength(double length, double lengthMultiplyer) {
     QString s = QString::number(Result) + " " + LengthStr;
     return s;
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+bool isAppPortable(){
+    QString appPath = qApp->applicationDirPath();
+    bool result = true;
+#if defined(Q_OS_LINUX)
+    if (appPath == "/opt/coil64")
+        result = false;
+#elif defined(Q_OS_MAC)
+    result = false;
+#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
+    QStringList env_list(QProcess::systemEnvironment());
+    int idx = env_list.indexOf(QRegExp("^PROGRAMFILES=.*", Qt::CaseInsensitive));
+    QStringList programFilesEnv = env_list[idx].split('=');
+    QString programFilesDir = programFilesEnv[1];
+    appPath.truncate(appPath.indexOf('/',3));
+    appPath = QDir::toNativeSeparators(appPath);
+    if (programFilesDir == appPath)
+        result = false;
+#endif
+    return result;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void defineAppSettings(QSettings *&settings){
+#if defined(Q_OS_MAC) || defined(Q_WS_X11) || defined(Q_OS_LINUX)
+    if (isAppPortable())
+        settings = new QSettings(qApp->applicationDirPath() + "/Coil64.conf", QSettings::IniFormat);
+    else
+        settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
+#elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
+    if (isAppPortable())
+        settings = new QSettings(qApp->applicationDirPath() + "/Coil64.ini", QSettings::IniFormat);
+    else
+        settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::applicationName(),QCoreApplication::applicationName());
+#else
+    settings = new QSettings(qApp->applicationDirPath() + "/Coil64.conf", QSettings::IniFormat);
+#endif
+}

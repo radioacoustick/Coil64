@@ -32,6 +32,9 @@
    <iconset resource="res.qrc">
     <normaloff>:/menu_ico/res/ico1-meandr.png</normaloff>:/menu_ico/res/ico1-meandr.png</iconset>
   </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
