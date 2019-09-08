@@ -391,7 +391,7 @@ p, li { white-space: pre-wrap; }
              <property name="text">
               <string notr="true">&lt;html&gt;&lt;head/&gt;
 &lt;body&gt;
-&lt;p&gt;&lt;img align=&quot;middle&quot; src = &quot;:/menu_ico/res/icons8-windows-xp-32.png&quot;&gt;Windows: Qt 5.12.0  (mingw32, GCC 5.5.0, 64bit)&lt;/p&gt;
+&lt;p&gt;&lt;img align=&quot;middle&quot; src = &quot;:/menu_ico/res/icons8-windows-xp-32.png&quot;&gt;Windows: Qt 5.12.0  (mingw32, GCC 5.5.0, 32bit, 64bit)&lt;/p&gt;
 &lt;p&gt;&lt;img align=&quot;middle&quot; src = &quot;:/menu_ico/res/icons8-linux-32.png&quot;&gt;Linux: Qt 5.5.1 (GCC 5.4.0 20160609, 64bit)&lt;/p&gt;
 &lt;p&gt;&lt;img align=&quot;middle&quot; src = &quot;:/menu_ico/res/icons8-apple-logo-32.png&quot;&gt;OS X: Qt 5.9.1  (clang-800.0.42.1, 64bit)&lt;/p&gt;
 &lt;/body&gt;

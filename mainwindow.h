@@ -44,6 +44,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "meander_pcb.h"
 #include "multiloop.h"
 #include "loop.h"
+#include "shield.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -166,6 +167,7 @@ private slots:
     void on_actionPCB_meandr_coil_triggered();
     void on_actionMetal_detector_search_coil_triggered();
     void on_actionLoop_of_one_turn_triggered();
+    void on_actionShiels_influence_triggered();
 
     void getAddCalculationResult(QString result);
 

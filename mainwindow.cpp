@@ -578,6 +578,11 @@ void MainWindow::on_actionCheck_for_update_triggered()
     myReq.setRawHeader("User-Agent", user_agent.toLatin1().data());
     myReq.setUrl(QUrl(c_url.toLatin1().data()));
     net_manager->get(myReq);
+    QSettings *settings;
+    defineAppSettings(settings);
+    QDate date;
+    myOpt->firstDate = QDate::fromString(settings->value("firstDate", date.currentDate().toString("dd.MM.yyyy")).toString(),"dd.MM.yyyy");
+    delete settings;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionHelp_triggered()
@@ -4422,6 +4427,18 @@ void MainWindow::on_actionLoop_of_one_turn_triggered()
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     floop->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionShiels_influence_triggered()
+{
+    Shield *fshield = new Shield();
+    fshield->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(fshield, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), fshield, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), fshield, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    fshield->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::getAddCalculationResult(QString result){

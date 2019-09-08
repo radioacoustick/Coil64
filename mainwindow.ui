@@ -1498,6 +1498,7 @@
     <addaction name="actionPCB_meandr_coil"/>
     <addaction name="actionMetal_detector_search_coil"/>
     <addaction name="actionLoop_of_one_turn"/>
+    <addaction name="actionShiels_influence"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -1740,6 +1741,15 @@
    </property>
    <property name="text">
     <string>Donate</string>
+   </property>
+  </action>
+  <action name="actionShiels_influence">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-shield.png</normaloff>:/menu_ico/res/ico1-shield.png</iconset>
+   </property>
+   <property name="text">
+    <string>Influence of a coil shield</string>
    </property>
   </action>
  </widget>

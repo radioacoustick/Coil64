@@ -17,6 +17,9 @@
         <file>res/loop0.png</file>
         <file>res/loop3.png</file>
         <file>res/loop4.png</file>
+        <file>res/shield.png</file>
+        <file>res/shield-rect.png</file>
+        <file>res/shield-round.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -83,6 +86,7 @@
         <file>res/ico1-one-layer1.png</file>
         <file>res/ico1-loop.png</file>
         <file>res/icons8-donate-32.png</file>
+        <file>res/ico1-shield.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

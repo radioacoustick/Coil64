@@ -1,4 +1,4 @@
-/* multiloop.h - header text to Coil64 - Radio frequency inductor and choke calculator
+/* shield.h - header text to Coil64 - Radio frequency inductor and choke calculator
 Copyright (C) 2019 Kustarev V.
 
 This program is free software; you can redistribute it and/or modify
@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses
 */
 
-#ifndef MULTILOOP_H
-#define MULTILOOP_H
+#ifndef SHIELD_H
+#define SHIELD_H
 
 #include <QDialog>
 #include <QThread>
@@ -25,43 +25,45 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QSettings>
 #include <QDesktopServices>
 #include <QUrl>
+#include <math.h>
 
 #include "system_functions.h"
 #include "resolves.h"
 
 namespace Ui {
-class Multiloop;
+class Shield;
 }
 
-class Multiloop : public QDialog
+class Shield : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Multiloop(QWidget *parent = 0);
-    ~Multiloop();
+    explicit Shield(QWidget *parent = 0);
+    ~Shield();
 
 signals:
     void sendResult(QString);
 
 private slots:
-
     void getOpt(_OptionStruct gOpt);
     void getCurrentLocale(QLocale locale);
-    void on_pushButton_clicked();
+
     void on_pushButton_2_clicked();
+
     void on_pushButton_3_clicked();
-    void on_lineEdit_2_editingFinished();
-    void on_checkBox_isReverce_clicked();
+
+    void on_radioButton_2_clicked();
+
+    void on_radioButton_clicked();
+
+    void on_pushButton_clicked();
 
 private:
-    Ui::Multiloop *ui;
+    Ui::Shield *ui;
     _OptionStruct *fOpt;
     QDoubleValidator *dv;
     QLocale loc;
-    double ind;
-    double dw;
-    int nTurns;
 };
 
-#endif // MULTILOOP_H
+#endif // SHIELD_H

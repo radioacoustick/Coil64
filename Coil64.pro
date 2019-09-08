@@ -43,7 +43,8 @@ SOURCES += main.cpp\
     ferrite_rod.cpp \
     meander_pcb.cpp \
     multiloop.cpp \
-    loop.cpp
+    loop.cpp \
+    shield.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -60,7 +61,8 @@ HEADERS  += mainwindow.h \
     version.h \
     meander_pcb.h \
     multiloop.h \
-    loop.h
+    loop.h \
+    shield.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -69,7 +71,8 @@ FORMS    += mainwindow.ui \
     ferrite_rod.ui \
     meander_pcb.ui \
     multiloop.ui \
-    loop.ui
+    loop.ui \
+    shield.ui
 
 RESOURCES += \
     res.qrc

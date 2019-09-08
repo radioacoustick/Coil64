@@ -109,6 +109,7 @@ enum _FormCoil
     double findIsoIsoscelesTriangleLoop_a(double Ind, double dw);
     double findRectangleLoop_I(double _a, double _b, double dw);
     double findRectangleLoop_a(double Ind, double dw);
+    double findSheildedInductance(double I, double D, double Ds, double l, double Hs);
 
 
     double CalcLC0(double L, double C);
