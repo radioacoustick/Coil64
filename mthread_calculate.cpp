@@ -85,9 +85,12 @@ void MThread_calculate::run(){
                 getFerriteN(arg1, arg2, arg3, arg4, arg5, arg6, &result);
                 break;
             }
-            case _PCB_square:{
-                //arg:I, D1, D2, ratio
-                getPCB_N(arg1, arg2, arg3, arg4, &result);
+            case _PCB_coil:{
+                //arg:I, D1, D2, ratio, isPCBSquare
+                if (arg5 == 0)
+                    getPCB_N(arg1, arg2, arg3, arg4, &result);
+                else
+                    getSpiralPCB_N(arg2, arg3, arg4, arg1, &result);
                 break;
             }
             case _Flat_Spiral:{
@@ -154,9 +157,12 @@ void MThread_calculate::run(){
                 result.N = getFerriteI(arg1, arg2, arg3, arg4, arg5);
                 break;
             }
-            case _PCB_square:{
-                //arg: N, D1, D2, s, W, 0, 0
-                result.N = getPCB_I(arg1, arg2, arg3, arg4, arg5);
+            case _PCB_coil:{
+                //arg: N, D1, D2, s, W, isPCBSquare, 0
+                if (arg6 == 0)
+                    result.N = getPCB_I(arg1, arg2, arg3, arg4, arg5);
+                else
+                    result.N = getSpiralPCB_I(arg2, arg3, arg1);
                 break;
             }
             case _Flat_Spiral:{

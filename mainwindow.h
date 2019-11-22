@@ -78,6 +78,7 @@ private slots:
     void on_textBrowser_textChanged();
     void on_listWidget_currentRowChanged(int currentRow);
     void on_tabWidget_currentChanged(int index);
+    void on_comboBox_checkPCB_activated(int index);
     void on_pushButton_Calculate_clicked();
 
     void on_lineEdit_ind_editingFinished();

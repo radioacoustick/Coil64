@@ -33,7 +33,7 @@ enum _FormCoil
     _Multilayer_p, //multilayer coil with round wire on a round former with insulating pads
     _Multilayer_r, //multilayer coil with round wire on a rect former
     _FerrToroid,   //ferrite toroid coil
-    _PCB_square,   //PCB coil with rect turns
+    _PCB_coil,   //PCB coil with spiral round and square turns
     _Flat_Spiral   //Flat spiral Tesla coil
 };
 
@@ -84,6 +84,7 @@ enum _FormCoil
     void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result);
     void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, _CoilResult *result); //get Number of turns for Ferrite toroid coil
     void getPCB_N (double I, double D, double d, double ratio, _CoilResult *result);
+    void getSpiralPCB_N(double d1, double d2, double R, double I, _CoilResult *result);
     void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result);
 
     double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw); //get Inductance for One-layer coil with round wire
@@ -94,6 +95,7 @@ enum _FormCoil
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result);
     double getFerriteI(double N, double Do, double Di, double h, double mu); //get Inductance for Ferrite toroid coil
     double getPCB_I(double N, double D, double d, double s, double W);
+    double getSpiralPCB_I(double d1, double d2, double w);
     void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result);
 
     void findToroidPemeability(double N, double I, double Do, double Di, double h, _CoilResult *result);

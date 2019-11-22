@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mui->groupBox_2->setVisible(false);
     mui->groupBox_6->setVisible(false);
     mui->groupBox_7->setVisible(false);
+    mui->comboBox_checkPCB->setVisible(false);
     data = new _Data;
     myOpt = new _OptionStruct;
     dv = new QDoubleValidator;
@@ -64,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt->textFontFamily = settings->value("TextFontFamily", QFontInfo(QFont()).family()).toString();
     myOpt->textFontSize = settings->value("TextFontSize", QFontInfo(QFont()).pixelSize()).toInt();
     myOpt->isEnglishLocale = settings->value( "isEnglishLocale", false ).toBool();
+    myOpt->isPCBcoilSquare = settings->value("isPCBcoilSquare",true).toBool();
     settings->endGroup();
 
     translator->load(":/lang/res/translations/Coil64_" + lang);
@@ -247,8 +249,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     resetUiFont();
     completeOptionsStructure(myOpt);
-
-    on_tabWidget_currentChanged(tab);
     restoreGeometry(settings->value("mainWindowGeometry").toByteArray());
     restoreState(settings->value("mainWindowState").toByteArray());
     mui->retranslateUi(this);
@@ -285,7 +285,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(action2, SIGNAL(triggered()), this, SLOT(on_toolButton_Save_clicked()));
     connect(action3, SIGNAL(triggered()), this, SLOT(on_toolButton_Open_clicked()));
     connect(action4, SIGNAL(triggered()), this, SLOT(on_toolButton_Clear_clicked()));
-
+    this->on_textBrowser_textChanged();
+    on_tabWidget_currentChanged(tab);
     delete settings;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -366,6 +367,10 @@ void MainWindow::on_textBrowser_textChanged(){
         mui->toolButton_Print->setEnabled(false);
         mui->toolButton_Save->setEnabled(false);
         mui->toolButton_Clear->setEnabled(false);
+        mui->actionCopy->setEnabled(false);
+        mui->actionSave->setEnabled(false);
+        mui->actionPrint->setEnabled(false);
+        mui->actionClear_all->setEnabled(false);
     } else {
         mui->toolButton_CopySel->setEnabled(true);
         mui->toolButton_CopyAll->setEnabled(true);
@@ -373,6 +378,10 @@ void MainWindow::on_textBrowser_textChanged(){
         mui->toolButton_Print->setEnabled(true);
         mui->toolButton_Save->setEnabled(true);
         mui->toolButton_Clear->setEnabled(true);
+        mui->actionCopy->setEnabled(true);
+        mui->actionSave->setEnabled(true);
+        mui->actionPrint->setEnabled(true);
+        mui->actionClear_all->setEnabled(true);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -419,6 +428,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue( "TextFontFamily", myOpt->textFontFamily);
         settings->setValue( "TextFontSize", myOpt->textFontSize);
         settings->setValue("isEnglishLocale", myOpt->isEnglishLocale);
+        settings->setValue("isPCBcoilSquare", myOpt->isPCBcoilSquare);
         settings->endGroup();
 
         settings->beginGroup( "Measure_Units" );
@@ -618,7 +628,7 @@ void MainWindow::on_actionHelp_triggered()
             QDesktopServices::openUrl(QUrl("https://coil32.net/ferrite-toroid-core.html"));
             break;
         }
-        case _PCB_square:{
+        case _PCB_coil:{
             QDesktopServices::openUrl(QUrl("https://coil32.net/pcb-coil.html"));
             break;
         }
@@ -636,7 +646,7 @@ void MainWindow::on_actionHelp_triggered()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionDonate_triggered()
 {
-   QDesktopServices::openUrl(QUrl("https://coil32.net/donate.html"));
+    QDesktopServices::openUrl(QUrl("https://coil32.net/donate.html"));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionHomePage_triggered()
@@ -667,6 +677,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil2.png"));
             mui->groupBox->setVisible(true);
             mui->groupBox_6->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -717,6 +728,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil2_square.png"));
             mui->groupBox->setVisible(true);
             mui->groupBox_6->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -758,6 +770,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil3.png"));
             mui->groupBox->setVisible(true);
             mui->groupBox_6->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -811,6 +824,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil4.png"));
             mui->groupBox->setVisible(false);
             mui->groupBox_6->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_03->setText(tr("AWG"));
             }
@@ -859,6 +873,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil4-0.png"));
             mui->groupBox->setVisible(false);
             mui->groupBox_6->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_03->setText(tr("AWG"));
             }
@@ -913,6 +928,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil4_square.png"));
             mui->groupBox->setVisible(false);
             mui->groupBox_6->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04->setText(tr("AWG"));
             }
@@ -965,6 +981,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil6.png"));
             mui->groupBox->setVisible(false);
             mui->groupBox_6->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04->setText(tr("AWG"));
             }
@@ -1009,10 +1026,17 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_5->setText(loc.toString(data->mu));
             break;
         }
-        case _PCB_square:{
-            mui->image->setPixmap(QPixmap(":/images/res/Coil8.png"));
+        case _PCB_coil:{
             mui->groupBox->setVisible(false);
             mui->groupBox_6->setVisible(true);
+            mui->comboBox_checkPCB->setVisible(true);
+            if (myOpt->isPCBcoilSquare){
+                mui->comboBox_checkPCB->setCurrentIndex(0);
+                mui->image->setPixmap(QPixmap(":/images/res/Coil8.png"));
+            } else {
+                mui->comboBox_checkPCB->setCurrentIndex(1);
+                mui->image->setPixmap(QPixmap(":/images/res/Coil9.png"));
+            }
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
             mui->lineEdit_freq->setVisible(false);
@@ -1029,9 +1053,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
-            tmp_txt = tr("Outside diameter")+" D1:";
+            tmp_txt = tr("Outside diameter")+" D:";
             mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Inside diameter")+" D2:";
+            tmp_txt = tr("Inside diameter")+" d:";
             mui->label_2->setText(tmp_txt);
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
@@ -1044,6 +1068,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil10.png"));
             mui->groupBox->setVisible(false);
             mui->groupBox_6->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
             }
@@ -1103,6 +1128,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil2.png"));
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1157,6 +1183,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil2_square.png"));
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -1202,6 +1229,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil3.png"));
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1259,6 +1287,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil4.png"));
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(true);
+            mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04_2->setText(tr("AWG"));
             }
@@ -1303,6 +1332,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil4-0.png"));
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04_2->setText(tr("AWG"));
             }
@@ -1362,6 +1392,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil4_square.png"));
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_05_2->setText(tr("AWG"));
             }
@@ -1418,6 +1449,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil6.png"));
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
             mui->label_freq2->setVisible(false);
@@ -1454,21 +1486,35 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_4_2->setText(loc.toString(data->mu / myOpt->dwLengthMultiplier));
             break;
         }
-        case _PCB_square:{
-            mui->image->setPixmap(QPixmap(":/images/res/Coil8.png"));
+        case _PCB_coil:{
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(true);
+            if (myOpt->isPCBcoilSquare){
+                mui->comboBox_checkPCB->setCurrentIndex(0);
+                mui->image->setPixmap(QPixmap(":/images/res/Coil8.png"));
+                mui->lineEdit_3_2->setVisible(true);
+                mui->label_3_2->setVisible(true);
+                mui->label_03_2->setVisible(true);
+                mui->lineEdit_4_2->setVisible(true);
+                mui->label_4_2->setVisible(true);
+                mui->label_04_2->setVisible(true);
+            } else {
+                mui->comboBox_checkPCB->setCurrentIndex(1);
+                mui->image->setPixmap(QPixmap(":/images/res/Coil9.png"));
+                mui->lineEdit_3_2->setVisible(false);
+                mui->label_3_2->setVisible(false);
+                mui->label_03_2->setVisible(false);
+                mui->lineEdit_4_2->setVisible(false);
+                mui->label_4_2->setVisible(false);
+                mui->label_04_2->setVisible(false);
+            }
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
             mui->label_freq2->setVisible(false);
             mui->label_freq_m2->setVisible(false);
             mui->lineEdit_freq2->setVisible(false);
-            mui->lineEdit_3_2->setVisible(true);
-            mui->label_3_2->setVisible(true);
-            mui->label_03_2->setVisible(true);
-            mui->lineEdit_4_2->setVisible(true);
-            mui->label_4_2->setVisible(true);
-            mui->label_04_2->setVisible(true);
+
             mui->lineEdit_5_2->setVisible(false);
             mui->label_5_2->setVisible(false);
             mui->label_05_2->setVisible(false);
@@ -1478,9 +1524,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Outside diameter")+" D1:";
+            tmp_txt = tr("Outside diameter")+" D:";
             mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Inside diameter")+" D2:";
+            tmp_txt = tr("Inside diameter")+" d:";
             mui->label_2_2->setText(tmp_txt);
             tmp_txt = tr("Winding pitch")+" s:";
             mui->label_3_2->setText(tmp_txt);
@@ -1498,6 +1544,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil10.png"));
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_03_2->setText(tr("AWG"));
             }
@@ -1625,6 +1672,7 @@ void MainWindow::on_actionClear_all_triggered()
         } else isConfirmed = true;
         if (isConfirmed){
             mui->textBrowser->clear();
+            mui->statusBar->clearMessage();
         }
     }
 }
@@ -1759,6 +1807,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     }
     case 2:{
         mui->groupBox_List1->setVisible(false);
+        mui->comboBox_checkPCB->setVisible(false);
         mui->image->setPixmap(QPixmap(":/images/res/LC.png"));
         mui->lineEdit_1_3->setFocus();
         if (mui->radioButton_LC->isChecked())
@@ -1966,9 +2015,14 @@ void MainWindow::on_lineEdit_1_editingFinished()
             break;
         }
         case _FerrToroid:
-        case _PCB_square:{
+        case _PCB_coil:{
             data->Do = loc.toDouble(mui->lineEdit_1->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            if (myOpt->isPCBcoilSquare)
+              data->Di = data->Do * 0.362;
+            else
+              data->Di = data->Do * 0.4;
+            mui->lineEdit_2->setText(loc.toString(data->Di));
             break;
         }
         case _Flat_Spiral:{
@@ -2023,7 +2077,7 @@ void MainWindow::on_lineEdit_2_editingFinished()
             break;
         }
         case _FerrToroid:
-        case _PCB_square:{
+        case _PCB_coil:{
             data->Di = loc.toDouble(mui->lineEdit_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2260,7 +2314,7 @@ void MainWindow::on_lineEdit_1_2_editingFinished()
             break;
         }
         case _FerrToroid:
-        case _PCB_square:
+        case _PCB_coil:
         case _Flat_Spiral:{
             data->Do = loc.toDouble(mui->lineEdit_1_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
@@ -2313,7 +2367,7 @@ void MainWindow::on_lineEdit_2_2_editingFinished()
             break;
         }
         case _FerrToroid:
-        case _PCB_square:
+        case _PCB_coil:
         case _Flat_Spiral:{
             data->Di = loc.toDouble(mui->lineEdit_2_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
@@ -2358,7 +2412,7 @@ void MainWindow::on_lineEdit_3_2_editingFinished()
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
-        case _PCB_square:{
+        case _PCB_coil:{
             data->s = loc.toDouble(mui->lineEdit_3_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2450,7 +2504,7 @@ void MainWindow::on_lineEdit_4_2_editingFinished()
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
-        case _PCB_square:{
+        case _PCB_coil:{
             data->w = loc.toDouble(mui->lineEdit_4_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2896,12 +2950,13 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 thread->start();
                 break;
             }
-            case _PCB_square:{
+            case _PCB_coil:{
                 bool ok1, ok2, ok3;
                 double I = loc.toDouble(mui->lineEdit_ind->text(),&ok1)*myOpt->dwInductanceMultiplier;
                 double D1 = loc.toDouble(mui->lineEdit_1->text(),&ok2)*myOpt->dwLengthMultiplier;
                 double D2 = loc.toDouble(mui->lineEdit_2->text(),&ok3)*myOpt->dwLengthMultiplier;
                 double ratio = (double)mui->horizontalSlider->value()/100;
+                int isPCBSquare = mui->comboBox_checkPCB->currentIndex();
                 if((!ok1)||(!ok2)||(!ok3)){
                     showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
                     return;
@@ -2918,7 +2973,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
                 mui->lineEdit_1->setText(loc.toString(D1 / myOpt->dwLengthMultiplier));
                 mui->lineEdit_2->setText(loc.toString(D2 / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, D1, D2, ratio, 0, 0, 0 );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, D1, D2, ratio, isPCBSquare, 0, 0 );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_pcbN_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3303,8 +3358,8 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 thread->start();
                 break;
             }
-            case _PCB_square:{
-                if (mui->lineEdit_N->text().isEmpty()||(mui->lineEdit_4_2->text().isEmpty())){
+            case _PCB_coil:{
+                if (mui->lineEdit_N->text().isEmpty()||((mui->lineEdit_4_2->text().isEmpty())&&(myOpt->isPCBcoilSquare))){
                     showWarning(tr("Warning"), tr("One or more inputs are empty!"));
                     return;
                 }
@@ -3312,30 +3367,45 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 double N = loc.toDouble(mui->lineEdit_N->text(), &ok1);
                 double D1 = loc.toDouble(mui->lineEdit_1_2->text(), &ok2)*myOpt->dwLengthMultiplier;
                 double D2 = loc.toDouble(mui->lineEdit_2_2->text(), &ok3)*myOpt->dwLengthMultiplier;
-                double s = loc.toDouble(mui->lineEdit_3_2->text(), &ok4)*myOpt->dwLengthMultiplier;
-                double W = loc.toDouble(mui->lineEdit_4_2->text(), &ok5)*myOpt->dwLengthMultiplier;
-                if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
-                    showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
-                    return;
-                }
-                if ((N == 0)||(D1 == 0)||(D2 == 0)||(s == 0)||(W == 0)){
+                double s = 0;
+                double W = 0;
+                if ((N == 0)||(D1 == 0)||(D2 == 0)){
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
                     return;
                 }
-                if (D1 < D2){
-                    showWarning(tr("Warning"), "D1 < D2");
+                if((!ok1)||(!ok2)||(!ok3)){
+                    showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
                     return;
                 }
-                if (s < W){
-                    showWarning(tr("Warning"), "s < W");
+                if (myOpt->isPCBcoilSquare){
+                    s = loc.toDouble(mui->lineEdit_3_2->text(), &ok4)*myOpt->dwLengthMultiplier;
+                    W = loc.toDouble(mui->lineEdit_4_2->text(), &ok5)*myOpt->dwLengthMultiplier;
+                    if((!ok4)||(!ok5)){
+                        showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+                        return;
+                    }
+                    if ((s == 0)||(W == 0)){
+                        showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
+                        return;
+                    }
+                    if (s <= W){
+                        showWarning(tr("Warning"), "s <= W");
+                        return;
+                    }
+                }
+                int isPCBSquare = mui->comboBox_checkPCB->currentIndex();
+                if (D1 < D2){
+                    showWarning(tr("Warning"), "D1 < D2");
                     return;
                 }
                 mui->lineEdit_N->setText(loc.toString(N));
                 mui->lineEdit_1_2->setText(loc.toString(D1 / myOpt->dwLengthMultiplier));
                 mui->lineEdit_2_2->setText(loc.toString(D2 / myOpt->dwLengthMultiplier));
-                mui->lineEdit_3_2->setText(loc.toString(s / myOpt->dwLengthMultiplier));
-                mui->lineEdit_4_2->setText(loc.toString(W / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, D1, D2, s, W, 0, 0 );
+                if (myOpt->isPCBcoilSquare){
+                    mui->lineEdit_3_2->setText(loc.toString(s / myOpt->dwLengthMultiplier));
+                    mui->lineEdit_4_2->setText(loc.toString(W / myOpt->dwLengthMultiplier));
+                }
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, D1, D2, s, W, isPCBSquare, 0 );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_pcbI_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3528,7 +3598,9 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
         }
     } else {
-        mui->statusBar->showMessage(tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!");
+        QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
+        mui->statusBar->showMessage(message);
+        Result += "<span style=\"color:blue;\">" + message + "</span>";
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
@@ -3604,7 +3676,9 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
         }
     } else {
-        mui->statusBar->showMessage(tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!");
+        QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
+        mui->statusBar->showMessage(message);
+        Result += "<span style=\"color:blue;\">" + message + "</span>";
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
@@ -3683,7 +3757,9 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
         }
     } else {
-        mui->statusBar->showMessage(tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!");
+        QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
+        mui->statusBar->showMessage(message);
+        Result += "<span style=\"color:blue;\">" + message + "</span>";
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
@@ -3876,7 +3952,7 @@ void MainWindow::get_ferrToroidN_Result(_CoilResult result){
         data->N = result.N;
         Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N, 'f', myOpt->dwAccuracy);
     } else {
-        Result += "<span style=\"color:red;\">" + tr("Coil can not be realized") + "!";
+        Result += "<span style=\"color:red;\">" + tr("Coil can not be realized") + "! </span>";
         mui->statusBar->showMessage(tr("Coil can not be realized") + "!");
     }
     Result += "</p><hr>";
@@ -3890,9 +3966,12 @@ void MainWindow::get_pcbN_Result(_CoilResult result){
     c.movePosition(QTextCursor::Start);
     calc_count++;
     c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
+    Input += "<h3>" + mui->comboBox_checkPCB->currentText() + "</h3><br/>";
     if (myOpt->isInsertImage){
+        if (myOpt->isPCBcoilSquare)
         Input += "<img src=\":/images/res/Coil8.png\">";
+        else Input += "<img src=\":/images/res/Coil9.png\">";
     }
     Input += "<p><u>" + tr("Input") + ":</u><br/>";
     Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
@@ -4019,7 +4098,9 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
         }
     } else {
-        mui->statusBar->showMessage(tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!");
+        QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
+        mui->statusBar->showMessage(message);
+        Result += "<span style=\"color:blue;\">" + message + "</span>";
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
@@ -4095,7 +4176,9 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
         }
     } else {
-        mui->statusBar->showMessage(tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!");
+        QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
+        mui->statusBar->showMessage(message);
+        Result += "<span style=\"color:blue;\">" + message + "</span>";
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
@@ -4176,7 +4259,9 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
         }
     } else {
-        mui->statusBar->showMessage(tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!");
+        QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
+        mui->statusBar->showMessage(message);
+        Result += "<span style=\"color:blue;\">" + message + "</span>";
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
@@ -4314,16 +4399,21 @@ void MainWindow::get_pcbI_Result(_CoilResult result){
     c.movePosition(QTextCursor::Start);
     calc_count++;
     c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
+    Input += "<h3>" + mui->comboBox_checkPCB->currentText() + "</h3><br/>";
     if (myOpt->isInsertImage){
+        if (myOpt->isPCBcoilSquare)
         Input += "<img src=\":/images/res/Coil8.png\">";
+        else Input += "<img src=\":/images/res/Coil9.png\">";
     }
     Input += "<p><u>" + tr("Input") + ":</u><br/>";
     Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
     Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
     Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "</p>";
+    if (myOpt->isPCBcoilSquare){
+        Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
+        Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "</p>";
+    }
     c.insertHtml(Input);
     QString Result = "<hr>";
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
@@ -4449,3 +4539,33 @@ void MainWindow::getAddCalculationResult(QString result){
     c.insertHtml(result);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_comboBox_checkPCB_activated(int index)
+{
+    if (index == 0){
+        mui->image->setPixmap(QPixmap(":/images/res/Coil8.png"));
+        myOpt->isPCBcoilSquare = true;
+        mui->lineEdit_3_2->setVisible(true);
+        mui->label_3_2->setVisible(true);
+        mui->label_03_2->setVisible(true);
+        mui->lineEdit_4_2->setVisible(true);
+        mui->label_4_2->setVisible(true);
+        mui->label_04_2->setVisible(true);
+        data->Di = data->Do * 0.362;
+    }
+    if (index == 1) {
+        mui->image->setPixmap(QPixmap(":/images/res/Coil9.png"));
+        myOpt->isPCBcoilSquare = false;
+        mui->lineEdit_3_2->setVisible(false);
+        mui->label_3_2->setVisible(false);
+        mui->label_03_2->setVisible(false);
+        mui->lineEdit_4_2->setVisible(false);
+        mui->label_4_2->setVisible(false);
+        mui->label_04_2->setVisible(false);
+        data->Di = data->Do * 0.4;
+    }
+    mui->lineEdit_2->setText(loc.toString(data->Di));
+    if (data->Di > 0){
+        mui->lineEdit_2->setFocus();
+        mui->lineEdit_2->selectAll();
+    }
+}

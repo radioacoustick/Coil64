@@ -878,6 +878,34 @@ double getPCB_I(double N, double D, double d, double s, double W) {
     return (I);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getSpiralPCB_N(double d1, double d2, double R, double I, _CoilResult *result){
+
+    double N, Dw, t, fi, Davg, iTmp = 0;
+
+    fi = (d1 - d2) / (d2 + d1);
+    Davg = (d2 + d1) / 2;
+    N = 0;
+    while (iTmp < I){
+        N = N + 0.01;
+        iTmp = 0.5 * 4 * M_PI * 1E-4 * N * N * Davg * (log(2.46 / fi) + 0.2 * fi * fi);
+    }
+    t = (d1 - d2) / (N + (N - 1));
+    Dw = t * R;
+    if (t < 0)
+        N= 0;
+    result->N = N;
+    result->sec = t;
+    result->thd = Dw;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double getSpiralPCB_I(double d1, double d2, double w){
+  double fi, Davg;
+
+  fi = (d1 - d2) / (d2 + d1);
+  Davg = (d2 + d1) / 2;
+  return 0.5 * 4 * M_PI * 1E-4 * w * w * Davg * (log(2.46 / fi) + 0.2 * fi * fi);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result) {
     Di = Di / 10;
     dw = dw / 10;

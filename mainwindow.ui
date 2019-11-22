@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1187</width>
-    <height>716</height>
+    <width>1195</width>
+    <height>778</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -43,7 +43,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>383</width>
+          <width>375</width>
           <height>281</height>
          </size>
         </property>
@@ -59,9 +59,23 @@
        </widget>
       </item>
       <item>
+       <widget class="QComboBox" name="comboBox_checkPCB">
+        <item>
+         <property name="text">
+          <string>PCB coil with square winding</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>PCB coil with spiral winding</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
        <widget class="QGroupBox" name="groupBox_List1">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -95,7 +109,7 @@
            </property>
            <property name="minimumSize">
             <size>
-             <width>375</width>
+             <width>0</width>
              <height>220</height>
             </size>
            </property>
@@ -110,6 +124,9 @@
            </property>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAsNeeded</enum>
            </property>
            <property name="sizeAdjustPolicy">
             <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -190,7 +207,7 @@
            </item>
            <item>
             <property name="text">
-             <string>PCB flat coil with square winding</string>
+             <string>PCB flat coil</string>
             </property>
             <property name="icon">
              <iconset>
@@ -217,6 +234,12 @@
     </item>
     <item>
      <widget class="QWidget" name="widget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_12">
        <property name="spacing">
         <number>0</number>
@@ -1457,7 +1480,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1187</width>
+     <width>1195</width>
      <height>27</height>
     </rect>
    </property>
@@ -1642,6 +1665,9 @@
    </property>
   </action>
   <action name="actionPrint">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normalon>:/menu_ico/res/icons8-print-32.png</normalon>

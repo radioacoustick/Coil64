@@ -20,6 +20,7 @@
         <file>res/shield.png</file>
         <file>res/shield-rect.png</file>
         <file>res/shield-round.png</file>
+        <file>res/Coil9.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
