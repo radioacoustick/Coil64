@@ -32,7 +32,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string notr="true">Coil64</string>
+   <string notr="true">Coil64 Configure</string>
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
@@ -45,7 +45,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_1">
       <attribute name="title">
@@ -428,6 +428,16 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
+        <widget class="QCheckBox" name="checkBox_8">
+         <property name="text">
+          <string>Show last result first</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="checkBox_2">
          <property name="text">
           <string>Show additional results for single layer coils</string>
@@ -468,6 +478,33 @@
         <widget class="QCheckBox" name="checkBox_5">
          <property name="text">
           <string>Show confirm dialog to clear results</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_10">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_6">
+         <property name="text">
+          <string>Show confirm dialog to delete a result</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_7">
+         <property name="text">
+          <string>Save results on exit</string>
          </property>
          <property name="checked">
           <bool>true</bool>

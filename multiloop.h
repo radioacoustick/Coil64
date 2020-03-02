@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define MULTILOOP_H
 
 #include <QDialog>
+#include <QScreen>
 #include <QThread>
 #include <QDoubleValidator>
 #include <QString>

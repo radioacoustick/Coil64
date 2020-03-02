@@ -421,3 +421,17 @@ void defineAppSettings(QSettings *&settings){
     settings = new QSettings(qApp->applicationDirPath() + "/Coil64.conf", QSettings::IniFormat);
 #endif
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString defineSavePath(){
+    QSettings *settings;
+    defineAppSettings(settings);
+    settings->beginGroup( "GUI" );
+    QString savePath;
+    if (isAppPortable())
+        savePath = settings->value("SaveDir", qApp->applicationDirPath() + PORTABLE_SAVE_LOCATION).toString();
+    else
+        savePath = settings->value("SaveDir", QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation).toUtf8() + USER_SAVE_LOCATION).toString();
+    settings->endGroup();
+    delete settings;
+    return savePath;
+}

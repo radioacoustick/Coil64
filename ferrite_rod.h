@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define FERRITE_ROD_H
 
 #include <QDialog>
+#include <QScreen>
 #include <QSettings>
 #include <QDoubleValidator>
 #include <QDesktopServices>

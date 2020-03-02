@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define LOOP_H
 
 #include <QDialog>
+#include <QScreen>
 #include <QDoubleValidator>
 #include <QString>
 #include <QSettings>

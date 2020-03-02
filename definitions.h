@@ -19,9 +19,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define DEFINES
 
 #define APP_NAME "Coil64"
-#define VERSION "1.0.6"
+#define VERSION "1.1.7"
 #define PROGRAM_SITE "https://coil32.net"
 #define VERSION_FILE "qversion.txt"
+#define CLEAR_CHAR 0x274C
+#define PORTABLE_SAVE_LOCATION "/Save"
+#define USER_SAVE_LOCATION "/Coil64/Save"
+#define AUTOSAVE_FILENAME "/autosave.htm"
 
 #endif // DEFINES
 

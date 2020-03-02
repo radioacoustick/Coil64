@@ -78,7 +78,10 @@ void Multiloop::getOpt(_OptionStruct gOpt){
     double Di = settings->value("Di", 0).toDouble();
     dw = settings->value("d", 0).toDouble();
     double dt = settings->value("dt", 0).toDouble();
-    QPoint pos = settings->value("pos", QPoint(300, 300)).toPoint();
+    QRect screenGeometry = qApp->primaryScreen()->availableGeometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     bool isReverse = settings->value("isReverse", false).toBool();
     settings->endGroup();
     ui->checkBox_isReverce->setChecked(isReverse);
@@ -100,8 +103,6 @@ void Multiloop::getOpt(_OptionStruct gOpt){
         ui->lineEdit_3->setText(loc.toString(dt / fOpt->dwLengthMultiplier));
     else
         on_lineEdit_2_editingFinished();
-    ui->lineEdit_N->setFocus();
-    ui->lineEdit_N->selectAll();
     move(pos);
     delete settings;
 }
@@ -233,4 +234,6 @@ void Multiloop::on_checkBox_isReverce_clicked()
         ui->lineEdit_N->setText(loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy));
         ui->label_N_m->setVisible(true);
     }
+    ui->lineEdit_N->setFocus();
+    ui->lineEdit_N->selectAll();
 }

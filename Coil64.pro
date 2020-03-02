@@ -44,7 +44,8 @@ SOURCES += main.cpp\
     meander_pcb.cpp \
     multiloop.cpp \
     loop.cpp \
-    shield.cpp
+    shield.cpp \
+    amidon.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -62,7 +63,8 @@ HEADERS  += mainwindow.h \
     meander_pcb.h \
     multiloop.h \
     loop.h \
-    shield.h
+    shield.h \
+    amidon.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -72,7 +74,8 @@ FORMS    += mainwindow.ui \
     meander_pcb.ui \
     multiloop.ui \
     loop.ui \
-    shield.ui
+    shield.ui \
+    amidon.ui
 
 RESOURCES += \
     res.qrc
@@ -101,6 +104,7 @@ TRANSLATIONS += lang/Coil64_bg.ts \
 
 win32: RC_FILE = resource.rc
 macx: ICON = res/coil64_icon_48.icns
+linux: QMAKE_LFLAGS += -no-pie
 unix: {
   PKGCONFIG += openssl
   QMAKE_LFLAGS += -static-libstdc++

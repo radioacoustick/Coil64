@@ -75,7 +75,10 @@ void Find_Permeability::getOpt(_OptionStruct gOpt){
     double D1 = settings->value("D1", 0).toDouble();
     double D2 = settings->value("D2", 0).toDouble();
     double h = settings->value("h", 0).toDouble();
-    QPoint pos = settings->value("pos", QPoint(300, 300)).toPoint();
+    QRect screenGeometry = qApp->primaryScreen()->availableGeometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     settings->endGroup();
     ui->lineEdit_ind->setText(loc.toString(I / fOpt->dwInductanceMultiplier));
     ui->lineEdit_N->setText(loc.toString(N));

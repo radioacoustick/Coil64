@@ -63,7 +63,7 @@ QString converttoAWG(double d, bool *isOK){
         if ((d <= 12) && (d >= 11)) result = "0000";
         else if ((d < 11) && (d >= 10)) result = "000";
         else if ((d < 10) && (d >= 8.6)) result = "00";
-        else if ((d < 8.6) && (d >= 0.07874)){
+        else if ((d < 8.6) && (d >= 0.00785)){
             double AWG = round(-39 * log(d / 0.127) / log(92) + 36);
             result = QString::number(AWG);
         }

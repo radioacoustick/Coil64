@@ -105,8 +105,11 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     double s = settings->value("s", 0).toDouble();
     double dw = settings->value("dw", 0).toDouble();
     double p = settings->value("p", 0).toDouble();
-    QPoint pos = settings->value("pos", QPoint(300, 300)).toPoint();
-    QSize size = settings->value("size", QSize(100, 100)).toSize();
+    QRect screenGeometry = qApp->primaryScreen()->availableGeometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
+    QSize size = settings->value("size", this->minimumSize()).toSize();
     settings->endGroup();
     ui->lineEdit_ind->setText(loc.toString(I / fOpt->dwInductanceMultiplier));
     ui->lineEdit_Dr->setText(loc.toString(Dr / fOpt->dwLengthMultiplier));

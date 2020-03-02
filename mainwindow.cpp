@@ -33,7 +33,6 @@ MainWindow::MainWindow(QWidget *parent) :
     title.append(qApp->applicationVersion());
     setWindowTitle(title);
     translator = new QTranslator(qApp);
-    this->calc_count = 0;
 
     mui->groupBox->setVisible(false);
     mui->groupBox_2->setVisible(false);
@@ -59,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt->isInsertImage = settings->value( "isInsertImage", true ).toBool();
     myOpt->isConfirmExit = settings->value( "isConfirmExit", true ).toBool();
     myOpt->isConfirmClear = settings->value( "isConfirmClear", true ).toBool();
+    myOpt->isConfirmDelete = settings->value( "isConfirmDelete", true ).toBool();
     myOpt->isAdditionalResult = settings->value( "isAdditionalResult", true ).toBool();
     myOpt->mainFontFamily = settings->value("MainFontFamily", QFontInfo(QFont()).family()).toString();
     myOpt->mainFontSize = settings->value("MainFontSize", QFontInfo(QFont()).pixelSize()).toInt();
@@ -66,6 +66,12 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt->textFontSize = settings->value("TextFontSize", QFontInfo(QFont()).pixelSize()).toInt();
     myOpt->isEnglishLocale = settings->value( "isEnglishLocale", false ).toBool();
     myOpt->isPCBcoilSquare = settings->value("isPCBcoilSquare",true).toBool();
+    myOpt->isSaveOnExit = settings->value("isSaveOnExit",true).toBool();
+    myOpt->isLastShowingFirst = settings->value("isLastShowingFirst",true).toBool();
+    if (myOpt->isSaveOnExit)
+        calc_count = settings->value( "calc_count", 0 ).toInt();
+    else
+        this->calc_count = 0;
     settings->endGroup();
 
     translator->load(":/lang/res/translations/Coil64_" + lang);
@@ -120,6 +126,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mui->toolButton_showImg->setChecked(myOpt->isInsertImage);
     mui->toolButton_showAdditional->setChecked(myOpt->isAdditionalResult);
+    mui->toolButton_cbc->setChecked(myOpt->isConfirmClear);
+    mui->toolButton_cbe->setChecked(myOpt->isConfirmExit);
+    mui->toolButton_cdsr->setChecked(myOpt->isConfirmDelete);
+    mui->toolButton_soe->setChecked(myOpt->isSaveOnExit);
+    mui->toolButton_lShowFirst->setChecked(myOpt->isLastShowingFirst);
 
     settings->beginGroup("Measure_Units");
     myOpt->dwAccuracy = settings->value("Accuracy", 3).toUInt();
@@ -249,8 +260,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     resetUiFont();
     completeOptionsStructure(myOpt);
-    restoreGeometry(settings->value("mainWindowGeometry").toByteArray());
-    restoreState(settings->value("mainWindowState").toByteArray());
+    if ((settings->value("mainWindowGeometry").isValid()) && (settings->value("mainWindowState").isValid())){
+        restoreGeometry(settings->value("mainWindowGeometry").toByteArray());
+        restoreState(settings->value("mainWindowState").toByteArray());
+    } else {
+        this->setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,this->minimumSize(),qApp->primaryScreen()->availableGeometry()));
+    }
     mui->retranslateUi(this);
 
     mui->textBrowser->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -423,12 +438,27 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue("isAdditionalResult", myOpt->isAdditionalResult);
         settings->setValue("isConfirmExit", myOpt->isConfirmExit);
         settings->setValue("isConfirmClear", myOpt->isConfirmClear);
+        settings->setValue("isConfirmDelete", myOpt->isConfirmDelete);
         settings->setValue( "MainFontFamily", myOpt->mainFontFamily);
         settings->setValue( "MainFontSize", myOpt->mainFontSize);
         settings->setValue( "TextFontFamily", myOpt->textFontFamily);
         settings->setValue( "TextFontSize", myOpt->textFontSize);
         settings->setValue("isEnglishLocale", myOpt->isEnglishLocale);
         settings->setValue("isPCBcoilSquare", myOpt->isPCBcoilSquare);
+        settings->setValue("isSaveOnExit", myOpt->isSaveOnExit);
+        settings->setValue("isLastShowingFirst", myOpt->isLastShowingFirst);
+        if (myOpt->isSaveOnExit){
+            QTextDocument *document = mui->textBrowser->document();
+            QString savePath = defineSavePath();
+            QDir sD(savePath);
+            if (!sD.exists())
+                sD.mkpath(savePath);
+            QFile file(savePath + AUTOSAVE_FILENAME);
+            file.open(QIODevice::WriteOnly);
+            file.write(document->toHtml().toUtf8());
+            file.close();
+            settings->setValue("calc_count", calc_count);
+        }
         settings->endGroup();
 
         settings->beginGroup( "Measure_Units" );
@@ -480,6 +510,30 @@ void MainWindow::closeEvent(QCloseEvent *event){
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::showEvent(QShowEvent *event){
+    event->accept();
+    if (myOpt->isSaveOnExit){
+        QString savePath = defineSavePath();
+        QString fileName = savePath + AUTOSAVE_FILENAME;
+        QDir dir(savePath);
+        if (dir.exists()){
+            if (!fileName.isEmpty()){
+                QTextDocument *document = mui->textBrowser->document();
+                QFile file(fileName);
+                file.open(QIODevice::ReadOnly);
+                document->setHtml(file.readAll().data());
+                file.close();
+                QTextCursor c = mui->textBrowser->textCursor();
+                if(myOpt->isLastShowingFirst)
+                    c.movePosition(QTextCursor::Start);
+                else
+                    c.movePosition(QTextCursor::End);
+                mui->textBrowser->setTextCursor(c);
+            }
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool MainWindow::eventFilter(QObject *watched, QEvent *event){
     if (event->type() == QEvent::ShortcutOverride) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
@@ -507,11 +561,17 @@ void MainWindow::resetUiFont(){
     mui->toolButton_CopyAll->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_CopySel->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_Help->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_Configure->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_Open->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_Print->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_Save->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_showAdditional->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_showImg->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_cbc->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_cbe->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_cdsr->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_soe->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_lShowFirst->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     QList<QAction*> actions;
     QAction* child;
     QList<QMenu*> menus = this->menuBar()->findChildren<QMenu*>();
@@ -527,6 +587,17 @@ void MainWindow::resetUiFont(){
     f2.setFamily(myOpt->textFontFamily);
     f2.setPixelSize(myOpt->textFontSize);
     mui->textBrowser->setFont(f2);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::prepareHeader(QTextCursor *c)
+{
+    if(myOpt->isLastShowingFirst)
+        c->movePosition(QTextCursor::Start);
+    else
+        c->movePosition(QTextCursor::End);
+    calc_count++;
+    c->insertHtml("<hr/><a href=\"del\" title=\"" +tr("Delete this result") + "\">" + QString(QChar(CLEAR_CHAR)) + "</a><hr/><b>"
+                 + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::checkAppVersion(QNetworkReply *reply){
@@ -1287,6 +1358,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil4.png"));
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(true);
+            mui->radioButton_7->setText(tr("Wire diameter") + " d:");
+            mui->radioButton_8->setText(tr("Resistance of the coil") + " Rdc:");
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04_2->setText(tr("AWG"));
@@ -1673,6 +1746,7 @@ void MainWindow::on_actionClear_all_triggered()
         if (isConfirmed){
             mui->textBrowser->clear();
             mui->statusBar->clearMessage();
+            calc_count = 0;
         }
     }
 }
@@ -1698,14 +1772,7 @@ void MainWindow::on_actionCopy_triggered()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionOpen_triggered()
 {
-    QSettings *settings;
-    defineAppSettings(settings);
-    settings->beginGroup( "GUI" );
-    QString savePath;
-    if (isAppPortable()){
-        savePath = settings->value("SaveDir", qApp->applicationDirPath() + "/Save").toString();
-    } else
-        savePath = settings->value("SaveDir", QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation).toUtf8()).toString();
+    QString savePath = defineSavePath();
     QDir dir(savePath);
     if (dir.exists()){
         QString filters(".pdf (*.pdf);;.odf (*.odf);;.htm (*.htm)");
@@ -1721,36 +1788,33 @@ void MainWindow::on_actionOpen_triggered()
                 QTextDocument *document = mui->textBrowser->document();
                 QFile file(fileName);
                 file.open(QIODevice::ReadOnly);
-                document->setHtml(file.readAll().toStdString().data());
+                document->setHtml(file.readAll().data());
+                file.close();
             }
         }
     }
-    settings->endGroup();
-    delete settings;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionSave_triggered()
 {
     QTextDocument *document = mui->textBrowser->document();
     if (!document->isEmpty()){
-        QSettings *settings;
-        defineAppSettings(settings);
-        settings->beginGroup( "GUI" );
-        QString savePath;
-        if (isAppPortable()){
-            savePath = settings->value("SaveDir", qApp->applicationDirPath() + "/Save").toString();
-            QDir sD(savePath);
-            if (!sD.exists())
-                sD.mkpath(savePath);
-        } else
-            savePath = settings->value("SaveDir", QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation).toUtf8()).toString();
+        QString savePath = defineSavePath();
+        QDir sD(savePath);
+        if (!sD.exists())
+            sD.mkpath(savePath);
         QString filters(".pdf (*.pdf);;.odf (*.odf);;.htm (*.htm)");
         QString defaultFilter(".htm (*.htm)");
         QString fileName = QFileDialog::getSaveFileName(this, tr("Save"), savePath, filters, &defaultFilter);
         if (!fileName.isEmpty()){
             QFileInfo info(fileName);
             savePath = info.absolutePath().toUtf8();
+            QSettings *settings;
+            defineAppSettings(settings);
+            settings->beginGroup( "GUI" );
             settings->setValue("SaveDir", savePath);
+            settings->endGroup();
+            delete settings;
             QString ext = defaultFilter.mid(7,4);
             int p = fileName.indexOf(".");
             if (p < 0){
@@ -1782,10 +1846,10 @@ void MainWindow::on_actionSave_triggered()
                 file.close();
             }
         }
-        settings->endGroup();
-        delete settings;
     }
 }
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionAbout_triggered()
 {
@@ -1903,6 +1967,31 @@ void MainWindow::on_toolButton_showAdditional_clicked()
     myOpt->isAdditionalResult = mui->toolButton_showAdditional->isChecked();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_cbe_clicked()
+{
+    myOpt->isConfirmExit = mui->toolButton_cbe->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_cbc_clicked()
+{
+    myOpt->isConfirmClear = mui->toolButton_cbc->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_cdsr_clicked()
+{
+    myOpt->isConfirmDelete = mui->toolButton_cdsr->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_soe_clicked()
+{
+    myOpt->isSaveOnExit = mui->toolButton_soe->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_lShowFirst_clicked()
+{
+    myOpt->isLastShowingFirst = mui->toolButton_lShowFirst->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_toolButton_CopySel_clicked()
 {
     mui->textBrowser->copy();
@@ -1938,6 +2027,11 @@ void MainWindow::on_toolButton_Help_clicked()
     on_actionHelp_triggered();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_Configure_clicked()
+{
+    on_actionOptions_triggered();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_8_toggled(bool checked)
 {
     QString tmp_txt;
@@ -1967,6 +2061,11 @@ void MainWindow::getOptionStruct(_OptionStruct gOpt){
     on_tabWidget_currentChanged(mui->tabWidget->currentIndex());
     mui->toolButton_showImg->setChecked(myOpt->isInsertImage);
     mui->toolButton_showAdditional->setChecked(myOpt->isAdditionalResult);
+    mui->toolButton_cbc->setChecked(myOpt->isConfirmClear);
+    mui->toolButton_cbe->setChecked(myOpt->isConfirmExit);
+    mui->toolButton_cdsr->setChecked(myOpt->isConfirmDelete);
+    mui->toolButton_soe->setChecked(myOpt->isSaveOnExit);
+    mui->toolButton_lShowFirst->setChecked(myOpt->isLastShowingFirst);
     if(myOpt->isEnglishLocale)loc = QLocale::English;
     else loc = getLanguageLocale(lang);
     this->setLocale(loc);
@@ -2019,9 +2118,9 @@ void MainWindow::on_lineEdit_1_editingFinished()
             data->Do = loc.toDouble(mui->lineEdit_1->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             if (myOpt->isPCBcoilSquare)
-              data->Di = data->Do * 0.362;
+                data->Di = data->Do * 0.362;
             else
-              data->Di = data->Do * 0.4;
+                data->Di = data->Do * 0.4;
             mui->lineEdit_2->setText(loc.toString(data->Di));
             break;
         }
@@ -3231,8 +3330,8 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_1_2->setText(loc.toString(D / myOpt->dwLengthMultiplier));
                 mui->lineEdit_2_2->setText(loc.toString(l / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(c / myOpt->dwLengthMultiplier));
-                if ((mui->radioButton_7->isChecked())||(!myOpt->isAWG)) mui->lineEdit_4_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
-                else if (mui->radioButton_8->isChecked()) mui->lineEdit_4_2->setText(loc.toString(Rm));
+                if ((mui->radioButton_7->isChecked())&&(!myOpt->isAWG)) mui->lineEdit_4_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
+                if (mui->radioButton_8->isChecked()) mui->lineEdit_4_2->setText(loc.toString(Rm));
                 mui->lineEdit_5_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 if (mui->radioButton_7->isChecked()){
                     MThread_calculate *thread= new MThread_calculate( FormCoil, tab, D, l, c, d, k, 0, 0 );
@@ -3496,9 +3595,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                         + " " + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
             }
             QTextCursor c = mui->textBrowser->textCursor();
-            c.movePosition(QTextCursor::Start);
-            calc_count++;
-            c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+            prepareHeader(&c);
             QString Input = "<hr><h2>" + windowTitle() + " - " + tr("LC tank calculation") + "</h2><br/>";
             if (myOpt->isInsertImage){
                 Input += "<img src=\":/images/res/LC.png\">";
@@ -3514,6 +3611,11 @@ void MainWindow::on_pushButton_Calculate_clicked()
             Result += tr("Characteristic impedance") + " ρ = " + loc.toString(ro, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
             Result += "</p><hr>";
             c.insertHtml(Result);
+            if(myOpt->isLastShowingFirst)
+                c.movePosition(QTextCursor::Start);
+            else
+                c.movePosition(QTextCursor::End);
+            mui->textBrowser->setTextCursor(c);
             mui->pushButton_Calculate->setEnabled(true);
             this->setCursor(Qt::ArrowCursor);
             break;
@@ -3530,9 +3632,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil2.png\">";
@@ -3604,6 +3704,11 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
     mui->lineEdit_ind->setFocus();
@@ -3612,9 +3717,7 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil2_square.png\">";
@@ -3682,15 +3785,18 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil3.png\">";
@@ -3763,6 +3869,11 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
     mui->lineEdit_ind->setFocus();
@@ -3771,9 +3882,7 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerN_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4.png\">";
@@ -3815,15 +3924,18 @@ void MainWindow::get_multilayerN_Result(_CoilResult result){
     Result += tr("Number of layers") + " Nl = " + loc.toString(result.thd);
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerNgap_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4-0.png\">";
@@ -3867,15 +3979,18 @@ void MainWindow::get_multilayerNgap_Result(_CoilResult result){
     Result += tr("Number of interlayers") + " Ng = " + loc.toString(result.five);
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerN_Rect_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4_square.png\">";
@@ -3919,15 +4034,18 @@ void MainWindow::get_multilayerN_Rect_Result(_CoilResult result){
     Result += tr("Resistance of the coil") + " R = " + loc.toString(result.fourth, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_ferrToroidN_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil6.png\">";
@@ -3957,20 +4075,23 @@ void MainWindow::get_ferrToroidN_Result(_CoilResult result){
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_pcbN_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
     Input += "<h3>" + mui->comboBox_checkPCB->currentText() + "</h3><br/>";
     if (myOpt->isInsertImage){
         if (myOpt->isPCBcoilSquare)
-        Input += "<img src=\":/images/res/Coil8.png\">";
+            Input += "<img src=\":/images/res/Coil8.png\">";
         else Input += "<img src=\":/images/res/Coil9.png\">";
     }
     Input += "<p><u>" + tr("Input") + ":</u><br/>";
@@ -3987,15 +4108,18 @@ void MainWindow::get_pcbN_Result(_CoilResult result){
     Result += tr("Width of a PCB trace") + " W = " + loc.toString(result.thd, 'f', myOpt->dwAccuracy) + " " + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8());
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_spiralN_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil10.png\">";
@@ -4020,6 +4144,11 @@ void MainWindow::get_spiralN_Result(_CoilResult result){
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "</p>";
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
@@ -4028,9 +4157,7 @@ void MainWindow::get_spiralN_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil2.png\">";
@@ -4104,15 +4231,18 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil2_square.png\">";
@@ -4182,15 +4312,18 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil3.png\">";
@@ -4265,15 +4398,18 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
     }
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerI_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4.png\">";
@@ -4297,15 +4433,18 @@ void MainWindow::get_multilayerI_Result(_CoilResult result){
             + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerIgap_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4-0.png\">";
@@ -4331,15 +4470,18 @@ void MainWindow::get_multilayerIgap_Result(_CoilResult result){
             + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerI_Rect_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4_square.png\">";
@@ -4364,15 +4506,18 @@ void MainWindow::get_multilayerI_Rect_Result(_CoilResult result){
             + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_ferriteI_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil6.png\">";
@@ -4390,20 +4535,23 @@ void MainWindow::get_ferriteI_Result(_CoilResult result){
     Result += tr("Inductance") + " L = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + " " + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_pcbI_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
     Input += "<h3>" + mui->comboBox_checkPCB->currentText() + "</h3><br/>";
     if (myOpt->isInsertImage){
         if (myOpt->isPCBcoilSquare)
-        Input += "<img src=\":/images/res/Coil8.png\">";
+            Input += "<img src=\":/images/res/Coil8.png\">";
         else Input += "<img src=\":/images/res/Coil9.png\">";
     }
     Input += "<p><u>" + tr("Input") + ":</u><br/>";
@@ -4421,15 +4569,18 @@ void MainWindow::get_pcbI_Result(_CoilResult result){
     Result += tr("Inductance") + " L = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + " " + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_spiralI_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil10.png\">";
@@ -4453,6 +4604,11 @@ void MainWindow::get_spiralI_Result(_CoilResult result){
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8());
     Result += "</p><hr>";
     c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
@@ -4531,12 +4687,27 @@ void MainWindow::on_actionShiels_influence_triggered()
     fshield->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionAmidon_cores_triggered()
+{
+    Amidon *famidon = new Amidon();
+    famidon->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(famidon, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), famidon, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), famidon, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    famidon->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::getAddCalculationResult(QString result){
     QTextCursor c = mui->textBrowser->textCursor();
-    c.movePosition(QTextCursor::Start);
-    calc_count++;
-    c.insertHtml("<hr/><b>" + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+    prepareHeader(&c);
     c.insertHtml(result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_comboBox_checkPCB_activated(int index)
@@ -4567,5 +4738,49 @@ void MainWindow::on_comboBox_checkPCB_activated(int index)
     if (data->Di > 0){
         mui->lineEdit_2->setFocus();
         mui->lineEdit_2->selectAll();
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
+{
+    QString url = arg1.toDisplayString();
+    if (url == "del"){
+        QString searchString = QString(QChar(CLEAR_CHAR));
+        QTextCursor cursor =  mui->textBrowser->textCursor();
+        int start = mui->textBrowser->textCursor().position();
+        if (myOpt->isConfirmDelete){
+            cursor.setPosition(start + 2, QTextCursor::KeepAnchor);
+            cursor.select(QTextCursor::WordUnderCursor);
+            QString sCalc_number = cursor.selectedText();
+            QMessageBox messageBox(QMessageBox::Question,
+                                   tr("Confirmation"),
+                                   "#" + sCalc_number + tr(" calculation will be deleted") + ". \n" + tr("Are you sure?"),
+                                   QMessageBox::Yes | QMessageBox::No,
+                                   this);
+            messageBox.setButtonText(QMessageBox::Yes, tr("Yes"));
+            messageBox.setButtonText(QMessageBox::No, tr("No"));
+            if (messageBox.exec()== QMessageBox::No)
+                return;
+        }
+        int i = start;
+        while (!cursor.isNull() && !cursor.atEnd()) {
+            i++;
+            cursor.setPosition(i, QTextCursor::KeepAnchor);
+            if (!cursor.isNull()) {
+                cursor.select(QTextCursor::WordUnderCursor);
+                QString word = cursor.selectedText();
+                if (word == searchString)
+                    break;
+            }
+        }
+        cursor.setPosition(start - 2, QTextCursor::MoveAnchor);
+        cursor.setPosition(i - 1, QTextCursor::KeepAnchor);
+        cursor.removeSelectedText();
+        cursor.clearSelection();
+        mui->textBrowser->setTextCursor(cursor);
+        if ((mui->textBrowser->document()->lineCount() < 4) && (!mui->textBrowser->document()->isEmpty())){
+                mui->textBrowser->clear();
+                mui->statusBar->clearMessage();
+        }
     }
 }

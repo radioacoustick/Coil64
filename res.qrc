@@ -21,6 +21,12 @@
         <file>res/shield-rect.png</file>
         <file>res/shield-round.png</file>
         <file>res/Coil9.png</file>
+        <file>res/F-description.png</file>
+        <file>res/P-description.png</file>
+        <file>res/T-description.png</file>
+        <file>res/pot-core.jpg</file>
+        <file>res/e-core.jpg</file>
+        <file>res/E-description.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -88,6 +94,12 @@
         <file>res/ico1-loop.png</file>
         <file>res/icons8-donate-32.png</file>
         <file>res/ico1-shield.png</file>
+        <file>res/icons8-a-32.png</file>
+        <file>res/icons8-delete-bin-32.png</file>
+        <file>res/icons8-save-close-32.png</file>
+        <file>res/icons8-sign-out-32.png</file>
+        <file>res/icons8-delete-history-32.png</file>
+        <file>res/icons8-list-32.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

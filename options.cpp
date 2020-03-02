@@ -48,6 +48,9 @@ void Options::getOpt(_OptionStruct gOpt){
     ui->checkBox_2->setChecked(oOpt->isAdditionalResult);
     ui->checkBox_4->setChecked(oOpt->isConfirmExit);
     ui->checkBox_5->setChecked(oOpt->isConfirmClear);
+    ui->checkBox_6->setChecked(oOpt->isConfirmDelete);
+    ui->checkBox_7->setChecked(oOpt->isSaveOnExit);
+    ui->checkBox_8->setChecked(oOpt->isLastShowingFirst);
 
     ui->fontComboBox_1->setCurrentText(oOpt->mainFontFamily);
     ui->fontspinBox_1->setValue(oOpt->mainFontSize);
@@ -97,6 +100,9 @@ void Options::on_pushButton_2_clicked()
     oOpt->isAdditionalResult = ui->checkBox_2->isChecked();
     oOpt->isConfirmExit = ui->checkBox_4->isChecked();
     oOpt->isConfirmClear = ui->checkBox_5->isChecked();
+    oOpt->isConfirmDelete = ui->checkBox_6->isChecked();
+    oOpt->isSaveOnExit = ui->checkBox_7->isChecked();
+    oOpt->isLastShowingFirst = ui->checkBox_8->isChecked();
 
     oOpt->mainFontFamily = ui->fontComboBox_1->currentText();
     oOpt->textFontFamily = ui->fontComboBox_2->currentText();

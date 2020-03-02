@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define SYSTEM_FUNCTIONS_H
 
 #include <QCoreApplication>
+#include <QStandardPaths>
 #include <QProcess>
 #include <QSettings>
 #include <QString>
@@ -60,10 +61,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses
       bool isEnglishLocale;
       bool isConfirmExit;
       bool isConfirmClear;
+      bool isConfirmDelete;
       bool isAWG;
       bool isInsertImage;
+      bool isSaveOnExit;
       bool isAdditionalResult;
       bool isPCBcoilSquare;
+      bool isLastShowingFirst;
       int upDateInterval;
       QDate firstDate;
     };
@@ -72,6 +76,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 QString getOSVersion();
 bool isAppPortable();
 void defineAppSettings(QSettings *&settings);
+QString defineSavePath();
 void showWarning(QString title, QString msg);
 void showInfo(QString title, QString msg);
 QStringList translateInstalling(QStringList *lang);

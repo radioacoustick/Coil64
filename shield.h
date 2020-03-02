@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define SHIELD_H
 
 #include <QDialog>
+#include <QScreen>
 #include <QThread>
 #include <QDoubleValidator>
 #include <QString>

@@ -1369,6 +1369,13 @@
          </widget>
         </item>
         <item>
+         <widget class="Line" name="line_8">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QToolButton" name="toolButton_showImg">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1427,19 +1434,109 @@
          </widget>
         </item>
         <item>
-         <widget class="QToolButton" name="toolButton_Help">
+         <widget class="QToolButton" name="toolButton_lShowFirst">
           <property name="toolTip">
-           <string>Context help</string>
+           <string>Show last result first</string>
           </property>
           <property name="text">
            <string notr="true">...</string>
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-help-32.png</normaloff>:/menu_ico/res/icons8-help-32.png</iconset>
+            <normaloff>:/menu_ico/res/icons8-list-32.png</normaloff>:/menu_ico/res/icons8-list-32.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_soe">
+          <property name="toolTip">
+           <string>Save results on exit</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-save-close-32.png</normaloff>:/menu_ico/res/icons8-save-close-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_9">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_cbc">
+          <property name="toolTip">
+           <string>Show confirm dialog to clear results</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-delete-history-32.png</normaloff>:/menu_ico/res/icons8-delete-history-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_cdsr">
+          <property name="toolTip">
+           <string>Show confirm dialog to delete a result</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-delete-bin-32.png</normaloff>:/menu_ico/res/icons8-delete-bin-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_cbe">
+          <property name="toolTip">
+           <string>Show confirm dialog before exit</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-sign-out-32.png</normaloff>:/menu_ico/res/icons8-sign-out-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -1456,6 +1553,40 @@
           </property>
          </spacer>
         </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_Configure">
+          <property name="toolTip">
+           <string>Options</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-settings-32.png</normaloff>:/menu_ico/res/icons8-settings-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_Help">
+          <property name="toolTip">
+           <string>Context help</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-help-32.png</normaloff>:/menu_ico/res/icons8-help-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
@@ -1469,6 +1600,9 @@
         <property name="textInteractionFlags">
          <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
         </property>
+        <property name="openLinks">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -1481,7 +1615,7 @@
      <x>0</x>
      <y>0</y>
      <width>1195</width>
-     <height>27</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1531,9 +1665,16 @@
     <addaction name="actionClear_all"/>
     <addaction name="actionTo_null_data"/>
    </widget>
+   <widget class="QMenu" name="menuBranded_cores">
+    <property name="title">
+     <string>Branded cores</string>
+    </property>
+    <addaction name="actionAmidon_cores"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuActions"/>
    <addaction name="menuAdditional_calculating"/>
+   <addaction name="menuBranded_cores"/>
    <addaction name="menuCustomize"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -1776,6 +1917,11 @@
    </property>
    <property name="text">
     <string>Influence of a coil shield</string>
+   </property>
+  </action>
+  <action name="actionAmidon_cores">
+   <property name="text">
+    <string>Amidon cores</string>
    </property>
   </action>
  </widget>

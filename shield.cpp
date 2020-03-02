@@ -92,7 +92,10 @@ void Shield::getOpt(_OptionStruct gOpt){
     double Ds = settings->value("Ds", 0).toDouble();
     double Hs = settings->value("Hs", 0).toDouble();
     bool isShieldRectangular = settings->value("isShieldRectangular",false).toBool();
-    QPoint pos = settings->value("pos", QPoint(300, 300)).toPoint();
+    QRect screenGeometry = qApp->primaryScreen()->availableGeometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     settings->endGroup();
     if (isShieldRectangular){
         ui->radioButton_2->setChecked(true);
@@ -106,8 +109,6 @@ void Shield::getOpt(_OptionStruct gOpt){
     ui->lineEdit_2->setText(loc.toString(l / fOpt->dwLengthMultiplier));
     ui->lineEdit_3->setText(loc.toString(Ds / fOpt->dwLengthMultiplier));
     ui->lineEdit_4->setText(loc.toString(Hs / fOpt->dwLengthMultiplier));
-    ui->lineEdit_N->setFocus();
-    ui->lineEdit_N->selectAll();
     move(pos);
     delete settings;
 }
@@ -125,11 +126,15 @@ void Shield::on_pushButton_3_clicked()
 void Shield::on_radioButton_2_clicked()
 {
     ui->pict->setPixmap(QPixmap(":/images/res/shield-rect.png"));
+    ui->lineEdit_N->setFocus();
+    ui->lineEdit_N->selectAll();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Shield::on_radioButton_clicked()
 {
     ui->pict->setPixmap(QPixmap(":/images/res/shield-round.png"));
+    ui->lineEdit_N->setFocus();
+    ui->lineEdit_N->selectAll();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

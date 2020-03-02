@@ -78,8 +78,11 @@ void Loop::getOpt(_OptionStruct gOpt){
     QSettings *settings;
     defineAppSettings(settings);
     settings->beginGroup( "Loop" );
-    QPoint pos = settings->value("pos", QPoint(300, 300)).toPoint();
-    QSize size = settings->value("size", QSize(100, 100)).toSize();
+    QRect screenGeometry = qApp->primaryScreen()->availableGeometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
+    QSize size = settings->value("size", this->minimumSize()).toSize();
     bool isReverse = settings->value("isReverse", false).toBool();
     loopKind = settings->value("loopKind", 0).toInt();
     ind = settings->value("ind", 0).toDouble();
@@ -114,6 +117,8 @@ void Loop::on_radioButton_round_clicked()
         ui->label_01->setVisible(false);
         ui->label_1->setVisible(false);
         ui->lineEdit_1->setVisible(false);
+        ui->lineEdit_N->setFocus();
+        ui->lineEdit_N->selectAll();
     } else {
         ui->label_01->setVisible(true);
         ui->label_1->setVisible(true);
@@ -121,6 +126,8 @@ void Loop::on_radioButton_round_clicked()
         ui->lineEdit_1->setText(loc.toString(a / fOpt->dwLengthMultiplier));
         QString tmpTxt = tr("Loop diameter") + " D:";
         ui->label_1->setText(tmpTxt);
+        ui->lineEdit_1->setFocus();
+        ui->lineEdit_1->selectAll();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -135,6 +142,8 @@ void Loop::on_radioButton_triangle_clicked()
         ui->label_02->setVisible(false);
         ui->label_2->setVisible(false);
         ui->lineEdit_2->setVisible(false);
+        ui->lineEdit_N->setFocus();
+        ui->lineEdit_N->selectAll();
     } else {
         ui->label_01->setVisible(true);
         ui->label_1->setVisible(true);
@@ -148,6 +157,8 @@ void Loop::on_radioButton_triangle_clicked()
         ui->lineEdit_2->setText(loc.toString(b / fOpt->dwLengthMultiplier));
         tmpTxt = tr("Side of triangle") + " b:";
         ui->label_2->setText(tmpTxt);
+        ui->lineEdit_1->setFocus();
+        ui->lineEdit_1->selectAll();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -162,6 +173,8 @@ void Loop::on_radioButton_rectangle_clicked()
         ui->label_02->setVisible(false);
         ui->label_2->setVisible(false);
         ui->lineEdit_2->setVisible(false);
+        ui->lineEdit_N->setFocus();
+        ui->lineEdit_N->selectAll();
     } else {
         ui->label_01->setVisible(true);
         ui->label_1->setVisible(true);
@@ -175,6 +188,8 @@ void Loop::on_radioButton_rectangle_clicked()
         ui->lineEdit_2->setText(loc.toString(b / fOpt->dwLengthMultiplier));
         tmpTxt = tr("Side of rectangle") + " b:";
         ui->label_2->setText(tmpTxt);
+        ui->lineEdit_1->setFocus();
+        ui->lineEdit_1->selectAll();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

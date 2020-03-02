@@ -94,7 +94,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>5</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="tab_1">
           <property name="sizePolicy">
@@ -225,7 +225,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string notr="true">E-mail: &lt;a href=&quot;qdev@coil32.net&quot;&gt;qdev@coil32.net&lt;/a&gt;</string>
+              <string notr="true">E-mail: &lt;a href=&quot;mailto:qdev@coil32.net&quot;&gt;qdev@coil32.net&lt;/a&gt;</string>
              </property>
              <property name="openExternalLinks">
               <bool>true</bool>
@@ -273,6 +273,16 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+               <underline>true</underline>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
              <property name="text">
               <string>Thanks for reports and program testing:</string>
              </property>
@@ -286,8 +296,14 @@
            </item>
            <item>
             <widget class="QLabel" name="label_8">
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
              <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;RK3AQD, RA1QEA, UA9CTU, RA3MB, RA3SI, UA3GGP, UT2LK, UR3LUC, &lt;a href=&quot;http://ua6igi.ru/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;UA6IGI&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://un8gv.my1.ru/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;UN8GW&lt;/span&gt;&lt;/a&gt;, RA9SVY, &lt;a href=&quot;http://ea1ddo.es/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;EA1DDO&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.qrz.com/db/9A3SW&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;9A3SW&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://qrz.pl/callbook.asp?f_domena=sp9izm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SP9IZM&lt;/span&gt;&lt;/a&gt;, KC9USI, SV3ISD, DL6ABM, PA0HRP and Milos Jovanovic, Yogesh Karale, Pedro Alamo, Károly Stumpfl, Teodor Zafiroski, Shahrokh Mostaghimi, Ngo Huy, Van Watts, Bob Mellor, Hsiyung Ku, Jack Wojslawowicz, Barış Akgül, Carlo Mozetic, Edgar Enriquez, Eric Pruvot, Artur Soares, Ciornea Lucian-L, Paulo Romani, &lt;a href=&quot;https://www.geotech1.com/forums/forum.php&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;George Overton&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Special thank for:&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://www.ra3pkj.ru/&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;RA3PKJ - Nick Abramenko&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://electronbunker.ca/eb/index.html&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;Robert Weaver&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://www.g3ynh.info/index.html&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;G3YNH - David Knight&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://g3rbj.co.uk&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;G3RBJ - Alane Payne&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;RK3AQD, RA1QEA, UA9CTU, RA3MB, RA3SI, UA3GGP, UT2LK, UR3LUC, UA6IGI, &lt;a href=&quot;http://un8gv.my1.ru/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;UN8GW&lt;/span&gt;&lt;/a&gt;, RA9SVY, &lt;a href=&quot;http://ea1ddo.es/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;EA1DDO&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.qrz.com/db/9A3SW&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;9A3SW&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://qrz.pl/callbook.asp?f_domena=sp9izm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SP9IZM&lt;/span&gt;&lt;/a&gt;, KC9USI, SV3ISD, DL6ABM, PA0HRP&lt;br/&gt; as well as Milos Jovanovic, Yogesh Karale, Pedro Alamo, Károly Stumpfl, Teodor Zafiroski, Shahrokh Mostaghimi, Ngo Huy, Van Watts, Bob Mellor, Hsiyung Ku, Jack Wojslawowicz, Barış Akgül, Carlo Mozetic, Edgar Enriquez, Eric Pruvot, Artur Soares, Ciornea Lucian-L, Paulo Romani, &lt;a href=&quot;https://www.geotech1.com/forums/forum.php&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;George Overton&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Special thanks for:&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://www.ra3pkj.ru/&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;RA3PKJ - Nick Abramenko&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://electronbunker.ca/eb/index.html&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;Robert Weaver&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://www.g3ynh.info/index.html&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;G3YNH - David Knight&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://g3rbj.co.uk&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;G3RBJ - Alane Payne&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:600; color:#0000ff;&quot;&gt;Vladimir Kuznetsov&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -296,7 +312,7 @@
               <bool>true</bool>
              </property>
              <property name="margin">
-              <number>10</number>
+              <number>15</number>
              </property>
              <property name="openExternalLinks">
               <bool>true</bool>
@@ -323,8 +339,8 @@
               <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="placeholderText">
               <string notr="true"/>
@@ -391,8 +407,8 @@ p, li { white-space: pre-wrap; }
              <property name="text">
               <string notr="true">&lt;html&gt;&lt;head/&gt;
 &lt;body&gt;
-&lt;p&gt;&lt;img align=&quot;middle&quot; src = &quot;:/menu_ico/res/icons8-windows-xp-32.png&quot;&gt;Windows: Qt 5.12.0  (mingw32, GCC 5.5.0, 32bit, 64bit)&lt;/p&gt;
-&lt;p&gt;&lt;img align=&quot;middle&quot; src = &quot;:/menu_ico/res/icons8-linux-32.png&quot;&gt;Linux: Qt 5.5.1 (GCC 5.4.0 20160609, 64bit)&lt;/p&gt;
+&lt;p&gt;&lt;img align=&quot;middle&quot; src = &quot;:/menu_ico/res/icons8-windows-xp-32.png&quot;&gt;Windows: Qt 5.13.2  (mingw32, gcc 5.5.0, 32bit, 64bit)&lt;/p&gt;
+&lt;p&gt;&lt;img align=&quot;middle&quot; src = &quot;:/menu_ico/res/icons8-linux-32.png&quot;&gt;Linux: Qt 5.12.0 (gcc 7.4.0, 64bit)&lt;/p&gt;
 &lt;p&gt;&lt;img align=&quot;middle&quot; src = &quot;:/menu_ico/res/icons8-apple-logo-32.png&quot;&gt;OS X: Qt 5.9.1  (clang-800.0.42.1, 64bit)&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</string>

@@ -19,6 +19,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStyle>
+#include <QScreen>
 #include <QSettings>
 #include <QCoreApplication>
 #include <QTranslator>
@@ -45,6 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "multiloop.h"
 #include "loop.h"
 #include "shield.h"
+#include "amidon.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -73,9 +76,11 @@ public slots:
 
 private slots:
     void closeEvent(QCloseEvent *event);
+    void showEvent(QShowEvent *event );
     bool eventFilter(QObject *watched, QEvent *event);
     void on_textBrowser_customContextMenuRequested(const QPoint &pos);
     void on_textBrowser_textChanged();
+    void on_textBrowser_anchorClicked(const QUrl &arg1);
     void on_listWidget_currentRowChanged(int currentRow);
     void on_tabWidget_currentChanged(int index);
     void on_comboBox_checkPCB_activated(int index);
@@ -138,6 +143,7 @@ private slots:
     void checkAppVersion(QNetworkReply *reply);
     void setLanguage();
     void resetUiFont();
+    void prepareHeader(QTextCursor *c);
 
     void on_actionOptions_triggered();
     void on_actionExit_triggered();
@@ -153,12 +159,18 @@ private slots:
     void on_actionTo_null_data_triggered();
 
     void on_toolButton_Help_clicked();
+    void on_toolButton_Configure_clicked();
     void on_toolButton_Clear_clicked();
     void on_toolButton_CopySel_clicked();
     void on_toolButton_CopyAll_clicked();
     void on_toolButton_Print_clicked();
     void on_toolButton_showImg_clicked();
     void on_toolButton_showAdditional_clicked();
+    void on_toolButton_cbe_clicked();
+    void on_toolButton_cbc_clicked();
+    void on_toolButton_cdsr_clicked();
+    void on_toolButton_soe_clicked();
+    void on_toolButton_lShowFirst_clicked();
     void on_toolButton_Open_clicked();
     void on_toolButton_Save_clicked();
 
@@ -169,6 +181,7 @@ private slots:
     void on_actionMetal_detector_search_coil_triggered();
     void on_actionLoop_of_one_turn_triggered();
     void on_actionShiels_influence_triggered();
+    void on_actionAmidon_cores_triggered();
 
     void getAddCalculationResult(QString result);
 

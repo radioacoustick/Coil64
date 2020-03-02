@@ -73,7 +73,10 @@ void Meander_pcb::getOpt(_OptionStruct gOpt){
     double d = settings->value("d", 0).toDouble();
     double h = settings->value("h", 0).toDouble();
     double W = settings->value("W", 0).toDouble();
-    QPoint pos = settings->value("pos", QPoint(300, 300)).toPoint();
+    QRect screenGeometry = qApp->primaryScreen()->availableGeometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     settings->endGroup();
     ui->lineEdit_N->setText(loc.toString(N));
     ui->lineEdit_1->setText(loc.toString(a / fOpt->dwLengthMultiplier));
