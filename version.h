@@ -18,11 +18,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             1,1,7,0
-#define VER_FILEVERSION_STR         "1.1.7\0"
+#define VER_FILEVERSION             1,1,8,0
+#define VER_FILEVERSION_STR         "1.1.8\0"
 
-#define VER_PRODUCTVERSION          1,1,7
-#define VER_PRODUCTVERSION_STR      "1.1.7\0"
+#define VER_PRODUCTVERSION          1,1,8
+#define VER_PRODUCTVERSION_STR      "1.1.8\0"
 
 #define VER_COMPANYNAME_STR         ""
 #define VER_FILEDESCRIPTION_STR     "Coil64 inductor calculator"

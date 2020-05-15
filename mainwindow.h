@@ -125,6 +125,7 @@ private slots:
     void get_multilayerN_Result(_CoilResult result);
     void get_multilayerNgap_Result(_CoilResult result);
     void get_multilayerN_Rect_Result(_CoilResult result);
+    void get_multilayerN_Foil_Result(_CoilResult result);
     void get_ferrToroidN_Result(_CoilResult result);
     void get_pcbN_Result(_CoilResult result);
     void get_spiralN_Result(_CoilResult result);
@@ -135,6 +136,7 @@ private slots:
     void get_multilayerI_Result(_CoilResult result);
     void get_multilayerIgap_Result(_CoilResult result);
     void get_multilayerI_Rect_Result(_CoilResult result);
+    void get_multilayerI_Foil_Result(_CoilResult result);
     void get_ferriteI_Result(_CoilResult result);
     void get_pcbI_Result(_CoilResult result);
     void get_spiralI_Result(_CoilResult result);
@@ -151,6 +153,7 @@ private slots:
     void on_actionAbout_triggered();
     void on_actionHelp_triggered();
     void on_actionHomePage_triggered();
+    void on_actionVersions_history_triggered();
     void on_actionDonate_triggered();
     void on_actionOpen_triggered();
     void on_actionSave_triggered();

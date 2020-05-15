@@ -80,6 +80,11 @@ void MThread_calculate::run(){
                 getMultiLayerN_rectFormer(arg1, arg2, arg3, arg4, arg5, arg6, &result);
                 break;
             }
+            case _Multilayer_f:{
+                //arg: Dk, w, t, ins, I, 0, 0, 0
+                getMultilayerN_Foil( arg1, arg2, arg3, arg4, arg5, &result );//number of turns
+                break;
+            }
             case _FerrToroid:{
                 //arg:I, D1, D2, h, d, mu
                 getFerriteN(arg1, arg2, arg3, arg4, arg5, arg6, &result);
@@ -150,6 +155,11 @@ void MThread_calculate::run(){
                 //arg: a, b, l, c, d, k
                 //double a, double b, double l, double c, double dw, double k, _CoilResult *result
                 getMultiLayerI_rectFormer(arg1, arg2, arg3, arg4, arg5, arg6, &result);
+                break;
+            }
+            case _Multilayer_f:{
+                //arg: D, w, t, ins, N
+                getMultilayerI_Foil(arg1, arg2, arg3, arg4, arg5, &result);
                 break;
             }
             case _FerrToroid:{

@@ -40,7 +40,7 @@ Multiloop::~Multiloop()
     settings->beginGroup( "Multi_loop" );
     settings->setValue("pos", this->pos());
     settings->setValue("N", nTurns);
-    settings->setValue("ind", ind * fOpt->dwInductanceMultiplier);
+    settings->setValue("ind", ind);
     settings->setValue("Di", Di);
     settings->setValue("d", dw);
     settings->setValue("dt", dt);
@@ -123,7 +123,7 @@ void Multiloop::on_pushButton_clicked()
     if (!ui->checkBox_isReverce->isChecked())
         nTurns = loc.toInt(ui->lineEdit_N->text(), &ok1);
     else
-        ind = loc.toDouble(ui->lineEdit_N->text(), &ok1);
+        ind = loc.toDouble(ui->lineEdit_N->text(), &ok1)*fOpt->dwInductanceMultiplier;
     double Di = loc.toDouble(ui->lineEdit_1->text(), &ok2)*fOpt->dwLengthMultiplier;
     if (fOpt->isAWG){
         dw = convertfromAWG(ui->lineEdit_2->text(), &ok3);
@@ -170,7 +170,7 @@ void Multiloop::on_pushButton_clicked()
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     if (!ui->checkBox_isReverce->isChecked()){
-        sResult += tr("Inductance") + " L = " + loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
+        sResult += tr("Inductance") + " L = " + loc.toString(ind , 'f', fOpt->dwAccuracy) + " "
                 + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
     } else {
         sResult += tr("Number of turns of the coil") + " N = " + loc.toString(nTurns) + "<br/>";

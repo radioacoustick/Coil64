@@ -197,6 +197,15 @@
            </item>
            <item>
             <property name="text">
+             <string>Multilayer foil-wound coil</string>
+            </property>
+            <property name="icon">
+             <iconset resource="res.qrc">
+              <normaloff>:/menu_ico/res/ico1-multi-tape.png</normaloff>:/menu_ico/res/ico1-multi-tape.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Ferrite toroid coil</string>
             </property>
             <property name="icon">
@@ -1643,8 +1652,9 @@
     <addaction name="actionHelp"/>
     <addaction name="actionHomePage"/>
     <addaction name="separator"/>
-    <addaction name="actionDonate"/>
+    <addaction name="actionVersions_history"/>
     <addaction name="actionAbout"/>
+    <addaction name="actionDonate"/>
    </widget>
    <widget class="QMenu" name="menuAdditional_calculating">
     <property name="title">
@@ -1922,6 +1932,15 @@
   <action name="actionAmidon_cores">
    <property name="text">
     <string>Amidon cores</string>
+   </property>
+  </action>
+  <action name="actionVersions_history">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/icons8-repository-32.png</normaloff>:/menu_ico/res/icons8-repository-32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Versions history</string>
    </property>
   </action>
  </widget>

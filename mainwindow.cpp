@@ -704,7 +704,11 @@ void MainWindow::on_actionHelp_triggered()
             break;
         }
         case _Flat_Spiral:{
-            //            QDesktopServices::openUrl(QUrl("https://coil32.net/pcb-coil.html"));
+            QDesktopServices::openUrl(QUrl("https://coil32.net/foil-wound-coil-calculation.html"));
+            break;
+        }
+        case _Multilayer_f:{
+            QDesktopServices::openUrl(QUrl("https://coil32.net/foil-wound-coil-calculation.html"));
             break;
         }
         default:
@@ -723,6 +727,11 @@ void MainWindow::on_actionDonate_triggered()
 void MainWindow::on_actionHomePage_triggered()
 {
     QDesktopServices::openUrl(QUrl("https://coil32.net"));
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionVersions_history_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://coil32.net/version-history.html"));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_listWidget_currentRowChanged(int currentRow)
@@ -1046,6 +1055,46 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             else
                 on_lineEdit_4_editingFinished();
             mui->lineEdit_5->setText(loc.toString(data->k / myOpt->dwLengthMultiplier));
+            break;
+        }
+        case _Multilayer_f:{
+            mui->image->setPixmap(QPixmap(":/images/res/Coil11.png"));
+            mui->groupBox->setVisible(false);
+            mui->groupBox_6->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
+            if (myOpt->isAWG){
+                mui->label_04->setText(tr("AWG"));
+            }
+            mui->label_freq->setVisible(false);
+            mui->label_freq_m->setVisible(false);
+            mui->lineEdit_freq->setVisible(false);
+            mui->lineEdit_3->setVisible(true);
+            mui->label_3->setVisible(true);
+            mui->label_03->setVisible(true);
+            mui->lineEdit_4->setVisible(true);
+            mui->label_4->setVisible(true);
+            mui->label_04->setVisible(true);
+            mui->lineEdit_5->setVisible(false);
+            mui->label_5->setVisible(false);
+            mui->label_05->setVisible(false);
+            mui->lineEdit_6->setVisible(false);
+            mui->label_6->setVisible(false);
+            mui->label_06->setVisible(false);
+            mui->line_6->setVisible(false);
+            tmp_txt = tr("Former diameter") + " D:";
+            mui->label_1->setText(tmp_txt);
+            tmp_txt = tr("Foil width") + " w:";
+            mui->label_2->setText(tmp_txt);
+            tmp_txt = tr("Foil thickness") + " t:";
+            mui->label_3->setText(tmp_txt);
+            tmp_txt = tr("Insulation thickness")+" g:";
+            mui->label_4->setText(tmp_txt);
+            mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
+            mui->lineEdit_ind->selectAll();
+            mui->lineEdit_1->setText(loc.toString(data->D / myOpt->dwLengthMultiplier));
+            mui->lineEdit_2->setText(loc.toString(data->w / myOpt->dwLengthMultiplier));
+            mui->lineEdit_3->setText(loc.toString(data->t / myOpt->dwLengthMultiplier));
+            mui->lineEdit_4->setText(loc.toString(data->isol / myOpt->dwLengthMultiplier));
             break;
         }
         case _FerrToroid:{
@@ -1516,6 +1565,48 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
                 mui->lineEdit_6_2->setText(loc.toString(data->k / myOpt->dwLengthMultiplier));
             else
                 on_lineEdit_5_2_editingFinished();
+            break;
+        }
+        case _Multilayer_f:{
+            mui->image->setPixmap(QPixmap(":/images/res/Coil11.png"));
+            mui->groupBox_2->setVisible(false);
+            mui->groupBox_7->setVisible(false);
+            mui->comboBox_checkPCB->setVisible(false);
+            mui->label_N->setVisible(true);
+            mui->lineEdit_N->setVisible(true);
+            mui->label_freq2->setVisible(false);
+            mui->label_freq_m2->setVisible(false);
+            mui->lineEdit_freq2->setVisible(false);
+            mui->lineEdit_3_2->setVisible(true);
+            mui->label_3_2->setVisible(true);
+            mui->label_03_2->setVisible(true);
+            mui->lineEdit_4_2->setVisible(true);
+            mui->label_4_2->setVisible(true);
+            mui->label_04_2->setVisible(true);
+            mui->lineEdit_5_2->setVisible(false);
+            mui->label_5_2->setVisible(false);
+            mui->label_05_2->setVisible(false);
+            mui->lineEdit_6_2->setVisible(false);
+            mui->label_6_2->setVisible(false);
+            mui->label_06_2->setVisible(false);
+            mui->lineEdit_7_2->setVisible(false);
+            mui->label_7_2->setVisible(false);
+            mui->label_07_2->setVisible(false);
+            tmp_txt = tr("Former diameter") + " D:";
+            mui->label_1_2->setText(tmp_txt);
+            tmp_txt = tr("Foil width") + " w:";
+            mui->label_2_2->setText(tmp_txt);
+            tmp_txt = tr("Foil thickness") + " t:";
+            mui->label_3_2->setText(tmp_txt);
+            tmp_txt = tr("Insulation thickness")+" g:";
+            mui->label_4_2->setText(tmp_txt);
+            mui->lineEdit_N->setText(loc.toString(data->N));
+            mui->lineEdit_N->selectAll();
+            mui->lineEdit_freq2->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
+            mui->lineEdit_1_2->setText(loc.toString(data->D / myOpt->dwLengthMultiplier));
+            mui->lineEdit_2_2->setText(loc.toString(data->w / myOpt->dwLengthMultiplier));
+            mui->lineEdit_3_2->setText(loc.toString(data->t / myOpt->dwLengthMultiplier));
+            mui->lineEdit_4_2->setText(loc.toString(data->isol / myOpt->dwLengthMultiplier));
             break;
         }
         case _FerrToroid:{
@@ -2103,7 +2194,8 @@ void MainWindow::on_lineEdit_1_editingFinished()
         case _Onelayer_p:
         case _Onelayer_q:
         case _Multilayer:
-        case _Multilayer_p:{
+        case _Multilayer_p:
+        case _Multilayer_f:{
             data->D = loc.toDouble(mui->lineEdit_1->text(),&ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2159,7 +2251,8 @@ void MainWindow::on_lineEdit_2_editingFinished()
             }
             break;
         }
-        case _Onelayer_p:{
+        case _Onelayer_p:
+        case _Multilayer_f:{
             data->w = loc.toDouble(mui->lineEdit_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2212,7 +2305,8 @@ void MainWindow::on_lineEdit_3_editingFinished()
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
-        case _Onelayer_p:{
+        case _Onelayer_p:
+        case _Multilayer_f:{
             data->t = loc.toDouble(mui->lineEdit_3->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2268,7 +2362,8 @@ void MainWindow::on_lineEdit_4_editingFinished()
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
-        case _Onelayer_p:{
+        case _Onelayer_p:
+        case _Multilayer_f:{
             data->isol = loc.toDouble(mui->lineEdit_4->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2402,7 +2497,8 @@ void MainWindow::on_lineEdit_1_2_editingFinished()
         case _Onelayer_p:
         case _Onelayer_q:
         case _Multilayer:
-        case _Multilayer_p:{
+        case _Multilayer_p:
+        case _Multilayer_f:{
             data->D = loc.toDouble(mui->lineEdit_1_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2449,7 +2545,8 @@ void MainWindow::on_lineEdit_2_2_editingFinished()
             }
             break;
         }
-        case _Onelayer_p:{
+        case _Onelayer_p:
+        case _Multilayer_f:{
             data->w = loc.toDouble(mui->lineEdit_2_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2490,7 +2587,8 @@ void MainWindow::on_lineEdit_3_2_editingFinished()
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
-        case _Onelayer_p:{
+        case _Onelayer_p:
+        case _Multilayer_f:{
             data->t = loc.toDouble(mui->lineEdit_3_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -2547,7 +2645,8 @@ void MainWindow::on_lineEdit_4_2_editingFinished()
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
-        case _Onelayer_p:{
+        case _Onelayer_p:
+        case _Multilayer_f:{
             data->isol = loc.toDouble(mui->lineEdit_4_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
@@ -3008,6 +3107,44 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 thread->start();
                 break;
             }
+            case _Multilayer_f:{
+                if ((mui->lineEdit_3->text().isEmpty())||(mui->lineEdit_4->text().isEmpty())){
+                    showWarning(tr("Warning"), tr("One or more inputs are empty!"));
+                    return;
+                }
+                bool ok1, ok2, ok3, ok4, ok5;
+                double I = loc.toDouble(mui->lineEdit_ind->text(),&ok1)*myOpt->dwInductanceMultiplier;
+                double D = loc.toDouble(mui->lineEdit_1->text(),&ok2)*myOpt->dwLengthMultiplier;
+                double w = loc.toDouble(mui->lineEdit_2->text(),&ok3)*myOpt->dwLengthMultiplier;
+                double t = loc.toDouble(mui->lineEdit_3->text(),&ok4)*myOpt->dwLengthMultiplier;
+                double ins = loc.toDouble(mui->lineEdit_4->text(),&ok5)*myOpt->dwLengthMultiplier;
+                if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
+                    showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+                    return;
+                }
+                if ((I == 0)||(D == 0)||(w == 0)||(t == 0)||(ins == 0)){
+                    showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
+                    return;
+                }
+                if (w/t < 100){
+                    showWarning(tr("Warning"), "w/t < 100");
+                    return;
+                }
+                if (w/D > 1){
+                    showWarning(tr("Warning"), "w > D");
+                    return;
+                }
+                data->inductance = I;
+                mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
+                mui->lineEdit_1->setText(loc.toString(D / myOpt->dwLengthMultiplier));
+                mui->lineEdit_2->setText(loc.toString(w / myOpt->dwLengthMultiplier));
+                mui->lineEdit_3->setText(loc.toString(t / myOpt->dwLengthMultiplier));
+                mui->lineEdit_4->setText(loc.toString(ins / myOpt->dwLengthMultiplier));
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, D, w, t, ins, I, 0, 0 );
+                connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerN_Foil_Result(_CoilResult)));
+                thread->start();
+                break;
+            }
             case _FerrToroid:{
                 if ((mui->lineEdit_3->text().isEmpty())||(mui->lineEdit_4->text().isEmpty())){
                     showWarning(tr("Warning"), tr("One or more inputs are empty!"));
@@ -3421,6 +3558,43 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_6_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 MThread_calculate *thread= new MThread_calculate( FormCoil, tab, a, b, l, c, d, k, 0 );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerI_Rect_Result(_CoilResult)));
+                thread->start();
+                break;
+            }
+            case _Multilayer_f:{
+                if ((mui->lineEdit_N->text().isEmpty()) ||(mui->lineEdit_4_2->text().isEmpty())){
+                    showWarning(tr("Warning"), tr("One or more inputs are empty!"));
+                    return;
+                }
+                bool ok1, ok2, ok3, ok4, ok5;
+                double N = loc.toDouble(mui->lineEdit_N->text(), &ok1);
+                double D = loc.toDouble(mui->lineEdit_1_2->text(), &ok2)*myOpt->dwLengthMultiplier;
+                double w = loc.toDouble(mui->lineEdit_2_2->text(), &ok3)*myOpt->dwLengthMultiplier;
+                double t = loc.toDouble(mui->lineEdit_3_2->text(), &ok4)*myOpt->dwLengthMultiplier;
+                double ins = loc.toDouble(mui->lineEdit_4_2->text(), &ok5)*myOpt->dwLengthMultiplier;
+                if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
+                    showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+                    return;
+                }
+                if ((N == 0)||(D == 0)||(w == 0)||(t == 0)||(ins == 0)){
+                    showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
+                    return;
+                }
+                if (w/t < 100){
+                    showWarning(tr("Warning"), "w/t < 100");
+                    return;
+                }
+                if (w/D > 1){
+                    showWarning(tr("Warning"), "w > D");
+                    return;
+                }
+                mui->lineEdit_N->setText(loc.toString(N));
+                mui->lineEdit_1_2->setText(loc.toString(D / myOpt->dwLengthMultiplier));
+                mui->lineEdit_2_2->setText(loc.toString(w / myOpt->dwLengthMultiplier));
+                mui->lineEdit_3_2->setText(loc.toString(t / myOpt->dwLengthMultiplier));
+                mui->lineEdit_4_2->setText(loc.toString(ins / myOpt->dwLengthMultiplier));
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, D, w, t, ins, N, 0, 0 );
+                connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerI_Foil_Result(_CoilResult)));
                 thread->start();
                 break;
             }
@@ -4043,6 +4217,46 @@ void MainWindow::get_multilayerN_Rect_Result(_CoilResult result){
     this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::get_multilayerN_Foil_Result(_CoilResult result)
+{
+    QTextCursor c = mui->textBrowser->textCursor();
+    prepareHeader(&c);
+    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    if (myOpt->isInsertImage){
+        Input += "<img src=\":/images/res/Coil11.png\">";
+    }
+    Input += "<p><u>" + tr("Input") + ":</u><br/>";
+    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
+    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
+    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
+    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
+    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "</p>";
+    c.insertHtml(Input);
+    QString Result = "<hr>";
+    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+    data->N = result.N;
+    Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N) + "<br/>";
+    Result += tr("Outside diameter") + " Do = " + loc.toString(result.thd, 'f', myOpt->dwAccuracy) + " "
+            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    QString _foil_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
+    QStringList list = _foil_length.split(QRegExp(" "), QString::SkipEmptyParts);
+    QString d_foil_length = list[0];
+    QString _ssLengthMeasureUnit = list[1];
+    Result += tr("Length of the foil") + " lf = " + loc.toString(d_foil_length.toDouble(), 'f', myOpt->dwAccuracy) + " " +
+            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    Result += tr("Resistance of the coil") + " R = " + loc.toString(result.fourth, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + " (" + tr("Copper") + ")<br/>";
+    Result += tr("Resistance of the coil") + " R = " + loc.toString(result.five, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + " (" + tr("Aluminum") + ")";
+    Result += "</p><hr>";
+    c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
+    mui->pushButton_Calculate->setEnabled(true);
+    this->setCursor(Qt::ArrowCursor);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_ferrToroidN_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
     prepareHeader(&c);
@@ -4504,6 +4718,47 @@ void MainWindow::get_multilayerI_Rect_Result(_CoilResult result){
     Result += tr("Number of turns of the coil") + " N = " + loc.toString(N1) + "..." + loc.toString(N2) + "<br/>";
     Result += tr("Inductance") + " L = " + loc.toString(L1, 'f', myOpt->dwAccuracy) + "..." + loc.toString(L2, 'f', myOpt->dwAccuracy) + " "
             + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
+    Result += "</p><hr>";
+    c.insertHtml(Result);
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
+    mui->pushButton_Calculate->setEnabled(true);
+    this->setCursor(Qt::ArrowCursor);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::get_multilayerI_Foil_Result(_CoilResult result)
+{
+    QTextCursor c = mui->textBrowser->textCursor();
+    prepareHeader(&c);
+    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    if (myOpt->isInsertImage){
+        Input += "<img src=\":/images/res/Coil11.png\">";
+    }
+    Input += "<p><u>" + tr("Input") + ":</u><br/>";
+    Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
+    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
+    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
+    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
+    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "</p>";
+    c.insertHtml(Input);
+    QString Result = "<hr>";
+    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+    data->inductance = result.N;
+    Result += tr("Inductance") + " L = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + " "
+            + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+    QString _foil_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
+    QStringList list = _foil_length.split(QRegExp(" "), QString::SkipEmptyParts);
+    QString d_foil_length = list[0];
+    QString _ssLengthMeasureUnit = list[1];
+    Result += tr("Length of the foil") + " lf = " + loc.toString(d_foil_length.toDouble(), 'f', myOpt->dwAccuracy) + " " +
+            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    Result += tr("Outside diameter") + " Do = " + loc.toString(result.thd, 'f', myOpt->dwAccuracy) + " "
+            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    Result += tr("Resistance of the coil") + " R = " + loc.toString(result.fourth, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + " (" + tr("Copper") + ")<br/>";
+    Result += tr("Resistance of the coil") + " R = " + loc.toString(result.five, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + " (" + tr("Aluminum") + ")";
     Result += "</p><hr>";
     c.insertHtml(Result);
     if(myOpt->isLastShowingFirst)

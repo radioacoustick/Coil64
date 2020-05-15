@@ -72,16 +72,20 @@ QString converttoAWG(double d, bool *isOK){
     return result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double find_spiral_length(int N, double Din, double k) {
+double find_Archimedean_spiral_length(int n, double a) {
+  //function to calculate the Archimedean spiral length
+  double phi = 2 * n * M_PI;
+  double l = (a / (4 * M_PI)) * (phi * sqrt(1 + phi * phi) + log(phi + sqrt(1 + phi * phi)));
+  return l;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double find_actual_spiral_length(int N, double Din, double k) {
     //Find the spiral length
-    double Ltotal = 0;
-    double length_i, Dik;
-    for (int i = 1; i < N + 1; i++) {
-        Dik = Din + 2 * (i - 1) * k;
-        length_i = sqrt(pow((M_PI * Dik), 2) + k * k);
-        Ltotal += length_i;
-    }
-    return Ltotal;
+    int ni = ceil(Din / (2 * k));
+    double Lin = find_Archimedean_spiral_length(ni, k);
+    int n = ni + N;
+    double Lt = find_Archimedean_spiral_length(n, k);
+    return (Lt - Lin);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double rosaKm(double n){
@@ -792,6 +796,85 @@ void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, do
     result->fourth = N2;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _CoilResult *result){
+    D = D / 10;
+    w = w / 10;
+    t = t /10;
+    ins = ins / 10;
+    double g = exp(-1.5) * w;
+    //double g = 0.2235*(w + t);
+    double k = ins + t;
+    int N = 0;
+    double r0 = (D + t) / 2;
+    double Ltotal = 0;
+    while (Ltotal <= I) {
+        N++;
+        double ny = r0 + k * (N - 1);
+        double Lns = Mut(ny, ny, g, 0);
+        double M = 0;
+        if (N > 1) {
+            for (double j = N; j >= 2; j--) {
+                double jy = r0 + k * (j - 2);
+                double r = ny - jy;
+                double gmd = exp(((r * r) / (w * w)) * log(r) + 0.5 * (1 - ((r * r) / (w * w))) * log(w * w + r * r) + (2 * r / w) * atan(w / r) - 1.5);
+                double gmr = sqrt(ny*jy);
+                double ra = (gmd + sqrt(gmd * gmd + 4 * gmr * gmr)) / 2;
+                double rb = ra - gmd;
+                M = M + 2 * Mut(ra, rb, 0, gmd);
+            }
+        }
+        Ltotal = Ltotal + Lns + M;
+    }
+    double th = k * (N - 1);
+    double Do = (D + 2 * th) *10;
+    double Length_spiral = find_actual_spiral_length(N, D, k) * 10;
+    double Rdcc = (0.0175 * Length_spiral * 1e-4) / (w * t); // resistance of the copper foil
+    double Rdca = (0.028 * Length_spiral * 1e-4) / (w * t); // resistance of the aliminum foil
+    result->N = N;
+    result->sec = Length_spiral/1000;
+    result->thd = Do;
+    result->fourth = Rdcc;
+    result->five = Rdca;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result) {
+    D = D / 10;
+    w = w / 10;
+    t = t / 10;
+    ins = ins / 10;
+    double g = exp(-1.5) * w;
+    double k = ins + t;
+    double r0 = (D + t) / 2;
+    double Ltotal = 0;
+    for (int N = 1; N <= _N; N++) {
+        double ny = r0 + k * (N - 1);
+        double Lns = Mut(ny, ny, g, 0);
+        double M = 0;
+        if (N > 1) {
+            for (double j = N; j >= 2; j--) {
+                double jy = r0 + k * (j - 2);
+                double r = ny - jy;
+                double gmd = exp(((r * r) / (w * w)) * log(r) + 0.5 * (1 - ((r * r) / (w * w))) * log(w * w + r * r) + (2 * r / w) * atan(w / r) - 1.5);
+                double gmr = sqrt(ny*jy);
+                double ra = (gmd + sqrt(gmd * gmd + 4 * gmr * gmr)) / 2;
+                double rb = ra - gmd;
+                M = M + 2 * Mut(ra, rb, 0, gmd);
+            }
+        }
+        Ltotal = Ltotal + Lns + M;
+    }
+    double th = k * (_N - 1);
+    double Do = (D + 2 * th) *10;
+    double Length_spiral = find_actual_spiral_length(_N, D, k) * 10;
+    double Rdcc = (0.0175 * Length_spiral * 1e-4) / (w * t); // resistance of the copper foil
+    double Rdca = (0.028 * Length_spiral * 1e-4) / (w * t); // resistance of the aliminum foil
+    result->N = Ltotal;
+    result->sec = Length_spiral / 1000;
+    result->thd = Do;
+    result->fourth = Rdcc;
+    result->five = Rdca;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, _CoilResult *result){
     double w = 0, wt;
 
@@ -931,7 +1014,7 @@ void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result) {
     }
     w = k * (N - 1);
     double Do = (Di + 2 * w) * 10;
-    double Length_spiral = find_spiral_length(N, Di, k) * 10;
+    double Length_spiral = find_actual_spiral_length(N, Di, k) * 10;
     result->N = N;
     result->sec = Length_spiral/1000;
     result->thd = Do;
@@ -959,7 +1042,7 @@ void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result) {
         }
         Ltotal = Ltotal + Lns + M;
     }
-    double Length_spiral = find_spiral_length(_N, Di, k) * 10;
+    double Length_spiral = find_actual_spiral_length(_N, Di, k) * 10;
     result->N = Ltotal;
     result->sec = Length_spiral / 1000;
 }
