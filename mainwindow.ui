@@ -1653,8 +1653,8 @@
     <addaction name="actionHomePage"/>
     <addaction name="separator"/>
     <addaction name="actionVersions_history"/>
-    <addaction name="actionAbout"/>
     <addaction name="actionDonate"/>
+    <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuAdditional_calculating">
     <property name="title">
