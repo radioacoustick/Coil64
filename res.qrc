@@ -28,6 +28,15 @@
         <file>res/e-core.jpg</file>
         <file>res/E-description.png</file>
         <file>res/Coil11.png</file>
+        <file>res/BN1-description.png</file>
+        <file>res/BN2-description.png</file>
+        <file>res/BN3-description.png</file>
+        <file>res/bn1.jpg</file>
+        <file>res/bn2.jpg</file>
+        <file>res/bn3.jpg</file>
+        <file>res/toroid-square.png</file>
+        <file>res/toroid-round.png</file>
+        <file>res/Coil1.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -103,6 +112,7 @@
         <file>res/icons8-list-32.png</file>
         <file>res/ico1-multi-tape.png</file>
         <file>res/icons8-repository-32.png</file>
+        <file>res/ico1-one-layer-sw.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

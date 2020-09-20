@@ -45,7 +45,8 @@ SOURCES += main.cpp\
     multiloop.cpp \
     loop.cpp \
     shield.cpp \
-    amidon.cpp
+    amidon.cpp \
+    aircoretoroid.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -64,7 +65,8 @@ HEADERS  += mainwindow.h \
     multiloop.h \
     loop.h \
     shield.h \
-    amidon.h
+    amidon.h \
+    aircoretoroid.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -75,7 +77,8 @@ FORMS    += mainwindow.ui \
     multiloop.ui \
     loop.ui \
     shield.ui \
-    amidon.ui
+    amidon.ui \
+    aircoretoroid.ui
 
 RESOURCES += \
     res.qrc

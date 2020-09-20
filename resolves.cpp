@@ -574,6 +574,42 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
     result->five = (nLayer + 1) * k * 10; //coil thickness
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double getMultiLayerI_byN(double D, double lk, double dw, double k, double N)
+{
+    D = D / 10;
+    lk = lk / 10;
+    dw = dw / 10;
+    k = k / 10;
+    int Nl, Nc, Jc, nLayer, jLayer;
+    double nx, ny, jx, jy, Lns, M;
+    double Ltotal = 0; // initialize variable of total self-inductance
+    double lw = 0;
+    double r0 = (D + k) / 2;
+    Nl = (int) floor(lk / k);
+    double g = exp(-0.25) * dw / 2;
+    for (int w = 1; w < N + 1; w++){
+        Nc = (w - 1) % Nl;
+        nLayer = (int) floor((w - 1) / Nl);
+        nx = Nc * k;
+        ny = r0 + k * nLayer;
+        Lns = Mut(ny, ny, g, 0);
+        // self inductance of current turn
+        lw = lw + 2 * M_PI * ny;
+        M = 0;
+        if (w > 1) {
+            for (int j = w; j >= 2; j--) {
+                Jc = (j - 2) % Nl;
+                jx = Jc * k;
+                jLayer = (int) floor((j - 2) / Nl);
+                jy = r0 + k * jLayer;
+                M = M + 2 * Mut(ny, jy, nx - jx, g);
+            }
+        }
+        Ltotal = Ltotal + Lns + M;
+    }
+    return Ltotal;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result){
     double bTmp, nTmp, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, n_g = 0, jg = 0, ind1, ind2, N1, N2;
     int n, Nl, j, Nc, Jc, nLayer, jLayer;
@@ -1258,3 +1294,18 @@ double findSheildedInductance(double I, double D, double Ds, double l, double Hs
   return result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw)
+{
+  double R = 0.1 * (D1 + D2) / 4;
+  double a = 0.05 * (((D1 - D2) / 2) + dw);
+  double ind = 0.01257 * N * N * ( R - sqrt(R * R - a * a));
+  return ind;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw)
+{
+    double R = 0.1 * (D1 + D2) / 4;
+    double a = 0.05 * (((D1 - D2) / 2) + dw);
+    double N = sqrt(Ind / (0.01257 * ( R - sqrt(R * R - a * a))));
+    return N;
+}

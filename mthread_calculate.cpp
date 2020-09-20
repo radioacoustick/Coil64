@@ -39,6 +39,7 @@ void MThread_calculate::run(){
         switch (this->tab) {
         case 0:{
             switch (this->coilForm) {
+            case _Onelayer_cw:
             case _Onelayer:{
                 //arg: Dk, d, p, I, f, 0, 0, mt
                 result.N = getOneLayerN_withRoundWire( arg1, arg2, arg3, arg4, &arg7 );//number of turns
@@ -110,6 +111,7 @@ void MThread_calculate::run(){
         }
         case 1:{
             switch (this->coilForm) {
+            case _Onelayer_cw:
             case _Onelayer:{
                 //arg: Dk, d, p, N, f, 0, 0, mt
                 result.N = getOneLayerI_withRoundWire( arg1, arg2, arg3, arg4, &arg7 );//number of turns
@@ -138,9 +140,11 @@ void MThread_calculate::run(){
             }
             case _Multilayer:{
                 //arg: D, l, c, d, k, 0, 0; D, l, c, Rm, k, 0, 1;
-                if (arg7 < 1){
+                if (arg7 == 0){
+                    result.N = getMultiLayerI_byN(arg1, arg2, arg4, arg5, arg3);
+                } else if (arg7 == 1){
                     getMultiLayerI(arg1, arg2, arg4, arg5, arg3, 0, -1, &result);
-                } else {
+                } else if (arg7 == 2){
                     getMultiLayerI_fromResistance(arg1, arg2, arg3, arg5, arg4, &result);
                 }
                 break;

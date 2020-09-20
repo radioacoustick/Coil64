@@ -48,6 +48,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "loop.h"
 #include "shield.h"
 #include "amidon.h"
+#include "aircoretoroid.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -110,6 +111,7 @@ private slots:
     void on_radioButton_2_clicked(bool checked);
     void on_radioButton_3_clicked(bool checked);
     void on_radioButton_4_clicked(bool checked);
+    void on_radioButton_6_toggled(bool checked);
     void on_radioButton_8_toggled(bool checked);
     void on_radioButton_1_2_clicked(bool checked);
     void on_radioButton_2_2_clicked(bool checked);
@@ -146,6 +148,8 @@ private slots:
     void setLanguage();
     void resetUiFont();
     void prepareHeader(QTextCursor *c);
+    void checkMaterial1(Material *mt);
+    void checkMaterial2(Material *mt);
 
     void on_actionOptions_triggered();
     void on_actionExit_triggered();
@@ -185,6 +189,7 @@ private slots:
     void on_actionLoop_of_one_turn_triggered();
     void on_actionShiels_influence_triggered();
     void on_actionAmidon_cores_triggered();
+    void on_actionAir_core_toroid_coil_triggered();
 
     void getAddCalculationResult(QString result);
 

@@ -59,6 +59,8 @@ private slots:
     void on_pushButton_help_clicked();
     void on_comboBox_tm_currentIndexChanged(int index);
     void on_comboBox_fm_currentIndexChanged(int index);
+    void on_comboBox_bn_m_currentIndexChanged(int index);
+    void on_comboBox_bn_t_currentIndexChanged(int index);
     void on_tabWidget_currentChanged(int index);
     void on_comboBox_fd_currentTextChanged(const QString &arg1);
     void on_comboBox_td_currentTextChanged(const QString &arg1);
@@ -81,6 +83,7 @@ private slots:
     void onCalculate();
     unsigned int decodeColor(QString scolour);
     QString getPotCoreSize(QString sizes, double *average_size = NULL);
+    QString getMultiapertureCoreSize(QString sizes);
     void resolvePotCore(int index);
     void resolveECore(int index);
 

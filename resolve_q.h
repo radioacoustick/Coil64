@@ -21,6 +21,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QtMath>
 
 enum Material {Al, Cu, Ag, Ti};
+enum _Mprop {Rho,Chi,Alpha};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// aluminium, copper, silver, tin -> (Rho, Chi, Alpha) array of material parameters
+/// from tables http://www.g3ynh.info/zdocs/comps/part_1.html
+/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+double const mtrl[4][3] = {{ 2.824e-8, 2.21e-5, 0.0039 }, { 1.7241e-8, - 9.56e-6, 0.00393 }, { 1.59e-8, - 2.63e-5, 0.0038 }, {1.15e-7, 2.4e-6, 0.0042}};
+
 unsigned long int solve_Qr(double I, double Df, double pm, double Dw, double fa, double N, double Cs, Material mt);
 unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t, double fa,  double N, double Cs, Material mt);
 

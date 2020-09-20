@@ -26,7 +26,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 
 enum _FormCoil
 {
-    _Onelayer = 0, //one-layer coil with round wire on a round former
+    _Onelayer_cw = 0, //close-winding one-layer coil with round wire on a round former
+    _Onelayer, //pitch-winding one-layer coil with round wire on a round former
     _Onelayer_p,   //one-layer coil with rect wire on a round former
     _Onelayer_q,   //one-layer coil with round wire on a poligonal former
     _Multilayer,   //multilayer coil with round wire on a round former
@@ -92,6 +93,7 @@ enum _FormCoil
     double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw); //get Inductance for One-layer coil with round wire
     double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw); //get Inductance for One-layer coil with round wire
     void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result);
+    double getMultiLayerI_byN(double D, double lk, double dw, double k, double N); //get Inductance for Multi-layer coil
     void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result); //get Inductance for Multi-layer coil
     void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result);
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result);
@@ -109,12 +111,15 @@ enum _FormCoil
     long findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result);
 
     double findRoundLoop_I(double D, double dw);
+    double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw);
     double findRoundLoop_D(double Ind, double dw);
     double findIsoIsoscelesTriangleLoop_I(double _a, double _b, double dw);
     double findIsoIsoscelesTriangleLoop_a(double Ind, double dw);
     double findRectangleLoop_I(double _a, double _b, double dw);
     double findRectangleLoop_a(double Ind, double dw);
     double findSheildedInductance(double I, double D, double Ds, double l, double Hs);
+    double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw);
+    double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw);
 
 
     double CalcLC0(double L, double C);
