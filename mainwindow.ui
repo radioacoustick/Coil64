@@ -275,7 +275,7 @@
        <item>
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_1">
           <property name="sizePolicy">
@@ -1672,7 +1672,19 @@
     <property name="title">
      <string>&amp;Customize</string>
     </property>
+    <widget class="QMenu" name="menuTheme">
+     <property name="title">
+      <string>Theme</string>
+     </property>
+     <property name="icon">
+      <iconset resource="res.qrc">
+       <normaloff>:/menu_ico/res/icons8-change-theme-32.png</normaloff>:/menu_ico/res/icons8-change-theme-32.png</iconset>
+     </property>
+     <addaction name="actionThemeDefault"/>
+     <addaction name="actionThemeDark"/>
+    </widget>
     <addaction name="actionOptions"/>
+    <addaction name="menuTheme"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -1729,9 +1741,6 @@
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: blue</string>
    </property>
    <property name="inputMethodHints">
     <set>Qt::ImhNoPredictiveText</set>
@@ -1982,6 +1991,25 @@
    </property>
    <property name="text">
     <string>Air core toroid coil</string>
+   </property>
+  </action>
+  <action name="actionThemeDefault">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionThemeDark">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Dark</string>
    </property>
   </action>
  </widget>

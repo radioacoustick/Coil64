@@ -70,10 +70,6 @@ AirCoreToroid::~AirCoreToroid()
 void AirCoreToroid::getOpt(_OptionStruct gOpt)
 {
     *fOpt = gOpt;
-    QFont f1 = this->font();
-    f1.setFamily(fOpt->mainFontFamily);
-    f1.setPixelSize(fOpt->mainFontSize);
-    this->setFont(f1);
     ui->label_N_m->setText(qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
     ui->label_01->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_02->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));

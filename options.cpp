@@ -56,8 +56,8 @@ void Options::getOpt(_OptionStruct gOpt){
     ui->fontspinBox_1->setValue(oOpt->mainFontSize);
     ui->fontComboBox_2->setCurrentText(oOpt->textFontFamily);
     ui->fontspinBox_2->setValue(oOpt->textFontSize);
-
     ui->radioButton_loc2->setChecked(oOpt->isEnglishLocale);
+    ui->comboBox_style->setCurrentIndex(oOpt->styleGUI);
 
     ui->checkBox_3->setChecked(oOpt->isAutomaticUpdate);
     switch (oOpt->upDateInterval) {
@@ -103,6 +103,8 @@ void Options::on_pushButton_2_clicked()
     oOpt->isConfirmDelete = ui->checkBox_6->isChecked();
     oOpt->isSaveOnExit = ui->checkBox_7->isChecked();
     oOpt->isLastShowingFirst = ui->checkBox_8->isChecked();
+    oOpt->styleGUI = ui->comboBox_style->currentIndex();
+
 
     oOpt->mainFontFamily = ui->fontComboBox_1->currentText();
     oOpt->textFontFamily = ui->fontComboBox_2->currentText();

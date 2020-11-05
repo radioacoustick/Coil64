@@ -68,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt->isEnglishLocale = settings->value( "isEnglishLocale", false ).toBool();
     myOpt->isPCBcoilSquare = settings->value("isPCBcoilSquare",true).toBool();
     myOpt->isSaveOnExit = settings->value("isSaveOnExit",true).toBool();
+    myOpt->styleGUI = settings->value("styleGUI",1).toInt();
     myOpt->isLastShowingFirst = settings->value("isLastShowingFirst",true).toBool();
     if (myOpt->isSaveOnExit)
         calc_count = settings->value( "calc_count", 0 ).toInt();
@@ -323,7 +324,7 @@ void MainWindow::setLanguage(){
     QList<QAction*> actions = menus.takeAt(1)->actions();
     QAction* child;
     if (actions.count() > 1){
-        child = actions.at(2);
+        child = actions.last();
         child->setText(tr("Language"));
     }
     QList<QAction*> popupactions = popupmenu->actions();
@@ -442,14 +443,15 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue("isConfirmExit", myOpt->isConfirmExit);
         settings->setValue("isConfirmClear", myOpt->isConfirmClear);
         settings->setValue("isConfirmDelete", myOpt->isConfirmDelete);
-        settings->setValue( "MainFontFamily", myOpt->mainFontFamily);
-        settings->setValue( "MainFontSize", myOpt->mainFontSize);
-        settings->setValue( "TextFontFamily", myOpt->textFontFamily);
-        settings->setValue( "TextFontSize", myOpt->textFontSize);
+        settings->setValue("MainFontFamily", myOpt->mainFontFamily);
+        settings->setValue("MainFontSize", myOpt->mainFontSize);
+        settings->setValue("TextFontFamily", myOpt->textFontFamily);
+        settings->setValue("TextFontSize", myOpt->textFontSize);
         settings->setValue("isEnglishLocale", myOpt->isEnglishLocale);
         settings->setValue("isPCBcoilSquare", myOpt->isPCBcoilSquare);
         settings->setValue("isSaveOnExit", myOpt->isSaveOnExit);
         settings->setValue("isLastShowingFirst", myOpt->isLastShowingFirst);
+        settings->setValue("styleGUI", myOpt->styleGUI);
         if (myOpt->isSaveOnExit){
             QTextDocument *document = mui->textBrowser->document();
             QString savePath = defineSavePath();
@@ -535,6 +537,16 @@ void MainWindow::showEvent(QShowEvent *event){
             }
         }
     }
+    switch (myOpt->styleGUI) {
+    case _DefaultStyle:
+        on_actionThemeDefault_triggered();
+        break;
+    case _DarkStyle:
+        on_actionThemeDark_triggered();
+        break;
+    default:
+        break;
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool MainWindow::eventFilter(QObject *watched, QEvent *event){
@@ -558,8 +570,7 @@ void MainWindow::resetUiFont(){
     QFont f1 = this->font();
     f1.setFamily(myOpt->mainFontFamily);
     f1.setPixelSize(myOpt->mainFontSize);
-    this->setFont(f1);
-    mui->listWidget->setFont(f1);
+    qApp->setFont(f1);
     mui->toolButton_Clear->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_CopyAll->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_CopySel->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
@@ -575,17 +586,6 @@ void MainWindow::resetUiFont(){
     mui->toolButton_cdsr->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_soe->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_lShowFirst->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
-    QList<QAction*> actions;
-    QAction* child;
-    QList<QMenu*> menus = this->menuBar()->findChildren<QMenu*>();
-    for (int i = 0; i < menus.count(); i++){
-        actions.clear();
-        actions = menus.at(i)->actions();
-        for (int j = 0; j < actions.count(); j++){
-            child = actions.at(j);
-            child->setFont(f1);
-        }
-    }
     QFont f2 = mui->textBrowser->font();
     f2.setFamily(myOpt->textFontFamily);
     f2.setPixelSize(myOpt->textFontSize);
@@ -1948,6 +1948,32 @@ void MainWindow::on_actionTo_null_data_triggered()
     delete settings;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionThemeDefault_triggered()
+{
+    qApp->setStyleSheet("");
+    mui->actionThemeDark->setChecked(false);
+    mui->actionThemeDefault->setChecked(true);
+    myOpt->styleGUI = _DefaultStyle;
+    resetUiFont();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionThemeDark_triggered()
+{
+    // loadstylesheet
+    QFile qfDarkstyle(QStringLiteral(":/stylesheet/res/DarkStyle.qss"));
+    if (qfDarkstyle.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      // set stylesheet
+      QString qsStylesheet = QString::fromLatin1(qfDarkstyle.readAll());
+      qApp->setStyleSheet(qsStylesheet);
+      qfDarkstyle.close();
+    }
+    //setStyleSheet(DARK_STYLE);
+    mui->actionThemeDark->setChecked(true);
+    mui->actionThemeDefault->setChecked(false);
+    myOpt->styleGUI = _DarkStyle;
+    resetUiFont();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionClear_all_triggered()
 {
     if(!mui->textBrowser->document()->isEmpty()){
@@ -2311,6 +2337,16 @@ void MainWindow::getOptionStruct(_OptionStruct gOpt){
     emit sendOpt(*myOpt);
     int tab = mui->tabWidget->currentIndex();
     on_tabWidget_currentChanged(tab);
+    switch (myOpt->styleGUI) {
+    case _DefaultStyle:
+        on_actionThemeDefault_triggered();
+        break;
+    case _DarkStyle:
+        on_actionThemeDark_triggered();
+        break;
+    default:
+        break;
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_lineEdit_ind_editingFinished()
@@ -2998,7 +3034,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_1->setText(loc.toString(D / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(k / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, I, f, 0, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, I, f, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3048,7 +3084,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, I, f, 0, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, I, f, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3094,7 +3130,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_3->setText(loc.toString(t / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4->setText(loc.toString(ins / myOpt->dwLengthMultiplier));
                 mui->lineEdit_5->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, I, f, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, I, f, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_rectW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3466,7 +3502,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_1_2->setText(loc.toString(D / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_2_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, N, f, 0, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, N, f, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3514,7 +3550,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, 0, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3615,7 +3651,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, _n, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, _n, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_Poligonal_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -5315,4 +5351,3 @@ void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
         }
     }
 }
-

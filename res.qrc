@@ -113,6 +113,7 @@
         <file>res/ico1-multi-tape.png</file>
         <file>res/icons8-repository-32.png</file>
         <file>res/ico1-one-layer-sw.png</file>
+        <file>res/icons8-change-theme-32.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>
@@ -135,5 +136,8 @@
         <file>res/translations/Coil64_tr.qm</file>
         <file>res/translations/Coil64_zh.qm</file>
         <file>res/translations/Coil64_cs.qm</file>
+    </qresource>
+    <qresource prefix="/stylesheet">
+        <file>res/DarkStyle.qss</file>
     </qresource>
 </RCC>

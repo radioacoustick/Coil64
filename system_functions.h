@@ -38,6 +38,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <sys/utsname.h>
 #endif
 
+enum _StyleGUI {
+    _DefaultStyle,
+    _DarkStyle
+};
+
 #pragma pack(push,1)
     struct _OptionStruct{
       unsigned int dwAccuracy;
@@ -68,6 +73,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
       bool isAdditionalResult;
       bool isPCBcoilSquare;
       bool isLastShowingFirst;
+      int styleGUI;
       int upDateInterval;
       QDate firstDate;
     };

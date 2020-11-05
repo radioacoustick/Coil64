@@ -292,10 +292,6 @@ void Amidon::getOpt(_OptionStruct gOpt)
 {
     *fOpt = gOpt;
     ui->label_2->setText(qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
-    QFont f1 = this->font();
-    f1.setFamily(fOpt->mainFontFamily);
-    f1.setPixelSize(fOpt->mainFontSize);
-    this->setFont(f1);
     QSettings *settings;
     defineAppSettings(settings);
     settings->beginGroup("Amidon");
@@ -383,7 +379,7 @@ void Amidon::on_tabWidget_currentChanged(int index)
     if (fOpt->mainFontSize > 0){
         switch (index) {
         case _TToroid:{
-            ui->label_desc->setPixmap(QPixmap(":/images/res/T-description.png"));
+            ui->image->setPixmap(QPixmap(":/images/res/T-description.png"));
             QString tfeatures_str = TToroid_Features[ui->comboBox_tm->currentIndex()];
             QStringList tfeatures = tfeatures_str.split(",");
             QString tcolors = tfeatures.at(2);
@@ -393,13 +389,13 @@ void Amidon::on_tabWidget_currentChanged(int index)
         }
             break;
         case _FToroid:{
-            ui->label_desc->setPixmap(QPixmap(":/images/res/F-description.png"));
+            ui->image->setPixmap(QPixmap(":/images/res/F-description.png"));
             drawToroid(Qt::black,0x2F4F4F);
             on_comboBox_fd_currentTextChanged(ui->comboBox_fd->currentText());
         }
             break;
         case _PotCore:{
-            ui->label_desc->setPixmap(QPixmap(":/images/res/E-description.png"));
+            ui->image->setPixmap(QPixmap(":/images/res/E-description.png"));
             drawImage(QPixmap(":/images/res/e-core.jpg"));
             if (ui->radioButton_e01->isChecked())
                 on_radioButton_e01_clicked(true);
@@ -414,7 +410,7 @@ void Amidon::on_tabWidget_currentChanged(int index)
         }
             break;
         case _ECore:{
-            ui->label_desc->setPixmap(QPixmap(":/images/res/P-description.png"));
+            ui->image->setPixmap(QPixmap(":/images/res/P-description.png"));
             drawImage(QPixmap(":/images/res/pot-core.jpg"));
             if (ui->radioButton_p01->isChecked())
                 on_radioButton_p01_clicked(true);
@@ -544,15 +540,15 @@ void Amidon::on_comboBox_bn_t_currentIndexChanged(int index){
         QString bn_type = bn_size_val.at(9);
         int i_type = bn_type.toInt();
         if (i_type == 1){
-            ui->label_desc->setPixmap(QPixmap(":/images/res/BN1-description.png"));
+            ui->image->setPixmap(QPixmap(":/images/res/BN1-description.png"));
             drawImage(QPixmap(":/images/res/bn1.jpg"));
         }
         if (i_type == 2){
-            ui->label_desc->setPixmap(QPixmap(":/images/res/BN2-description.png"));
+            ui->image->setPixmap(QPixmap(":/images/res/BN2-description.png"));
             drawImage(QPixmap(":/images/res/bn2.jpg"));
         }
         if (i_type == 3){
-            ui->label_desc->setPixmap(QPixmap(":/images/res/BN3-description.png"));
+            ui->image->setPixmap(QPixmap(":/images/res/BN3-description.png"));
             drawImage(QPixmap(":/images/res/bn3.jpg"));
         }
         QString sC = bn_size_val.at(3);
@@ -1048,7 +1044,7 @@ void Amidon::on_pushButton_export_clicked()
         sResult += QString("<img src=\"data:image/png;base64,") + byteArray.toBase64() + "\"/></p><p>";
         QByteArray byteArray2;
         QBuffer buffer2(&byteArray2);
-        ui->label_desc->pixmap()->save(&buffer2, "PNG");
+        ui->image->pixmap()->save(&buffer2, "PNG");
         sResult += QString("<img src=\"data:image/png;base64,") + byteArray2.toBase64() + "\"/></p>";
     }
     sResult += "<p><u>" + tr("Input data") + ":</u><br/>";

@@ -90,10 +90,6 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     ui->label_s_m->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_dw_m->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_p_m->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
-    QFont f1 = this->font();
-    f1.setFamily(fOpt->mainFontFamily);
-    f1.setPixelSize(fOpt->mainFontSize);
-    this->setFont(f1);
     QSettings *settings;
     defineAppSettings(settings);
     settings->beginGroup( "FerriteRod" );

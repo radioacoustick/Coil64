@@ -164,6 +164,8 @@ private slots:
     void on_actionCopy_triggered();
     void on_actionClear_all_triggered();
     void on_actionTo_null_data_triggered();
+    void on_actionThemeDefault_triggered();
+    void on_actionThemeDark_triggered();
 
     void on_toolButton_Help_clicked();
     void on_toolButton_Configure_clicked();

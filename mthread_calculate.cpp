@@ -42,8 +42,7 @@ void MThread_calculate::run(){
             case _Onelayer_cw:
             case _Onelayer:{
                 //arg: Dk, d, p, I, f, 0, 0, mt
-                result.N = getOneLayerN_withRoundWire( arg1, arg2, arg3, arg4, &arg7 );//number of turns
-                result.sec = this->arg7; //wire length
+                result.N = getOneLayerN_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg7 );//number of turns
                 result.thd = find_Cs(arg3, arg1, arg3 * result.N); //self-capacitance
                 result.six = solve_Qr(arg4,arg1,arg3,arg2,arg5, result.N, result.thd, mt);//Q-factor
                 result.fourth = findSRF(arg3 * result.N, arg1, result.sec);//self-resonance frequency
@@ -51,8 +50,7 @@ void MThread_calculate::run(){
             }
             case _Onelayer_p:{
                 //arg: Dk, w, t, p, I, f, 0, mt
-                result.N = getOneLayerN_withRectWire( arg1, arg2, arg3, arg4, arg5, &arg7 );//number of turns
-                result.sec = this->arg7; //wire length
+                result.N = getOneLayerN_withRectWire( arg1, arg2, arg3, arg4, arg5, &result.sec, arg7 );//number of turns
                 result.thd = find_Cs(arg4, arg1, arg4 * result.N); //self-capacitance
                 result.six = solve_Qc(arg5,arg1,arg4,arg2, arg3, arg6, result.N, result.thd, mt);//Q-factor
                 result.fourth = findSRF(arg4 * result.N, arg1, result.sec);//self-resonance frequency
@@ -60,7 +58,7 @@ void MThread_calculate::run(){
             }
             case _Onelayer_q:{
                 //arg: I, Dk, d, p, f, _n, 0, mt
-                result.N = getOneLayerN_Poligonal( arg1, arg2, arg3, arg4, arg6, &result );//number of turns
+                result.N = getOneLayerN_Poligonal( arg1, arg2, arg3, arg4, arg6, &result, arg7 );//number of turns
                 result.fourth = find_Cs(arg4, arg2, arg4 * result.N); //self-capacitance
                 result.six = solve_Qr(arg1, arg2, arg4, arg3, arg5, result.N, result.fourth, mt);//Q-factor
                 result.five = findSRF(arg4 * result.N, arg2, result.thd);//self-resonance frequency
@@ -114,8 +112,7 @@ void MThread_calculate::run(){
             case _Onelayer_cw:
             case _Onelayer:{
                 //arg: Dk, d, p, N, f, 0, 0, mt
-                result.N = getOneLayerI_withRoundWire( arg1, arg2, arg3, arg4, &arg7 );//number of turns
-                result.sec = this->arg7; //wire length
+                result.N = getOneLayerI_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg7 );//number of turns
                 result.thd = find_Cs(arg3, arg1, arg3 * arg4); //self-capacitance
                 result.six = solve_Qr(result.N,arg1, arg3, arg2, arg5, arg4, result.thd, mt);//Q-factor
                 result.fourth = findSRF(arg3 * arg4, arg1, result.sec);//self-resonance frequency
@@ -123,8 +120,7 @@ void MThread_calculate::run(){
             }
             case _Onelayer_p:{
                 //arg:Dk, w, t, p, N, f, 0, mt
-                result.N = getOneLayerI_withRectWire( arg1, arg2, arg3, arg4, arg5, &arg7 );//number of turns
-                result.sec = this->arg7; //wire length
+                result.N = getOneLayerI_withRectWire( arg1, arg2, arg3, arg4, arg5, &result.sec, arg7 );//number of turns
                 result.thd = find_Cs(arg4, arg1, arg4 * arg5); //self-capacitance
                 result.six = solve_Qc(result.N, arg1, arg4, arg2, arg3, arg6, arg5, result.thd, mt);//Q-factor
                 result.fourth = findSRF(arg4 * arg5, arg1, result.sec);//self-resonance frequency
@@ -132,7 +128,7 @@ void MThread_calculate::run(){
             }
             case _Onelayer_q:{
                 //arg: Dk, d, p, N, f, _n, 0, mt
-                getOneLayerI_Poligonal( arg1, arg2, arg3, arg4, arg6, &result);
+                getOneLayerI_Poligonal( arg1, arg2, arg3, arg4, arg6, &result, arg7);
                 result.fourth = find_Cs(arg3, arg1, arg3 * arg4); //self-capacitance
                 result.six = solve_Qr(result.sec, arg1, arg3, arg2, arg5, arg4, result.fourth, mt);//Q-factor
                 result.five = findSRF(arg3 * arg4, arg1, result.thd);//self-resonance frequency

@@ -446,7 +446,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_desc">
+        <widget class="QLabel" name="image">
          <property name="text">
           <string notr="true"/>
          </property>

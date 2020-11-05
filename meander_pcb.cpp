@@ -61,10 +61,6 @@ void Meander_pcb::getOpt(_OptionStruct gOpt){
     ui->label_02->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_03->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_04->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
-    QFont f1 = this->font();
-    f1.setFamily(fOpt->mainFontFamily);
-    f1.setPixelSize(fOpt->mainFontSize);
-    this->setFont(f1);
     QSettings *settings;
     defineAppSettings(settings);
     settings->beginGroup( "Meander_PCB" );

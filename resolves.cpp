@@ -165,7 +165,7 @@ double Ingrnd(double phi, double kphitheta, double sinpsi, double cos2psi, doubl
     return result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t, bool isRoundWire){
+double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t, bool isRoundWire, unsigned int accuracy){
     // by Robert Weaver from http://electronbunker.ca/eb/CalcMethods2d.html (Version 1.0, 2011-03-25)
     // edited by Valery Kustarev 2018-12-16
 
@@ -189,8 +189,8 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
     double sinpsic, psic, g, rr, psio, ThetaO, Y0, cosThetaO, k1, k2, t1, t0, c2s, ss, k, a, b, grandtotal;
     double dx, MaxErr, CurrentErr, kat, kbt, Sum2, LastIntg, Sum, phi, kpt, Integral, aaa, bbb, ccc, ddd;
     int i, m;
-
-    MaxErr = 10000;
+    int err = (int) round(accuracy / 2);
+    MaxErr = pow(10,-err);
     Integral = 0;
     //  grandtotal = 0;
     if (Lw > 2 * M_PI * r) {
@@ -265,7 +265,7 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
         //   Initialize LastResult to trapezoidal area for test purposes
 
         LastIntg = Sum2 / 2 * dx;
-        while ((CurrentErr > MaxErr) || (m < 512)) {
+        while ((CurrentErr > MaxErr) || (m < 1024)) {
             m = 2 * m;
             dx = dx / 2;
             Sum = 0;
@@ -291,7 +291,7 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
     return result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double solveHelicalInductance(double N, double p, double Dk, double dw, double w, double t, double *lw, bool isRoundWire){
+double solveHelicalInductance(double N, double p, double Dk, double dw, double w, double t, double *lw, bool isRoundWire, unsigned int accuracy){
     double lW;
     double psi;
     double sinpsi;
@@ -309,15 +309,15 @@ double solveHelicalInductance(double N, double p, double Dk, double dw, double w
     psi = atan(sinpsi / sqrt(1 - sinpsi * sinpsi));
     lW = M_PI * N * Dk / cos(psi);
     if (isRoundWire){
-        Result = HeliCoilS(lW, psi, Dk / 2, dw, 0, 0, isRoundWire);
+        Result = HeliCoilS(lW, psi, Dk / 2, dw, 0, 0, isRoundWire, accuracy);
     } else {
-        Result = HeliCoilS(lW, psi, Dk / 2, 0, w, t, isRoundWire);
+        Result = HeliCoilS(lW, psi, Dk / 2, 0, w, t, isRoundWire, accuracy);
     }
     *lw = lW;
     return (Result);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double I, double *lw){
+double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double I, double *lw, unsigned int accuracy){
   double Ind, N_max, N_min, N, k, iDk, Kw, rA, rP;
   k = 2;
   N_min = 0;
@@ -328,19 +328,19 @@ double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double
   N = sqrt(I / (0.0002 * M_PI * iDk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 /
     pow((0.755 + 1 / k), 1.44)))));
   _CoilResult res;
-  getOneLayerI_Poligonal(Dk, dw, p, N, n, &res);
+  getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy);
   Ind = res.sec;
   while (Ind < I){
     N_min = N;
     N_max = 2 * N;
     N = (N_max + N_min) / 2;
-    getOneLayerI_Poligonal(Dk, dw, p, N, n, &res);
+    getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy);
     Ind = res.sec;
   }
   N_max = N;
   while (fabs(1 - (Ind / I)) > 0.001){
     N = (N_min + N_max) / 2;
-    getOneLayerI_Poligonal(Dk, dw, p, N, n, &res);
+    getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy);
     Ind = res.sec;
     if (Ind > I)
       N_max = N;
@@ -353,24 +353,24 @@ double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// PUBLIC FUNCTIONS REALIZATION
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw){
+double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw, unsigned int accuracy){
 
     double ind, N_max, N_min, N, k;
     k = 2;
     N_min = 0;
 
     N = sqrt(I / (0.0002 * M_PI * Dk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 / pow((0.755 + 1 / k), 1.44)))));
-    ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true);
+    ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy);
     while (ind < I) {
         N_min = N;
         N_max = 2 * N;
         N = (N_max + N_min) / 2;
-        ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true);
+        ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy);
     }
     N_max = N;
     while (fabs(1 - (ind / I)) > 0.001) {
         N = (N_min + N_max) / 2;
-        ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true);
+        ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy);
         if (ind > I) {
             N_max = N;
         } else {
@@ -380,28 +380,28 @@ double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, doub
     return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw){
-    return solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true);
+double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy){
+    return solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double I, double *lw){
+double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double I, double *lw, unsigned int accuracy){
 
     double ind, N_max, N_min, N, k;
     k = 2;
     N_min = 0;
 
     N = sqrt(I / (0.0002 * M_PI * Dk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 / pow((0.755 + 1 / k), 1.44)))));
-    ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false);
+    ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy);
     while (ind < I) {
         N_min = N;
         N_max = 2 * N;
         N = (N_max + N_min) / 2;
-        ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false);
+        ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy);
     }
     N_max = N;
     while (fabs(1 - (ind / I)) > 0.001) {
         N = (N_min + N_max) / 2;
-        ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false);
+        ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy);
         if (ind > I) {
             N_max = N;
         } else {
@@ -412,21 +412,21 @@ double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw){
-    return solveHelicalInductance(N, p, Dk, 0, w, t, lw, false);
+double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw, unsigned int accuracy){
+    return solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerN_Poligonal(double I, double Dk, double dw, double  h, double n, _CoilResult *result){
+double getOneLayerN_Poligonal(double I, double Dk, double dw, double  h, double n, _CoilResult *result, unsigned int accuracy){
 
   double N, lw;
 
-  N = deriveOneLayerPoligonalN(Dk, dw, h, n, I, &lw);
+  N = deriveOneLayerPoligonalN(Dk, dw, h, n, I, &lw, accuracy);
   result->sec = h * N;
   result->thd = lw;
   return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result){
+void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result, unsigned int accuracy){
 
   double Kw, rA, rP, L, iDk, lw;
 
@@ -435,7 +435,7 @@ void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, 
   rP = (0.5 / M_PI) * (Dk * n * sin(M_PI / n));
   Kw = sqrt(1 / (1 + 368 * (L / Dk)));
   iDk = 2 * (((Kw * pow(rP,2)) + ((2 - Kw) * pow(rA,2))) / (2 * rA));
-  result->sec = solveHelicalInductance(N, h, iDk, dw, 0, 0, &lw, true);
+  result->sec = solveHelicalInductance(N, h, iDk, dw, 0, 0, &lw, true, accuracy);
   result->thd = lw;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -533,7 +533,7 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
         ny = nLayer * k; // y-offset of current turn
         lengthNa = a0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side a)
         lengthNb = b0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side b)
-        lw = lw + 2 * (a0 + b0 + 2 * k * (nLayer));
+        lw += 2 * (a0 + b0 + 2 * k * (nLayer));
         Ladd = SelfInductanceStraightWire(lengthNa, dw) + SelfInductanceStraightWire(lengthNb, dw); // half of self-inductance of the current turn
         Db = 2 * ny + a0; // distance to opposite cunductor of the same turn (side b)
         Da = 2 * ny + b0; // distance to opposite cunductor of the same turn (side a)
@@ -560,7 +560,7 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
                 // half mutual inductance with opposite conductor in previous turn
             }
         }
-        Ltotal = Ltotal + 2 * (Ladd - Lsub + Madd - Msub);
+        Ltotal += 2 * (Ladd - Lsub + Madd - Msub);
         Ks = rosaKs(k / dw);
         Km = rosaKm(n);
         Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
