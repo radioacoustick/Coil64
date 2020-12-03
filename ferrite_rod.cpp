@@ -198,7 +198,7 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     sResult += tr("Number of turns of the coil") + " N = " + loc.toString(result.N, 'f', fOpt->dwAccuracy) + "<br/>";
     sResult += tr("Length of winding") + " lc = " + loc.toString(result.thd, 'f', fOpt->dwAccuracy) + "<br/>";
-    sResult += tr("Effective magnetic permeability of the rod") + " μ<sub>eff</sub> = " + loc.toString(result.sec, 'f', 0);
+    sResult += tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = " + loc.toString(result.sec, 'f', 0);
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }

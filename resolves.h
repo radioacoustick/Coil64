@@ -120,6 +120,8 @@ enum _FormCoil
     double findSheildedInductance(double I, double D, double Ds, double l, double Hs);
     double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw);
     double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw);
+    double findPotCore_I(double N, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result);
+    long findPotCore_N(double Ind, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result);
 
 
     double CalcLC0(double L, double C);

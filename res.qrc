@@ -37,6 +37,7 @@
         <file>res/toroid-square.png</file>
         <file>res/toroid-round.png</file>
         <file>res/Coil1.png</file>
+        <file>res/Coil7.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -114,6 +115,7 @@
         <file>res/icons8-repository-32.png</file>
         <file>res/ico1-one-layer-sw.png</file>
         <file>res/icons8-change-theme-32.png</file>
+        <file>res/ico1-potcore.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>
@@ -139,5 +141,6 @@
     </qresource>
     <qresource prefix="/stylesheet">
         <file>res/DarkStyle.qss</file>
+        <file>res/SunnyStyle.qss</file>
     </qresource>
 </RCC>

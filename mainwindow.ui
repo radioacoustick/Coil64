@@ -1681,6 +1681,7 @@
        <normaloff>:/menu_ico/res/icons8-change-theme-32.png</normaloff>:/menu_ico/res/icons8-change-theme-32.png</iconset>
      </property>
      <addaction name="actionThemeDefault"/>
+     <addaction name="actionThemeSunny"/>
      <addaction name="actionThemeDark"/>
     </widget>
     <addaction name="actionOptions"/>
@@ -1703,13 +1704,11 @@
     <property name="title">
      <string>Additional calculating</string>
     </property>
-    <addaction name="actionFerrite_toroid_permeability"/>
-    <addaction name="actionCoil_on_a_ferrite_rod"/>
     <addaction name="actionPCB_meandr_coil"/>
     <addaction name="actionMetal_detector_search_coil"/>
     <addaction name="actionLoop_of_one_turn"/>
-    <addaction name="actionShiels_influence"/>
     <addaction name="actionAir_core_toroid_coil"/>
+    <addaction name="actionShiels_influence"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -1725,9 +1724,19 @@
     </property>
     <addaction name="actionAmidon_cores"/>
    </widget>
+   <widget class="QMenu" name="menuFerrite_cores">
+    <property name="title">
+     <string>Ferrite cores</string>
+    </property>
+    <addaction name="actionPot_core_coil"/>
+    <addaction name="actionCoil_on_a_ferrite_rod"/>
+    <addaction name="separator"/>
+    <addaction name="actionFerrite_toroid_permeability"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuActions"/>
    <addaction name="menuAdditional_calculating"/>
+   <addaction name="menuFerrite_cores"/>
    <addaction name="menuBranded_cores"/>
    <addaction name="menuCustomize"/>
    <addaction name="menuHelp"/>
@@ -2010,6 +2019,23 @@
    </property>
    <property name="text">
     <string>Dark</string>
+   </property>
+  </action>
+  <action name="actionPot_core_coil">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-potcore.png</normaloff>:/menu_ico/res/ico1-potcore.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pot core coil</string>
+   </property>
+  </action>
+  <action name="actionThemeSunny">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Sunny</string>
    </property>
   </action>
  </widget>

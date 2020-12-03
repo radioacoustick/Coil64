@@ -68,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt->isEnglishLocale = settings->value( "isEnglishLocale", false ).toBool();
     myOpt->isPCBcoilSquare = settings->value("isPCBcoilSquare",true).toBool();
     myOpt->isSaveOnExit = settings->value("isSaveOnExit",true).toBool();
-    myOpt->styleGUI = settings->value("styleGUI",1).toInt();
+    myOpt->styleGUI = settings->value("styleGUI",0).toInt();
     myOpt->isLastShowingFirst = settings->value("isLastShowingFirst",true).toBool();
     if (myOpt->isSaveOnExit)
         calc_count = settings->value( "calc_count", 0 ).toInt();
@@ -543,6 +543,9 @@ void MainWindow::showEvent(QShowEvent *event){
         break;
     case _DarkStyle:
         on_actionThemeDark_triggered();
+        break;
+    case _SunnyStyle:
+        on_actionThemeSunny_triggered();
         break;
     default:
         break;
@@ -1951,6 +1954,7 @@ void MainWindow::on_actionTo_null_data_triggered()
 void MainWindow::on_actionThemeDefault_triggered()
 {
     qApp->setStyleSheet("");
+    mui->actionThemeSunny->setChecked(false);
     mui->actionThemeDark->setChecked(false);
     mui->actionThemeDefault->setChecked(true);
     myOpt->styleGUI = _DefaultStyle;
@@ -1968,9 +1972,28 @@ void MainWindow::on_actionThemeDark_triggered()
       qfDarkstyle.close();
     }
     //setStyleSheet(DARK_STYLE);
+    mui->actionThemeSunny->setChecked(false);
     mui->actionThemeDark->setChecked(true);
     mui->actionThemeDefault->setChecked(false);
     myOpt->styleGUI = _DarkStyle;
+    resetUiFont();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionThemeSunny_triggered()
+{
+    // loadstylesheet
+    QFile qfSunnystyle(QStringLiteral(":/stylesheet/res/SunnyStyle.qss"));
+    if (qfSunnystyle.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      // set stylesheet
+      QString qsStylesheet = QString::fromLatin1(qfSunnystyle.readAll());
+      qApp->setStyleSheet(qsStylesheet);
+      qfSunnystyle.close();
+    }
+    //setStyleSheet(DARK_STYLE);
+    mui->actionThemeSunny->setChecked(true);
+    mui->actionThemeDark->setChecked(false);
+    mui->actionThemeDefault->setChecked(false);
+    myOpt->styleGUI = _SunnyStyle;
     resetUiFont();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2343,6 +2366,9 @@ void MainWindow::getOptionStruct(_OptionStruct gOpt){
         break;
     case _DarkStyle:
         on_actionThemeDark_triggered();
+        break;
+    case _SunnyStyle:
+        on_actionThemeSunny_triggered();
         break;
     default:
         break;
@@ -5264,6 +5290,18 @@ void MainWindow::on_actionAir_core_toroid_coil_triggered()
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     faircoretoroid->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionPot_core_coil_triggered()
+{
+    PotCore *fpotcore = new PotCore();
+    fpotcore->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(fpotcore, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), fpotcore, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), fpotcore, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    fpotcore->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::getAddCalculationResult(QString result){

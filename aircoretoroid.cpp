@@ -244,7 +244,10 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
         }
     }
     sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
-    sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + " " + ui->label_N_m->text() + "<br/>";
+    if (ui->checkBox_isReverce->isChecked())
+        sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + "<br/>";
+    else
+        sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + " " + ui->label_N_m->text() + "<br/>";
     sResult += ui->label_1->text() + " " + ui->lineEdit_1->text() + " " + ui->label_01->text() + "<br/>";
     sResult += ui->label_2->text() + " " + ui->lineEdit_2->text() + " " + ui->label_02->text() + "<br/>";
     if (windingKind == 1){

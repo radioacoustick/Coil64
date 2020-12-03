@@ -49,6 +49,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "shield.h"
 #include "amidon.h"
 #include "aircoretoroid.h"
+#include "potcore.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -59,6 +60,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 namespace Ui {
 class MainWindow;
 }
+
+typedef struct str_plugin
+{
+    QString namePlugin;     // the name of the plugin
+    QString dirPlugin;      // destination directory of the plugin
+}TSTR_PLUGIN;
 
 class MainWindow : public QMainWindow
 {
@@ -166,6 +173,7 @@ private slots:
     void on_actionTo_null_data_triggered();
     void on_actionThemeDefault_triggered();
     void on_actionThemeDark_triggered();
+    void on_actionThemeSunny_triggered();
 
     void on_toolButton_Help_clicked();
     void on_toolButton_Configure_clicked();
@@ -192,6 +200,7 @@ private slots:
     void on_actionShiels_influence_triggered();
     void on_actionAmidon_cores_triggered();
     void on_actionAir_core_toroid_coil_triggered();
+    void on_actionPot_core_coil_triggered();
 
     void getAddCalculationResult(QString result);
 
@@ -206,6 +215,7 @@ private:
     unsigned int calc_count; //Calculating number
     QLocale loc;
     QMenu *popupmenu;
+    QVector<TSTR_PLUGIN > vecPlugin;
 };
 
 #endif // MAINWINDOW_H

@@ -40,6 +40,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 
 enum _StyleGUI {
     _DefaultStyle,
+    _SunnyStyle,
     _DarkStyle
 };
 

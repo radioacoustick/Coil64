@@ -651,6 +651,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Sunny</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Dark</string>
              </property>
             </item>

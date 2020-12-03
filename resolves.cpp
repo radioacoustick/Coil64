@@ -1309,3 +1309,58 @@ double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw)
     double N = sqrt(Ind / (0.01257 * ( R - sqrt(R * R - a * a))));
     return N;
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findPotCore_I(double N, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result)
+{
+    const double mu0 = 4e-7 * M_PI;
+
+    double r1 = 0.5 * D4;
+    double r2 = 0.5 * D3;
+    double r3 = 0.5 * D2;
+    double r4 = 0.5 * D1;
+    double h = 0.5 * (h1 - h2);
+    double l1 = h2;
+    double l3 = h2;
+    double k1 = 2 * b * (r4 - r3);
+    double A1 = M_PI * (r4 - r3) * (r4 + r3) - k1;
+    double A3 = M_PI * (r2 - r1) * (r2 + r1);
+    double sum11 = l1 / A1;
+    double sum21 = l1 / (A1 * A1);
+    double k2 = 1 / (1 - (2 * b / (2 * M_PI * r3)));
+    double sum12 = k2 * log(r3 / r2) / (M_PI * h);
+    double sum22 = k2 * (r3 - r2) / (2 * r3 * r2 * M_PI * M_PI * h * h);
+    double sum13 = l3 / A3;
+    double sum23 = l3 / (A3 * A3);
+    double s1 = r2 - sqrt(0.5 * (r2 * r2 + r1 * r1));
+    double s2 = sqrt(0.5 * (r3 * r3 + r3 * r3)) - r3;
+    double l4 = 0.25 * M_PI * (2 * s2 + h);
+    double l5 = 0.25 * M_PI * (2 * s1 + h);
+    double k4 = 1 - (2 * b / (M_PI * (r3 + r4)));
+    double A4 = 0.5 * k4 * M_PI * (r4 *r4 - r3 * r3 + 2 * r3 * h);
+    double A5 = 0.5 * M_PI * (r2 *r2 - r1 * r1 + 2 * r2 * h);
+    double sum14 = l4 / A4;
+    double sum24 = l4 / (A4 * A4);
+    double sum15 = l5 / A5;
+    double sum25 = l5 / (A5 * A5);
+    double C1 = sum11 + sum12 + sum13 + sum14 + sum15;
+    double C2 = sum21 + sum22 + sum23 + sum24 + sum25;
+    double le = C1 * C1 / C2;
+    double Ae = C1 / C2;
+    double mu_e = mu / (1 + g * mu / le);
+    double ind = 1000 * N * N * mu0 * mu_e / C1;
+    result->N = le;
+    result->sec = Ae;
+    result->thd = mu_e;
+    return ind;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+long findPotCore_N(double Ind, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result)
+{
+    double tmpI = 0;
+    unsigned long int N = 0;
+    while (tmpI <= Ind){
+        N++;
+        tmpI = findPotCore_I(N,D1,D2,D3,D4,h1,h2,g,b,mu, result);
+    }
+    return N;
+}

@@ -1,0 +1,184 @@
+QWidget{
+  background-color: #FDFAF0;
+}
+
+QMenu::item:selected {
+  background-color: #FDEEB9;
+  border: 1px solid #308CC6;
+  color: #000000;
+}
+
+QMenu::item {
+  padding: 4px 2px 4px 20px;
+}
+
+QMenuBar::item:selected {
+  background-color: #FDEEB9;
+  border: 1px solid #308CC6;
+  color: #000000;
+}
+
+QMenu::separator{
+  height:1px;
+  background:palette(alternate-base);
+  margin-left:5px;
+  margin-right:5px;
+}
+
+QPushButton {
+    border: 2px outset green;
+    background: #FDEEB9;
+    border: 1px solid #32414B;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+QPushButton:pressed:hover {
+  border-style: inset;
+  background: #E6B400;
+  border: 1px solid #002D4B;
+  border-radius: 4px;
+  padding: 3px;
+}
+
+QPushButton:hover {
+  background: #FDF8E6;
+  border: 1px solid #148CD2;
+}
+
+QListView::item:alternate {
+    background: #FDEEB9;
+}
+
+QListView::item:selected {
+    border: 1px solid #308CC6;
+    color: #000000;
+}
+
+QComboBox::item:selected {
+  background-color: #FDEEB9;
+  border: 1px solid #308CC6;
+  color: #000000;
+}
+QTabBar::tab{
+  padding:4px 6px;
+  background-color: #FDEEB9;
+  border:1px solid rgba(25,25,25,75);
+  border-top-left-radius:4px;
+  border-top-right-radius:4px;
+}
+
+QTabBar::tab:selected,QTabBar::tab:hover{
+  background-color:#FDFDFD;
+  border-bottom-color:rgba(66,66,66,75%);
+}
+
+QTabBar::tab:selected{
+  border-bottom:2px solid palette(highlight);
+}
+
+QTabBar::tab::selected:disabled{
+  border-bottom:2px solid rgb(127,127,127);
+}
+
+QTabBar::tab:!selected{
+  margin-top:2px;
+}
+
+QScrollBar {
+    border: 1px solid #5A5A5A;
+}
+
+QScrollBar:horizontal {
+    height: 15px;
+    margin: 0px 0px 0px 32px;
+}
+
+QScrollBar:vertical {
+    width: 15px;
+    margin: 32px 0px 0px 0px;
+}
+
+QScrollBar::handle {
+    background: #FDEEB9;
+    border: 1px solid #5A5A5A;
+}
+
+QScrollBar::handle:horizontal {
+    border-width: 0px 1px 0px 1px;
+}
+
+QScrollBar::handle:vertical {
+    border-width: 1px 0px 1px 0px;
+}
+
+QScrollBar::handle:horizontal {
+    min-width: 20px;
+}
+
+QScrollBar::handle:vertical {
+    min-height: 20px;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    border: 1px solid #5A5A5A;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-line {
+    position: absolute;
+}
+
+QScrollBar::add-line:horizontal {
+    width: 15px;
+    subcontrol-position: left;
+    left: 15px;
+}
+
+QScrollBar::add-line:vertical {
+    height: 15px;
+    subcontrol-position: top;
+    top: 15px;
+}
+
+QScrollBar::sub-line:horizontal {
+    width: 15px;
+    subcontrol-position: top left;
+}
+
+QScrollBar::sub-line:vertical {
+    height: 15px;
+    subcontrol-position: top;
+}
+
+QScrollBar:left-arrow, QScrollBar::right-arrow, QScrollBar::up-arrow, QScrollBar::down-arrow {
+    border: 1px solid #5A5A5A;
+    width: 3px;
+    height: 3px;
+}
+
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+
+QToolButton {
+  border: 1px solid #8f8f91;
+  background-color: #FDF7E4;
+}
+
+QToolButton:pressed {
+  background-color: #E6B400;
+}
+
+QToolButton:hover {
+  border: 1px solid #148CD2;
+}
+
+QToolButton:checked {
+  border: 1px solid #11283F;
+  background-color: #FDE89A;
+}
+
+QToolButton:checked:hover {
+  border: 1px solid #148CD2;
+}

@@ -111,6 +111,11 @@ QMenu::item:selected {
   background-color: #505F69;
 }
 
+QMenu::item:disabled{
+  background-color:#707F89;
+  color:palette(disabled);
+}
+
 QMenu::separator{
   height:1px;
   background:palette(alternate-base);
@@ -138,6 +143,11 @@ QMenuBar::item:selected {
   padding: 4px;
   background: transparent;
   border: 0px solid #32414B;
+}
+
+QMenuBar::item:disabled{
+  background-color:#707F89;
+  color:palette(disabled);
 }
 
 QMenuBar::item:pressed {
@@ -298,7 +308,7 @@ QToolButton:hover {
 
 QToolButton:checked {
   border: 1px solid #11283F;
-  background-color: #505F69;
+  background-color: qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 #8AA4B5 ,stop:1 #A0A6FF);
 }
 
 QToolButton:checked:hover {

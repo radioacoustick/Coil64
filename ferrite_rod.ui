@@ -471,6 +471,9 @@
          <height>40</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string>Context help</string>
+       </property>
        <property name="text">
         <string/>
        </property>
