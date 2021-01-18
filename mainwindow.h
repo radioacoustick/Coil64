@@ -50,22 +50,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "amidon.h"
 #include "aircoretoroid.h"
 #include "potcore.h"
+#include "ecore.h"
+#include "al.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
 #include "system_functions.h"
 
 
-
 namespace Ui {
 class MainWindow;
 }
-
-typedef struct str_plugin
-{
-    QString namePlugin;     // the name of the plugin
-    QString dirPlugin;      // destination directory of the plugin
-}TSTR_PLUGIN;
 
 class MainWindow : public QMainWindow
 {
@@ -127,6 +122,7 @@ private slots:
     void on_radioButton_LC_clicked();
     void on_radioButton_CF_clicked();
     void on_radioButton_LF_clicked();
+    void on_radioButton_ZF_clicked();
 
     void get_onelayerN_roundW_Result(_CoilResult result);
     void get_onelayerN_rectW_Result(_CoilResult result);
@@ -201,6 +197,8 @@ private slots:
     void on_actionAmidon_cores_triggered();
     void on_actionAir_core_toroid_coil_triggered();
     void on_actionPot_core_coil_triggered();
+    void on_actionE_core_coil_triggered();
+    void on_actionAL_factor_calculation_triggered();
 
     void getAddCalculationResult(QString result);
 
@@ -208,6 +206,7 @@ private:
     Ui::MainWindow *mui;
     QNetworkAccessManager *net_manager;
     QDoubleValidator *dv;
+    QRegExpValidator *awgV;
     _FormCoil FormCoil; //Enum variable of a coil form
     _Data *data; //Structure stores the data for calculating
     _OptionStruct *myOpt; //Options Structure contains all app settings
@@ -215,7 +214,6 @@ private:
     unsigned int calc_count; //Calculating number
     QLocale loc;
     QMenu *popupmenu;
-    QVector<TSTR_PLUGIN > vecPlugin;
 };
 
 #endif // MAINWINDOW_H

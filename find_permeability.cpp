@@ -26,7 +26,7 @@ Find_Permeability::Find_Permeability(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator;
+    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
     ui->lineEdit_ind->setValidator(dv);
     ui->lineEdit_N->setValidator(dv);
     ui->lineEdit_1->setValidator(dv);
@@ -134,7 +134,7 @@ void Find_Permeability::on_pushButton_clicked()
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     sResult += tr("Relative magnetic permeability of the toroid") + " μ = " + loc.toString(result.N) + "<br/>";
-    sResult += tr("Magnetic factor of the core") + " AL = " + loc.toString(result.sec, 'f', 0);
+    sResult += tr("Magnetic factor of the core") + " A<sub>L</sub> = " + loc.toString(result.sec, 'f', 0);
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }

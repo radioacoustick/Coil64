@@ -59,6 +59,7 @@ private:
     Ui::Multiloop *ui;
     _OptionStruct *fOpt;
     QDoubleValidator *dv;
+    QRegExpValidator *awgV;
     QLocale loc;
     double ind;
     double dw;

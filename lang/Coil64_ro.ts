@@ -2,6 +2,110 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ro_RO">
 <context>
+    <name>AL</name>
+    <message>
+        <location filename="../al.ui" line="17"/>
+        <source>Calculation with AL-factor</source>
+        <translation>Calculul cu factor AL</translation>
+    </message>
+    <message>
+        <location filename="../al.ui" line="30"/>
+        <source>You can calculate the A&lt;sub&gt;L&lt;/sub&gt; factor of an any coil with the closed magnetic circuit by direct measuring with a test winding.</source>
+        <translation>Puteți calcula factorul A&lt;sub&gt;L&lt;/sub&gt; al unei bobine cu circuit magnetic închis prin măsurare directă cu o înfășurare de încercare.</translation>
+    </message>
+    <message>
+        <location filename="../al.ui" line="109"/>
+        <location filename="../al.ui" line="250"/>
+        <location filename="../al.ui" line="385"/>
+        <source>Input data</source>
+        <translation>Date de intrare</translation>
+    </message>
+    <message>
+        <location filename="../al.ui" line="201"/>
+        <location filename="../al.ui" line="332"/>
+        <location filename="../al.ui" line="461"/>
+        <source>Result</source>
+        <translation>Rezultate</translation>
+    </message>
+    <message>
+        <location filename="../al.ui" line="528"/>
+        <source>You can determine the A&lt;sub&gt;L&lt;/sub&gt; factor in the first tab knowing the number of turns and the measured inductance.&lt;hr/&gt; In the second tab, you can determine the number of turns with a known A&lt;sub&gt;L&lt;/sub&gt; and with a known required inductance.&lt;hr/&gt; In the third tab, you can calculate the inductance with known A&lt;sub&gt;L&lt;/sub&gt; and the known number of turns.</source>
+        <translation>Puteți determina factorul A&lt;sub&gt;L&lt;/sub&gt; în prima filă, cunoscând numărul de viraje și inductanța măsurată.&lt;hr/&gt; În a doua filă, puteți determina numărul de viraje cu un cunoscut A&lt;sub&gt;L&lt;/sub&gt; și cu o inductanță necesară cunoscută.&lt;hr/&gt; În a treia filă, puteți calcula inductanța cu A&lt;sub&gt;L&lt;/sub&gt; și numărul cunoscut de viraje.</translation>
+    </message>
+    <message>
+        <location filename="../al.ui" line="581"/>
+        <source>Calculate</source>
+        <translation>Calculaţi</translation>
+    </message>
+    <message>
+        <location filename="../al.ui" line="607"/>
+        <source>Close</source>
+        <translation>Închide</translation>
+    </message>
+    <message>
+        <location filename="../al.cpp" line="79"/>
+        <location filename="../al.cpp" line="80"/>
+        <location filename="../al.cpp" line="81"/>
+        <source>turn</source>
+        <translation>spire</translation>
+    </message>
+    <message>
+        <location filename="../al.cpp" line="82"/>
+        <location filename="../al.cpp" line="83"/>
+        <location filename="../al.cpp" line="84"/>
+        <source>Magnetic factor of the core</source>
+        <translation>Factorul magnetic al miezului</translation>
+    </message>
+    <message>
+        <location filename="../al.cpp" line="88"/>
+        <location filename="../al.cpp" line="89"/>
+        <location filename="../al.cpp" line="90"/>
+        <source>Inductance</source>
+        <translation>Inductanţa</translation>
+    </message>
+    <message>
+        <location filename="../al.cpp" line="91"/>
+        <location filename="../al.cpp" line="92"/>
+        <location filename="../al.cpp" line="93"/>
+        <source>Number of turns</source>
+        <translation>Numărul de spire al bobinei</translation>
+    </message>
+    <message>
+        <location filename="../al.cpp" line="141"/>
+        <location filename="../al.cpp" line="147"/>
+        <location filename="../al.cpp" line="151"/>
+        <location filename="../al.cpp" line="159"/>
+        <location filename="../al.cpp" line="165"/>
+        <location filename="../al.cpp" line="169"/>
+        <location filename="../al.cpp" line="177"/>
+        <location filename="../al.cpp" line="183"/>
+        <location filename="../al.cpp" line="187"/>
+        <source>Warning</source>
+        <translation>Avertizare</translation>
+    </message>
+    <message>
+        <location filename="../al.cpp" line="141"/>
+        <location filename="../al.cpp" line="159"/>
+        <location filename="../al.cpp" line="177"/>
+        <source>One or more inputs are empty!</source>
+        <translation>Una sau mai multe intrări sunt goale!</translation>
+    </message>
+    <message>
+        <location filename="../al.cpp" line="147"/>
+        <location filename="../al.cpp" line="165"/>
+        <location filename="../al.cpp" line="183"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Una sau mai multe intrări au un format ilegal!</translation>
+    </message>
+    <message>
+        <location filename="../al.cpp" line="151"/>
+        <location filename="../al.cpp" line="169"/>
+        <location filename="../al.cpp" line="187"/>
+        <source>One or more inputs are equal to null!</source>
+        <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
+    </message>
+</context>
+<context>
     <name>About</name>
     <message>
         <location filename="../about.ui" line="38"/>
@@ -79,7 +183,7 @@
         <translation>Biblioteci</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="487"/>
+        <location filename="../about.ui" line="481"/>
         <source>Close</source>
         <translation>Închide</translation>
     </message>
@@ -137,77 +241,77 @@
         <translation>Închide</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="103"/>
+        <location filename="../aircoretoroid.cpp" line="105"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="110"/>
+        <location filename="../aircoretoroid.cpp" line="113"/>
         <source>Outside diameter</source>
         <translation>Diametrul exterior</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="111"/>
+        <location filename="../aircoretoroid.cpp" line="114"/>
         <source>Inside diameter</source>
         <translation>Diametrul interior</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="112"/>
+        <location filename="../aircoretoroid.cpp" line="115"/>
         <source>Height</source>
         <translation>Înălţime</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="113"/>
+        <location filename="../aircoretoroid.cpp" line="116"/>
         <source>Wire diameter</source>
         <translation>Diametrul sârmei</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="159"/>
+        <location filename="../aircoretoroid.cpp" line="163"/>
         <source>Number of turns</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="164"/>
-        <location filename="../aircoretoroid.cpp" line="257"/>
+        <location filename="../aircoretoroid.cpp" line="168"/>
+        <location filename="../aircoretoroid.cpp" line="264"/>
         <source>Inductance</source>
         <translation>Inductanţa</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="189"/>
-        <location filename="../aircoretoroid.cpp" line="201"/>
-        <location filename="../aircoretoroid.cpp" line="210"/>
-        <location filename="../aircoretoroid.cpp" line="215"/>
-        <location filename="../aircoretoroid.cpp" line="226"/>
-        <location filename="../aircoretoroid.cpp" line="236"/>
+        <location filename="../aircoretoroid.cpp" line="193"/>
+        <location filename="../aircoretoroid.cpp" line="205"/>
+        <location filename="../aircoretoroid.cpp" line="214"/>
+        <location filename="../aircoretoroid.cpp" line="219"/>
+        <location filename="../aircoretoroid.cpp" line="230"/>
+        <location filename="../aircoretoroid.cpp" line="240"/>
         <source>Warning</source>
         <translation>Avertizare</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="189"/>
-        <location filename="../aircoretoroid.cpp" line="210"/>
+        <location filename="../aircoretoroid.cpp" line="193"/>
+        <location filename="../aircoretoroid.cpp" line="214"/>
         <source>One or more inputs are empty!</source>
         <translation>Una sau mai multe intrări sunt goale!</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="201"/>
-        <location filename="../aircoretoroid.cpp" line="215"/>
-        <location filename="../aircoretoroid.cpp" line="226"/>
-        <location filename="../aircoretoroid.cpp" line="236"/>
+        <location filename="../aircoretoroid.cpp" line="205"/>
+        <location filename="../aircoretoroid.cpp" line="219"/>
+        <location filename="../aircoretoroid.cpp" line="230"/>
+        <location filename="../aircoretoroid.cpp" line="240"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Una sau mai multe intrări au un format ilegal!</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="246"/>
+        <location filename="../aircoretoroid.cpp" line="250"/>
         <source>Input data</source>
         <translation>Date de intrare</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="255"/>
+        <location filename="../aircoretoroid.cpp" line="262"/>
         <source>Result</source>
         <translation>Rezultate</translation>
     </message>
     <message>
-        <location filename="../aircoretoroid.cpp" line="260"/>
+        <location filename="../aircoretoroid.cpp" line="267"/>
         <source>Number of turns of the coil</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
@@ -501,6 +605,7 @@
         <translation>microF</translation>
     </message>
     <message>
+        <location filename="../al.cpp" line="78"/>
         <location filename="../system_functions.cpp" line="313"/>
         <source>nH</source>
         <translation>nH</translation>
@@ -544,6 +649,137 @@
         <location filename="../system_functions.cpp" line="381"/>
         <source>fit</source>
         <translation>fit</translation>
+    </message>
+</context>
+<context>
+    <name>ECore</name>
+    <message>
+        <location filename="../ecore.ui" line="17"/>
+        <source>E-core coil</source>
+        <translation>Bobină E-core</translation>
+    </message>
+    <message>
+        <location filename="../ecore.ui" line="43"/>
+        <source>Select the type of the core</source>
+        <translation>Selectați tipul nucleului</translation>
+    </message>
+    <message>
+        <location filename="../ecore.ui" line="134"/>
+        <source>Reverse calculation</source>
+        <translation>Calcularea inversă</translation>
+    </message>
+    <message>
+        <location filename="../ecore.ui" line="198"/>
+        <source>Dimensions</source>
+        <translation>Dimensiuni</translation>
+    </message>
+    <message>
+        <location filename="../ecore.ui" line="494"/>
+        <source>Context help</source>
+        <translation>Ajutor pentru context</translation>
+    </message>
+    <message>
+        <location filename="../ecore.ui" line="530"/>
+        <source>Calculate</source>
+        <translation>Calculaţi</translation>
+    </message>
+    <message>
+        <location filename="../ecore.ui" line="556"/>
+        <source>Close</source>
+        <translation>Închide</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="133"/>
+        <source>Slot size</source>
+        <translation>Dimensiunea slotului</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="134"/>
+        <source>Centerpost gap</source>
+        <translation>Decalajul stâlpului central</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="135"/>
+        <source>Magnetic permeability</source>
+        <translation>Permeabilitate magnetică</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="203"/>
+        <source>Number of turns</source>
+        <translation>Numărul de spire al bobinei</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="208"/>
+        <location filename="../ecore.cpp" line="325"/>
+        <source>Inductance</source>
+        <translation>Inductanţa</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="231"/>
+        <location filename="../ecore.cpp" line="245"/>
+        <location filename="../ecore.cpp" line="249"/>
+        <location filename="../ecore.cpp" line="253"/>
+        <location filename="../ecore.cpp" line="257"/>
+        <location filename="../ecore.cpp" line="264"/>
+        <location filename="../ecore.cpp" line="268"/>
+        <location filename="../ecore.cpp" line="275"/>
+        <location filename="../ecore.cpp" line="279"/>
+        <source>Warning</source>
+        <translation>Avertizare</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="231"/>
+        <source>One or more inputs are empty!</source>
+        <translation>Una sau mai multe intrări sunt goale!</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="245"/>
+        <location filename="../ecore.cpp" line="264"/>
+        <location filename="../ecore.cpp" line="275"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Una sau mai multe intrări au un format ilegal!</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="249"/>
+        <location filename="../ecore.cpp" line="268"/>
+        <location filename="../ecore.cpp" line="279"/>
+        <source>One or more inputs are equal to null!</source>
+        <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="307"/>
+        <source>Input data</source>
+        <translation>Date de intrare</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="323"/>
+        <source>Result</source>
+        <translation>Rezultate</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="328"/>
+        <source>Number of turns of the coil</source>
+        <translation>Numărul de spire al bobinei</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="330"/>
+        <source>Effective magnetic path length</source>
+        <translation>Lungime efectivă a căii magnetice</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="333"/>
+        <source>Effective area of magnetic path</source>
+        <translation>Zona efectivă a căii magnetice</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="336"/>
+        <source>Effective volume</source>
+        <translation>Volumul efectiv</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="339"/>
+        <source>Effective magnetic permeability of the core</source>
+        <translation>Permeabilitatea magnetică eficientă a miezului</translation>
     </message>
 </context>
 <context>
@@ -639,59 +875,64 @@
         <translation>Spaţiul (pasul) dintre spire</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="140"/>
-        <location filename="../ferrite_rod.cpp" line="153"/>
-        <location filename="../ferrite_rod.cpp" line="157"/>
-        <location filename="../ferrite_rod.cpp" line="161"/>
-        <location filename="../ferrite_rod.cpp" line="165"/>
-        <location filename="../ferrite_rod.cpp" line="169"/>
-        <location filename="../ferrite_rod.cpp" line="175"/>
-        <location filename="../ferrite_rod.cpp" line="179"/>
+        <location filename="../ferrite_rod.cpp" line="124"/>
+        <source>AWG</source>
+        <translation>AWG</translation>
+    </message>
+    <message>
+        <location filename="../ferrite_rod.cpp" line="155"/>
+        <location filename="../ferrite_rod.cpp" line="173"/>
+        <location filename="../ferrite_rod.cpp" line="177"/>
+        <location filename="../ferrite_rod.cpp" line="181"/>
+        <location filename="../ferrite_rod.cpp" line="185"/>
+        <location filename="../ferrite_rod.cpp" line="189"/>
+        <location filename="../ferrite_rod.cpp" line="195"/>
+        <location filename="../ferrite_rod.cpp" line="199"/>
         <source>Warning</source>
         <translation>Avertizare</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="140"/>
+        <location filename="../ferrite_rod.cpp" line="155"/>
         <source>One or more inputs are empty!</source>
         <translation>Una sau mai multe intrări sunt goale!</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="153"/>
+        <location filename="../ferrite_rod.cpp" line="173"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Una sau mai multe intrări au un format ilegal!</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="157"/>
+        <location filename="../ferrite_rod.cpp" line="177"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="179"/>
+        <location filename="../ferrite_rod.cpp" line="199"/>
         <source>Distance from coil edge to core edge less than 1/8 Lr</source>
         <translation>Distanța de la marginea bobinei la marginea miezului este mai mică de 1/8 Lr</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="186"/>
+        <location filename="../ferrite_rod.cpp" line="206"/>
         <source>Input data</source>
         <translation>Date de intrare</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="198"/>
+        <location filename="../ferrite_rod.cpp" line="218"/>
         <source>Result</source>
         <translation>Rezultate</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="199"/>
+        <location filename="../ferrite_rod.cpp" line="219"/>
         <source>Number of turns of the coil</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="200"/>
+        <location filename="../ferrite_rod.cpp" line="220"/>
         <source>Length of winding</source>
         <translation>Lungimea înfăşurării (bobinei)</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="201"/>
+        <location filename="../ferrite_rod.cpp" line="221"/>
         <source>Effective magnetic permeability of the core</source>
         <translation>Permeabilitatea magnetică eficientă a miezului</translation>
     </message>
@@ -822,7 +1063,7 @@
     </message>
     <message>
         <location filename="../loop.ui" line="212"/>
-        <location filename="../loop.cpp" line="335"/>
+        <location filename="../loop.cpp" line="339"/>
         <source>Dimensions</source>
         <translation>Dimensiuni</translation>
     </message>
@@ -842,97 +1083,97 @@
         <translation>Închide</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="90"/>
+        <location filename="../loop.cpp" line="92"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="100"/>
+        <location filename="../loop.cpp" line="103"/>
         <source>Wire diameter</source>
         <translation>Diametrul sârmei</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="123"/>
-        <location filename="../loop.cpp" line="281"/>
+        <location filename="../loop.cpp" line="127"/>
+        <location filename="../loop.cpp" line="285"/>
         <source>Loop diameter</source>
         <translation>Diametrul unei singure spire</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="148"/>
-        <location filename="../loop.cpp" line="154"/>
+        <location filename="../loop.cpp" line="152"/>
+        <location filename="../loop.cpp" line="158"/>
         <source>Side of triangle</source>
         <translation>Partea triunghiului</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="179"/>
-        <location filename="../loop.cpp" line="185"/>
+        <location filename="../loop.cpp" line="183"/>
+        <location filename="../loop.cpp" line="189"/>
         <source>Side of rectangle</source>
         <translation>Latura dreptunghiului</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="256"/>
-        <location filename="../loop.cpp" line="267"/>
+        <location filename="../loop.cpp" line="260"/>
         <location filename="../loop.cpp" line="271"/>
-        <location filename="../loop.cpp" line="297"/>
-        <location filename="../loop.cpp" line="302"/>
-        <location filename="../loop.cpp" line="313"/>
+        <location filename="../loop.cpp" line="275"/>
+        <location filename="../loop.cpp" line="301"/>
+        <location filename="../loop.cpp" line="306"/>
         <location filename="../loop.cpp" line="317"/>
-        <location filename="../loop.cpp" line="322"/>
-        <location filename="../loop.cpp" line="327"/>
+        <location filename="../loop.cpp" line="321"/>
+        <location filename="../loop.cpp" line="326"/>
         <location filename="../loop.cpp" line="331"/>
+        <location filename="../loop.cpp" line="335"/>
         <source>Warning</source>
         <translation>Avertizare</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="256"/>
-        <location filename="../loop.cpp" line="302"/>
-        <location filename="../loop.cpp" line="322"/>
+        <location filename="../loop.cpp" line="260"/>
+        <location filename="../loop.cpp" line="306"/>
+        <location filename="../loop.cpp" line="326"/>
         <source>One or more inputs are empty!</source>
         <translation>Una sau mai multe intrări sunt goale!</translation>
-    </message>
-    <message>
-        <location filename="../loop.cpp" line="267"/>
-        <location filename="../loop.cpp" line="313"/>
-        <location filename="../loop.cpp" line="327"/>
-        <source>One or more inputs have an illegal format!</source>
-        <translation>Una sau mai multe intrări au un format ilegal!</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="271"/>
         <location filename="../loop.cpp" line="317"/>
         <location filename="../loop.cpp" line="331"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Una sau mai multe intrări au un format ilegal!</translation>
+    </message>
+    <message>
+        <location filename="../loop.cpp" line="275"/>
+        <location filename="../loop.cpp" line="321"/>
+        <location filename="../loop.cpp" line="335"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="274"/>
+        <location filename="../loop.cpp" line="278"/>
         <source>Input data</source>
         <translation>Date de intrare</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="278"/>
-        <location filename="../loop.cpp" line="348"/>
+        <location filename="../loop.cpp" line="282"/>
+        <location filename="../loop.cpp" line="352"/>
         <source>Result</source>
         <translation>Rezultate</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="286"/>
+        <location filename="../loop.cpp" line="290"/>
         <source>The side of the equilateral triangle</source>
         <translation>Latura triunghiului echilateral</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="291"/>
+        <location filename="../loop.cpp" line="295"/>
         <source>The side of quadrate</source>
         <translation>Latura cadrului</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="297"/>
+        <location filename="../loop.cpp" line="301"/>
         <source>Coil can not be realized</source>
         <translation>Bobina nu poate fi realizată</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="199"/>
-        <location filename="../loop.cpp" line="349"/>
+        <location filename="../loop.cpp" line="203"/>
+        <location filename="../loop.cpp" line="353"/>
         <source>Inductance</source>
         <translation>Inductanţa</translation>
     </message>
@@ -975,22 +1216,22 @@
         <translation>Toba de spirală plat Tesla</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1239"/>
+        <location filename="../mainwindow.ui" line="1246"/>
         <source>Enter</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1546"/>
+        <location filename="../mainwindow.ui" line="1553"/>
         <source>Show confirm dialog to delete a result</source>
         <translation>Afișați dialogul de confirmare pentru a șterge un rezultat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1810"/>
+        <location filename="../mainwindow.ui" line="1819"/>
         <source>About Coil64</source>
         <translation>Despre Coil64</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1914"/>
+        <location filename="../mainwindow.ui" line="1923"/>
         <source>Ferrite toroid permeability</source>
         <translation>Permeabilitatea toroidului de ferită</translation>
     </message>
@@ -1000,14 +1241,14 @@
         <translation>Bobina</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="866"/>
-        <location filename="../mainwindow.cpp" line="916"/>
-        <location filename="../mainwindow.cpp" line="959"/>
-        <location filename="../mainwindow.cpp" line="1413"/>
-        <location filename="../mainwindow.cpp" line="1467"/>
-        <location filename="../mainwindow.cpp" line="1514"/>
-        <location filename="../mainwindow.cpp" line="1827"/>
-        <location filename="../mainwindow.cpp" line="4615"/>
+        <location filename="../mainwindow.cpp" line="876"/>
+        <location filename="../mainwindow.cpp" line="926"/>
+        <location filename="../mainwindow.cpp" line="970"/>
+        <location filename="../mainwindow.cpp" line="1437"/>
+        <location filename="../mainwindow.cpp" line="1491"/>
+        <location filename="../mainwindow.cpp" line="1539"/>
+        <location filename="../mainwindow.cpp" line="1855"/>
+        <location filename="../mainwindow.cpp" line="4675"/>
         <source>Winding pitch</source>
         <translation>Spaţiul (pasul) dintre spire</translation>
     </message>
@@ -1020,8 +1261,8 @@
     <message>
         <location filename="../mainwindow.ui" line="601"/>
         <location filename="../mainwindow.ui" line="995"/>
-        <location filename="../mainwindow.cpp" line="4541"/>
-        <location filename="../mainwindow.cpp" line="5086"/>
+        <location filename="../mainwindow.cpp" line="4601"/>
+        <location filename="../mainwindow.cpp" line="5146"/>
         <source>Copper</source>
         <translation>Cupru</translation>
     </message>
@@ -1034,8 +1275,8 @@
     <message>
         <location filename="../mainwindow.ui" line="618"/>
         <location filename="../mainwindow.ui" line="1012"/>
-        <location filename="../mainwindow.cpp" line="4542"/>
-        <location filename="../mainwindow.cpp" line="5087"/>
+        <location filename="../mainwindow.cpp" line="4602"/>
+        <location filename="../mainwindow.cpp" line="5147"/>
         <source>Aluminum</source>
         <translation>Aluminiu</translation>
     </message>
@@ -1053,19 +1294,19 @@
     <message>
         <location filename="../mainwindow.ui" line="707"/>
         <location filename="../mainwindow.cpp" line="775"/>
-        <location filename="../mainwindow.cpp" line="2161"/>
-        <location filename="../mainwindow.cpp" line="2181"/>
-        <location filename="../mainwindow.cpp" line="4706"/>
-        <location filename="../mainwindow.cpp" line="4792"/>
-        <location filename="../mainwindow.cpp" line="4883"/>
-        <location filename="../mainwindow.cpp" line="4961"/>
-        <location filename="../mainwindow.cpp" line="4971"/>
-        <location filename="../mainwindow.cpp" line="5009"/>
-        <location filename="../mainwindow.cpp" line="5045"/>
-        <location filename="../mainwindow.cpp" line="5076"/>
-        <location filename="../mainwindow.cpp" line="5116"/>
-        <location filename="../mainwindow.cpp" line="5150"/>
-        <location filename="../mainwindow.cpp" line="5178"/>
+        <location filename="../mainwindow.cpp" line="2192"/>
+        <location filename="../mainwindow.cpp" line="2212"/>
+        <location filename="../mainwindow.cpp" line="4766"/>
+        <location filename="../mainwindow.cpp" line="4852"/>
+        <location filename="../mainwindow.cpp" line="4943"/>
+        <location filename="../mainwindow.cpp" line="5021"/>
+        <location filename="../mainwindow.cpp" line="5031"/>
+        <location filename="../mainwindow.cpp" line="5069"/>
+        <location filename="../mainwindow.cpp" line="5105"/>
+        <location filename="../mainwindow.cpp" line="5136"/>
+        <location filename="../mainwindow.cpp" line="5176"/>
+        <location filename="../mainwindow.cpp" line="5210"/>
+        <location filename="../mainwindow.cpp" line="5238"/>
         <source>Inductance</source>
         <translation>Inductanţa</translation>
     </message>
@@ -1100,18 +1341,12 @@
         <translation>Inductanţa şi Frecvenţa sunt cunoscute</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2163"/>
-        <location filename="../mainwindow.cpp" line="2171"/>
-        <source>External capacitance</source>
-        <translation>Capacitate externă</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1705"/>
+        <location filename="../mainwindow.ui" line="1712"/>
         <source>Additional calculating</source>
         <translation>Calcule suplimentare</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1232"/>
+        <location filename="../mainwindow.ui" line="1239"/>
         <source>Calculate</source>
         <translation>Calculaţi</translation>
     </message>
@@ -1146,153 +1381,168 @@
         <translation>Bobina PCB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1284"/>
-        <location filename="../mainwindow.cpp" line="279"/>
-        <location filename="../mainwindow.cpp" line="336"/>
+        <location filename="../mainwindow.ui" line="1125"/>
+        <source>The impedance and the frequency are known</source>
+        <translation>Impedanța și frecvența sunt cunoscute</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1291"/>
+        <location filename="../mainwindow.cpp" line="274"/>
+        <location filename="../mainwindow.cpp" line="331"/>
         <source>Copy selected to clipboard</source>
         <translation>Copiaţi selecţia în clipboard</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1307"/>
-        <location filename="../mainwindow.ui" line="1862"/>
-        <location filename="../mainwindow.ui" line="1865"/>
-        <location filename="../mainwindow.cpp" line="280"/>
-        <location filename="../mainwindow.cpp" line="337"/>
+        <location filename="../mainwindow.ui" line="1314"/>
+        <location filename="../mainwindow.ui" line="1871"/>
+        <location filename="../mainwindow.ui" line="1874"/>
+        <location filename="../mainwindow.cpp" line="275"/>
+        <location filename="../mainwindow.cpp" line="332"/>
         <source>Copy all to clipboard</source>
         <translation>Copiaţi totul în clipboard</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1345"/>
-        <location filename="../mainwindow.ui" line="1836"/>
-        <location filename="../mainwindow.cpp" line="282"/>
-        <location filename="../mainwindow.cpp" line="338"/>
-        <location filename="../mainwindow.cpp" line="2077"/>
+        <location filename="../mainwindow.ui" line="1352"/>
+        <location filename="../mainwindow.ui" line="1845"/>
+        <location filename="../mainwindow.cpp" line="277"/>
+        <location filename="../mainwindow.cpp" line="333"/>
+        <location filename="../mainwindow.cpp" line="2106"/>
         <source>Save</source>
         <translation>Salvați</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1371"/>
-        <location filename="../mainwindow.ui" line="1933"/>
-        <location filename="../mainwindow.cpp" line="285"/>
-        <location filename="../mainwindow.cpp" line="340"/>
+        <location filename="../mainwindow.ui" line="1378"/>
+        <location filename="../mainwindow.ui" line="1942"/>
+        <location filename="../mainwindow.cpp" line="280"/>
+        <location filename="../mainwindow.cpp" line="335"/>
         <source>Clear all</source>
         <translation>Curaţă tot</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1397"/>
+        <location filename="../mainwindow.ui" line="1404"/>
         <source>Print all</source>
         <translation>Imprimați toate</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1427"/>
+        <location filename="../mainwindow.ui" line="1434"/>
         <source>Show images in result</source>
         <translation>Afişaţi imaginile în rezultate</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1456"/>
+        <location filename="../mainwindow.ui" line="1463"/>
         <source>Show additional results for single-layer coils</source>
         <translation>Afişaţi rezultate suplimentare pentru bobinele cu un singur strat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1479"/>
+        <location filename="../mainwindow.ui" line="1486"/>
         <source>Show last result first</source>
         <translation>Afișează mai întâi ultimul rezultat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1526"/>
+        <location filename="../mainwindow.ui" line="1533"/>
         <source>Show confirm dialog to clear results</source>
         <translation>Afișați dialogul de confirmare pentru a șterge rezultatele</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1677"/>
+        <location filename="../mainwindow.ui" line="1684"/>
         <source>Theme</source>
         <translation>Temă</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1729"/>
+        <location filename="../mainwindow.ui" line="1736"/>
         <source>Ferrite cores</source>
         <translation>Miezuri de ferită</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1993"/>
+        <location filename="../mainwindow.ui" line="2002"/>
         <source>Versions history</source>
         <translation>Istoricul versiunilor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2002"/>
+        <location filename="../mainwindow.ui" line="2011"/>
         <source>Air core toroid coil</source>
         <translation>Bobină toroidă de miez de aer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2013"/>
+        <location filename="../mainwindow.ui" line="2022"/>
         <source>Default</source>
         <translation>Mod implicit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2021"/>
+        <location filename="../mainwindow.ui" line="2030"/>
         <source>Dark</source>
         <translation>Întuneric</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2030"/>
+        <location filename="../mainwindow.ui" line="2039"/>
         <source>Pot core coil</source>
         <translation>Nuclee de ghiveci</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2038"/>
+        <location filename="../mainwindow.ui" line="2047"/>
         <source>Sunny</source>
         <translation>Soare</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1499"/>
+        <location filename="../mainwindow.ui" line="2056"/>
+        <source>E core coil</source>
+        <translation>Bobină E-core</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2066"/>
+        <source>Calculation with AL-factor</source>
+        <translation>Calculul cu factor AL</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1506"/>
         <source>Save results on exit</source>
         <translation>Salvați rezultatele la ieșire</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1566"/>
+        <location filename="../mainwindow.ui" line="1573"/>
         <source>Show confirm dialog before exit</source>
         <translation>Afișați dialogul de confirmare înainte de a ieși</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1616"/>
-        <location filename="../mainwindow.ui" line="1797"/>
+        <location filename="../mainwindow.ui" line="1623"/>
+        <location filename="../mainwindow.ui" line="1806"/>
         <source>Context help</source>
         <translation>Ajutor pentru context</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1663"/>
+        <location filename="../mainwindow.ui" line="1670"/>
         <source>&amp;File</source>
         <translation>&amp;Fişier</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1673"/>
+        <location filename="../mainwindow.ui" line="1680"/>
         <source>&amp;Customize</source>
         <translation>&amp;Personalizaţi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1692"/>
+        <location filename="../mainwindow.ui" line="1699"/>
         <source>&amp;Help</source>
         <translation>&amp;Ajutor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1715"/>
+        <location filename="../mainwindow.ui" line="1722"/>
         <source>Actions</source>
         <translation>Acţiuni</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1723"/>
+        <location filename="../mainwindow.ui" line="1730"/>
         <source>Branded cores</source>
         <translation>Nuclee de marcă</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1768"/>
+        <location filename="../mainwindow.ui" line="1777"/>
         <source>&amp;Exit</source>
         <translation>&amp;Ieșire</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1599"/>
-        <location filename="../mainwindow.ui" line="1781"/>
-        <location filename="../mainwindow.ui" line="1784"/>
+        <location filename="../mainwindow.ui" line="1606"/>
+        <location filename="../mainwindow.ui" line="1790"/>
+        <location filename="../mainwindow.ui" line="1793"/>
         <source>Options</source>
         <translation>Opţiuni</translation>
     </message>
@@ -1302,244 +1552,245 @@
         <translation>Serpentină cu mai multe straturi cu înfășurare a foliei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1823"/>
+        <location filename="../mainwindow.ui" line="1832"/>
         <source>Check for &amp;update</source>
         <translation>Verificaţi pentru &amp;actualizări</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1849"/>
+        <location filename="../mainwindow.ui" line="1858"/>
         <source>HomePage</source>
         <translation>Pagina principala</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1878"/>
+        <location filename="../mainwindow.ui" line="1887"/>
         <source>Print</source>
         <translation>Imprimare</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1890"/>
+        <location filename="../mainwindow.ui" line="1899"/>
         <source>To null initial data</source>
         <translation>Resetare la date originale</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1923"/>
+        <location filename="../mainwindow.ui" line="1932"/>
         <source>Coil on a ferrite rod</source>
         <translation>Răsuciți o tijă rerită</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1942"/>
+        <location filename="../mainwindow.ui" line="1951"/>
         <source>Meander coil on PCB</source>
         <translation>Meander bobina pe PCB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1951"/>
+        <location filename="../mainwindow.ui" line="1960"/>
         <source>Search coil of a metal detector</source>
         <translation>Baterie de căutare a unui detector de metale</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1961"/>
+        <location filename="../mainwindow.ui" line="1970"/>
         <source>A one-turn loop coil</source>
         <translation>Bobina cu o singură spiră (dipol)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1970"/>
+        <location filename="../mainwindow.ui" line="1979"/>
         <source>Donate</source>
         <translation>Dona</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1979"/>
+        <location filename="../mainwindow.ui" line="1988"/>
         <source>Influence of a coil shield</source>
         <translation>Influența unui scut a bobinei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1984"/>
+        <location filename="../mainwindow.ui" line="1993"/>
         <source>Amidon cores</source>
         <translation>Nucleele lui Amidon</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1321"/>
-        <location filename="../mainwindow.ui" line="1902"/>
-        <location filename="../mainwindow.cpp" line="283"/>
-        <location filename="../mainwindow.cpp" line="339"/>
-        <location filename="../mainwindow.cpp" line="2049"/>
+        <location filename="../mainwindow.ui" line="1328"/>
+        <location filename="../mainwindow.ui" line="1911"/>
+        <location filename="../mainwindow.cpp" line="278"/>
+        <location filename="../mainwindow.cpp" line="334"/>
+        <location filename="../mainwindow.cpp" line="2078"/>
         <source>Open</source>
         <translation>Deschis</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="94"/>
-        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="97"/>
+        <location filename="../mainwindow.cpp" line="323"/>
         <source>Language</source>
         <translation>Limba</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="635"/>
         <location filename="../mainwindow.cpp" line="658"/>
-        <location filename="../mainwindow.cpp" line="2383"/>
-        <location filename="../mainwindow.cpp" line="2392"/>
-        <location filename="../mainwindow.cpp" line="2409"/>
-        <location filename="../mainwindow.cpp" line="2414"/>
-        <location filename="../mainwindow.cpp" line="2420"/>
-        <location filename="../mainwindow.cpp" line="2430"/>
-        <location filename="../mainwindow.cpp" line="2454"/>
-        <location filename="../mainwindow.cpp" line="2467"/>
+        <location filename="../mainwindow.cpp" line="2426"/>
+        <location filename="../mainwindow.cpp" line="2435"/>
+        <location filename="../mainwindow.cpp" line="2452"/>
+        <location filename="../mainwindow.cpp" line="2457"/>
+        <location filename="../mainwindow.cpp" line="2463"/>
         <location filename="../mainwindow.cpp" line="2473"/>
-        <location filename="../mainwindow.cpp" line="2478"/>
-        <location filename="../mainwindow.cpp" line="2484"/>
-        <location filename="../mainwindow.cpp" line="2495"/>
+        <location filename="../mainwindow.cpp" line="2497"/>
+        <location filename="../mainwindow.cpp" line="2510"/>
         <location filename="../mainwindow.cpp" line="2516"/>
-        <location filename="../mainwindow.cpp" line="2522"/>
-        <location filename="../mainwindow.cpp" line="2534"/>
-        <location filename="../mainwindow.cpp" line="2546"/>
-        <location filename="../mainwindow.cpp" line="2551"/>
-        <location filename="../mainwindow.cpp" line="2556"/>
-        <location filename="../mainwindow.cpp" line="2573"/>
-        <location filename="../mainwindow.cpp" line="2579"/>
-        <location filename="../mainwindow.cpp" line="2585"/>
-        <location filename="../mainwindow.cpp" line="2596"/>
-        <location filename="../mainwindow.cpp" line="2614"/>
-        <location filename="../mainwindow.cpp" line="2633"/>
-        <location filename="../mainwindow.cpp" line="2638"/>
-        <location filename="../mainwindow.cpp" line="2643"/>
-        <location filename="../mainwindow.cpp" line="2648"/>
-        <location filename="../mainwindow.cpp" line="2653"/>
-        <location filename="../mainwindow.cpp" line="2669"/>
-        <location filename="../mainwindow.cpp" line="2689"/>
-        <location filename="../mainwindow.cpp" line="2698"/>
-        <location filename="../mainwindow.cpp" line="2715"/>
-        <location filename="../mainwindow.cpp" line="2720"/>
-        <location filename="../mainwindow.cpp" line="2727"/>
-        <location filename="../mainwindow.cpp" line="2751"/>
-        <location filename="../mainwindow.cpp" line="2764"/>
+        <location filename="../mainwindow.cpp" line="2521"/>
+        <location filename="../mainwindow.cpp" line="2527"/>
+        <location filename="../mainwindow.cpp" line="2538"/>
+        <location filename="../mainwindow.cpp" line="2559"/>
+        <location filename="../mainwindow.cpp" line="2565"/>
+        <location filename="../mainwindow.cpp" line="2577"/>
+        <location filename="../mainwindow.cpp" line="2589"/>
+        <location filename="../mainwindow.cpp" line="2594"/>
+        <location filename="../mainwindow.cpp" line="2599"/>
+        <location filename="../mainwindow.cpp" line="2616"/>
+        <location filename="../mainwindow.cpp" line="2622"/>
+        <location filename="../mainwindow.cpp" line="2628"/>
+        <location filename="../mainwindow.cpp" line="2639"/>
+        <location filename="../mainwindow.cpp" line="2657"/>
+        <location filename="../mainwindow.cpp" line="2676"/>
+        <location filename="../mainwindow.cpp" line="2681"/>
+        <location filename="../mainwindow.cpp" line="2686"/>
+        <location filename="../mainwindow.cpp" line="2691"/>
+        <location filename="../mainwindow.cpp" line="2696"/>
+        <location filename="../mainwindow.cpp" line="2712"/>
+        <location filename="../mainwindow.cpp" line="2732"/>
+        <location filename="../mainwindow.cpp" line="2741"/>
+        <location filename="../mainwindow.cpp" line="2758"/>
+        <location filename="../mainwindow.cpp" line="2763"/>
         <location filename="../mainwindow.cpp" line="2770"/>
-        <location filename="../mainwindow.cpp" line="2775"/>
-        <location filename="../mainwindow.cpp" line="2782"/>
-        <location filename="../mainwindow.cpp" line="2801"/>
+        <location filename="../mainwindow.cpp" line="2794"/>
         <location filename="../mainwindow.cpp" line="2807"/>
         <location filename="../mainwindow.cpp" line="2813"/>
         <location filename="../mainwindow.cpp" line="2818"/>
-        <location filename="../mainwindow.cpp" line="2823"/>
-        <location filename="../mainwindow.cpp" line="2828"/>
-        <location filename="../mainwindow.cpp" line="2839"/>
-        <location filename="../mainwindow.cpp" line="2859"/>
-        <location filename="../mainwindow.cpp" line="2865"/>
-        <location filename="../mainwindow.cpp" line="2877"/>
-        <location filename="../mainwindow.cpp" line="2887"/>
-        <location filename="../mainwindow.cpp" line="2899"/>
-        <location filename="../mainwindow.cpp" line="2911"/>
-        <location filename="../mainwindow.cpp" line="2916"/>
-        <location filename="../mainwindow.cpp" line="2921"/>
-        <location filename="../mainwindow.cpp" line="2937"/>
+        <location filename="../mainwindow.cpp" line="2825"/>
+        <location filename="../mainwindow.cpp" line="2844"/>
+        <location filename="../mainwindow.cpp" line="2850"/>
+        <location filename="../mainwindow.cpp" line="2856"/>
+        <location filename="../mainwindow.cpp" line="2861"/>
+        <location filename="../mainwindow.cpp" line="2866"/>
+        <location filename="../mainwindow.cpp" line="2871"/>
+        <location filename="../mainwindow.cpp" line="2882"/>
+        <location filename="../mainwindow.cpp" line="2902"/>
+        <location filename="../mainwindow.cpp" line="2908"/>
+        <location filename="../mainwindow.cpp" line="2920"/>
+        <location filename="../mainwindow.cpp" line="2930"/>
         <location filename="../mainwindow.cpp" line="2942"/>
-        <location filename="../mainwindow.cpp" line="2948"/>
+        <location filename="../mainwindow.cpp" line="2954"/>
         <location filename="../mainwindow.cpp" line="2959"/>
-        <location filename="../mainwindow.cpp" line="2982"/>
-        <location filename="../mainwindow.cpp" line="2987"/>
-        <location filename="../mainwindow.cpp" line="3003"/>
-        <location filename="../mainwindow.cpp" line="3020"/>
-        <location filename="../mainwindow.cpp" line="3026"/>
-        <location filename="../mainwindow.cpp" line="3041"/>
-        <location filename="../mainwindow.cpp" line="3045"/>
-        <location filename="../mainwindow.cpp" line="3049"/>
-        <location filename="../mainwindow.cpp" line="3070"/>
-        <location filename="../mainwindow.cpp" line="3086"/>
-        <location filename="../mainwindow.cpp" line="3090"/>
-        <location filename="../mainwindow.cpp" line="3094"/>
-        <location filename="../mainwindow.cpp" line="3098"/>
-        <location filename="../mainwindow.cpp" line="3120"/>
-        <location filename="../mainwindow.cpp" line="3132"/>
-        <location filename="../mainwindow.cpp" line="3136"/>
-        <location filename="../mainwindow.cpp" line="3140"/>
-        <location filename="../mainwindow.cpp" line="3144"/>
-        <location filename="../mainwindow.cpp" line="3167"/>
-        <location filename="../mainwindow.cpp" line="3184"/>
-        <location filename="../mainwindow.cpp" line="3188"/>
-        <location filename="../mainwindow.cpp" line="3192"/>
-        <location filename="../mainwindow.cpp" line="3196"/>
-        <location filename="../mainwindow.cpp" line="3200"/>
-        <location filename="../mainwindow.cpp" line="3223"/>
-        <location filename="../mainwindow.cpp" line="3238"/>
-        <location filename="../mainwindow.cpp" line="3242"/>
-        <location filename="../mainwindow.cpp" line="3246"/>
-        <location filename="../mainwindow.cpp" line="3262"/>
-        <location filename="../mainwindow.cpp" line="3279"/>
-        <location filename="../mainwindow.cpp" line="3283"/>
-        <location filename="../mainwindow.cpp" line="3287"/>
+        <location filename="../mainwindow.cpp" line="2964"/>
+        <location filename="../mainwindow.cpp" line="2980"/>
+        <location filename="../mainwindow.cpp" line="2985"/>
+        <location filename="../mainwindow.cpp" line="2991"/>
+        <location filename="../mainwindow.cpp" line="3002"/>
+        <location filename="../mainwindow.cpp" line="3025"/>
+        <location filename="../mainwindow.cpp" line="3030"/>
+        <location filename="../mainwindow.cpp" line="3046"/>
+        <location filename="../mainwindow.cpp" line="3063"/>
+        <location filename="../mainwindow.cpp" line="3069"/>
+        <location filename="../mainwindow.cpp" line="3084"/>
+        <location filename="../mainwindow.cpp" line="3088"/>
+        <location filename="../mainwindow.cpp" line="3092"/>
+        <location filename="../mainwindow.cpp" line="3113"/>
+        <location filename="../mainwindow.cpp" line="3129"/>
+        <location filename="../mainwindow.cpp" line="3133"/>
+        <location filename="../mainwindow.cpp" line="3137"/>
+        <location filename="../mainwindow.cpp" line="3141"/>
+        <location filename="../mainwindow.cpp" line="3163"/>
+        <location filename="../mainwindow.cpp" line="3175"/>
+        <location filename="../mainwindow.cpp" line="3179"/>
+        <location filename="../mainwindow.cpp" line="3183"/>
+        <location filename="../mainwindow.cpp" line="3187"/>
+        <location filename="../mainwindow.cpp" line="3210"/>
+        <location filename="../mainwindow.cpp" line="3227"/>
+        <location filename="../mainwindow.cpp" line="3231"/>
+        <location filename="../mainwindow.cpp" line="3235"/>
+        <location filename="../mainwindow.cpp" line="3239"/>
+        <location filename="../mainwindow.cpp" line="3243"/>
+        <location filename="../mainwindow.cpp" line="3266"/>
+        <location filename="../mainwindow.cpp" line="3281"/>
+        <location filename="../mainwindow.cpp" line="3285"/>
+        <location filename="../mainwindow.cpp" line="3289"/>
         <location filename="../mainwindow.cpp" line="3305"/>
-        <location filename="../mainwindow.cpp" line="3321"/>
-        <location filename="../mainwindow.cpp" line="3325"/>
-        <location filename="../mainwindow.cpp" line="3329"/>
-        <location filename="../mainwindow.cpp" line="3346"/>
-        <location filename="../mainwindow.cpp" line="3356"/>
-        <location filename="../mainwindow.cpp" line="3360"/>
+        <location filename="../mainwindow.cpp" line="3322"/>
+        <location filename="../mainwindow.cpp" line="3326"/>
+        <location filename="../mainwindow.cpp" line="3330"/>
+        <location filename="../mainwindow.cpp" line="3348"/>
         <location filename="../mainwindow.cpp" line="3364"/>
         <location filename="../mainwindow.cpp" line="3368"/>
-        <location filename="../mainwindow.cpp" line="3384"/>
-        <location filename="../mainwindow.cpp" line="3400"/>
-        <location filename="../mainwindow.cpp" line="3404"/>
-        <location filename="../mainwindow.cpp" line="3408"/>
-        <location filename="../mainwindow.cpp" line="3431"/>
-        <location filename="../mainwindow.cpp" line="3435"/>
-        <location filename="../mainwindow.cpp" line="3439"/>
-        <location filename="../mainwindow.cpp" line="3463"/>
-        <location filename="../mainwindow.cpp" line="3467"/>
-        <location filename="../mainwindow.cpp" line="3490"/>
-        <location filename="../mainwindow.cpp" line="3496"/>
-        <location filename="../mainwindow.cpp" line="3511"/>
-        <location filename="../mainwindow.cpp" line="3515"/>
-        <location filename="../mainwindow.cpp" line="3519"/>
-        <location filename="../mainwindow.cpp" line="3538"/>
+        <location filename="../mainwindow.cpp" line="3372"/>
+        <location filename="../mainwindow.cpp" line="3389"/>
+        <location filename="../mainwindow.cpp" line="3399"/>
+        <location filename="../mainwindow.cpp" line="3403"/>
+        <location filename="../mainwindow.cpp" line="3407"/>
+        <location filename="../mainwindow.cpp" line="3411"/>
+        <location filename="../mainwindow.cpp" line="3427"/>
+        <location filename="../mainwindow.cpp" line="3443"/>
+        <location filename="../mainwindow.cpp" line="3447"/>
+        <location filename="../mainwindow.cpp" line="3451"/>
+        <location filename="../mainwindow.cpp" line="3474"/>
+        <location filename="../mainwindow.cpp" line="3478"/>
+        <location filename="../mainwindow.cpp" line="3482"/>
+        <location filename="../mainwindow.cpp" line="3506"/>
+        <location filename="../mainwindow.cpp" line="3510"/>
+        <location filename="../mainwindow.cpp" line="3533"/>
+        <location filename="../mainwindow.cpp" line="3539"/>
         <location filename="../mainwindow.cpp" line="3554"/>
         <location filename="../mainwindow.cpp" line="3558"/>
         <location filename="../mainwindow.cpp" line="3562"/>
-        <location filename="../mainwindow.cpp" line="3566"/>
-        <location filename="../mainwindow.cpp" line="3587"/>
-        <location filename="../mainwindow.cpp" line="3599"/>
-        <location filename="../mainwindow.cpp" line="3603"/>
-        <location filename="../mainwindow.cpp" line="3607"/>
-        <location filename="../mainwindow.cpp" line="3611"/>
-        <location filename="../mainwindow.cpp" line="3633"/>
+        <location filename="../mainwindow.cpp" line="3581"/>
+        <location filename="../mainwindow.cpp" line="3597"/>
+        <location filename="../mainwindow.cpp" line="3601"/>
+        <location filename="../mainwindow.cpp" line="3605"/>
+        <location filename="../mainwindow.cpp" line="3609"/>
+        <location filename="../mainwindow.cpp" line="3630"/>
+        <location filename="../mainwindow.cpp" line="3642"/>
+        <location filename="../mainwindow.cpp" line="3646"/>
         <location filename="../mainwindow.cpp" line="3650"/>
         <location filename="../mainwindow.cpp" line="3654"/>
-        <location filename="../mainwindow.cpp" line="3658"/>
-        <location filename="../mainwindow.cpp" line="3662"/>
-        <location filename="../mainwindow.cpp" line="3666"/>
-        <location filename="../mainwindow.cpp" line="3687"/>
-        <location filename="../mainwindow.cpp" line="3713"/>
-        <location filename="../mainwindow.cpp" line="3718"/>
-        <location filename="../mainwindow.cpp" line="3722"/>
-        <location filename="../mainwindow.cpp" line="3755"/>
-        <location filename="../mainwindow.cpp" line="3772"/>
-        <location filename="../mainwindow.cpp" line="3776"/>
-        <location filename="../mainwindow.cpp" line="3793"/>
-        <location filename="../mainwindow.cpp" line="3810"/>
-        <location filename="../mainwindow.cpp" line="3814"/>
-        <location filename="../mainwindow.cpp" line="3818"/>
-        <location filename="../mainwindow.cpp" line="3834"/>
-        <location filename="../mainwindow.cpp" line="3844"/>
-        <location filename="../mainwindow.cpp" line="3848"/>
-        <location filename="../mainwindow.cpp" line="3852"/>
-        <location filename="../mainwindow.cpp" line="3856"/>
-        <location filename="../mainwindow.cpp" line="3871"/>
-        <location filename="../mainwindow.cpp" line="3881"/>
-        <location filename="../mainwindow.cpp" line="3885"/>
-        <location filename="../mainwindow.cpp" line="3889"/>
-        <location filename="../mainwindow.cpp" line="3904"/>
+        <location filename="../mainwindow.cpp" line="3676"/>
+        <location filename="../mainwindow.cpp" line="3693"/>
+        <location filename="../mainwindow.cpp" line="3697"/>
+        <location filename="../mainwindow.cpp" line="3701"/>
+        <location filename="../mainwindow.cpp" line="3705"/>
+        <location filename="../mainwindow.cpp" line="3709"/>
+        <location filename="../mainwindow.cpp" line="3730"/>
+        <location filename="../mainwindow.cpp" line="3756"/>
+        <location filename="../mainwindow.cpp" line="3761"/>
+        <location filename="../mainwindow.cpp" line="3765"/>
+        <location filename="../mainwindow.cpp" line="3798"/>
+        <location filename="../mainwindow.cpp" line="3815"/>
+        <location filename="../mainwindow.cpp" line="3819"/>
+        <location filename="../mainwindow.cpp" line="3836"/>
+        <location filename="../mainwindow.cpp" line="3853"/>
+        <location filename="../mainwindow.cpp" line="3857"/>
+        <location filename="../mainwindow.cpp" line="3861"/>
+        <location filename="../mainwindow.cpp" line="3877"/>
+        <location filename="../mainwindow.cpp" line="3887"/>
+        <location filename="../mainwindow.cpp" line="3891"/>
+        <location filename="../mainwindow.cpp" line="3895"/>
+        <location filename="../mainwindow.cpp" line="3899"/>
         <location filename="../mainwindow.cpp" line="3914"/>
-        <location filename="../mainwindow.cpp" line="3918"/>
-        <location filename="../mainwindow.cpp" line="3925"/>
-        <location filename="../mainwindow.cpp" line="3929"/>
-        <location filename="../mainwindow.cpp" line="3933"/>
-        <location filename="../mainwindow.cpp" line="3939"/>
-        <location filename="../mainwindow.cpp" line="3956"/>
-        <location filename="../mainwindow.cpp" line="3970"/>
-        <location filename="../mainwindow.cpp" line="3974"/>
-        <location filename="../mainwindow.cpp" line="3978"/>
+        <location filename="../mainwindow.cpp" line="3924"/>
+        <location filename="../mainwindow.cpp" line="3928"/>
+        <location filename="../mainwindow.cpp" line="3932"/>
+        <location filename="../mainwindow.cpp" line="3947"/>
+        <location filename="../mainwindow.cpp" line="3957"/>
+        <location filename="../mainwindow.cpp" line="3961"/>
+        <location filename="../mainwindow.cpp" line="3968"/>
+        <location filename="../mainwindow.cpp" line="3972"/>
+        <location filename="../mainwindow.cpp" line="3976"/>
+        <location filename="../mainwindow.cpp" line="3982"/>
         <location filename="../mainwindow.cpp" line="3999"/>
-        <location filename="../mainwindow.cpp" line="4003"/>
-        <location filename="../mainwindow.cpp" line="4012"/>
-        <location filename="../mainwindow.cpp" line="4022"/>
-        <location filename="../mainwindow.cpp" line="4032"/>
-        <location filename="../mainwindow.cpp" line="4069"/>
+        <location filename="../mainwindow.cpp" line="4013"/>
+        <location filename="../mainwindow.cpp" line="4017"/>
+        <location filename="../mainwindow.cpp" line="4021"/>
+        <location filename="../mainwindow.cpp" line="4042"/>
+        <location filename="../mainwindow.cpp" line="4046"/>
+        <location filename="../mainwindow.cpp" line="4055"/>
+        <location filename="../mainwindow.cpp" line="4065"/>
+        <location filename="../mainwindow.cpp" line="4075"/>
+        <location filename="../mainwindow.cpp" line="4085"/>
+        <location filename="../mainwindow.cpp" line="4129"/>
         <source>Warning</source>
         <translation>Avertizare</translation>
     </message>
@@ -1570,352 +1821,356 @@
         <translation>Vizitați URL-ul de descărcat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="794"/>
-        <location filename="../mainwindow.cpp" line="842"/>
-        <location filename="../mainwindow.cpp" line="935"/>
-        <location filename="../mainwindow.cpp" line="988"/>
-        <location filename="../mainwindow.cpp" line="1037"/>
-        <location filename="../mainwindow.cpp" line="1092"/>
-        <location filename="../mainwindow.cpp" line="1145"/>
-        <location filename="../mainwindow.cpp" line="1185"/>
-        <location filename="../mainwindow.cpp" line="1272"/>
-        <location filename="../mainwindow.cpp" line="1333"/>
-        <location filename="../mainwindow.cpp" line="1385"/>
-        <location filename="../mainwindow.cpp" line="1486"/>
-        <location filename="../mainwindow.cpp" line="1546"/>
-        <location filename="../mainwindow.cpp" line="1591"/>
-        <location filename="../mainwindow.cpp" line="1651"/>
-        <location filename="../mainwindow.cpp" line="1845"/>
+        <location filename="../mainwindow.cpp" line="802"/>
+        <location filename="../mainwindow.cpp" line="851"/>
+        <location filename="../mainwindow.cpp" line="945"/>
+        <location filename="../mainwindow.cpp" line="999"/>
+        <location filename="../mainwindow.cpp" line="1049"/>
+        <location filename="../mainwindow.cpp" line="1105"/>
+        <location filename="../mainwindow.cpp" line="1196"/>
+        <location filename="../mainwindow.cpp" line="1284"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
+        <location filename="../mainwindow.cpp" line="1408"/>
+        <location filename="../mainwindow.cpp" line="1510"/>
+        <location filename="../mainwindow.cpp" line="1571"/>
+        <location filename="../mainwindow.cpp" line="1617"/>
+        <location filename="../mainwindow.cpp" line="1678"/>
+        <location filename="../mainwindow.cpp" line="1873"/>
+        <location filename="../mainwindow.cpp" line="2376"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="914"/>
-        <location filename="../mainwindow.cpp" line="1063"/>
-        <location filename="../mainwindow.cpp" line="1169"/>
-        <location filename="../mainwindow.cpp" line="1465"/>
-        <location filename="../mainwindow.cpp" line="1623"/>
-        <location filename="../mainwindow.cpp" line="1733"/>
+        <location filename="../mainwindow.cpp" line="924"/>
+        <location filename="../mainwindow.cpp" line="1076"/>
+        <location filename="../mainwindow.cpp" line="1180"/>
+        <location filename="../mainwindow.cpp" line="1489"/>
+        <location filename="../mainwindow.cpp" line="1650"/>
+        <location filename="../mainwindow.cpp" line="1761"/>
         <source>Insulation thickness</source>
         <translation>Grosimea izolației</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1203"/>
-        <location filename="../mainwindow.cpp" line="1255"/>
-        <location filename="../mainwindow.cpp" line="1769"/>
-        <location filename="../mainwindow.cpp" line="1823"/>
-        <location filename="../mainwindow.cpp" line="1867"/>
-        <location filename="../mainwindow.cpp" line="4533"/>
-        <location filename="../mainwindow.cpp" line="4645"/>
-        <location filename="../mainwindow.cpp" line="5084"/>
+        <location filename="../mainwindow.cpp" line="1215"/>
+        <location filename="../mainwindow.cpp" line="1267"/>
+        <location filename="../mainwindow.cpp" line="1797"/>
+        <location filename="../mainwindow.cpp" line="1851"/>
+        <location filename="../mainwindow.cpp" line="1896"/>
+        <location filename="../mainwindow.cpp" line="4593"/>
+        <location filename="../mainwindow.cpp" line="4705"/>
+        <location filename="../mainwindow.cpp" line="5144"/>
         <source>Outside diameter</source>
         <translation>Diametrul exterior</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1205"/>
-        <location filename="../mainwindow.cpp" line="1257"/>
-        <location filename="../mainwindow.cpp" line="1290"/>
-        <location filename="../mainwindow.cpp" line="1771"/>
-        <location filename="../mainwindow.cpp" line="1825"/>
-        <location filename="../mainwindow.cpp" line="1869"/>
+        <location filename="../mainwindow.cpp" line="1217"/>
+        <location filename="../mainwindow.cpp" line="1269"/>
+        <location filename="../mainwindow.cpp" line="1303"/>
+        <location filename="../mainwindow.cpp" line="1799"/>
+        <location filename="../mainwindow.cpp" line="1853"/>
+        <location filename="../mainwindow.cpp" line="1898"/>
         <source>Inside diameter</source>
         <translation>Diametrul interior</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1211"/>
-        <location filename="../mainwindow.cpp" line="1775"/>
+        <location filename="../mainwindow.cpp" line="1223"/>
+        <location filename="../mainwindow.cpp" line="1803"/>
         <source>Init magnetic permeability</source>
         <translation>Permeabilitate magnetică inițială</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="812"/>
-        <location filename="../mainwindow.cpp" line="860"/>
-        <location filename="../mainwindow.cpp" line="908"/>
-        <location filename="../mainwindow.cpp" line="953"/>
-        <location filename="../mainwindow.cpp" line="1006"/>
-        <location filename="../mainwindow.cpp" line="1055"/>
-        <location filename="../mainwindow.cpp" line="1163"/>
-        <location filename="../mainwindow.cpp" line="1355"/>
-        <location filename="../mainwindow.cpp" line="1407"/>
-        <location filename="../mainwindow.cpp" line="1459"/>
-        <location filename="../mainwindow.cpp" line="1508"/>
-        <location filename="../mainwindow.cpp" line="1568"/>
-        <location filename="../mainwindow.cpp" line="1613"/>
-        <location filename="../mainwindow.cpp" line="1727"/>
+        <location filename="../mainwindow.cpp" line="821"/>
+        <location filename="../mainwindow.cpp" line="870"/>
+        <location filename="../mainwindow.cpp" line="918"/>
+        <location filename="../mainwindow.cpp" line="964"/>
+        <location filename="../mainwindow.cpp" line="1018"/>
+        <location filename="../mainwindow.cpp" line="1068"/>
+        <location filename="../mainwindow.cpp" line="1174"/>
+        <location filename="../mainwindow.cpp" line="1378"/>
+        <location filename="../mainwindow.cpp" line="1431"/>
+        <location filename="../mainwindow.cpp" line="1483"/>
+        <location filename="../mainwindow.cpp" line="1533"/>
+        <location filename="../mainwindow.cpp" line="1594"/>
+        <location filename="../mainwindow.cpp" line="1640"/>
+        <location filename="../mainwindow.cpp" line="1755"/>
         <source>Former diameter</source>
         <translation>Diametrul suportului (carcasei)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="814"/>
-        <location filename="../mainwindow.cpp" line="862"/>
-        <location filename="../mainwindow.cpp" line="955"/>
-        <location filename="../mainwindow.cpp" line="1010"/>
-        <location filename="../mainwindow.cpp" line="1059"/>
-        <location filename="../mainwindow.cpp" line="1116"/>
-        <location filename="../mainwindow.cpp" line="1209"/>
-        <location filename="../mainwindow.cpp" line="1292"/>
-        <location filename="../mainwindow.cpp" line="1357"/>
-        <location filename="../mainwindow.cpp" line="1409"/>
-        <location filename="../mainwindow.cpp" line="1510"/>
-        <location filename="../mainwindow.cpp" line="1574"/>
-        <location filename="../mainwindow.cpp" line="1619"/>
-        <location filename="../mainwindow.cpp" line="1681"/>
-        <location filename="../mainwindow.cpp" line="1871"/>
-        <location filename="../mainwindow.cpp" line="2330"/>
+        <location filename="../mainwindow.cpp" line="823"/>
+        <location filename="../mainwindow.cpp" line="872"/>
+        <location filename="../mainwindow.cpp" line="966"/>
+        <location filename="../mainwindow.cpp" line="1022"/>
+        <location filename="../mainwindow.cpp" line="1072"/>
+        <location filename="../mainwindow.cpp" line="1130"/>
+        <location filename="../mainwindow.cpp" line="1221"/>
+        <location filename="../mainwindow.cpp" line="1305"/>
+        <location filename="../mainwindow.cpp" line="1380"/>
+        <location filename="../mainwindow.cpp" line="1433"/>
+        <location filename="../mainwindow.cpp" line="1535"/>
+        <location filename="../mainwindow.cpp" line="1600"/>
+        <location filename="../mainwindow.cpp" line="1646"/>
+        <location filename="../mainwindow.cpp" line="1709"/>
+        <location filename="../mainwindow.cpp" line="1900"/>
+        <location filename="../mainwindow.cpp" line="2371"/>
         <source>Wire diameter</source>
         <translation>Diametrul sârmei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="816"/>
-        <location filename="../mainwindow.cpp" line="864"/>
-        <location filename="../mainwindow.cpp" line="957"/>
-        <location filename="../mainwindow.cpp" line="1012"/>
-        <location filename="../mainwindow.cpp" line="1061"/>
-        <location filename="../mainwindow.cpp" line="1118"/>
-        <location filename="../mainwindow.cpp" line="1359"/>
-        <location filename="../mainwindow.cpp" line="1411"/>
-        <location filename="../mainwindow.cpp" line="1512"/>
-        <location filename="../mainwindow.cpp" line="1576"/>
-        <location filename="../mainwindow.cpp" line="1621"/>
-        <location filename="../mainwindow.cpp" line="1683"/>
+        <location filename="../mainwindow.cpp" line="825"/>
+        <location filename="../mainwindow.cpp" line="874"/>
+        <location filename="../mainwindow.cpp" line="968"/>
+        <location filename="../mainwindow.cpp" line="1024"/>
+        <location filename="../mainwindow.cpp" line="1074"/>
+        <location filename="../mainwindow.cpp" line="1132"/>
+        <location filename="../mainwindow.cpp" line="1382"/>
+        <location filename="../mainwindow.cpp" line="1435"/>
+        <location filename="../mainwindow.cpp" line="1537"/>
+        <location filename="../mainwindow.cpp" line="1602"/>
+        <location filename="../mainwindow.cpp" line="1648"/>
+        <location filename="../mainwindow.cpp" line="1711"/>
         <source>Wire diameter with insulation</source>
         <translation>Diametrul sârmei cu izolație</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="910"/>
-        <location filename="../mainwindow.cpp" line="1461"/>
+        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="1485"/>
         <source>Wire width</source>
         <translation>Lățimea firelor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="912"/>
-        <location filename="../mainwindow.cpp" line="1463"/>
+        <location filename="../mainwindow.cpp" line="922"/>
+        <location filename="../mainwindow.cpp" line="1487"/>
         <source>Wire thickness</source>
         <translation>Grosimea firului</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1008"/>
-        <location filename="../mainwindow.cpp" line="1057"/>
-        <location filename="../mainwindow.cpp" line="1114"/>
-        <location filename="../mainwindow.cpp" line="1570"/>
-        <location filename="../mainwindow.cpp" line="1615"/>
-        <location filename="../mainwindow.cpp" line="1677"/>
+        <location filename="../mainwindow.cpp" line="1020"/>
+        <location filename="../mainwindow.cpp" line="1070"/>
+        <location filename="../mainwindow.cpp" line="1128"/>
+        <location filename="../mainwindow.cpp" line="1596"/>
+        <location filename="../mainwindow.cpp" line="1642"/>
+        <location filename="../mainwindow.cpp" line="1705"/>
         <source>Winding length</source>
         <translation>Lungimea înfăşurării (bobinei)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1065"/>
-        <location filename="../mainwindow.cpp" line="1625"/>
+        <location filename="../mainwindow.cpp" line="1078"/>
+        <location filename="../mainwindow.cpp" line="1652"/>
         <source>Layers number beetween insulating pads</source>
         <translation>Numărul de straturi dintre plăcile izolatoare</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1207"/>
-        <location filename="../mainwindow.cpp" line="1773"/>
+        <location filename="../mainwindow.cpp" line="1219"/>
+        <location filename="../mainwindow.cpp" line="1801"/>
         <source>Core height</source>
         <translation>Înălţimea inelului</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="777"/>
-        <location filename="../mainwindow.cpp" line="1316"/>
-        <location filename="../mainwindow.cpp" line="2173"/>
-        <location filename="../mainwindow.cpp" line="2183"/>
+        <location filename="../mainwindow.cpp" line="1329"/>
+        <location filename="../mainwindow.cpp" line="2204"/>
+        <location filename="../mainwindow.cpp" line="2214"/>
+        <location filename="../mainwindow.cpp" line="2224"/>
         <source>Frequency</source>
         <translation>Frecvenţa</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3020"/>
-        <location filename="../mainwindow.cpp" line="3026"/>
-        <location filename="../mainwindow.cpp" line="3070"/>
-        <location filename="../mainwindow.cpp" line="3120"/>
-        <location filename="../mainwindow.cpp" line="3167"/>
-        <location filename="../mainwindow.cpp" line="3223"/>
-        <location filename="../mainwindow.cpp" line="3262"/>
+        <location filename="../mainwindow.cpp" line="3063"/>
+        <location filename="../mainwindow.cpp" line="3069"/>
+        <location filename="../mainwindow.cpp" line="3113"/>
+        <location filename="../mainwindow.cpp" line="3163"/>
+        <location filename="../mainwindow.cpp" line="3210"/>
+        <location filename="../mainwindow.cpp" line="3266"/>
         <location filename="../mainwindow.cpp" line="3305"/>
-        <location filename="../mainwindow.cpp" line="3346"/>
-        <location filename="../mainwindow.cpp" line="3384"/>
-        <location filename="../mainwindow.cpp" line="3490"/>
-        <location filename="../mainwindow.cpp" line="3496"/>
-        <location filename="../mainwindow.cpp" line="3538"/>
-        <location filename="../mainwindow.cpp" line="3587"/>
-        <location filename="../mainwindow.cpp" line="3633"/>
-        <location filename="../mainwindow.cpp" line="3687"/>
-        <location filename="../mainwindow.cpp" line="3755"/>
-        <location filename="../mainwindow.cpp" line="3793"/>
-        <location filename="../mainwindow.cpp" line="3834"/>
-        <location filename="../mainwindow.cpp" line="3871"/>
-        <location filename="../mainwindow.cpp" line="3904"/>
-        <location filename="../mainwindow.cpp" line="3956"/>
+        <location filename="../mainwindow.cpp" line="3348"/>
+        <location filename="../mainwindow.cpp" line="3389"/>
+        <location filename="../mainwindow.cpp" line="3427"/>
+        <location filename="../mainwindow.cpp" line="3533"/>
+        <location filename="../mainwindow.cpp" line="3539"/>
+        <location filename="../mainwindow.cpp" line="3581"/>
+        <location filename="../mainwindow.cpp" line="3630"/>
+        <location filename="../mainwindow.cpp" line="3676"/>
+        <location filename="../mainwindow.cpp" line="3730"/>
+        <location filename="../mainwindow.cpp" line="3798"/>
+        <location filename="../mainwindow.cpp" line="3836"/>
+        <location filename="../mainwindow.cpp" line="3877"/>
+        <location filename="../mainwindow.cpp" line="3914"/>
+        <location filename="../mainwindow.cpp" line="3947"/>
         <location filename="../mainwindow.cpp" line="3999"/>
+        <location filename="../mainwindow.cpp" line="4042"/>
         <source>One or more inputs are empty!</source>
         <translation>Una sau mai multe intrări sunt goale!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3045"/>
-        <location filename="../mainwindow.cpp" line="3090"/>
-        <location filename="../mainwindow.cpp" line="3136"/>
-        <location filename="../mainwindow.cpp" line="3188"/>
-        <location filename="../mainwindow.cpp" line="3242"/>
-        <location filename="../mainwindow.cpp" line="3283"/>
-        <location filename="../mainwindow.cpp" line="3325"/>
-        <location filename="../mainwindow.cpp" line="3360"/>
-        <location filename="../mainwindow.cpp" line="3404"/>
-        <location filename="../mainwindow.cpp" line="3435"/>
-        <location filename="../mainwindow.cpp" line="3467"/>
-        <location filename="../mainwindow.cpp" line="3515"/>
+        <location filename="../mainwindow.cpp" line="3088"/>
+        <location filename="../mainwindow.cpp" line="3133"/>
+        <location filename="../mainwindow.cpp" line="3179"/>
+        <location filename="../mainwindow.cpp" line="3231"/>
+        <location filename="../mainwindow.cpp" line="3285"/>
+        <location filename="../mainwindow.cpp" line="3326"/>
+        <location filename="../mainwindow.cpp" line="3368"/>
+        <location filename="../mainwindow.cpp" line="3403"/>
+        <location filename="../mainwindow.cpp" line="3447"/>
+        <location filename="../mainwindow.cpp" line="3478"/>
+        <location filename="../mainwindow.cpp" line="3510"/>
         <location filename="../mainwindow.cpp" line="3558"/>
-        <location filename="../mainwindow.cpp" line="3603"/>
-        <location filename="../mainwindow.cpp" line="3654"/>
-        <location filename="../mainwindow.cpp" line="3718"/>
-        <location filename="../mainwindow.cpp" line="3776"/>
-        <location filename="../mainwindow.cpp" line="3814"/>
-        <location filename="../mainwindow.cpp" line="3848"/>
-        <location filename="../mainwindow.cpp" line="3885"/>
-        <location filename="../mainwindow.cpp" line="3914"/>
-        <location filename="../mainwindow.cpp" line="3929"/>
-        <location filename="../mainwindow.cpp" line="3974"/>
-        <location filename="../mainwindow.cpp" line="4003"/>
+        <location filename="../mainwindow.cpp" line="3601"/>
+        <location filename="../mainwindow.cpp" line="3646"/>
+        <location filename="../mainwindow.cpp" line="3697"/>
+        <location filename="../mainwindow.cpp" line="3761"/>
+        <location filename="../mainwindow.cpp" line="3819"/>
+        <location filename="../mainwindow.cpp" line="3857"/>
+        <location filename="../mainwindow.cpp" line="3891"/>
+        <location filename="../mainwindow.cpp" line="3928"/>
+        <location filename="../mainwindow.cpp" line="3957"/>
+        <location filename="../mainwindow.cpp" line="3972"/>
+        <location filename="../mainwindow.cpp" line="4017"/>
+        <location filename="../mainwindow.cpp" line="4046"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4041"/>
+        <location filename="../mainwindow.cpp" line="4099"/>
         <source>LC tank calculation</source>
         <translation>Calcularea circuitului LC</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4045"/>
-        <location filename="../mainwindow.cpp" line="4085"/>
-        <location filename="../mainwindow.cpp" line="4183"/>
-        <location filename="../mainwindow.cpp" line="4267"/>
-        <location filename="../mainwindow.cpp" line="4358"/>
-        <location filename="../mainwindow.cpp" line="4411"/>
-        <location filename="../mainwindow.cpp" line="4466"/>
-        <location filename="../mainwindow.cpp" line="4522"/>
-        <location filename="../mainwindow.cpp" line="4561"/>
-        <location filename="../mainwindow.cpp" line="4605"/>
-        <location filename="../mainwindow.cpp" line="4635"/>
-        <location filename="../mainwindow.cpp" line="4676"/>
-        <location filename="../mainwindow.cpp" line="4774"/>
-        <location filename="../mainwindow.cpp" line="4860"/>
-        <location filename="../mainwindow.cpp" line="4951"/>
-        <location filename="../mainwindow.cpp" line="4992"/>
-        <location filename="../mainwindow.cpp" line="5029"/>
-        <location filename="../mainwindow.cpp" line="5066"/>
-        <location filename="../mainwindow.cpp" line="5106"/>
-        <location filename="../mainwindow.cpp" line="5138"/>
-        <location filename="../mainwindow.cpp" line="5169"/>
+        <location filename="../mainwindow.cpp" line="4103"/>
+        <location filename="../mainwindow.cpp" line="4145"/>
+        <location filename="../mainwindow.cpp" line="4243"/>
+        <location filename="../mainwindow.cpp" line="4327"/>
+        <location filename="../mainwindow.cpp" line="4418"/>
+        <location filename="../mainwindow.cpp" line="4471"/>
+        <location filename="../mainwindow.cpp" line="4526"/>
+        <location filename="../mainwindow.cpp" line="4582"/>
+        <location filename="../mainwindow.cpp" line="4621"/>
+        <location filename="../mainwindow.cpp" line="4665"/>
+        <location filename="../mainwindow.cpp" line="4695"/>
+        <location filename="../mainwindow.cpp" line="4736"/>
+        <location filename="../mainwindow.cpp" line="4834"/>
+        <location filename="../mainwindow.cpp" line="4920"/>
+        <location filename="../mainwindow.cpp" line="5011"/>
+        <location filename="../mainwindow.cpp" line="5052"/>
+        <location filename="../mainwindow.cpp" line="5089"/>
+        <location filename="../mainwindow.cpp" line="5126"/>
+        <location filename="../mainwindow.cpp" line="5166"/>
+        <location filename="../mainwindow.cpp" line="5198"/>
+        <location filename="../mainwindow.cpp" line="5229"/>
         <source>Input</source>
         <translation>Intrare</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4050"/>
-        <location filename="../mainwindow.cpp" line="4113"/>
-        <location filename="../mainwindow.cpp" line="4199"/>
-        <location filename="../mainwindow.cpp" line="4288"/>
-        <location filename="../mainwindow.cpp" line="4366"/>
-        <location filename="../mainwindow.cpp" line="4421"/>
-        <location filename="../mainwindow.cpp" line="4475"/>
-        <location filename="../mainwindow.cpp" line="4530"/>
-        <location filename="../mainwindow.cpp" line="4570"/>
-        <location filename="../mainwindow.cpp" line="4612"/>
-        <location filename="../mainwindow.cpp" line="4642"/>
-        <location filename="../mainwindow.cpp" line="4703"/>
-        <location filename="../mainwindow.cpp" line="4789"/>
-        <location filename="../mainwindow.cpp" line="4880"/>
-        <location filename="../mainwindow.cpp" line="4959"/>
-        <location filename="../mainwindow.cpp" line="5007"/>
-        <location filename="../mainwindow.cpp" line="5043"/>
-        <location filename="../mainwindow.cpp" line="5074"/>
-        <location filename="../mainwindow.cpp" line="5114"/>
-        <location filename="../mainwindow.cpp" line="5148"/>
-        <location filename="../mainwindow.cpp" line="5176"/>
+        <location filename="../mainwindow.cpp" line="4108"/>
+        <location filename="../mainwindow.cpp" line="4173"/>
+        <location filename="../mainwindow.cpp" line="4259"/>
+        <location filename="../mainwindow.cpp" line="4348"/>
+        <location filename="../mainwindow.cpp" line="4426"/>
+        <location filename="../mainwindow.cpp" line="4481"/>
+        <location filename="../mainwindow.cpp" line="4535"/>
+        <location filename="../mainwindow.cpp" line="4590"/>
+        <location filename="../mainwindow.cpp" line="4630"/>
+        <location filename="../mainwindow.cpp" line="4672"/>
+        <location filename="../mainwindow.cpp" line="4702"/>
+        <location filename="../mainwindow.cpp" line="4763"/>
+        <location filename="../mainwindow.cpp" line="4849"/>
+        <location filename="../mainwindow.cpp" line="4940"/>
+        <location filename="../mainwindow.cpp" line="5019"/>
+        <location filename="../mainwindow.cpp" line="5067"/>
+        <location filename="../mainwindow.cpp" line="5103"/>
+        <location filename="../mainwindow.cpp" line="5134"/>
+        <location filename="../mainwindow.cpp" line="5174"/>
+        <location filename="../mainwindow.cpp" line="5208"/>
+        <location filename="../mainwindow.cpp" line="5236"/>
         <source>Result</source>
         <translation>Rezultate</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4016"/>
+        <location filename="../mainwindow.cpp" line="4059"/>
         <source>Frequency of a circuit</source>
         <translation>Frecvenţa de Rezonanţă a circuitului</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4026"/>
+        <location filename="../mainwindow.cpp" line="4069"/>
+        <location filename="../mainwindow.cpp" line="4094"/>
         <source>Inductance of a circuit</source>
         <translation>Inductanţa circuitului</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4053"/>
-        <location filename="../mainwindow.cpp" line="4151"/>
-        <location filename="../mainwindow.cpp" line="4237"/>
-        <location filename="../mainwindow.cpp" line="4326"/>
-        <location filename="../mainwindow.cpp" line="4744"/>
-        <location filename="../mainwindow.cpp" line="4830"/>
-        <location filename="../mainwindow.cpp" line="4921"/>
+        <location filename="../mainwindow.cpp" line="2222"/>
+        <location filename="../mainwindow.cpp" line="4112"/>
+        <location filename="../mainwindow.cpp" line="4211"/>
+        <location filename="../mainwindow.cpp" line="4297"/>
+        <location filename="../mainwindow.cpp" line="4386"/>
+        <location filename="../mainwindow.cpp" line="4804"/>
+        <location filename="../mainwindow.cpp" line="4890"/>
+        <location filename="../mainwindow.cpp" line="4981"/>
         <source>Characteristic impedance</source>
         <translation>Impendanţa caracteristică</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2327"/>
-        <location filename="../mainwindow.cpp" line="4053"/>
-        <location filename="../mainwindow.cpp" line="4126"/>
-        <location filename="../mainwindow.cpp" line="4140"/>
-        <location filename="../mainwindow.cpp" line="4142"/>
-        <location filename="../mainwindow.cpp" line="4151"/>
-        <location filename="../mainwindow.cpp" line="4212"/>
-        <location filename="../mainwindow.cpp" line="4226"/>
-        <location filename="../mainwindow.cpp" line="4228"/>
-        <location filename="../mainwindow.cpp" line="4237"/>
-        <location filename="../mainwindow.cpp" line="4301"/>
-        <location filename="../mainwindow.cpp" line="4315"/>
-        <location filename="../mainwindow.cpp" line="4317"/>
-        <location filename="../mainwindow.cpp" line="4326"/>
+        <location filename="../mainwindow.cpp" line="2226"/>
+        <location filename="../mainwindow.cpp" line="2368"/>
+        <location filename="../mainwindow.cpp" line="4112"/>
+        <location filename="../mainwindow.cpp" line="4186"/>
+        <location filename="../mainwindow.cpp" line="4200"/>
+        <location filename="../mainwindow.cpp" line="4202"/>
+        <location filename="../mainwindow.cpp" line="4211"/>
+        <location filename="../mainwindow.cpp" line="4272"/>
+        <location filename="../mainwindow.cpp" line="4286"/>
+        <location filename="../mainwindow.cpp" line="4288"/>
+        <location filename="../mainwindow.cpp" line="4297"/>
+        <location filename="../mainwindow.cpp" line="4361"/>
+        <location filename="../mainwindow.cpp" line="4375"/>
         <location filename="../mainwindow.cpp" line="4377"/>
-        <location filename="../mainwindow.cpp" line="4431"/>
-        <location filename="../mainwindow.cpp" line="4502"/>
-        <location filename="../mainwindow.cpp" line="4541"/>
-        <location filename="../mainwindow.cpp" line="4542"/>
-        <location filename="../mainwindow.cpp" line="4719"/>
-        <location filename="../mainwindow.cpp" line="4733"/>
-        <location filename="../mainwindow.cpp" line="4735"/>
-        <location filename="../mainwindow.cpp" line="4744"/>
-        <location filename="../mainwindow.cpp" line="4805"/>
-        <location filename="../mainwindow.cpp" line="4819"/>
-        <location filename="../mainwindow.cpp" line="4821"/>
-        <location filename="../mainwindow.cpp" line="4830"/>
-        <location filename="../mainwindow.cpp" line="4896"/>
-        <location filename="../mainwindow.cpp" line="4910"/>
-        <location filename="../mainwindow.cpp" line="4912"/>
-        <location filename="../mainwindow.cpp" line="4921"/>
-        <location filename="../mainwindow.cpp" line="5086"/>
-        <location filename="../mainwindow.cpp" line="5087"/>
+        <location filename="../mainwindow.cpp" line="4386"/>
+        <location filename="../mainwindow.cpp" line="4437"/>
+        <location filename="../mainwindow.cpp" line="4491"/>
+        <location filename="../mainwindow.cpp" line="4562"/>
+        <location filename="../mainwindow.cpp" line="4601"/>
+        <location filename="../mainwindow.cpp" line="4602"/>
+        <location filename="../mainwindow.cpp" line="4779"/>
+        <location filename="../mainwindow.cpp" line="4793"/>
+        <location filename="../mainwindow.cpp" line="4795"/>
+        <location filename="../mainwindow.cpp" line="4804"/>
+        <location filename="../mainwindow.cpp" line="4865"/>
+        <location filename="../mainwindow.cpp" line="4879"/>
+        <location filename="../mainwindow.cpp" line="4881"/>
+        <location filename="../mainwindow.cpp" line="4890"/>
+        <location filename="../mainwindow.cpp" line="4956"/>
+        <location filename="../mainwindow.cpp" line="4970"/>
+        <location filename="../mainwindow.cpp" line="4972"/>
+        <location filename="../mainwindow.cpp" line="4981"/>
+        <location filename="../mainwindow.cpp" line="5146"/>
+        <location filename="../mainwindow.cpp" line="5147"/>
         <source>Ohm</source>
         <translation>Ohm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="411"/>
-        <location filename="../mainwindow.cpp" line="2006"/>
-        <location filename="../mainwindow.cpp" line="5361"/>
+        <location filename="../mainwindow.cpp" line="408"/>
+        <location filename="../mainwindow.cpp" line="2035"/>
+        <location filename="../mainwindow.cpp" line="5444"/>
         <source>Confirmation</source>
         <translation>Confirmare</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="412"/>
-        <location filename="../mainwindow.cpp" line="2007"/>
-        <location filename="../mainwindow.cpp" line="5362"/>
+        <location filename="../mainwindow.cpp" line="409"/>
+        <location filename="../mainwindow.cpp" line="2036"/>
+        <location filename="../mainwindow.cpp" line="5445"/>
         <source>Are you sure?</source>
         <translation>Esti sigur?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="415"/>
-        <location filename="../mainwindow.cpp" line="2010"/>
-        <location filename="../mainwindow.cpp" line="5365"/>
+        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="2039"/>
+        <location filename="../mainwindow.cpp" line="5448"/>
         <source>Yes</source>
         <translation>Da</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="416"/>
-        <location filename="../mainwindow.cpp" line="2011"/>
-        <location filename="../mainwindow.cpp" line="5366"/>
+        <location filename="../mainwindow.cpp" line="413"/>
+        <location filename="../mainwindow.cpp" line="2040"/>
+        <location filename="../mainwindow.cpp" line="5449"/>
         <source>No</source>
         <translation>Nu</translation>
     </message>
@@ -1925,161 +2180,162 @@
         <translation>Ceva a mers prost</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="961"/>
-        <location filename="../mainwindow.cpp" line="1516"/>
+        <location filename="../mainwindow.cpp" line="972"/>
+        <location filename="../mainwindow.cpp" line="1541"/>
         <source>Number of sides of the former</source>
         <translation>Numărul laturilor al suportului (carcasei) bobinei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1110"/>
-        <location filename="../mainwindow.cpp" line="1673"/>
+        <location filename="../mainwindow.cpp" line="1124"/>
+        <location filename="../mainwindow.cpp" line="1701"/>
         <source>Former width</source>
         <translation>Lățime mai veche</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1112"/>
-        <location filename="../mainwindow.cpp" line="1675"/>
+        <location filename="../mainwindow.cpp" line="1126"/>
+        <location filename="../mainwindow.cpp" line="1703"/>
         <source>Former height</source>
         <translation>Înălțime mai veche</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1165"/>
-        <location filename="../mainwindow.cpp" line="1729"/>
+        <location filename="../mainwindow.cpp" line="1176"/>
+        <location filename="../mainwindow.cpp" line="1757"/>
         <source>Foil width</source>
         <translation>Lățimea foliei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1167"/>
-        <location filename="../mainwindow.cpp" line="1731"/>
+        <location filename="../mainwindow.cpp" line="1178"/>
+        <location filename="../mainwindow.cpp" line="1759"/>
         <source>Foil thickness</source>
         <translation>Grosimea foliei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1294"/>
+        <location filename="../mainwindow.cpp" line="1307"/>
         <source>Gap between turns</source>
         <translation>Gap între spire</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1314"/>
+        <location filename="../mainwindow.cpp" line="1327"/>
         <source>Number of turns</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1829"/>
-        <location filename="../mainwindow.cpp" line="4616"/>
+        <location filename="../mainwindow.cpp" line="1857"/>
+        <location filename="../mainwindow.cpp" line="4676"/>
         <source>Width of a PCB trace</source>
         <translation>Lăţimea conductorului (traseului) a cablajului imprimat (PCB)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2332"/>
+        <location filename="../mainwindow.cpp" line="2373"/>
         <source>mm</source>
         <translation>mm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2383"/>
-        <location filename="../mainwindow.cpp" line="2392"/>
-        <location filename="../mainwindow.cpp" line="2409"/>
-        <location filename="../mainwindow.cpp" line="2414"/>
-        <location filename="../mainwindow.cpp" line="2420"/>
-        <location filename="../mainwindow.cpp" line="2430"/>
-        <location filename="../mainwindow.cpp" line="2454"/>
-        <location filename="../mainwindow.cpp" line="2467"/>
+        <location filename="../mainwindow.cpp" line="2426"/>
+        <location filename="../mainwindow.cpp" line="2435"/>
+        <location filename="../mainwindow.cpp" line="2452"/>
+        <location filename="../mainwindow.cpp" line="2457"/>
+        <location filename="../mainwindow.cpp" line="2463"/>
         <location filename="../mainwindow.cpp" line="2473"/>
-        <location filename="../mainwindow.cpp" line="2478"/>
-        <location filename="../mainwindow.cpp" line="2484"/>
-        <location filename="../mainwindow.cpp" line="2495"/>
+        <location filename="../mainwindow.cpp" line="2497"/>
+        <location filename="../mainwindow.cpp" line="2510"/>
         <location filename="../mainwindow.cpp" line="2516"/>
-        <location filename="../mainwindow.cpp" line="2522"/>
-        <location filename="../mainwindow.cpp" line="2534"/>
-        <location filename="../mainwindow.cpp" line="2546"/>
-        <location filename="../mainwindow.cpp" line="2551"/>
-        <location filename="../mainwindow.cpp" line="2556"/>
-        <location filename="../mainwindow.cpp" line="2573"/>
-        <location filename="../mainwindow.cpp" line="2579"/>
-        <location filename="../mainwindow.cpp" line="2585"/>
-        <location filename="../mainwindow.cpp" line="2596"/>
-        <location filename="../mainwindow.cpp" line="2614"/>
-        <location filename="../mainwindow.cpp" line="2633"/>
-        <location filename="../mainwindow.cpp" line="2643"/>
-        <location filename="../mainwindow.cpp" line="2648"/>
-        <location filename="../mainwindow.cpp" line="2653"/>
-        <location filename="../mainwindow.cpp" line="2669"/>
-        <location filename="../mainwindow.cpp" line="2689"/>
-        <location filename="../mainwindow.cpp" line="2698"/>
-        <location filename="../mainwindow.cpp" line="2715"/>
-        <location filename="../mainwindow.cpp" line="2720"/>
-        <location filename="../mainwindow.cpp" line="2727"/>
-        <location filename="../mainwindow.cpp" line="2751"/>
-        <location filename="../mainwindow.cpp" line="2764"/>
+        <location filename="../mainwindow.cpp" line="2521"/>
+        <location filename="../mainwindow.cpp" line="2527"/>
+        <location filename="../mainwindow.cpp" line="2538"/>
+        <location filename="../mainwindow.cpp" line="2559"/>
+        <location filename="../mainwindow.cpp" line="2565"/>
+        <location filename="../mainwindow.cpp" line="2577"/>
+        <location filename="../mainwindow.cpp" line="2589"/>
+        <location filename="../mainwindow.cpp" line="2594"/>
+        <location filename="../mainwindow.cpp" line="2599"/>
+        <location filename="../mainwindow.cpp" line="2616"/>
+        <location filename="../mainwindow.cpp" line="2622"/>
+        <location filename="../mainwindow.cpp" line="2628"/>
+        <location filename="../mainwindow.cpp" line="2639"/>
+        <location filename="../mainwindow.cpp" line="2657"/>
+        <location filename="../mainwindow.cpp" line="2676"/>
+        <location filename="../mainwindow.cpp" line="2686"/>
+        <location filename="../mainwindow.cpp" line="2691"/>
+        <location filename="../mainwindow.cpp" line="2696"/>
+        <location filename="../mainwindow.cpp" line="2712"/>
+        <location filename="../mainwindow.cpp" line="2732"/>
+        <location filename="../mainwindow.cpp" line="2741"/>
+        <location filename="../mainwindow.cpp" line="2758"/>
+        <location filename="../mainwindow.cpp" line="2763"/>
         <location filename="../mainwindow.cpp" line="2770"/>
-        <location filename="../mainwindow.cpp" line="2775"/>
-        <location filename="../mainwindow.cpp" line="2782"/>
-        <location filename="../mainwindow.cpp" line="2801"/>
+        <location filename="../mainwindow.cpp" line="2794"/>
         <location filename="../mainwindow.cpp" line="2807"/>
         <location filename="../mainwindow.cpp" line="2813"/>
         <location filename="../mainwindow.cpp" line="2818"/>
-        <location filename="../mainwindow.cpp" line="2823"/>
-        <location filename="../mainwindow.cpp" line="2828"/>
-        <location filename="../mainwindow.cpp" line="2839"/>
-        <location filename="../mainwindow.cpp" line="2859"/>
-        <location filename="../mainwindow.cpp" line="2865"/>
-        <location filename="../mainwindow.cpp" line="2877"/>
-        <location filename="../mainwindow.cpp" line="2887"/>
-        <location filename="../mainwindow.cpp" line="2899"/>
-        <location filename="../mainwindow.cpp" line="2911"/>
-        <location filename="../mainwindow.cpp" line="2916"/>
-        <location filename="../mainwindow.cpp" line="2921"/>
-        <location filename="../mainwindow.cpp" line="2937"/>
-        <location filename="../mainwindow.cpp" line="2948"/>
+        <location filename="../mainwindow.cpp" line="2825"/>
+        <location filename="../mainwindow.cpp" line="2844"/>
+        <location filename="../mainwindow.cpp" line="2850"/>
+        <location filename="../mainwindow.cpp" line="2856"/>
+        <location filename="../mainwindow.cpp" line="2861"/>
+        <location filename="../mainwindow.cpp" line="2866"/>
+        <location filename="../mainwindow.cpp" line="2871"/>
+        <location filename="../mainwindow.cpp" line="2882"/>
+        <location filename="../mainwindow.cpp" line="2902"/>
+        <location filename="../mainwindow.cpp" line="2908"/>
+        <location filename="../mainwindow.cpp" line="2920"/>
+        <location filename="../mainwindow.cpp" line="2930"/>
+        <location filename="../mainwindow.cpp" line="2942"/>
+        <location filename="../mainwindow.cpp" line="2954"/>
         <location filename="../mainwindow.cpp" line="2959"/>
-        <location filename="../mainwindow.cpp" line="2982"/>
-        <location filename="../mainwindow.cpp" line="2987"/>
-        <location filename="../mainwindow.cpp" line="3003"/>
-        <location filename="../mainwindow.cpp" line="3041"/>
-        <location filename="../mainwindow.cpp" line="3086"/>
-        <location filename="../mainwindow.cpp" line="3132"/>
-        <location filename="../mainwindow.cpp" line="3184"/>
-        <location filename="../mainwindow.cpp" line="3238"/>
-        <location filename="../mainwindow.cpp" line="3279"/>
-        <location filename="../mainwindow.cpp" line="3321"/>
-        <location filename="../mainwindow.cpp" line="3356"/>
-        <location filename="../mainwindow.cpp" line="3400"/>
-        <location filename="../mainwindow.cpp" line="3431"/>
-        <location filename="../mainwindow.cpp" line="3463"/>
-        <location filename="../mainwindow.cpp" line="3511"/>
+        <location filename="../mainwindow.cpp" line="2964"/>
+        <location filename="../mainwindow.cpp" line="2980"/>
+        <location filename="../mainwindow.cpp" line="2991"/>
+        <location filename="../mainwindow.cpp" line="3002"/>
+        <location filename="../mainwindow.cpp" line="3025"/>
+        <location filename="../mainwindow.cpp" line="3030"/>
+        <location filename="../mainwindow.cpp" line="3046"/>
+        <location filename="../mainwindow.cpp" line="3084"/>
+        <location filename="../mainwindow.cpp" line="3129"/>
+        <location filename="../mainwindow.cpp" line="3175"/>
+        <location filename="../mainwindow.cpp" line="3227"/>
+        <location filename="../mainwindow.cpp" line="3281"/>
+        <location filename="../mainwindow.cpp" line="3322"/>
+        <location filename="../mainwindow.cpp" line="3364"/>
+        <location filename="../mainwindow.cpp" line="3399"/>
+        <location filename="../mainwindow.cpp" line="3443"/>
+        <location filename="../mainwindow.cpp" line="3474"/>
+        <location filename="../mainwindow.cpp" line="3506"/>
         <location filename="../mainwindow.cpp" line="3554"/>
-        <location filename="../mainwindow.cpp" line="3599"/>
-        <location filename="../mainwindow.cpp" line="3650"/>
-        <location filename="../mainwindow.cpp" line="3713"/>
-        <location filename="../mainwindow.cpp" line="3772"/>
-        <location filename="../mainwindow.cpp" line="3810"/>
-        <location filename="../mainwindow.cpp" line="3844"/>
-        <location filename="../mainwindow.cpp" line="3881"/>
-        <location filename="../mainwindow.cpp" line="3918"/>
-        <location filename="../mainwindow.cpp" line="3925"/>
-        <location filename="../mainwindow.cpp" line="3970"/>
-        <location filename="../mainwindow.cpp" line="4012"/>
-        <location filename="../mainwindow.cpp" line="4022"/>
-        <location filename="../mainwindow.cpp" line="4032"/>
+        <location filename="../mainwindow.cpp" line="3597"/>
+        <location filename="../mainwindow.cpp" line="3642"/>
+        <location filename="../mainwindow.cpp" line="3693"/>
+        <location filename="../mainwindow.cpp" line="3756"/>
+        <location filename="../mainwindow.cpp" line="3815"/>
+        <location filename="../mainwindow.cpp" line="3853"/>
+        <location filename="../mainwindow.cpp" line="3887"/>
+        <location filename="../mainwindow.cpp" line="3924"/>
+        <location filename="../mainwindow.cpp" line="3961"/>
+        <location filename="../mainwindow.cpp" line="3968"/>
+        <location filename="../mainwindow.cpp" line="4013"/>
+        <location filename="../mainwindow.cpp" line="4055"/>
+        <location filename="../mainwindow.cpp" line="4065"/>
+        <location filename="../mainwindow.cpp" line="4075"/>
+        <location filename="../mainwindow.cpp" line="4085"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Una sau mai multe intrări au un format ilegal!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2638"/>
-        <location filename="../mainwindow.cpp" line="2942"/>
-        <location filename="../mainwindow.cpp" line="3200"/>
-        <location filename="../mainwindow.cpp" line="3666"/>
+        <location filename="../mainwindow.cpp" line="2681"/>
+        <location filename="../mainwindow.cpp" line="2985"/>
+        <location filename="../mainwindow.cpp" line="3243"/>
+        <location filename="../mainwindow.cpp" line="3709"/>
         <source>The number of sides must be integer and at least three!</source>
         <translation>Numărul laturilor trebuie să fie întreg și cel puțin trei!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4539"/>
-        <location filename="../mainwindow.cpp" line="5082"/>
+        <location filename="../mainwindow.cpp" line="4599"/>
+        <location filename="../mainwindow.cpp" line="5142"/>
         <source>Length of the foil</source>
         <translation>Lungimea foliei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5362"/>
+        <location filename="../mainwindow.cpp" line="5445"/>
         <source> calculation will be deleted</source>
         <translation> calculul va fi șters</translation>
     </message>
@@ -2089,261 +2345,264 @@
         <translation>Ștergeți acest rezultat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4069"/>
+        <location filename="../mainwindow.cpp" line="4129"/>
         <source>Wrong data was entered</source>
         <translation>Au fost introduse date greşite</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4119"/>
-        <location filename="../mainwindow.cpp" line="4205"/>
-        <location filename="../mainwindow.cpp" line="4294"/>
-        <location filename="../mainwindow.cpp" line="4382"/>
-        <location filename="../mainwindow.cpp" line="4436"/>
-        <location filename="../mainwindow.cpp" line="4492"/>
-        <location filename="../mainwindow.cpp" line="4576"/>
-        <location filename="../mainwindow.cpp" line="4651"/>
-        <location filename="../mainwindow.cpp" line="4712"/>
-        <location filename="../mainwindow.cpp" line="4798"/>
-        <location filename="../mainwindow.cpp" line="4889"/>
-        <location filename="../mainwindow.cpp" line="5184"/>
+        <location filename="../mainwindow.cpp" line="4179"/>
+        <location filename="../mainwindow.cpp" line="4265"/>
+        <location filename="../mainwindow.cpp" line="4354"/>
+        <location filename="../mainwindow.cpp" line="4442"/>
+        <location filename="../mainwindow.cpp" line="4496"/>
+        <location filename="../mainwindow.cpp" line="4552"/>
+        <location filename="../mainwindow.cpp" line="4636"/>
+        <location filename="../mainwindow.cpp" line="4711"/>
+        <location filename="../mainwindow.cpp" line="4772"/>
+        <location filename="../mainwindow.cpp" line="4858"/>
+        <location filename="../mainwindow.cpp" line="4949"/>
+        <location filename="../mainwindow.cpp" line="5244"/>
         <source>Length of wire without leads</source>
         <translation>Lungimea sârmei fără terminaţii (conexiuni)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4121"/>
-        <location filename="../mainwindow.cpp" line="4207"/>
-        <location filename="../mainwindow.cpp" line="4296"/>
-        <location filename="../mainwindow.cpp" line="4714"/>
-        <location filename="../mainwindow.cpp" line="4800"/>
-        <location filename="../mainwindow.cpp" line="4891"/>
+        <location filename="../mainwindow.cpp" line="4181"/>
+        <location filename="../mainwindow.cpp" line="4267"/>
+        <location filename="../mainwindow.cpp" line="4356"/>
+        <location filename="../mainwindow.cpp" line="4774"/>
+        <location filename="../mainwindow.cpp" line="4860"/>
+        <location filename="../mainwindow.cpp" line="4951"/>
         <source>Length of winding</source>
         <translation>Lungimea înfăşurării (bobinei)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4124"/>
-        <location filename="../mainwindow.cpp" line="4210"/>
-        <location filename="../mainwindow.cpp" line="4299"/>
-        <location filename="../mainwindow.cpp" line="4391"/>
-        <location filename="../mainwindow.cpp" line="4445"/>
-        <location filename="../mainwindow.cpp" line="4501"/>
-        <location filename="../mainwindow.cpp" line="4717"/>
-        <location filename="../mainwindow.cpp" line="4803"/>
-        <location filename="../mainwindow.cpp" line="4894"/>
+        <location filename="../mainwindow.cpp" line="4184"/>
+        <location filename="../mainwindow.cpp" line="4270"/>
+        <location filename="../mainwindow.cpp" line="4359"/>
+        <location filename="../mainwindow.cpp" line="4451"/>
+        <location filename="../mainwindow.cpp" line="4505"/>
+        <location filename="../mainwindow.cpp" line="4561"/>
+        <location filename="../mainwindow.cpp" line="4777"/>
+        <location filename="../mainwindow.cpp" line="4863"/>
+        <location filename="../mainwindow.cpp" line="4954"/>
         <source>Weight of wire</source>
         <translation>Greutatea sârmei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4124"/>
-        <location filename="../mainwindow.cpp" line="4210"/>
-        <location filename="../mainwindow.cpp" line="4299"/>
-        <location filename="../mainwindow.cpp" line="4391"/>
-        <location filename="../mainwindow.cpp" line="4445"/>
-        <location filename="../mainwindow.cpp" line="4501"/>
-        <location filename="../mainwindow.cpp" line="4717"/>
-        <location filename="../mainwindow.cpp" line="4803"/>
-        <location filename="../mainwindow.cpp" line="4894"/>
+        <location filename="../mainwindow.cpp" line="4184"/>
+        <location filename="../mainwindow.cpp" line="4270"/>
+        <location filename="../mainwindow.cpp" line="4359"/>
+        <location filename="../mainwindow.cpp" line="4451"/>
+        <location filename="../mainwindow.cpp" line="4505"/>
+        <location filename="../mainwindow.cpp" line="4561"/>
+        <location filename="../mainwindow.cpp" line="4777"/>
+        <location filename="../mainwindow.cpp" line="4863"/>
+        <location filename="../mainwindow.cpp" line="4954"/>
         <source>g</source>
         <translation>g</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4126"/>
-        <location filename="../mainwindow.cpp" line="4212"/>
-        <location filename="../mainwindow.cpp" line="4301"/>
-        <location filename="../mainwindow.cpp" line="4719"/>
-        <location filename="../mainwindow.cpp" line="4805"/>
-        <location filename="../mainwindow.cpp" line="4896"/>
+        <location filename="../mainwindow.cpp" line="4186"/>
+        <location filename="../mainwindow.cpp" line="4272"/>
+        <location filename="../mainwindow.cpp" line="4361"/>
+        <location filename="../mainwindow.cpp" line="4779"/>
+        <location filename="../mainwindow.cpp" line="4865"/>
+        <location filename="../mainwindow.cpp" line="4956"/>
         <source>Reactance of the coil</source>
         <translation>Rezistenţa bobinei (în curent continu)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4129"/>
-        <location filename="../mainwindow.cpp" line="4215"/>
-        <location filename="../mainwindow.cpp" line="4304"/>
-        <location filename="../mainwindow.cpp" line="4722"/>
-        <location filename="../mainwindow.cpp" line="4808"/>
-        <location filename="../mainwindow.cpp" line="4899"/>
+        <location filename="../mainwindow.cpp" line="4189"/>
+        <location filename="../mainwindow.cpp" line="4275"/>
+        <location filename="../mainwindow.cpp" line="4364"/>
+        <location filename="../mainwindow.cpp" line="4782"/>
+        <location filename="../mainwindow.cpp" line="4868"/>
+        <location filename="../mainwindow.cpp" line="4959"/>
         <source>Self capacitance</source>
         <translation>Capacitatea proprie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4134"/>
-        <location filename="../mainwindow.cpp" line="4220"/>
-        <location filename="../mainwindow.cpp" line="4309"/>
-        <location filename="../mainwindow.cpp" line="4727"/>
-        <location filename="../mainwindow.cpp" line="4813"/>
-        <location filename="../mainwindow.cpp" line="4904"/>
+        <location filename="../mainwindow.cpp" line="4194"/>
+        <location filename="../mainwindow.cpp" line="4280"/>
+        <location filename="../mainwindow.cpp" line="4369"/>
+        <location filename="../mainwindow.cpp" line="4787"/>
+        <location filename="../mainwindow.cpp" line="4873"/>
+        <location filename="../mainwindow.cpp" line="4964"/>
         <source>Coil constructive Q-factor</source>
         <translation>Factorul de calitate al bobinei,Q</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4142"/>
-        <location filename="../mainwindow.cpp" line="4228"/>
-        <location filename="../mainwindow.cpp" line="4317"/>
-        <location filename="../mainwindow.cpp" line="4735"/>
-        <location filename="../mainwindow.cpp" line="4821"/>
-        <location filename="../mainwindow.cpp" line="4912"/>
+        <location filename="../mainwindow.cpp" line="4202"/>
+        <location filename="../mainwindow.cpp" line="4288"/>
+        <location filename="../mainwindow.cpp" line="4377"/>
+        <location filename="../mainwindow.cpp" line="4795"/>
+        <location filename="../mainwindow.cpp" line="4881"/>
+        <location filename="../mainwindow.cpp" line="4972"/>
         <source>Loss resistance</source>
         <translation>Rezistenţa de pierdere în izolaţie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4145"/>
-        <location filename="../mainwindow.cpp" line="4231"/>
-        <location filename="../mainwindow.cpp" line="4320"/>
-        <location filename="../mainwindow.cpp" line="4738"/>
-        <location filename="../mainwindow.cpp" line="4824"/>
-        <location filename="../mainwindow.cpp" line="4915"/>
+        <location filename="../mainwindow.cpp" line="4205"/>
+        <location filename="../mainwindow.cpp" line="4291"/>
+        <location filename="../mainwindow.cpp" line="4380"/>
+        <location filename="../mainwindow.cpp" line="4798"/>
+        <location filename="../mainwindow.cpp" line="4884"/>
+        <location filename="../mainwindow.cpp" line="4975"/>
         <source>Additional results for parallel LC circuit at the working frequency</source>
         <translation>Rezultate suplimentare pentru circuitul LC paralel</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4036"/>
-        <location filename="../mainwindow.cpp" line="4147"/>
-        <location filename="../mainwindow.cpp" line="4233"/>
-        <location filename="../mainwindow.cpp" line="4322"/>
-        <location filename="../mainwindow.cpp" line="4740"/>
-        <location filename="../mainwindow.cpp" line="4826"/>
-        <location filename="../mainwindow.cpp" line="4917"/>
+        <location filename="../mainwindow.cpp" line="2194"/>
+        <location filename="../mainwindow.cpp" line="2202"/>
+        <location filename="../mainwindow.cpp" line="4079"/>
+        <location filename="../mainwindow.cpp" line="4092"/>
+        <location filename="../mainwindow.cpp" line="4207"/>
+        <location filename="../mainwindow.cpp" line="4293"/>
+        <location filename="../mainwindow.cpp" line="4382"/>
+        <location filename="../mainwindow.cpp" line="4800"/>
+        <location filename="../mainwindow.cpp" line="4886"/>
+        <location filename="../mainwindow.cpp" line="4977"/>
         <source>Circuit capacitance</source>
         <translation>Capacitatea circuitului</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4154"/>
-        <location filename="../mainwindow.cpp" line="4240"/>
-        <location filename="../mainwindow.cpp" line="4329"/>
-        <location filename="../mainwindow.cpp" line="4747"/>
-        <location filename="../mainwindow.cpp" line="4833"/>
-        <location filename="../mainwindow.cpp" line="4924"/>
+        <location filename="../mainwindow.cpp" line="4214"/>
+        <location filename="../mainwindow.cpp" line="4300"/>
+        <location filename="../mainwindow.cpp" line="4389"/>
+        <location filename="../mainwindow.cpp" line="4807"/>
+        <location filename="../mainwindow.cpp" line="4893"/>
+        <location filename="../mainwindow.cpp" line="4984"/>
         <source>Equivalent resistance</source>
         <translation>Rezistenţa echivalentă</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4156"/>
-        <location filename="../mainwindow.cpp" line="4242"/>
-        <location filename="../mainwindow.cpp" line="4331"/>
-        <location filename="../mainwindow.cpp" line="4749"/>
-        <location filename="../mainwindow.cpp" line="4835"/>
-        <location filename="../mainwindow.cpp" line="4926"/>
+        <location filename="../mainwindow.cpp" line="4216"/>
+        <location filename="../mainwindow.cpp" line="4302"/>
+        <location filename="../mainwindow.cpp" line="4391"/>
+        <location filename="../mainwindow.cpp" line="4809"/>
+        <location filename="../mainwindow.cpp" line="4895"/>
+        <location filename="../mainwindow.cpp" line="4986"/>
         <source>Bandwidth</source>
         <translation>Lăţime de bandă</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4156"/>
-        <location filename="../mainwindow.cpp" line="4242"/>
-        <location filename="../mainwindow.cpp" line="4331"/>
-        <location filename="../mainwindow.cpp" line="4749"/>
-        <location filename="../mainwindow.cpp" line="4835"/>
-        <location filename="../mainwindow.cpp" line="4926"/>
+        <location filename="../mainwindow.cpp" line="4216"/>
+        <location filename="../mainwindow.cpp" line="4302"/>
+        <location filename="../mainwindow.cpp" line="4391"/>
+        <location filename="../mainwindow.cpp" line="4809"/>
+        <location filename="../mainwindow.cpp" line="4895"/>
+        <location filename="../mainwindow.cpp" line="4986"/>
         <source>kHz</source>
         <translation>kHz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4159"/>
-        <location filename="../mainwindow.cpp" line="4245"/>
-        <location filename="../mainwindow.cpp" line="4334"/>
-        <location filename="../mainwindow.cpp" line="4752"/>
-        <location filename="../mainwindow.cpp" line="4838"/>
-        <location filename="../mainwindow.cpp" line="4929"/>
+        <location filename="../mainwindow.cpp" line="4219"/>
+        <location filename="../mainwindow.cpp" line="4305"/>
+        <location filename="../mainwindow.cpp" line="4394"/>
+        <location filename="../mainwindow.cpp" line="4812"/>
+        <location filename="../mainwindow.cpp" line="4898"/>
+        <location filename="../mainwindow.cpp" line="4989"/>
         <source>Working frequency</source>
         <translation>Frecvența de lucru</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4131"/>
-        <location filename="../mainwindow.cpp" line="4159"/>
-        <location filename="../mainwindow.cpp" line="4217"/>
-        <location filename="../mainwindow.cpp" line="4245"/>
-        <location filename="../mainwindow.cpp" line="4306"/>
-        <location filename="../mainwindow.cpp" line="4334"/>
-        <location filename="../mainwindow.cpp" line="4724"/>
-        <location filename="../mainwindow.cpp" line="4752"/>
-        <location filename="../mainwindow.cpp" line="4810"/>
-        <location filename="../mainwindow.cpp" line="4838"/>
-        <location filename="../mainwindow.cpp" line="4901"/>
-        <location filename="../mainwindow.cpp" line="4929"/>
+        <location filename="../mainwindow.cpp" line="4191"/>
+        <location filename="../mainwindow.cpp" line="4219"/>
+        <location filename="../mainwindow.cpp" line="4277"/>
+        <location filename="../mainwindow.cpp" line="4305"/>
+        <location filename="../mainwindow.cpp" line="4366"/>
+        <location filename="../mainwindow.cpp" line="4394"/>
+        <location filename="../mainwindow.cpp" line="4784"/>
+        <location filename="../mainwindow.cpp" line="4812"/>
+        <location filename="../mainwindow.cpp" line="4870"/>
+        <location filename="../mainwindow.cpp" line="4898"/>
+        <location filename="../mainwindow.cpp" line="4961"/>
+        <location filename="../mainwindow.cpp" line="4989"/>
         <source>Coil self-resonance frequency</source>
         <translation>Frecventa de auto-rezonantă al bobinei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1542"/>
-        <location filename="../mainwindow.cpp" line="1572"/>
-        <location filename="../mainwindow.cpp" line="1617"/>
-        <location filename="../mainwindow.cpp" line="1679"/>
-        <location filename="../mainwindow.cpp" line="2313"/>
-        <location filename="../mainwindow.cpp" line="4370"/>
-        <location filename="../mainwindow.cpp" line="4424"/>
-        <location filename="../mainwindow.cpp" line="4480"/>
+        <location filename="../mainwindow.cpp" line="1567"/>
+        <location filename="../mainwindow.cpp" line="1598"/>
+        <location filename="../mainwindow.cpp" line="1644"/>
+        <location filename="../mainwindow.cpp" line="1707"/>
+        <location filename="../mainwindow.cpp" line="2354"/>
+        <location filename="../mainwindow.cpp" line="4430"/>
+        <location filename="../mainwindow.cpp" line="4484"/>
+        <location filename="../mainwindow.cpp" line="4540"/>
         <source>Thickness of the coil</source>
         <translation>Grosimea bobinei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4374"/>
-        <location filename="../mainwindow.cpp" line="4428"/>
-        <location filename="../mainwindow.cpp" line="4486"/>
+        <location filename="../mainwindow.cpp" line="4434"/>
+        <location filename="../mainwindow.cpp" line="4488"/>
+        <location filename="../mainwindow.cpp" line="4546"/>
         <source>Dimensions of inductor</source>
         <translation>Dimensiuni ale inductorului</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1543"/>
-        <location filename="../mainwindow.cpp" line="2325"/>
-        <location filename="../mainwindow.cpp" line="4140"/>
-        <location filename="../mainwindow.cpp" line="4226"/>
-        <location filename="../mainwindow.cpp" line="4315"/>
-        <location filename="../mainwindow.cpp" line="4377"/>
-        <location filename="../mainwindow.cpp" line="4431"/>
-        <location filename="../mainwindow.cpp" line="4502"/>
-        <location filename="../mainwindow.cpp" line="4541"/>
-        <location filename="../mainwindow.cpp" line="4542"/>
-        <location filename="../mainwindow.cpp" line="4733"/>
-        <location filename="../mainwindow.cpp" line="4819"/>
-        <location filename="../mainwindow.cpp" line="4910"/>
-        <location filename="../mainwindow.cpp" line="5086"/>
-        <location filename="../mainwindow.cpp" line="5087"/>
+        <location filename="../mainwindow.cpp" line="1568"/>
+        <location filename="../mainwindow.cpp" line="2366"/>
+        <location filename="../mainwindow.cpp" line="4200"/>
+        <location filename="../mainwindow.cpp" line="4286"/>
+        <location filename="../mainwindow.cpp" line="4375"/>
+        <location filename="../mainwindow.cpp" line="4437"/>
+        <location filename="../mainwindow.cpp" line="4491"/>
+        <location filename="../mainwindow.cpp" line="4562"/>
+        <location filename="../mainwindow.cpp" line="4601"/>
+        <location filename="../mainwindow.cpp" line="4602"/>
+        <location filename="../mainwindow.cpp" line="4793"/>
+        <location filename="../mainwindow.cpp" line="4879"/>
+        <location filename="../mainwindow.cpp" line="4970"/>
+        <location filename="../mainwindow.cpp" line="5146"/>
+        <location filename="../mainwindow.cpp" line="5147"/>
         <source>Resistance of the coil</source>
         <translation>Rezistenţa bobinei (în curent continu)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4154"/>
-        <location filename="../mainwindow.cpp" line="4240"/>
-        <location filename="../mainwindow.cpp" line="4329"/>
-        <location filename="../mainwindow.cpp" line="4747"/>
-        <location filename="../mainwindow.cpp" line="4833"/>
-        <location filename="../mainwindow.cpp" line="4924"/>
+        <location filename="../mainwindow.cpp" line="4214"/>
+        <location filename="../mainwindow.cpp" line="4300"/>
+        <location filename="../mainwindow.cpp" line="4389"/>
+        <location filename="../mainwindow.cpp" line="4807"/>
+        <location filename="../mainwindow.cpp" line="4893"/>
+        <location filename="../mainwindow.cpp" line="4984"/>
         <source>kOhm</source>
         <translation>kOhm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4392"/>
-        <location filename="../mainwindow.cpp" line="4446"/>
-        <location filename="../mainwindow.cpp" line="4479"/>
+        <location filename="../mainwindow.cpp" line="4452"/>
+        <location filename="../mainwindow.cpp" line="4506"/>
+        <location filename="../mainwindow.cpp" line="4539"/>
         <source>Number of layers</source>
         <translation>Numărul de straturi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4447"/>
+        <location filename="../mainwindow.cpp" line="4507"/>
         <source>Number of interlayers</source>
         <translation>Numărul de straturi intermediare</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4581"/>
-        <location filename="../mainwindow.cpp" line="4582"/>
+        <location filename="../mainwindow.cpp" line="4641"/>
+        <location filename="../mainwindow.cpp" line="4642"/>
         <source>Coil can not be realized</source>
         <translation>Bobina nu poate fi realizată</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1541"/>
-        <location filename="../mainwindow.cpp" line="2308"/>
-        <location filename="../mainwindow.cpp" line="4114"/>
-        <location filename="../mainwindow.cpp" line="4200"/>
-        <location filename="../mainwindow.cpp" line="4289"/>
-        <location filename="../mainwindow.cpp" line="4368"/>
-        <location filename="../mainwindow.cpp" line="4423"/>
-        <location filename="../mainwindow.cpp" line="4478"/>
-        <location filename="../mainwindow.cpp" line="4532"/>
-        <location filename="../mainwindow.cpp" line="4579"/>
-        <location filename="../mainwindow.cpp" line="4614"/>
-        <location filename="../mainwindow.cpp" line="4644"/>
-        <location filename="../mainwindow.cpp" line="4970"/>
-        <location filename="../mainwindow.cpp" line="5008"/>
-        <location filename="../mainwindow.cpp" line="5044"/>
+        <location filename="../mainwindow.cpp" line="1566"/>
+        <location filename="../mainwindow.cpp" line="2349"/>
+        <location filename="../mainwindow.cpp" line="4174"/>
+        <location filename="../mainwindow.cpp" line="4260"/>
+        <location filename="../mainwindow.cpp" line="4349"/>
+        <location filename="../mainwindow.cpp" line="4428"/>
+        <location filename="../mainwindow.cpp" line="4483"/>
+        <location filename="../mainwindow.cpp" line="4538"/>
+        <location filename="../mainwindow.cpp" line="4592"/>
+        <location filename="../mainwindow.cpp" line="4639"/>
+        <location filename="../mainwindow.cpp" line="4674"/>
+        <location filename="../mainwindow.cpp" line="4704"/>
+        <location filename="../mainwindow.cpp" line="5030"/>
+        <location filename="../mainwindow.cpp" line="5068"/>
+        <location filename="../mainwindow.cpp" line="5104"/>
         <source>Number of turns of the coil</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
@@ -2449,7 +2708,7 @@
     </message>
     <message>
         <location filename="../multiloop.ui" line="191"/>
-        <location filename="../multiloop.cpp" line="162"/>
+        <location filename="../multiloop.cpp" line="165"/>
         <source>Dimensions</source>
         <translation>Dimensiuni</translation>
     </message>
@@ -2469,115 +2728,115 @@
         <translation>Închide</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="57"/>
-        <location filename="../multiloop.cpp" line="223"/>
+        <location filename="../multiloop.cpp" line="59"/>
+        <location filename="../multiloop.cpp" line="226"/>
         <source>Number of turns</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="59"/>
+        <location filename="../multiloop.cpp" line="61"/>
         <source>Inside diameter</source>
         <translation>Diametrul interior</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="61"/>
+        <location filename="../multiloop.cpp" line="63"/>
         <source>Wire diameter</source>
         <translation>Diametrul sârmei</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="63"/>
+        <location filename="../multiloop.cpp" line="65"/>
         <source>Wire diameter with insulation</source>
         <translation>Diametrul sârmei cu izolație</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="91"/>
+        <location filename="../multiloop.cpp" line="93"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="115"/>
-        <location filename="../multiloop.cpp" line="131"/>
-        <location filename="../multiloop.cpp" line="135"/>
-        <location filename="../multiloop.cpp" line="139"/>
-        <location filename="../multiloop.cpp" line="148"/>
-        <location filename="../multiloop.cpp" line="210"/>
+        <location filename="../multiloop.cpp" line="118"/>
+        <location filename="../multiloop.cpp" line="134"/>
+        <location filename="../multiloop.cpp" line="138"/>
+        <location filename="../multiloop.cpp" line="142"/>
+        <location filename="../multiloop.cpp" line="151"/>
+        <location filename="../multiloop.cpp" line="213"/>
         <source>Warning</source>
         <translation>Avertizare</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="115"/>
+        <location filename="../multiloop.cpp" line="118"/>
         <source>One or more inputs are empty!</source>
         <translation>Una sau mai multe intrări sunt goale!</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="131"/>
-        <location filename="../multiloop.cpp" line="210"/>
+        <location filename="../multiloop.cpp" line="134"/>
+        <location filename="../multiloop.cpp" line="213"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Una sau mai multe intrări au un format ilegal!</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="135"/>
+        <location filename="../multiloop.cpp" line="138"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="148"/>
+        <location filename="../multiloop.cpp" line="151"/>
         <source>Coil can not be realized</source>
         <translation>Bobina nu poate fi realizată</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="155"/>
+        <location filename="../multiloop.cpp" line="158"/>
         <source>Input data</source>
         <translation>Date de intrare</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="167"/>
+        <location filename="../multiloop.cpp" line="170"/>
         <source>Result</source>
         <translation>Rezultate</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="169"/>
-        <location filename="../multiloop.cpp" line="228"/>
+        <location filename="../multiloop.cpp" line="172"/>
+        <location filename="../multiloop.cpp" line="231"/>
         <source>Inductance</source>
         <translation>Inductanţa</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="172"/>
+        <location filename="../multiloop.cpp" line="175"/>
         <source>Number of turns of the coil</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="174"/>
+        <location filename="../multiloop.cpp" line="177"/>
         <source>Mean diameter</source>
         <translation>Diametrul mediu</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="176"/>
+        <location filename="../multiloop.cpp" line="179"/>
         <source>Thickness of the coil</source>
         <translation>Grosimea bobinei</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="178"/>
+        <location filename="../multiloop.cpp" line="181"/>
         <source>Resistance of the coil</source>
         <translation>Rezistenţa bobinei (în curent continu)</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="178"/>
+        <location filename="../multiloop.cpp" line="181"/>
         <source>Ohm</source>
         <translation>Ohm</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="183"/>
+        <location filename="../multiloop.cpp" line="186"/>
         <source>Length of wire without leads</source>
         <translation>Lungimea sârmei fără terminaţii (conexiuni)</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="186"/>
+        <location filename="../multiloop.cpp" line="189"/>
         <source>Weight of wire</source>
         <translation>Greutatea sârmei</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="186"/>
+        <location filename="../multiloop.cpp" line="189"/>
         <source>g</source>
         <translation>g</translation>
     </message>
@@ -2923,82 +3182,82 @@
         <translation>Permeabilitate magnetică</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="200"/>
+        <location filename="../potcore.cpp" line="201"/>
         <source>Number of turns</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="205"/>
-        <location filename="../potcore.cpp" line="315"/>
+        <location filename="../potcore.cpp" line="206"/>
+        <location filename="../potcore.cpp" line="319"/>
         <source>Inductance</source>
         <translation>Inductanţa</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="236"/>
-        <location filename="../potcore.cpp" line="250"/>
-        <location filename="../potcore.cpp" line="254"/>
-        <location filename="../potcore.cpp" line="258"/>
-        <location filename="../potcore.cpp" line="262"/>
-        <location filename="../potcore.cpp" line="266"/>
-        <location filename="../potcore.cpp" line="270"/>
-        <location filename="../potcore.cpp" line="277"/>
-        <location filename="../potcore.cpp" line="281"/>
-        <location filename="../potcore.cpp" line="288"/>
-        <location filename="../potcore.cpp" line="292"/>
+        <location filename="../potcore.cpp" line="237"/>
+        <location filename="../potcore.cpp" line="251"/>
+        <location filename="../potcore.cpp" line="255"/>
+        <location filename="../potcore.cpp" line="259"/>
+        <location filename="../potcore.cpp" line="263"/>
+        <location filename="../potcore.cpp" line="267"/>
+        <location filename="../potcore.cpp" line="271"/>
+        <location filename="../potcore.cpp" line="278"/>
+        <location filename="../potcore.cpp" line="282"/>
+        <location filename="../potcore.cpp" line="289"/>
+        <location filename="../potcore.cpp" line="293"/>
         <source>Warning</source>
         <translation>Avertizare</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="236"/>
+        <location filename="../potcore.cpp" line="237"/>
         <source>One or more inputs are empty!</source>
         <translation>Una sau mai multe intrări sunt goale!</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="250"/>
-        <location filename="../potcore.cpp" line="277"/>
-        <location filename="../potcore.cpp" line="288"/>
+        <location filename="../potcore.cpp" line="251"/>
+        <location filename="../potcore.cpp" line="278"/>
+        <location filename="../potcore.cpp" line="289"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Una sau mai multe intrări au un format ilegal!</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="254"/>
-        <location filename="../potcore.cpp" line="281"/>
-        <location filename="../potcore.cpp" line="292"/>
+        <location filename="../potcore.cpp" line="255"/>
+        <location filename="../potcore.cpp" line="282"/>
+        <location filename="../potcore.cpp" line="293"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="301"/>
+        <location filename="../potcore.cpp" line="302"/>
         <source>Input data</source>
         <translation>Date de intrare</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="313"/>
+        <location filename="../potcore.cpp" line="317"/>
         <source>Result</source>
         <translation>Rezultate</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="318"/>
+        <location filename="../potcore.cpp" line="322"/>
         <source>Number of turns of the coil</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="320"/>
+        <location filename="../potcore.cpp" line="324"/>
         <source>Effective magnetic path length</source>
         <translation>Lungime efectivă a căii magnetice</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="323"/>
+        <location filename="../potcore.cpp" line="327"/>
         <source>Effective area of magnetic path</source>
         <translation>Zona efectivă a căii magnetice</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="326"/>
+        <location filename="../potcore.cpp" line="330"/>
         <source>Effective volume</source>
         <translation>Volumul efectiv</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="329"/>
+        <location filename="../potcore.cpp" line="333"/>
         <source>Effective magnetic permeability of the core</source>
         <translation>Permeabilitatea magnetică eficientă a miezului</translation>
     </message>

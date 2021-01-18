@@ -47,7 +47,9 @@ SOURCES += main.cpp\
     shield.cpp \
     amidon.cpp \
     aircoretoroid.cpp \
-    potcore.cpp
+    potcore.cpp \
+    ecore.cpp \
+    al.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -68,7 +70,9 @@ HEADERS  += mainwindow.h \
     shield.h \
     amidon.h \
     aircoretoroid.h \
-    potcore.h
+    potcore.h \
+    ecore.h \
+    al.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -81,7 +85,9 @@ FORMS    += mainwindow.ui \
     shield.ui \
     amidon.ui \
     aircoretoroid.ui \
-    potcore.ui
+    potcore.ui \
+    ecore.ui \
+    al.ui
 
 RESOURCES += \
     res.qrc

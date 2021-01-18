@@ -24,7 +24,7 @@ Meander_pcb::Meander_pcb(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator;
+    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
@@ -132,7 +132,7 @@ void Meander_pcb::on_pushButton_clicked()
     sResult += ui->label_4->text() + " = " + ui->lineEdit_4->text() + " " + ui->label_04->text() + "</p>";
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Inductance") + " L = " + loc.toString(result.N, 'f', fOpt->dwAccuracy) + " "
+    sResult += tr("Inductance") + " L = " + loc.toString(result.N / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
             + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
     sResult += tr("Length of winding") + " l = " + loc.toString( (result.sec)/fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy ) + " " +
             qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8());

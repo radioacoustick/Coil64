@@ -24,7 +24,8 @@ AirCoreToroid::AirCoreToroid(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator;
+    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
@@ -64,6 +65,7 @@ AirCoreToroid::~AirCoreToroid()
     delete settings;
     delete fOpt;
     delete dv;
+    delete awgV;
     delete ui;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,6 +103,7 @@ void AirCoreToroid::getOpt(_OptionStruct gOpt)
     ui->lineEdit_3->setText(loc.toString(h / fOpt->dwLengthMultiplier));
     if (fOpt->isAWG){
         ui->label_04->setText(tr("AWG"));
+        ui->lineEdit_4->setValidator(awgV);
         if (dw > 0){
             ui->lineEdit_4->setText(converttoAWG(dw));
         } else
@@ -115,6 +118,7 @@ void AirCoreToroid::getOpt(_OptionStruct gOpt)
     move(pos);
     ui->checkBox_isReverce->setChecked(isReverse);
     on_checkBox_isReverce_clicked();
+    delete settings;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void AirCoreToroid::getCurrentLocale(QLocale locale)
@@ -195,8 +199,8 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
     } else {
         dw = loc.toDouble(ui->lineEdit_4->text(), &ok2)*fOpt->dwLengthMultiplier;
     }
-    D1 = loc.toDouble(ui->lineEdit_1->text(), &ok3)*fOpt->dwInductanceMultiplier;
-    D2 = loc.toDouble(ui->lineEdit_2->text(), &ok4)*fOpt->dwInductanceMultiplier;
+    D1 = loc.toDouble(ui->lineEdit_1->text(), &ok3)*fOpt->dwLengthMultiplier;
+    D2 = loc.toDouble(ui->lineEdit_2->text(), &ok4)*fOpt->dwLengthMultiplier;
     if((!ok2)||(!ok3)||(!ok4)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         return;
@@ -210,7 +214,7 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
             showWarning(tr("Warning"), tr("One or more inputs are empty!"));
             return;
         }
-        h = loc.toDouble(ui->lineEdit_3->text(), &ok5)*fOpt->dwInductanceMultiplier;
+        h = loc.toDouble(ui->lineEdit_3->text(), &ok5)*fOpt->dwLengthMultiplier;
         if (!ok5){
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;
@@ -221,7 +225,7 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
     }
     _CoilResult result;
     if (ui->checkBox_isReverce->isChecked()){
-        N = loc.toDouble(ui->lineEdit_N->text(), &ok1)*fOpt->dwInductanceMultiplier;
+        N = loc.toDouble(ui->lineEdit_N->text(), &ok1);
         if (!ok1){
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;

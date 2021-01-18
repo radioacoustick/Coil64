@@ -24,7 +24,8 @@ Multiloop::Multiloop(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator;
+    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
@@ -48,6 +49,7 @@ Multiloop::~Multiloop()
     settings->endGroup();
     delete settings;
     delete fOpt;
+    delete awgV;
     delete dv;
     delete ui;
 }
@@ -89,6 +91,7 @@ void Multiloop::getOpt(_OptionStruct gOpt){
     ui->lineEdit_1->setText(loc.toString(Di / fOpt->dwLengthMultiplier));
     if (fOpt->isAWG){
         ui->label_02->setText(tr("AWG"));
+        ui->lineEdit_2->setValidator(awgV);
         if (dw > 0){
             ui->lineEdit_2->setText(converttoAWG(dw));
         } else
@@ -166,7 +169,7 @@ void Multiloop::on_pushButton_clicked()
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     if (!ui->checkBox_isReverce->isChecked()){
-        sResult += tr("Inductance") + " L = " + loc.toString(ind , 'f', fOpt->dwAccuracy) + " "
+        sResult += tr("Inductance") + " L = " + loc.toString(ind / fOpt->dwInductanceMultiplier , 'f', fOpt->dwAccuracy) + " "
                 + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
     } else {
         sResult += tr("Number of turns of the coil") + " N = " + loc.toString(nTurns) + "<br/>";

@@ -1,5 +1,5 @@
-/* ferrite_rod.h - header text to Coil64 - Radio frequency inductor and choke calculator
-Copyright (C) 2019 Kustarev V.
+/* ecore.h - header text to Coil64 - Radio frequency inductor and choke calculator
+Copyright (C) 2020 Kustarev V.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses
 */
 
-#ifndef FERRITE_ROD_H
-#define FERRITE_ROD_H
+#ifndef ECORE_H
+#define ECORE_H
 
 #include <QDialog>
 #include <QScreen>
@@ -28,17 +28,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "system_functions.h"
 #include "resolves.h"
 
+
 namespace Ui {
-class Ferrite_Rod;
+class ECore;
 }
 
-class Ferrite_Rod : public QDialog
+class ECore : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Ferrite_Rod(QWidget *parent = 0);
-    ~Ferrite_Rod();
+    explicit ECore(QWidget *parent = 0);
+    ~ECore();
 
 signals:
     void sendResult(QString);
@@ -47,15 +48,18 @@ private slots:
     void getOpt(_OptionStruct gOpt);
     void getCurrentLocale(QLocale locale);
     void on_pushButton_close_clicked();
+    void on_comboBox_currentIndexChanged(int index);
+    void on_checkBox_isReverce_clicked();
+    void on_pushButton_help_clicked();
     void on_pushButton_calculate_clicked();
-    void on_pushButton_clicked();
 
 private:
-    Ui::Ferrite_Rod *ui;
+    Ui::ECore *ui;
     _OptionStruct *fOpt;
     QDoubleValidator *dv;
-    QRegExpValidator *awgV;
     QLocale loc;
+    double N, ind, A, B, C, D, E, F, s, g, mu;
+    int currStdCore;
 };
 
-#endif // FERRITE_ROD_H
+#endif // ECORE_H

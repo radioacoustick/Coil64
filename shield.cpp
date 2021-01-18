@@ -24,7 +24,7 @@ Shield::Shield(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator;
+    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
@@ -34,7 +34,7 @@ Shield::Shield(QWidget *parent) :
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Shield::~Shield()
 {
-    double L = loc.toDouble(ui->lineEdit_N->text());
+    double L = loc.toDouble(ui->lineEdit_N->text())*fOpt->dwInductanceMultiplier;
     double D = loc.toDouble(ui->lineEdit_1->text())*fOpt->dwLengthMultiplier;
     double l = loc.toDouble(ui->lineEdit_2->text())*fOpt->dwLengthMultiplier;
     double Ds = loc.toDouble(ui->lineEdit_3->text())*fOpt->dwLengthMultiplier;
@@ -100,7 +100,7 @@ void Shield::getOpt(_OptionStruct gOpt){
         ui->radioButton_2->setChecked(false);
         this->on_radioButton_clicked();
     }
-    ui->lineEdit_N->setText(loc.toString(L));
+    ui->lineEdit_N->setText(loc.toString(L / fOpt->dwInductanceMultiplier));
     ui->lineEdit_1->setText(loc.toString(D / fOpt->dwLengthMultiplier));
     ui->lineEdit_2->setText(loc.toString(l / fOpt->dwLengthMultiplier));
     ui->lineEdit_3->setText(loc.toString(Ds / fOpt->dwLengthMultiplier));
@@ -142,7 +142,7 @@ void Shield::on_pushButton_clicked()
         return;
     }
     bool ok1,ok2, ok3, ok4, ok5;
-    double L = loc.toDouble(ui->lineEdit_N->text(), &ok1);
+    double L = loc.toDouble(ui->lineEdit_N->text(), &ok1)*fOpt->dwInductanceMultiplier;
     double D = loc.toDouble(ui->lineEdit_1->text(), &ok2)*fOpt->dwLengthMultiplier;
     double l = loc.toDouble(ui->lineEdit_2->text(), &ok3)*fOpt->dwLengthMultiplier;
     double Ds = loc.toDouble(ui->lineEdit_3->text(), &ok4)*fOpt->dwLengthMultiplier;
@@ -183,7 +183,7 @@ void Shield::on_pushButton_clicked()
     sResult += ui->groupBox_3->title() + ": " + sShieldForm + "</p>";
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Inductance of the shielded coil") + " Ls = " + loc.toString(L_shilded, 'f', fOpt->dwAccuracy) + " "
+    sResult += tr("Inductance of the shielded coil") + " Ls = " + loc.toString(L_shilded / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
             + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
     sResult += tr("Relative reducing of the inductance") + ": " + loc.toString(round(100 - L_shilded * 100 / L)) + "%" + "<br/>";
     sResult += "</p><hr>";

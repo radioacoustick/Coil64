@@ -23,6 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QtMath>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
+#include "definitions.h"
 
 enum _FormCoil
 {
@@ -73,6 +74,7 @@ enum _FormCoil
       double h;
       double mu;
       double ratio;
+      double zo;
       double s;
       double Rdc;
       int ns;
@@ -122,11 +124,15 @@ enum _FormCoil
     double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw);
     double findPotCore_I(double N, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result);
     long findPotCore_N(double Ind, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result);
-
+    double findECore_I(double N, double A, double B, double C, double D, double E, double F, double g, double b, double mu,
+                       bool isEI, bool isRound, _CoilResult *result);
+    long findECore_N(double Ind, double A, double B, double C, double D, double E, double F, double g, double b, double mu,
+                       bool isEI, bool isRound, _CoilResult *result);
 
     double CalcLC0(double L, double C);
     double CalcLC1(double C, double f);
     double CalcLC2(double L, double f);
+    void CalcLC3(double Zo, double f, _CoilResult *result);
 
     double odCalc(double id);
     double convertfromAWG (QString AWG, bool *isOK = NULL);

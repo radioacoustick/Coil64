@@ -24,7 +24,8 @@ Loop::Loop(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator;
+    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
@@ -55,6 +56,7 @@ Loop::~Loop()
     settings->endGroup();
     delete settings;
     delete fOpt;
+    delete awgV;
     delete dv;
     delete ui;
 }
@@ -88,6 +90,7 @@ void Loop::getOpt(_OptionStruct gOpt){
     settings->endGroup();
     if (fOpt->isAWG){
         ui->label_03->setText(tr("AWG"));
+        ui->lineEdit_3->setValidator(awgV);
         if (dw > 0){
             ui->lineEdit_3->setText(converttoAWG(dw));
         } else
@@ -100,6 +103,7 @@ void Loop::getOpt(_OptionStruct gOpt){
     QString tmpTxt = tr("Wire diameter") + " d:";
     ui->label_3->setText(tmpTxt);
     on_checkBox_isReverce_clicked();
+    delete settings;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Loop::on_radioButton_round_clicked()

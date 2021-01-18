@@ -1,4 +1,4 @@
-/* ferrite_rod.h - header text to Coil64 - Radio frequency inductor and choke calculator
+/* al.h - header text to Coil64 - Radio frequency inductor and choke calculator
 Copyright (C) 2019 Kustarev V.
 
 This program is free software; you can redistribute it and/or modify
@@ -14,9 +14,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses
 */
-
-#ifndef FERRITE_ROD_H
-#define FERRITE_ROD_H
+#ifndef AL_H
+#define AL_H
 
 #include <QDialog>
 #include <QScreen>
@@ -26,36 +25,35 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QUrl>
 
 #include "system_functions.h"
-#include "resolves.h"
+#include "math.h"
 
 namespace Ui {
-class Ferrite_Rod;
+class AL;
 }
 
-class Ferrite_Rod : public QDialog
+class AL : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Ferrite_Rod(QWidget *parent = 0);
-    ~Ferrite_Rod();
-
-signals:
-    void sendResult(QString);
+    explicit AL(QWidget *parent = 0);
+    ~AL();
 
 private slots:
     void getOpt(_OptionStruct gOpt);
     void getCurrentLocale(QLocale locale);
     void on_pushButton_close_clicked();
+    void on_tabWidget_currentChanged(int index);
     void on_pushButton_calculate_clicked();
-    void on_pushButton_clicked();
 
 private:
-    Ui::Ferrite_Rod *ui;
+    Ui::AL *ui;
     _OptionStruct *fOpt;
     QDoubleValidator *dv;
-    QRegExpValidator *awgV;
     QLocale loc;
+    int tabIndex;
+    int al, N_m, N_r;
+    double L_m, L_r;
 };
 
-#endif // FERRITE_ROD_H
+#endif // AL_H

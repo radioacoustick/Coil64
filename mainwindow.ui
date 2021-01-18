@@ -1119,6 +1119,13 @@
                   </property>
                  </widget>
                 </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_ZF">
+                  <property name="text">
+                   <string>The impedance and the frequency are known</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </widget>
              </item>
@@ -1168,7 +1175,7 @@
              <item>
               <widget class="QGroupBox" name="groupBox_2_3">
                <property name="title">
-                <string notr="true">External capacitance</string>
+                <string notr="true">Circuit capacitance</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">
                 <item>
@@ -1729,9 +1736,11 @@
      <string>Ferrite cores</string>
     </property>
     <addaction name="actionPot_core_coil"/>
+    <addaction name="actionE_core_coil"/>
     <addaction name="actionCoil_on_a_ferrite_rod"/>
     <addaction name="separator"/>
     <addaction name="actionFerrite_toroid_permeability"/>
+    <addaction name="actionAL_factor_calculation"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuActions"/>
@@ -2036,6 +2045,25 @@
    </property>
    <property name="text">
     <string>Sunny</string>
+   </property>
+  </action>
+  <action name="actionE_core_coil">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-ecore.png</normaloff>:/menu_ico/res/ico1-ecore.png</iconset>
+   </property>
+   <property name="text">
+    <string>E core coil</string>
+   </property>
+  </action>
+  <action name="actionAL_factor_calculation">
+   <property name="icon">
+    <iconset>
+     <normalon>:/menu_ico/res/ico1-al.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Calculation with AL-factor</string>
    </property>
   </action>
  </widget>

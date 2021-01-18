@@ -38,6 +38,12 @@
         <file>res/toroid-round.png</file>
         <file>res/Coil1.png</file>
         <file>res/Coil7.png</file>
+        <file>res/EC-core-round.png</file>
+        <file>res/EE-core-round.png</file>
+        <file>res/EE-core-square.png</file>
+        <file>res/EI-core-round.png</file>
+        <file>res/EI-core-square.png</file>
+        <file>res/al.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -116,6 +122,8 @@
         <file>res/ico1-one-layer-sw.png</file>
         <file>res/icons8-change-theme-32.png</file>
         <file>res/ico1-potcore.png</file>
+        <file>res/ico1-ecore.png</file>
+        <file>res/ico1-al.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

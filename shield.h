@@ -49,15 +49,10 @@ signals:
 private slots:
     void getOpt(_OptionStruct gOpt);
     void getCurrentLocale(QLocale locale);
-
     void on_pushButton_2_clicked();
-
     void on_pushButton_3_clicked();
-
     void on_radioButton_2_clicked();
-
     void on_radioButton_clicked();
-
     void on_pushButton_clicked();
 
 private:

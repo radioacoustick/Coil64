@@ -26,6 +26,15 @@ struct _Elliptic{
     double Ek;
 };
 #pragma pack(pop)
+
+#pragma pack(push,1)
+struct _MagCoreConst{
+    double C1;
+    double C2;
+};
+#pragma pack(pop)
+
+const double mu0 = 4e-7 * M_PI;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double odCalc(double id){
     //Calculating the outer diameter (od) of the wire with insulation from the internal diameter (id) without insulation
@@ -38,7 +47,7 @@ double odCalc(double id){
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double convertfromAWG(QString AWG, bool *isOK){
-    QRegularExpression awgrule("([0]{1,4})|([1-3]{1}[0-9]{1})|(40)|([1-9]{1})");
+    QRegularExpression awgrule(AWG_REG_EX);
     double result = 0;
     if (awgrule.match(AWG).hasMatch()){
         QStringList captured = awgrule.match(AWG).capturedTexts();
@@ -349,6 +358,24 @@ double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double
   }
   *lw = res.thd;
   return N;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getFerriteCoreMagConst(double l1, double l2, double l3, double l4, double l5,
+                            double A1, double A2, double A3, double A4, double A5, _MagCoreConst *c)
+{
+    //auxiliary function to get the constants C1 & C2 of a ferrite core with the close magnetic circuit
+    double sum11 = l1 / A1;
+    double sum21 = l1 / (A1 * A1);
+    double sum12 = l2 / A2;
+    double sum22 = l2 / (A2 * A2);
+    double sum13 = l3 / A3;
+    double sum23 = l3 / (A3 * A3);
+    double sum14 = l4 / A4;
+    double sum24 = l4 / (A4 * A4);
+    double sum15 = l5 / A5;
+    double sum25 = l5 / (A5 * A5);
+    c->C1 = sum11 + sum12 + sum13 + sum14 + sum15;
+    c->C2 = sum21 + sum22 + sum23 + sum24 + sum25;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// PUBLIC FUNCTIONS REALIZATION
@@ -1100,6 +1127,12 @@ double CalcLC2(double L, double f) {
     return C;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void CalcLC3(double Zo, double f, _CoilResult *result)
+{
+    result->N = 1e6 / (2 * M_PI * f * Zo);
+    result->sec = Zo / (2 * M_PI * f);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void findToroidPemeability(double N, double I, double Do, double Di, double h, _CoilResult *result) {
     double m;
     if ((Do / Di) < 1.75) {
@@ -1312,8 +1345,6 @@ double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double findPotCore_I(double N, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result)
 {
-    const double mu0 = 4e-7 * M_PI;
-
     double r1 = 0.5 * D4;
     double r2 = 0.5 * D3;
     double r3 = 0.5 * D2;
@@ -1361,6 +1392,61 @@ long findPotCore_N(double Ind, double D1, double D2, double D3, double D4, doubl
     while (tmpI <= Ind){
         N++;
         tmpI = findPotCore_I(N,D1,D2,D3,D4,h1,h2,g,b,mu, result);
+    }
+    return N;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findECore_I(double N, double A, double B, double C, double D, double E, double F, double g, double b, double mu,
+                   bool isEI, bool isRound, _CoilResult *result)
+{
+    double l1;
+    double l3;
+    double k = 1;
+    if (isRound)
+        k = 1.1918;
+    if (isEI){
+        l1 = D;
+        l3 = D;
+    } else {
+        l1 = 2 * D;
+        l3 = 2 * D;
+    }
+    double h = B - D;
+    double s = 0.5 * F;
+    double p = (A - E) / 2;
+    double q = C;
+    double l2 = E - F;
+    double l4 = M_PI * (p + h) / 4;
+    double l5 = M_PI * (k * s + h) / 4;
+    double A1 = 2 * q * p - 0.5 * M_PI * b * b;
+    double A2 = 2 * q * h;
+    double A3;
+    if (isRound)
+        A3 = M_PI * s * s;
+    else
+        A3 = 2 * s * q;
+    double A4 = 0.5 * (A1 + A2);
+    double A5 = 0.5 * (A2 + A3);
+    _MagCoreConst c;
+    getFerriteCoreMagConst(l1,l2,l3,l4,l5,A1,A2,A3,A4,A5,&c);
+    double le = c.C1 * c.C1 / c.C2;
+    double Ae = c.C1 / c.C2;
+    double mu_e = mu / (1 + g * mu / le);
+    double ind = 1000 * N * N * mu0 * mu_e / c.C1;
+    result->N = le;
+    result->sec = Ae;
+    result->thd = mu_e;
+    return ind;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+long findECore_N(double Ind, double A, double B, double C, double D, double E, double F, double g, double b, double mu,
+                 bool isEI, bool isRound, _CoilResult *result)
+{
+    double tmpI = 0;
+    unsigned long int N = 0;
+    while (tmpI <= Ind){
+        N++;
+        tmpI = findECore_I(N,A,B,C,D,E,F,g,b,mu,isEI,isRound,result);
     }
     return N;
 }

@@ -42,8 +42,11 @@ MainWindow::MainWindow(QWidget *parent) :
     mui->comboBox_checkPCB->setVisible(false);
     data = new _Data;
     myOpt = new _OptionStruct;
-    dv = new QDoubleValidator;
+    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
 
+    mui->lineEdit_1_3->setValidator(dv);
+    mui->lineEdit_2_3->setValidator(dv);
 
     QSettings *settings;
     defineAppSettings(settings);
@@ -175,6 +178,7 @@ MainWindow::MainWindow(QWidget *parent) :
     data->h = settings->value("h", 0).toDouble();
     data->mu = settings->value("mu", 0).toDouble();
     data->ratio = settings->value("ratio",0.5).toDouble();
+    data->zo = settings->value("zo",0).toDouble();
     data->s = settings->value("s", 0).toDouble();
     data->Rdc = settings->value("Rdc", 0).toDouble();
     settings->endGroup();
@@ -228,6 +232,10 @@ MainWindow::MainWindow(QWidget *parent) :
         mui->radioButton_LF->setChecked(true);
         on_radioButton_LF_clicked();
     }
+    else if (init_cond == 3){
+        mui->radioButton_ZF->setChecked(true);
+        on_radioButton_ZF_clicked();
+    }
     if (wire_material == 0){
         mui->radioButton_1->setChecked(true);
         mui->radioButton_1_2->setChecked(true);
@@ -247,19 +255,6 @@ MainWindow::MainWindow(QWidget *parent) :
     if (init_data == 0) mui->radioButton_6->setChecked(true);
     if (init_data == 1) mui->radioButton_7->setChecked(true);
     if (init_data == 2) mui->radioButton_8->setChecked(true);
-
-    //Start Allow only float values in input fields
-    //QRegExpValidator *dv = new QRegExpValidator();
-    //dv->setRegExp(QRegExp("([-]{0,1})([0-9]{0,9})([,.]{0,1}[0-9]{0,9})"));
-    mui->lineEdit_1->setValidator(dv);
-    mui->lineEdit_2->setValidator(dv);
-    mui->lineEdit_3->setValidator(dv);
-    mui->lineEdit_4->setValidator(dv);
-    mui->lineEdit_5->setValidator(dv);
-    mui->lineEdit_6->setValidator(dv);
-    mui->lineEdit_freq->setValidator(dv);
-    mui->lineEdit_ind->setValidator(dv);
-    //End Allow only float values in input fields
 
     resetUiFont();
     completeOptionsStructure(myOpt);
@@ -346,6 +341,8 @@ MainWindow::~MainWindow()
 {
     delete popupmenu;
     delete data;
+    delete dv;
+    delete awgV;
     delete myOpt;
     delete net_manager;
     delete mui;
@@ -429,6 +426,8 @@ void MainWindow::closeEvent(QCloseEvent *event){
             init_cond = 1;
         if (mui->radioButton_LF->isChecked())
             init_cond = 2;
+        if (mui->radioButton_ZF->isChecked())
+            init_cond = 3;
         settings->setValue("lang",this->lang);
         settings->setValue( "init_cond", init_cond);
         if (mui->radioButton_1->isChecked()) settings->setValue("wire_material", 0);
@@ -505,6 +504,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue("h", data->h);
         settings->setValue("mu", data->mu);
         settings->setValue("ratio", data->ratio);
+        settings->setValue("zo", data->zo);
         settings->setValue("s", data->s);
         settings->setValue("Rdc", data->Rdc);
         settings->endGroup();
@@ -783,6 +783,14 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
         mui->label_04->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_05->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->lineEdit_ind->setFocus();
+        mui->lineEdit_1->setValidator(dv);
+        mui->lineEdit_2->setValidator(dv);
+        mui->lineEdit_3->setValidator(dv);
+        mui->lineEdit_4->setValidator(dv);
+        mui->lineEdit_5->setValidator(dv);
+        mui->lineEdit_6->setValidator(dv);
+        mui->lineEdit_freq->setValidator(dv);
+        mui->lineEdit_ind->setValidator(dv);
         switch (FormCoil) {
         case _Onelayer_cw:{
             mui->image->setPixmap(QPixmap(":/images/res/Coil1.png"));
@@ -792,6 +800,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
+                mui->lineEdit_2->setValidator(awgV);
             }
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -840,6 +849,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
+                mui->lineEdit_2->setValidator(awgV);
             }
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -933,6 +943,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
+                mui->lineEdit_2->setValidator(awgV);
             }
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -986,6 +997,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_03->setText(tr("AWG"));
+                mui->lineEdit_3->setValidator(awgV);
             }
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
@@ -1035,6 +1047,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_03->setText(tr("AWG"));
+                mui->lineEdit_3->setValidator(awgV);
             }
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
@@ -1090,6 +1103,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04->setText(tr("AWG"));
+                mui->lineEdit_4->setValidator(awgV);
             }
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
@@ -1141,9 +1155,6 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox->setVisible(false);
             mui->groupBox_6->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
-            if (myOpt->isAWG){
-                mui->label_04->setText(tr("AWG"));
-            }
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
             mui->lineEdit_freq->setVisible(false);
@@ -1183,6 +1194,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04->setText(tr("AWG"));
+                mui->lineEdit_4->setValidator(awgV);
             }
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
@@ -1270,6 +1282,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
+                mui->lineEdit_2->setValidator(awgV);
             }
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
@@ -1322,6 +1335,15 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
         mui->label_05_2->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_06_2->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->lineEdit_N->setFocus();
+        mui->lineEdit_1_2->setValidator(dv);
+        mui->lineEdit_2_2->setValidator(dv);
+        mui->lineEdit_3_2->setValidator(dv);
+        mui->lineEdit_4_2->setValidator(dv);
+        mui->lineEdit_5_2->setValidator(dv);
+        mui->lineEdit_6_2->setValidator(dv);
+        mui->lineEdit_7_2->setValidator(dv);
+        mui->lineEdit_freq2->setValidator(dv);
+        mui->lineEdit_N->setValidator(dv);
         switch (FormCoil) {
         case _Onelayer_cw:{
             mui->image->setPixmap(QPixmap(":/images/res/Coil1.png"));
@@ -1331,6 +1353,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
+                mui->lineEdit_2_2->setValidator(awgV);
             }
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -1383,6 +1406,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
+                mui->lineEdit_2_2->setValidator(awgV);
             }
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -1484,6 +1508,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
+                mui->lineEdit_2_2->setValidator(awgV);
             }
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -1544,6 +1569,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04_2->setText(tr("AWG"));
+                mui->lineEdit_4_2->setValidator(awgV);
             }
             mui->label_N->setVisible(false);
             mui->lineEdit_N->setVisible(false);
@@ -1589,6 +1615,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04_2->setText(tr("AWG"));
+                mui->lineEdit_4_2->setValidator(awgV);
             }
             mui->label_N->setVisible(false);
             mui->lineEdit_N->setVisible(false);
@@ -1649,6 +1676,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_05_2->setText(tr("AWG"));
+                mui->lineEdit_5_2->setValidator(awgV);
             }
             mui->label_N->setVisible(false);
             mui->lineEdit_N->setVisible(false);
@@ -1843,6 +1871,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_03_2->setText(tr("AWG"));
+                mui->lineEdit_3_2->setValidator(awgV);
             }
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -2149,6 +2178,8 @@ void MainWindow::on_tabWidget_currentChanged(int index)
             on_radioButton_CF_clicked();
         if (mui->radioButton_LF->isChecked())
             on_radioButton_LF_clicked();
+        if (mui->radioButton_ZF->isChecked())
+            on_radioButton_ZF_clicked();
         break;
     }
     default:
@@ -2160,7 +2191,7 @@ void MainWindow::on_radioButton_LC_clicked()
 {
     mui->groupBox_1_3->setTitle(tr("Inductance"));
     mui->lineEdit_1_3->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
-    mui->groupBox_2_3->setTitle(tr("External capacitance"));
+    mui->groupBox_2_3->setTitle(tr("Circuit capacitance"));
     mui->lineEdit_2_3->setText(loc.toString(data->capacitance / myOpt->dwCapacityMultiplier));
     mui->label_01_3->setText(qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()));
     mui->label_02_3->setText(qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()));
@@ -2168,7 +2199,7 @@ void MainWindow::on_radioButton_LC_clicked()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_CF_clicked()
 {
-    mui->groupBox_1_3->setTitle(tr("External capacitance"));
+    mui->groupBox_1_3->setTitle(tr("Circuit capacitance"));
     mui->lineEdit_1_3->setText(loc.toString(data->capacitance / myOpt->dwCapacityMultiplier));
     mui->groupBox_2_3->setTitle(tr("Frequency"));
     mui->lineEdit_2_3->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -2183,6 +2214,16 @@ void MainWindow::on_radioButton_LF_clicked()
     mui->groupBox_2_3->setTitle(tr("Frequency"));
     mui->lineEdit_2_3->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
     mui->label_01_3->setText(qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()));
+    mui->label_02_3->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_radioButton_ZF_clicked()
+{
+    mui->groupBox_1_3->setTitle(tr("Characteristic impedance"));
+    mui->lineEdit_1_3->setText(loc.toString(data->zo));
+    mui->groupBox_2_3->setTitle(tr("Frequency"));
+    mui->lineEdit_2_3->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
+    mui->label_01_3->setText(tr("Ohm"));
     mui->label_02_3->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2332,9 +2373,11 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
         mui->label_04_2->setText(tr("mm"));
         if (myOpt->isAWG){
             if (data->d > 0){
+                mui->label_04_2->setText(tr("AWG"));
                 mui->lineEdit_4_2->setText(converttoAWG(data->d));
-            } else
+            } else {
                 mui->lineEdit_4_2->setText("");
+            }
         } else
             mui->lineEdit_4_2->setText(loc.toString(data->d / myOpt->dwLengthMultiplier));
     }
@@ -4035,6 +4078,21 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 data->capacitance = CalcLC2(data->inductance, data->frequency);
                 tmpStr += tr("Circuit capacitance") + " C = " + loc.toString(data->capacitance / myOpt->dwCapacityMultiplier, 'f', myOpt->dwAccuracy)
                         + " " + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
+            } else if (mui->radioButton_ZF->isChecked()){
+                data->zo = loc.toDouble(mui->lineEdit_1_3->text(), &ok1);
+                data->frequency = loc.toDouble(mui->lineEdit_2_3->text(), &ok2)*myOpt->dwFrequencyMultiplier;
+                if((!ok1)||(!ok2)){
+                    showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+                    return;
+                }
+                _CoilResult result;
+                CalcLC3(data->zo,data->frequency,&result);
+                data->capacitance = result.N;
+                data->inductance = result.sec;
+                tmpStr += tr("Circuit capacitance") + " C = " + loc.toString(data->capacitance / myOpt->dwCapacityMultiplier, 'f', myOpt->dwAccuracy)
+                        + " " + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
+                tmpStr += tr("Inductance of a circuit") + " L = " + loc.toString(data->inductance / myOpt->dwInductanceMultiplier, 'f', myOpt->dwAccuracy)
+                        + " " + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
             }
             QTextCursor c = mui->textBrowser->textCursor();
             prepareHeader(&c);
@@ -4049,8 +4107,10 @@ void MainWindow::on_pushButton_Calculate_clicked()
             QString Result = "<hr>";
             Result += "<p><u>" + tr("Result") + ":</u><br/>";
             Result += tmpStr;
-            double ro = 1000 * sqrt(data->inductance / data->capacitance);
-            Result += tr("Characteristic impedance") + " ρ = " + loc.toString(ro, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
+            if (!mui->radioButton_ZF->isChecked()){
+                data->zo = 1000 * sqrt(data->inductance / data->capacitance);
+                Result += tr("Characteristic impedance") + " Z<sub>0</sub> = " + loc.toString(data->zo, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
+            }
             Result += "</p><hr>";
             c.insertHtml(Result);
             if(myOpt->isLastShowingFirst)
@@ -5208,6 +5268,17 @@ void MainWindow::on_actionFerrite_toroid_permeability_triggered()
     fPerm->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionAL_factor_calculation_triggered()
+{
+    AL *fAL = new AL();
+    fAL->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), fAL, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), fAL, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    fAL->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionCoil_on_a_ferrite_rod_triggered()
 {
     Ferrite_Rod *fRod = new Ferrite_Rod();
@@ -5304,6 +5375,18 @@ void MainWindow::on_actionPot_core_coil_triggered()
     fpotcore->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionE_core_coil_triggered()
+{
+    ECore *fecore = new ECore();
+    fecore->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(fecore, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), fecore, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), fecore, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    fecore->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::getAddCalculationResult(QString result){
     QTextCursor c = mui->textBrowser->textCursor();
     prepareHeader(&c);
@@ -5389,3 +5472,4 @@ void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
         }
     }
 }
+

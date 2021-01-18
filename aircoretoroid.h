@@ -57,6 +57,7 @@ private:
     Ui::AirCoreToroid *ui;
     _OptionStruct *fOpt;
     QDoubleValidator *dv;
+    QRegExpValidator *awgV;
     QLocale loc;
 
     int windingKind;

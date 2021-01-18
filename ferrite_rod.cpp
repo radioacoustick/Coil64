@@ -40,7 +40,8 @@ Ferrite_Rod::Ferrite_Rod(QWidget *parent) :
     ui->label_dw->setText(tmp_txt);
     tmp_txt = tr("Winding pitch") + " p:";
     ui->label_p->setText(tmp_txt);
-    dv = new QDoubleValidator;
+    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
     ui->lineEdit_ind->setValidator(dv);
     ui->lineEdit_Dr->setValidator(dv);
     ui->lineEdit_Lr->setValidator(dv);
@@ -59,7 +60,12 @@ Ferrite_Rod::~Ferrite_Rod()
     double mu = loc.toDouble(ui->lineEdit_mu->text());
     double dc = loc.toDouble(ui->lineEdit_dc->text())*fOpt->dwLengthMultiplier;
     double s = loc.toDouble(ui->lineEdit_s->text())*fOpt->dwLengthMultiplier;
-    double dw = loc.toDouble(ui->lineEdit_dw->text())*fOpt->dwLengthMultiplier;
+    double dw = 0.0;
+    if (fOpt->isAWG){
+        dw = convertfromAWG(ui->lineEdit_dw->text());
+    } else {
+        dw = loc.toDouble(ui->lineEdit_dw->text())*fOpt->dwLengthMultiplier;
+    }
     double p = loc.toDouble(ui->lineEdit_p->text())*fOpt->dwLengthMultiplier;
     QSettings *settings;
     defineAppSettings(settings);
@@ -77,6 +83,7 @@ Ferrite_Rod::~Ferrite_Rod()
     settings->endGroup();
     delete settings;
     delete fOpt;
+    delete awgV;
     delete dv;
     delete ui;
 }
@@ -113,7 +120,15 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     ui->lineEdit_mu->setText(loc.toString(mu));
     ui->lineEdit_dc->setText(loc.toString(dc / fOpt->dwLengthMultiplier));
     ui->lineEdit_s->setText(loc.toString(s / fOpt->dwLengthMultiplier));
-    ui->lineEdit_dw->setText(loc.toString(dw / fOpt->dwLengthMultiplier));
+    if (fOpt->isAWG){
+        ui->label_dw_m->setText(tr("AWG"));
+        ui->lineEdit_dw->setValidator(awgV);
+        if (dw > 0){
+            ui->lineEdit_dw->setText(converttoAWG(dw));
+        } else
+            ui->lineEdit_dw->setText("");
+    } else
+        ui->lineEdit_dw->setText(loc.toString(dw / fOpt->dwLengthMultiplier));
     ui->lineEdit_p->setText(loc.toString(p / fOpt->dwLengthMultiplier));
     ui->lineEdit_ind->setFocus();
     ui->lineEdit_ind->selectAll();
@@ -147,7 +162,12 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
     double mu = loc.toDouble(ui->lineEdit_mu->text(), &ok4);
     double dc = loc.toDouble(ui->lineEdit_dc->text(), &ok5)*fOpt->dwLengthMultiplier;
     double s = loc.toDouble(ui->lineEdit_s->text(), &ok6)*fOpt->dwLengthMultiplier;
-    double dw = loc.toDouble(ui->lineEdit_dw->text(), &ok7)*fOpt->dwLengthMultiplier;
+    double dw = 0.0;
+    if (fOpt->isAWG){
+        dw = convertfromAWG(ui->lineEdit_dw->text(), &ok7);
+    } else {
+        dw = loc.toDouble(ui->lineEdit_dw->text(), &ok7)*fOpt->dwLengthMultiplier;
+    }
     double p = loc.toDouble(ui->lineEdit_p->text(), &ok8)*fOpt->dwLengthMultiplier;
     if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)||(!ok6)||(!ok7)||(!ok8)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
