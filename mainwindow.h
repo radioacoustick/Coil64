@@ -51,6 +51,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "aircoretoroid.h"
 #include "potcore.h"
 #include "ecore.h"
+#include "ucore.h"
 #include "al.h"
 
 #include "mthread_calculate.h"
@@ -198,9 +199,11 @@ private slots:
     void on_actionAir_core_toroid_coil_triggered();
     void on_actionPot_core_coil_triggered();
     void on_actionE_core_coil_triggered();
+    void on_actionU_core_coil_triggered();
     void on_actionAL_factor_calculation_triggered();
 
     void getAddCalculationResult(QString result);
+
 
 private:
     Ui::MainWindow *mui;

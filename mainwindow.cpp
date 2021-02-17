@@ -1929,55 +1929,76 @@ void MainWindow::on_actionExit_triggered()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionTo_null_data_triggered()
 {
-    QSettings *settings;
-    defineAppSettings(settings);
-    data->N = 0;
-    data->frequency = 0;
-    data->inductance = 0;
-    data->capacitance = 0;
-    data->D = 0;
-    data->d = 0;
-    data->k = 0;
-    data->p = 0;
-    data->w = 0;
-    data->t = 0;
-    data->isol = 0;
-    data->l = 0;
-    data->c = 0;
-    data->g = 0;
-    data->Ng = 0;
-    data->Do = 0;
-    data->Di = 0;
-    data->h = 0;
-    data->mu = 0;
-    data->ratio = 0.5;
-    data->s = 0;
-    data->Rdc = 0;
+    QMessageBox messageBox(QMessageBox::Question,
+                           tr("Confirmation"),
+                           tr("Are you sure?"),
+                           QMessageBox::Yes | QMessageBox::No,
+                           this);
+    messageBox.setButtonText(QMessageBox::Yes, tr("Yes"));
+    messageBox.setButtonText(QMessageBox::No, tr("No"));
+    if (messageBox.exec()== QMessageBox::Yes){
+        data->N = 0;
+        data->frequency = 0;
+        data->inductance = 0;
+        data->capacitance = 0;
+        data->D = 0;
+        data->a = 0;
+        data->b = 0;
+        data->d = 0;
+        data->k = 0;
+        data->p = 0;
+        data->w = 0;
+        data->t = 0;
+        data->isol = 0;
+        data->l = 0;
+        data->c = 0;
+        data->g = 0;
+        data->Ng = 0;
+        data->Do = 0;
+        data->Di = 0;
+        data->h = 0;
+        data->mu = 0;
+        data->ratio = 0.5;
+        data->zo = 0;
+        data->s = 0;
+        data->Rdc = 0;
 
-    mui->lineEdit_ind->clear();
-    mui->lineEdit_freq->clear();
-    mui->lineEdit_N->clear();
-    mui->lineEdit_freq2->clear();
-    mui->lineEdit_1->clear();
-    mui->lineEdit_2->clear();
-    mui->lineEdit_3->clear();
-    mui->lineEdit_4->clear();
-    mui->lineEdit_5->clear();
-    mui->lineEdit_6->clear();
-    mui->lineEdit_1_2->clear();
-    mui->lineEdit_2_2->clear();
-    mui->lineEdit_3_2->clear();
-    mui->lineEdit_4_2->clear();
-    mui->lineEdit_5_2->clear();
-    mui->lineEdit_6_2->clear();
-    mui->lineEdit_7_2->clear();
-    mui->lineEdit_1_3->clear();
-    mui->lineEdit_2_3->clear();
+        mui->lineEdit_ind->clear();
+        mui->lineEdit_freq->clear();
+        mui->lineEdit_N->clear();
+        mui->lineEdit_freq2->clear();
+        mui->lineEdit_1->clear();
+        mui->lineEdit_2->clear();
+        mui->lineEdit_3->clear();
+        mui->lineEdit_4->clear();
+        mui->lineEdit_5->clear();
+        mui->lineEdit_6->clear();
+        mui->lineEdit_1_2->clear();
+        mui->lineEdit_2_2->clear();
+        mui->lineEdit_3_2->clear();
+        mui->lineEdit_4_2->clear();
+        mui->lineEdit_5_2->clear();
+        mui->lineEdit_6_2->clear();
+        mui->lineEdit_7_2->clear();
+        mui->lineEdit_1_3->clear();
+        mui->lineEdit_2_3->clear();
 
-    settings->remove("Data");
-    settings->remove("FerriteRod");
-    settings->remove("FindPermeability");
-    delete settings;
+        QSettings *settings;
+        defineAppSettings(settings);
+        settings->remove("Data");
+        settings->remove("AirCoreToroid");
+        settings->remove("Amidon");
+        settings->remove("ECore");
+        settings->remove("FerriteRod");
+        settings->remove("FindPermeability");
+        settings->remove("Loop");
+        settings->remove("Meander_PCB");
+        settings->remove("Multi_loop");
+        settings->remove("PotCore");
+        settings->remove("Shield");
+        settings->remove("UCore");
+        delete settings;
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionThemeDefault_triggered()
@@ -5387,6 +5408,18 @@ void MainWindow::on_actionE_core_coil_triggered()
     fecore->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionU_core_coil_triggered()
+{
+    UCore *fucore = new UCore();
+    fucore->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(fucore, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), fucore, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), fucore, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    fucore->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::getAddCalculationResult(QString result){
     QTextCursor c = mui->textBrowser->textCursor();
     prepareHeader(&c);
@@ -5472,4 +5505,3 @@ void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
         }
     }
 }
-

@@ -1737,6 +1737,7 @@
     </property>
     <addaction name="actionPot_core_coil"/>
     <addaction name="actionE_core_coil"/>
+    <addaction name="actionU_core_coil"/>
     <addaction name="actionCoil_on_a_ferrite_rod"/>
     <addaction name="separator"/>
     <addaction name="actionFerrite_toroid_permeability"/>
@@ -2064,6 +2065,15 @@
    </property>
    <property name="text">
     <string>Calculation with AL-factor</string>
+   </property>
+  </action>
+  <action name="actionU_core_coil">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-ucore.png</normaloff>:/menu_ico/res/ico1-ucore.png</iconset>
+   </property>
+   <property name="text">
+    <string>U core coil</string>
    </property>
   </action>
  </widget>

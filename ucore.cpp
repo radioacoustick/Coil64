@@ -1,4 +1,4 @@
-/* ecore.cpp - source text to Coil64 - Radio frequency inductor and choke calculator
+/* ucore.cpp - source text to Coil64 - Radio frequency inductor and choke calculator
 Copyright (C) 2020 Kustarev V.
 
 This program is free software; you can redistribute it and/or modify
@@ -15,14 +15,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses
 */
 
-#include "ecore.h"
-#include "ui_ecore.h"
-
+#include "ucore.h"
+#include "ui_ucore.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-ECore::ECore(QWidget *parent) :
+UCore::UCore(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ECore)
+    ui(new Ui::UCore)
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
@@ -34,11 +33,10 @@ ECore::ECore(QWidget *parent) :
     ui->lineEdit_e->setValidator(dv);
     ui->lineEdit_f->setValidator(dv);
     ui->lineEdit_s->setValidator(dv);
-    ui->lineEdit_g->setValidator(dv);
     ui->lineEdit_mu->setValidator(dv);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-ECore::~ECore()
+UCore::~UCore()
 {
     bool isReverse = ui->checkBox_isReverce->isChecked();
     if (isReverse)
@@ -52,12 +50,11 @@ ECore::~ECore()
     E = loc.toDouble(ui->lineEdit_e->text())*fOpt->dwLengthMultiplier;
     F = loc.toDouble(ui->lineEdit_f->text())*fOpt->dwLengthMultiplier;
     s = loc.toDouble(ui->lineEdit_s->text())*fOpt->dwLengthMultiplier;
-    g = loc.toDouble(ui->lineEdit_g->text())*fOpt->dwLengthMultiplier;
     mu = loc.toDouble(ui->lineEdit_mu->text());
 
     QSettings *settings;
     defineAppSettings(settings);
-    settings->beginGroup( "ECore" );
+    settings->beginGroup( "UCore" );
     settings->setValue("pos", this->pos());
     settings->setValue("size", this->size());
     settings->setValue("isReverse", ui->checkBox_isReverce->isChecked());
@@ -71,7 +68,6 @@ ECore::~ECore()
     settings->setValue("E", E);
     settings->setValue("F", F);
     settings->setValue("s", s);
-    settings->setValue("g", g);
     settings->setValue("mu", mu);
     settings->endGroup();
 
@@ -81,7 +77,7 @@ ECore::~ECore()
     delete ui;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ECore::getOpt(_OptionStruct gOpt)
+void UCore::getOpt(_OptionStruct gOpt)
 {
     *fOpt = gOpt;
     ui->label_N_m->setText(qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
@@ -92,17 +88,16 @@ void ECore::getOpt(_OptionStruct gOpt)
     ui->label_05->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_06->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_07->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
-    ui->label_08->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     QSettings *settings;
     defineAppSettings(settings);
-    settings->beginGroup( "ECore" );
+    settings->beginGroup( "UCore" );
     QRect screenGeometry = qApp->primaryScreen()->availableGeometry();
     int x = (screenGeometry.width() - this->width()) / 2;
     int y = (screenGeometry.height() - this->height()) / 2;
     QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     QSize size = settings->value("size", this->minimumSize()).toSize();
     bool isReverse = settings->value("isReverse", false).toBool();
-    currStdCore = settings->value("currStdCore", 1).toInt();
+    currStdCore = settings->value("currStdCore", 0).toInt();
 
     N = settings->value("N", 0).toDouble();
     ind = settings->value("ind", 0).toDouble();
@@ -113,7 +108,6 @@ void ECore::getOpt(_OptionStruct gOpt)
     E = settings->value("E", 0).toDouble();
     F = settings->value("F", 0).toDouble();
     s = settings->value("s", 0).toDouble();
-    g = settings->value("g", 0).toDouble();
     mu = settings->value("mu", 100).toDouble();
     settings->endGroup();
     if (isReverse)
@@ -127,11 +121,9 @@ void ECore::getOpt(_OptionStruct gOpt)
     ui->lineEdit_e->setText(loc.toString(E / fOpt->dwLengthMultiplier));
     ui->lineEdit_f->setText(loc.toString(F / fOpt->dwLengthMultiplier));
     ui->lineEdit_s->setText(loc.toString(s / fOpt->dwLengthMultiplier));
-    ui->lineEdit_g->setText(loc.toString(g / fOpt->dwLengthMultiplier));
     ui->lineEdit_mu->setText(loc.toString(mu));
 
-    ui->label_s->setText(tr("Slot size")+" b:");
-    ui->label_g->setText(tr("Centerpost gap")+" g:");
+    ui->label_s->setText(tr("Slot size")+" s:");
     ui->label_mu->setText(tr("Magnetic permeability")+" µ:");
     ui->comboBox->setCurrentIndex(currStdCore);
     on_comboBox_currentIndexChanged(currStdCore);
@@ -142,62 +134,14 @@ void ECore::getOpt(_OptionStruct gOpt)
     delete settings;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ECore::getCurrentLocale(QLocale locale)
+void UCore::getCurrentLocale(QLocale locale)
 {
     this->loc = locale;
     this->setLocale(loc);
     dv->setLocale(loc);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ECore::on_pushButton_close_clicked()
-{
-    this->close();
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ECore::on_comboBox_currentIndexChanged(int index)
-{
-    switch (index) {
-    case 0:{
-        ui->image->setPixmap(QPixmap(":/images/res/EC-core-round.png"));
-        ui->label_s->setVisible(true);
-        ui->lineEdit_s->setVisible(true);
-        ui->label_07->setVisible(true);
-    }
-        break;
-    case 1:{
-        ui->image->setPixmap(QPixmap(":/images/res/EE-core-round.png"));
-        ui->label_s->setVisible(false);
-        ui->lineEdit_s->setVisible(false);
-        ui->label_07->setVisible(false);
-    }
-        break;
-    case 2:{
-        ui->image->setPixmap(QPixmap(":/images/res/EE-core-square.png"));
-        ui->label_s->setVisible(false);
-        ui->lineEdit_s->setVisible(false);
-        ui->label_07->setVisible(false);
-    }
-        break;
-    case 3:{
-        ui->image->setPixmap(QPixmap(":/images/res/EI-core-round.png"));
-        ui->label_s->setVisible(false);
-        ui->lineEdit_s->setVisible(false);
-        ui->label_07->setVisible(false);
-    }
-        break;
-    case 4:{
-        ui->image->setPixmap(QPixmap(":/images/res/EI-core-square.png"));
-        ui->label_s->setVisible(false);
-        ui->lineEdit_s->setVisible(false);
-        ui->label_07->setVisible(false);
-    }
-        break;
-    default:
-        break;
-    }
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ECore::on_checkBox_isReverce_clicked()
+void UCore::on_checkBox_isReverce_clicked()
 {
     if (ui->checkBox_isReverce->isChecked()){
         ui->lineEdit_N->setText(loc.toString(N, 'f', fOpt->dwAccuracy));
@@ -212,34 +156,84 @@ void ECore::on_checkBox_isReverce_clicked()
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ECore::on_pushButton_help_clicked()
+void UCore::on_pushButton_close_clicked()
 {
-    QDesktopServices::openUrl(QUrl("https://coil32.net/ferrite-e-core.html"));
+    this->close();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ECore::on_pushButton_calculate_clicked()
+void UCore::on_comboBox_currentIndexChanged(int index)
+{
+    switch (index) {
+    case 0:{
+        ui->image->setPixmap(QPixmap(":/images/res/UU-core.png"));
+        ui->label_s->setVisible(false);
+        ui->lineEdit_s->setVisible(false);
+        ui->label_07->setVisible(false);
+        ui->label_f->setVisible(false);
+        ui->lineEdit_f->setVisible(false);
+        ui->label_06->setVisible(false);
+    }
+        break;
+    case 1:{
+        ui->image->setPixmap(QPixmap(":/images/res/UR-core.png"));
+        ui->label_s->setVisible(true);
+        ui->lineEdit_s->setVisible(true);
+        ui->label_07->setVisible(true);
+        ui->label_f->setVisible(true);
+        ui->lineEdit_f->setVisible(true);
+        ui->label_06->setVisible(true);
+    }
+        break;
+    case 2:{
+        ui->image->setPixmap(QPixmap(":/images/res/UY-core.png"));
+        ui->label_s->setVisible(true);
+        ui->lineEdit_s->setVisible(true);
+        ui->label_07->setVisible(true);
+        ui->label_f->setVisible(false);
+        ui->lineEdit_f->setVisible(false);
+        ui->label_06->setVisible(false);
+    }
+        break;
+    default:
+        break;
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void UCore::on_pushButton_help_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://coil32.net/ferrite-u-core.html"));
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void UCore::on_pushButton_calculate_clicked()
 {
     int index = ui->comboBox->currentIndex();
-    bool isEI = false;
-    if (index > 2)
-        isEI = true;
-    bool isRound = true;
-    if ((index == 2) || (index == 4))
-        isRound = false;
     if ((ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_a->text().isEmpty())||(ui->lineEdit_b->text().isEmpty())
-            ||(ui->lineEdit_c->text().isEmpty()) ||(ui->lineEdit_d->text().isEmpty()) ||(ui->lineEdit_e->text().isEmpty())
-            ||(ui->lineEdit_f->text().isEmpty())){
+            ||(ui->lineEdit_c->text().isEmpty()) ||(ui->lineEdit_d->text().isEmpty()) ||(ui->lineEdit_e->text().isEmpty())){
         showWarning(tr("Warning"), tr("One or more inputs are empty!"));
         return;
     }
-    bool ok1, ok2, ok3, ok4, ok5, ok6, ok7, ok8, ok9;
+    bool ok1, ok2, ok3, ok4, ok5, ok6, ok7, ok9;
     A = loc.toDouble(ui->lineEdit_a->text(), &ok1)*fOpt->dwLengthMultiplier;
     B = loc.toDouble(ui->lineEdit_b->text(), &ok2)*fOpt->dwLengthMultiplier;
     C = loc.toDouble(ui->lineEdit_c->text(), &ok3)*fOpt->dwLengthMultiplier;
     D = loc.toDouble(ui->lineEdit_d->text(), &ok4)*fOpt->dwLengthMultiplier;
     E = loc.toDouble(ui->lineEdit_e->text(), &ok5)*fOpt->dwLengthMultiplier;
-    F = loc.toDouble(ui->lineEdit_f->text(), &ok6)*fOpt->dwLengthMultiplier;
     if (index == 0){
+        F = 0;
+    } else if (index == 1){
+        F = loc.toDouble(ui->lineEdit_f->text(), &ok6)*fOpt->dwLengthMultiplier;
+        if (!ok6){
+            showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            return;
+        }
+        if (F == 0){
+            showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
+            return;
+        }
+    } else if (index == 2){
+        F = -1;
+    }
+    if (index > 0){
         s = loc.toDouble(ui->lineEdit_s->text(), &ok7)*fOpt->dwLengthMultiplier;
         if (!ok7){
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
@@ -248,22 +242,17 @@ void ECore::on_pushButton_calculate_clicked()
     } else {
         s = 0;
     }
-    g = loc.toDouble(ui->lineEdit_g->text(), &ok8)*fOpt->dwLengthMultiplier;
     mu = loc.toDouble(ui->lineEdit_mu->text(), &ok9);
-    if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)||(!ok6)||(!ok8)||(!ok9)){
+    if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)||(!ok9)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         return;
     }
-    if ((A == 0)||(B == 0)||(C == 0)||(D == 0)||(E == 0)||(F == 0)||(mu == 0)){
+    if ((A == 0)||(B == 0)||(C == 0)||(D == 0)||(E == 0)||(mu == 0)){
         showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
         return;
     }
     if (B < D){
         showWarning(tr("Warning"), "B < D");
-        return;
-    }
-    if (E < F){
-        showWarning(tr("Warning"), "E < F");
         return;
     }
     _CoilResult result;
@@ -277,7 +266,7 @@ void ECore::on_pushButton_calculate_clicked()
             showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
             return;
         }
-        ind = findECore_I(N,A,B,C,D,E,F,g,s,mu,isEI,isRound,&result);
+        ind = findUCore_I(N,A,B,C,D,E,F,s,mu,&result);
     } else {
         ind = loc.toDouble(ui->lineEdit_N->text(), &ok1)*fOpt->dwInductanceMultiplier;
         if (!ok1){
@@ -288,27 +277,21 @@ void ECore::on_pushButton_calculate_clicked()
             showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
             return;
         }
-        N = findECore_N(ind,A,B,C,D,E,F,g,s,mu,isEI,isRound,&result);
+        N = findUCore_N(ind,A,B,C,D,E,F,s,mu,&result);
     }
     QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
             " - " + windowTitle() + "</h2><br/>";
     if (fOpt->isInsertImage){
         switch (index) {
         case 0:
-            sResult += "<img src=\":/images/res/EC-core-round.png\">";
+            sResult += "<img src=\":/images/res/UU-core.png\">";
             break;
         case 1:
-            sResult += "<img src=\":/images/res/EE-core-round.png\">";
+            sResult += "<img src=\":/images/res/UR-core.png\">";
             break;
         case 2:
-            sResult += "<img src=\":/images/res/EE-core-square.png\">";
+            sResult += "<img src=\":/images/res/UY-core.png\">";
              break;
-        case 3:
-            sResult += "<img src=\":/images/res/EI-core-round.png\">";
-            break;
-        case 4:
-            sResult += "<img src=\":/images/res/EI-core-square.png\">";
-            break;
         default:
             break;
         }
@@ -323,10 +306,10 @@ void ECore::on_pushButton_calculate_clicked()
     sResult += ui->label_c->text() + " " + ui->lineEdit_c->text() + " " + ui->label_03->text() + "<br/>";
     sResult += ui->label_d->text() + " " + ui->lineEdit_d->text() + " " + ui->label_04->text() + "<br/>";
     sResult += ui->label_e->text() + " " + ui->lineEdit_e->text() + " " + ui->label_05->text() + "<br/>";
-    sResult += ui->label_f->text() + " " + ui->lineEdit_f->text() + " " + ui->label_06->text() + "<br/>";
-    if (index == 0)
+    if (index == 1)
+        sResult += ui->label_f->text() + " " + ui->lineEdit_f->text() + " " + ui->label_06->text() + "<br/>";
+    if (index > 0)
         sResult += ui->label_s->text() + " " + ui->lineEdit_s->text() + " " + ui->label_07->text() + "<br/>";
-    sResult += ui->label_g->text() + " " + ui->lineEdit_g->text() + " " + ui->label_08->text() + "<br/>";
     sResult += ui->label_mu->text() + " " + ui->lineEdit_mu->text() + "<br/>";
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
@@ -345,7 +328,6 @@ void ECore::on_pushButton_calculate_clicked()
     sResult += tr("Effective volume") + " (V<sub>e</sub>): "
             + loc.toString(result.N * result.sec/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', fOpt->dwAccuracy)
             + "&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>3</sup><br/>";
-    sResult += tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = " + loc.toString(result.thd, 'f', 0);
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }

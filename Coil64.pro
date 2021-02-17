@@ -49,7 +49,8 @@ SOURCES += main.cpp\
     aircoretoroid.cpp \
     potcore.cpp \
     ecore.cpp \
-    al.cpp
+    al.cpp \
+    ucore.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -72,7 +73,8 @@ HEADERS  += mainwindow.h \
     aircoretoroid.h \
     potcore.h \
     ecore.h \
-    al.h
+    al.h \
+    ucore.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -87,7 +89,8 @@ FORMS    += mainwindow.ui \
     aircoretoroid.ui \
     potcore.ui \
     ecore.ui \
-    al.ui
+    al.ui \
+    ucore.ui
 
 RESOURCES += \
     res.qrc

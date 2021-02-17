@@ -200,6 +200,7 @@ Amidon::Amidon(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
+    fOpt->mainFontSize = 0;
     dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
     ui->lineEdit_ind->setValidator(dv);
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
@@ -829,41 +830,45 @@ void Amidon::drawImage(QPixmap image)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Amidon::onCalculate()
 {
-    double ind = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
-    ui->label_result->clear();
-    QString Result = "";
-    int N = 0;
-    switch (ui->tabWidget->currentIndex()) {
-    case _TToroid:
-        N = round(100 * sqrt(ind / al));
-        break;
-    case _FToroid:
-        N = round(sqrt(1000 * ind / al));
-        break;
-    case _PotCore:
-        N = round(sqrt(ind / al * 1000));
-        break;
-    case _ECore:
-        N = round(1000 * sqrt(ind / al / 1000));
-        break;
-    case _MCore:
-        N = round(1000 * sqrt(ind / al / 1000));
-        break;
-    default:
-        break;
+    if (fOpt->mainFontSize > 0){
+        double ind = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
+        int N = 0;
+        QString Result = "";
+        if (ind > 0){
+            ui->label_result->clear();
+            switch (ui->tabWidget->currentIndex()) {
+            case _TToroid:
+                N = round(100 * sqrt(ind / al));
+                break;
+            case _FToroid:
+                N = round(sqrt(1000 * ind / al));
+                break;
+            case _PotCore:
+                N = round(sqrt(ind / al * 1000));
+                break;
+            case _ECore:
+                N = round(1000 * sqrt(ind / al / 1000));
+                break;
+            case _MCore:
+                N = round(1000 * sqrt(ind / al / 1000));
+                break;
+            default:
+                break;
+            }
+        }
+        if (N  > 0){
+            double max_dw = 2 * sqrt(0.7 * hole_area / N / M_PI);
+            Result += tr("Number of turns of the coil") + " N = " + loc.toString(N) + "<br/>";
+            Result += tr("Maximum wire diameter") + " dw_max = " + loc.toString(max_dw / fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy)
+                    + "&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8());
+            QString awg = converttoAWG(max_dw);
+            if (!awg.isEmpty())
+                Result += "&nbsp;(" + awg +"&nbsp;AWG)";
+        } else {
+            Result += tr("Not available");
+        }
+        ui->label_result->setText(Result);
     }
-    if (N  > 0){
-        double max_dw = 2 * sqrt(0.7 * hole_area / N / M_PI);
-        Result += tr("Number of turns of the coil") + " N = " + loc.toString(N) + "<br/>";
-        Result += tr("Maximum wire diameter") + " dw_max = " + loc.toString(max_dw / fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy)
-                + "&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8());
-        QString awg = converttoAWG(max_dw);
-        if (!awg.isEmpty())
-            Result += "&nbsp;(" + awg +"&nbsp;AWG)";
-    } else {
-        Result += tr("Not available");
-    }
-    ui->label_result->setText(Result);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QString Amidon::getPotCoreSize(QString sizes, double *average_size)

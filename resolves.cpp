@@ -1450,3 +1450,59 @@ long findECore_N(double Ind, double A, double B, double C, double D, double E, d
     }
     return N;
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findUCore_I(double N, double A, double B, double C, double D, double E, double F, double s, double mu, _CoilResult *result)
+{
+    double l1 = 2 * D;
+    double l3 = 2 * D;
+    double h = B - D;
+    double q = C;
+    double l2 = 2 * E;
+    double p = 0;
+    double y = 0;
+    double A1 = 0;
+    double A3 = 0;
+    if (F <= 0){
+        p = (A - E) / 2;
+        y = p;
+    } else {
+        p = A - E - F;
+        y = F;
+    }
+    double l4 = M_PI * (p + h) / 4;
+    double l5 = M_PI * (y + h) / 4;
+    if (F == 0)
+        A1 = q * p;
+    else if (F < 0)
+        A1 = 0.25 * M_PI * q * q - 0.25 * M_PI * s * s;
+    else if (F > 0)
+        A1 = 0.25 * M_PI * q * q;
+    double A2 = q * h;
+    if (F == 0)
+        A3 = q * p;
+    else if (F < 0)
+        A3 = 0.25 * M_PI * q * q - 0.25 * M_PI * s * s;
+    else if (F > 0)
+        A3 = q * y - 0.25 * M_PI * s * s;
+    double A4 = 0.5 * (A1 + A2);
+    double A5 = 0.5 * (A2 + A3);
+    _MagCoreConst c;
+    getFerriteCoreMagConst(l1,l2,l3,l4,l5,A1,A2,A3,A4,A5,&c);
+    double le = c.C1 * c.C1 / c.C2;
+    double Ae = c.C1 / c.C2;
+    double ind = 1000 * N * N * mu0 * mu / c.C1;
+    result->N = le;
+    result->sec = Ae;
+    return ind;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+long findUCore_N(double Ind, double A, double B, double C, double D, double E, double F, double s, double mu, _CoilResult *result)
+{
+    double tmpI = 0;
+    unsigned long int N = 0;
+    while (tmpI <= Ind){
+        N++;
+        tmpI = findUCore_I(N,A,B,C,D,E,F,s,mu,result);
+    }
+    return N;
+}
