@@ -116,11 +116,13 @@ TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_tr.ts \
     lang/Coil64_zh.ts
 
-
 win32: RC_FILE = resource.rc
-macx: ICON = res/coil64_icon_48.icns
-linux: QMAKE_LFLAGS += -no-pie
-unix: {
-  PKGCONFIG += openssl
-  QMAKE_LFLAGS += -static-libstdc++
+unix:{
+  !macx:{
+    QMAKE_LFLAGS += -no-pie
+    QMAKE_LFLAGS += -static-libstdc++
+    PKGCONFIG += openssl
+  }else{
+    ICON = res/coil64_icon_48.icns
+  }
 }

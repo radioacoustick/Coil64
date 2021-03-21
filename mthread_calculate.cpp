@@ -137,7 +137,7 @@ void MThread_calculate::run(){
             case _Multilayer:{
                 //arg: D, l, c, d, k, 0, 0; D, l, c, Rm, k, 0, 1;
                 if (arg7 == 0){
-                    result.N = getMultiLayerI_byN(arg1, arg2, arg4, arg5, arg3);
+                    getMultiLayerI_byN(arg1, arg2, arg4, arg5, arg3, &result);
                 } else if (arg7 == 1){
                     getMultiLayerI(arg1, arg2, arg4, arg5, arg3, 0, -1, &result);
                 } else if (arg7 == 2){

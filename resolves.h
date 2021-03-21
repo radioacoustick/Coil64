@@ -95,7 +95,7 @@ enum _FormCoil
     double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy); //get Inductance for One-layer coil with round wire
     double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw, unsigned int accuracy); //get Inductance for One-layer coil with round wire
     void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result, unsigned int accuracy);
-    double getMultiLayerI_byN(double D, double lk, double dw, double k, double N); //get Inductance for Multi-layer coil
+    void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result); //get Inductance for Multi-layer coil
     void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result); //get Inductance for Multi-layer coil
     void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result);
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result);

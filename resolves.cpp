@@ -558,7 +558,7 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
         nLayer = floor((n - 1) / Nl); // Position of the turn on y
         nx = Nc * k; // x-offset of current turn
         ny = nLayer * k; // y-offset of current turn
-        lengthNa = a0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side a)
+        lengthNa = a0 + 2 * k * (nLayer); Rdc = (0.0175 * lw * 1E-4 * 4) / (M_PI * dw * dw);// lenght of straight conductor of current turn (side a)
         lengthNb = b0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side b)
         lw += 2 * (a0 + b0 + 2 * k * (nLayer));
         Ladd = SelfInductanceStraightWire(lengthNa, dw) + SelfInductanceStraightWire(lengthNb, dw); // half of self-inductance of the current turn
@@ -601,13 +601,13 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
     result->five = (nLayer + 1) * k * 10; //coil thickness
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getMultiLayerI_byN(double D, double lk, double dw, double k, double N)
+void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result)
 {
     D = D / 10;
     lk = lk / 10;
     dw = dw / 10;
     k = k / 10;
-    int Nl, Nc, Jc, nLayer, jLayer;
+    int Nl, Nc, Jc, nLayer = 0, jLayer;
     double nx, ny, jx, jy, Lns, M;
     double Ltotal = 0; // initialize variable of total self-inductance
     double lw = 0;
@@ -634,7 +634,12 @@ double getMultiLayerI_byN(double D, double lk, double dw, double k, double N)
         }
         Ltotal = Ltotal + Lns + M;
     }
-    return Ltotal;
+    double Rdc = (0.0175 * lw * 1E-4 * 4) / (M_PI * dw * dw);
+    result->N = Ltotal; //inductance value
+    result->sec = nLayer + 1; //number of layers
+    result->thd = lw * 0.01; //length of wire
+    result->fourth = Rdc; //resistance to DC
+    result->five = (nLayer + 1) * k * 10; //coil thickness
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result){
