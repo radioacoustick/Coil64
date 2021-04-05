@@ -991,70 +991,54 @@ double getFerriteI(double N, double Do, double Di, double h, double mu){
     return I;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getPCB_N (double I, double D, double d, double ratio, _CoilResult *result) {
-    double betta = 1.62E-3;
-    double alpha1 = -1.12;
-    double alpha2 = -0.147;
-    double alpha3 = 2.40;
-    double alpha4 = 1.78;
-    double alpha5 = -0.03;
-    double N, t = 0, W = 0, Davg, iTmp = 0;
+void getPCB_N (double I, double D, double d, double ratio, int layout, _CoilResult *result) {
 
-    Davg = (d + D) / 2;
-    N = 0.5;
+    double N = 0.5, s = 0, W = 0, iTmp = 0;
     while (iTmp < I) {
         N = N + 0.01;
-        t = (D - d) / (N);
-        W = t * ratio;
-        iTmp = betta * pow(D, alpha1) * pow(W, alpha2) * pow(Davg, alpha3) * pow(N, alpha4) * pow(t - W, alpha5);
+        s = (D - d) / (2 * N);
+        W = s * ratio;
+        iTmp = getPCB_I(N, d, s, layout, result);
     }
-    if (t < 0) {
+    if (s < 0) {
         N = 0;
     }
     result->N = N;
-    result->sec = t;
+    result->sec = s;
     result->thd = W;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getPCB_I(double N, double D, double d, double s, double W) {
-    double betta = 1.62E-3;
-    double alpha1 = -1.12;
-    double alpha2 = -0.147;
-    double alpha3 = 2.40;
-    double alpha4 = 1.78;
-    double alpha5 = -0.03;
+double getPCB_I(double N, double _d, double _s, int layout, _CoilResult *result) {
 
-    double Davg = (D + d) / 2;
-    double I = betta * pow(D, alpha1) * pow(W, alpha2) * pow(Davg, alpha3) * pow(N, alpha4) * pow(s - W, alpha5);
-    return (I);
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getSpiralPCB_N(double d1, double d2, double R, double I, _CoilResult *result){
+    double c1 = 0, c2 = 0, c3 = 0, c4 = 0;
 
-    double N, Dw, t, fi, Davg, iTmp = 0;
-
-    fi = (d1 - d2) / (d2 + d1);
-    Davg = (d2 + d1) / 2;
-    N = 0;
-    while (iTmp < I){
-        N = N + 0.01;
-        iTmp = 0.5 * 4 * M_PI * 1E-4 * N * N * Davg * (log(2.46 / fi) + 0.2 * fi * fi);
+    switch (layout) {
+    case 0:{
+        c1 = 1.27;
+        c2 = 2.07;
+        c3 = 0.18;
+        c4 = 0.13;
+        break;
     }
-    t = (d1 - d2) / (N + (N - 1));
-    Dw = t * R;
-    if (t < 0)
-        N= 0;
-    result->N = N;
-    result->sec = t;
-    result->thd = Dw;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getSpiralPCB_I(double d1, double d2, double w){
-  double fi, Davg;
+    case 1:{
+        c1 = 1.0;
+        c2 = 2.46;
+        c3 = 0.0;
+        c4 = 0.2;
+        break;
+    }
+    default:
+        break;
+    }
+    double d = _d * 1e3;
+    double s = _s * 1e3;
+    double D = d + 2 * s * N;
+    double Davg = (D + d) / 2;
+    double fi = (D - d) / (D + d);
+    double I = mu0 * N * N * Davg * c1 * 0.5 * (log(c2 / fi) + c3 * fi + c4 * fi * fi);
 
-  fi = (d1 - d2) / (d2 + d1);
-  Davg = (d2 + d1) / 2;
-  return 0.5 * 4 * M_PI * 1E-4 * w * w * Davg * (log(2.46 / fi) + 0.2 * fi * fi);
+    result->five = D / 1e3;
+    return (I);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result) {

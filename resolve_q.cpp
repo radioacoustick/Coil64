@@ -309,3 +309,43 @@ unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t,
     R_ind = 1 / (1 / Rl + 1 / Rc);
     return round(R_ind / Rac);
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Q-FACTOR OF THE PCB SPIRAL COIL
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double solve_Qpcb(long N, double _I, double _D, double _d, double _W, double _t, double _s,  double _f, int layout){
+    //_I->inductance µH, N->number of turns, _D->outer winding diameter mm, _d->inner winding diameter mm
+    // _f->frequency MHz, _t-> thickness of the trace, _W->width of the trace, _s->winding pitch
+    const double mu0 = 12.56637e-7;
+    double f = _f * 1e6;
+    double I = _I *  1e-6;
+    double D = _D *  1e-3;
+    double d = _d *  1e-3;
+    double W = _W *  1e-3;
+    double t = _t *  1e-3;
+    double s = _s *  1e-3;
+    double StripLength = 0;
+    switch (layout) {
+    case 0:{
+        StripLength +=  d / 2;
+        for (int i = 0; i < N; i++){
+            StripLength += 2 * (2 * d + (4 * i + 1) * s);
+        }
+        StripLength -= D / 2;
+        break;
+    }
+    case 1:{
+        StripLength = find_actual_spiral_length(N, d, s);
+        break;
+    }
+    default:
+        break;
+    }
+    double Rdc = mtrl[1][Rho] * StripLength / (W * t);
+    double delta = sqrt(mtrl[1][Rho] / (f * M_PI * mu0 * (1 + mtrl[1][Chi])));
+    double Xi  = t / (delta*(1 - exp(-t/delta)));
+    double Psi = (Xi / 3) * pow(3 * W / (2 * s), 4);
+    double Rac = Rdc * (Xi + Psi);
+    double Xl = 2 * M_PI * f * I;
+    double q = Xl / Rac;
+    return q;
+}

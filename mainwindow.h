@@ -80,7 +80,6 @@ public slots:
 
 private slots:
     void closeEvent(QCloseEvent *event);
-    void showEvent(QShowEvent *event );
     bool eventFilter(QObject *watched, QEvent *event);
     void on_textBrowser_customContextMenuRequested(const QPoint &pos);
     void on_textBrowser_textChanged();

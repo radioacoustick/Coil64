@@ -71,6 +71,7 @@ enum _FormCoil
       double Ng;
       double Do;
       double Di;
+      double th;
       double h;
       double mu;
       double ratio;
@@ -88,8 +89,7 @@ enum _FormCoil
     void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result);
     void getMultilayerN_Foil(double Dk, double w, double t, double ins, double I, _CoilResult *result);
     void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, _CoilResult *result); //get Number of turns for Ferrite toroid coil
-    void getPCB_N (double I, double D, double d, double ratio, _CoilResult *result);
-    void getSpiralPCB_N(double d1, double d2, double R, double I, _CoilResult *result);
+    void getPCB_N (double I, double D, double d, double ratio, int layout, _CoilResult *result);
     void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result);
 
     double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy); //get Inductance for One-layer coil with round wire
@@ -101,8 +101,7 @@ enum _FormCoil
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result);
     void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result);
     double getFerriteI(double N, double Do, double Di, double h, double mu); //get Inductance for Ferrite toroid coil
-    double getPCB_I(double N, double D, double d, double s, double W);
-    double getSpiralPCB_I(double d1, double d2, double w);
+    double getPCB_I(double N, double _d, double _s, int layout, _CoilResult *result);
     void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result);
 
     void findToroidPemeability(double N, double I, double Do, double Di, double h, _CoilResult *result);
@@ -137,6 +136,7 @@ enum _FormCoil
     void CalcLC3(double Zo, double f, _CoilResult *result);
 
     double odCalc(double id);
+    double find_actual_spiral_length(int N, double Din, double k);
     double convertfromAWG (QString AWG, bool *isOK = NULL);
     QString converttoAWG (double d, bool *isOK = NULL);
 

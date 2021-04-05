@@ -72,7 +72,7 @@ enum _StyleGUI {
       bool isInsertImage;
       bool isSaveOnExit;
       bool isAdditionalResult;
-      bool isPCBcoilSquare;
+      int layoutPCBcoil;
       bool isLastShowingFirst;
       int styleGUI;
       int upDateInterval;

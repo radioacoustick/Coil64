@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "mthread_calculate.h"
 
 MThread_calculate::MThread_calculate(int _coilForm, int _tab, double _arg1, double _arg2, double _arg3, double _arg4,
-                                     double _arg5, double _arg6, double _arg7, Material _mt)
+                                     double _arg5, double _arg6, double _arg7, double _arg8, Material _mt)
 {
     this->coilForm = _coilForm;
     this->tab = _tab;
@@ -29,12 +29,13 @@ MThread_calculate::MThread_calculate(int _coilForm, int _tab, double _arg1, doub
     this->arg5 = _arg5;
     this->arg6 = _arg6;
     this->arg7 = _arg7;
+    this->arg8 = _arg8;
     this->mt = _mt;
     qRegisterMetaType<_CoilResult>();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MThread_calculate::run(){
-    _CoilResult result;
+    _CoilResult result = {0,0,0,0,0,0};
     try{
         switch (this->tab) {
         case 0:{
@@ -59,9 +60,14 @@ void MThread_calculate::run(){
             case _Onelayer_q:{
                 //arg: I, Dk, d, p, f, _n, 0, mt
                 result.N = getOneLayerN_Poligonal( arg1, arg2, arg3, arg4, arg6, &result, arg7 );//number of turns
-                result.fourth = find_Cs(arg4, arg2, arg4 * result.N); //self-capacitance
-                result.six = solve_Qr(arg1, arg2, arg4, arg3, arg5, result.N, result.fourth, mt);//Q-factor
-                result.five = findSRF(arg4 * result.N, arg2, result.thd);//self-resonance frequency
+                double rP = arg2 * arg6 * sin(M_PI / arg6);
+                double sinpsi = arg4 / (M_PI * arg1);
+                double psi = atan(sinpsi / sqrt(1 - sinpsi * sinpsi));
+                double lW = 0.001 * rP * result.N / cos(psi);
+                double De = rP / M_PI;
+                result.fourth = find_Cs(arg4, De, arg4 * result.N); //self-capacitance
+                result.six = solve_Qr(arg1, De, arg4, arg3, arg5, result.N, result.fourth, mt);//Q-factor
+                result.five = findSRF(arg4 * result.N, De, lW);//self-resonance frequency
                 break;
             }
             case _Multilayer:{
@@ -90,11 +96,10 @@ void MThread_calculate::run(){
                 break;
             }
             case _PCB_coil:{
-                //arg:I, D1, D2, ratio, isPCBSquare
-                if (arg5 == 0)
-                    getPCB_N(arg1, arg2, arg3, arg4, &result);
-                else
-                    getSpiralPCB_N(arg2, arg3, arg4, arg1, &result);
+                //arg: I, D1, D2, ratio, layoutPCB, th, f
+                int layoutPCB = round(arg5);
+                getPCB_N(arg1, arg2, arg3, arg4, layoutPCB, &result);
+                result.fourth = solve_Qpcb(result.N, arg1, arg2, arg3, result.thd, arg6, result.sec, arg7, layoutPCB);
                 break;
             }
             case _Flat_Spiral:{
@@ -129,9 +134,14 @@ void MThread_calculate::run(){
             case _Onelayer_q:{
                 //arg: Dk, d, p, N, f, _n, 0, mt
                 getOneLayerI_Poligonal( arg1, arg2, arg3, arg4, arg6, &result, arg7);
-                result.fourth = find_Cs(arg3, arg1, arg3 * arg4); //self-capacitance
-                result.six = solve_Qr(result.sec, arg1, arg3, arg2, arg5, arg4, result.fourth, mt);//Q-factor
-                result.five = findSRF(arg3 * arg4, arg1, result.thd);//self-resonance frequency
+                double rP = arg1 * arg6 * sin(M_PI / arg6);
+                double sinpsi = arg3 / (M_PI * arg1);
+                double psi = atan(sinpsi / sqrt(1 - sinpsi * sinpsi));
+                double lW = 0.001 * rP * arg4 / cos(psi);
+                double De = rP / M_PI;
+                result.fourth = find_Cs(arg3, De, arg3 * arg4); //self-capacitance
+                result.six = solve_Qr(result.sec, De, arg3, arg2, arg5, arg4, result.fourth, mt);//Q-factor
+                result.five = findSRF(arg3 * arg4, De, lW);//self-resonance frequency
                 break;
             }
             case _Multilayer:{
@@ -168,11 +178,12 @@ void MThread_calculate::run(){
                 break;
             }
             case _PCB_coil:{
-                //arg: N, D1, D2, s, W, isPCBSquare, 0
-                if (arg6 == 0)
-                    result.N = getPCB_I(arg1, arg2, arg3, arg4, arg5);
-                else
-                    result.N = getSpiralPCB_I(arg2, arg3, arg1);
+                //arg: N, 0, D2, s, W, layoutPCB, th, f
+                int layoutPCB = round(arg6);
+                //double N, double _d, double _s, int layout
+                result.N = getPCB_I(arg1, arg3, arg4, layoutPCB, &result);
+                //long N, double _I, double _D, double _d, double _W, double _t, double _s,  double _f, int layout
+                result.fourth = solve_Qpcb(arg1, result.N, arg2, arg3, arg5, arg7, arg4, arg8, layoutPCB);
                 break;
             }
             case _Flat_Spiral:{
