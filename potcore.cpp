@@ -295,8 +295,11 @@ void PotCore::on_pushButton_calculate_clicked()
         }
         N = findPotCore_N(ind, d1, d2, d3, d4, h1, h2, g, b, mu, &result);
     }
-    QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
-            " - " + windowTitle() + "</h2><br/>";
+    QString sResult = "<hr>";
+    if (fOpt->isShowTitle){
+        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
+                " - " + windowTitle() + "</h2><br/>";
+    }
     if (fOpt->isInsertImage)
         sResult += "<img src=\":/images/res/Coil7.png\">";
     sResult += "<p><u>" + tr("Input data") + ":</u><br/>";

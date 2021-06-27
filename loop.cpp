@@ -240,8 +240,11 @@ void Loop::on_pushButton_3_clicked()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Loop::on_pushButton_clicked()
 {
-    QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
-            " - " + windowTitle();
+    QString sResult = "<hr>";
+    if (fOpt->isShowTitle){
+        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
+                " - " + windowTitle();
+    }
     if(loopKind == 0){
         sResult += " (" + ui->radioButton_round->text() +  + ")</h2><br/>";
         if (fOpt->isInsertImage)

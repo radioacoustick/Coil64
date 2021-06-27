@@ -118,8 +118,11 @@ void Meander_pcb::on_pushButton_clicked()
     }
     _CoilResult result;
     findMeadrPCB_I(a, d, h, W, N, &result);
-
-    QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle() + "</h2><br/>";
+    QString sResult = "<hr>";
+    if (fOpt->isShowTitle){
+        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
+                + windowTitle() + "</h2><br/>";
+    }
     if (fOpt->isInsertImage){
         sResult += "<img src=\":/images/res/meandr_pcb.png\">";
     }

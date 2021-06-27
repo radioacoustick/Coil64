@@ -182,3 +182,7 @@ QToolButton:checked {
 QToolButton:checked:hover {
   border: 1px solid #148CD2;
 }
+
+QHeaderView::section {
+    background: #FDEEB9;
+}

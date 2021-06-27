@@ -47,6 +47,7 @@
         <file>res/UR-core.png</file>
         <file>res/UU-core.png</file>
         <file>res/UY-core.png</file>
+        <file>res/Coil4m.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -128,6 +129,10 @@
         <file>res/ico1-ecore.png</file>
         <file>res/ico1-al.png</file>
         <file>res/ico1-ucore.png</file>
+        <file>res/icons8-audio-32.png</file>
+        <file>res/icons8-show-title-32.png</file>
+        <file>res/icons8-cpp-50.png</file>
+        <file>res/icons8-qt-50.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

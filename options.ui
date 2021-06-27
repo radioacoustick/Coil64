@@ -458,6 +458,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBox_9">
+         <property name="text">
+          <string>Show title in results</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="Line" name="line_6">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>

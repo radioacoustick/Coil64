@@ -151,7 +151,11 @@ void Multiloop::on_pushButton_clicked()
         showWarning(tr("Warning"),tr("Coil can not be realized") + "!");
         return;
     }
-    QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle() + "</h2><br/>";
+    QString sResult = "<hr>";
+    if (fOpt->isShowTitle){
+        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
+                + windowTitle() + "</h2><br/>";
+    }
     if (fOpt->isInsertImage){
         sResult += "<img src=\":/images/res/multi_loop.png\">";
     }

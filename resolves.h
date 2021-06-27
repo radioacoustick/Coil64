@@ -129,6 +129,8 @@ enum _FormCoil
                        bool isEI, bool isRound, _CoilResult *result);
     double findUCore_I(double N, double A, double B, double C, double D, double E, double F, double s, double mu, _CoilResult *result);
     long findUCore_N(double Ind, double A, double B, double C, double D, double E, double F, double s, double mu, _CoilResult *result);
+    void findBrooksCoil(double I, double d, double pa, double pr,
+                        double &N, double &nLayer, double &Nc, double &c, double &lengthWire, double &massWire, double &DCR );
 
     double CalcLC0(double L, double C);
     double CalcLC1(double C, double f);

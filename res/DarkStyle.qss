@@ -314,3 +314,17 @@ QToolButton:checked {
 QToolButton:checked:hover {
   border: 1px solid #148CD2;
 }
+
+QHeaderView::section {
+    background-color: #474748;
+    border: 1px solid gray;
+}
+
+QTableView {
+    gridline-color: gray;
+}
+
+QTableView QTableCornerButton::section {
+    background-color: #646464;
+    border: 1px solid gray;
+}

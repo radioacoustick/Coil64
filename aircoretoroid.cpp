@@ -187,8 +187,11 @@ void AirCoreToroid::on_checkBox_isReverce_clicked()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void AirCoreToroid::on_pushButton_calculate_clicked()
 {
-    QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
-            " - " + windowTitle();
+    QString sResult = "<hr>";
+    if (fOpt->isShowTitle){
+        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
+                " - " + windowTitle();
+    }
     if ((ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_1->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->lineEdit_4->text().isEmpty())){
         showWarning(tr("Warning"), tr("One or more inputs are empty!"));
         return;

@@ -119,8 +119,11 @@ void Find_Permeability::on_pushButton_clicked()
     }
     _CoilResult result;
     findToroidPemeability(N, I, D1, D2, h, &result);
-
-    QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle() + "</h2><br/>";
+    QString sResult = "<hr>";
+    if (fOpt->isShowTitle){
+        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
+                + windowTitle() + "</h2><br/>";
+    }
     if (fOpt->isInsertImage){
         sResult += "<img src=\":/images/res/Coil6.png\">";
     }

@@ -51,6 +51,7 @@ void Options::getOpt(_OptionStruct gOpt){
     ui->checkBox_6->setChecked(oOpt->isConfirmDelete);
     ui->checkBox_7->setChecked(oOpt->isSaveOnExit);
     ui->checkBox_8->setChecked(oOpt->isLastShowingFirst);
+    ui->checkBox_9->setChecked(oOpt->isShowTitle);
 
     ui->fontComboBox_1->setCurrentText(oOpt->mainFontFamily);
     ui->fontspinBox_1->setValue(oOpt->mainFontSize);
@@ -103,6 +104,7 @@ void Options::on_pushButton_2_clicked()
     oOpt->isConfirmDelete = ui->checkBox_6->isChecked();
     oOpt->isSaveOnExit = ui->checkBox_7->isChecked();
     oOpt->isLastShowingFirst = ui->checkBox_8->isChecked();
+    oOpt->isShowTitle = ui->checkBox_9->isChecked();
     oOpt->styleGUI = ui->comboBox_style->currentIndex();
 
 

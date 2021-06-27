@@ -279,8 +279,11 @@ void UCore::on_pushButton_calculate_clicked()
         }
         N = findUCore_N(ind,A,B,C,D,E,F,s,mu,&result);
     }
-    QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
-            " - " + windowTitle() + "</h2><br/>";
+    QString sResult = "<hr>";
+    if (fOpt->isShowTitle){
+        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
+                " - " + windowTitle() + "</h2><br/>";
+    }
     if (fOpt->isInsertImage){
         switch (index) {
         case 0:

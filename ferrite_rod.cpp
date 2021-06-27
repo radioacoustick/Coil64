@@ -199,7 +199,11 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
         showWarning(tr("Warning"), tr("Distance from coil edge to core edge less than 1/8 Lr"));
         return;
     }
-    QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle() + "</h2><br/>";
+    QString sResult = "<hr>";
+    if (fOpt->isShowTitle){
+        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
+                + windowTitle() + "</h2><br/>";
+    }
     if (fOpt->isInsertImage){
         sResult += "<img src=\":/images/res/Ferrite-rod.png\">";
     }

@@ -38,6 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QFileDialog>
 #include <QTextDocumentWriter>
 #include <QCloseEvent>
+#include <bitset>
 
 #include "options.h"
 #include "about.h"
@@ -53,6 +54,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "ecore.h"
 #include "ucore.h"
 #include "al.h"
+#include "crossover.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -177,6 +179,7 @@ private slots:
     void on_toolButton_CopySel_clicked();
     void on_toolButton_CopyAll_clicked();
     void on_toolButton_Print_clicked();
+    void on_toolButton_showTitle_clicked();
     void on_toolButton_showImg_clicked();
     void on_toolButton_showAdditional_clicked();
     void on_toolButton_cbe_clicked();
@@ -200,6 +203,7 @@ private slots:
     void on_actionE_core_coil_triggered();
     void on_actionU_core_coil_triggered();
     void on_actionAL_factor_calculation_triggered();
+    void on_actionCross_over_inductor_triggered();
 
     void getAddCalculationResult(QString result);
 
@@ -215,6 +219,7 @@ private:
     QString lang; //Current app GUI language
     unsigned int calc_count; //Calculating number
     QLocale loc;
+    std::bitset<8> bits;
     QMenu *popupmenu;
 };
 

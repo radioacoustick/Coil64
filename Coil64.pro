@@ -50,7 +50,8 @@ SOURCES += main.cpp\
     potcore.cpp \
     ecore.cpp \
     al.cpp \
-    ucore.cpp
+    ucore.cpp \
+    crossover.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -74,7 +75,8 @@ HEADERS  += mainwindow.h \
     potcore.h \
     ecore.h \
     al.h \
-    ucore.h
+    ucore.h \
+    crossover.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -90,7 +92,8 @@ FORMS    += mainwindow.ui \
     potcore.ui \
     ecore.ui \
     al.ui \
-    ucore.ui
+    ucore.ui \
+    crossover.ui
 
 RESOURCES += \
     res.qrc

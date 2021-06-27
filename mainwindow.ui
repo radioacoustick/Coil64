@@ -1270,6 +1270,13 @@
      </widget>
     </item>
     <item>
+     <widget class="Line" name="line_8">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
      <layout class="QVBoxLayout" name="verticalLayout_11">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -1277,148 +1284,22 @@
          <number>2</number>
         </property>
         <item>
-         <widget class="QToolButton" name="toolButton_CopySel">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+         <widget class="QToolButton" name="toolButton_showTitle">
           <property name="toolTip">
-           <string>Copy selected to clipboard</string>
+           <string>Show title in results</string>
           </property>
           <property name="text">
            <string notr="true"/>
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-inconsistency-32.png</normaloff>:/menu_ico/res/icons8-inconsistency-32.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="toolButton_CopyAll">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>Copy all to clipboard</string>
-          </property>
-          <property name="text">
-           <string notr="true">...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-copy-32.png</normaloff>:/menu_ico/res/icons8-copy-32.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="toolButton_Open">
-          <property name="toolTip">
-           <string>Open</string>
-          </property>
-          <property name="text">
-           <string notr="true">...</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normalon>:/menu_ico/res/icons8-opened-folder-32.png</normalon>
-           </iconset>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="toolButton_Save">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>Save</string>
-          </property>
-          <property name="text">
-           <string notr="true">...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-save-32.png</normaloff>:/menu_ico/res/icons8-save-32.png</iconset>
+            <normaloff>:/menu_ico/res/icons8-show-title-32.png</normaloff>:/menu_ico/res/icons8-show-title-32.png</iconset>
           </property>
           <property name="shortcut">
-           <string notr="true"/>
+           <string notr="true">Ctrl+S</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="toolButton_Clear">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>Clear all</string>
-          </property>
-          <property name="text">
-           <string notr="true">...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-delete-30.png</normaloff>:/menu_ico/res/icons8-delete-30.png</iconset>
-          </property>
-          <property name="shortcut">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="toolButton_Print">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>Print all</string>
-          </property>
-          <property name="text">
-           <string notr="true">...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-print-32.png</normaloff>:/menu_ico/res/icons8-print-32.png</iconset>
-          </property>
-          <property name="shortcut">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line_8">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -1439,6 +1320,12 @@
           <property name="icon">
            <iconset resource="res.qrc">
             <normaloff>:/menu_ico/res/icons8-full-image-32.png</normaloff>:/menu_ico/res/icons8-full-image-32.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>13</width>
+            <height>16</height>
+           </size>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -1522,6 +1409,18 @@
         </item>
         <item>
          <widget class="Line" name="line_9">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>5</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1617,6 +1516,178 @@
           </property>
          </widget>
         </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTextBrowser" name="textBrowser">
+        <property name="statusTip">
+         <string/>
+        </property>
+        <property name="whatsThis">
+         <string/>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+        </property>
+        <property name="openLinks">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QToolButton" name="toolButton_Open">
+          <property name="toolTip">
+           <string>Open</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normalon>:/menu_ico/res/icons8-opened-folder-32.png</normalon>
+           </iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_Save">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Save</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-save-32.png</normaloff>:/menu_ico/res/icons8-save-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_CopySel">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Copy selected to clipboard</string>
+          </property>
+          <property name="text">
+           <string notr="true"/>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-inconsistency-32.png</normaloff>:/menu_ico/res/icons8-inconsistency-32.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_CopyAll">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Copy all to clipboard</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-copy-32.png</normaloff>:/menu_ico/res/icons8-copy-32.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_Clear">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Clear all</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-delete-30.png</normaloff>:/menu_ico/res/icons8-delete-30.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_Print">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Print all</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-print-32.png</normaloff>:/menu_ico/res/icons8-print-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item>
          <widget class="QToolButton" name="toolButton_Help">
           <property name="toolTip">
@@ -1637,18 +1708,9 @@
        </layout>
       </item>
       <item>
-       <widget class="QTextBrowser" name="textBrowser">
-        <property name="statusTip">
-         <string/>
-        </property>
-        <property name="whatsThis">
-         <string/>
-        </property>
-        <property name="textInteractionFlags">
-         <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-        </property>
-        <property name="openLinks">
-         <bool>false</bool>
+       <widget class="Line" name="line_10">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -1716,6 +1778,7 @@
     <addaction name="actionLoop_of_one_turn"/>
     <addaction name="actionAir_core_toroid_coil"/>
     <addaction name="actionShiels_influence"/>
+    <addaction name="actionCross_over_inductor"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -2076,6 +2139,16 @@
     <string>U core coil</string>
    </property>
   </action>
+  <action name="actionCross_over_inductor">
+   <property name="icon">
+    <iconset>
+     <normalon>:/menu_ico/res/icons8-audio-32.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Audio system filter (crossover) coil</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
@@ -2107,22 +2180,16 @@
   <tabstop>radioButton_4_2</tabstop>
   <tabstop>radioButton_7</tabstop>
   <tabstop>radioButton_8</tabstop>
-  <tabstop>toolButton_Save</tabstop>
   <tabstop>radioButton_LC</tabstop>
   <tabstop>radioButton_CF</tabstop>
   <tabstop>radioButton_LF</tabstop>
   <tabstop>lineEdit_1_3</tabstop>
   <tabstop>lineEdit_2_3</tabstop>
   <tabstop>pushButton_Calculate</tabstop>
-  <tabstop>toolButton_Clear</tabstop>
-  <tabstop>toolButton_Print</tabstop>
   <tabstop>toolButton_showImg</tabstop>
   <tabstop>toolButton_showAdditional</tabstop>
-  <tabstop>toolButton_Help</tabstop>
   <tabstop>textBrowser</tabstop>
-  <tabstop>toolButton_CopyAll</tabstop>
   <tabstop>tabWidget</tabstop>
-  <tabstop>toolButton_CopySel</tabstop>
   <tabstop>listWidget</tabstop>
  </tabstops>
  <resources>

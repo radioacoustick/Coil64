@@ -19,7 +19,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "ui_mainwindow.h"
 #include "resolve_q.h"
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -60,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
     int wire_material = settings->value( "wire_material", 0 ).toInt();
     int init_data = settings->value( "init_data", 0 ).toInt();
     myOpt->isInsertImage = settings->value( "isInsertImage", true ).toBool();
+    myOpt->isShowTitle = settings->value( "isShowTitle", true ).toBool();
     myOpt->isConfirmExit = settings->value( "isConfirmExit", true ).toBool();
     myOpt->isConfirmClear = settings->value( "isConfirmClear", true ).toBool();
     myOpt->isConfirmDelete = settings->value( "isConfirmDelete", true ).toBool();
@@ -130,6 +130,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //End add language menu group if additional languages are available
 
     mui->toolButton_showImg->setChecked(myOpt->isInsertImage);
+    mui->toolButton_showTitle->setChecked(myOpt->isShowTitle);
     mui->toolButton_showAdditional->setChecked(myOpt->isAdditionalResult);
     mui->toolButton_cbc->setChecked(myOpt->isConfirmClear);
     mui->toolButton_cbe->setChecked(myOpt->isConfirmExit);
@@ -471,6 +472,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
         if (mui->radioButton_7->isChecked()) settings->setValue("init_data", 1);
         if (mui->radioButton_8->isChecked()) settings->setValue("init_data", 2);
         settings->setValue("isInsertImage", myOpt->isInsertImage);
+        settings->setValue("isShowTitle", myOpt->isShowTitle);
         settings->setValue("isAdditionalResult", myOpt->isAdditionalResult);
         settings->setValue("isConfirmExit", myOpt->isConfirmExit);
         settings->setValue("isConfirmClear", myOpt->isConfirmClear);
@@ -581,6 +583,7 @@ void MainWindow::resetUiFont(){
     mui->toolButton_Save->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_showAdditional->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_showImg->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_showTitle->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_cbc->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_cbe->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_cdsr->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
@@ -2139,21 +2142,20 @@ void MainWindow::on_actionSave_triggered()
     if (!document->isEmpty()){
         QString savePath = defineSavePath();
         QDir sD(savePath);
-        if (!sD.exists())
+        if (!sD.exists()){
             sD.mkpath(savePath);
-        QString filters(".pdf (*.pdf);;.odf (*.odf);;.htm (*.htm)");
-        QString defaultFilter(".htm (*.htm)");
-        QString fileName = QFileDialog::getSaveFileName(this, tr("Save"), savePath, filters, &defaultFilter);
-        if (!fileName.isEmpty()){
-            QFileInfo info(fileName);
-            savePath = info.absolutePath().toUtf8();
             QSettings *settings;
             defineAppSettings(settings);
             settings->beginGroup( "GUI" );
             settings->setValue("SaveDir", savePath);
             settings->endGroup();
             delete settings;
-            QString ext = defaultFilter.mid(7,4);
+        }
+        QString filters(".pdf (*.pdf);;.odf (*.odf);;.htm (*.htm)");
+        QString defaultFilter(".htm (*.htm)");
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Save"), savePath, filters, &defaultFilter);
+        if (!fileName.isEmpty()){
+            QString ext = defaultFilter.mid(defaultFilter.indexOf("*") + 1, 4);
             int p = fileName.indexOf(".");
             if (p < 0){
                 fileName.append(ext);
@@ -2307,6 +2309,11 @@ void MainWindow::on_radioButton_4_2_clicked(bool checked)
     mui->radioButton_4->setChecked(checked);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_showTitle_clicked()
+{
+    myOpt->isShowTitle = mui->toolButton_showTitle->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_toolButton_showImg_clicked()
 {
     myOpt->isInsertImage = mui->toolButton_showImg->isChecked();
@@ -2429,6 +2436,7 @@ void MainWindow::getOptionStruct(_OptionStruct gOpt){
     resetUiFont();
     on_tabWidget_currentChanged(mui->tabWidget->currentIndex());
     mui->toolButton_showImg->setChecked(myOpt->isInsertImage);
+    mui->toolButton_showTitle->setChecked(myOpt->isShowTitle);
     mui->toolButton_showAdditional->setChecked(myOpt->isAdditionalResult);
     mui->toolButton_cbc->setChecked(myOpt->isConfirmClear);
     mui->toolButton_cbe->setChecked(myOpt->isConfirmExit);
@@ -4162,8 +4170,11 @@ void MainWindow::on_pushButton_Calculate_clicked()
                         + " " + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
             }
             QTextCursor c = mui->textBrowser->textCursor();
-            prepareHeader(&c);
-            QString Input = "<hr><h2>" + windowTitle() + " - " + tr("LC tank calculation") + "</h2><br/>";
+            QString Input = "<hr>";
+            if (myOpt->isShowTitle){
+                prepareHeader(&c);
+                Input = "<h2>" + windowTitle() + " - " + tr("LC tank calculation") + "</h2><br/>";
+            }
             if (myOpt->isInsertImage){
                 Input += "<img src=\":/images/res/LC.png\">";
             }
@@ -4201,8 +4212,11 @@ void MainWindow::on_pushButton_Calculate_clicked()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         if (FormCoil == _Onelayer_cw)
             Input += "<img src=\":/images/res/Coil1.png\">";
@@ -4302,8 +4316,11 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil2_square.png\">";
     }
@@ -4386,8 +4403,11 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil3.png\">";
     }
@@ -4484,8 +4504,11 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerN_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4.png\">";
     }
@@ -4537,8 +4560,11 @@ void MainWindow::get_multilayerN_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerNgap_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4-0.png\">";
     }
@@ -4592,8 +4618,11 @@ void MainWindow::get_multilayerNgap_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerN_Rect_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4_square.png\">";
     }
@@ -4648,8 +4677,11 @@ void MainWindow::get_multilayerN_Rect_Result(_CoilResult result){
 void MainWindow::get_multilayerN_Foil_Result(_CoilResult result)
 {
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil11.png\">";
     }
@@ -4687,8 +4719,11 @@ void MainWindow::get_multilayerN_Foil_Result(_CoilResult result)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_ferrToroidN_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil6.png\">";
     }
@@ -4728,8 +4763,11 @@ void MainWindow::get_ferrToroidN_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_pcbN_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
+    }
     Input += "<h3>" + mui->comboBox_checkPCB->currentText() + "</h3><br/>";
     if (myOpt->isInsertImage){
         switch (myOpt->layoutPCBcoil) {
@@ -4777,8 +4815,11 @@ void MainWindow::get_pcbN_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_spiralN_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil10.png\">";
     }
@@ -4815,8 +4856,11 @@ void MainWindow::get_spiralN_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         if (FormCoil == _Onelayer_cw)
             Input += "<img src=\":/images/res/Coil1.png\">";
@@ -4860,7 +4904,7 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
     Result += tr("Length of wire without leads") + " lw = " + loc.toString(d_wire_length.toDouble(), 'f', myOpt->dwAccuracy) + " " +
-            qApp->translate("Context * 4",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
     Result += tr("Length of winding") + " l = " + loc.toString( (N * p + k)/myOpt->dwLengthMultiplier, 'f', myOpt->dwAccuracy ) + " " +
             qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
     double mass = 2.225 * M_PI * d * d * result.sec;
@@ -4916,8 +4960,11 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil2_square.png\">";
     }
@@ -5002,8 +5049,11 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil3.png\">";
     }
@@ -5100,8 +5150,11 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerI_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4.png\">";
     }
@@ -5162,8 +5215,11 @@ void MainWindow::get_multilayerI_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerIgap_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4-0.png\">";
     }
@@ -5200,8 +5256,11 @@ void MainWindow::get_multilayerIgap_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerI_Rect_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil4_square.png\">";
     }
@@ -5238,8 +5297,11 @@ void MainWindow::get_multilayerI_Rect_Result(_CoilResult result){
 void MainWindow::get_multilayerI_Foil_Result(_CoilResult result)
 {
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil11.png\">";
     }
@@ -5278,8 +5340,11 @@ void MainWindow::get_multilayerI_Foil_Result(_CoilResult result)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_ferriteI_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil6.png\">";
     }
@@ -5308,8 +5373,11 @@ void MainWindow::get_ferriteI_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_pcbI_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
+    }
     Input += "<h3>" + mui->comboBox_checkPCB->currentText() + "</h3><br/>";
     if (myOpt->isInsertImage){
         switch (myOpt->layoutPCBcoil) {
@@ -5355,8 +5423,11 @@ void MainWindow::get_pcbI_Result(_CoilResult result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_spiralI_Result(_CoilResult result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
-    QString Input = "<hr><h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    QString Input = "<hr>";
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
+    }
     if (myOpt->isInsertImage){
         Input += "<img src=\":/images/res/Coil10.png\">";
     }
@@ -5411,6 +5482,17 @@ void MainWindow::on_actionAL_factor_calculation_triggered()
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     fAL->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionCross_over_inductor_triggered()
+{
+    Crossover *fCrossover = new Crossover();
+    fCrossover->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), fCrossover, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), fCrossover, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    fCrossover->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionCoil_on_a_ferrite_rod_triggered()
@@ -5535,7 +5617,9 @@ void MainWindow::on_actionU_core_coil_triggered()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::getAddCalculationResult(QString result){
     QTextCursor c = mui->textBrowser->textCursor();
-    prepareHeader(&c);
+    if (myOpt->isShowTitle){
+        prepareHeader(&c);
+    }
     c.insertHtml(result);
     if(myOpt->isLastShowingFirst)
         c.movePosition(QTextCursor::Start);

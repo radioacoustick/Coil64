@@ -1038,7 +1038,11 @@ void Amidon::on_pushButton_export_clicked()
         showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
         return;
     }
-    QString sResult = "<hr><h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle() + "</h2><br/>";
+    QString sResult = "<hr>";
+    if (fOpt->isShowTitle){
+        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
+                + windowTitle() + "</h2><br/>";
+    }
     sResult += "<p><u>" + tr("Selected core") + ":</u><br/>";
     sResult += "<b>" + ui->label->text() + "</b></p><p>";
     if (fOpt->isInsertImage){
