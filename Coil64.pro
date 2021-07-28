@@ -1,5 +1,5 @@
 #Coil64.pro - general project file to Coil64 - Radio frequency inductor and choke calculator
-#Copyright (C) 2018 - 2019 Kustarev V.
+#Copyright (C) 2018 - 2021 Kustarev V.
 
 #This program is free software; you can redistribute it and/or modify
 #it under the terms of the GNU General Public License as published by
@@ -51,7 +51,8 @@ SOURCES += main.cpp\
     ecore.cpp \
     al.cpp \
     ucore.cpp \
-    crossover.cpp
+    crossover.cpp \
+    rf_toroid.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -76,7 +77,9 @@ HEADERS  += mainwindow.h \
     ecore.h \
     al.h \
     ucore.h \
-    crossover.h
+    crossover.h \
+    spline.h \
+    rf_toroid.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -93,10 +96,8 @@ FORMS    += mainwindow.ui \
     ecore.ui \
     al.ui \
     ucore.ui \
-    crossover.ui
-
-RESOURCES += \
-    res.qrc
+    crossover.ui \
+    rf_toroid.ui
 
 TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_cs.ts \
@@ -119,6 +120,8 @@ TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_tr.ts \
     lang/Coil64_zh.ts
 
+RESOURCES += res.qrc
+
 win32: RC_FILE = resource.rc
 unix:{
   !macx:{
@@ -127,5 +130,6 @@ unix:{
     PKGCONFIG += openssl
   }else{
     ICON = res/coil64_icon_48.icns
+    RESOURCES += mac.qrc
   }
 }

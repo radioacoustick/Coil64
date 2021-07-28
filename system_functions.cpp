@@ -435,3 +435,19 @@ QString defineSavePath(){
     delete settings;
     return savePath;
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QPixmap revercePixmapColors(const QPixmap *pm){
+    QImage image(pm->toImage());
+    image.invertPixels();
+    QPixmap am = QPixmap::fromImage(image);
+    return am;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QIcon reverceIconColors(QIcon ico){
+    QPixmap pm = ico.pixmap(ico.actualSize(QSize(32, 32)));
+    QImage image(pm.toImage());
+    image.invertPixels();
+    QPixmap am = QPixmap::fromImage(image);
+    QIcon ricon(am);
+    return ricon;
+}

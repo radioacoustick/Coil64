@@ -33,8 +33,6 @@ struct _MagCoreConst{
     double C2;
 };
 #pragma pack(pop)
-
-const double mu0 = 4e-7 * M_PI;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double odCalc(double id){
     //Calculating the outer diameter (od) of the wire with insulation from the internal diameter (id) without insulation
@@ -942,14 +940,12 @@ void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _Coil
     result->five = Rdca;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, _CoilResult *result){
+void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, double Ch, _CoilResult *result){
     double w = 0, wt;
-
-    if ((Do / Di) < 1.75) {
-        w = 100 * sqrt((L * (Do + Di)) / (4 * h * mu * (Do - Di)));
-    } else {
-        w = 100 * sqrt(L / (2 * h * mu * log(Do / Di)));
-    }
+    double cr = Ch / M_SQRT2; //Chamfer radius
+    double k = 0.8584 * pow(cr, 2) / (h * (Do - Di) / 2); //correction factor for the chamfer
+    double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
+    w = 100 * sqrt(L / (2 * he * mu * log(Do / Di)));
     double D1t = Do;
     double D2t = Di;
     double ht = h;
@@ -974,20 +970,20 @@ void getFerriteN(double L, double Do, double Di, double h, double dw, double mu,
             break;
         }
     } while (w1 < w);
-
+    double al = round(0.2  * he * mu * log(Do / Di));
     double lw = 0.001 * Lt;
     result->N = w;
     result->sec = lw;
+    result->thd = al;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getFerriteI(double N, double Do, double Di, double h, double mu){
-    double I;
-    if (Do / Di < 1.75) {
-        I = 4E-04 * mu * h * N * N * (Do - Di) / (Do + Di);
-    } else {
-        I = 2E-04 * mu * h * N * N * log(Do / Di);
-    }
-    return I;
+double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, _CoilResult *result){
+    double cr = Ch / M_SQRT2; //Chamfer radius
+    double k = 0.8584 * pow(cr, 3) / (h * (Do - Di) / 2); //correction factor for the chamfer
+    double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
+    double al = round(0.2  * he * mu * log(Do / Di));
+    result->thd = al;
+    return 2e-04 * mu * he * N * N * log(Do / Di);;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getPCB_N (double I, double D, double d, double ratio, int layout, _CoilResult *result) {
@@ -1121,13 +1117,12 @@ void CalcLC3(double Zo, double f, _CoilResult *result)
     result->sec = Zo / (2 * M_PI * f);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void findToroidPemeability(double N, double I, double Do, double Di, double h, _CoilResult *result) {
-    double m;
-    if ((Do / Di) < 1.75) {
-        m = ceil((10000 * I * (Do + Di)) / (4 * N * N * h * (Do - Di)));
-    } else {
-        m = ceil(10000 * I / (2 * N * N * h * log(Do / Di)));
-    }
+void findToroidPemeability(double N, double I, double Do, double Di, double h, double Ch, _CoilResult *result)
+{
+    double cr = Ch / M_SQRT2; //Chamfer radius
+    double k = 0.8584 * pow(cr, 3) / (h * (Do - Di) / 2); //correction factor for the chamfer
+    double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
+    double m = ceil(10000 * I / (2 * N * N * he * log(Do / Di)));
     double al = 1000 * I / (N * N);
     result->N = m;
     result->sec = al;
@@ -1508,7 +1503,7 @@ void findBrooksCoil(double I, double d, double pa, double pr,
         c = 0.5 * (ha + d + sqrt(discr));
         _I = a * c * N * N;
     } while (I > _I);
-    Nc = (c / (ha * d) - 1);    //number of turns in the layer
+    Nc = (c / ha  - 1);    //number of turns in the layer
     nLayer = ceil(N / Nc);      //number of layers
     // Calculation of the wire length in all layers except the last
     if (nLayer > 1) {

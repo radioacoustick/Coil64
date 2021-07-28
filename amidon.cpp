@@ -372,7 +372,12 @@ void Amidon::getOpt(_OptionStruct gOpt)
     resize(size);
     move(pos);
     ui->lineEdit_ind->selectAll();
+    if (fOpt->styleGUI == _DarkStyle)
+        styleInfoColor = "<span style=\"color:yellow;\">";
+    else
+        styleInfoColor = "<span style=\"color:blue;\">";
     delete settings;
+    on_tabWidget_currentChanged(ui->tabWidget->currentIndex());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Amidon::on_tabWidget_currentChanged(int index)
@@ -554,16 +559,16 @@ void Amidon::on_comboBox_bn_t_currentIndexChanged(int index){
         }
         QString sC = bn_size_val.at(3);
         QString info = "<p>" + tr("Dimensions") + ":</span><br/>";
-        info += "A = <span style=\"color:blue;\">" + getMultiapertureCoreSize(bn_size_val.at(1)) + "</span>&nbsp;"
+        info += "A = " + styleInfoColor  + getMultiapertureCoreSize(bn_size_val.at(1)) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "B = <span style=\"color:blue;\">" + getMultiapertureCoreSize(bn_size_val.at(2)) + "</span>&nbsp;"
+        info += "B = " + styleInfoColor  + getMultiapertureCoreSize(bn_size_val.at(2)) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
         if (!(sC == "0"))
-            info += "C = <span style=\"color:blue;\">" + getMultiapertureCoreSize(bn_size_val.at(3)) + "</span>&nbsp;"
+            info += "C = " + styleInfoColor  + getMultiapertureCoreSize(bn_size_val.at(3)) + "</span>&nbsp;"
                     + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "E = <span style=\"color:blue;\">" + getMultiapertureCoreSize(bn_size_val.at(4)) + "</span>&nbsp;"
+        info += "E = " + styleInfoColor  + getMultiapertureCoreSize(bn_size_val.at(4)) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "H = <span style=\"color:blue;\">" + getMultiapertureCoreSize(bn_size_val.at(5)) + "</span>&nbsp;"
+        info += "H = " + styleInfoColor  + getMultiapertureCoreSize(bn_size_val.at(5)) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "&nbsp;<hr/>";
         QString lowImp = bn_size_val.at(6);
         QString highImp = bn_size_val.at(7);
@@ -597,34 +602,34 @@ void Amidon::on_comboBox_bn_t_currentIndexChanged(int index){
         }
         if (!(lowImp == "0"))
             info += tr("Impedance at") + " " + sLowFreq + qApp->translate("Context", "MHz") +
-                    ":&nbsp;<span style=\"color:blue;\">" + lowImp +
+                    ":&nbsp;" + styleInfoColor  + lowImp +
                     "</span>&nbsp;"+ qApp->translate("Context", "Ohm") +"<br/>";
         if (!(highImp == "0"))
             info += tr("Impedance at") + " " + sHighFreq + qApp->translate("Context", "MHz") +
-                    ":&nbsp;<span style=\"color:blue;\">" + highImp +
+                    ":&nbsp;" + styleInfoColor  + highImp +
                     "</span>&nbsp;"+ qApp->translate("Context", "Ohm") +"<br/>";
         QString bnfeatures_str = MultiapertureFeatures[bn_material_index];
         QStringList pfeatures = bnfeatures_str.split(",");
 
-        info += tr("Initial magnetic permeability") + " (μ<sub>i</sub>): <span style=\"color:blue;\">"
+        info += tr("Initial magnetic permeability") + " (μ<sub>i</sub>): " + styleInfoColor
                 + pfeatures.at(0) + "</span><br/>";
-        info += tr("Maximum magnetic permeability") + " (μ<sub>max</sub>): <span style=\"color:blue;\">"
+        info += tr("Maximum magnetic permeability") + " (μ<sub>max</sub>): " + styleInfoColor
                 + pfeatures.at(1) + "</span><br/>";
-        info += tr("Saturation flux density") + " (Bs): <span style=\"color:blue;\">" + pfeatures.at(2)
+        info += tr("Saturation flux density") + " (Bs): " + styleInfoColor  + pfeatures.at(2)
                 + "</span>&nbsp;Gs<br/>";
-        info += tr("Residual flux density") + " (Br): <span style=\"color:blue;\">" + pfeatures.at(3)
+        info += tr("Residual flux density") + " (Br): " + styleInfoColor  + pfeatures.at(3)
                 + "</span>&nbsp;Gs<br/>";
-        info += tr("Curie Temperature") + ": <span style=\"color:blue;\">" + pfeatures.at(4)
+        info += tr("Curie Temperature") + ": " + styleInfoColor  + pfeatures.at(4)
                 + "</span>&nbsp;°C<br/>";
 
         info += "<u>" + tr("Working frequency") + "</u>:<br/>";
-        info += tr("Resonant circuit coils") + " = <span style=\"color:blue;\">" + pfeatures.at(5)
+        info += tr("Resonant circuit coils") + " = " + styleInfoColor  + pfeatures.at(5)
                 + "</span>&nbsp;" + qApp->translate("Context", "MHz") + "<br/>";
-        info += tr("Wideband transformers") + "&nbsp;(TLT) = <span style=\"color:blue;\">" + pfeatures.at(6)
+        info += tr("Wideband transformers") + "&nbsp;(TLT) = " + styleInfoColor  + pfeatures.at(6)
                 + "</span>&nbsp;" + qApp->translate("Context", "MHz") + "<br/>";
-        info += tr("Chokes") + " = <span style=\"color:blue;\">" + pfeatures.at(7)
+        info += tr("Chokes") + " = " + styleInfoColor  + pfeatures.at(7)
                 + "</span>&nbsp;" + qApp->translate("Context", "MHz") + "<hr/>";
-        info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": <span style=\"color:blue;\">"
+        info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": " + styleInfoColor
                 + QString("%1").arg(al) + "</span>&nbsp;nH/N<sup>2</sup></p>";
         ui->label_info->setText(info);
         ui->label->setText(ui->comboBox_bn_t->currentText());
@@ -639,18 +644,18 @@ void Amidon::on_comboBox_td_currentTextChanged(const QString &arg1){
         int tm_index = ui->comboBox_tm->currentIndex();
         QString tfeatures_str = TToroid_Features[tm_index];
         QStringList tfeatures = tfeatures_str.split(",");
-        QString info = "<p>" + tr("Color code") + ": <span style=\"color:blue;\">" + tfeatures.at(2) + "</span><br/>";
-        info += tr("Material") + ": <span style=\"color:blue;\">" + tfeatures.at(3) + "</span><br/>";
-        info += tr("Resonant circuit frequency range") + ": <br/><span style=\"color:blue;\">" + tfeatures.at(1)
+        QString info = "<p>" + tr("Color code") + ": " + styleInfoColor  + tfeatures.at(2) + "</span><br/>";
+        info += tr("Material") + ": " + styleInfoColor  + tfeatures.at(3) + "</span><br/>";
+        info += tr("Resonant circuit frequency range") + ": <br/>" + styleInfoColor  + tfeatures.at(1)
                 + "</span><br/>";
-        info += tr("Initial magnetic permeability") + " (μ<sub>i</sub>): <span style=\"color:blue;\">" + tfeatures.at(0)
+        info += tr("Initial magnetic permeability") + " (μ<sub>i</sub>): " + styleInfoColor  + tfeatures.at(0)
                 + "</span><br/>";
         for (int i = 0; i < 39; i++) {
             QString tsise_str = TToroidSize[i];
             QStringList t_size_val = tsise_str.split(",");
             if (t_size_val[0] == td_curr_size) {
-                QString ID = t_size_val[1];
-                QString OD = t_size_val[2];
+                QString OD = t_size_val[1];
+                QString ID = t_size_val[2];
                 QString H = t_size_val[3];
                 double id = ID.toDouble()*25.4/fOpt->dwLengthMultiplier;
                 double od = OD.toDouble()*25.4/fOpt->dwLengthMultiplier;
@@ -659,13 +664,13 @@ void Amidon::on_comboBox_td_currentTextChanged(const QString &arg1){
                 int accurasy = fOpt->indexLengthMultiplier + 1;
                 if (accurasy == 4)
                     accurasy = 0;
-                info += tr("Dimensions") + " (OD x ID x H): <span style=\"color:blue;\"><br/>"
-                        + loc.toString(id, 'f', accurasy) + " x "
+                info += tr("Dimensions") + " (OD x ID x H): " + styleInfoColor + "<br/>"
                         + loc.toString(od, 'f', accurasy) + " x "
+                        + loc.toString(id, 'f', accurasy) + " x "
                         + loc.toString(h, 'f', accurasy) +
                         + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
                 al = TToroid_AL[tm_index][i];
-                info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": <span style=\"color:blue;\">"
+                info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": " + styleInfoColor
                         + QString("%1").arg(al) + "</span>&nbsp;µH/(N/100)<sup>2</sup></p>";
             }
         }
@@ -682,22 +687,22 @@ void Amidon::on_comboBox_fd_currentTextChanged(const QString &arg1)
         int fm_index = ui->comboBox_fm->currentIndex();
         QString ffeatures_str = FToroid_Features[fm_index];
         QStringList ffeatures = ffeatures_str.split(",");
-        QString info = "<p>" + tr("Initial magnetic permeability") + " (μ<sub>i</sub>): <span style=\"color:blue;\">" + ffeatures.at(0)
+        QString info = "<p>" + tr("Initial magnetic permeability") + " (μ<sub>i</sub>): " + styleInfoColor  + ffeatures.at(0)
                 + "</span><br/>";
-        info += tr("Saturation flux density") + " (Bs): <span style=\"color:blue;\">" + ffeatures.at(1)
+        info += tr("Saturation flux density") + " (Bs): " + styleInfoColor  + ffeatures.at(1)
                 + "</span>&nbsp;Gs<br/>";
-        info += tr("Residual flux density") + " (Br): <span style=\"color:blue;\">" + ffeatures.at(2)
+        info += tr("Residual flux density") + " (Br): " + styleInfoColor  + ffeatures.at(2)
                 + "</span>&nbsp;Gs<br/>";
-        info += tr("Coercive Force") + " (Hc): <span style=\"color:blue;\">" + ffeatures.at(3)
+        info += tr("Coercive Force") + " (Hc): " + styleInfoColor  + ffeatures.at(3)
                 + "</span>&nbsp;Oe<br/>";
-        info += tr("Curie Temperature") + ": <span style=\"color:blue;\">" + ffeatures.at(4)
+        info += tr("Curie Temperature") + ": " + styleInfoColor  + ffeatures.at(4)
                 + "</span>&nbsp;°C<br/>";
         for (int i = 0; i < 28; i++) {
             QString fsise_str = FToroidSize[i];
             QStringList f_size_val = fsise_str.split(",");
             if (f_size_val[0] == fd_curr_size) {
-                QString ID = f_size_val[1];
-                QString OD = f_size_val[2];
+                QString OD = f_size_val[1];
+                QString ID = f_size_val[2];
                 QString H = f_size_val[3];
                 double id = ID.toDouble()*25.4/fOpt->dwLengthMultiplier;
                 double od = OD.toDouble()*25.4/fOpt->dwLengthMultiplier;
@@ -706,22 +711,22 @@ void Amidon::on_comboBox_fd_currentTextChanged(const QString &arg1)
                 int accurasy = fOpt->indexLengthMultiplier + 1;
                 if (accurasy == 4)
                     accurasy = 0;
-                info += tr("Dimensions") + " (OD x ID x H): <span style=\"color:blue;\"><br/>"
-                        + loc.toString(id, 'f', accurasy) + " x "
+                info += tr("Dimensions") + " (OD x ID x H): " + styleInfoColor + "<br/>"
                         + loc.toString(od, 'f', accurasy) + " x "
+                        + loc.toString(id, 'f', accurasy) + " x "
                         + loc.toString(h, 'f', accurasy) +
                         + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
                 al = FToroid_AL[fm_index][i];
-                info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": <span style=\"color:blue;\">"
+                info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": " + styleInfoColor
                         + QString("%1").arg(al) + "</span>&nbsp;nH/N<sup>2</sup></p>";
             }
         }
         info += "<p><u>" + tr("Working frequency") + "</u>:<br/>";
-        info += tr("Resonant circuit coils") + " = <span style=\"color:blue;\">" + ffeatures.at(5)
+        info += tr("Resonant circuit coils") + " = " + styleInfoColor  + ffeatures.at(5)
                 + "</span>&nbsp;" + qApp->translate("Context", "MHz") + "<br/>";
-        info += tr("Wideband transformers") + "&nbsp;(TLT) = <span style=\"color:blue;\">" + ffeatures.at(6)
+        info += tr("Wideband transformers") + "&nbsp;(TLT) = " + styleInfoColor  + ffeatures.at(6)
                 + "</span>&nbsp;" + qApp->translate("Context", "MHz") + "<br/>";
-        info += tr("Chokes") + " = <span style=\"color:blue;\">" + ffeatures.at(7)
+        info += tr("Chokes") + " = " + styleInfoColor  + ffeatures.at(7)
                 + "</span>&nbsp;" + qApp->translate("Context", "MHz") + "<br/>";
         ui->label_info->setText(info);
         ui->label->setText(arg1 + "-" + ui->comboBox_fm->currentText());
@@ -911,21 +916,21 @@ void Amidon::resolvePotCore(int index)
         QString psize_str = PotCoreSize[index];
         QStringList psize = psize_str.split(",");
         QString info = "<p>" + tr("Dimensions") + ":</span><br/>";
-        info += "A = <span style=\"color:blue;\">" + getPotCoreSize(psize.at(0),&A) + "</span>&nbsp;"
+        info += "A = " + styleInfoColor  + getPotCoreSize(psize.at(0),&A) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "B = <span style=\"color:blue;\">" + getPotCoreSize(psize.at(1),&B) + "</span>&nbsp;"
+        info += "B = " + styleInfoColor  + getPotCoreSize(psize.at(1),&B) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
-        info += "C = <span style=\"color:blue;\">" + getPotCoreSize(psize.at(2),&C) + "</span>&nbsp;"
+        info += "C = " + styleInfoColor  + getPotCoreSize(psize.at(2),&C) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "D = <span style=\"color:blue;\">" + getPotCoreSize(psize.at(3),&D) + "</span>&nbsp;"
+        info += "D = " + styleInfoColor  + getPotCoreSize(psize.at(3),&D) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
-        info += "E = <span style=\"color:blue;\">" + getPotCoreSize(psize.at(4),&E) + "</span>&nbsp;"
+        info += "E = " + styleInfoColor  + getPotCoreSize(psize.at(4),&E) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "F = <span style=\"color:blue;\">" + getPotCoreSize(psize.at(5),&F) + "</span>&nbsp;"
+        info += "F = " + styleInfoColor  + getPotCoreSize(psize.at(5),&F) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
-        info += "G = <span style=\"color:blue;\">" + getPotCoreSize(psize.at(6),&G) + "</span>&nbsp;"
+        info += "G = " + styleInfoColor  + getPotCoreSize(psize.at(6),&G) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "H = <span style=\"color:blue;\">" + getPotCoreSize(psize.at(7),&H) + "</span>&nbsp;"
+        info += "H = " + styleInfoColor  + getPotCoreSize(psize.at(7),&H) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "&nbsp;<br/>";
         QString pfeatures_str = PotCore_Features[index];
         QStringList pfeatures = pfeatures_str.split(",");
@@ -941,16 +946,16 @@ void Amidon::resolvePotCore(int index)
         int accurasy = fOpt->indexLengthMultiplier + 1;
         if (accurasy == 4)
             accurasy = 0;
-        info += tr("Effective magnetic path length") + " (l<sub>e</sub>): <span style=\"color:blue;\">"
+        info += tr("Effective magnetic path length") + " (l<sub>e</sub>): " + styleInfoColor
                 + loc.toString(le/fOpt->dwLengthMultiplier, 'f', accurasy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-        info += tr("Effective area of magnetic path") + " (A<sub>e</sub>): <span style=\"color:blue;\">"
+        info += tr("Effective area of magnetic path") + " (A<sub>e</sub>): " + styleInfoColor
                 + loc.toString(ae/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accurasy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>2</sup><br/>";
-        info += tr("Effective volume") + " (V<sub>e</sub>): <span style=\"color:blue;\">"
+        info += tr("Effective volume") + " (V<sub>e</sub>): " + styleInfoColor
                 + loc.toString(ve/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accurasy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>3</sup><br/>";
-        info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": <span style=\"color:blue;\">"
+        info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": " + styleInfoColor
                 + al_s + "</span>&nbsp;mH/(N/1000)<sup>2</sup></p>";
         ui->label_info->setText(info);
         onCalculate();
@@ -980,25 +985,25 @@ void Amidon::resolveECore(int index)
         if (accurasy == 4)
             accurasy = 0;
         QString info = "<p>" + tr("Dimensions") + ":</span><br/>";
-        info += "A = <span style=\"color:blue;\">"
+        info += "A = " + styleInfoColor
                 + loc.toString(A/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "B = <span style=\"color:blue;\">"
+        info += "B = " + styleInfoColor
                 + loc.toString(B/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
-        info += "C = <span style=\"color:blue;\">"
+        info += "C = " + styleInfoColor
                 + loc.toString(C/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "D = <span style=\"color:blue;\">"
+        info += "D = " + styleInfoColor
                 + loc.toString(D/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
-        info += "E = <span style=\"color:blue;\">"
+        info += "E = " + styleInfoColor
                 + loc.toString(E/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
-        info += "F = <span style=\"color:blue;\">"
+        info += "F = " + styleInfoColor
                 + loc.toString(F/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
-        info += "G = <span style=\"color:blue;\">"
+        info += "G = " + styleInfoColor
                 + loc.toString(G/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "&nbsp;<br/>";
         QString efeatures_str = ECore_Features[index];
@@ -1014,17 +1019,17 @@ void Amidon::resolveECore(int index)
         double ae = ae_s.toDouble();
         double ve = ve_s.toDouble();
         double W = W_s.toDouble();
-        info += tr("Effective magnetic path length") + " (l<sub>e</sub>): <span style=\"color:blue;\">"
+        info += tr("Effective magnetic path length") + " (l<sub>e</sub>): " + styleInfoColor
                 + loc.toString(le/fOpt->dwLengthMultiplier, 'f', accurasy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-        info += tr("Effective area of magnetic path") + " (A<sub>e</sub>): <span style=\"color:blue;\">"
+        info += tr("Effective area of magnetic path") + " (A<sub>e</sub>): " + styleInfoColor
                 + loc.toString(ae/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accurasy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>2</sup><br/>";
-        info += tr("Effective volume") + " (V<sub>e</sub>): <span style=\"color:blue;\">"
+        info += tr("Effective volume") + " (V<sub>e</sub>): " + styleInfoColor
                 + loc.toString(ve/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accurasy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>3</sup><br/>";
-        info += tr("Power") + " (W): <span style=\"color:blue;\">" + loc.toString(W, 'f', accurasy) + "</span>&nbsp;W<br/>";
-        info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": <span style=\"color:blue;\">"
+        info += tr("Power") + " (W): " + styleInfoColor  + loc.toString(W, 'f', accurasy) + "</span>&nbsp;W<br/>";
+        info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": " + styleInfoColor
                 + al_s + "</span>&nbsp;µH/(N/1000)<sup>2</sup></p>";
         ui->label_info->setText(info);
         onCalculate();

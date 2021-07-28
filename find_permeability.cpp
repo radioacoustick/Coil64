@@ -32,24 +32,27 @@ Find_Permeability::Find_Permeability(QWidget *parent) :
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
+    ui->lineEdit_4->setValidator(dv);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Find_Permeability::~Find_Permeability()
 {
     double I = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
     double N = loc.toDouble(ui->lineEdit_N->text());
-    double D1 = loc.toDouble(ui->lineEdit_1->text())*fOpt->dwLengthMultiplier;
-    double D2 = loc.toDouble(ui->lineEdit_2->text())*fOpt->dwLengthMultiplier;
+    double OD = loc.toDouble(ui->lineEdit_1->text())*fOpt->dwLengthMultiplier;
+    double ID = loc.toDouble(ui->lineEdit_2->text())*fOpt->dwLengthMultiplier;
     double h = loc.toDouble(ui->lineEdit_3->text())*fOpt->dwLengthMultiplier;
+    double Ch = loc.toDouble(ui->lineEdit_4->text())*fOpt->dwLengthMultiplier;
     QSettings *settings;
     defineAppSettings(settings);
     settings->beginGroup( "FindPermeability" );
     settings->setValue("pos", this->pos());
     settings->setValue("L", I);
     settings->setValue("N", N);
-    settings->setValue("D1", D1);
-    settings->setValue("D2", D2);
+    settings->setValue("OD", OD);
+    settings->setValue("ID", ID);
     settings->setValue("h", h);
+    settings->setValue("Ch", Ch);
     settings->endGroup();
     delete settings;
     delete dv;
@@ -68,9 +71,10 @@ void Find_Permeability::getOpt(_OptionStruct gOpt){
     settings->beginGroup( "FindPermeability" );
     double I = settings->value("L", 0).toDouble();
     double N = settings->value("N", 0).toDouble();
-    double D1 = settings->value("D1", 0).toDouble();
-    double D2 = settings->value("D2", 0).toDouble();
+    double OD = settings->value("OD", 0).toDouble();
+    double ID = settings->value("ID", 0).toDouble();
     double h = settings->value("h", 0).toDouble();
+    double Ch = settings->value("Ch", 0).toDouble();
     QRect screenGeometry = qApp->primaryScreen()->availableGeometry();
     int x = (screenGeometry.width() - this->width()) / 2;
     int y = (screenGeometry.height() - this->height()) / 2;
@@ -78,9 +82,10 @@ void Find_Permeability::getOpt(_OptionStruct gOpt){
     settings->endGroup();
     ui->lineEdit_ind->setText(loc.toString(I / fOpt->dwInductanceMultiplier));
     ui->lineEdit_N->setText(loc.toString(N));
-    ui->lineEdit_1->setText(loc.toString(D1 / fOpt->dwLengthMultiplier));
-    ui->lineEdit_2->setText(loc.toString(D2 / fOpt->dwLengthMultiplier));
+    ui->lineEdit_1->setText(loc.toString(OD / fOpt->dwLengthMultiplier));
+    ui->lineEdit_2->setText(loc.toString(ID / fOpt->dwLengthMultiplier));
     ui->lineEdit_3->setText(loc.toString(h / fOpt->dwLengthMultiplier));
+    ui->lineEdit_4->setText(loc.toString(Ch / fOpt->dwLengthMultiplier));
     ui->lineEdit_N->setFocus();
     ui->lineEdit_N->selectAll();
     move(pos);
@@ -99,33 +104,34 @@ void Find_Permeability::on_pushButton_clicked()
         showWarning(tr("Warning"), tr("One or more inputs are empty!"));
         return;
     }
-    bool ok1,ok2, ok3, ok4, ok5;
+    bool ok1,ok2, ok3, ok4, ok5, ok6;
     double I = loc.toDouble(ui->lineEdit_ind->text(), &ok1)*fOpt->dwInductanceMultiplier;
     double N = loc.toDouble(ui->lineEdit_N->text(), &ok2);
-    double D1 = loc.toDouble(ui->lineEdit_1->text(), &ok3)*fOpt->dwLengthMultiplier;
-    double D2 = loc.toDouble(ui->lineEdit_2->text(), &ok4)*fOpt->dwLengthMultiplier;
+    double OD = loc.toDouble(ui->lineEdit_1->text(), &ok3)*fOpt->dwLengthMultiplier;
+    double ID = loc.toDouble(ui->lineEdit_2->text(), &ok4)*fOpt->dwLengthMultiplier;
     double h = loc.toDouble(ui->lineEdit_3->text(), &ok5)*fOpt->dwLengthMultiplier;
-    if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
+    double Ch = loc.toDouble(ui->lineEdit_4->text(), &ok6)*fOpt->dwLengthMultiplier;
+    if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)||(!ok6)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         return;
     }
-    if ((I == 0)||(N == 0)||(D1 == 0)||(D2 == 0)||(h == 0)){
+    if ((I == 0)||(N == 0)||(OD == 0)||(ID == 0)||(h == 0)){
         showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
         return;
     }
-    if (D1 < D2){
-        showWarning(tr("Warning"), "D1 < D2");
+    if ((OD < ID) || (OD <= Ch) || (ID <= Ch) || (h <= Ch)){
+        showWarning(tr("Warning"), "(OD < ID) | (OD <= C) | (ID <= C) | (h <= C)");
         return;
     }
     _CoilResult result;
-    findToroidPemeability(N, I, D1, D2, h, &result);
+    findToroidPemeability(N, I, OD, ID, h, Ch, &result);
     QString sResult = "<hr>";
     if (fOpt->isShowTitle){
         sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
                 + windowTitle() + "</h2><br/>";
     }
     if (fOpt->isInsertImage){
-        sResult += "<img src=\":/images/res/Coil6.png\">";
+        sResult += "<img src=\":/images/res/T-core.png\">";
     }
     sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
     sResult += ui->label_ind->text() + ": L = " + ui->lineEdit_ind->text() + " " + ui->label_ind_m->text() + "<br/>";
@@ -133,8 +139,10 @@ void Find_Permeability::on_pushButton_clicked()
     sResult += "<u>" + tr("Dimensions") + ":</u><br/>";
     sResult += ui->label_1->text() + " = " + ui->lineEdit_1->text() + " " + ui->label_01->text() + "<br/>";
     sResult += ui->label_2->text() + " = " + ui->lineEdit_2->text() + " " + ui->label_02->text() + "<br/>";
-    sResult += ui->label_3->text() + " = " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "</p>";
-    sResult += "<hr>";
+    sResult += ui->label_3->text() + " = " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "<br/>";
+    if (Ch > 0)
+        sResult += ui->label_4->text() + " = " + ui->lineEdit_4->text() + " " + ui->label_04->text();
+    sResult += "</p><hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     sResult += tr("Relative magnetic permeability of the toroid") + " μ = " + loc.toString(result.N) + "<br/>";
     sResult += tr("Magnetic factor of the core") + " A<sub>L</sub> = " + loc.toString(result.sec, 'f', 0);

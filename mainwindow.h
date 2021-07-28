@@ -55,6 +55,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "ucore.h"
 #include "al.h"
 #include "crossover.h"
+#include "rf_toroid.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -76,6 +77,7 @@ public:
 
 signals:
     void sendOpt(_OptionStruct);
+    void sendStyleGUI(int);
     void sendLocale(QLocale);
 public slots:
     void on_actionCheck_for_update_triggered();
@@ -152,6 +154,7 @@ private slots:
     void checkAppVersion(QNetworkReply *reply);
     void setLanguage();
     void resetUiFont();
+    void invertGUIconColor();
     void prepareHeader(QTextCursor *c);
     void checkMaterial1(Material *mt);
     void checkMaterial2(Material *mt);
@@ -203,6 +206,7 @@ private slots:
     void on_actionE_core_coil_triggered();
     void on_actionU_core_coil_triggered();
     void on_actionAL_factor_calculation_triggered();
+    void on_actionToroidal_inductor_at_RF_triggered();
     void on_actionCross_over_inductor_triggered();
 
     void getAddCalculationResult(QString result);
@@ -219,7 +223,6 @@ private:
     QString lang; //Current app GUI language
     unsigned int calc_count; //Calculating number
     QLocale loc;
-    std::bitset<8> bits;
     QMenu *popupmenu;
 };
 

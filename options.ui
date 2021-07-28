@@ -27,8 +27,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>600</width>
-    <height>600</height>
+    <width>900</width>
+    <height>900</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_1">
       <attribute name="title">
@@ -841,6 +841,38 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>spinBox</tabstop>
+  <tabstop>comboBox_length</tabstop>
+  <tabstop>comboBox_wire</tabstop>
+  <tabstop>comboBox_inductance</tabstop>
+  <tabstop>comboBox_capacitance</tabstop>
+  <tabstop>comboBox_frequency</tabstop>
+  <tabstop>radioButton_loc1</tabstop>
+  <tabstop>radioButton_loc2</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>checkBox_8</tabstop>
+  <tabstop>checkBox_2</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>checkBox_9</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>checkBox_5</tabstop>
+  <tabstop>checkBox_6</tabstop>
+  <tabstop>checkBox_7</tabstop>
+  <tabstop>fontComboBox_1</tabstop>
+  <tabstop>fontspinBox_1</tabstop>
+  <tabstop>fontComboBox_2</tabstop>
+  <tabstop>fontspinBox_2</tabstop>
+  <tabstop>comboBox_style</tabstop>
+  <tabstop>checkBox_3</tabstop>
+  <tabstop>radioButton_1</tabstop>
+  <tabstop>radioButton_2</tabstop>
+  <tabstop>radioButton_3</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_3</tabstop>
+ </tabstops>
  <resources>
   <include location="res.qrc"/>
  </resources>

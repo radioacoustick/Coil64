@@ -622,6 +622,20 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>lineEdit_L_1</tabstop>
+  <tabstop>lineEdit_N_1</tabstop>
+  <tabstop>lineEdit_AL_1</tabstop>
+  <tabstop>lineEdit_L_2</tabstop>
+  <tabstop>lineEdit_AL_2</tabstop>
+  <tabstop>lineEdit_N_2</tabstop>
+  <tabstop>lineEdit_AL_3</tabstop>
+  <tabstop>lineEdit_N_3</tabstop>
+  <tabstop>lineEdit_L_3</tabstop>
+  <tabstop>pushButton_calculate</tabstop>
+  <tabstop>pushButton_close</tabstop>
+ </tabstops>
  <resources>
   <include location="res.qrc"/>
  </resources>

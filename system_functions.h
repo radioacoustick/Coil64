@@ -29,6 +29,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QDate>
 #include <QFile>
 #include <QDir>
+#include <QIcon>
 
 
 #include "definitions.h"
@@ -91,5 +92,7 @@ QStringList translateInstalling(QStringList *lang);
 QLocale getLanguageLocale (QString lang);
 void completeOptionsStructure(_OptionStruct *opt);
 QString formatLength(double length, double lengthMultiplyer);
+QPixmap revercePixmapColors(const QPixmap *pm);
+QIcon reverceIconColors(QIcon ico);
 
 #endif // SYSTEM_FUNCTIONS_H

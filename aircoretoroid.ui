@@ -430,6 +430,19 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>radioButton_round</tabstop>
+  <tabstop>radioButton_rect</tabstop>
+  <tabstop>checkBox_isReverce</tabstop>
+  <tabstop>lineEdit_N</tabstop>
+  <tabstop>lineEdit_1</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>lineEdit_4</tabstop>
+  <tabstop>pushButton_calculate</tabstop>
+  <tabstop>pushButton_close</tabstop>
+  <tabstop>pushButton_help</tabstop>
+ </tabstops>
  <resources>
   <include location="res.qrc"/>
  </resources>

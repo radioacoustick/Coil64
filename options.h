@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QDialog>
 #include <QMetaType>
 #include <QAbstractButton>
+#include <QScreen>
 
 #include "system_functions.h"
 #include "mainwindow.h"

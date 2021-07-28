@@ -94,7 +94,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="tab_1">
           <property name="sizePolicy">
@@ -171,7 +171,7 @@
              <item>
               <widget class="QLabel" name="label_5">
                <property name="text">
-                <string notr="true">&lt;a href=&quot;https://coil32.net&quot;&gt;https://coil32.net&lt;/a&gt;</string>
+                <string notr="true">&lt;a href=&quot;https://coil32.net&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;https://coil32.net&lt;/span&gt;&lt;/a&gt;</string>
                </property>
                <property name="openExternalLinks">
                 <bool>true</bool>
@@ -204,7 +204,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string notr="true">E-mail: &lt;a href=&quot;mailto:qdev@coil32.net&quot;&gt;qdev@coil32.net&lt;/a&gt;</string>
+                <string notr="true">E-mail: &lt;a href=&quot;mailto:qdev@coil32.net&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;qdev@coil32.net&lt;/span&gt;&lt;/a&gt;</string>
                </property>
                <property name="margin">
                 <number>6</number>
@@ -248,7 +248,7 @@
            <item>
             <widget class="QGroupBox" name="groupBox">
              <property name="title">
-              <string>Developers:</string>
+              <string>The open source code of the following developers was used:</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_9">
               <item>
@@ -259,13 +259,13 @@
                 <property name="verticalSpacing">
                  <number>1</number>
                 </property>
-                <item row="2" column="0">
-                 <widget class="QLabel" name="label_21">
+                <item row="3" column="0">
+                 <widget class="QLabel" name="label_28">
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
                   <property name="text">
-                   <string notr="true">Alane Payne</string>
+                   <string notr="true">Tino Kluge</string>
                   </property>
                  </widget>
                 </item>
@@ -281,17 +281,10 @@
                    <enum>QFrame::StyledPanel</enum>
                   </property>
                   <property name="text">
-                   <string notr="true">&lt;a href=&quot;http://electronbunker.ca/eb/Home.html&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;Bob’s Electron Bunker&lt;/span&gt;&lt;/a&gt;</string>
+                   <string notr="true">&lt;a href=&quot;http://electronbunker.ca/eb/Home.html&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;Bob’s Electron Bunker&lt;/span&gt;&lt;/a&gt;</string>
                   </property>
-                 </widget>
-                </item>
-                <item row="3" column="1">
-                 <widget class="QLabel" name="label_24">
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
-                  </property>
-                  <property name="text">
-                   <string notr="true">&lt;a href=&quot;https://www.geotech1.com/forums/forum.php&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;Geotech&lt;/span&gt;&lt;/a&gt;</string>
+                  <property name="openExternalLinks">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -321,23 +314,16 @@
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="1">
-                 <widget class="QLabel" name="label_22">
+                <item row="3" column="1">
+                 <widget class="QLabel" name="label_29">
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
                   <property name="text">
-                   <string notr="true">&lt;a href=&quot;https://g3rbj.co.uk/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;G3RBJ&lt;/span&gt;&lt;/a&gt;</string>
+                   <string notr="true">&lt;a href=&quot;mailto:ttk448@gmail.com&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;ttk448@gmail.com&lt;/span&gt;&lt;/a&gt;</string>
                   </property>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QLabel" name="label_23">
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
-                  </property>
-                  <property name="text">
-                   <string notr="true">George Overton</string>
+                  <property name="openExternalLinks">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -347,11 +333,14 @@
                    <enum>QFrame::StyledPanel</enum>
                   </property>
                   <property name="text">
-                   <string notr="true">&lt;a href=&quot;https://www.g3ynh.info/index.html&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;G3YNH&lt;/span&gt;&lt;/a&gt;</string>
+                   <string notr="true">&lt;a href=&quot;https://www.g3ynh.info/index.html&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;G3YNH&lt;/span&gt;&lt;/a&gt;</string>
+                  </property>
+                  <property name="openExternalLinks">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
-                <item row="4" column="0">
+                <item row="2" column="0">
                  <widget class="QLabel" name="label_25">
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
@@ -361,13 +350,16 @@
                   </property>
                  </widget>
                 </item>
-                <item row="4" column="1">
+                <item row="2" column="1">
                  <widget class="QLabel" name="label_26">
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
                   <property name="text">
-                   <string notr="true">&lt;a href=&quot;mailto:vedddd@gmail.com&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;vedddd@gmail.com&lt;/span&gt;&lt;/a&gt;</string>
+                   <string notr="true">&lt;a href=&quot;mailto:vedddd@gmail.com&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;vedddd@gmail.com&lt;/span&gt;&lt;/a&gt;</string>
+                  </property>
+                  <property name="openExternalLinks">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -447,7 +439,7 @@
               </font>
              </property>
              <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;RK3AQD, RA1QEA, UA9CTU, RA3MB, RA3SI, UA3GGP, UT2LK,&lt;br/&gt;UR3LUC, UR6HDX, UA6IGI, &lt;a href=&quot;http://un8gv.my1.ru/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;UN8GW&lt;/span&gt;&lt;/a&gt;, RA9SVY, &lt;a href=&quot;http://ea1ddo.es/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;EA1DDO&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.qrz.com/db/9A3SW&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;9A3SW&lt;/span&gt;&lt;/a&gt;, &lt;br/&gt;&lt;a href=&quot;http://qrz.pl/callbook.asp?f_domena=sp9izm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;SP9IZM&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;https://www.qrz.com/db/PD2HPS&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;PD2HPS&lt;/span&gt;&lt;/a&gt;, KC9USI, SV3ISD, DL6ABM, PA0HRP, W2ASC, G0NMY, PY2CSH&lt;br/&gt;as well as&lt;br/&gt;&lt;a href=&quot;http://www.eddy.com.ua/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Eddy71&lt;/span&gt;&lt;/a&gt;, Milos Jovanovic, Yogesh Karale, Pedro Alamo, Károly Stumpfl, Teodor Zafiroski, Shahrokh Mostaghimi, Ngo Huy, Van Watts, Bob Mellor, Hsiyung Ku, Jack Wojslawowicz, Barış Akgül, Carlo Mozetic, Edgar Enriquez, Eric Pruvot, Artur Soares, Ciornea Lucian-L, Paulo Romani, Uwe Braun, Bruce McBean, &lt;a href=&quot;https://www.geotech1.com/forums/forum.php&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;George Overton&lt;/span&gt;&lt;/a&gt;, Arild, Dmitriy Vetrov, Igor Gagrin, Srdjan Colic.&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Special thanks for:&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://www.ra3pkj.ru/&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;RA3PKJ - Nick Abramenko&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:600; color:#0000ff;&quot;&gt;Vladimir Kuznetsov&lt;/span&gt;&lt;br/&gt;&lt;a href=&quot;http://electronbunker.ca/eb/index.html&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;Robert Weaver&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://www.g3ynh.info/index.html&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;G3YNH - David Knight&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://g3rbj.co.uk&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;G3RBJ - Alane Payne&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string notr="true">&lt;html&gt;&lt;head&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;RK3AQD, RA1QEA, UA9CTU, RA3MB, RA3SI, UA3GGP, UT2LK,&lt;br/&gt;UR3LUC, UR6HDX, UA6IGI, &lt;a href=&quot;http://un8gv.my1.ru/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;UN8GW&lt;/span&gt;&lt;/a&gt;, RA9SVY, &lt;a href=&quot;http://ea1ddo.es/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;EA1DDO&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.qrz.com/db/9A3SW&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;9A3SW&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://qrz.pl/callbook.asp?f_domena=sp9izm&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;SP9IZM&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;https://www.qrz.com/db/PD2HPS&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;PD2HPS&lt;/span&gt;&lt;/a&gt;, KC9USI, SV3ISD, DL6ABM, PA0HRP, W2ASC, G0NMY, PY2CSH, &lt;a href=&quot;https://www.owenduffy.net/index.htm&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;VK2OMD ex VK1OD&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;as well as&lt;br/&gt;&lt;a href=&quot;http://www.eddy.com.ua/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;Eddy71&lt;/span&gt;&lt;/a&gt;, Milos Jovanovic, Yogesh Karale, Pedro Alamo, Károly Stumpfl, Teodor Zafiroski, Shahrokh Mostaghimi, Ngo Huy, Van Watts, Bob Mellor, Hsiyung Ku, Jack Wojslawowicz, Barış Akgül, Carlo Mozetic, Edgar Enriquez, Eric Pruvot, Artur Soares, Ciornea Lucian-L, Paulo Romani, Uwe Braun, Bruce McBean, &lt;a href=&quot;https://www.geotech1.com/forums/forum.php&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;George Overton&lt;/span&gt;&lt;/a&gt;, Arild, Dmitriy Vetrov, Igor Gagrin, Srdjan Colic, Gajdács András.&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Special thanks for:&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://www.ra3pkj.ru/&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:DodgerBlue;&quot;&gt;RA3PKJ - Nick Abramenko&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:600; color:DodgerBlue;&quot;&gt;Vladimir Kuznetsov&lt;/span&gt;&lt;br/&gt;&lt;a href=&quot;http://electronbunker.ca/eb/index.html&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:DodgerBlue;&quot;&gt;Robert Weaver&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://www.g3ynh.info/index.html&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:DodgerBlue;&quot;&gt;G3YNH - David Knight&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;,&lt;br/&gt;&lt;/span&gt;&lt;a href=&quot;http://g3rbj.co.uk&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:DodgerBlue;&quot;&gt;G3RBJ - Alane Payne&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -476,7 +468,7 @@
               <string notr="true"/>
              </property>
              <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To add your native language to the Coil64 app, &lt;a href=&quot;https://coil32.net/files/Coil64_tr.rtf.zip&quot;&gt;download the translation RTF file&lt;/a&gt;,&lt;/p&gt;&lt;p&gt; translate it, and email the file to the developer &lt;a href=&quot;mailto:qdev@coil32.net&quot;&gt;qdev@coil32.net&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To add your native language to the Coil64 app, &lt;a href=&quot;https://coil32.net/files/Coil64_tr.rtf.zip&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;download the translation RTF file&lt;/span&gt;&lt;/a&gt;,&lt;/p&gt;&lt;p&gt; translate it, and email the file to the developer &lt;a href=&quot;mailto:qdev@coil32.net&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;qdev@coil32.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="openExternalLinks">
               <bool>true</bool>
@@ -606,7 +598,7 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/icons8-windows-xp-32.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;Windows: Qt 5.13.2 (mingw32, gcc 5.5.0, 32bit, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/icons8-linux-32.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;Linux: Qt 5.12.0 (gcc 5.4.0, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/icons8-apple-logo-32.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;OS X: Qt 5.9.1 (clang-800.0.42.1, 64bit)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/icons8-windows-xp-32.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;Windows: Qt 5.13.2 (mingw32, gcc 5.5.0, 32bit, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/icons8-linux-32.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;Linux: Qt 5.12.0 (gcc 5.4.0, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/icons8-apple-logo-32.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;OS X: Qt 5.9.1 (clang-800.0.42.1, 64bit)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

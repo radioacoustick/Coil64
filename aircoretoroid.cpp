@@ -40,8 +40,8 @@ AirCoreToroid::~AirCoreToroid()
         N = loc.toDouble(ui->lineEdit_N->text());
     else
         ind = loc.toDouble(ui->lineEdit_N->text())*fOpt->dwInductanceMultiplier;
-    D1 = loc.toDouble(ui->lineEdit_1->text())*fOpt->dwLengthMultiplier;
-    D2 = loc.toDouble(ui->lineEdit_2->text())*fOpt->dwLengthMultiplier;
+    OD = loc.toDouble(ui->lineEdit_1->text())*fOpt->dwLengthMultiplier;
+    ID = loc.toDouble(ui->lineEdit_2->text())*fOpt->dwLengthMultiplier;
     h = loc.toDouble(ui->lineEdit_3->text())*fOpt->dwLengthMultiplier;
     if (fOpt->isAWG){
         dw = convertfromAWG(ui->lineEdit_4->text());
@@ -55,8 +55,8 @@ AirCoreToroid::~AirCoreToroid()
     settings->setValue("size", size());
     settings->setValue("ind", ind);
     settings->setValue("N", N);
-    settings->setValue("D1", D1);
-    settings->setValue("D2", D2);
+    settings->setValue("OD", OD);
+    settings->setValue("ID", ID);
     settings->setValue("h", h);
     settings->setValue("dw", dw);
     settings->setValue("isReverse", ui->checkBox_isReverce->isChecked());
@@ -89,8 +89,8 @@ void AirCoreToroid::getOpt(_OptionStruct gOpt)
     windingKind = settings->value("windingKind", 0).toInt();
     N = settings->value("N", 0).toDouble();
     ind = settings->value("ind", 0).toDouble();
-    D1 = settings->value("D1", 0).toDouble();
-    D2 = settings->value("D2", 0).toDouble();
+    OD = settings->value("OD", 0).toDouble();
+    ID = settings->value("ID", 0).toDouble();
     h = settings->value("h", 0).toDouble();
     dw = settings->value("dw", 0).toDouble();
     settings->endGroup();
@@ -98,8 +98,8 @@ void AirCoreToroid::getOpt(_OptionStruct gOpt)
         ui->lineEdit_N->setText(loc.toString(N));
     else
         ui->lineEdit_N->setText(loc.toString(ind / fOpt->dwInductanceMultiplier));
-    ui->lineEdit_1->setText(loc.toString(D1 / fOpt->dwLengthMultiplier));
-    ui->lineEdit_2->setText(loc.toString(D2 / fOpt->dwLengthMultiplier));
+    ui->lineEdit_1->setText(loc.toString(OD / fOpt->dwLengthMultiplier));
+    ui->lineEdit_2->setText(loc.toString(ID / fOpt->dwLengthMultiplier));
     ui->lineEdit_3->setText(loc.toString(h / fOpt->dwLengthMultiplier));
     if (fOpt->isAWG){
         ui->label_04->setText(tr("AWG"));
@@ -110,8 +110,8 @@ void AirCoreToroid::getOpt(_OptionStruct gOpt)
             ui->lineEdit_4->setText("");
     } else
         ui->lineEdit_4->setText(loc.toString(dw / fOpt->dwLengthMultiplier));
-    ui->label_1->setText(tr("Outside diameter")+" D1:");
-    ui->label_2->setText(tr("Inside diameter")+" D2:");
+    ui->label_1->setText(tr("Outside diameter")+" OD:");
+    ui->label_2->setText(tr("Inside diameter")+" ID:");
     ui->label_3->setText(tr("Height") + " h:");
     ui->label_4->setText(tr("Wire diameter") + " dw:");
     resize(size);
@@ -202,8 +202,8 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
     } else {
         dw = loc.toDouble(ui->lineEdit_4->text(), &ok2)*fOpt->dwLengthMultiplier;
     }
-    D1 = loc.toDouble(ui->lineEdit_1->text(), &ok3)*fOpt->dwLengthMultiplier;
-    D2 = loc.toDouble(ui->lineEdit_2->text(), &ok4)*fOpt->dwLengthMultiplier;
+    OD = loc.toDouble(ui->lineEdit_1->text(), &ok3)*fOpt->dwLengthMultiplier;
+    ID = loc.toDouble(ui->lineEdit_2->text(), &ok4)*fOpt->dwLengthMultiplier;
     if((!ok2)||(!ok3)||(!ok4)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         return;
@@ -234,9 +234,9 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
             return;
         }
         if (windingKind == 0)
-            ind = findAirCoreRoundToroid_I(N,D1,D2,dw);
+            ind = findAirCoreRoundToroid_I(N,OD,ID,dw);
         else
-            ind = getFerriteI(N, D1, D2, h, 1);
+            ind = getFerriteI(N, OD, ID, h, 1, dw / 2, &result);
     } else {
         ind = loc.toDouble(ui->lineEdit_N->text(), &ok1)*fOpt->dwInductanceMultiplier;
         if (!ok1){
@@ -244,9 +244,9 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
             return;
         }
         if (windingKind == 0)
-            N = findAirCoreRoundToroid_N(ind, D1, D2, dw);
+            N = findAirCoreRoundToroid_N(ind, OD, ID, dw);
         else {
-            getFerriteN(ind, D1, D2, h, dw, 1, &result);
+            getFerriteN(ind, OD, ID, h, dw, 1, dw / 2, &result);
             N = result.N;
         }
     }

@@ -552,6 +552,19 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_ind</tabstop>
+  <tabstop>lineEdit_Lr</tabstop>
+  <tabstop>lineEdit_Dr</tabstop>
+  <tabstop>lineEdit_mu</tabstop>
+  <tabstop>lineEdit_dc</tabstop>
+  <tabstop>lineEdit_s</tabstop>
+  <tabstop>lineEdit_dw</tabstop>
+  <tabstop>lineEdit_p</tabstop>
+  <tabstop>pushButton_calculate</tabstop>
+  <tabstop>pushButton_close</tabstop>
+  <tabstop>pushButton</tabstop>
+ </tabstops>
  <resources>
   <include location="res.qrc"/>
  </resources>

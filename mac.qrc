@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/data">
+        <file>data/31-Material-Fair-Rite.csv</file>
+        <file>data/43-Material-Fair-Rite.csv</file>
+        <file>data/44-Material-Fair-Rite.csv</file>
+        <file>data/46-Material-Fair-Rite.csv</file>
+        <file>data/51-Material-Fair-Rite.csv</file>
+        <file>data/52-Material-Fair-Rite.csv</file>
+        <file>data/61-Material-Fair-Rite.csv</file>
+        <file>data/67-Material-Fair-Rite.csv</file>
+        <file>data/68-Material-Fair-Rite.csv</file>
+        <file>data/73-Material-Fair-Rite.csv</file>
+        <file>data/75-Material-Fair-Rite.csv</file>
+        <file>data/76-Material-Fair-Rite.csv</file>
+        <file>data/77-Material-Fair-Rite.csv</file>
+        <file>data/78-Material-Fair-Rite.csv</file>
+        <file>data/79-Material-Fair-Rite.csv</file>
+        <file>data/80-Material-Fair-Rite.csv</file>
+        <file>data/95-Material-Fair-Rite.csv</file>
+        <file>data/97-Material-Fair-Rite.csv</file>
+        <file>data/98-Material-Fair-Rite.csv</file>
+    </qresource>
+</RCC>

@@ -1802,6 +1802,7 @@
     <addaction name="actionE_core_coil"/>
     <addaction name="actionU_core_coil"/>
     <addaction name="actionCoil_on_a_ferrite_rod"/>
+    <addaction name="actionToroidal_inductor_at_RF"/>
     <addaction name="separator"/>
     <addaction name="actionFerrite_toroid_permeability"/>
     <addaction name="actionAL_factor_calculation"/>
@@ -2149,6 +2150,15 @@
     <string>Audio system filter (crossover) coil</string>
    </property>
   </action>
+  <action name="actionToroidal_inductor_at_RF">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-ferrite.png</normaloff>:/menu_ico/res/ico1-ferrite.png</iconset>
+   </property>
+   <property name="text">
+    <string>Toroidal inductor at RF</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
@@ -2178,18 +2188,35 @@
   <tabstop>radioButton_2_2</tabstop>
   <tabstop>radioButton_3_2</tabstop>
   <tabstop>radioButton_4_2</tabstop>
+  <tabstop>radioButton_6</tabstop>
   <tabstop>radioButton_7</tabstop>
   <tabstop>radioButton_8</tabstop>
   <tabstop>radioButton_LC</tabstop>
   <tabstop>radioButton_CF</tabstop>
   <tabstop>radioButton_LF</tabstop>
+  <tabstop>radioButton_ZF</tabstop>
   <tabstop>lineEdit_1_3</tabstop>
   <tabstop>lineEdit_2_3</tabstop>
-  <tabstop>pushButton_Calculate</tabstop>
-  <tabstop>toolButton_showImg</tabstop>
-  <tabstop>toolButton_showAdditional</tabstop>
   <tabstop>textBrowser</tabstop>
+  <tabstop>toolButton_showTitle</tabstop>
+  <tabstop>toolButton_showImg</tabstop>
+  <tabstop>toolButton_cbe</tabstop>
+  <tabstop>toolButton_showAdditional</tabstop>
+  <tabstop>toolButton_lShowFirst</tabstop>
+  <tabstop>toolButton_soe</tabstop>
+  <tabstop>toolButton_cbc</tabstop>
+  <tabstop>toolButton_cdsr</tabstop>
+  <tabstop>pushButton_Calculate</tabstop>
+  <tabstop>toolButton_Open</tabstop>
+  <tabstop>toolButton_Save</tabstop>
+  <tabstop>toolButton_CopySel</tabstop>
+  <tabstop>toolButton_CopyAll</tabstop>
+  <tabstop>toolButton_Clear</tabstop>
+  <tabstop>toolButton_Print</tabstop>
+  <tabstop>toolButton_Help</tabstop>
+  <tabstop>toolButton_Configure</tabstop>
   <tabstop>tabWidget</tabstop>
+  <tabstop>comboBox_checkPCB</tabstop>
   <tabstop>listWidget</tabstop>
  </tabstops>
  <resources>

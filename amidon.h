@@ -92,8 +92,10 @@ private:
     _OptionStruct *fOpt;
     QDoubleValidator *dv;
     QLocale loc;
+    QString styleInfoColor;
     double al;
     double hole_area;
 };
+extern QString FToroidSize[];
 
 #endif // AMIDON_H

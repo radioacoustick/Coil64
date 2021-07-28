@@ -91,8 +91,8 @@ void MThread_calculate::run(){
                 break;
             }
             case _FerrToroid:{
-                //arg:I, D1, D2, h, d, mu
-                getFerriteN(arg1, arg2, arg3, arg4, arg5, arg6, &result);
+                //arg:I, D1, D2, h, d, mu, Ch
+                getFerriteN(arg1, arg2, arg3, arg4, arg5, arg6, arg7, &result);
                 break;
             }
             case _PCB_coil:{
@@ -173,8 +173,8 @@ void MThread_calculate::run(){
                 break;
             }
             case _FerrToroid:{
-                //arg: N, D1, D2, h, mu, 0, 0
-                result.N = getFerriteI(arg1, arg2, arg3, arg4, arg5);
+                //arg: N, D1, D2, h, mu, Ch, 0
+                result.N = getFerriteI(arg1, arg2, arg3, arg4, arg5, arg6, &result);
                 break;
             }
             case _PCB_coil:{

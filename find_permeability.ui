@@ -55,7 +55,7 @@
           <string notr="true"/>
          </property>
          <property name="pixmap">
-          <pixmap resource="res.qrc">:/images/res/Coil6.png</pixmap>
+          <pixmap resource="res.qrc">:/images/res/T-core-s.png</pixmap>
          </property>
         </widget>
        </item>
@@ -165,14 +165,14 @@
             <item row="1" column="0">
              <widget class="QLabel" name="label_2">
               <property name="text">
-               <string notr="true">D2</string>
+               <string notr="true">ID</string>
               </property>
              </widget>
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_1">
               <property name="text">
-               <string notr="true">D1</string>
+               <string notr="true">OD</string>
               </property>
              </widget>
             </item>
@@ -189,7 +189,7 @@
             <item row="2" column="0">
              <widget class="QLabel" name="label_3">
               <property name="text">
-               <string notr="true">h</string>
+               <string notr="true">H</string>
               </property>
              </widget>
             </item>
@@ -202,6 +202,23 @@
             </item>
             <item row="2" column="1">
              <widget class="QLineEdit" name="lineEdit_3"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string notr="true">C</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_4"/>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLabel" name="label_04">
+              <property name="text">
+               <string notr="true">mm</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -344,6 +361,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_N</tabstop>
+  <tabstop>lineEdit_ind</tabstop>
+  <tabstop>lineEdit_1</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_3</tabstop>
+ </tabstops>
  <resources>
   <include location="res.qrc"/>
  </resources>

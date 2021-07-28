@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QDialog>
 #include <QResource>
 
-
+#include "system_functions.h"
 
 namespace Ui {
 class About;
@@ -36,6 +36,7 @@ public:
     ~About();
 
 private slots:
+    void getStyleGUI(int styleGUI);
     void on_pushButton_clicked();
 
 private:

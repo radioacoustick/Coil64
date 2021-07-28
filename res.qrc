@@ -5,7 +5,6 @@
         <file>res/Coil2_square.png</file>
         <file>res/Coil4.png</file>
         <file>res/Coil4-0.png</file>
-        <file>res/Coil6.png</file>
         <file>res/LC.png</file>
         <file>res/Coil8.png</file>
         <file>res/Coil10.png</file>
@@ -48,6 +47,8 @@
         <file>res/UU-core.png</file>
         <file>res/UY-core.png</file>
         <file>res/Coil4m.png</file>
+        <file>res/T-core.png</file>
+        <file>res/T-core-s.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>

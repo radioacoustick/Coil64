@@ -95,6 +95,7 @@ MainWindow::MainWindow(QWidget *parent) :
         QMenu* child = menus.takeAt(1);
         child->addSeparator();
         QMenu* submenuLanguage = child->addMenu(tr("Language"));
+        submenuLanguage->setObjectName("Language");
         QActionGroup *langGroup = new QActionGroup(submenuLanguage);
         langGroup->setExclusive(true);
         for (int i = 0; i < langList.size(); ++i){
@@ -172,6 +173,7 @@ MainWindow::MainWindow(QWidget *parent) :
     data->isol = settings->value("i", 0).toDouble();
     data->l = settings->value("l", 0).toDouble();
     data->c = settings->value("c", 0).toDouble();
+    data->Ch = settings->value("Ch", 0).toDouble();
     data->g = settings->value("g", 0).toDouble();
     data->Ng = settings->value("Ng", 0).toDouble();
     data->Do = settings->value("Do", 0).toDouble();
@@ -325,8 +327,10 @@ MainWindow::MainWindow(QWidget *parent) :
     case _DefaultStyle:
         on_actionThemeDefault_triggered();
         break;
-    case _DarkStyle:
+    case _DarkStyle:{
         on_actionThemeDark_triggered();
+        invertGUIconColor();
+    }
         break;
     case _SunnyStyle:
         on_actionThemeSunny_triggered();
@@ -532,6 +536,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue("i", data->isol);
         settings->setValue("l", data->l);
         settings->setValue("c", data->c);
+        settings->setValue("Ch", data->Ch);
         settings->setValue("g", data->g);
         settings->setValue("Ng", data->Ng);
         settings->setValue("Do", data->Do);
@@ -595,6 +600,29 @@ void MainWindow::resetUiFont(){
     mui->textBrowser->setFont(f2);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::invertGUIconColor()
+{
+    for (int i = 0; i < mui->listWidget->count(); i++){
+        QIcon myicon = reverceIconColors(mui->listWidget->item(i)->icon());
+        mui->listWidget->item(i)->setIcon(myicon);
+    }
+    QList<QAction*> pactions = popupmenu->actions();
+    for (int i = 0; i < pactions.count(); i++){
+        QIcon myicon = reverceIconColors(pactions.at(i)->icon());
+        pactions.at(i)->setIcon(myicon);
+    }
+    QList<QMenu*> menus = this->menuBar()->findChildren<QMenu*>();
+    for (int j = 0; j < menus.count(); j++){
+        if (menus.at(j)->objectName() != "Language"){
+            QList<QAction*> actions = menus.at(j)->actions();
+            for (int i = 0; i < actions.count(); i++){
+                QIcon myicon = reverceIconColors(actions.at(i)->icon());
+                actions.at(i)->setIcon(myicon);
+            }
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::prepareHeader(QTextCursor *c)
 {
     if(myOpt->isLastShowingFirst)
@@ -603,7 +631,7 @@ void MainWindow::prepareHeader(QTextCursor *c)
         c->movePosition(QTextCursor::End);
     calc_count++;
     c->insertHtml("<hr/><a href=\"del\" title=\"" +tr("Delete this result") + "\">" + QString(QChar(CLEAR_CHAR)) + "</a><hr/><b>"
-                  + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat));
+                  + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat) + "<br/><br/>");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::checkMaterial1(Material *mt){
@@ -769,19 +797,17 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
 {
     int tab = mui->tabWidget->currentIndex();
     FormCoil = (_FormCoil)currentRow;
-    QString tmp_txt;
     switch (tab) {
     case 0:{
-        tmp_txt = tr("Inductance") + " L:";
-        mui->label_ind->setText(tmp_txt);
-        tmp_txt = tr("Frequency") + " f:";
-        mui->label_freq->setText(tmp_txt);
+        mui->label_ind->setText(tr("Inductance") + " L:");
+        mui->label_freq->setText(tr("Frequency") + " f:");
         mui->label_ind_m->setText(qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()));
         mui->label_01->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_02->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_03->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_04->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_05->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
+        mui->label_06->setText("");
         mui->lineEdit_ind->setFocus();
         mui->lineEdit_1->setValidator(dv);
         mui->lineEdit_2->setValidator(dv);
@@ -818,12 +844,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_3->setText(tmp_txt);
+            mui->label_1->setText(tr("Former diameter") + " D:");
+            mui->label_2->setText(tr("Wire diameter") + " d:");
+            mui->label_3->setText(tr("Wire diameter with insulation") + " k:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->lineEdit_freq->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -867,14 +890,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_3->setText(tmp_txt);
-            tmp_txt = tr("Winding pitch")+" p:";
-            mui->label_4->setText(tmp_txt);
+            mui->label_1->setText(tr("Former diameter") + " D:");
+            mui->label_2->setText(tr("Wire diameter") + " d:");
+            mui->label_3->setText(tr("Wire diameter with insulation") + " k:");
+            mui->label_4->setText(tr("Winding pitch")+" p:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->lineEdit_freq->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -915,16 +934,11 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
-            tmp_txt = tr("Former diameter") +" D:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Wire width") + " w:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("Wire thickness") + " t:";
-            mui->label_3->setText(tmp_txt);
-            tmp_txt = tr("Insulation thickness")+" i:";
-            mui->label_4->setText(tmp_txt);
-            tmp_txt = tr("Winding pitch")+" p:";
-            mui->label_5->setText(tmp_txt);
+            mui->label_1->setText(tr("Former diameter") +" D:");
+            mui->label_2->setText(tr("Wire width") + " w:");
+            mui->label_3->setText(tr("Wire thickness") + " t:");
+            mui->label_4->setText(tr("Insulation thickness")+" i:");
+            mui->label_5->setText(tr("Winding pitch")+" p:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->lineEdit_freq->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -961,16 +975,11 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_3->setText(tmp_txt);
-            tmp_txt = tr("Winding pitch")+" p:";
-            mui->label_4->setText(tmp_txt);
-            tmp_txt = tr("Number of sides of the former")+" n:";
-            mui->label_5->setText(tmp_txt);
+            mui->label_1->setText(tr("Former diameter") + " D:");
+            mui->label_2->setText(tr("Wire diameter") + " d:");
+            mui->label_3->setText(tr("Wire diameter with insulation") + " k:");
+            mui->label_4->setText(tr("Winding pitch")+" p:");
+            mui->label_5->setText(tr("Number of sides of the former")+" n:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->lineEdit_freq->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -1015,14 +1024,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(false);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Winding length") + " l:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_3->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_4->setText(tmp_txt);
+            mui->label_1->setText(tr("Former diameter") + " D:");
+            mui->label_2->setText(tr("Winding length") + " l:");
+            mui->label_3->setText(tr("Wire diameter") + " d:");
+            mui->label_4->setText(tr("Wire diameter with insulation") + " k:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->lineEdit_1->setText(loc.toString(data->D / myOpt->dwLengthMultiplier));
@@ -1065,18 +1070,12 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(true);
             mui->label_06->setVisible(true);
             mui->line_6->setVisible(false);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Winding length") + " l:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_3->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_4->setText(tmp_txt);
-            tmp_txt = tr("Insulation thickness")+" g:";
-            mui->label_5->setText(tmp_txt);
-            tmp_txt = tr("Layers number beetween insulating pads") + " Ng:";
-            mui->label_6->setText(tmp_txt);
+            mui->label_1->setText(tr("Former diameter") + " D:");
+            mui->label_2->setText(tr("Winding length") + " l:");
+            mui->label_3->setText(tr("Wire diameter") + " d:");
+            mui->label_4->setText(tr("Wire diameter with insulation") + " k:");
+            mui->label_5->setText(tr("Insulation thickness")+" g:");
+            mui->label_6->setText(tr("Layers number beetween insulating pads") + " Ng:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->lineEdit_1->setText(loc.toString(data->D / myOpt->dwLengthMultiplier));
@@ -1121,16 +1120,11 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(false);
-            tmp_txt = tr("Former width") + " a:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Former height") + " b:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("Winding length") + " l:";
-            mui->label_3->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_4->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation")+" k:";
-            mui->label_5->setText(tmp_txt);
+            mui->label_1->setText(tr("Former width") + " a:");
+            mui->label_2->setText(tr("Former height") + " b:");
+            mui->label_3->setText(tr("Winding length") + " l:");
+            mui->label_4->setText(tr("Wire diameter") + " d:");
+            mui->label_5->setText(tr("Wire diameter with insulation")+" k:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->lineEdit_1->setText(loc.toString(data->a / myOpt->dwLengthMultiplier));
@@ -1171,14 +1165,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(false);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Foil width") + " w:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("Foil thickness") + " t:";
-            mui->label_3->setText(tmp_txt);
-            tmp_txt = tr("Insulation thickness")+" g:";
-            mui->label_4->setText(tmp_txt);
+            mui->label_1->setText(tr("Former diameter") + " D:");
+            mui->label_2->setText(tr("Foil width") + " w:");
+            mui->label_3->setText(tr("Foil thickness") + " t:");
+            mui->label_4->setText(tr("Insulation thickness")+" g:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->lineEdit_1->setText(loc.toString(data->D / myOpt->dwLengthMultiplier));
@@ -1188,7 +1178,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             break;
         }
         case _FerrToroid:{
-            mui->image->setPixmap(QPixmap(":/images/res/Coil6.png"));
+            mui->image->setPixmap(QPixmap(":/images/res/T-core.png"));
             mui->groupBox->setVisible(false);
             mui->groupBox_6->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
@@ -1207,21 +1197,18 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_04->setVisible(true);
             mui->lineEdit_5->setVisible(true);
             mui->label_5->setVisible(true);
-            mui->label_05->setVisible(false);
-            mui->lineEdit_6->setVisible(false);
-            mui->label_6->setVisible(false);
-            mui->label_06->setVisible(false);
+            mui->label_05->setVisible(true);
+            mui->lineEdit_6->setVisible(true);
+            mui->label_6->setVisible(true);
+            mui->label_06->setVisible(true);
             mui->line_6->setVisible(false);
-            tmp_txt = tr("Outside diameter")+" D1:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Inside diameter")+" D2:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("Core height") + " h:";
-            mui->label_3->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_4->setText(tmp_txt);
-            tmp_txt = tr("Init magnetic permeability")+" μ:";
-            mui->label_5->setText(tmp_txt);
+            mui->label_1->setText(tr("Outside diameter")+" OD:");
+            mui->label_2->setText(tr("Inside diameter")+" ID:");
+            mui->label_3->setText(tr("Core height") + " h:");
+            mui->label_4->setText(tr("Wire diameter") + " d:");
+            mui->label_5->setText(tr("Init magnetic permeability")+" μ:");
+            mui->label_6->setText(tr("Chamfer") + " C:");
+            mui->label_06->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->lineEdit_1->setText(loc.toString(data->Do / myOpt->dwLengthMultiplier));
@@ -1235,6 +1222,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             } else
                 mui->lineEdit_4->setText(loc.toString(data->d / myOpt->dwLengthMultiplier));
             mui->lineEdit_5->setText(loc.toString(data->mu));
+            mui->lineEdit_6->setText(loc.toString(data->Ch / myOpt->dwLengthMultiplier));
             break;
         }
         case _PCB_coil:{
@@ -1271,12 +1259,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
-            tmp_txt = tr("Outside diameter")+" D:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Inside diameter")+" d:";
-            mui->label_2->setText(tmp_txt);
-            tmp_txt = tr("PCB trace thickness")+" t:";
-            mui->label_3->setText(tmp_txt);
+            mui->label_1->setText(tr("Outside diameter")+" D:");
+            mui->label_2->setText(tr("Inside diameter")+" d:");
+            mui->label_3->setText(tr("PCB trace thickness")+" t:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -1312,10 +1297,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(false);
-            tmp_txt = tr("Inside diameter")+" Di:";
-            mui->label_1->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_2->setText(tmp_txt);
+            mui->label_1->setText(tr("Inside diameter")+" Di:");
+            mui->label_2->setText(tr("Wire diameter") + " d:");
             mui->label_3->setText(tr("Gap between turns") + " s:");
             mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
             mui->lineEdit_ind->selectAll();
@@ -1336,10 +1319,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
         break;
     }
     case 1:{
-        tmp_txt = tr("Number of turns") + " N:";
-        mui->label_N->setText(tmp_txt);
-        tmp_txt = tr("Frequency") + " f:";
-        mui->label_freq2->setText(tmp_txt);
+        mui->label_N->setText(tr("Number of turns") + " N:");
+        mui->label_freq2->setText(tr("Frequency") + " f:");
         mui->label_01_2->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_02_2->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_03_2->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
@@ -1390,12 +1371,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_3_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Former diameter") + " D:");
+            mui->label_2_2->setText(tr("Wire diameter") + " d:");
+            mui->label_3_2->setText(tr("Wire diameter with insulation") + " k:");
             mui->lineEdit_N->setText(loc.toString(data->N));
             mui->lineEdit_N->selectAll();
             mui->lineEdit_freq2->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -1443,14 +1421,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_3_2->setText(tmp_txt);
-            tmp_txt = tr("Winding pitch")+" p:";
-            mui->label_4_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Former diameter") + " D:");
+            mui->label_2_2->setText(tr("Wire diameter") + " d:");
+            mui->label_3_2->setText(tr("Wire diameter with insulation") + " k:");
+            mui->label_4_2->setText(tr("Winding pitch")+" p:");
             mui->lineEdit_N->setText(loc.toString(data->N));
             mui->lineEdit_N->selectAll();
             mui->lineEdit_freq2->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -1495,16 +1469,11 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Wire width") + " w:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Wire thickness") + " t:";
-            mui->label_3_2->setText(tmp_txt);
-            tmp_txt = tr("Insulation thickness")+" i:";
-            mui->label_4_2->setText(tmp_txt);
-            tmp_txt = tr("Winding pitch")+" p:";
-            mui->label_5_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Former diameter") + " D:");
+            mui->label_2_2->setText(tr("Wire width") + " w:");
+            mui->label_3_2->setText(tr("Wire thickness") + " t:");
+            mui->label_4_2->setText(tr("Insulation thickness")+" i:");
+            mui->label_5_2->setText(tr("Winding pitch")+" p:");
             mui->lineEdit_N->setText(loc.toString(data->N));
             mui->lineEdit_N->selectAll();
             mui->lineEdit_freq2->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -1545,16 +1514,11 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_3_2->setText(tmp_txt);
-            tmp_txt = tr("Winding pitch")+" p:";
-            mui->label_4_2->setText(tmp_txt);
-            tmp_txt = tr("Number of sides of the former")+" n:";
-            mui->label_5_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Former diameter") + " D:");
+            mui->label_2_2->setText(tr("Wire diameter") + " d:");
+            mui->label_3_2->setText(tr("Wire diameter with insulation") + " k:");
+            mui->label_4_2->setText(tr("Winding pitch")+" p:");
+            mui->label_5_2->setText(tr("Number of sides of the former")+" n:");
             mui->lineEdit_N->setText(loc.toString(data->N));
             mui->lineEdit_N->selectAll();
             mui->lineEdit_freq2->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -1606,16 +1570,11 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Winding length") + " l:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Thickness of the coil") + " c:";
-            mui->label_3_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_4_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_5_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Former diameter") + " D:");
+            mui->label_2_2->setText(tr("Winding length") + " l:");
+            mui->label_3_2->setText(tr("Thickness of the coil") + " c:");
+            mui->label_4_2->setText(tr("Wire diameter") + " d:");
+            mui->label_5_2->setText(tr("Wire diameter with insulation") + " k:");
             mui->lineEdit_1_2->setText(loc.toString(data->D / myOpt->dwLengthMultiplier));
             mui->lineEdit_2_2->setText(loc.toString(data->l / myOpt->dwLengthMultiplier));
             mui->lineEdit_3_2->setText(loc.toString(data->c / myOpt->dwLengthMultiplier));
@@ -1652,20 +1611,13 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(true);
             mui->label_7_2->setVisible(true);
             mui->label_07_2->setVisible(true);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Winding length") + " l:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Thickness of the coil") + " c:";
-            mui->label_3_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_4_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_5_2->setText(tmp_txt);
-            tmp_txt = tr("Insulation thickness")+" g:";
-            mui->label_6_2->setText(tmp_txt);
-            tmp_txt = tr("Layers number beetween insulating pads") + " Ng:";
-            mui->label_7_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Former diameter") + " D:");
+            mui->label_2_2->setText(tr("Winding length") + " l:");
+            mui->label_3_2->setText(tr("Thickness of the coil") + " c:");
+            mui->label_4_2->setText(tr("Wire diameter") + " d:");
+            mui->label_5_2->setText(tr("Wire diameter with insulation") + " k:");
+            mui->label_6_2->setText(tr("Insulation thickness")+" g:");
+            mui->label_7_2->setText(tr("Layers number beetween insulating pads") + " Ng:");
             mui->lineEdit_1_2->setText(loc.toString(data->D / myOpt->dwLengthMultiplier));
             mui->lineEdit_2_2->setText(loc.toString(data->l / myOpt->dwLengthMultiplier));
             mui->lineEdit_3_2->setText(loc.toString(data->c / myOpt->dwLengthMultiplier));
@@ -1713,18 +1665,12 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Former width") + " a:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Former height") + " b:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Winding length") + " l:";
-            mui->label_3_2->setText(tmp_txt);
-            tmp_txt = tr("Thickness of the coil") + " c:";
-            mui->label_4_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_5_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter with insulation") + " k:";
-            mui->label_6_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Former width") + " a:");
+            mui->label_2_2->setText(tr("Former height") + " b:");
+            mui->label_3_2->setText(tr("Winding length") + " l:");
+            mui->label_4_2->setText(tr("Thickness of the coil") + " c:");
+            mui->label_5_2->setText(tr("Wire diameter") + " d:");
+            mui->label_6_2->setText(tr("Wire diameter with insulation") + " k:");
             mui->lineEdit_1_2->setText(loc.toString(data->a / myOpt->dwLengthMultiplier));
             mui->lineEdit_2_2->setText(loc.toString(data->b / myOpt->dwLengthMultiplier));
             mui->lineEdit_3_2->setText(loc.toString(data->l / myOpt->dwLengthMultiplier));
@@ -1767,14 +1713,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Former diameter") + " D:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Foil width") + " w:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Foil thickness") + " t:";
-            mui->label_3_2->setText(tmp_txt);
-            tmp_txt = tr("Insulation thickness")+" g:";
-            mui->label_4_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Former diameter") + " D:");
+            mui->label_2_2->setText(tr("Foil width") + " w:");
+            mui->label_3_2->setText(tr("Foil thickness") + " t:");
+            mui->label_4_2->setText(tr("Insulation thickness")+" g:");
             mui->lineEdit_N->setText(loc.toString(data->N));
             mui->lineEdit_N->selectAll();
             mui->lineEdit_freq2->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
@@ -1785,7 +1727,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             break;
         }
         case _FerrToroid:{
-            mui->image->setPixmap(QPixmap(":/images/res/Coil6.png"));
+            mui->image->setPixmap(QPixmap(":/images/res/T-core.png"));
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
@@ -1800,29 +1742,27 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_4_2->setVisible(true);
             mui->label_4_2->setVisible(true);
             mui->label_04_2->setVisible(false);
-            mui->lineEdit_5_2->setVisible(false);
-            mui->label_5_2->setVisible(false);
-            mui->label_05_2->setVisible(false);
+            mui->lineEdit_5_2->setVisible(true);
+            mui->label_5_2->setVisible(true);
+            mui->label_05_2->setVisible(true);
             mui->lineEdit_6_2->setVisible(false);
             mui->label_6_2->setVisible(false);
             mui->label_06_2->setVisible(false);
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Outside diameter")+" D1:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Inside diameter")+" D2:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Core height") + " h:";
-            mui->label_3_2->setText(tmp_txt);
-            tmp_txt = tr("Init magnetic permeability")+" μ:";
-            mui->label_4_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Outside diameter")+" OD:");
+            mui->label_2_2->setText(tr("Inside diameter")+" ID:");
+            mui->label_3_2->setText(tr("Core height") + " h:");
+            mui->label_4_2->setText(tr("Init magnetic permeability")+" μ:");
             mui->lineEdit_N->setText(loc.toString(data->N));
             mui->lineEdit_N->selectAll();
             mui->lineEdit_1_2->setText(loc.toString(data->Do / myOpt->dwLengthMultiplier));
             mui->lineEdit_2_2->setText(loc.toString(data->Di / myOpt->dwLengthMultiplier));
             mui->lineEdit_3_2->setText(loc.toString(data->h / myOpt->dwLengthMultiplier));
             mui->lineEdit_4_2->setText(loc.toString(data->mu / myOpt->dwLengthMultiplier));
+            mui->lineEdit_5_2->setText(loc.toString(data->Ch / myOpt->dwLengthMultiplier));
+            mui->label_5_2->setText(tr("Chamfer") + " C:");
             break;
         }
         case _PCB_coil:{
@@ -1866,16 +1806,11 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Outside diameter")+" D:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Inside diameter")+" d:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Winding pitch")+" s:";
-            mui->label_3_2->setText(tmp_txt);
-            tmp_txt = tr("Width of a PCB trace") + " W:";
-            mui->label_4_2->setText(tmp_txt);
-            tmp_txt = tr("PCB trace thickness")+" t:";
-            mui->label_5_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Outside diameter")+" D:");
+            mui->label_2_2->setText(tr("Inside diameter")+" d:");
+            mui->label_3_2->setText(tr("Winding pitch")+" s:");
+            mui->label_4_2->setText(tr("Width of a PCB trace") + " W:");
+            mui->label_5_2->setText(tr("PCB trace thickness")+" t:");
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->lineEdit_N->setText(loc.toString(data->N));
             mui->lineEdit_N->selectAll();
@@ -1915,12 +1850,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            tmp_txt = tr("Outside diameter")+" Do:";
-            mui->label_1_2->setText(tmp_txt);
-            tmp_txt = tr("Inside diameter")+" Di:";
-            mui->label_2_2->setText(tmp_txt);
-            tmp_txt = tr("Wire diameter") + " d:";
-            mui->label_3_2->setText(tmp_txt);
+            mui->label_1_2->setText(tr("Outside diameter")+" Do:");
+            mui->label_2_2->setText(tr("Inside diameter")+" Di:");
+            mui->label_3_2->setText(tr("Wire diameter") + " d:");
             mui->lineEdit_N->setText(loc.toString(data->N));
             mui->lineEdit_N->selectAll();
             mui->lineEdit_1_2->setText(loc.toString(data->Do / myOpt->dwLengthMultiplier));
@@ -1974,6 +1906,7 @@ void MainWindow::on_actionTo_null_data_triggered()
         data->isol = 0;
         data->l = 0;
         data->c = 0;
+        data->Ch = 0;
         data->g = 0;
         data->Ng = 0;
         data->Do = 0;
@@ -2009,6 +1942,7 @@ void MainWindow::on_actionTo_null_data_triggered()
         defineAppSettings(settings);
         settings->remove("Data");
         settings->remove("AirCoreToroid");
+        settings->remove("AL");
         settings->remove("Amidon");
         settings->remove("ECore");
         settings->remove("FerriteRod");
@@ -2017,6 +1951,7 @@ void MainWindow::on_actionTo_null_data_triggered()
         settings->remove("Meander_PCB");
         settings->remove("Multi_loop");
         settings->remove("PotCore");
+        settings->remove("rf_torus");
         settings->remove("Shield");
         settings->remove("UCore");
         delete settings;
@@ -2029,6 +1964,8 @@ void MainWindow::on_actionThemeDefault_triggered()
     mui->actionThemeSunny->setChecked(false);
     mui->actionThemeDark->setChecked(false);
     mui->actionThemeDefault->setChecked(true);
+    if(myOpt->styleGUI == _DarkStyle)
+        invertGUIconColor();
     myOpt->styleGUI = _DefaultStyle;
     resetUiFont();
 }
@@ -2047,8 +1984,10 @@ void MainWindow::on_actionThemeDark_triggered()
     mui->actionThemeSunny->setChecked(false);
     mui->actionThemeDark->setChecked(true);
     mui->actionThemeDefault->setChecked(false);
-    myOpt->styleGUI = _DarkStyle;
     resetUiFont();
+    if((myOpt->styleGUI == _DefaultStyle)||(myOpt->styleGUI == _SunnyStyle))
+        invertGUIconColor();
+    myOpt->styleGUI = _DarkStyle;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionThemeSunny_triggered()
@@ -2065,8 +2004,10 @@ void MainWindow::on_actionThemeSunny_triggered()
     mui->actionThemeSunny->setChecked(true);
     mui->actionThemeDark->setChecked(false);
     mui->actionThemeDefault->setChecked(false);
-    myOpt->styleGUI = _SunnyStyle;
     resetUiFont();
+    if(myOpt->styleGUI == _DarkStyle)
+        invertGUIconColor();
+    myOpt->styleGUI = _SunnyStyle;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionClear_all_triggered()
@@ -2195,6 +2136,8 @@ void MainWindow::on_actionAbout_triggered()
 {
     About *about = new About(this);
     about->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(this, SIGNAL(sendStyleGUI(int)), about, SLOT(getStyleGUI(int)));
+    emit sendStyleGUI(myOpt->styleGUI);
     about->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2391,15 +2334,12 @@ void MainWindow::on_toolButton_Configure_clicked()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_6_toggled(bool checked)
 {
-    QString tmp_txt;
     if (checked){
-        tmp_txt = tr("Number of turns of the coil") + " N:";
-        mui->label_3_2->setText(tmp_txt);
+        mui->label_3_2->setText(tr("Number of turns of the coil") + " N:");
         mui->label_03_2->setVisible(false);
         mui->lineEdit_3_2->setText(loc.toString(data->N));
     } else {
-        tmp_txt = tr("Thickness of the coil") + " c:";
-        mui->label_3_2->setText(tmp_txt);
+        mui->label_3_2->setText(tr("Thickness of the coil") + " c:");
         mui->label_03_2->setVisible(true);
         mui->lineEdit_3_2->setText(loc.toString(data->c));
     }
@@ -2408,15 +2348,12 @@ void MainWindow::on_radioButton_6_toggled(bool checked)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_8_toggled(bool checked)
 {
-    QString tmp_txt;
     if (checked){
-        tmp_txt = tr("Resistance of the coil") + " Rdc:";
-        mui->label_4_2->setText(tmp_txt);
+        mui->label_4_2->setText(tr("Resistance of the coil") + " Rdc:");
         mui->label_04_2->setText(tr("Ohm"));
         mui->lineEdit_4_2->setText(loc.toString(data->Rdc));
     } else {
-        tmp_txt = tr("Wire diameter") + " d:";
-        mui->label_4_2->setText(tmp_txt);
+        mui->label_4_2->setText(tr("Wire diameter") + " d:");
         mui->label_04_2->setText(tr("mm"));
         if (myOpt->isAWG){
             if (data->d > 0){
@@ -2768,6 +2705,11 @@ void MainWindow::on_lineEdit_6_editingFinished()
     if (!mui->lineEdit_6->text().isEmpty()){
         bool ok;
         switch (FormCoil) {
+        case _FerrToroid:{
+            data->Ch = loc.toDouble(mui->lineEdit_6->text(), &ok);
+            if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            break;
+        }
         case _Multilayer_p:{
             data->Ng = loc.toDouble(mui->lineEdit_6->text(), &ok);
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
@@ -3079,6 +3021,11 @@ void MainWindow::on_lineEdit_5_2_editingFinished()
             }
             break;
         }
+        case _FerrToroid:{
+            data->Ch = loc.toDouble(mui->lineEdit_5_2->text(), &ok);
+            if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            break;
+        }
         case _PCB_coil:{
             data->th = loc.toDouble(mui->lineEdit_5_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
@@ -3178,7 +3125,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_1->setText(loc.toString(D / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(k / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, I, f, 0, myOpt->dwAccuracy, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, I, f, 0, myOpt->dwAccuracy, 0, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3228,7 +3175,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, I, f, 0, myOpt->dwAccuracy, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, I, f, 0, myOpt->dwAccuracy, 0, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3274,7 +3221,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_3->setText(loc.toString(t / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4->setText(loc.toString(ins / myOpt->dwLengthMultiplier));
                 mui->lineEdit_5->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, I, f, myOpt->dwAccuracy, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, I, f, myOpt->dwAccuracy, 0, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_rectW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3331,7 +3278,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, Dk, d, p, f, _n, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, Dk, d, p, f, _n, 0, 0, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_Poligonal_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3498,14 +3445,14 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 break;
             }
             case _FerrToroid:{
-                if ((mui->lineEdit_3->text().isEmpty())||(mui->lineEdit_4->text().isEmpty())){
+                if ((mui->lineEdit_3->text().isEmpty())||(mui->lineEdit_4->text().isEmpty())||(mui->lineEdit_6->text().isEmpty())){
                     showWarning(tr("Warning"), tr("One or more inputs are empty!"));
                     return;
                 }
-                bool ok1, ok2, ok3, ok4, ok5, ok6;
+                bool ok1, ok2, ok3, ok4, ok5, ok6, ok7;
                 double I = loc.toDouble(mui->lineEdit_ind->text(),&ok1)*myOpt->dwInductanceMultiplier;
-                double D1 = loc.toDouble(mui->lineEdit_1->text(),&ok2)*myOpt->dwLengthMultiplier;
-                double D2 = loc.toDouble(mui->lineEdit_2->text(),&ok3)*myOpt->dwLengthMultiplier;
+                double OD = loc.toDouble(mui->lineEdit_1->text(),&ok2)*myOpt->dwLengthMultiplier;
+                double ID = loc.toDouble(mui->lineEdit_2->text(),&ok3)*myOpt->dwLengthMultiplier;
                 double h = loc.toDouble(mui->lineEdit_3->text(),&ok4)*myOpt->dwLengthMultiplier;
                 double d = 0;
                 if (myOpt->isAWG){
@@ -3514,26 +3461,28 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     d = loc.toDouble(mui->lineEdit_4->text(),&ok5)*myOpt->dwLengthMultiplier;
                 }
                 double mu = loc.toDouble(mui->lineEdit_5->text(),&ok6);
-                if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)||(!ok6)){
+                double Ch = loc.toDouble(mui->lineEdit_6->text(),&ok7)*myOpt->dwLengthMultiplier;
+                if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)||(!ok6)||(!ok7)){
                     showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
                     return;
                 }
-                if ((I == 0)||(D1 == 0)||(D2 == 0)||(h == 0)||(d == 0)||(mu == 0)){
+                if ((I == 0)||(OD == 0)||(ID == 0)||(h == 0)||(d == 0)||(mu == 0)){
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
                     return;
                 }
-                if (D1 < D2){
-                    showWarning(tr("Warning"), "D1 < D2");
+                if (OD < ID){
+                    showWarning(tr("Warning"), "OD < ID");
                     return;
                 }
                 data->inductance = I;
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
-                mui->lineEdit_1->setText(loc.toString(D1 / myOpt->dwLengthMultiplier));
-                mui->lineEdit_2->setText(loc.toString(D2 / myOpt->dwLengthMultiplier));
+                mui->lineEdit_1->setText(loc.toString(OD / myOpt->dwLengthMultiplier));
+                mui->lineEdit_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(h / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_4->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_5->setText(loc.toString(mu));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, D1, D2, h, d, mu, 0, 0 );
+                mui->lineEdit_6->setText(loc.toString(Ch / myOpt->dwLengthMultiplier));
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, OD, ID, h, d, mu, Ch, 0 );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_ferrToroidN_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3546,8 +3495,8 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 bool ok1, ok2, ok3, ok4, ok5;
                 double I = loc.toDouble(mui->lineEdit_ind->text(),&ok1)*myOpt->dwInductanceMultiplier;
                 double f = loc.toDouble(mui->lineEdit_freq->text(),&ok2)*myOpt->dwFrequencyMultiplier;
-                double D1 = loc.toDouble(mui->lineEdit_1->text(),&ok3)*myOpt->dwLengthMultiplier;
-                double D2 = loc.toDouble(mui->lineEdit_2->text(),&ok4)*myOpt->dwLengthMultiplier;
+                double OD = loc.toDouble(mui->lineEdit_1->text(),&ok3)*myOpt->dwLengthMultiplier;
+                double ID = loc.toDouble(mui->lineEdit_2->text(),&ok4)*myOpt->dwLengthMultiplier;
                 double th = loc.toDouble(mui->lineEdit_3->text(),&ok5)*myOpt->dwLengthMultiplier;
                 double ratio = (double)mui->horizontalSlider->value()/100;
                 int layoutPCB = mui->comboBox_checkPCB->currentIndex();
@@ -3555,20 +3504,20 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
                     return;
                 }
-                if ((I == 0)||(f == 0)||(D1 == 0)||(D2 == 0)||(th == 0)){
+                if ((I == 0)||(f == 0)||(OD == 0)||(ID == 0)||(th == 0)){
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
                     return;
                 }
-                if (D1 < D2){
-                    showWarning(tr("Warning"), "D1 < D2");
+                if (OD < ID){
+                    showWarning(tr("Warning"), "OD < ID");
                     return;
                 }
                 data->inductance = I;
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
-                mui->lineEdit_1->setText(loc.toString(D1 / myOpt->dwLengthMultiplier));
-                mui->lineEdit_2->setText(loc.toString(D2 / myOpt->dwLengthMultiplier));
+                mui->lineEdit_1->setText(loc.toString(OD / myOpt->dwLengthMultiplier));
+                mui->lineEdit_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(th / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, D1, D2, ratio, layoutPCB, th, f, 0 );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, OD, ID, ratio, layoutPCB, th, f, 0 );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_pcbN_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3653,7 +3602,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_1_2->setText(loc.toString(D / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_2_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, N, f, 0, myOpt->dwAccuracy, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, N, f, 0, myOpt->dwAccuracy, 0, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3701,7 +3650,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, 0, myOpt->dwAccuracy, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, 0, myOpt->dwAccuracy, 0, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3747,7 +3696,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_3_2->setText(loc.toString(t / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(ins / myOpt->dwLengthMultiplier));
                 mui->lineEdit_5_2->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, N, f, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, N, f, 0, 0, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_rectW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3802,7 +3751,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, _n, myOpt->dwAccuracy, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, _n, myOpt->dwAccuracy, 0, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_Poligonal_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3996,30 +3945,32 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), tr("One or more inputs are empty!"));
                     return;
                 }
-                bool ok1, ok2, ok3, ok4, ok5;
+                bool ok1, ok2, ok3, ok4, ok5, ok6;
                 double N = loc.toDouble(mui->lineEdit_N->text(), &ok1);
-                double D1 = loc.toDouble(mui->lineEdit_1_2->text(), &ok2)*myOpt->dwLengthMultiplier;
-                double D2 = loc.toDouble(mui->lineEdit_2_2->text(), &ok3)*myOpt->dwLengthMultiplier;
+                double OD = loc.toDouble(mui->lineEdit_1_2->text(), &ok2)*myOpt->dwLengthMultiplier;
+                double ID = loc.toDouble(mui->lineEdit_2_2->text(), &ok3)*myOpt->dwLengthMultiplier;
                 double h = loc.toDouble(mui->lineEdit_3_2->text(), &ok4)*myOpt->dwLengthMultiplier;
                 double mu = loc.toDouble(mui->lineEdit_4_2->text(), &ok5);
-                if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
+                double Ch = loc.toDouble(mui->lineEdit_5_2->text(), &ok6)*myOpt->dwLengthMultiplier;
+                if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)||(!ok6)){
                     showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
                     return;
                 }
-                if ((N == 0)||(D1 == 0)||(D2 == 0)||(h == 0)||(mu == 0)){
+                if ((N == 0)||(OD == 0)||(ID == 0)||(h == 0)||(mu == 0)){
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
                     return;
                 }
-                if (D1 < D2){
-                    showWarning(tr("Warning"), "D1 < D2");
+                if (OD < ID){
+                    showWarning(tr("Warning"), "OD < ID");
                     return;
                 }
                 mui->lineEdit_N->setText(loc.toString(N));
-                mui->lineEdit_1_2->setText(loc.toString(D1 / myOpt->dwLengthMultiplier));
-                mui->lineEdit_2_2->setText(loc.toString(D2 / myOpt->dwLengthMultiplier));
+                mui->lineEdit_1_2->setText(loc.toString(OD / myOpt->dwLengthMultiplier));
+                mui->lineEdit_2_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(h / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(mu));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, D1, D2, h, mu, 0, 0, 0 );
+                mui->lineEdit_5_2->setText(loc.toString(Ch / myOpt->dwLengthMultiplier));
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, OD, ID, h, mu, Ch, 0, 0 );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_ferriteI_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -4032,8 +3983,8 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 bool ok1, ok2, ok3, ok4, ok5, ok6;
                 double N = loc.toDouble(mui->lineEdit_N->text(), &ok1);
                 double f = loc.toDouble(mui->lineEdit_freq2->text(), &ok2)*myOpt->dwFrequencyMultiplier;
-                double D2 = loc.toDouble(mui->lineEdit_2_2->text(), &ok3)*myOpt->dwLengthMultiplier;
-                if ((N == 0)||(D2 == 0)||(f == 0)){
+                double ID = loc.toDouble(mui->lineEdit_2_2->text(), &ok3)*myOpt->dwLengthMultiplier;
+                if ((N == 0)||(ID == 0)||(f == 0)){
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
                     return;
                 }
@@ -4059,12 +4010,12 @@ void MainWindow::on_pushButton_Calculate_clicked()
 
                 int layoutPCB = mui->comboBox_checkPCB->currentIndex();
                 mui->lineEdit_N->setText(loc.toString(N));
-                mui->lineEdit_2_2->setText(loc.toString(D2 / myOpt->dwLengthMultiplier));
+                mui->lineEdit_2_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(s / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(W / myOpt->dwLengthMultiplier));
                 mui->lineEdit_5_2->setText(loc.toString(th / myOpt->dwLengthMultiplier));
 
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, 0, D2, s, W, layoutPCB, th, f );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, 0, ID, s, W, layoutPCB, th, f );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_pcbI_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -4076,8 +4027,8 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 }
                 bool ok1, ok2, ok3, ok4;
                 double N = loc.toDouble(mui->lineEdit_N->text(), &ok1);
-                double D1 = loc.toDouble(mui->lineEdit_1_2->text(), &ok2)*myOpt->dwLengthMultiplier;
-                double D2 = loc.toDouble(mui->lineEdit_2_2->text(), &ok3)*myOpt->dwLengthMultiplier;
+                double OD = loc.toDouble(mui->lineEdit_1_2->text(), &ok2)*myOpt->dwLengthMultiplier;
+                double ID = loc.toDouble(mui->lineEdit_2_2->text(), &ok3)*myOpt->dwLengthMultiplier;
                 double d = 0;
                 if (myOpt->isAWG){
                     d = convertfromAWG(mui->lineEdit_3_2->text(),&ok4);
@@ -4088,19 +4039,19 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
                     return;
                 }
-                if ((N == 0)||(D1 == 0)||(D2 == 0)||(d == 0)){
+                if ((N == 0)||(OD == 0)||(ID == 0)||(d == 0)){
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
                     return;
                 }
-                if (D1 < D2){
-                    showWarning(tr("Warning"), "D1 < D2");
+                if (OD < ID){
+                    showWarning(tr("Warning"), "OD < ID");
                     return;
                 }
                 mui->lineEdit_N->setText(loc.toString(N));
-                mui->lineEdit_1_2->setText(loc.toString(D1 / myOpt->dwLengthMultiplier));
-                mui->lineEdit_2_2->setText(loc.toString(D2 / myOpt->dwLengthMultiplier));
+                mui->lineEdit_1_2->setText(loc.toString(OD / myOpt->dwLengthMultiplier));
+                mui->lineEdit_2_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_3_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, D1, D2, d, 0, 0, 0, 0 );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, OD, ID, d, 0, 0, 0, 0 );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_spiralI_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -4725,7 +4676,7 @@ void MainWindow::get_ferrToroidN_Result(_CoilResult result){
         Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     }
     if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil6.png\">";
+        Input += "<img src=\":/images/res/T-core.png\">";
     }
     Input += "<p><u>" + tr("Input") + ":</u><br/>";
     Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
@@ -4733,7 +4684,8 @@ void MainWindow::get_ferrToroidN_Result(_CoilResult result){
     Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
     Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
     Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
-    Input += mui->label_5->text() + " " + mui->lineEdit_5->text() + "</p>";
+    Input += mui->label_5->text() + " " + mui->lineEdit_5->text() + "<br/>";
+    Input += mui->label_6->text() + " " + mui->lineEdit_6->text() + " " + mui->label_06->text() + "</p>";
     c.insertHtml(Input);
     QString Result = "<hr>";
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
@@ -4745,7 +4697,9 @@ void MainWindow::get_ferrToroidN_Result(_CoilResult result){
         Result += tr("Length of wire without leads") + " lw = " + loc.toString(d_wire_length.toDouble(), 'f', myOpt->dwAccuracy) + " " +
                 qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
         data->N = result.N;
-        Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N, 'f', myOpt->dwAccuracy);
+        Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + "<br/>";
+        Result += "A<sub>L</sub>&nbsp;= " + loc.toString(result.thd)
+                + "&nbsp;" +  qApp->translate("Context","nH") + "/N<sup>2</sup>";
     } else {
         Result += "<span style=\"color:red;\">" + tr("Coil can not be realized") + "! </span>";
         mui->statusBar->showMessage(tr("Coil can not be realized") + "!");
@@ -5346,20 +5300,23 @@ void MainWindow::get_ferriteI_Result(_CoilResult result){
         Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     }
     if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil6.png\">";
+        Input += "<img src=\":/images/res/T-core.png\">";
     }
     Input += "<p><u>" + tr("Input") + ":</u><br/>";
     Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
     Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
     Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
     Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + "</p>";
+    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + "<br/>";
+    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "</p>";
     c.insertHtml(Input);
     QString Result = "<hr>";
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
     data->inductance = result.N;
     Result += tr("Inductance") + " L = " + loc.toString(result.N / myOpt->dwInductanceMultiplier, 'f', myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
+            + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+    Result += "A<sub>L</sub>&nbsp;= " + loc.toString(result.thd)
+            + "&nbsp;" +  qApp->translate("Context","nH") + "/N<sup>2</sup>";
     Result += "</p><hr>";
     c.insertHtml(Result);
     if(myOpt->isLastShowingFirst)
@@ -5482,6 +5439,18 @@ void MainWindow::on_actionAL_factor_calculation_triggered()
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     fAL->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionToroidal_inductor_at_RF_triggered()
+{
+    RF_Toroid *rf_toroid = new RF_Toroid();
+    rf_toroid->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(rf_toroid, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), rf_toroid, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), rf_toroid, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    rf_toroid->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionCross_over_inductor_triggered()

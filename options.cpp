@@ -26,10 +26,29 @@ Options::Options(QWidget *parent) :
     ui->setupUi(this);
     qRegisterMetaType<_OptionStruct>();
     oOpt = new _OptionStruct;
+    QSettings *settings;
+    defineAppSettings(settings);
+    settings->beginGroup( "Options" );
+    QRect screenGeometry = qApp->primaryScreen()->availableGeometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
+    QSize size = settings->value("size", this->minimumSize()).toSize();
+    settings->endGroup();
+    resize(size);
+    move(pos);
+    delete settings;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Options::~Options()
 {
+    QSettings *settings;
+    defineAppSettings(settings);
+    settings->beginGroup( "Options" );
+    settings->setValue("pos", this->pos());
+    settings->setValue("size", size());
+    settings->endGroup();
+    delete settings;
     delete oOpt;
     delete ui;
 }

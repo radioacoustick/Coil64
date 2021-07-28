@@ -55,7 +55,7 @@ Crossover::Crossover(QWidget *parent) :
     horizontalHeader.append(tr("Number of turns of the coil"));
     horizontalHeader.append(tr("Number of layers"));
     horizontalHeader.append(tr("Number of turns per layer"));
-    horizontalHeader.append(tr("Dimensions of inductor") + "\nDxCxW");
+    horizontalHeader.append(tr("Dimensions of inductor") + "\nDxHxW");
     horizontalHeader.append(tr("Length of wire without leads"));
     horizontalHeader.append(tr("Weight of wire") + "\n[" + tr("g") + "]");
     horizontalHeader.append(tr("Resistance of the coil") + "\n[" + tr("Ohm") + "]");
@@ -171,6 +171,7 @@ void Crossover::getOpt(_OptionStruct gOpt)
         else
             hpopupactions.at(i)->setChecked(false);
     }
+    settings->endGroup();
     delete settings;
     switchColumnVisible();
     ui->toolButton_Help->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
@@ -216,9 +217,9 @@ void Crossover::fillTable(QStandardItem *item, int count, double wire_d)
     item = new QStandardItem(QString::number(round(Nc)));
     model->setItem(count - 1, 3, item);
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Dimensions of inductor")
-                         + " [" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "]\n DxCxW ");
+                         + " [" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "]\n DxHxW ");
     item = new QStandardItem(loc.toString(2 * c / fOpt->dwLengthMultiplier, 'f', 1)
-                             + "x" + loc.toString(c / fOpt->dwLengthMultiplier, 'f', 1)
+                             + "x" + loc.toString(4 * c / fOpt->dwLengthMultiplier, 'f', 1)
                              + "x" + loc.toString(c / fOpt->dwLengthMultiplier, 'f', 1));
     model->setItem(count - 1, 4, item);
     QString _wire_length = formatLength(lengthWire, fOpt->dwLengthMultiplier);
@@ -371,6 +372,9 @@ void Crossover::on_toolButton_Save_clicked()
         }
         QString filters(".csv (*.csv);;All files (*.*)");
         QString defaultFilter(".csv (*.csv)");
+        QString dataDelimiter = ",";
+        if (loc.decimalPoint() == ",")
+            dataDelimiter = ";";
         QString fileName = QFileDialog::getSaveFileName(this, tr("Save"), savePath, filters, &defaultFilter);
         if (!fileName.isEmpty()){
             QString ext = defaultFilter.mid(defaultFilter.indexOf("*") + 1, 4);
@@ -391,17 +395,16 @@ void Crossover::on_toolButton_Save_clicked()
                     else
                         strList.append("");
                 }
-                data << strList.join(";") << "\n";
+                data << strList.join(dataDelimiter) << "\n";
                 for (int i = 0; i < model->rowCount(); i++) {
                     strList.clear();
                     for (int j = 0; j < model->columnCount(); j++) {
-
                         if (model->data(model->index(i, j)).toString().length() > 0)
                             strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
                         else
                             strList.append("");
                     }
-                    data << strList.join(";") + "\n";
+                    data << strList.join(dataDelimiter) + "\n";
                 }
                 file.close();
             }

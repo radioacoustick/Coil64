@@ -40,6 +40,18 @@ enum _FormCoil
     _Flat_Spiral   //Flat spiral Tesla coil
 };
 
+enum _TableHeaders
+{
+    _WIRE_DIAMETER = 0,
+    _NUMBER_OF_TURNS,
+    _NUMBER_OF_LAYERS,
+    _NUMBER_OF_TURNS_PER_LAYER,
+    _DIMENSIONS_OF_INDUCTOR,
+    _LENGTH_OF_WIRE,
+    _WEIGHT_OF_WIRE,
+    _RESISTANCE_OF_COIL
+};
+
 #pragma pack(push,1)
     struct _CoilResult{
       double N;
@@ -67,6 +79,7 @@ enum _FormCoil
       double isol;
       double l;
       double c;
+      double Ch;
       double g;
       double Ng;
       double Do;
@@ -81,6 +94,8 @@ enum _FormCoil
       int ns;
     };
 #pragma pack(pop)
+
+    const double mu0 = 4e-7 * M_PI;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw, unsigned int accuracy); //get Number of turns for One-layer coil with round wire
     double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double I, double *lw, unsigned int accuracy); //get Number of turns for One-layer coil with round wire
@@ -88,7 +103,7 @@ enum _FormCoil
     void getMultiLayerN(double I, double D, double dw, double k, double lk, double gap, long Ng, _CoilResult *result); //get Number of turns for Multi-layer coil
     void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result);
     void getMultilayerN_Foil(double Dk, double w, double t, double ins, double I, _CoilResult *result);
-    void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, _CoilResult *result); //get Number of turns for Ferrite toroid coil
+    void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, double Ch, _CoilResult *result); //get Number of turns for Ferrite toroid coil
     void getPCB_N (double I, double D, double d, double ratio, int layout, _CoilResult *result);
     void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result);
 
@@ -100,11 +115,11 @@ enum _FormCoil
     void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result);
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result);
     void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result);
-    double getFerriteI(double N, double Do, double Di, double h, double mu); //get Inductance for Ferrite toroid coil
+    double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, _CoilResult *result); //get Inductance for Ferrite toroid coil
     double getPCB_I(double N, double _d, double _s, int layout, _CoilResult *result);
     void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result);
 
-    void findToroidPemeability(double N, double I, double Do, double Di, double h, _CoilResult *result);
+    void findToroidPemeability(double N, double I, double Do, double Di, double h, double Ch, _CoilResult *result);
     void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, double s, double dw, double p, _CoilResult *result);
     void findMeadrPCB_I(double a, double d, double h, double W, int N, _CoilResult *result);
 

@@ -26,7 +26,6 @@ About::About(QWidget *parent) :
 {
     ui->setupUi(this);
     QString title = QCoreApplication::applicationName();
-    QString lable = QCoreApplication::applicationName();
     title.append(" v");
     title.append(QCoreApplication::applicationVersion());
     ui->label_2->setText(title);
@@ -45,7 +44,16 @@ About::~About()
     delete ui;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void About::getStyleGUI(int styleGUI)
+{
+    if (styleGUI == _DarkStyle){
+        ui->label_27->setPixmap(revercePixmapColors(ui->label_27->pixmap()));
+        ui->label_18->setPixmap(revercePixmapColors(ui->label_18->pixmap()));
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void About::on_pushButton_clicked()
 {
     this->close();
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

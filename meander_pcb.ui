@@ -356,6 +356,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_N</tabstop>
+  <tabstop>lineEdit_1</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>lineEdit_4</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_3</tabstop>
+ </tabstops>
  <resources>
   <include location="res.qrc"/>
  </resources>

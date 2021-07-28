@@ -534,6 +534,22 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>comboBox</tabstop>
+  <tabstop>checkBox_isReverce</tabstop>
+  <tabstop>lineEdit_N</tabstop>
+  <tabstop>lineEdit_a</tabstop>
+  <tabstop>lineEdit_b</tabstop>
+  <tabstop>lineEdit_c</tabstop>
+  <tabstop>lineEdit_d</tabstop>
+  <tabstop>lineEdit_e</tabstop>
+  <tabstop>lineEdit_f</tabstop>
+  <tabstop>lineEdit_s</tabstop>
+  <tabstop>lineEdit_mu</tabstop>
+  <tabstop>pushButton_calculate</tabstop>
+  <tabstop>pushButton_close</tabstop>
+  <tabstop>pushButton_help</tabstop>
+ </tabstops>
  <resources>
   <include location="res.qrc"/>
  </resources>

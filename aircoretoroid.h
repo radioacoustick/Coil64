@@ -61,7 +61,7 @@ private:
     QLocale loc;
 
     int windingKind;
-    double N, ind, D1, D2, h, dw;
+    double N, ind, OD, ID, h, dw;
 };
 
 #endif // AIRCORETOROID_H
