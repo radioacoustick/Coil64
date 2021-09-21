@@ -13,6 +13,12 @@ QLineEdit {
   selection-background-color: darkgray;
 }
 
+QLineEdit:disabled {
+  border: 2px solid gray;
+  border-radius: 1px;
+  background-color: #474748;
+}
+
 QTextBrowser {
   background-color: #474748;
 }

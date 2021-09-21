@@ -31,7 +31,7 @@ enum _Mprop {Rho,Chi,Alpha};
 
 double const mtrl[4][3] = {{ 2.824e-8, 2.21e-5, 0.0039 }, { 1.7241e-8, - 9.56e-6, 0.00393 }, { 1.59e-8, - 2.63e-5, 0.0038 }, {1.15e-7, 2.4e-6, 0.0042}};
 
-unsigned long int solve_Qr(double I, double Df, double pm, double Dw, double fa, double N, double Cs, Material mt);
+unsigned long int solve_Qr(double I, double Df, double pm, double Dw, double fa, double N, double Cs, Material mt, _CoilResult *result);
 unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t, double fa,  double N, double Cs, Material mt);
 double solve_Qpcb(long N, double _I, double _D, double _d, double _W, double _t, double _s,  double _f, int layout);
 

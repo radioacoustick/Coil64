@@ -2,6 +2,10 @@ QWidget{
   background-color: #FDFAF0;
 }
 
+QLineEdit:disabled {
+  background-color: #F7F2E0;
+}
+
 QMenu::item:selected {
   background-color: #FDEEB9;
   border: 1px solid #308CC6;

@@ -4224,13 +4224,12 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        double capacitance = CalcLC2(I, f);
         Material mt = Cu;
         checkMaterial1(&mt);
         double Resistivity = mtrl[mt][Rho]*1e6;
         double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
         Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-        double ESR = (1e3 * sqrt(I / capacitance)) / Ql;
+        double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
             Result += "<hr><p>";
@@ -4313,13 +4312,12 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        double Capacity = CalcLC2(I, f);
         Material mt = Cu;
         checkMaterial1(&mt);
         double Resistivity = mtrl[mt][Rho]*1e6;
         double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
         Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-        double ESR = (1e3 * sqrt(I / Capacity)) / Ql;
+        double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
             Result += "<hr><p>";
@@ -4412,13 +4410,12 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        double capacitance = CalcLC2(I, f);
         Material mt = Cu;
         checkMaterial1(&mt);
         double Resistivity = mtrl[mt][Rho]*1e6;
         double R = (Resistivity * lW * 4) / (M_PI * d * d); // DC resistance of the wire
         Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-        double ESR = (1e3 * sqrt(I / capacitance)) / Ql;
+        double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
             Result += "<hr><p>";
@@ -4873,13 +4870,12 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        double Capacity = CalcLC2(I, f);
         Material mt = Cu;
         checkMaterial2(&mt);
         double Resistivity = mtrl[mt][Rho]*1e6;
         double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
         Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-        double ESR = (1e3 * sqrt(I / Capacity)) / Ql;
+        double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
             Result += "<hr><p>";
@@ -4962,13 +4958,12 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        double Capacity = CalcLC2(I, f);
         Material mt = Cu;
         checkMaterial2(&mt);
         double Resistivity = mtrl[mt][Rho]*1e6;
         double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
         Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-        double ESR = (1e3 * sqrt(I / Capacity)) / Ql;
+        double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
             Result += "<hr><p>";
@@ -5063,13 +5058,12 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        double Capacity = CalcLC2(I, f);
         Material mt = Cu;
         checkMaterial2(&mt);
         double Resistivity = mtrl[mt][Rho]*1e6;
         double R = (Resistivity * lW * 4) / (M_PI * d * d); // DC resistance of the wire
         Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-        double ESR = (1e3 * sqrt(I / Capacity)) / Ql;
+        double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
             Result += "<hr><p>";

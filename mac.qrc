@@ -19,5 +19,7 @@
         <file>data/95-Material-Fair-Rite.csv</file>
         <file>data/97-Material-Fair-Rite.csv</file>
         <file>data/98-Material-Fair-Rite.csv</file>
+        <file>data/15-Material-Fair-Rite.csv</file>
+        <file>data/20-Material-Fair-Rite.csv</file>
     </qresource>
 </RCC>

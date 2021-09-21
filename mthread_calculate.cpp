@@ -35,7 +35,7 @@ MThread_calculate::MThread_calculate(int _coilForm, int _tab, double _arg1, doub
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MThread_calculate::run(){
-    _CoilResult result = {0,0,0,0,0,0};
+    _CoilResult result = {0,0,0,0,0,0,0};
     try{
         switch (this->tab) {
         case 0:{
@@ -45,7 +45,7 @@ void MThread_calculate::run(){
                 //arg: Dk, d, p, I, f, 0, 0, mt
                 result.N = getOneLayerN_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg7 );//number of turns
                 result.thd = find_Cs(arg3, arg1, arg3 * result.N); //self-capacitance
-                result.six = solve_Qr(arg4,arg1,arg3,arg2,arg5, result.N, result.thd, mt);//Q-factor
+                result.six = solve_Qr(arg4,arg1,arg3,arg2,arg5, result.N, result.thd, mt, &result);//Q-factor
                 result.fourth = findSRF(arg3 * result.N, arg1, result.sec);//self-resonance frequency
                 break;
             }
@@ -66,7 +66,7 @@ void MThread_calculate::run(){
                 double lW = 0.001 * rP * result.N / cos(psi);
                 double De = rP / M_PI;
                 result.fourth = find_Cs(arg4, De, arg4 * result.N); //self-capacitance
-                result.six = solve_Qr(arg1, De, arg4, arg3, arg5, result.N, result.fourth, mt);//Q-factor
+                result.six = solve_Qr(arg1, De, arg4, arg3, arg5, result.N, result.fourth, mt, &result);//Q-factor
                 result.five = findSRF(arg4 * result.N, De, lW);//self-resonance frequency
                 break;
             }
@@ -119,7 +119,7 @@ void MThread_calculate::run(){
                 //arg: Dk, d, p, N, f, 0, 0, mt
                 result.N = getOneLayerI_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg7 );//number of turns
                 result.thd = find_Cs(arg3, arg1, arg3 * arg4); //self-capacitance
-                result.six = solve_Qr(result.N,arg1, arg3, arg2, arg5, arg4, result.thd, mt);//Q-factor
+                result.six = solve_Qr(result.N,arg1, arg3, arg2, arg5, arg4, result.thd, mt, &result);//Q-factor
                 result.fourth = findSRF(arg3 * arg4, arg1, result.sec);//self-resonance frequency
                 break;
             }
@@ -140,7 +140,7 @@ void MThread_calculate::run(){
                 double lW = 0.001 * rP * arg4 / cos(psi);
                 double De = rP / M_PI;
                 result.fourth = find_Cs(arg3, De, arg3 * arg4); //self-capacitance
-                result.six = solve_Qr(result.sec, De, arg3, arg2, arg5, arg4, result.fourth, mt);//Q-factor
+                result.six = solve_Qr(result.sec, De, arg3, arg2, arg5, arg4, result.fourth, mt, &result);//Q-factor
                 result.five = findSRF(arg3 * arg4, De, lW);//self-resonance frequency
                 break;
             }

@@ -40,18 +40,6 @@ enum _FormCoil
     _Flat_Spiral   //Flat spiral Tesla coil
 };
 
-enum _TableHeaders
-{
-    _WIRE_DIAMETER = 0,
-    _NUMBER_OF_TURNS,
-    _NUMBER_OF_LAYERS,
-    _NUMBER_OF_TURNS_PER_LAYER,
-    _DIMENSIONS_OF_INDUCTOR,
-    _LENGTH_OF_WIRE,
-    _WEIGHT_OF_WIRE,
-    _RESISTANCE_OF_COIL
-};
-
 #pragma pack(push,1)
     struct _CoilResult{
       double N;
@@ -60,6 +48,7 @@ enum _TableHeaders
       double fourth;
       double five;
       unsigned long int six;
+      double seven;
     };
 #pragma pack(pop)
 #pragma pack(push,1)

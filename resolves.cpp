@@ -979,7 +979,7 @@ void getFerriteN(double L, double Do, double Di, double h, double dw, double mu,
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, _CoilResult *result){
     double cr = Ch / M_SQRT2; //Chamfer radius
-    double k = 0.8584 * pow(cr, 3) / (h * (Do - Di) / 2); //correction factor for the chamfer
+    double k = 0.8584 * pow(cr, 2) / (h * (Do - Di) / 2); //correction factor for the chamfer
     double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
     double al = round(0.2  * he * mu * log(Do / Di));
     result->thd = al;
@@ -1120,7 +1120,7 @@ void CalcLC3(double Zo, double f, _CoilResult *result)
 void findToroidPemeability(double N, double I, double Do, double Di, double h, double Ch, _CoilResult *result)
 {
     double cr = Ch / M_SQRT2; //Chamfer radius
-    double k = 0.8584 * pow(cr, 3) / (h * (Do - Di) / 2); //correction factor for the chamfer
+    double k = 0.8584 * pow(cr, 2) / (h * (Do - Di) / 2); //correction factor for the chamfer
     double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
     double m = ceil(10000 * I / (2 * N * N * he * log(Do / Di)));
     double al = 1000 * I / (N * N);

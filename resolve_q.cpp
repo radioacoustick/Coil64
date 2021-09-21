@@ -233,7 +233,7 @@ double get_Xir(Material mt, double fm, double dw){
     delta_i_prim = delta_i * (1 - exp(-r / delta_i));
     z = 0.62006 * r / delta_i;
     y = 0.189774 / pow((1 + 0.272481 * pow((pow(z, 1.82938) - pow(z, -0.99457)), 2)), 1.0941);
-    double result = r * r / (2 * r * delta_i_prim - delta_i_prim * delta_i_prim) * (1 - y);
+    double result = (r * r) / ((2 * r * delta_i_prim - delta_i_prim * delta_i_prim) * (1 + y));
     return result;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -257,7 +257,7 @@ double get_Xic(Material mt, double f, double w, double t){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Q-FACTOR OF THE ONE-LAYER COIL WITH ROUND WIRE (WITH PROXIMITY EFFECT)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa, double N, double Cs, Material mt){
+unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa, double N, double Cs, Material mt, _CoilResult *result){
     //I->inductance µH
     //l->winding length mm, Df->coilwinding diameter mm, pm->winding pitch mm, dw->wire diameter mm
     //fm->frequency MHz, N->number of turns, mt->material of wire
@@ -279,6 +279,7 @@ unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa,
     Rl = 2 * M_PI * f * Induct;
     Rc = 1 / (2 * M_PI * f * Cs * 1e-12);
     R_ind = 1 / (1 / Rl + 1 / Rc);
+    result->seven = Rac;
     return round(R_ind / Rac);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
