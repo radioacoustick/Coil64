@@ -95,20 +95,23 @@ double VFnom(double lod, double ei, double ex){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// PUBLIC FUNCTIONS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findSRF(double L, double D, double lw){
-    double Vhx= VFnom(L / D, 1, 1);
-    double Result =0.5 * Vhx * 299.792458 / (2 * lw);
+double findSRF(double lk, double Dk, double lw){
+    // lk - winding length
+    // Dk - winding diameter
+    // lw - length of wire
+    double Vhx= VFnom(lk / Dk, 1, 1);
+    double Result = 0.5 * Vhx * 299.792458 / (2 * lw);
     return Result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double find_Cs(double p, double D, double l){
+double find_Cs(double p, double Dk, double lk){
     p = p / 1000;
-    D = D / 1000;
-    l = l / 1000;
-    double sinpsi = p / (M_PI * D);
+    Dk = Dk / 1000;
+    lk = lk / 1000;
+    double sinpsi = p / (M_PI * Dk);
     double cospsi = sqrt(1 - (sinpsi * sinpsi));
-    double dl = D / l;
+    double dl = Dk / lk;
     double kc = (0.717439 * dl) + (0.933048 * pow(dl, 1.5)) + 0.106 * pow(dl, 2);
-    double result = (4 * e0 / M_PI) * l * (1 + kc) / (cospsi * cospsi);
+    double result = (4 * e0 / M_PI) * lk * (1 + kc) / (cospsi * cospsi);
     return result;
 }

@@ -195,8 +195,8 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
 
     double sinpsic, psic, g, rr, psio, ThetaO, Y0, cosThetaO, k1, k2, t1, t0, c2s, ss, k, a, b, grandtotal;
     double dx, MaxErr, CurrentErr, kat, kbt, Sum2, LastIntg, Sum, phi, kpt, Integral, aaa, bbb, ccc, ddd;
-    int i, m;
-    int err = (int) round(accuracy / 2);
+    int m;
+    int err = ceil((float)accuracy / 2);
     MaxErr = pow(10,-err);
     Integral = 0;
     //  grandtotal = 0;
@@ -276,8 +276,8 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
             m = 2 * m;
             dx = dx / 2;
             Sum = 0;
-            int max= round(m/2);
-            for (i = 1; i <= max; i++){
+            int max= round((float)m/2);
+            for (int i = 1; i <= max; i++){
                 phi = 2 * i * dx + a;
                 kpt = k * phi;
                 Sum = Sum + (Lw - phi) * (Ingrnd(-phi, -kpt - ThetaO, ss, c2s, rr, Y0) + Ingrnd(phi, kpt - ThetaO, ss, c2s, rr, Y0));
@@ -287,7 +287,7 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
             LastIntg = Integral;
             Sum2 = Sum2 + Sum * 2;
         }
-        grandtotal = grandtotal + Integral;
+        grandtotal += Integral;
         a = b;
         b = b * 2;
         if (b > Lw) {
@@ -298,18 +298,18 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
     return result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double solveHelicalInductance(double N, double p, double Dk, double dw, double w, double t, double *lw, bool isRoundWire, unsigned int accuracy){
-    double lW;
+double solveHelicalInductance(double N, double _p, double _Dk, double _dw, double _w, double _t, double *lw, bool isRoundWire, unsigned int accuracy){
+    double lW, dw = 0, w = 0, t = 0;
     double psi;
     double sinpsi;
-    p = p / 1000;
-    Dk = Dk / 1000;
+    double p = _p / 1000;
+    double Dk = _Dk / 1000;
     double Result;
     if (isRoundWire){
-        dw = dw / 1000;
+        dw = _dw / 1000;
     } else {
-        w = w / 1000;
-        t = t / 1000;
+        w = _w / 1000;
+        t = _t / 1000;
     }
     //psi= atan(p/(2*pi*pi*Dk));
     sinpsi = p / (M_PI * Dk);
@@ -324,15 +324,15 @@ double solveHelicalInductance(double N, double p, double Dk, double dw, double w
     return (Result);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double I, double *lw, unsigned int accuracy){
-  double Ind, N_max, N_min, N, k, iDk, Kw, rA, rP;
+double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double I, double *lw, double *iDk, unsigned int accuracy){
+  double Ind, N_max, N_min, N, k, Kw, rA, rP;
   k = 2;
   N_min = 0;
   rA = sqrt((1 / M_PI) * (0.5 * n * pow(0.5 * Dk,2) * sin(2 * M_PI / n)));
   rP = (0.5 / M_PI) * (Dk * n * sin(M_PI / n));
-  Kw = sqrt(1 / 369);
-  iDk = 2 * (((Kw * pow(rP,2)) + ((2 - Kw) * pow(rA,2))) / (2 * rA));
-  N = sqrt(I / (0.0002 * M_PI * iDk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 /
+  Kw = sqrt(1 / 369.0);
+  *iDk = 2 * (((Kw * pow(rP,2)) + ((2 - Kw) * pow(rA,2))) / (2 * rA));
+  N = sqrt(I / (0.0002 * M_PI * *iDk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 /
     pow((0.755 + 1 / k), 1.44)))));
   _CoilResult res;
   getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy);
@@ -356,6 +356,31 @@ double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double
   }
   *lw = res.thd;
   return N;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double getOneLayerN_Poligonal(double I, double Dk, double dw, double  p, double n, _CoilResult *result, unsigned int accuracy){
+
+  double N, lw, iDk;
+
+  N = deriveOneLayerPoligonalN(Dk, dw, p, n, I, &lw, &iDk, accuracy);
+  result->sec = p * N;
+  result->thd = lw;
+  result->seven = iDk;
+  return N;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getOneLayerI_Poligonal(double Dk, double dw, double p, double N, double n, _CoilResult *result, unsigned int accuracy){
+
+  double Kw, rA, rP, lk, iDk, lw;
+
+  lk = N * p;
+  rA = sqrt((1 / M_PI) * (0.5 * n * pow(0.5 * Dk,2) * sin(2.0 * M_PI / n)));
+  rP = (0.5 / M_PI) * (Dk * n * sin(M_PI / n));
+  Kw = sqrt(1 / (1 + 368.0 * (lk / Dk)));
+  iDk = 2.0 * (((Kw * pow(rP, 2)) + ((2.0 - Kw) * pow(rA, 2))) / (2.0 * rA));
+  result->sec = solveHelicalInductance(N, p, iDk, dw, 0, 0, &lw, true, accuracy);
+  result->thd = lw;
+  result->seven = iDk;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getFerriteCoreMagConst(double l1, double l2, double l3, double l4, double l5,
@@ -441,29 +466,6 @@ double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double
     return solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerN_Poligonal(double I, double Dk, double dw, double  h, double n, _CoilResult *result, unsigned int accuracy){
-
-  double N, lw;
-
-  N = deriveOneLayerPoligonalN(Dk, dw, h, n, I, &lw, accuracy);
-  result->sec = h * N;
-  result->thd = lw;
-  return N;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result, unsigned int accuracy){
-
-  double Kw, rA, rP, L, iDk, lw;
-
-  L = N * h;
-  rA = sqrt((1 / M_PI) * (0.5 * n * pow(0.5 * Dk,2) * sin(2 * M_PI / n)));
-  rP = (0.5 / M_PI) * (Dk * n * sin(M_PI / n));
-  Kw = sqrt(1 / (1 + 368 * (L / Dk)));
-  iDk = 2 * (((Kw * pow(rP,2)) + ((2 - Kw) * pow(rA,2))) / (2 * rA));
-  result->sec = solveHelicalInductance(N, h, iDk, dw, 0, 0, &lw, true, accuracy);
-  result->thd = lw;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getMultiLayerN(double I, double D, double dw, double k, double lk, double gap, long Ng, _CoilResult *result){
     double n_g = 0;
     double jg = 0;
@@ -514,9 +516,10 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
                 // N-turn and j-turn
             }
         }
-        Ltotal = Ltotal + Lns + M; // total summary inductance (adding self-inductance and mutual inductance of current N-turn)
+        Ltotal += Lns + M; // total summary inductance (adding self-inductance and mutual inductance of current N-turn)
     }
-    double R = (0.0175 * lw * 1e-4 * 4) / (M_PI * dw * dw); // resistance of the wire
+    double Resistivity = mtrl[Cu][Rho]*1e2;
+    double R = (Resistivity * lw * 4) / (M_PI * dw * dw); // resistance of the wire
     double lw0 = lw / 100;
     double NLayer = nLayer + 1;
     int NumberInterLayer = (int) floor(nLayer / Ng);
@@ -589,9 +592,10 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
         Ks = rosaKs(k / dw);
         Km = rosaKm(n);
         Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
-        Ltotal = Ltotal - Lcor;
+        Ltotal -= Lcor;
     }
-    Rdc = (0.0175 * lw * 1E-4 * 4) / (M_PI * dw * dw);
+    double Resistivity = mtrl[Cu][Rho]*1e2;
+    Rdc = (Resistivity * lw * 4) / (M_PI * dw * dw);
     result->N = n; //number of turns
     result->sec = nLayer + 1; //number of layers
     result->thd = lw * 0.01; //length of wire
@@ -630,9 +634,10 @@ void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _Coi
                 M = M + 2 * Mut(ny, jy, nx - jx, g);
             }
         }
-        Ltotal = Ltotal + Lns + M;
+        Ltotal += Lns + M;
     }
-    double Rdc = (0.0175 * lw * 1E-4 * 4) / (M_PI * dw * dw);
+    double Resistivity = mtrl[Cu][Rho]*1e2;
+    double Rdc = (Resistivity * lw * 4) / (M_PI * dw * dw);
     result->N = Ltotal; //inductance value
     result->sec = nLayer + 1; //number of layers
     result->thd = lw * 0.01; //length of wire
@@ -690,7 +695,7 @@ void getMultiLayerI(double D, double lk, double dw, double k, double c, double g
                 M = M + 2 * Mut(ny, jy, nx - jx, g);
             }
         }
-        Ltotal = Ltotal + Lns + M;
+        Ltotal += Lns + M;
         if (nTmp < c) {
             nTmp = (nLayer + 1) * k;
             ind1 = Ltotal;
@@ -760,11 +765,11 @@ void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw
                 // half mutual inductance with opposite conductor in previous turn
             }
         }
-        Ltotal = Ltotal + 2 * (Ladd - Lsub + Madd - Msub);
+        Ltotal += 2 * (Ladd - Lsub + Madd - Msub);
         Ks = rosaKs(k / dw);
         Km = rosaKm(n);
         Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
-        Ltotal = Ltotal - Lcor;
+        Ltotal -= Lcor;
         if (nTmp < c) {
             nTmp = (nLayer + 1) * k;
             ind1 = Ltotal;
@@ -843,8 +848,9 @@ void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, do
                     M = M + 2 * Mut(ny, jy, nx - jx, g);
                 }
             }
-            Ltotal = Ltotal + Lns + M;
-            tmpR = (0.0175 * lw * 1e-4 * 4) / (M_PI * dw * dw);
+            Ltotal += Lns + M;
+            double Resistivity = mtrl[Cu][Rho] * 1e2;
+            tmpR = (Resistivity * lw * 4) / (M_PI * dw * dw);
         }
         bTmp = (nLayer + 1) * k;
         if (bTmp > c)
@@ -888,13 +894,15 @@ void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _Co
                 M = M + 2 * Mut(ra, rb, 0, gmd);
             }
         }
-        Ltotal = Ltotal + Lns + M;
+        Ltotal += Lns + M;
     }
     double th = k * (N - 1);
     double Do = (D + 2 * th) *10;
     double Length_spiral = find_actual_spiral_length(N, D, k) * 10;
-    double Rdcc = (0.0175 * Length_spiral * 1e-4) / (w * t); // resistance of the copper foil
-    double Rdca = (0.028 * Length_spiral * 1e-4) / (w * t); // resistance of the aliminum foil
+    double Resistivity_cu = mtrl[Cu][Rho]*1e2;
+    double Resistivity_al = mtrl[Al][Rho]*1e2;
+    double Rdcc = (Resistivity_cu * Length_spiral) / (w * t); // resistance of the copper foil
+    double Rdca = (Resistivity_al * Length_spiral) / (w * t); // resistance of the aliminum foil
     result->N = N;
     result->sec = Length_spiral/1000;
     result->thd = Do;
@@ -926,13 +934,15 @@ void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _Coil
                 M = M + 2 * Mut(ra, rb, 0, gmd);
             }
         }
-        Ltotal = Ltotal + Lns + M;
+        Ltotal += Lns + M;
     }
     double th = k * (_N - 1);
     double Do = (D + 2 * th) *10;
     double Length_spiral = find_actual_spiral_length(_N, D, k) * 10;
-    double Rdcc = (0.0175 * Length_spiral * 1e-4) / (w * t); // resistance of the copper foil
-    double Rdca = (0.028 * Length_spiral * 1e-4) / (w * t); // resistance of the aliminum foil
+    double Resistivity_cu = mtrl[Cu][Rho]*1e2;
+    double Resistivity_al = mtrl[Al][Rho]*1e2;
+    double Rdcc = (Resistivity_cu * Length_spiral) / (w * t); // resistance of the copper foil
+    double Rdca = (Resistivity_al * Length_spiral) / (w * t); // resistance of the aliminum foil
     result->N = Ltotal;
     result->sec = Length_spiral / 1000;
     result->thd = Do;
@@ -983,7 +993,7 @@ double getFerriteI(double N, double Do, double Di, double h, double mu, double C
     double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
     double al = round(0.2  * he * mu * log(Do / Di));
     result->thd = al;
-    return 2e-04 * mu * he * N * N * log(Do / Di);;
+    return 2e-04 * mu * he * N * N * log(Do / Di);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getPCB_N (double I, double D, double d, double ratio, int layout, _CoilResult *result) {
@@ -1052,12 +1062,12 @@ void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result) {
         double Lns = Mut(ny, ny, g, 0);
         double M = 0;
         if (N > 1) {
-            for (double j = N; j >= 2; j--) {
+            for (int j = N; j >= 2; j--) {
                 double jy = r0 + k * (j - 2);
                 M = M + 2 * Mut(ny, jy, 0, g);
             }
         }
-        Ltotal = Ltotal + Lns + M;
+        Ltotal += Lns + M;
     }
     w = k * (N - 1);
     double Do = (Di + 2 * w) * 10;
@@ -1082,12 +1092,12 @@ void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result) {
         double Lns = Mut(ny, ny, g, 0);
         double M = 0;
         if (N > 1) {
-            for (double j = N; j >= 2; j--) {
+            for (int j = N; j >= 2; j--) {
                 double jy = r0 + k * (j - 2);
                 M = M + 2 * Mut(ny, jy, 0, g);
             }
         }
-        Ltotal = Ltotal + Lns + M;
+        Ltotal += Lns + M;
     }
     double Length_spiral = find_actual_spiral_length(_N, Di, k) * 10;
     result->N = Ltotal;
@@ -1133,7 +1143,7 @@ void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, doubl
     //[10.1][10.2] http://g3rbj.co.uk/wp-content/uploads/2014/06/Web-The-Inductance-of-Ferrite-Rod-Antennas-issue-3.pdf
 
     double x2 = 2 * s / Lr;
-    double N = 0;
+    int N = 0;
     double Dk = dc + dw;
     double iTmp = 0;
     double Lf_Lair = 0;
@@ -1145,7 +1155,6 @@ void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, doubl
         return;
     }
     double e0 = 8.8542e-12;
-    double mufe = (mu - 1) * pow((Dr / Dk), 2) + 1;
     double dLp = -1e-4 * Dk * ((p / dw) - 1) * ((12 - (p / dw)) / 4);
     while (iTmp < I) {
         N++;
@@ -1169,7 +1178,7 @@ void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, doubl
             double _k = ((phi_phimax * Canf / e0) + 2e-3 * Dr) / (2e-3 * dc);
             double l_prim = lc + 0.45 * dc;
             double _x = 5.1 * (l_prim / dc) / (1 + 2.8 * (dc / l_prim));
-            mufe = (mu - 1) * pow(Dr / dc, 2) + 1;
+            double mufe = (mu - 1) * pow(Dr / dc, 2) + 1;
             Lf_Lair = (1 + _x) / (1 / _k + _x / mufe);
             iTmp = Lc * Lf_Lair * kx;
         } else {
@@ -1209,17 +1218,20 @@ double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *r
     result->N = 2 * a; //Mean coil diameter (mm)
     result->sec = c; //coil thickness (mm)
     result->thd = 2e-3 * M_PI * a * N; //length of the wire (m)
-    result->fourth = (0.0175 * result->thd * 100 * 1E-4 * 4) / (M_PI * dw * dw * 0.01); //Resistance to DC (Ohm)
+    double Resistivity_cu = mtrl[Cu][Rho]*1e2;
+    result->fourth = (Resistivity_cu * result->thd * 100 * 4) / (M_PI * dw * dw * 0.01); //Resistance to DC (Ohm)
     return ind;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-long findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result){
+double findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result){
     double tmpI = 0;
-    unsigned long int N = 0;
+    double N = 1;
+    unsigned long int i = 0;
     while (tmpI <= I){
-        N++;
+        i++;
         tmpI = findMultiloop_I(N, Di, dw, dt, result);
-        if ((N > 1e7) || ((N == 1) && (tmpI > I)))
+        N += 0.1;
+        if ((N > 1e7) || ((i == 1) && (tmpI > I)))
             return -1;
     }
     return N;
@@ -1517,6 +1529,7 @@ void findBrooksCoil(double I, double d, double pa, double pr,
     double lengthWireLastLayer = (sqrt(ha * ha +pow( M_PI * (2 * c + d + 2 * hr * (nLayer - 1)), 2))) * (N - Nc * (nLayer - 1));
     lengthWire += lengthWireLastLayer;
     lengthWire = lengthWire / 1000;
-    DCR = (175 * lengthWire * 1E-4 * 4) / (M_PI * d * d);   //Resistance of the wire to DC [Ohm]
+    double Resistivity = mtrl[Cu][Rho]*1e6;
+    DCR = (Resistivity * lengthWire * 4) / (M_PI * d * d);   //Resistance of the wire to DC [Ohm]
     massWire = 2.225 * M_PI * d * d * lengthWire;           //Weight of the wire [g]
 }

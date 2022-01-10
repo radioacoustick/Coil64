@@ -32,7 +32,7 @@ double LinearInterpolation_Table7_Phi(double z){
     unsigned int zi;
     double result = 0;
     if (z > 10) {
-        result = 1 - (sqrt(2) / z);
+        result = 1 - (M_SQRT2 / z);
     } else {
         zi = 0;
         while ((z >= za[zi]) && (zi < sizeof(za)/sizeof(za[0]) - 1)) {
@@ -54,7 +54,7 @@ double LinearInterpolation_Table7_Chi(double z){
     unsigned int zi;
     double result = 0;
     if (z > 10) {
-        result = 0.5 - (1 / (z * sqrt(2)));
+        result = 0.5 - (1 / (z * M_SQRT2));
     } else {
         zi = 0;
         while ((z >= za[zi]) && (zi < sizeof(za)/sizeof(za[0]) - 1)) {
@@ -192,7 +192,6 @@ double LinearInterpolation_Table4_b(double r){
 double lookup_Psi(double Df, double dw, double pt, double N, double fm, Material mt){
     //el->winding length [mm], Df->coilformer diameter [mm], pt->winding pitch [mm], Dw->wire diameter [mm], fm -> frequency [kHz]
     double d, P, rc, f, si, zeta, eta, ro, z, Phi, Chi, v, w, alpha, betta, gamma, pm, a, b, u1, u2, g;
-
     d = dw / 10;
     P = pt / 10;
     rc = Df / 20;
@@ -224,9 +223,7 @@ double lookup_Psi(double Df, double dw, double pt, double N, double fm, Material
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double get_Xir(Material mt, double fm, double dw){
     //AC resistance factor. TED-MLD formula (skin effect factor)
-    const double mu0 = 12.56637e-7; // absolutly permeability
     double y, z, f, r, delta_i, delta_i_prim;
-
     f = fm * 1e3;
     r = dw / 2000;
     delta_i = sqrt(mtrl[mt][Rho] / (f * M_PI * mu0 * (1 + mtrl[mt][Chi])));
@@ -242,7 +239,6 @@ double get_Xir(Material mt, double fm, double dw){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double get_Xic(Material mt, double f, double w, double t){
     //AC resistance factor formula 4.8.1
-    const double mu0 = 12.56637e-7; // absolutly permeability
     double delta = sqrt(mtrl[mt][Rho] / (f * M_PI * mu0 * (1 + mtrl[mt][Chi])));
     double p = sqrt(w * t)/(1.26 * delta);
     double Ff = 1 - exp(-0.026 * p);
@@ -262,7 +258,6 @@ unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa,
     //l->winding length mm, Df->coilwinding diameter mm, pm->winding pitch mm, dw->wire diameter mm
     //fm->frequency MHz, N->number of turns, mt->material of wire
     double Induct, fm, f, D, r, p, WireLength, Rdc, Rac0, Rac, Xi, Psi, kQ, R_ind, Rl, Rc;
-
     Induct = I * 1.0e-6;
     fm = fa * 1e3;
     f = fm * 1e3;
@@ -285,12 +280,11 @@ unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa,
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Q-FACTOR OF THE ONE-LAYER COIL WITH RECTANGULAR WIRE
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t, double fa,  double N, double Cs, Material mt){
+unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t, double fa,  double N, double Cs, Material mt, _CoilResult *result){
     //I->inductance µH
     //l->winding length mm, Df->coilwinding diameter mm, pm->winding pitch mm, _w->wire width mm, _t->wire thickness mm
     //fm->frequency MHz, N->number of turns, mt->material of wire
     double Induct, fm, f, D, w, t, p, WireLength, Rdc, Rac0, Rac, Xi, kQ, R_ind, Rl, Rc, Psi;
-
     Induct = I * 1e-6;
     fm = fa * 1e3;
     f = fm * 1e3;
@@ -308,6 +302,7 @@ unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t,
     Rl = 2 * M_PI * f * Induct;
     Rc = 1 / (2 * M_PI * f * Cs * 1e-12);
     R_ind = 1 / (1 / Rl + 1 / Rc);
+    result->seven = Rac;
     return round(R_ind / Rac);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -316,7 +311,6 @@ unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t,
 double solve_Qpcb(long N, double _I, double _D, double _d, double _W, double _t, double _s,  double _f, int layout){
     //_I->inductance µH, N->number of turns, _D->outer winding diameter mm, _d->inner winding diameter mm
     // _f->frequency MHz, _t-> thickness of the trace, _W->width of the trace, _s->winding pitch
-    const double mu0 = 12.56637e-7;
     double f = _f * 1e6;
     double I = _I *  1e-6;
     double D = _D *  1e-3;

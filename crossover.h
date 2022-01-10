@@ -52,7 +52,7 @@ private slots:
     void getCurrentLocale(QLocale locale);
     void switchColumnVisible();
     void on_removeRow();
-    void fillTable(QStandardItem *item, int count, double wire_d);
+    void fillTable(QStandardItem *item, int count, double wire_d, int awgNumber);
 
     void on_comboBox_currentIndexChanged(int index);
     void on_lineEdit_ind_editingFinished();

@@ -49,6 +49,7 @@ private slots:
     void on_pushButton_close_clicked();
     void on_pushButton_calculate_clicked();
     void on_pushButton_clicked();
+    void on_lineEdit_dw_editingFinished();
 
 private:
     Ui::Ferrite_Rod *ui;

@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QtMath>
 #include "bessel.h"
 
-double findSRF(double L, double D, double lw);
-double find_Cs(double p, double D, double l);
+double findSRF(double lk, double Dk, double lw);
+double find_Cs(double p, double Dk, double lk);
 
 #endif // RESOLVE_SRF_CS_H

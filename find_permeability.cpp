@@ -144,8 +144,9 @@ void Find_Permeability::on_pushButton_clicked()
         sResult += ui->label_4->text() + " = " + ui->lineEdit_4->text() + " " + ui->label_04->text();
     sResult += "</p><hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Relative magnetic permeability of the toroid") + " μ = " + loc.toString(result.N) + "<br/>";
-    sResult += tr("Magnetic factor of the core") + " A<sub>L</sub> = " + loc.toString(result.sec, 'f', 0);
+    sResult += tr("Relative magnetic permeability of the toroid") + " μ<sub>r</sub> = " + loc.toString(result.N) + "<br/>";
+    sResult += tr("Magnetic factor of the core") + " A<sub>L</sub> = " + loc.toString(result.sec, 'f', 0)+ "&nbsp;"
+            +  qApp->translate("Context","nH") + "/N<sup>2</sup>";
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }

@@ -451,7 +451,8 @@ void Amidon::on_comboBox_tm_currentIndexChanged(int index)
     int sel_index = 0;
     int j = 0;
     ui->comboBox_td->clear();
-    for (unsigned int i = 0; i < sizeof(TToroid_AL) / sizeof(TToroid_AL[0]); i++) {
+    unsigned int al_arr_size = sizeof(TToroid_AL[0]) / sizeof(TToroid_AL[0][0]);
+    for (unsigned int i = 0; i < al_arr_size; i++) {
         if (TToroid_AL[index][i] > 0) {
             QString tsise_str = TToroidSize[i];
             QStringList t_size_val = tsise_str.split(",");
@@ -472,7 +473,8 @@ void Amidon::on_comboBox_fm_currentIndexChanged(int index)
     int sel_index = 0;
     int j = 0;
     ui->comboBox_fd->clear();
-    for (unsigned int i = 0; i < sizeof(FToroid_AL) / sizeof(FToroid_AL[0]); i++) {
+    unsigned int al_arr_size = sizeof(FToroid_AL[0]) / sizeof(FToroid_AL[0][0]);
+    for (unsigned int i = 0; i < al_arr_size; i++) {
         if (FToroid_AL[index][i] > 0) {
             QString fsise_str = FToroidSize[i];
             QStringList f_size_val = fsise_str.split(",");
@@ -661,13 +663,13 @@ void Amidon::on_comboBox_td_currentTextChanged(const QString &arg1){
                 double od = OD.toDouble()*25.4/fOpt->dwLengthMultiplier;
                 double h = H.toDouble()*25.4/fOpt->dwLengthMultiplier;
                 hole_area = M_PI * od / 4;
-                int accurasy = fOpt->indexLengthMultiplier + 1;
-                if (accurasy == 4)
-                    accurasy = 0;
+                int accuracy = fOpt->indexLengthMultiplier + 1;
+                if (accuracy == 4)
+                    accuracy = 0;
                 info += tr("Dimensions") + " (OD x ID x H): " + styleInfoColor + "<br/>"
-                        + loc.toString(od, 'f', accurasy) + " x "
-                        + loc.toString(id, 'f', accurasy) + " x "
-                        + loc.toString(h, 'f', accurasy) +
+                        + loc.toString(od, 'f', accuracy) + " x "
+                        + loc.toString(id, 'f', accuracy) + " x "
+                        + loc.toString(h, 'f', accuracy) +
                         + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
                 al = TToroid_AL[tm_index][i];
                 info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": " + styleInfoColor
@@ -708,13 +710,13 @@ void Amidon::on_comboBox_fd_currentTextChanged(const QString &arg1)
                 double od = OD.toDouble()*25.4/fOpt->dwLengthMultiplier;
                 double h = H.toDouble()*25.4/fOpt->dwLengthMultiplier;
                 hole_area = M_PI * od / 4;
-                int accurasy = fOpt->indexLengthMultiplier + 1;
-                if (accurasy == 4)
-                    accurasy = 0;
+                int accuracy = fOpt->indexLengthMultiplier + 1;
+                if (accuracy == 4)
+                    accuracy = 0;
                 info += tr("Dimensions") + " (OD x ID x H): " + styleInfoColor + "<br/>"
-                        + loc.toString(od, 'f', accurasy) + " x "
-                        + loc.toString(id, 'f', accurasy) + " x "
-                        + loc.toString(h, 'f', accurasy) +
+                        + loc.toString(od, 'f', accuracy) + " x "
+                        + loc.toString(id, 'f', accuracy) + " x "
+                        + loc.toString(h, 'f', accuracy) +
                         + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
                 al = FToroid_AL[fm_index][i];
                 info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": " + styleInfoColor
@@ -885,11 +887,11 @@ QString Amidon::getPotCoreSize(QString sizes, double *average_size)
     double dw_size_max = s_size_max.toDouble();
     double dw_size_average = ((dw_size_max + dw_size_min)/2);
     double deviation = (dw_size_max - dw_size_average);
-    int accurasy = fOpt->indexLengthMultiplier + 1;
-    if (accurasy == 4)
-        accurasy = 0;
-    QString sResult = loc.toString(dw_size_average/fOpt->dwLengthMultiplier, 'f', accurasy) + "±"
-            + loc.toString(deviation/fOpt->dwLengthMultiplier, 'f', accurasy);
+    int accuracy = fOpt->indexLengthMultiplier + 1;
+    if (accuracy == 4)
+        accuracy = 0;
+    QString sResult = loc.toString(dw_size_average/fOpt->dwLengthMultiplier, 'f', accuracy) + "±"
+            + loc.toString(deviation/fOpt->dwLengthMultiplier, 'f', accuracy);
     *average_size = dw_size_average;
     return sResult;
 }
@@ -901,11 +903,11 @@ QString Amidon::getMultiapertureCoreSize(QString sizes)
     QString s_deviation = size_list.at(1);
     double dw_size = s_size.toDouble();
     double dw_deviation = s_deviation.toDouble();
-    int accurasy = fOpt->indexLengthMultiplier + 1;
-    if (accurasy == 4)
-        accurasy = 0;
-    QString sResult = loc.toString(dw_size/fOpt->dwLengthMultiplier, 'f', accurasy) + "±"
-            + loc.toString(dw_deviation/fOpt->dwLengthMultiplier, 'f', accurasy);
+    int accuracy = fOpt->indexLengthMultiplier + 1;
+    if (accuracy == 4)
+        accuracy = 0;
+    QString sResult = loc.toString(dw_size/fOpt->dwLengthMultiplier, 'f', accuracy) + "±"
+            + loc.toString(dw_deviation/fOpt->dwLengthMultiplier, 'f', accuracy);
     return sResult;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -943,17 +945,17 @@ void Amidon::resolvePotCore(int index)
         double le = le_s.toDouble();
         double ae = ae_s.toDouble();
         double ve = ve_s.toDouble();
-        int accurasy = fOpt->indexLengthMultiplier + 1;
-        if (accurasy == 4)
-            accurasy = 0;
+        int accuracy = fOpt->indexLengthMultiplier + 1;
+        if (accuracy == 4)
+            accuracy = 0;
         info += tr("Effective magnetic path length") + " (l<sub>e</sub>): " + styleInfoColor
-                + loc.toString(le/fOpt->dwLengthMultiplier, 'f', accurasy)
+                + loc.toString(le/fOpt->dwLengthMultiplier, 'f', accuracy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
         info += tr("Effective area of magnetic path") + " (A<sub>e</sub>): " + styleInfoColor
-                + loc.toString(ae/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accurasy)
+                + loc.toString(ae/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accuracy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>2</sup><br/>";
         info += tr("Effective volume") + " (V<sub>e</sub>): " + styleInfoColor
-                + loc.toString(ve/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accurasy)
+                + loc.toString(ve/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accuracy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>3</sup><br/>";
         info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": " + styleInfoColor
                 + al_s + "</span>&nbsp;mH/(N/1000)<sup>2</sup></p>";
@@ -981,30 +983,30 @@ void Amidon::resolveECore(int index)
         double E = sE.toDouble() * 25.4;
         double F = sF.toDouble() * 25.4;
         double G = sG.toDouble() * 25.4;
-        int accurasy = fOpt->indexLengthMultiplier + 1;
-        if (accurasy == 4)
-            accurasy = 0;
+        int accuracy = fOpt->indexLengthMultiplier + 1;
+        if (accuracy == 4)
+            accuracy = 0;
         QString info = "<p>" + tr("Dimensions") + ":</span><br/>";
         info += "A = " + styleInfoColor
-                + loc.toString(A/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
+                + loc.toString(A/fOpt->dwLengthMultiplier, 'f', accuracy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
         info += "B = " + styleInfoColor
-                + loc.toString(B/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
+                + loc.toString(B/fOpt->dwLengthMultiplier, 'f', accuracy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
         info += "C = " + styleInfoColor
-                + loc.toString(C/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
+                + loc.toString(C/fOpt->dwLengthMultiplier, 'f', accuracy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
         info += "D = " + styleInfoColor
-                + loc.toString(D/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
+                + loc.toString(D/fOpt->dwLengthMultiplier, 'f', accuracy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
         info += "E = " + styleInfoColor
-                + loc.toString(E/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
+                + loc.toString(E/fOpt->dwLengthMultiplier, 'f', accuracy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;";
         info += "F = " + styleInfoColor
-                + loc.toString(F/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
+                + loc.toString(F/fOpt->dwLengthMultiplier, 'f', accuracy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + ",&nbsp;<br/>";
         info += "G = " + styleInfoColor
-                + loc.toString(G/fOpt->dwLengthMultiplier, 'f', accurasy) + "</span>&nbsp;"
+                + loc.toString(G/fOpt->dwLengthMultiplier, 'f', accuracy) + "</span>&nbsp;"
                 + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "&nbsp;<br/>";
         QString efeatures_str = ECore_Features[index];
         QStringList efeatures = efeatures_str.split(",");
@@ -1020,15 +1022,15 @@ void Amidon::resolveECore(int index)
         double ve = ve_s.toDouble();
         double W = W_s.toDouble();
         info += tr("Effective magnetic path length") + " (l<sub>e</sub>): " + styleInfoColor
-                + loc.toString(le/fOpt->dwLengthMultiplier, 'f', accurasy)
+                + loc.toString(le/fOpt->dwLengthMultiplier, 'f', accuracy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
         info += tr("Effective area of magnetic path") + " (A<sub>e</sub>): " + styleInfoColor
-                + loc.toString(ae/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accurasy)
+                + loc.toString(ae/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accuracy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>2</sup><br/>";
         info += tr("Effective volume") + " (V<sub>e</sub>): " + styleInfoColor
-                + loc.toString(ve/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accurasy)
+                + loc.toString(ve/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', accuracy)
                 + "</span>&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>3</sup><br/>";
-        info += tr("Power") + " (W): " + styleInfoColor  + loc.toString(W, 'f', accurasy) + "</span>&nbsp;W<br/>";
+        info += tr("Power") + " (W): " + styleInfoColor  + loc.toString(W, 'f', accuracy) + "</span>&nbsp;W<br/>";
         info += "A<sub>L</sub>&nbsp;" + tr("factor") + ": " + styleInfoColor
                 + al_s + "</span>&nbsp;µH/(N/1000)<sup>2</sup></p>";
         ui->label_info->setText(info);
@@ -1075,16 +1077,19 @@ void Amidon::on_pushButton_help_clicked()
     int tab = ui->tabWidget->currentIndex();
     switch (tab) {
     case 0:
-        QDesktopServices::openUrl(QUrl("http://www.amidoncorp.com/iron-powder-toroids"));
+        QDesktopServices::openUrl(QUrl("https://www.amidoncorp.com/iron-powder-toroids"));
         break;
     case 1:
-        QDesktopServices::openUrl(QUrl("http://www.amidoncorp.com/ferrite-toroids"));
+        QDesktopServices::openUrl(QUrl("https://www.amidoncorp.com/ferrite-toroids"));
         break;
     case 2:
-        QDesktopServices::openUrl(QUrl("http://www.amidoncorp.com/e-core-sets"));
+        QDesktopServices::openUrl(QUrl("https://www.amidoncorp.com/e-core-sets"));
         break;
     case 3:
-        QDesktopServices::openUrl(QUrl("http://www.amidoncorp.com/pot-core-sets"));
+        QDesktopServices::openUrl(QUrl("https://www.amidoncorp.com/pot-core-sets"));
+        break;
+    case 4:
+        QDesktopServices::openUrl(QUrl("https://www.amidoncorp.com/multi-aperture-cores"));
         break;
     default:
         break;

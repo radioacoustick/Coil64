@@ -337,7 +337,7 @@ void ECore::on_pushButton_calculate_clicked()
         sResult += tr("Inductance") + " L = " + loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
                 + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8());
     } else {
-        sResult += tr("Number of turns of the coil") + " N = " + loc.toString(N, 'f', fOpt->dwAccuracy);
+        sResult += tr("Number of turns of the coil") + " N = " + QString::number(N);
     }
     sResult += "<br/><br/>" + tr("Effective magnetic path length") + " (l<sub>e</sub>): "
             + loc.toString(result.N/fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy)

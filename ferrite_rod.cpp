@@ -25,21 +25,14 @@ Ferrite_Rod::Ferrite_Rod(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    QString tmp_txt = tr("Rod diameter") + " Dr:";
-    ui->label_Dr->setText(tmp_txt);
-    tmp_txt = tr("Rod length") + " Lr:";
-    ui->label_Lr->setText(tmp_txt);
-    tmp_txt = tr("Magnetic permeability") + " µ:";
-    ui->label_mu->setText(tmp_txt);
-    tmp_txt = tr("Former diameter") + "  dc:";
-    ui->label_dc->setText(tmp_txt);
+    ui->label_Dr->setText(tr("Rod diameter") + " Dr:");
+    ui->label_Lr->setText(tr("Rod length") + " Lr:");
+    ui->label_mu->setText(tr("Magnetic permeability") + " µ:");
+    ui->label_dc->setText(tr("Former diameter") + "  dc:");
+    ui->label_s->setText(tr("Shift") + "  s:");
+    ui->label_dw->setText(tr("Wire diameter") + " dw:");
+    ui->label_p->setText(tr("Winding pitch") + " p:");
 
-    tmp_txt = tr("Shift") + "  s:";
-    ui->label_s->setText(tmp_txt);
-    tmp_txt = tr("Wire diameter") + " dw:";
-    ui->label_dw->setText(tmp_txt);
-    tmp_txt = tr("Winding pitch") + " p:";
-    ui->label_p->setText(tmp_txt);
     dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
     awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
     ui->lineEdit_ind->setValidator(dv);
@@ -177,6 +170,14 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
         showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
         return;
     }
+    if (dw > p){
+        showWarning(tr("Warning"), "dw > p");
+        return;
+    }
+    if (Dr > dc){
+        showWarning(tr("Warning"), "Dr > dc");
+        return;
+    }
     if (mu < 100){
         showWarning(tr("Warning"), "mu < 100");
         return;
@@ -220,7 +221,7 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
     sResult += ui->label_p->text() + " = " + ui->lineEdit_p->text() + " " + ui->label_p_m->text() + "</p>";
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Number of turns of the coil") + " N = " + loc.toString(result.N, 'f', fOpt->dwAccuracy) + "<br/>";
+    sResult += tr("Number of turns of the coil") + " N = " + QString::number(result.N) + "<br/>";
     sResult += tr("Length of winding") + " lc = " + loc.toString(result.thd, 'f', fOpt->dwAccuracy) + "<br/>";
     sResult += tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = " + loc.toString(result.sec, 'f', 0);
     sResult += "</p><hr>";
@@ -230,4 +231,23 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
 void Ferrite_Rod::on_pushButton_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://coil32.net/ferrite-rod-core-coil.html"));
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Ferrite_Rod::on_lineEdit_dw_editingFinished()
+{
+    bool ok;
+    double d = 0;
+    if (fOpt->isAWG){
+        d = convertfromAWG(ui->lineEdit_dw->text(), &ok);
+    } else {
+        d = loc.toDouble(ui->lineEdit_dw->text(), &ok)*fOpt->dwLengthMultiplier;
+    }
+    if (!ok){
+        showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+        return;
+    }
+    double k_m = odCalc(d);
+    if (d > 0){
+        ui->lineEdit_p->setText( loc.toString(k_m / fOpt->dwLengthMultiplier));
+    }
 }

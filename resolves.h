@@ -84,7 +84,14 @@ enum _FormCoil
     };
 #pragma pack(pop)
 
+
+    enum Material {Al, Cu, Ag, Ti};
+    enum _Mprop {Rho,Chi,Alpha,Dencity};
+
     const double mu0 = 4e-7 * M_PI;
+    double const mtrl[4][4] = {{ 2.824e-8, 2.21e-5, 0.0039, 2.69808 }, { 1.7241e-8, - 9.56e-6, 0.00393, 8.96 },
+                               { 1.59e-8, - 2.63e-5, 0.0038, 10.5 }, {1.15e-7, 2.4e-6, 0.0042, 7.29}};
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw, unsigned int accuracy); //get Number of turns for One-layer coil with round wire
     double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double I, double *lw, unsigned int accuracy); //get Number of turns for One-layer coil with round wire
@@ -113,7 +120,7 @@ enum _FormCoil
     void findMeadrPCB_I(double a, double d, double h, double W, int N, _CoilResult *result);
 
     double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *result);
-    long findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result);
+    double findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result);
 
     double findRoundLoop_I(double D, double dw);
     double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw);

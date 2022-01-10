@@ -18,22 +18,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "crossover.h"
 #include "ui_crossover.h"
 
-double mWire[49][2] = {{0.2,0.23},{0.21,0.25},{0.224,0.26},
-                       {0.236,0.27},{0.25,0.275},{0.265,0.305},
-                       {0.28,0.315},{0.3,0.34},{0.315,0.352},
-                       {0.355,0.395},{0.38,0.42},{0.4,0.442},
-                       {0.425,0.47},{0.45,0.495},{0.475,0.495},
-                       {0.5,0.55},{0.53,0.578},{0.56,0.61},
-                       {0.6,0.65},{0.63,0.68},{0.67,0.72},
-                       {0.71,0.77},{0.75,0.81},{0.8,0.86},
-                       {0.85,0.91},{0.9,0.96},{0.93,0.99},
-                       {0.95,1.02},{1.0,1.07},{1.06,1.14},
-                       {1.08,1.16},{1.12,1.2},{1.18,1.26},
-                       {1.25,1.33},{1.32,1.4},{1.4,1.48},
-                       {1.45,1.53},{1.5,1.58},{1.56,1.64},
-                       {1.6,1.68},{1.7,1.78},{1.74,1.82},
-                       {1.8,1.89},{1.9,1.99},{2.0,2.1},
-                       {2.12,2.22},{2.24,2.34},{2.36,2.46},{2.5,2.6}};
+
+int mWire_size = 58;
+int maxAwgSize = 1;
+double mWire[] = {0.2,0.21,0.224,0.236,0.25,0.265,0.28,0.3,0.315,0.355,
+                  0.38,0.4,0.425,0.45,0.475,0.5,0.53,0.56,0.6,0.63,
+                  0.67,0.71,0.75,0.8,0.85,0.9,0.93,0.95,1.0,1.06,
+                  1.08,1.12,1.18,1.25,1.32,1.4,1.45,1.5,1.56,1.6,
+                  1.7,1.74,1.8,1.9,2.0,2.12,2.24,2.36,2.5,2.9,
+                  3.26, 3.66, 4.11, 4.62,5.19, 5.83, 6.54,7.35};
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Crossover::Crossover(QWidget *parent) :
     QDialog(parent),
@@ -143,13 +136,13 @@ void Crossover::getOpt(_OptionStruct gOpt)
     move(pos);
     ui->comboBox->clear();
     if (fOpt->isAWG){
-        for (int i = 32; i > 10; i--)
+        for (int i = 32; i > maxAwgSize; i--)
             ui->comboBox->addItem(QString::number(i));
         ui->label_wmax_unit->setText(tr("AWG"));
         ui->label_wmin_unit->setText(tr("AWG"));
     } else {
-        for (int j = 0; j < 48; j++)
-            ui->comboBox->addItem(QString::number(mWire[j][0]));
+        for (int j = 0; j < mWire_size - 1; j++)
+            ui->comboBox->addItem(QString::number(mWire[j]));
         ui->label_wmax_unit->setText(tr("mm"));
         ui->label_wmin_unit->setText(tr("mm"));
     }
@@ -192,24 +185,27 @@ void Crossover::on_comboBox_currentIndexChanged(int index)
     ui->comboBox_2->clear();
     if (fOpt->isAWG){
         int j = ui->comboBox->currentText().toInt();
-        for (int i = j - 1; i > 9; i--)
+        for (int i = j - 1; i > maxAwgSize - 1; i--)
             ui->comboBox_2->addItem(QString::number(i));
     } else {
-        for (int j = index + 1; j < 49; j++)
-            ui->comboBox_2->addItem(QString::number(mWire[j][0]));
+        for (int j = index + 1; j < mWire_size; j++)
+            ui->comboBox_2->addItem(QString::number(mWire[j]));
     }
     ui->comboBox_2->setCurrentIndex(ui->comboBox_2->count() - 1);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Crossover::fillTable(QStandardItem *item, int count, double wire_d)
+void Crossover::fillTable(QStandardItem *item, int count, double wire_d, int awgNumber)
 {
     double n; double nLayer = 0; double Nc = 0; double c = 0; double lengthWire = 0; double massWire=0; double DCR=0;
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("Wire diameter") + " ["
                          + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "]\nd");
-    item = new QStandardItem(loc.toString(wire_d / fOpt->dwLengthMultiplier, 'f', 2));
+    if (fOpt->isAWG)
+        item = new QStandardItem(loc.toString(wire_d / fOpt->dwLengthMultiplier, 'f', 2) + " - (" + QString::number(awgNumber) + " AWG)");
+    else
+        item = new QStandardItem(loc.toString(wire_d / fOpt->dwLengthMultiplier, 'f', 2));
     model->setItem(count - 1, 0, item);
     findBrooksCoil(ind, wire_d, ui->doubleSpinBox_ax->value(), ui->doubleSpinBox_rad->value(),
-            n, nLayer, Nc, c, lengthWire, massWire, DCR);
+                   n, nLayer, Nc, c, lengthWire, massWire, DCR);
     item = new QStandardItem(loc.toString(n, 'f', 1));
     model->setItem(count - 1, 1, item);
     item = new QStandardItem(QString::number(ceil(nLayer)));
@@ -253,7 +249,7 @@ void Crossover::on_pushButton_calculate_clicked()
     QString smax = ui->comboBox_2->itemText(ui->comboBox_2->currentIndex());
     int count = 0;
     if (fOpt->isAWG){
-        for (int i = 32; i > 9; i--){
+        for (int i = 32; i > maxAwgSize - 1; i--){
             if (smin == QString::number(i))
                 imin = i;
             if (smax == QString::number(i))
@@ -263,19 +259,19 @@ void Crossover::on_pushButton_calculate_clicked()
             count++;
             verticalHeader.append(QString::number(count));
             double wire_d = convertfromAWG(QString::number(i));
-            fillTable(item, count, wire_d);
+            fillTable(item, count, wire_d, i);
         }
     } else {
-        for (int j = 0; j < 49; j++){
-            if (smin == QString::number(mWire[j][0]))
+        for (int j = 0; j < mWire_size; j++){
+            if (smin == QString::number(mWire[j]))
                 imin = j;
-            if (smax == QString::number(mWire[j][0]))
+            if (smax == QString::number(mWire[j]))
                 imax = j;
         }
         for (int i = imin; i < imax + 1; i++){
             count++;
             verticalHeader.append(QString::number(count));
-            fillTable(item, count, mWire[i][0]);
+            fillTable(item, count, mWire[i], 0);
         }
     }
     model->setVerticalHeaderLabels(verticalHeader);

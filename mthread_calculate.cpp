@@ -43,7 +43,7 @@ void MThread_calculate::run(){
             case _Onelayer_cw:
             case _Onelayer:{
                 //arg: Dk, d, p, I, f, 0, 0, mt
-                result.N = getOneLayerN_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg7 );//number of turns
+                result.N = getOneLayerN_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg8 );//number of turns
                 result.thd = find_Cs(arg3, arg1, arg3 * result.N); //self-capacitance
                 result.six = solve_Qr(arg4,arg1,arg3,arg2,arg5, result.N, result.thd, mt, &result);//Q-factor
                 result.fourth = findSRF(arg3 * result.N, arg1, result.sec);//self-resonance frequency
@@ -51,23 +51,19 @@ void MThread_calculate::run(){
             }
             case _Onelayer_p:{
                 //arg: Dk, w, t, p, I, f, 0, mt
-                result.N = getOneLayerN_withRectWire( arg1, arg2, arg3, arg4, arg5, &result.sec, arg7 );//number of turns
+                result.N = getOneLayerN_withRectWire( arg1, arg2, arg3, arg4, arg5, &result.sec, arg8 );//number of turns
                 result.thd = find_Cs(arg4, arg1, arg4 * result.N); //self-capacitance
-                result.six = solve_Qc(arg5,arg1,arg4,arg2, arg3, arg6, result.N, result.thd, mt);//Q-factor
+                result.six = solve_Qc(arg5,arg1,arg4,arg2, arg3, arg6, result.N, result.thd, mt, &result);//Q-factor
                 result.fourth = findSRF(arg4 * result.N, arg1, result.sec);//self-resonance frequency
                 break;
             }
             case _Onelayer_q:{
                 //arg: I, Dk, d, p, f, _n, 0, mt
-                result.N = getOneLayerN_Poligonal( arg1, arg2, arg3, arg4, arg6, &result, arg7 );//number of turns
-                double rP = arg2 * arg6 * sin(M_PI / arg6);
-                double sinpsi = arg4 / (M_PI * arg1);
-                double psi = atan(sinpsi / sqrt(1 - sinpsi * sinpsi));
-                double lW = 0.001 * rP * result.N / cos(psi);
-                double De = rP / M_PI;
-                result.fourth = find_Cs(arg4, De, arg4 * result.N); //self-capacitance
-                result.six = solve_Qr(arg1, De, arg4, arg3, arg5, result.N, result.fourth, mt, &result);//Q-factor
-                result.five = findSRF(arg4 * result.N, De, lW);//self-resonance frequency
+                //double I, double Dk, double dw, double  p, double n, _CoilResult *result, unsigned int accuracy
+                result.N = getOneLayerN_Poligonal( arg1, arg2, arg3, arg4, arg6, &result, arg8 );//number of turns
+                result.fourth = find_Cs(arg4, result.seven, arg4 * result.N); //self-capacitance
+                result.five = findSRF(arg4 * result.N, result.seven, result.thd);//self-resonance frequency
+                result.six = solve_Qr(arg1, result.seven, arg4, arg3, arg5, result.N, result.fourth, mt, &result);//Q-factor
                 break;
             }
             case _Multilayer:{
@@ -117,31 +113,26 @@ void MThread_calculate::run(){
             case _Onelayer_cw:
             case _Onelayer:{
                 //arg: Dk, d, p, N, f, 0, 0, mt
-                result.N = getOneLayerI_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg7 );//number of turns
+                result.N = getOneLayerI_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg8 );//number of turns
                 result.thd = find_Cs(arg3, arg1, arg3 * arg4); //self-capacitance
-                result.six = solve_Qr(result.N,arg1, arg3, arg2, arg5, arg4, result.thd, mt, &result);//Q-factor
                 result.fourth = findSRF(arg3 * arg4, arg1, result.sec);//self-resonance frequency
+                result.six = solve_Qr(result.N,arg1, arg3, arg2, arg5, arg4, result.thd, mt, &result);//Q-factor
                 break;
             }
             case _Onelayer_p:{
                 //arg:Dk, w, t, p, N, f, 0, mt
-                result.N = getOneLayerI_withRectWire( arg1, arg2, arg3, arg4, arg5, &result.sec, arg7 );//number of turns
+                result.N = getOneLayerI_withRectWire( arg1, arg2, arg3, arg4, arg5, &result.sec, arg8 );//number of turns
                 result.thd = find_Cs(arg4, arg1, arg4 * arg5); //self-capacitance
-                result.six = solve_Qc(result.N, arg1, arg4, arg2, arg3, arg6, arg5, result.thd, mt);//Q-factor
+                result.six = solve_Qc(result.N, arg1, arg4, arg2, arg3, arg6, arg5, result.thd, mt, &result);//Q-factor
                 result.fourth = findSRF(arg4 * arg5, arg1, result.sec);//self-resonance frequency
                 break;
             }
             case _Onelayer_q:{
                 //arg: Dk, d, p, N, f, _n, 0, mt
-                getOneLayerI_Poligonal( arg1, arg2, arg3, arg4, arg6, &result, arg7);
-                double rP = arg1 * arg6 * sin(M_PI / arg6);
-                double sinpsi = arg3 / (M_PI * arg1);
-                double psi = atan(sinpsi / sqrt(1 - sinpsi * sinpsi));
-                double lW = 0.001 * rP * arg4 / cos(psi);
-                double De = rP / M_PI;
-                result.fourth = find_Cs(arg3, De, arg3 * arg4); //self-capacitance
-                result.six = solve_Qr(result.sec, De, arg3, arg2, arg5, arg4, result.fourth, mt, &result);//Q-factor
-                result.five = findSRF(arg3 * arg4, De, lW);//self-resonance frequency
+                //double Dk, double dw, double p, double N, double n, _CoilResult *result, unsigned int accuracy
+                getOneLayerI_Poligonal( arg1, arg2, arg3, arg4, arg6, &result, arg8);
+                result.fourth = find_Cs(arg3, result.seven, arg3 * arg4); //self-capacitance
+                result.six = solve_Qr(result.sec, result.seven, arg3, arg2, arg5, arg4, result.fourth, mt, &result);//Q-factor
                 break;
             }
             case _Multilayer:{

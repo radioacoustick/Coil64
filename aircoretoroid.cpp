@@ -208,6 +208,14 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         return;
     }
+    if ((OD == 0)||(ID == 0)||(dw == 0)){
+        showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
+        return;
+    }
+    if (OD < ID){
+        showWarning(tr("Warning"), "OD < ID");
+        return;
+    }
     if(windingKind == 0){
         sResult += " (" + ui->radioButton_round->text() +  + ")</h2><br/>";
         if (fOpt->isInsertImage)
@@ -218,6 +226,10 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
             return;
         }
         h = loc.toDouble(ui->lineEdit_3->text(), &ok5)*fOpt->dwLengthMultiplier;
+        if (h == 0){
+            showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
+            return;
+        }
         if (!ok5){
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;
@@ -229,6 +241,10 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
     _CoilResult result;
     if (ui->checkBox_isReverce->isChecked()){
         N = loc.toDouble(ui->lineEdit_N->text(), &ok1);
+        if (N == 0){
+            showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
+            return;
+        }
         if (!ok1){
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;
@@ -239,6 +255,10 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
             ind = getFerriteI(N, OD, ID, h, 1, dw / 2, &result);
     } else {
         ind = loc.toDouble(ui->lineEdit_N->text(), &ok1)*fOpt->dwInductanceMultiplier;
+        if (ind == 0){
+            showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
+            return;
+        }
         if (!ok1){
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;

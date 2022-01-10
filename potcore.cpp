@@ -182,10 +182,10 @@ QString PotCore::getPotCoreSize(QString sizes)
     double dw_size_min = s_size_min.toDouble();
     double dw_size_max = s_size_max.toDouble();
     double dw_size_average = ((dw_size_max + dw_size_min)/2);
-    int accurasy = fOpt->indexLengthMultiplier + 1;
-    if (accurasy == 4)
-        accurasy = 0;
-    QString sResult = loc.toString(dw_size_average/fOpt->dwLengthMultiplier, 'f', accurasy);
+    int accuracy = fOpt->indexLengthMultiplier + 1;
+    if (accuracy == 4)
+        accuracy = 0;
+    QString sResult = loc.toString(dw_size_average/fOpt->dwLengthMultiplier, 'f', accuracy);
     return sResult;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -322,7 +322,7 @@ void PotCore::on_pushButton_calculate_clicked()
         sResult += tr("Inductance") + " L = " + loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
                 + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8());
     } else {
-        sResult += tr("Number of turns of the coil") + " N = " + loc.toString(N, 'f', fOpt->dwAccuracy);
+        sResult += tr("Number of turns of the coil") + " N = " + QString::number(N);
     }
     sResult += "<br/><br/>" + tr("Effective magnetic path length") + " (l<sub>e</sub>): "
             + loc.toString(result.N/fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy)

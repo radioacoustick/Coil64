@@ -145,7 +145,7 @@ void Multiloop::on_pushButton_clicked()
 
     _CoilResult result;
     if (!ui->checkBox_isReverce->isChecked()) ind = findMultiloop_I(nTurns, Di, dw, dt, &result);
-    else nTurns = findMultiloop_N(ind, Di, dw, dt, &result);
+    else nTurns = (int) findMultiloop_N(ind, Di, dw, dt, &result);
     if (nTurns == -1){
         nTurns = 0;
         showWarning(tr("Warning"),tr("Coil can not be realized") + "!");
@@ -189,7 +189,8 @@ void Multiloop::on_pushButton_clicked()
     QString _ssLengthMeasureUnit = list[1];
     sResult += tr("Length of wire without leads") + " lw = " + loc.toString(d_wire_length.toDouble(), 'f', fOpt->dwAccuracy) + " " +
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    double mass = 2.225 * M_PI * dw * dw * result.thd;
+    double dencity = mtrl[Cu][Dencity];
+    double mass = 0.25 * dencity * M_PI * dw * dw * result.thd;
     sResult += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
     sResult += "</p><hr>";
     emit sendResult(sResult);

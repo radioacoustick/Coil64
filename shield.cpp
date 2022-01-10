@@ -148,10 +148,6 @@ void Shield::on_pushButton_clicked()
     double Ds = loc.toDouble(ui->lineEdit_3->text(), &ok4)*fOpt->dwLengthMultiplier;
     double Hs = loc.toDouble(ui->lineEdit_4->text(), &ok5)*fOpt->dwLengthMultiplier;
     QString sShieldForm = ui->radioButton->text();
-    if (ui->radioButton_2->isChecked()){
-        Ds = Ds * ((1 + sqrt(2)) / 2);
-        sShieldForm = ui->radioButton_2->text();
-    }
     if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         return;
@@ -167,6 +163,10 @@ void Shield::on_pushButton_clicked()
     if (l >= Hs){
         showWarning(tr("Warning"), "l >= Hs");
         return;
+    }
+    if (ui->radioButton_2->isChecked()){
+        Ds *= ((1 + sqrt(2)) / 2);
+        sShieldForm = ui->radioButton_2->text();
     }
     double L_shilded = findSheildedInductance(L, D, Ds, l, Hs);
     QString sResult = "<hr>";

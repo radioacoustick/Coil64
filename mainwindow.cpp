@@ -1197,7 +1197,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_04->setVisible(true);
             mui->lineEdit_5->setVisible(true);
             mui->label_5->setVisible(true);
-            mui->label_05->setVisible(true);
+            mui->label_05->setVisible(false);
             mui->lineEdit_6->setVisible(true);
             mui->label_6->setVisible(true);
             mui->label_06->setVisible(true);
@@ -1975,10 +1975,10 @@ void MainWindow::on_actionThemeDark_triggered()
     // loadstylesheet
     QFile qfDarkstyle(QStringLiteral(":/stylesheet/res/DarkStyle.qss"));
     if (qfDarkstyle.open(QIODevice::ReadOnly | QIODevice::Text)) {
-      // set stylesheet
-      QString qsStylesheet = QString::fromLatin1(qfDarkstyle.readAll());
-      qApp->setStyleSheet(qsStylesheet);
-      qfDarkstyle.close();
+        // set stylesheet
+        QString qsStylesheet = QString::fromLatin1(qfDarkstyle.readAll());
+        qApp->setStyleSheet(qsStylesheet);
+        qfDarkstyle.close();
     }
     //setStyleSheet(DARK_STYLE);
     mui->actionThemeSunny->setChecked(false);
@@ -1995,10 +1995,10 @@ void MainWindow::on_actionThemeSunny_triggered()
     // loadstylesheet
     QFile qfSunnystyle(QStringLiteral(":/stylesheet/res/SunnyStyle.qss"));
     if (qfSunnystyle.open(QIODevice::ReadOnly | QIODevice::Text)) {
-      // set stylesheet
-      QString qsStylesheet = QString::fromLatin1(qfSunnystyle.readAll());
-      qApp->setStyleSheet(qsStylesheet);
-      qfSunnystyle.close();
+        // set stylesheet
+        QString qsStylesheet = QString::fromLatin1(qfSunnystyle.readAll());
+        qApp->setStyleSheet(qsStylesheet);
+        qfSunnystyle.close();
     }
     //setStyleSheet(DARK_STYLE);
     mui->actionThemeSunny->setChecked(true);
@@ -3125,7 +3125,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_1->setText(loc.toString(D / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(k / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, I, f, 0, myOpt->dwAccuracy, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, I, f, 0, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3175,7 +3175,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, I, f, 0, myOpt->dwAccuracy, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, I, f, 0, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3221,7 +3221,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_3->setText(loc.toString(t / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4->setText(loc.toString(ins / myOpt->dwLengthMultiplier));
                 mui->lineEdit_5->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, I, f, myOpt->dwAccuracy, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, I, f, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_rectW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3278,7 +3278,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, Dk, d, p, f, _n, 0, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, Dk, d, p, f, _n, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerN_Poligonal_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3602,7 +3602,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_1_2->setText(loc.toString(D / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_2_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, N, f, 0, myOpt->dwAccuracy, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, k, N, f, 0, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3650,7 +3650,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, 0, myOpt->dwAccuracy, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, 0, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_roundW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3696,7 +3696,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_3_2->setText(loc.toString(t / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(ins / myOpt->dwLengthMultiplier));
                 mui->lineEdit_5_2->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, N, f, 0, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, w, t, p, N, f, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_rectW_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3751,7 +3751,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 if (!myOpt->isAWG) mui->lineEdit_2_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(p / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, _n, myOpt->dwAccuracy, 0, mt );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, Dk, d, p, N, f, _n, 0, myOpt->dwAccuracy, mt );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_onelayerI_Poligonal_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -4212,8 +4212,14 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
     Result += tr("Length of winding") + " l = " + loc.toString( (result.N * p + k)/myOpt->dwLengthMultiplier, 'f', myOpt->dwAccuracy ) + " " +
             qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    double mass = 2.225 * M_PI * d * d * result.sec;
-    Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    Material mt = Cu;
+    checkMaterial1(&mt);
+    double dencity = mtrl[mt][Dencity];
+    double mass = 0.25 * dencity * M_PI * d * d * result.sec;
+    double Resistivity = mtrl[mt][Rho]*1e6;
+    double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
+    Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
+    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
     double reactance = 2 * M_PI * I * f;
     Result += tr("Reactance of the coil") + " X = " + loc.toString(reactance, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
     Result += "<br/><br/>";
@@ -4224,11 +4230,6 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        Material mt = Cu;
-        checkMaterial1(&mt);
-        double Resistivity = mtrl[mt][Rho]*1e6;
-        double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
-        Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
         double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
@@ -4300,9 +4301,15 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
     Result += tr("Length of winding") + " l = " + loc.toString( (result.N * p + w)/myOpt->dwLengthMultiplier, 'f', myOpt->dwAccuracy ) + " " +
             qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    double mass = 8.9 * w * t * result.sec;
-    Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    Material mt = Cu;
+    checkMaterial1(&mt);
+    double dencity = mtrl[mt][Dencity];
+    double mass = dencity * w * t * result.sec;
+    double Resistivity = mtrl[mt][Rho]*1e6;
+    double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
+    Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
     double reactance = 2 * M_PI * I * f;
+    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
     Result += tr("Reactance of the coil") + " X = " + loc.toString(reactance, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
     Result += "<br/><br/>";
     if (f < 0.7 * result.fourth){
@@ -4312,11 +4319,6 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        Material mt = Cu;
-        checkMaterial1(&mt);
-        double Resistivity = mtrl[mt][Rho]*1e6;
-        double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
-        Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
         double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
@@ -4371,8 +4373,6 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
     c.insertHtml(Input);
     QString Result = "<hr>";
     double I = loc.toDouble(mui->lineEdit_ind->text())*myOpt->dwInductanceMultiplier;
-    double D = loc.toDouble(mui->lineEdit_1->text())*myOpt->dwLengthMultiplier;
-    double n = loc.toDouble(mui->lineEdit_5->text());
     double d = 0;
     if (myOpt->isAWG){
         d = convertfromAWG(mui->lineEdit_2->text());
@@ -4385,12 +4385,7 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
     data->N = result.N;
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
     Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + "<br/>";
-    double Dk = D + d;
-    double rP = Dk * n * sin(M_PI / n);
-    double sinpsi = p / (M_PI * Dk);
-    double psi = atan(sinpsi / sqrt(1 - sinpsi * sinpsi));
-    double lW = 0.001 * rP * result.N / cos(psi);
-    QString _wire_length = formatLength(lW, myOpt->dwLengthMultiplier);
+    QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
@@ -4398,9 +4393,15 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
     Result += tr("Length of winding") + " l = " + loc.toString( (result.N * p + k)/myOpt->dwLengthMultiplier, 'f', myOpt->dwAccuracy ) + " " +
             qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    double mass = 2.225 * M_PI * d * d * lW;
-    Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    Material mt = Cu;
+    checkMaterial1(&mt);
+    double dencity = mtrl[mt][Dencity];
+    double mass = 0.25 * dencity * M_PI * d * d * result.thd;
+    double Resistivity = mtrl[mt][Rho]*1e6;
+    double R = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
+    Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
     double reactance = 2 * M_PI * I * f;
+    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
     Result += tr("Reactance of the coil") + " X = " + loc.toString(reactance, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
     Result += "<br/><br/>";
     if (f < 0.7 * result.five){
@@ -4410,11 +4411,6 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        Material mt = Cu;
-        checkMaterial1(&mt);
-        double Resistivity = mtrl[mt][Rho]*1e6;
-        double R = (Resistivity * lW * 4) / (M_PI * d * d); // DC resistance of the wire
-        Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
         double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
@@ -4478,8 +4474,6 @@ void MainWindow::get_multilayerN_Result(_CoilResult result){
     double width = (2 * result.fourth + D) / myOpt->dwLengthMultiplier;
     Result += tr("Dimensions of inductor") + ": " + mui->lineEdit_2->text() + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier))
             + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier)) + " " + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    data->Rdc = result.N;
-    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
     QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
@@ -4492,8 +4486,13 @@ void MainWindow::get_multilayerN_Result(_CoilResult result){
     } else {
         d = loc.toDouble(mui->lineEdit_3->text())*myOpt->dwLengthMultiplier;
     }
-    double mass = 2.225 * M_PI * d * d * result.sec;
-    Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    double dencity = mtrl[Cu][Dencity];
+    double mass = 0.25 * dencity * M_PI * d * d * result.sec;
+    double Resistivity = mtrl[Cu][Rho]*1e6;
+    double Rdc = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
+    data->Rdc = Rdc;
+    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(Rdc, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+    Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
     Result += tr("Number of layers") + " Nl = " + loc.toString(result.thd);
     Result += "</p><hr>";
     c.insertHtml(Result);
@@ -4535,8 +4534,6 @@ void MainWindow::get_multilayerNgap_Result(_CoilResult result){
     double width = (2 * result.fourth + D) / myOpt->dwLengthMultiplier;
     Result += tr("Dimensions of inductor") + ": " + mui->lineEdit_2->text() + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier))
             + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier)) + " " + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    data->Rdc = result.N;
-    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
     QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
@@ -4549,8 +4546,13 @@ void MainWindow::get_multilayerNgap_Result(_CoilResult result){
     } else {
         d = loc.toDouble(mui->lineEdit_3->text())*myOpt->dwLengthMultiplier;
     }
-    double mass = 2.225 * M_PI * d * d * result.sec;
-    Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    double dencity = mtrl[Cu][Dencity];
+    double mass = 0.25 * dencity * M_PI * d * d * result.sec;
+    double Resistivity = mtrl[Cu][Rho]*1e6;
+    double Rdc = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
+    data->Rdc = Rdc;
+    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(Rdc, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+    Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
     Result += tr("Number of layers") + " Nl = " + loc.toString(result.thd) + "<br/>";
     Result += tr("Number of interlayers") + " Ng = " + loc.toString(result.five);
     Result += "</p><hr>";
@@ -4608,8 +4610,12 @@ void MainWindow::get_multilayerN_Rect_Result(_CoilResult result){
     } else {
         d = loc.toDouble(mui->lineEdit_4->text())*myOpt->dwLengthMultiplier;
     }
-    double mass = 2.225 * M_PI * d * d * result.thd;
-    Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    double dencity = mtrl[Cu][Dencity];
+    double mass = 0.25 * dencity * M_PI * d * d * result.thd;
+    double Resistivity = mtrl[Cu][Rho]*1e6;
+    double Rdc = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
+    data->Rdc = Rdc;
+    Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
     Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(result.fourth, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
     Result += "</p><hr>";
     c.insertHtml(Result);
@@ -4687,14 +4693,14 @@ void MainWindow::get_ferrToroidN_Result(_CoilResult result){
     QString Result = "<hr>";
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
     if (result.sec > 0) {
+        data->N = result.N;
+        Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
         QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         Result += tr("Length of wire without leads") + " lw = " + loc.toString(d_wire_length.toDouble(), 'f', myOpt->dwAccuracy) + " " +
                 qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-        data->N = result.N;
-        Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + "<br/>";
         Result += "A<sub>L</sub>&nbsp;= " + loc.toString(result.thd)
                 + "&nbsp;" +  qApp->translate("Context","nH") + "/N<sup>2</sup>";
     } else {
@@ -4783,6 +4789,7 @@ void MainWindow::get_spiralN_Result(_CoilResult result){
     QString Result = "<hr>";
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
     data->N = result.N;
+    data->Do = result.thd;
     Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N) + "<br/>";
     Result += tr("Outside diameter") + " Do = " + loc.toString(result.thd / myOpt->dwLengthMultiplier, 'f', myOpt->dwAccuracy) + " "
             + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
@@ -4858,9 +4865,15 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
     Result += tr("Length of winding") + " l = " + loc.toString( (N * p + k)/myOpt->dwLengthMultiplier, 'f', myOpt->dwAccuracy ) + " " +
             qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    double mass = 2.225 * M_PI * d * d * result.sec;
-    Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    Material mt = Cu;
+    checkMaterial2(&mt);
+    double dencity = mtrl[mt][Dencity];
+    double mass = 0.25 * dencity * M_PI * d * d * result.sec;
+    double Resistivity = mtrl[mt][Rho]*1e6;
+    double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
+    Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
     double reactance = 2 * M_PI * I * f;
+    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
     Result += tr("Reactance of the coil") + " X = " + loc.toString(reactance, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
     Result += "<br/><br/>";
     if (f < 0.7 * result.fourth){
@@ -4870,11 +4883,6 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        Material mt = Cu;
-        checkMaterial2(&mt);
-        double Resistivity = mtrl[mt][Rho]*1e6;
-        double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
-        Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
         double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
@@ -4946,9 +4954,15 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
     Result += tr("Length of winding") + " l = " + loc.toString( (N * p + w)/myOpt->dwLengthMultiplier, 'f', myOpt->dwAccuracy ) + " " +
             qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    double mass = 8.9 * w * t * result.sec;
-    Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    Material mt = Cu;
+    checkMaterial2(&mt);
+    double dencity = mtrl[mt][Dencity];
+    double mass = dencity * w * t * result.sec;
+    Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
     double reactance = 2 * M_PI * I * f;
+    double Resistivity = mtrl[mt][Rho]*1e6;
+    double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
+    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
     Result += tr("Reactance of the coil") + " X = " + loc.toString(reactance, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
     Result += "<br/><br/>";
     if (f < 0.7 * result.fourth){
@@ -4958,11 +4972,6 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        Material mt = Cu;
-        checkMaterial2(&mt);
-        double Resistivity = mtrl[mt][Rho]*1e6;
-        double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
-        Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
         double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
@@ -5017,7 +5026,6 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
     c.insertHtml(Input);
     QString Result = "<hr>";
     double N = loc.toDouble(mui->lineEdit_N->text());
-    double D = loc.toDouble(mui->lineEdit_1_2->text())*myOpt->dwLengthMultiplier;
     double d = 0;
     if (myOpt->isAWG){
         d = convertfromAWG(mui->lineEdit_2_2->text());
@@ -5026,18 +5034,13 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
     }
     double k = loc.toDouble(mui->lineEdit_3_2->text())*myOpt->dwLengthMultiplier;
     double p = loc.toDouble(mui->lineEdit_4_2->text())*myOpt->dwLengthMultiplier;
-    double n = loc.toDouble(mui->lineEdit_5_2->text());
     double f = loc.toDouble(mui->lineEdit_freq2->text())*myOpt->dwFrequencyMultiplier;
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
     double I = result.sec;
     data->inductance = result.sec;
     Result += tr("Inductance") + " L = " + loc.toString(I/myOpt->dwInductanceMultiplier, 'f', myOpt->dwAccuracy) + " " +
             qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
-    double Dk = D + d;
-    double rP = Dk * n * sin(M_PI / n);
-    double sinpsi = p / (M_PI * Dk);
-    double psi = atan(sinpsi / sqrt(1 - sinpsi * sinpsi));
-    double lW = 0.001 * rP * N / cos(psi);
+    double lW = result.thd;
     QString _wire_length = formatLength(lW, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
@@ -5046,9 +5049,15 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
     Result += tr("Length of winding") + " l = " + loc.toString( (N * p + k)/myOpt->dwLengthMultiplier, 'f', myOpt->dwAccuracy ) + " " +
             qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    double mass = 2.225 * M_PI * d * d * lW;
-    Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    Material mt = Cu;
+    checkMaterial2(&mt);
+    double dencity = mtrl[mt][Dencity];
+    double mass = 0.25 * dencity * M_PI * d * d * lW;
+    Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
     double reactance = 2 * M_PI * I * f;
+    double Resistivity = mtrl[mt][Rho]*1e6;
+    double R = (Resistivity * lW * 4) / (M_PI * d * d); // DC resistance of the wire
+    Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
     Result += tr("Reactance of the coil") + " X = " + loc.toString(reactance, 'f', myOpt->dwAccuracy) + " " + tr("Ohm");
     Result += "<br/><br/>";
     if (f < 0.7 * result.five){
@@ -5058,11 +5067,6 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
                 + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
         double Ql = (double)result.six;
         Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
-        Material mt = Cu;
-        checkMaterial2(&mt);
-        double Resistivity = mtrl[mt][Rho]*1e6;
-        double R = (Resistivity * lW * 4) / (M_PI * d * d); // DC resistance of the wire
-        Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(R, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
         double ESR = result.seven;
         Result += tr("Loss resistance") + " ESR = " + loc.toString(ESR, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
         if(myOpt->isAdditionalResult){
@@ -5137,7 +5141,7 @@ void MainWindow::get_multilayerI_Result(_CoilResult result){
             d = loc.toDouble(mui->lineEdit_4_2->text())*myOpt->dwLengthMultiplier;
         }
         double mass = 2.225 * M_PI * d * d * result.thd;
-        Result += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+        Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
         Result += tr("Number of layers") + " Nl = " + loc.toString(result.sec);
     } else {
         double N1 = result.thd;
@@ -5641,8 +5645,8 @@ void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
         cursor.clearSelection();
         mui->textBrowser->setTextCursor(cursor);
         if ((mui->textBrowser->document()->lineCount() < 4) && (!mui->textBrowser->document()->isEmpty())){
-                mui->textBrowser->clear();
-                mui->statusBar->clearMessage();
+            mui->textBrowser->clear();
+            mui->statusBar->clearMessage();
         }
     }
 }

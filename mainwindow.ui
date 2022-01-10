@@ -166,7 +166,7 @@
            </item>
            <item>
             <property name="text">
-             <string>One layer coil on a poligonal former</string>
+             <string>One layer coil on a polygonal former</string>
             </property>
             <property name="icon">
              <iconset resource="res.qrc">
@@ -1771,7 +1771,7 @@
    </widget>
    <widget class="QMenu" name="menuAdditional_calculating">
     <property name="title">
-     <string>Additional calculating</string>
+     <string>Additional calculations</string>
     </property>
     <addaction name="actionPCB_meandr_coil"/>
     <addaction name="actionMetal_detector_search_coil"/>
@@ -2050,7 +2050,7 @@
      <normaloff>:/menu_ico/res/ico1-shield.png</normaloff>:/menu_ico/res/ico1-shield.png</iconset>
    </property>
    <property name="text">
-    <string>Influence of a coil shield</string>
+    <string>Influence of the shield of a coil</string>
    </property>
   </action>
   <action name="actionAmidon_cores">
@@ -2157,6 +2157,11 @@
    </property>
    <property name="text">
     <string>Toroidal inductor at RF</string>
+   </property>
+  </action>
+  <action name="actionNotation_and_Measurement_Convention">
+   <property name="text">
+    <string>Notation and Measurement</string>
    </property>
   </action>
  </widget>
