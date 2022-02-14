@@ -60,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
     int init_data = settings->value( "init_data", 0 ).toInt();
     myOpt->isInsertImage = settings->value( "isInsertImage", true ).toBool();
     myOpt->isShowTitle = settings->value( "isShowTitle", true ).toBool();
+    myOpt->isShowLTSpice = settings->value( "isShowLTSpice", true ).toBool();
     myOpt->isConfirmExit = settings->value( "isConfirmExit", true ).toBool();
     myOpt->isConfirmClear = settings->value( "isConfirmClear", true ).toBool();
     myOpt->isConfirmDelete = settings->value( "isConfirmDelete", true ).toBool();
@@ -132,6 +133,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mui->toolButton_showImg->setChecked(myOpt->isInsertImage);
     mui->toolButton_showTitle->setChecked(myOpt->isShowTitle);
+    mui->toolButton_ltspice->setChecked(myOpt->isShowLTSpice);
     mui->toolButton_showAdditional->setChecked(myOpt->isAdditionalResult);
     mui->toolButton_cbc->setChecked(myOpt->isConfirmClear);
     mui->toolButton_cbe->setChecked(myOpt->isConfirmExit);
@@ -377,6 +379,11 @@ void MainWindow::setLanguage(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 MainWindow::~MainWindow()
 {
+    QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation).toUtf8();
+    QString hlptempFileName = tempDir.append("/onelayer.pdf");
+    QFile hlptempFile(hlptempFileName);
+    if (hlptempFile.exists())
+        hlptempFile.remove();
     delete popupmenu;
     delete data;
     delete dv;
@@ -477,6 +484,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
         if (mui->radioButton_8->isChecked()) settings->setValue("init_data", 2);
         settings->setValue("isInsertImage", myOpt->isInsertImage);
         settings->setValue("isShowTitle", myOpt->isShowTitle);
+        settings->setValue("isShowLTSpice", myOpt->isShowLTSpice);
         settings->setValue("isAdditionalResult", myOpt->isAdditionalResult);
         settings->setValue("isConfirmExit", myOpt->isConfirmExit);
         settings->setValue("isConfirmClear", myOpt->isConfirmClear);
@@ -594,6 +602,7 @@ void MainWindow::resetUiFont(){
     mui->toolButton_cdsr->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_soe->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_lShowFirst->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_ltspice->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     QFont f2 = mui->textBrowser->font();
     f2.setFamily(myOpt->textFontFamily);
     f2.setPixelSize(myOpt->textFontSize);
@@ -730,16 +739,14 @@ void MainWindow::on_actionHelp_triggered()
     if ((tab == 0) || (tab == 1)){
         switch (FormCoil) {
         case _Onelayer_cw:
-        case _Onelayer:{
-            QDesktopServices::openUrl(QUrl("https://coil32.net/coil-with-winding-pitch.html"));
-            break;
-        }
-        case _Onelayer_p:{
-            QDesktopServices::openUrl(QUrl("https://coil32.net/coil-with-winding-pitch.html"));
-            break;
-        }
+        case _Onelayer:
+        case _Onelayer_p:
         case _Onelayer_q:{
-            QDesktopServices::openUrl(QUrl("https://coil32.net/coil-on-not-circular-former.html"));
+            QFile helpFile(":/txt/res/onelayer.pdf");
+            QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation).toUtf8();
+            QString tempFileName = tempDir.append("/onelayer.pdf");
+            helpFile.copy(tempFileName);
+            QDesktopServices::openUrl(QUrl::fromLocalFile(tempFileName));
             break;
         }
         case _Multilayer:{
@@ -797,6 +804,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
 {
     int tab = mui->tabWidget->currentIndex();
     FormCoil = (_FormCoil)currentRow;
+    mui->toolButton_ltspice->setEnabled(false);
     switch (tab) {
     case 0:{
         mui->label_ind->setText(tr("Inductance") + " L:");
@@ -823,6 +831,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox->setVisible(true);
             mui->groupBox_6->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -869,6 +878,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox->setVisible(true);
             mui->groupBox_6->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -917,6 +927,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox->setVisible(true);
             mui->groupBox_6->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -954,6 +965,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox->setVisible(true);
             mui->groupBox_6->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -1346,6 +1358,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1396,6 +1409,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1448,6 +1462,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -1489,6 +1504,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1542,6 +1558,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->image->setPixmap(QPixmap(":/images/res/Coil4.png"));
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(true);
+            mui->radioButton_8->setVisible(true);
             mui->radioButton_6->setText(tr("Number of turns of the coil") + " (N)");
             mui->radioButton_7->setText(tr("Thickness of the coil") + " (c)");
             mui->radioButton_8->setText(tr("Resistance of the coil") + " (Rdc)");
@@ -1639,7 +1656,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
         case _Multilayer_r:{
             mui->image->setPixmap(QPixmap(":/images/res/Coil4_square.png"));
             mui->groupBox_2->setVisible(false);
-            mui->groupBox_7->setVisible(false);
+            mui->groupBox_7->setVisible(true);
+            mui->radioButton_8->setVisible(false);
+            mui->radioButton_6->setText(tr("Number of turns of the coil") + " (N)");
+            mui->radioButton_7->setText(tr("Thickness of the coil") + " (c)");
             mui->comboBox_checkPCB->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_05_2->setText(tr("AWG"));
@@ -1675,6 +1695,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_2_2->setText(loc.toString(data->b / myOpt->dwLengthMultiplier));
             mui->lineEdit_3_2->setText(loc.toString(data->l / myOpt->dwLengthMultiplier));
             mui->lineEdit_4_2->setText(loc.toString(data->c / myOpt->dwLengthMultiplier));
+            if (mui->radioButton_8->isChecked())
+                mui->radioButton_6->setChecked(true);
+            on_radioButton_6_toggled(mui->radioButton_6->isChecked());
             if (myOpt->isAWG){
                 if (data->d > 0){
                     mui->lineEdit_5_2->setText(converttoAWG(data->d));
@@ -2262,6 +2285,11 @@ void MainWindow::on_toolButton_showImg_clicked()
     myOpt->isInsertImage = mui->toolButton_showImg->isChecked();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_ltspice_clicked()
+{
+    myOpt->isShowLTSpice = mui->toolButton_ltspice->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_toolButton_showAdditional_clicked()
 {
     myOpt->isAdditionalResult = mui->toolButton_showAdditional->isChecked();
@@ -2334,36 +2362,50 @@ void MainWindow::on_toolButton_Configure_clicked()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_6_toggled(bool checked)
 {
-    if (checked){
-        mui->label_3_2->setText(tr("Number of turns of the coil") + " N:");
-        mui->label_03_2->setVisible(false);
-        mui->lineEdit_3_2->setText(loc.toString(data->N));
-    } else {
-        mui->label_3_2->setText(tr("Thickness of the coil") + " c:");
-        mui->label_03_2->setVisible(true);
-        mui->lineEdit_3_2->setText(loc.toString(data->c));
+    if (FormCoil == _Multilayer){
+        if (checked){
+            mui->label_3_2->setText(tr("Number of turns of the coil") + " N:");
+            mui->label_03_2->setVisible(false);
+            mui->lineEdit_3_2->setText(loc.toString(data->N));
+        } else {
+            mui->label_3_2->setText(tr("Thickness of the coil") + " c:");
+            mui->label_03_2->setVisible(true);
+            mui->lineEdit_3_2->setText(loc.toString(data->c));
+        }
+        on_radioButton_8_toggled(mui->radioButton_8->isChecked());
+    } else if (FormCoil == _Multilayer_r){
+        if (checked){
+            mui->label_4_2->setText(tr("Number of turns of the coil") + " N:");
+            mui->label_04_2->setVisible(false);
+            mui->lineEdit_4_2->setText(loc.toString(data->N));
+        } else {
+            mui->label_4_2->setText(tr("Thickness of the coil") + " c:");
+            mui->label_04_2->setVisible(true);
+            mui->lineEdit_4_2->setText(loc.toString(data->c));
+        }
     }
-    on_radioButton_8_toggled(mui->radioButton_8->isChecked());
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_8_toggled(bool checked)
 {
-    if (checked){
-        mui->label_4_2->setText(tr("Resistance of the coil") + " Rdc:");
-        mui->label_04_2->setText(tr("Ohm"));
-        mui->lineEdit_4_2->setText(loc.toString(data->Rdc));
-    } else {
-        mui->label_4_2->setText(tr("Wire diameter") + " d:");
-        mui->label_04_2->setText(tr("mm"));
-        if (myOpt->isAWG){
-            if (data->d > 0){
-                mui->label_04_2->setText(tr("AWG"));
-                mui->lineEdit_4_2->setText(converttoAWG(data->d));
-            } else {
-                mui->lineEdit_4_2->setText("");
-            }
-        } else
-            mui->lineEdit_4_2->setText(loc.toString(data->d / myOpt->dwLengthMultiplier));
+    if (FormCoil == _Multilayer){
+        if (checked){
+            mui->label_4_2->setText(tr("Resistance of the coil") + " Rdc:");
+            mui->label_04_2->setText(tr("Ohm"));
+            mui->lineEdit_4_2->setText(loc.toString(data->Rdc));
+        } else {
+            mui->label_4_2->setText(tr("Wire diameter") + " d:");
+            mui->label_04_2->setText(tr("mm"));
+            if (myOpt->isAWG){
+                if (data->d > 0){
+                    mui->label_04_2->setText(tr("AWG"));
+                    mui->lineEdit_4_2->setText(converttoAWG(data->d));
+                } else {
+                    mui->lineEdit_4_2->setText("");
+                }
+            } else
+                mui->lineEdit_4_2->setText(loc.toString(data->d / myOpt->dwLengthMultiplier));
+        }
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2374,6 +2416,7 @@ void MainWindow::getOptionStruct(_OptionStruct gOpt){
     on_tabWidget_currentChanged(mui->tabWidget->currentIndex());
     mui->toolButton_showImg->setChecked(myOpt->isInsertImage);
     mui->toolButton_showTitle->setChecked(myOpt->isShowTitle);
+    mui->toolButton_ltspice->setChecked(myOpt->isShowLTSpice);
     mui->toolButton_showAdditional->setChecked(myOpt->isAdditionalResult);
     mui->toolButton_cbc->setChecked(myOpt->isConfirmClear);
     mui->toolButton_cbe->setChecked(myOpt->isConfirmExit);
@@ -3898,9 +3941,15 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 mui->lineEdit_4_2->setText(loc.toString(c / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_5_2->setText(loc.toString(d / myOpt->dwLengthMultiplier));
                 mui->lineEdit_6_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, a, b, l, c, d, k, 0, 0 );
-                connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerI_Rect_Result(_CoilResult)));
-                thread->start();
+                if (mui->radioButton_6->isChecked()){
+                    MThread_calculate *thread= new MThread_calculate( FormCoil, tab, a, b, l, c, d, k, 0, 0 );
+                    connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerI_Rect_Result(_CoilResult)));
+                    thread->start();
+                } else if (mui->radioButton_7->isChecked()){
+                    MThread_calculate *thread= new MThread_calculate( FormCoil, tab, a, b, l, c, d, k, 1, 0 );
+                    connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerI_Rect_Result(_CoilResult)));
+                    thread->start();
+                }
                 break;
             }
             case _Multilayer_f:{
@@ -4247,6 +4296,14 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
             double deltaf = 1000 * data->frequency / Qs;
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
         }
+        if(myOpt->isShowLTSpice){
+            Result += "<hr><p>";
+            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            Result += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+        }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
         mui->statusBar->showMessage(message);
@@ -4335,6 +4392,14 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
             Result += " => "  + tr("Equivalent resistance") + ": Re = " + loc.toString(Re / 1000, 'f', myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
             double deltaf = 1000 * data->frequency / Qs;
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
+        }
+        if(myOpt->isShowLTSpice){
+            Result += "<hr><p>";
+            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            Result += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
         }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -4427,6 +4492,14 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
             Result += " => "  + tr("Equivalent resistance") + ": Re = " + loc.toString(Re / 1000, 'f', myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
             double deltaf = 1000 * data->frequency / Qs;
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
+        }
+        if(myOpt->isShowLTSpice){
+            Result += "<hr><p>";
+            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            Result += "Parallel capacitance: " + QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p" + "</p>";
         }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -4900,6 +4973,14 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
             double deltaf = 1000 * f / Qs;
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
         }
+        if(myOpt->isShowLTSpice){
+            Result += "<hr><p>";
+            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            Result += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+        }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
         mui->statusBar->showMessage(message);
@@ -4988,6 +5069,14 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
             Result += " => "  + tr("Equivalent resistance") + ": Re = " + loc.toString(Re / 1000, 'f', myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
             double deltaf = 1000 * data->frequency / Qs;
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
+        }
+        if(myOpt->isShowLTSpice){
+            Result += "<hr><p>";
+            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            Result += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
         }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -5083,6 +5172,14 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
             Result += " => "  + tr("Equivalent resistance") + ": Re = " + loc.toString(Re / 1000, 'f', myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
             double deltaf = 1000 * f / Qs;
             Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + loc.toString(deltaf, 'f', myOpt->dwAccuracy) + tr("kHz");
+        }
+        if(myOpt->isShowLTSpice){
+            Result += "<hr><p>";
+            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            Result += "Parallel capacitance: " + QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p" + "</p>";
         }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -5220,21 +5317,53 @@ void MainWindow::get_multilayerI_Rect_Result(_CoilResult result){
     Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
     Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
     Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
+    if (mui->radioButton_6->isChecked())
+        Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + "<br/>";
+    else
+        Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
     Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "<br/>";
     Input += mui->label_6_2->text() + " " + mui->lineEdit_6_2->text() + " " + mui->label_06_2->text() + "</p>";
     c.insertHtml(Input);
     QString Result = "<hr>";
-    double N1 = result.thd;
-    double N2 = result.fourth;
-    double L1 = result.N;
-    double L2 = result.sec;
-    data->inductance = sqrt(L1*L2);
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
-    Result += tr("Number of turns of the coil") + " N = " + loc.toString(N1) + "..." + loc.toString(N2) + "<br/>";
-    Result += tr("Inductance") + " L = " + loc.toString(L1 / myOpt->dwInductanceMultiplier, 'f', myOpt->dwAccuracy) + "..."
-            + loc.toString(L2 / myOpt->dwInductanceMultiplier, 'f', myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
+    if (mui->radioButton_6->isChecked()){
+        Result += tr("Inductance") + " L = " + loc.toString(result.N, 'f', myOpt->dwAccuracy) + " "
+                + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+        data->inductance = result.N;
+        Result += tr("Thickness of the coil") + " c = " + loc.toString(result.five / myOpt->dwLengthMultiplier, 'f', myOpt->dwAccuracy) + " "
+                + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+        data->c = result.five;
+        QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
+        QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+        QString d_wire_length = list[0];
+        QString _ssLengthMeasureUnit = list[1];
+        Result += tr("Length of wire without leads") + " lw = " + loc.toString(d_wire_length.toDouble(), 'f', myOpt->dwAccuracy) + " " +
+                qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+        double d = 0;
+        if (myOpt->isAWG){
+            d = convertfromAWG(mui->lineEdit_5_2->text());
+        } else {
+            d = loc.toDouble(mui->lineEdit_5_2->text())*myOpt->dwLengthMultiplier;
+        }
+        double dencity = mtrl[Cu][Dencity];
+        double mass = 0.25 * dencity * M_PI * d * d * result.thd;
+        double Resistivity = mtrl[Cu][Rho]*1e6;
+        double Rdc = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
+        Result += tr("Resistance of the coil") + " Rdc = " + loc.toString(Rdc, 'f', myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+        data->Rdc = result.fourth;
+        Result += tr("Weight of wire") + " m = " + loc.toString(mass, 'f', myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
+        Result += tr("Number of layers") + " Nl = " + loc.toString(result.sec);
+    } else {
+        double N1 = result.thd;
+        double N2 = result.fourth;
+        double L1 = result.N;
+        double L2 = result.sec;
+        data->inductance = sqrt(L1*L2);
+        Result += tr("Number of turns of the coil") + " N = " + loc.toString(N1) + "..." + loc.toString(N2) + "<br/>";
+        Result += tr("Inductance") + " L = " + loc.toString(L1 / myOpt->dwInductanceMultiplier, 'f', myOpt->dwAccuracy) + "..."
+                + loc.toString(L2 / myOpt->dwInductanceMultiplier, 'f', myOpt->dwAccuracy) + " "
+                + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
+    }
     Result += "</p><hr>";
     c.insertHtml(Result);
     if(myOpt->isLastShowingFirst)

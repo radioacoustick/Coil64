@@ -45,7 +45,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_1">
       <attribute name="title">
@@ -441,6 +441,16 @@
         <widget class="QCheckBox" name="checkBox_2">
          <property name="text">
           <string>Show additional results for single layer coils</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_10">
+         <property name="text">
+          <string>Show data for LTSpice</string>
          </property>
          <property name="checked">
           <bool>true</bool>

@@ -36,6 +36,7 @@ RF_Toroid::RF_Toroid(QWidget *parent) :
     dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
     ui->lineEdit_N->setValidator(dv);
     ui->lineEdit_f->setValidator(dv);
+    ui->lineEdit_d->setValidator(dv);
     ui->lineEdit_cs->setValidator(dv);
     ui->lineEdit_od->setValidator(dv);
     ui->lineEdit_id->setValidator(dv);
@@ -73,6 +74,7 @@ RF_Toroid::RF_Toroid(QWidget *parent) :
     ui->label_id->setText(tr("Inside diameter") + " ID:");
     ui->label_h->setText(tr("Core height") + " H:");
     ui->label_c->setText(tr("Chamfer") + " C:");
+    ui->label_d->setText(tr("Wire diameter") + " d:");
     ui->lineEdit_N->setFocus();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,6 +95,7 @@ RF_Toroid::~RF_Toroid()
     settings->setValue("id", id);
     settings->setValue("h", h);
     settings->setValue("c", c);
+    settings->setValue("d", d);
     settings->setValue("mu1", mu1);
     settings->setValue("mu2", mu2);
     settings->endGroup();
@@ -142,6 +145,7 @@ void RF_Toroid::getOpt(_OptionStruct gOpt)
     id = settings->value("id", 0).toDouble();
     h = settings->value("h", 0).toDouble();
     c = settings->value("c", 0).toDouble();
+    d = settings->value("d", 0).toDouble();
     mu1 = settings->value("mu1", 0).toDouble();
     mu2 = settings->value("mu2", 0).toDouble();
     int matInit = settings->value("matInit", 0).toInt();
@@ -154,6 +158,7 @@ void RF_Toroid::getOpt(_OptionStruct gOpt)
     ui->label_02->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_03->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_04->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
+    ui->label_d_m->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->lineEdit_N->setText(loc.toString(N));
     ui->lineEdit_f->setText(loc.toString(f / fOpt->dwFrequencyMultiplier));
     ui->lineEdit_cs->setText(loc.toString(Cs / fOpt->dwCapacityMultiplier));
@@ -161,6 +166,7 @@ void RF_Toroid::getOpt(_OptionStruct gOpt)
     ui->lineEdit_id->setText(loc.toString(id / fOpt->dwLengthMultiplier));
     ui->lineEdit_h->setText(loc.toString(h / fOpt->dwLengthMultiplier));
     ui->lineEdit_c->setText(loc.toString(c / fOpt->dwLengthMultiplier));
+    ui->lineEdit_d->setText(loc.toString(d / fOpt->dwLengthMultiplier));
     if (fOpt->styleGUI == _DarkStyle)
         styleInfoColor = "<span style=\"color:yellow;\">";
     else
@@ -178,6 +184,13 @@ void RF_Toroid::getCurrentLocale(QLocale locale)
     this->loc = locale;
     this->setLocale(loc);
     dv->setLocale(loc);
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double RF_Toroid::getDCresistance(double N, double OD, double ID, double H, double dw)
+{
+    double P = (OD - ID) + (2 * H);
+    double Resistivity = mtrl[Cu][Rho]*1e6;
+    return N * (Resistivity * P * 4e-3) / (M_PI * dw * dw); // DC resistance of the wire;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RF_Toroid::on_pushButton_close_clicked()
@@ -316,6 +329,11 @@ void RF_Toroid::on_lineEdit_c_editingFinished()
     c = loc.toDouble(ui->lineEdit_c->text()) * fOpt->dwLengthMultiplier;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void RF_Toroid::on_lineEdit_d_editingFinished()
+{
+     d = loc.toDouble(ui->lineEdit_d->text()) * fOpt->dwLengthMultiplier;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RF_Toroid::on_lineEdit_mu1_editingFinished()
 {
     mu1 = loc.toDouble(ui->lineEdit_mu1->text());
@@ -331,9 +349,9 @@ void RF_Toroid::on_pushButton_calculate_clicked()
     bool ok1, ok2, ok3, ok4, ok5;
     double m1 = loc.toDouble(ui->lineEdit_mu1->text(), &ok1);
     double m2 = loc.toDouble(ui->lineEdit_mu2->text(), &ok2);
-    double od = loc.toDouble(ui->lineEdit_od->text(), &ok3) * fOpt->dwLengthMultiplier;;
-    double id = loc.toDouble(ui->lineEdit_id->text(), &ok4) * fOpt->dwLengthMultiplier;;
-    double h = loc.toDouble(ui->lineEdit_h->text(), &ok5) * fOpt->dwLengthMultiplier;;
+    od = loc.toDouble(ui->lineEdit_od->text(), &ok3) * fOpt->dwLengthMultiplier;;
+    id = loc.toDouble(ui->lineEdit_id->text(), &ok4) * fOpt->dwLengthMultiplier;;
+    h = loc.toDouble(ui->lineEdit_h->text(), &ok5) * fOpt->dwLengthMultiplier;;
     if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         ui->label_result->setText("");
@@ -373,8 +391,9 @@ void RF_Toroid::on_pushButton_calculate_clicked()
                 yc = complex<double>(0, 2 * M_PI * Cs * 1e-12 * freq);
             double Q = 0;
             complex<double> z = complex<double>(1) /((complex<double>(1) / zl) + yc); //summary impedance of the coil
+            double Rdc = getDCresistance(N, od, id, h, d);//DC resistance of the winding [Ohm]
             if (m2 > 0)
-                Q = z.imag() / z.real(); //Coil constructive Q-factor
+                Q = z.imag() / (z.real() + Rdc); //Coil constructive Q-factor
             QString result = "<p>";
             QString sComplexZ = loc.toString(z.real(), 'f', fOpt->dwAccuracy) + " + j" + loc.toString(z.imag(), 'f', fOpt->dwAccuracy);
             if(z.imag() < 0)
@@ -385,13 +404,22 @@ void RF_Toroid::on_pushButton_calculate_clicked()
                 result += tr("Equivalent series inductance") + " Ls = " +
                         loc.toString(z.imag() / (2*M_PI*freq)*1e6 / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " " +
                         qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
-                result += tr("Loss resistance") + " ESR = " + loc.toString(z.real(), 'f', fOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+                result += tr("Loss resistance") + " ESR = " + loc.toString(z.real() + Rdc, 'f', fOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
                 if (isCsAuto)
                     result += tr("Self capacitance") + " Cs = " + loc.toString(Csm, 'f', 1) + " "
                         + qApp->translate("Context", "pF") + "<br/>";
                 result += tr("Coil constructive Q-factor") + " Q = " + loc.toString(Q, 'f', fOpt->dwAccuracy) + "<br/>";
                 result += "A<sub>L</sub>&nbsp;= " + loc.toString(round(al))
-                        + "&nbsp;" +  qApp->translate("Context","nH") + "/N<sup>2</sup>";
+                        + "&nbsp;" +  qApp->translate("Context","nH") + "/N<sup>2</sup></p>";
+                result += "<hr><p>";
+                result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+                result += "Inductance: " + QString::number(z.imag() / (2*M_PI*freq)*1e6, 'f', fOpt->dwAccuracy) + "μ" + "<br/>";
+                result += "Series resistance: " + QString::number(Rdc * 1000, 'f', 3) + "m" + "<br/>";
+                result += "Parallel resistance: " + QString::number(Q * z.imag() / 1000, 'f', fOpt->dwAccuracy) + "k" + "<br/>";
+                if (isCsAuto)
+                    result += "Parallel capacitance: " + QString::number(Csm, 'f', fOpt->dwAccuracy) + "p";
+                else
+                    result += "Parallel capacitance: " + QString::number(Cs, 'f', fOpt->dwAccuracy) + "p";
             } else {
                 result += "Q &lt; 0";
             }
@@ -446,3 +474,4 @@ void RF_Toroid::on_pushButton_help_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://coil32.net/rf-toroid.html"));
 }
+

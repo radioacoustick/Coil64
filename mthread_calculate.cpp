@@ -155,7 +155,11 @@ void MThread_calculate::run(){
             case _Multilayer_r:{
                 //arg: a, b, l, c, d, k
                 //double a, double b, double l, double c, double dw, double k, _CoilResult *result
-                getMultiLayerI_rectFormer(arg1, arg2, arg3, arg4, arg5, arg6, &result);
+                if (arg7 == 0){
+                    getMultiLayerI_rectFormer_byN(arg4, arg1, arg2, arg3, arg5, arg6, &result);
+                } else if (arg7 == 1){
+                    getMultiLayerI_rectFormer(arg1, arg2, arg3, arg4, arg5, arg6, &result);
+                }
                 break;
             }
             case _Multilayer_f:{

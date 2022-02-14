@@ -212,6 +212,8 @@ private slots:
     void getAddCalculationResult(QString result);
 
 
+    void on_toolButton_ltspice_clicked();
+
 private:
     Ui::MainWindow *mui;
     QNetworkAccessManager *net_manager;

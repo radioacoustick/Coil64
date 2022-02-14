@@ -110,6 +110,7 @@ enum _FormCoil
     void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result); //get Inductance for Multi-layer coil
     void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result);
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result);
+    void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, double dw, double k, _CoilResult *result);
     void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result);
     double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, _CoilResult *result); //get Inductance for Ferrite toroid coil
     double getPCB_I(double N, double _d, double _s, int layout, _CoilResult *result);

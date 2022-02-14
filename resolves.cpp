@@ -602,6 +602,67 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
     result->fourth = Rdc; //resistance to DC
     result->five = (nLayer + 1) * k * 10; //coil thickness
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, double dw, double k, _CoilResult *result){
+    double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd, Msub, lw, Km, Ks, Lcor;
+    int Nc, Nl, Jc, nLayer, jLayer;
+
+    a = a / 10;
+    b = b / 10;
+    l = l / 10;
+    dw = dw / 10;
+    k = k / 10;
+    Ltotal = 0;
+    a0 = a + k;
+    b0 = b + k;
+    lw = 0;
+    nLayer = 0;
+    Nl = floor(l / k); // Number of turns in layer
+    for (int n = 1; n < N + 1; n++){
+        Nc = (n - 1) % Nl; // Position of the turn on x
+        nLayer = floor((n - 1) / Nl); // Position of the turn on y
+        nx = Nc * k; // x-offset of current turn
+        ny = nLayer * k; // y-offset of current turn
+        lengthNa = a0 + 2 * k * (nLayer);
+        lengthNb = b0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side b)
+        lw += 2 * (a0 + b0 + 2 * k * (nLayer));
+        Ladd = SelfInductanceStraightWire(lengthNa, dw) + SelfInductanceStraightWire(lengthNb, dw); // half of self-inductance of the current turn
+        Db = 2 * ny + a0; // distance to opposite cunductor of the same turn (side b)
+        Da = 2 * ny + b0; // distance to opposite cunductor of the same turn (side a)
+        Lsub = 2 * MutInductanceStraightWire(lengthNa, lengthNa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthNb, Db);
+        // half mutual inductance with opposite conductor of current turn
+        Madd = 0;
+        Msub = 0;
+        if (n > 1){
+            for (int j = n; j >= 2; j--){
+                Jc = (j - 2) % Nl; // position of previous turn on x
+                jx = Jc * k; // x-offset of previous turn
+                jLayer = floor((j - 2) / Nl); // Position of the turn on y
+                jy = k * jLayer; // y-offset of previous turn
+                lengthJa = a0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side a)
+                lengthJb = b0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side b)
+                D = sqrt(pow(nx - jx, 2) + pow(ny - jy, 2)); // distance to in-phase straight conductor of previous turn
+                Madd = Madd + 2 * MutInductanceStraightWire(lengthNa, lengthJa, D) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, D);
+                // half mutual inductance with in-phase conductor in previous turn
+                Db = sqrt(pow(nx - jx, 2) + pow(ny + jy + a0, 2));
+                // distance to opposite cunductor between the current turn and previous (side b)
+                Da = sqrt(pow(nx - jx, 2) + pow(ny + jy + b0, 2));
+                // distance to opposite cunductor between the current turn and previous (side a)
+                Msub = Msub + 2 * MutInductanceStraightWire(lengthNa, lengthJa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, Db);
+                // half mutual inductance with opposite conductor in previous turn
+            }
+        }
+        Ltotal += 2 * (Ladd - Lsub + Madd - Msub);
+        Ks = rosaKs(k / dw);
+        Km = rosaKm(n);
+        Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
+        Ltotal -= Lcor;
+    }
+    result->N = Ltotal; //inductance
+    result->sec = nLayer + 1; //number of layers
+    result->thd = lw * 0.01; //length of wire
+    result->five = (nLayer + 1) * k * 10; //coil thickness
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result)
 {

@@ -71,6 +71,7 @@ void Options::getOpt(_OptionStruct gOpt){
     ui->checkBox_7->setChecked(oOpt->isSaveOnExit);
     ui->checkBox_8->setChecked(oOpt->isLastShowingFirst);
     ui->checkBox_9->setChecked(oOpt->isShowTitle);
+    ui->checkBox_10->setChecked(oOpt->isShowLTSpice);
 
     ui->fontComboBox_1->setCurrentText(oOpt->mainFontFamily);
     ui->fontspinBox_1->setValue(oOpt->mainFontSize);
@@ -124,6 +125,7 @@ void Options::on_pushButton_2_clicked()
     oOpt->isSaveOnExit = ui->checkBox_7->isChecked();
     oOpt->isLastShowingFirst = ui->checkBox_8->isChecked();
     oOpt->isShowTitle = ui->checkBox_9->isChecked();
+    oOpt->isShowLTSpice = ui->checkBox_10->isChecked();
     oOpt->styleGUI = ui->comboBox_style->currentIndex();
 
 

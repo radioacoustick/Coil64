@@ -51,6 +51,7 @@ signals:
 private slots:
     void getOpt(_OptionStruct gOpt);
     void getCurrentLocale(QLocale locale);
+    double getDCresistance(double N, double OD, double ID, double H, double dw);
     void on_pushButton_close_clicked();
     void on_comboBox_currentIndexChanged(int index);
     void on_comboBox_2_currentIndexChanged(int index);
@@ -62,12 +63,12 @@ private slots:
     void on_lineEdit_id_editingFinished();
     void on_lineEdit_h_editingFinished();
     void on_lineEdit_c_editingFinished();
+    void on_lineEdit_d_editingFinished();
     void on_lineEdit_mu1_editingFinished();
     void on_lineEdit_mu2_editingFinished();
     void on_pushButton_calculate_clicked();
     void on_pushButton_export_clicked();
     void on_pushButton_help_clicked();
-
 
 private:
     Ui::RF_Toroid *ui;
@@ -75,7 +76,7 @@ private:
     QDoubleValidator *dv;
     QLocale loc;
     QString styleInfoColor;
-    double N, f, Cs, od, id, h, c, mu1, mu2;
+    double N, f, Cs, od, id, h, c, d, mu1, mu2;
     bool isCsAuto = false;
 };
 

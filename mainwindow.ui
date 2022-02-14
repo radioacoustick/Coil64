@@ -260,6 +260,9 @@
        <property name="spacing">
         <number>0</number>
        </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -275,7 +278,7 @@
        <item>
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="tab_1">
           <property name="sizePolicy">
@@ -1368,6 +1371,26 @@
          </widget>
         </item>
         <item>
+         <widget class="QToolButton" name="toolButton_ltspice">
+          <property name="toolTip">
+           <string>Show data for LTSpice</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-ltspice-32.png</normaloff>:/menu_ico/res/icons8-ltspice-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QToolButton" name="toolButton_lShowFirst">
           <property name="toolTip">
            <string>Show last result first</string>
@@ -2157,11 +2180,6 @@
    </property>
    <property name="text">
     <string>Toroidal inductor at RF</string>
-   </property>
-  </action>
-  <action name="actionNotation_and_Measurement_Convention">
-   <property name="text">
-    <string>Notation and Measurement</string>
    </property>
   </action>
  </widget>

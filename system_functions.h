@@ -71,6 +71,7 @@ enum _StyleGUI {
       bool isConfirmDelete;
       bool isAWG;
       bool isShowTitle;
+      bool isShowLTSpice;
       bool isInsertImage;
       bool isSaveOnExit;
       bool isAdditionalResult;
