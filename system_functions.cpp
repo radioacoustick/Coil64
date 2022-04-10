@@ -191,6 +191,7 @@ QStringList translateInstalling(QStringList *lang){
                             << QLocale(QLocale::Greek).name().mid(0,2)
                             << QLocale(QLocale::Hungarian).name().mid(0,2)
                             << QLocale(QLocale::Italian).name().mid(0,2)
+                            << QLocale(QLocale::Lithuanian).name().mid(0,2)
                             << QLocale(QLocale::Macedonian).name().mid(0,2)
                             << QLocale(QLocale::Polish).name().mid(0,2)
                             << QLocale(QLocale::Portuguese).name().mid(0,2)
@@ -198,6 +199,7 @@ QStringList translateInstalling(QStringList *lang){
                             << QLocale(QLocale::Russian).name().mid(0,2)
                             << QLocale(QLocale::Serbian).name().mid(0,2)
                             << QLocale(QLocale::Spanish).name().mid(0,2)
+                            << QLocale(QLocale::Ukrainian).name().mid(0,2)
                             << QLocale(QLocale::Turkish).name().mid(0,2)
                             );
     *lang = (QStringList()
@@ -213,6 +215,7 @@ QStringList translateInstalling(QStringList *lang){
              << QLocale(QLocale::Greek).nativeLanguageName().toUpper()
              << QLocale(QLocale::Hungarian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Italian).nativeLanguageName().toUpper()
+             << QLocale(QLocale::Lithuanian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Macedonian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Polish).nativeLanguageName().toUpper()
              << QLocale(QLocale::Portuguese).nativeLanguageName().toUpper()
@@ -220,6 +223,7 @@ QStringList translateInstalling(QStringList *lang){
              << QLocale(QLocale::Russian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Serbian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Spanish).nativeLanguageName().toUpper()
+             << QLocale(QLocale::Ukrainian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Turkish).nativeLanguageName().toUpper()
              );
     return langList;
@@ -239,6 +243,7 @@ QLocale getLanguageLocale (QString lang){
  else if (lang == "el") loc =  QLocale::Greek;
  else if (lang == "hu") loc =  QLocale::Hungarian;
  else if (lang == "it") loc =  QLocale::Italian;
+ else if (lang == "lt") loc =  QLocale::Lithuanian;
  else if (lang == "mk") loc =  QLocale::Macedonian;
  else if (lang == "pl") loc =  QLocale::Polish;
  else if (lang == "pt") loc =  QLocale::Portuguese;
@@ -247,6 +252,7 @@ QLocale getLanguageLocale (QString lang){
  else if (lang == "sr") loc =  QLocale::Serbian;
  else if (lang == "es") loc =  QLocale::Spanish;
  else if (lang == "tr") loc =  QLocale::Turkish;
+ else if (lang == "uk") loc =  QLocale::Ukrainian;
  else loc = QLocale::system();
  return loc;
 }

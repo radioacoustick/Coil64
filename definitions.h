@@ -19,7 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define DEFINES
 
 #define APP_NAME "Coil64"
-#define VERSION "2.1.21"
+#define VERSION "2.1.22"
 #define PROGRAM_SITE "https://coil32.net"
 #define VERSION_FILE "qversion.txt"
 #define CLEAR_CHAR 0x274C

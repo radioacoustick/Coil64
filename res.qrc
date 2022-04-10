@@ -76,6 +76,8 @@
         <file>res/flags/tr.png</file>
         <file>res/flags/zh.png</file>
         <file>res/flags/cs.png</file>
+        <file>res/flags/uk.png</file>
+        <file>res/flags/lt.png</file>
     </qresource>
     <qresource prefix="/menu_ico">
         <file>res/icons8-add-32.png</file>
@@ -158,6 +160,8 @@
         <file>res/translations/Coil64_tr.qm</file>
         <file>res/translations/Coil64_zh.qm</file>
         <file>res/translations/Coil64_cs.qm</file>
+        <file>res/translations/Coil64_uk.qm</file>
+        <file>res/translations/Coil64_lt.qm</file>
     </qresource>
     <qresource prefix="/stylesheet">
         <file>res/DarkStyle.qss</file>
