@@ -100,7 +100,7 @@ double findSRF(double lk, double Dk, double lw){
     // Dk - winding diameter
     // lw - length of wire
     double Vhx= VFnom(lk / Dk, 1, 1);
-    double Result = 0.5 * Vhx * 299.792458 / (2 * lw);
+    double Result = Vhx * 299.792458 / (2 * lw);
     return Result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
