@@ -2166,8 +2166,7 @@ void MainWindow::on_actionAbout_triggered()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
-    int tab = index;
-    switch (tab){
+    switch (index){
     case 0:
     case 1:{
         mui->groupBox_List1->setVisible(true);
@@ -5591,6 +5590,18 @@ void MainWindow::on_actionCross_over_inductor_triggered()
     fCrossover->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionBandspread_Calculator_triggered()
+{
+    Bandspread *fBandspread = new Bandspread();
+    fBandspread->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(fBandspread, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), fBandspread, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), fBandspread, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    fBandspread->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionCoil_on_a_ferrite_rod_triggered()
 {
     Ferrite_Rod *fRod = new Ferrite_Rod();
@@ -5779,3 +5790,4 @@ void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
         }
     }
 }
+

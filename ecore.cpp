@@ -258,12 +258,24 @@ void ECore::on_pushButton_calculate_clicked()
         showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
         return;
     }
-    if (B < D){
-        showWarning(tr("Warning"), "B < D");
+    if (A <= E){
+        showWarning(tr("Warning"), "A <= E");
         return;
     }
-    if (E < F){
-        showWarning(tr("Warning"), "E < F");
+    if (B <= D){
+        showWarning(tr("Warning"), "B <= D");
+        return;
+    }
+    if (E <= F){
+        showWarning(tr("Warning"), "E <= F");
+        return;
+    }
+    if (C <= s){
+        showWarning(tr("Warning"), "C <= b");
+        return;
+    }
+    if (D <= (2 * g)) {
+        showWarning(tr("Warning"), "D <= (2 * g)");
         return;
     }
     _CoilResult result;
@@ -329,7 +341,7 @@ void ECore::on_pushButton_calculate_clicked()
     sResult += ui->label_f->text() + " " + ui->lineEdit_f->text() + " " + ui->label_06->text() + "<br/>";
     if (index == 0)
         sResult += ui->label_s->text() + " " + ui->lineEdit_s->text() + " " + ui->label_07->text() + "<br/>";
-    sResult += ui->label_g->text() + " " + ui->lineEdit_g->text() + " " + ui->label_08->text() + "<br/>";
+    sResult += ui->label_g->text() + " " + ui->lineEdit_g->text() + " " + ui->label_08->text() + "</p>";
     sResult += ui->label_mu->text() + " " + ui->lineEdit_mu->text() + "<br/>";
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";

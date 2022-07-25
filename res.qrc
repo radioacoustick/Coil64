@@ -49,11 +49,13 @@
         <file>res/Coil4m.png</file>
         <file>res/T-core.png</file>
         <file>res/T-core-s.png</file>
+        <file>res/bandspread.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
         <file>res/gpl-3.0.html</file>
         <file>res/onelayer.pdf</file>
+        <file>res/thanks.html</file>
     </qresource>
     <qresource prefix="/flags">
         <file>res/flags/bg.png</file>
@@ -138,6 +140,7 @@
         <file>res/icons8-cpp-50.png</file>
         <file>res/icons8-qt-50.png</file>
         <file>res/icons8-ltspice-32.png</file>
+        <file>res/ico1-bandspread.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

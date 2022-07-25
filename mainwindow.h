@@ -56,6 +56,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "al.h"
 #include "crossover.h"
 #include "rf_toroid.h"
+#include "bandspread.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -208,6 +209,7 @@ private slots:
     void on_actionAL_factor_calculation_triggered();
     void on_actionToroidal_inductor_at_RF_triggered();
     void on_actionCross_over_inductor_triggered();
+    void on_actionBandspread_Calculator_triggered();
 
     void getAddCalculationResult(QString result);
 

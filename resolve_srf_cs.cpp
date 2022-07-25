@@ -93,6 +93,20 @@ double VFnom(double lod, double ei, double ex){
     return y;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double CTDW(double ff, double ei, double ex){
+    // Calculates solenoid time delay capacitance, CT/D [pF/m]. ff is solenoid length / Diameter
+    // Quick version using W82W for Nagaoka's coeff. D W Knight. v1.00, 2016-03-16
+    double kL = W82W(1 / ff);
+    double kct = 1 / kL - 1;
+    return 11.27350207 * ex * ff * (1 + kct * (1 + ei / ex) / 2);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double CIAE(double ff, double ei, double ex){
+    // Calculates induced axial E-field component of solenoid self-C, CT/D [pF/m].
+    // D W Knight. v1.00, 2016-03-16 . ff is solenoid length / Diameter
+    return 17.70837564 * (ei + ex)/log(1 + M_PI * M_PI * ff);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// PUBLIC FUNCTIONS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double findSRF(double lk, double Dk, double lw){
@@ -105,13 +119,13 @@ double findSRF(double lk, double Dk, double lw){
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double find_Cs(double p, double Dk, double lk){
+    //The self-resonance and self-capacitance of solenoid coils D W Knight Version 2 1.00, 4 th May 2016
+    //Calculate solenoid self-capacitance, Cl-TDE (9.14) p68
     p = p / 1000;
     Dk = Dk / 1000;
     lk = lk / 1000;
     double sinpsi = p / (M_PI * Dk);
     double cospsi = sqrt(1 - (sinpsi * sinpsi));
-    double dl = Dk / lk;
-    double kc = (0.717439 * dl) + (0.933048 * pow(dl, 1.5)) + 0.106 * pow(dl, 2);
-    double result = (4 * e0 / M_PI) * lk * (1 + kc) / (cospsi * cospsi);
-    return result;
+    double result = CTDW(lk/Dk, 1, 1)/pow(cospsi, 2) + CIAE(lk/Dk, 1, 1);
+    return result * Dk;
 }

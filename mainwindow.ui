@@ -1802,6 +1802,7 @@
     <addaction name="actionAir_core_toroid_coil"/>
     <addaction name="actionShiels_influence"/>
     <addaction name="actionCross_over_inductor"/>
+    <addaction name="actionBandspread_Calculator"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -2180,6 +2181,15 @@
    </property>
    <property name="text">
     <string>Toroidal inductor at RF</string>
+   </property>
+  </action>
+  <action name="actionBandspread_Calculator">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-bandspread.png</normaloff>:/menu_ico/res/ico1-bandspread.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bandspread Calculator</string>
    </property>
   </action>
  </widget>

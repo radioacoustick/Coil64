@@ -52,7 +52,8 @@ SOURCES += main.cpp\
     al.cpp \
     ucore.cpp \
     crossover.cpp \
-    rf_toroid.cpp
+    rf_toroid.cpp \
+    bandspread.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -79,7 +80,8 @@ HEADERS  += mainwindow.h \
     ucore.h \
     crossover.h \
     spline.h \
-    rf_toroid.h
+    rf_toroid.h \
+    bandspread.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -97,7 +99,8 @@ FORMS    += mainwindow.ui \
     al.ui \
     ucore.ui \
     crossover.ui \
-    rf_toroid.ui
+    rf_toroid.ui \
+    bandspread.ui
 
 TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_cs.ts \
@@ -110,6 +113,7 @@ TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_hr.ts \
     lang/Coil64_hu.ts \
     lang/Coil64_it.ts \
+    lang/Coil64_lt.ts \
     lang/Coil64_mk.ts \
     lang/Coil64_nl.ts \
     lang/Coil64_pl.ts \
@@ -118,6 +122,7 @@ TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_ru.ts \
     lang/Coil64_sr.ts \
     lang/Coil64_tr.ts \
+    lang/Coil64_uk.ts \
     lang/Coil64_zh.ts
 
 RESOURCES += res.qrc

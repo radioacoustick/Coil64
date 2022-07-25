@@ -91,6 +91,7 @@ enum _FormCoil
     const double mu0 = 4e-7 * M_PI;
     double const mtrl[4][4] = {{ 2.824e-8, 2.21e-5, 0.0039, 2.69808 }, { 1.7241e-8, - 9.56e-6, 0.00393, 8.96 },
                                { 1.59e-8, - 2.63e-5, 0.0038, 10.5 }, {1.15e-7, 2.4e-6, 0.0042, 7.29}};
+    double const E24[25] = {1.0,1.1,1.2,1.3,1.5,1.6,1.8,2.0,2.2,2.4,2.7,3.0,3.3,3.6,3.9,4.3,4.7,5.1,5.6,6.2,6.8,7.5,8.2,9.1,10.0};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw, unsigned int accuracy); //get Number of turns for One-layer coil with round wire
@@ -150,9 +151,12 @@ enum _FormCoil
     void CalcLC3(double Zo, double f, _CoilResult *result);
 
     double odCalc(double id);
+    double toNearestE24(double val, int accurasy);
     double find_actual_spiral_length(int N, double Din, double k);
     double convertfromAWG (QString AWG, bool *isOK = NULL);
     QString converttoAWG (double d, bool *isOK = NULL);
+    double findPadderCapacitance(double Ct,double Cv_low,double Cv_high,double Cstray,double cap_ratio);
+    double findTrimmerCapacitance(double Cp,double Cv_low,double Cv_high,double Cstray,double cap_ratio);
 
 
 #endif // RESOLVES_H

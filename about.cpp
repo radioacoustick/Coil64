@@ -37,6 +37,9 @@ About::About(QWidget *parent) :
     QResource r2( ":/txt/res/translators.html" );
     QByteArray b2( reinterpret_cast< const char* >( r2.data() ), r2.size() );
     ui->textBrowser_2->setHtml(QString::fromStdString(b2.toStdString()));
+    QResource r3( ":/txt/res/thanks.html" );
+    QByteArray b3( reinterpret_cast< const char* >( r3.data() ), r3.size() );
+    ui->textBrowser_3->setHtml(QString::fromStdString(b3.toStdString()));
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 About::~About()
