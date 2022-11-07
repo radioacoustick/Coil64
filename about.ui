@@ -431,7 +431,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QTextBrowser" name="textBrowser_3"/>
+            <widget class="QTextBrowser" name="textBrowser_3">
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>

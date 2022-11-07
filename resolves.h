@@ -136,14 +136,13 @@ enum _FormCoil
     double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw);
     double findPotCore_I(double N, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result);
     long findPotCore_N(double Ind, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result);
-    double findECore_I(double N, double A, double B, double C, double D, double E, double F, double g, double b, double mu,
-                       bool isEI, bool isRound, _CoilResult *result);
-    long findECore_N(double Ind, double A, double B, double C, double D, double E, double F, double g, double b, double mu,
-                       bool isEI, bool isRound, _CoilResult *result);
+    double findECore_I(double N, double A, double B, double C, double D, double E, double F, double g, double b, double mu, bool isEI, bool isRound, _CoilResult *result);
+    long findECore_N(double Ind, double A, double B, double C, double D, double E, double F, double g, double b, double mu, bool isEI, bool isRound, _CoilResult *result);
     double findUCore_I(double N, double A, double B, double C, double D, double E, double F, double s, double mu, _CoilResult *result);
     long findUCore_N(double Ind, double A, double B, double C, double D, double E, double F, double s, double mu, _CoilResult *result);
-    void findBrooksCoil(double I, double d, double pa, double pr,
-                        double &N, double &nLayer, double &Nc, double &c, double &lengthWire, double &massWire, double &DCR );
+    void findBrooksCoil(double I, double d, double pa, double pr, double &N, double &nLayer, double &Nc, double &c, double &lengthWire, double &massWire, double &DCR );
+    double findRMCore_I (double N, double a, double b, double c, double e, double d2, double d3, double d4, double h1,  double h2, double g, double mu, int type, _CoilResult *result);
+    long findRMCore_N (double Ind, double a1, double a, double B, double C, double D1, double D2, double D3, double H1,  double H2, double g, double mu, int type, _CoilResult *result);
 
     double CalcLC0(double L, double C);
     double CalcLC1(double C, double f);

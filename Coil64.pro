@@ -53,7 +53,8 @@ SOURCES += main.cpp\
     ucore.cpp \
     crossover.cpp \
     rf_toroid.cpp \
-    bandspread.cpp
+    bandspread.cpp \
+    rmcore.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -81,7 +82,8 @@ HEADERS  += mainwindow.h \
     crossover.h \
     spline.h \
     rf_toroid.h \
-    bandspread.h
+    bandspread.h \
+    rmcore.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -100,7 +102,8 @@ FORMS    += mainwindow.ui \
     ucore.ui \
     crossover.ui \
     rf_toroid.ui \
-    bandspread.ui
+    bandspread.ui \
+    rmcore.ui
 
 TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_cs.ts \

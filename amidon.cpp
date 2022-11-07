@@ -209,7 +209,11 @@ Amidon::Amidon(QWidget *parent) :
     effect->setOffset(1,1);
     ui->label->setGraphicsEffect(effect);
     for(int i = 0; i < TToroidMaterial.length(); i++){
-        ui->comboBox_tm->addItem(TToroidMaterial.at(i));
+        QString nMaterial = TToroidMaterial.at(i);
+        QString tfeatures_str = TToroid_Features[i];
+        QStringList tfeatures = tfeatures_str.split(",");
+        QString tcolors = tfeatures.at(2);
+        ui->comboBox_tm->addItem(nMaterial + " (" + tcolors + ")");
     }
     for(int i = 0; i < FToroidMaterial.length(); i++){
         ui->comboBox_fm->addItem(FToroidMaterial.at(i));
@@ -677,7 +681,7 @@ void Amidon::on_comboBox_td_currentTextChanged(const QString &arg1){
             }
         }
         ui->label_info->setText(info);
-        ui->label->setText(arg1 + "-" + ui->comboBox_tm->currentText());
+        ui->label->setText(arg1 + "-" + ui->comboBox_tm->currentText().left(ui->comboBox_tm->currentText().indexOf(" ")));
         onCalculate();
     }
 }

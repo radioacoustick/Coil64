@@ -2117,7 +2117,7 @@ void MainWindow::on_actionSave_triggered()
         }
         QString filters(".pdf (*.pdf);;.odf (*.odf);;.htm (*.htm)");
         QString defaultFilter(".htm (*.htm)");
-        QString fileName = QFileDialog::getSaveFileName(this, tr("Save"), savePath, filters, &defaultFilter);
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Save"), savePath + "/" + loc.toString(QDateTime::currentDateTime(), "yyyy-MM-dd_hh_mm_ss"), filters, &defaultFilter);
         if (!fileName.isEmpty()){
             QString ext = defaultFilter.mid(defaultFilter.indexOf("*") + 1, 4);
             int p = fileName.indexOf(".");
@@ -4161,8 +4161,8 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 }
                 _CoilResult result;
                 CalcLC3(data->zo,data->frequency,&result);
-                data->capacitance = result.N;
-                data->inductance = result.sec;
+                data->capacitance = toNearestE24(result.N, myOpt->dwAccuracy);
+                data->inductance = CalcLC1(data->capacitance, data->frequency);
                 tmpStr += tr("Circuit capacitance") + " C = " + loc.toString(data->capacitance / myOpt->dwCapacityMultiplier, 'f', myOpt->dwAccuracy)
                         + " " + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
                 tmpStr += tr("Inductance of a circuit") + " L = " + loc.toString(data->inductance / myOpt->dwInductanceMultiplier, 'f', myOpt->dwAccuracy)
@@ -5600,6 +5600,18 @@ void MainWindow::on_actionBandspread_Calculator_triggered()
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     fBandspread->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionRM_core_coil_triggered()
+{
+    RMcore *fRMcore = new RMcore();
+    fRMcore->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(fRMcore, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), fRMcore, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), fRMcore, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    fRMcore->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionCoil_on_a_ferrite_rod_triggered()

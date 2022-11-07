@@ -153,22 +153,22 @@
         <translation>Vă mulțumim pentru rapoarte și teste de program:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="440"/>
+        <location filename="../about.ui" line="444"/>
         <source>Translations</source>
         <translation>Traduceri</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="466"/>
+        <location filename="../about.ui" line="470"/>
         <source>I would like to thank the following people who volunteered to translate Coil64:</source>
         <translation>Aș dori să mulțumesc următorilor oameni care s-au oferit voluntar să traducă Coil64:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="520"/>
+        <location filename="../about.ui" line="524"/>
         <source>The current version of the Coil64 has been compiled by using the following libraries:</source>
         <translation>Versiunea actuală a Coil64 a fost compilată utilizând următoarele biblioteci:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="491"/>
+        <location filename="../about.ui" line="495"/>
         <source>License</source>
         <translation>Licență</translation>
     </message>
@@ -183,12 +183,12 @@
         <translation>Sper că Coil64 va fi util în creativitatea voastră radioamatorică. 73!</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="508"/>
+        <location filename="../about.ui" line="512"/>
         <source>Libraries</source>
         <translation>Biblioteci</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="625"/>
+        <location filename="../about.ui" line="629"/>
         <source>Close</source>
         <translation>Închide</translation>
     </message>
@@ -420,158 +420,158 @@
         <translation>Închide</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="649"/>
+        <location filename="../amidon.cpp" line="653"/>
         <source>Color code</source>
         <translation>Codul culorii</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="650"/>
+        <location filename="../amidon.cpp" line="654"/>
         <source>Material</source>
         <translation>Material</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="651"/>
+        <location filename="../amidon.cpp" line="655"/>
         <source>Resonant circuit frequency range</source>
         <translation>Domeniul de frecvență al circuitului rezonant</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="616"/>
-        <location filename="../amidon.cpp" line="653"/>
-        <location filename="../amidon.cpp" line="692"/>
+        <location filename="../amidon.cpp" line="620"/>
+        <location filename="../amidon.cpp" line="657"/>
+        <location filename="../amidon.cpp" line="696"/>
         <source>Initial magnetic permeability</source>
         <translation>Permeabilitatea magnetică inițială</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="563"/>
-        <location filename="../amidon.cpp" line="669"/>
-        <location filename="../amidon.cpp" line="716"/>
-        <location filename="../amidon.cpp" line="920"/>
-        <location filename="../amidon.cpp" line="989"/>
+        <location filename="../amidon.cpp" line="567"/>
+        <location filename="../amidon.cpp" line="673"/>
+        <location filename="../amidon.cpp" line="720"/>
+        <location filename="../amidon.cpp" line="924"/>
+        <location filename="../amidon.cpp" line="993"/>
         <source>Dimensions</source>
         <translation>Dimensiuni</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="634"/>
-        <location filename="../amidon.cpp" line="675"/>
-        <location filename="../amidon.cpp" line="722"/>
-        <location filename="../amidon.cpp" line="960"/>
-        <location filename="../amidon.cpp" line="1034"/>
+        <location filename="../amidon.cpp" line="638"/>
+        <location filename="../amidon.cpp" line="679"/>
+        <location filename="../amidon.cpp" line="726"/>
+        <location filename="../amidon.cpp" line="964"/>
+        <location filename="../amidon.cpp" line="1038"/>
         <source>factor</source>
         <translation>factor</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="620"/>
-        <location filename="../amidon.cpp" line="694"/>
+        <location filename="../amidon.cpp" line="624"/>
+        <location filename="../amidon.cpp" line="698"/>
         <source>Saturation flux density</source>
         <translation>Densitatea fluxului de saturație</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="622"/>
-        <location filename="../amidon.cpp" line="696"/>
+        <location filename="../amidon.cpp" line="626"/>
+        <location filename="../amidon.cpp" line="700"/>
         <source>Residual flux density</source>
         <translation>Densitatea fluxului rezidual</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="698"/>
+        <location filename="../amidon.cpp" line="702"/>
         <source>Coercive Force</source>
         <translation>Forța Coercitivă</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="624"/>
-        <location filename="../amidon.cpp" line="700"/>
+        <location filename="../amidon.cpp" line="628"/>
+        <location filename="../amidon.cpp" line="704"/>
         <source>Curie Temperature</source>
         <translation>Temperatura Curie</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="606"/>
         <location filename="../amidon.cpp" line="610"/>
+        <location filename="../amidon.cpp" line="614"/>
         <source>Impedance at</source>
         <translation>Impedanță la</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="618"/>
+        <location filename="../amidon.cpp" line="622"/>
         <source>Maximum magnetic permeability</source>
         <translation>Permeabilitate magnetică maximă</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="627"/>
-        <location filename="../amidon.cpp" line="726"/>
+        <location filename="../amidon.cpp" line="631"/>
+        <location filename="../amidon.cpp" line="730"/>
         <source>Working frequency</source>
         <translation>Frecvența de lucru</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="628"/>
-        <location filename="../amidon.cpp" line="727"/>
+        <location filename="../amidon.cpp" line="632"/>
+        <location filename="../amidon.cpp" line="731"/>
         <source>Resonant circuit coils</source>
         <translation>Bobine de circuit rezonante</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="630"/>
-        <location filename="../amidon.cpp" line="729"/>
+        <location filename="../amidon.cpp" line="634"/>
+        <location filename="../amidon.cpp" line="733"/>
         <source>Wideband transformers</source>
         <translation>Transformatoare cu bandă largă</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="632"/>
-        <location filename="../amidon.cpp" line="731"/>
+        <location filename="../amidon.cpp" line="636"/>
+        <location filename="../amidon.cpp" line="735"/>
         <source>Chokes</source>
         <translation>Inductoare</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="875"/>
+        <location filename="../amidon.cpp" line="879"/>
         <source>Not available</source>
         <translation>Nu e disponibil</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1045"/>
+        <location filename="../amidon.cpp" line="1049"/>
         <source>Warning</source>
         <translation>Avertizare</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1045"/>
+        <location filename="../amidon.cpp" line="1049"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1053"/>
+        <location filename="../amidon.cpp" line="1057"/>
         <source>Selected core</source>
         <translation>Nucleul selectat</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1066"/>
+        <location filename="../amidon.cpp" line="1070"/>
         <source>Input data</source>
         <translation>Date de intrare</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="868"/>
+        <location filename="../amidon.cpp" line="872"/>
         <source>Number of turns of the coil</source>
         <translation>Numărul de spire al bobinei</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="869"/>
+        <location filename="../amidon.cpp" line="873"/>
         <source>Maximum wire diameter</source>
         <translation>Diametrul maxim al firului</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="951"/>
-        <location filename="../amidon.cpp" line="1024"/>
+        <location filename="../amidon.cpp" line="955"/>
+        <location filename="../amidon.cpp" line="1028"/>
         <source>Effective magnetic path length</source>
         <translation>Lungime efectivă a căii magnetice</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="954"/>
-        <location filename="../amidon.cpp" line="1027"/>
+        <location filename="../amidon.cpp" line="958"/>
+        <location filename="../amidon.cpp" line="1031"/>
         <source>Effective area of magnetic path</source>
         <translation>Zona efectivă a căii magnetice</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="957"/>
-        <location filename="../amidon.cpp" line="1030"/>
+        <location filename="../amidon.cpp" line="961"/>
+        <location filename="../amidon.cpp" line="1034"/>
         <source>Effective volume</source>
         <translation>Volumul efectiv</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1033"/>
+        <location filename="../amidon.cpp" line="1037"/>
         <source>Power</source>
         <translation>Putere</translation>
     </message>
@@ -590,41 +590,41 @@
     </message>
     <message>
         <location filename="../bandspread.ui" line="94"/>
-        <location filename="../bandspread.ui" line="507"/>
-        <location filename="../bandspread.cpp" line="300"/>
+        <location filename="../bandspread.ui" line="513"/>
+        <location filename="../bandspread.cpp" line="344"/>
         <source>Input data</source>
         <translation>Date de intrare</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="390"/>
-        <location filename="../bandspread.ui" line="775"/>
-        <location filename="../bandspread.cpp" line="311"/>
-        <location filename="../bandspread.cpp" line="329"/>
+        <location filename="../bandspread.ui" line="781"/>
+        <location filename="../bandspread.cpp" line="355"/>
+        <location filename="../bandspread.cpp" line="373"/>
         <source>Result</source>
         <translation>Rezultate</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="501"/>
+        <location filename="../bandspread.ui" line="507"/>
         <source>Reverse calculation</source>
         <translation>Calcularea inversă</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="920"/>
+        <location filename="../bandspread.ui" line="941"/>
         <source>Context help</source>
         <translation>Ajutor pentru context</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="956"/>
+        <location filename="../bandspread.ui" line="977"/>
         <source>Close</source>
         <translation>Închide</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="979"/>
+        <location filename="../bandspread.ui" line="1000"/>
         <source>Export results</source>
         <translation>Rezultatele la export</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="999"/>
+        <location filename="../bandspread.ui" line="1020"/>
         <source>Calculate</source>
         <translation>Calculaţi</translation>
     </message>
@@ -678,52 +678,56 @@
     </message>
     <message>
         <location filename="../bandspread.cpp" line="90"/>
-        <location filename="../bandspread.cpp" line="193"/>
-        <location filename="../bandspread.cpp" line="197"/>
-        <location filename="../bandspread.cpp" line="201"/>
+        <location filename="../bandspread.cpp" line="198"/>
+        <location filename="../bandspread.cpp" line="202"/>
+        <location filename="../bandspread.cpp" line="206"/>
         <source>Valid value range</source>
         <translation>Interval de valori valid</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="234"/>
+        <location filename="../bandspread.cpp" line="266"/>
+        <location filename="../bandspread.cpp" line="323"/>
         <source>Minimum LC circuit Capacitance</source>
         <translation>Capacitatea minimă a circuitului LC</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="235"/>
+        <location filename="../bandspread.cpp" line="267"/>
+        <location filename="../bandspread.cpp" line="324"/>
         <source>Maximum LC circuit Capacitance</source>
         <translation>Capacitate maximă a circuitului LC</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="210"/>
-        <location filename="../bandspread.cpp" line="214"/>
-        <location filename="../bandspread.cpp" line="241"/>
-        <location filename="../bandspread.cpp" line="249"/>
-        <location filename="../bandspread.cpp" line="253"/>
-        <location filename="../bandspread.cpp" line="266"/>
-        <location filename="../bandspread.cpp" line="270"/>
-        <location filename="../bandspread.cpp" line="274"/>
+        <location filename="../bandspread.cpp" line="225"/>
+        <location filename="../bandspread.cpp" line="232"/>
+        <location filename="../bandspread.cpp" line="239"/>
+        <location filename="../bandspread.cpp" line="246"/>
+        <location filename="../bandspread.cpp" line="273"/>
+        <location filename="../bandspread.cpp" line="281"/>
+        <location filename="../bandspread.cpp" line="299"/>
+        <location filename="../bandspread.cpp" line="306"/>
+        <location filename="../bandspread.cpp" line="313"/>
         <source>Warning</source>
         <translation>Avertizare</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="241"/>
+        <location filename="../bandspread.cpp" line="273"/>
         <source>The C&lt;sub&gt;V&lt;/sub&gt; capacitance range (combined with the circuit stray capacitance) is too narrow to overlap the desired frequency range. Please change your frequency range or variable capacitor parameters and try again.</source>
         <translation>Intervalul de capacitate C&lt;sub&gt;V&lt;/sub&gt; (combinat cu capacitatea parazită a circuitului) este prea îngust pentru a se suprapune pe domeniul de frecvență dorit. Modificați intervalul de frecvență sau parametrii condensatorului variabil și încercați din nou.</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="249"/>
+        <location filename="../bandspread.cpp" line="281"/>
         <source>The inductance value is out of range.</source>
         <translation>Valoarea inductanței este în afara intervalului.</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="253"/>
-        <location filename="../bandspread.cpp" line="270"/>
+        <location filename="../bandspread.cpp" line="232"/>
+        <location filename="../bandspread.cpp" line="306"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="266"/>
+        <location filename="../bandspread.cpp" line="225"/>
+        <location filename="../bandspread.cpp" line="299"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Una sau mai multe intrări au un format ilegal!</translation>
     </message>
@@ -741,21 +745,21 @@
         <translation>kHz</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="606"/>
         <location filename="../amidon.cpp" line="610"/>
-        <location filename="../amidon.cpp" line="629"/>
-        <location filename="../amidon.cpp" line="631"/>
+        <location filename="../amidon.cpp" line="614"/>
         <location filename="../amidon.cpp" line="633"/>
-        <location filename="../amidon.cpp" line="728"/>
-        <location filename="../amidon.cpp" line="730"/>
+        <location filename="../amidon.cpp" line="635"/>
+        <location filename="../amidon.cpp" line="637"/>
         <location filename="../amidon.cpp" line="732"/>
+        <location filename="../amidon.cpp" line="734"/>
+        <location filename="../amidon.cpp" line="736"/>
         <location filename="../system_functions.cpp" line="291"/>
         <source>MHz</source>
         <translation>MHz</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="608"/>
         <location filename="../amidon.cpp" line="612"/>
+        <location filename="../amidon.cpp" line="616"/>
         <source>Ohm</source>
         <translation>Ohm</translation>
     </message>
@@ -1565,12 +1569,12 @@
         <translation>Afișați dialogul de confirmare pentru a șterge un rezultat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1908"/>
+        <location filename="../mainwindow.ui" line="1909"/>
         <source>About Coil64</source>
         <translation>Despre Coil64</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2012"/>
+        <location filename="../mainwindow.ui" line="2013"/>
         <source>Ferrite toroid permeability</source>
         <translation>Permeabilitatea toroidului de ferită</translation>
     </message>
@@ -1729,8 +1733,8 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1638"/>
-        <location filename="../mainwindow.ui" line="1960"/>
-        <location filename="../mainwindow.ui" line="1963"/>
+        <location filename="../mainwindow.ui" line="1961"/>
+        <location filename="../mainwindow.ui" line="1964"/>
         <location filename="../mainwindow.cpp" line="280"/>
         <location filename="../mainwindow.cpp" line="372"/>
         <source>Copy all to clipboard</source>
@@ -1738,7 +1742,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1589"/>
-        <location filename="../mainwindow.ui" line="1934"/>
+        <location filename="../mainwindow.ui" line="1935"/>
         <location filename="../mainwindow.cpp" line="282"/>
         <location filename="../mainwindow.cpp" line="373"/>
         <location filename="../mainwindow.cpp" line="2120"/>
@@ -1747,7 +1751,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1661"/>
-        <location filename="../mainwindow.ui" line="2031"/>
+        <location filename="../mainwindow.ui" line="2032"/>
         <location filename="../mainwindow.cpp" line="285"/>
         <location filename="../mainwindow.cpp" line="375"/>
         <source>Clear all</source>
@@ -1804,64 +1808,69 @@
         <translation>Miezuri de ferită</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2091"/>
+        <location filename="../mainwindow.ui" line="2092"/>
         <source>Versions history</source>
         <translation>Istoricul versiunilor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2100"/>
+        <location filename="../mainwindow.ui" line="2101"/>
         <source>Air core toroid coil</source>
         <translation>Bobină toroidă de miez de aer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2111"/>
+        <location filename="../mainwindow.ui" line="2112"/>
         <source>Default</source>
         <translation>Mod implicit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2119"/>
+        <location filename="../mainwindow.ui" line="2120"/>
         <source>Dark</source>
         <translation>Întuneric</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2128"/>
+        <location filename="../mainwindow.ui" line="2129"/>
         <source>Pot core coil</source>
         <translation>Nuclee de ghiveci</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2136"/>
+        <location filename="../mainwindow.ui" line="2137"/>
         <source>Sunny</source>
         <translation>Soare</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2145"/>
+        <location filename="../mainwindow.ui" line="2146"/>
         <source>E core coil</source>
         <translation>Bobină E-core</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2155"/>
+        <location filename="../mainwindow.ui" line="2156"/>
         <source>Calculation with AL-factor</source>
         <translation>Calculul cu factor AL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2164"/>
+        <location filename="../mainwindow.ui" line="2165"/>
         <source>U core coil</source>
         <translation>U bobină de bază</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2174"/>
+        <location filename="../mainwindow.ui" line="2175"/>
         <source>Audio system filter (crossover) coil</source>
         <translation>Filtru sistem audio (crossover) bobină</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2183"/>
+        <location filename="../mainwindow.ui" line="2184"/>
         <source>Toroidal inductor at RF</source>
         <translation>Inductor toroidal la RF</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2192"/>
+        <location filename="../mainwindow.ui" line="2193"/>
         <source>Bandspread Calculator</source>
         <translation>Calculator bandspread</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2202"/>
+        <source>RM core coil</source>
+        <translation>Bobină RM-core</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1416"/>
@@ -1875,7 +1884,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1717"/>
-        <location filename="../mainwindow.ui" line="1895"/>
+        <location filename="../mainwindow.ui" line="1896"/>
         <source>Context help</source>
         <translation>Ajutor pentru context</translation>
     </message>
@@ -1905,14 +1914,14 @@
         <translation>Nuclee de marcă</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1866"/>
+        <location filename="../mainwindow.ui" line="1867"/>
         <source>&amp;Exit</source>
         <translation>&amp;Ieșire</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1528"/>
-        <location filename="../mainwindow.ui" line="1879"/>
-        <location filename="../mainwindow.ui" line="1882"/>
+        <location filename="../mainwindow.ui" line="1880"/>
+        <location filename="../mainwindow.ui" line="1883"/>
         <source>Options</source>
         <translation>Opţiuni</translation>
     </message>
@@ -1922,63 +1931,63 @@
         <translation>Bobină multistrat cu înfășurare a foliei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1921"/>
+        <location filename="../mainwindow.ui" line="1922"/>
         <source>Check for &amp;update</source>
         <translation>Verificaţi pentru &amp;actualizări</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1947"/>
+        <location filename="../mainwindow.ui" line="1948"/>
         <source>HomePage</source>
         <translation>Pagina principala</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1976"/>
+        <location filename="../mainwindow.ui" line="1977"/>
         <source>Print</source>
         <translation>Imprimare</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1988"/>
+        <location filename="../mainwindow.ui" line="1989"/>
         <source>To null initial data</source>
         <translation>Resetare la date originale</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2021"/>
+        <location filename="../mainwindow.ui" line="2022"/>
         <source>Coil on a ferrite rod</source>
         <translation>Bobina pe o tijă de ferită</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2040"/>
+        <location filename="../mainwindow.ui" line="2041"/>
         <source>Meander coil on PCB</source>
         <translation>Meander bobina pe PCB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2049"/>
+        <location filename="../mainwindow.ui" line="2050"/>
         <source>Search coil of a metal detector</source>
         <translation>Baterie de căutare a unui detector de metale</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2059"/>
+        <location filename="../mainwindow.ui" line="2060"/>
         <source>A one-turn loop coil</source>
         <translation>Bobina cu o singură spiră (dipol)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2068"/>
+        <location filename="../mainwindow.ui" line="2069"/>
         <source>Donate</source>
         <translation>Dona</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2077"/>
+        <location filename="../mainwindow.ui" line="2078"/>
         <source>Influence of the shield of a coil</source>
         <translation>Influența unui scut a bobinei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2082"/>
+        <location filename="../mainwindow.ui" line="2083"/>
         <source>Amidon cores</source>
         <translation>Nucleele lui Amidon</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1565"/>
-        <location filename="../mainwindow.ui" line="2000"/>
+        <location filename="../mainwindow.ui" line="2001"/>
         <location filename="../mainwindow.cpp" line="283"/>
         <location filename="../mainwindow.cpp" line="374"/>
         <location filename="../mainwindow.cpp" line="2085"/>
@@ -2530,7 +2539,7 @@
         <location filename="../mainwindow.cpp" line="453"/>
         <location filename="../mainwindow.cpp" line="1910"/>
         <location filename="../mainwindow.cpp" line="2042"/>
-        <location filename="../mainwindow.cpp" line="5762"/>
+        <location filename="../mainwindow.cpp" line="5774"/>
         <source>Confirmation</source>
         <translation>Confirmare</translation>
     </message>
@@ -2538,7 +2547,7 @@
         <location filename="../mainwindow.cpp" line="454"/>
         <location filename="../mainwindow.cpp" line="1911"/>
         <location filename="../mainwindow.cpp" line="2043"/>
-        <location filename="../mainwindow.cpp" line="5763"/>
+        <location filename="../mainwindow.cpp" line="5775"/>
         <source>Are you sure?</source>
         <translation>Esti sigur?</translation>
     </message>
@@ -2546,7 +2555,7 @@
         <location filename="../mainwindow.cpp" line="457"/>
         <location filename="../mainwindow.cpp" line="1914"/>
         <location filename="../mainwindow.cpp" line="2046"/>
-        <location filename="../mainwindow.cpp" line="5766"/>
+        <location filename="../mainwindow.cpp" line="5778"/>
         <source>Yes</source>
         <translation>Da</translation>
     </message>
@@ -2554,7 +2563,7 @@
         <location filename="../mainwindow.cpp" line="458"/>
         <location filename="../mainwindow.cpp" line="1915"/>
         <location filename="../mainwindow.cpp" line="2047"/>
-        <location filename="../mainwindow.cpp" line="5767"/>
+        <location filename="../mainwindow.cpp" line="5779"/>
         <source>No</source>
         <translation>Nu</translation>
     </message>
@@ -2741,7 +2750,7 @@
         <translation>Lungimea foliei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5763"/>
+        <location filename="../mainwindow.cpp" line="5775"/>
         <source> calculation will be deleted</source>
         <translation> calculul va fi șters</translation>
     </message>
@@ -3898,6 +3907,131 @@
         <location filename="../rf_toroid.cpp" line="450"/>
         <source>Input data</source>
         <translation>Date de intrare</translation>
+    </message>
+</context>
+<context>
+    <name>RMcore</name>
+    <message>
+        <location filename="../rmcore.ui" line="29"/>
+        <source>RM core coil</source>
+        <translation>Bobină RM-core</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.ui" line="62"/>
+        <source>Select the type of the core</source>
+        <translation>Selectați tipul nucleului</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.ui" line="130"/>
+        <source>Reverse calculation</source>
+        <translation>Calcularea inversă</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.ui" line="194"/>
+        <source>Dimensions</source>
+        <translation>Dimensiuni</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.ui" line="544"/>
+        <source>Context help</source>
+        <translation>Ajutor pentru context</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.ui" line="580"/>
+        <source>Calculate</source>
+        <translation>Calculaţi</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.ui" line="606"/>
+        <source>Close</source>
+        <translation>Închide</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="142"/>
+        <source>Centerpost gap</source>
+        <translation>Decalajul stâlpului central</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="143"/>
+        <source>Magnetic permeability</source>
+        <translation>Permeabilitate magnetică</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="167"/>
+        <source>Number of turns</source>
+        <translation>Numărul de spire al bobinei</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="172"/>
+        <location filename="../rmcore.cpp" line="269"/>
+        <source>Inductance</source>
+        <translation>Inductanţa</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="188"/>
+        <location filename="../rmcore.cpp" line="204"/>
+        <location filename="../rmcore.cpp" line="208"/>
+        <location filename="../rmcore.cpp" line="212"/>
+        <location filename="../rmcore.cpp" line="216"/>
+        <location filename="../rmcore.cpp" line="223"/>
+        <location filename="../rmcore.cpp" line="227"/>
+        <location filename="../rmcore.cpp" line="234"/>
+        <location filename="../rmcore.cpp" line="238"/>
+        <source>Warning</source>
+        <translation>Avertizare</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="188"/>
+        <source>One or more inputs are empty!</source>
+        <translation>Una sau mai multe intrări sunt goale!</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="204"/>
+        <location filename="../rmcore.cpp" line="223"/>
+        <location filename="../rmcore.cpp" line="234"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Una sau mai multe intrări au un format ilegal!</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="227"/>
+        <location filename="../rmcore.cpp" line="238"/>
+        <source>One or more inputs are equal to null!</source>
+        <translation>Una sau mai multe intrări sunt egale cu nul!</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="250"/>
+        <source>Input data</source>
+        <translation>Date de intrare</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="267"/>
+        <source>Result</source>
+        <translation>Rezultate</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="272"/>
+        <source>Number of turns of the coil</source>
+        <translation>Numărul de spire al bobinei</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="274"/>
+        <source>Effective magnetic path length</source>
+        <translation>Lungime efectivă a căii magnetice</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="277"/>
+        <source>Effective area of magnetic path</source>
+        <translation>Zona efectivă a căii magnetice</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="280"/>
+        <source>Effective volume</source>
+        <translation>Volumul efectiv</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="283"/>
+        <source>Effective magnetic permeability of the core</source>
+        <translation>Permeabilitatea magnetică eficientă a miezului</translation>
     </message>
 </context>
 <context>

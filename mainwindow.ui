@@ -1825,6 +1825,7 @@
     <addaction name="actionPot_core_coil"/>
     <addaction name="actionE_core_coil"/>
     <addaction name="actionU_core_coil"/>
+    <addaction name="actionRM_core_coil"/>
     <addaction name="actionCoil_on_a_ferrite_rod"/>
     <addaction name="actionToroidal_inductor_at_RF"/>
     <addaction name="separator"/>
@@ -2190,6 +2191,15 @@
    </property>
    <property name="text">
     <string>Bandspread Calculator</string>
+   </property>
+  </action>
+  <action name="actionRM_core_coil">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-rm-core.png</normaloff>:/menu_ico/res/ico1-rm-core.png</iconset>
+   </property>
+   <property name="text">
+    <string>RM core coil</string>
    </property>
   </action>
  </widget>

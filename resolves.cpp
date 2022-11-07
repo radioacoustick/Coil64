@@ -522,7 +522,7 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
     double R = (Resistivity * lw * 4) / (M_PI * dw * dw); // resistance of the wire
     double lw0 = lw / 100;
     double NLayer = nLayer + 1;
-    int NumberInterLayer = (int) floor(nLayer / Ng);
+    double NumberInterLayer = (double) floor(nLayer / Ng);
     double c = NLayer * k * 10 + NumberInterLayer * gap * 10;
     result->N = R;
     result->sec = lw0;
@@ -1419,7 +1419,7 @@ double findPotCore_I(double N, double D1, double D2, double D3, double D4, doubl
     double sum13 = l3 / A3;
     double sum23 = l3 / (A3 * A3);
     double s1 = r2 - sqrt(0.5 * (r2 * r2 + r1 * r1));
-    double s2 = sqrt(0.5 * (r3 * r3 + r3 * r3)) - r3;
+    double s2 = sqrt(0.5 * (r3 * r3 + r4 * r4)) - r3;
     double l4 = 0.25 * M_PI * (2 * s2 + h);
     double l5 = 0.25 * M_PI * (2 * s1 + h);
     double k4 = 1 - (2 * b / (M_PI * (r3 + r4)));
@@ -1559,6 +1559,78 @@ long findUCore_N(double Ind, double A, double B, double C, double D, double E, d
     while (tmpI <= Ind){
         N++;
         tmpI = findUCore_I(N,A,B,C,D,E,F,s,mu,result);
+    }
+    return N;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findRMCore_I (double N, double a, double b, double c, double e, double d2, double d3, double d4, double h1,  double h2, double g, double mu, int type, _CoilResult *result){
+
+     double h = 0.5 * (h1 - h2);
+     double alpha = M_PI / 2.0;
+     double betta = alpha - asin(e / d2);
+     double phi = M_PI / 2.0;
+     if (type == 2)
+         phi = 2 * acos(e / d2);
+     double p = sqrt(2.0) * a - b;
+     double lmin = 0.5 * (d2 - d3);
+     double lmax = sqrt(0.25 * (d2 * d2 + d3 * d3) - 0.5 * d2 * d3 * cos(alpha - betta));
+     if (type == 2)
+         lmax = sqrt(0.25 * (d2 * d2 + d3 * d3) - 0.5 * d2 * d3 * cos(alpha - betta)) - 0.5 * b / sin(0.5 * phi);
+     if (type == 3)
+         lmax = 0.5 * e + 0.5 * (1 - sin(M_PI / 4.0)*(d2 - c));
+     double f = (lmax + lmin) / (2.0 * lmin);
+     double A7 = 0.25 * (0.5 * betta * d2 * d2 + 0.5 * e * e * tan(betta) - 0.5 * e * e * tan(alpha - 0.5 * phi)-0.25 * M_PI * d3 * d3);
+     if (type == 1)
+         A7 = 0.25 * (0.5 * betta * d2 * d2 + 0.5 * d2 * d3 * sin(alpha - betta) + 0.5 * pow(c - d3, 2) * tan(0.5 * phi) - 0.25 * M_PI * d3 * d3);
+     if (type == 2)
+         A7 = 0.25 * (0.5 * betta * d2 * d2 - 0.25 * M_PI * d3 * d3 + 0.5 * (b * b - e * e) * tan(alpha - 0.5 * phi) + 0.5 * e * e * tan(betta));
+     if (type == 3)
+         A7 = 0.25 * (0.5 * betta * d2 * d2 - 0.5 * phi * d3 * d3 + 0.5 * c * c * tan(alpha - betta));
+     double A8 = (M_PI / 16) * (d2 * d2 - d3 * d3);
+     double D = A7 / A8;
+
+     double l1 = h2;
+     double A1 = 0.5 * a * a * (1 + tan(betta - M_PI / 4.0)) - 0.5 * betta * d2 * d2 - 0.5 * p * p;
+     double sum11 = l1 / A1;
+     double sum12 = l1 / (A1 * A1);
+
+     double sum21 = (log(d2 / d3) * f) / (M_PI * D * h);
+     double sum22 = (f * (1.0 / d3 - 1.0 / d2)) / (pow(M_PI * D * h, 2));
+
+     double l3 = h2;
+     double A3 = 0.25*M_PI * (d3 * d3 - d4 * d4);
+     double sum31 = l3 / A3;
+     double sum32 = l3 / (A3 * A3);
+
+     double l4 = 0.25 * M_PI * (h + 0.5 * a - 0.5 * d2);
+     double A4 = 0.5 * (A1 + 2.0 * betta * d2 * h);
+     double sum41 = l4 / A4;
+     double sum42 = l4 / (A4 * A4);
+
+     double l5 = 0.25 * M_PI * (d3 + h - sqrt(0.5 * (d3 * d3 + d4 * d4)));
+     double A5 = 0.5 * (0.25 * M_PI * (d3 * d3 - d4 * d4) + 2.0 * alpha * d3 * h);
+     double sum51 = l5 / A5;
+     double sum52 = l5 / (A5 * A5);
+
+     double C1 = sum11 + sum21 + sum31 + sum41 + sum51;
+     double C2 = sum12 + sum22 + sum32 + sum42 + sum52;
+     double le = C1 * C1 / C2;
+     double Ae = C1 / C2;
+     double mu_e = mu / (1 + g * mu / le);
+     double ind = 1000 * N * N * mu0 * mu_e / C1;
+     result->N = le;
+     result->sec = Ae;
+     result->thd = mu_e;
+     return ind;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+long findRMCore_N (double Ind, double a, double b, double c, double e, double d2, double d3, double d4, double h1,  double h2, double g, double mu, int type, _CoilResult *result)
+{
+    double tmpI = 0;
+    unsigned long int N = 0;
+    while (tmpI <= Ind){
+        N++;
+        tmpI = findRMCore_I (N, a, b, c, e, d2, d3, d4, h1, h2, g, mu, type, result);
     }
     return N;
 }
