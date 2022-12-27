@@ -85,10 +85,10 @@ void Multiloop::getOpt(_OptionStruct gOpt){
     ui->checkBox_isReverce->setChecked(isReverse);
     on_checkBox_isReverce_clicked();
     if (!ui->checkBox_isReverce->isChecked())
-        ui->lineEdit_N->setText(loc.toString(nTurns));
+        ui->lineEdit_N->setText(roundTo(nTurns, loc, fOpt->dwAccuracy));
     else
-        ui->lineEdit_N->setText(loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy));
-    ui->lineEdit_1->setText(loc.toString(Di / fOpt->dwLengthMultiplier));
+        ui->lineEdit_N->setText(roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_1->setText(roundTo(Di / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     if (fOpt->isAWG){
         ui->label_02->setText(tr("AWG"));
         ui->lineEdit_2->setValidator(awgV);
@@ -97,9 +97,9 @@ void Multiloop::getOpt(_OptionStruct gOpt){
         } else
             ui->lineEdit_2->setText("");
     } else
-        ui->lineEdit_2->setText(loc.toString(dw / fOpt->dwLengthMultiplier));
+        ui->lineEdit_2->setText(roundTo(dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     if (ui->lineEdit_2->text().isEmpty() || (ui->lineEdit_2->text() == "0")|| (dt > 0))
-        ui->lineEdit_3->setText(loc.toString(dt / fOpt->dwLengthMultiplier));
+        ui->lineEdit_3->setText(roundTo(dt / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     else
         on_lineEdit_2_editingFinished();
     move(pos);
@@ -173,25 +173,25 @@ void Multiloop::on_pushButton_clicked()
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     if (!ui->checkBox_isReverce->isChecked()){
-        sResult += tr("Inductance") + " L = " + loc.toString(ind / fOpt->dwInductanceMultiplier , 'f', fOpt->dwAccuracy) + " "
+        sResult += tr("Inductance") + " L = " + roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
                 + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
     } else {
-        sResult += tr("Number of turns of the coil") + " N = " + loc.toString(nTurns) + "<br/>";
+        sResult += tr("Number of turns of the coil") + " N = " + roundTo(nTurns, loc, fOpt->dwAccuracy) + "<br/>";
     }
-    sResult += tr("Mean diameter") + " Dm = " + loc.toString( (result.N)/fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy ) + " " +
+    sResult += tr("Mean diameter") + " Dm = " + roundTo( (result.N)/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy ) + " " +
             qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    sResult += tr("Thickness of the coil") + " T = " + loc.toString( (result.sec)/fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy ) + " " +
+    sResult += tr("Thickness of the coil") + " T = " + roundTo( (result.sec)/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " " +
             qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    sResult += tr("Resistance of the coil") + " R = " + loc.toString(result.fourth, 'f', fOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+    sResult += tr("Resistance of the coil") + " R = " + roundTo(result.fourth, loc, fOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
     QString _wire_length = formatLength(result.thd, fOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    sResult += tr("Length of wire without leads") + " lw = " + loc.toString(d_wire_length.toDouble(), 'f', fOpt->dwAccuracy) + " " +
+    sResult += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy) + " " +
             qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
     double dencity = mtrl[Cu][Dencity];
     double mass = 0.25 * dencity * M_PI * dw * dw * result.thd;
-    sResult += tr("Weight of wire") + " m = " + loc.toString(mass) + " " + tr("g") + "<br/>";
+    sResult += tr("Weight of wire") + " m = " + roundTo(mass, loc, fOpt->dwAccuracy) + " " + tr("g") + "<br/>";
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }
@@ -220,7 +220,7 @@ void Multiloop::on_lineEdit_2_editingFinished()
     }
     double k_m = odCalc(dw);
     if (dw > 0){
-        ui->lineEdit_3->setText( loc.toString(k_m / fOpt->dwLengthMultiplier));
+        ui->lineEdit_3->setText( roundTo(k_m / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -230,12 +230,12 @@ void Multiloop::on_checkBox_isReverce_clicked()
     if (!ui->checkBox_isReverce->isChecked()){
         tmp_txt = tr("Number of turns") + " N:";
         ui->label_N->setText(tmp_txt);
-        ui->lineEdit_N->setText(loc.toString(nTurns));
+        ui->lineEdit_N->setText(roundTo(nTurns, loc, fOpt->dwAccuracy));
         ui->label_N_m->setVisible(false);
     } else {
         tmp_txt = tr("Inductance") + " L:";
         ui->label_N->setText(tmp_txt);
-        ui->lineEdit_N->setText(loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy));
+        ui->lineEdit_N->setText(roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
         ui->label_N_m->setVisible(true);
     }
     ui->lineEdit_N->setFocus();

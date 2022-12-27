@@ -74,11 +74,11 @@ void Meander_pcb::getOpt(_OptionStruct gOpt){
     int y = (screenGeometry.height() - this->height()) / 2;
     QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     settings->endGroup();
-    ui->lineEdit_N->setText(loc.toString(N));
-    ui->lineEdit_1->setText(loc.toString(a / fOpt->dwLengthMultiplier));
-    ui->lineEdit_2->setText(loc.toString(d / fOpt->dwLengthMultiplier));
-    ui->lineEdit_3->setText(loc.toString(h / fOpt->dwLengthMultiplier));
-    ui->lineEdit_4->setText(loc.toString(W / fOpt->dwLengthMultiplier));
+    ui->lineEdit_N->setText(roundTo(N, loc, fOpt->dwAccuracy));
+    ui->lineEdit_1->setText(roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_2->setText(roundTo(d / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_3->setText(roundTo(h / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_4->setText(roundTo(W / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     ui->lineEdit_N->setFocus();
     ui->lineEdit_N->selectAll();
     move(pos);
@@ -135,9 +135,9 @@ void Meander_pcb::on_pushButton_clicked()
     sResult += ui->label_4->text() + " = " + ui->lineEdit_4->text() + " " + ui->label_04->text() + "</p>";
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Inductance") + " L = " + loc.toString(result.N / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
+    sResult += tr("Inductance") + " L = " + roundTo(result.N / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
             + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
-    sResult += tr("Length of winding") + " l = " + loc.toString( (result.sec)/fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy ) + " " +
+    sResult += tr("Length of winding") + " l = " + roundTo( (result.sec)/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " " +
             qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8());
     sResult += "</p><hr>";
     emit sendResult(sResult);

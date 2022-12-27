@@ -278,7 +278,7 @@
        <item>
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_1">
           <property name="sizePolicy">
@@ -584,6 +584,38 @@
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_onelayer_init">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Select initial data of the calculation</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_14">
+              <item>
+               <widget class="QRadioButton" name="radioButton_5_1">
+                <property name="text">
+                 <string>Former diameter and wire diameter</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radioButton_5_2">
+                <property name="text">
+                 <string>Former diameter and winding length</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
@@ -1710,6 +1742,20 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_FAQ">
+          <property name="toolTip">
+           <string>Context help</string>
+          </property>
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-ask-question-32.png</normaloff>:/menu_ico/res/icons8-ask-question-32.png</iconset>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_Help">

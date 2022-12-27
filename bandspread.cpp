@@ -107,12 +107,12 @@ void Bandspread::getOpt(_OptionStruct gOpt)
     settings->endGroup();
     delete settings;
     ui->tabWidget->setCurrentIndex(0);
-    ui->lineEdit_ind->setText(loc.toString(ind / fOpt->dwInductanceMultiplier));
-    ui->lineEdit_flo->setText(loc.toString(f_low / fOpt->dwFrequencyMultiplier));
-    ui->lineEdit_fhi->setText(loc.toString(f_high / fOpt->dwFrequencyMultiplier));
-    ui->lineEdit_cvmin->setText(loc.toString(Cv_min / fOpt->dwCapacityMultiplier));
-    ui->lineEdit_cvmax->setText(loc.toString(Cv_max / fOpt->dwCapacityMultiplier));
-    ui->lineEdit_cs->setText(loc.toString(Cs / fOpt->dwCapacityMultiplier));
+    ui->lineEdit_ind->setText(roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_flo->setText(roundTo(f_low / fOpt->dwFrequencyMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_fhi->setText(roundTo(f_high / fOpt->dwFrequencyMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_cvmin->setText(roundTo(Cv_min / fOpt->dwCapacityMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_cvmax->setText(roundTo(Cv_max / fOpt->dwCapacityMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_cs->setText(roundTo(Cs / fOpt->dwCapacityMultiplier, loc, fOpt->dwAccuracy));
     resize(size);
     move(pos);
     showInductanceRange();
@@ -390,8 +390,8 @@ void Bandspread::on_tabWidget_currentChanged(int index)
         ui->lineEdit_cs->setText(ui->lineEdit_cs_r->text());
         ui->lineEdit_ind->setText(ui->lineEdit_ind_r->text());
         if ((!ui->lineEdit_flo_r->text().isEmpty()) && (!ui->lineEdit_fhi_r->text().isEmpty())){
-            ui->lineEdit_flo->setText(loc.toString(f_low / fOpt->dwFrequencyMultiplier));
-            ui->lineEdit_fhi->setText(loc.toString(f_high / fOpt->dwFrequencyMultiplier));
+            ui->lineEdit_flo->setText(roundTo(f_low / fOpt->dwFrequencyMultiplier, loc, fOpt->dwAccuracy));
+            ui->lineEdit_fhi->setText(roundTo(f_high / fOpt->dwFrequencyMultiplier, loc, fOpt->dwAccuracy));
         }
     } else {
         ui->lineEdit_cvmin_r->setText(ui->lineEdit_cvmin->text());

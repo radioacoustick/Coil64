@@ -23,6 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QProcess>
 #include <QSettings>
 #include <QString>
+#include <QLocale>
 #include <QSysInfo>
 #include <QMessageBox>
 #include <QLocale>
@@ -31,9 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QDir>
 #include <QIcon>
 
-
 #include "definitions.h"
-
 
 #ifdef __linux__
 #include <sys/utsname.h>
@@ -76,6 +75,7 @@ enum _StyleGUI {
       bool isSaveOnExit;
       bool isAdditionalResult;
       int layoutPCBcoil;
+      bool isWindingLengthOneLayerInit;
       bool isLastShowingFirst;
       int styleGUI;
       int upDateInterval;
@@ -95,5 +95,6 @@ void completeOptionsStructure(_OptionStruct *opt);
 QString formatLength(double length, double lengthMultiplyer);
 QPixmap revercePixmapColors(const QPixmap *pm);
 QIcon reverceIconColors(QIcon ico);
+QString roundTo(double num, QLocale locale, int accuracy);
 
 #endif // SYSTEM_FUNCTIONS_H

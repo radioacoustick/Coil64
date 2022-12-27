@@ -95,12 +95,12 @@ void AirCoreToroid::getOpt(_OptionStruct gOpt)
     dw = settings->value("dw", 0).toDouble();
     settings->endGroup();
     if (isReverse)
-        ui->lineEdit_N->setText(loc.toString(N));
+        ui->lineEdit_N->setText(roundTo(N, loc, fOpt->dwAccuracy));
     else
-        ui->lineEdit_N->setText(loc.toString(ind / fOpt->dwInductanceMultiplier));
-    ui->lineEdit_1->setText(loc.toString(OD / fOpt->dwLengthMultiplier));
-    ui->lineEdit_2->setText(loc.toString(ID / fOpt->dwLengthMultiplier));
-    ui->lineEdit_3->setText(loc.toString(h / fOpt->dwLengthMultiplier));
+        ui->lineEdit_N->setText(roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_1->setText(roundTo(OD / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_2->setText(roundTo(ID / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_3->setText(roundTo(h / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     if (fOpt->isAWG){
         ui->label_04->setText(tr("AWG"));
         ui->lineEdit_4->setValidator(awgV);
@@ -109,7 +109,7 @@ void AirCoreToroid::getOpt(_OptionStruct gOpt)
         } else
             ui->lineEdit_4->setText("");
     } else
-        ui->lineEdit_4->setText(loc.toString(dw / fOpt->dwLengthMultiplier));
+        ui->lineEdit_4->setText(roundTo(dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     ui->label_1->setText(tr("Outside diameter")+" OD:");
     ui->label_2->setText(tr("Inside diameter")+" ID:");
     ui->label_3->setText(tr("Height") + " h:");
@@ -159,12 +159,12 @@ void AirCoreToroid::on_radioButton_rect_clicked()
 void AirCoreToroid::on_checkBox_isReverce_clicked()
 {
     if (ui->checkBox_isReverce->isChecked()){
-        ui->lineEdit_N->setText(loc.toString(N, 'f', fOpt->dwAccuracy));
+        ui->lineEdit_N->setText(roundTo(N, loc, fOpt->dwAccuracy));
         QString tmpTxt = tr("Number of turns") + " N:";
         ui->label_N->setText(tmpTxt);
         ui->label_N_m->setVisible(false);
     } else {
-        ui->lineEdit_N->setText(loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy));
+        ui->lineEdit_N->setText(roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
         QString tmpTxt = tr("Inductance") + " L:";
         ui->label_N->setText(tmpTxt);
         ui->label_N_m->setVisible(true);
@@ -284,10 +284,10 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     if (ui->checkBox_isReverce->isChecked()){
-        sResult += tr("Inductance") + " L = " + loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
+        sResult += tr("Inductance") + " L = " + roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
                 + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8());
     } else {
-        sResult += tr("Number of turns of the coil") + " N = " + loc.toString(N, 'f', fOpt->dwAccuracy);
+        sResult += tr("Number of turns of the coil") + " N = " + roundTo(N, loc, fOpt->dwAccuracy);
     }
     sResult += "</p><hr>";
     emit sendResult(sResult);

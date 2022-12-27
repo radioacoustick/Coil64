@@ -96,7 +96,7 @@ void Loop::getOpt(_OptionStruct gOpt){
         } else
             ui->lineEdit_3->setText("");
     } else
-        ui->lineEdit_3->setText(loc.toString(dw / fOpt->dwLengthMultiplier));
+        ui->lineEdit_3->setText(roundTo(dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     resize(size);
     move(pos);
     ui->checkBox_isReverce->setChecked(isReverse);
@@ -123,7 +123,7 @@ void Loop::on_radioButton_round_clicked()
         ui->label_01->setVisible(true);
         ui->label_1->setVisible(true);
         ui->lineEdit_1->setVisible(true);
-        ui->lineEdit_1->setText(loc.toString(a / fOpt->dwLengthMultiplier));
+        ui->lineEdit_1->setText(roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
         QString tmpTxt = tr("Loop diameter") + " D:";
         ui->label_1->setText(tmpTxt);
         ui->lineEdit_1->setFocus();
@@ -148,13 +148,13 @@ void Loop::on_radioButton_triangle_clicked()
         ui->label_01->setVisible(true);
         ui->label_1->setVisible(true);
         ui->lineEdit_1->setVisible(true);
-        ui->lineEdit_1->setText(loc.toString(a / fOpt->dwLengthMultiplier));
+        ui->lineEdit_1->setText(roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
         QString tmpTxt = tr("Side of triangle") + " a:";
         ui->label_1->setText(tmpTxt);
         ui->label_02->setVisible(true);
         ui->label_2->setVisible(true);
         ui->lineEdit_2->setVisible(true);
-        ui->lineEdit_2->setText(loc.toString(b / fOpt->dwLengthMultiplier));
+        ui->lineEdit_2->setText(roundTo(b / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
         tmpTxt = tr("Side of triangle") + " b:";
         ui->label_2->setText(tmpTxt);
         ui->lineEdit_1->setFocus();
@@ -179,13 +179,13 @@ void Loop::on_radioButton_rectangle_clicked()
         ui->label_01->setVisible(true);
         ui->label_1->setVisible(true);
         ui->lineEdit_1->setVisible(true);
-        ui->lineEdit_1->setText(loc.toString(a / fOpt->dwLengthMultiplier));
+        ui->lineEdit_1->setText(roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
         QString tmpTxt = tr("Side of rectangle") + " a:";
         ui->label_1->setText(tmpTxt);
         ui->label_02->setVisible(true);
         ui->label_2->setVisible(true);
         ui->lineEdit_2->setVisible(true);
-        ui->lineEdit_2->setText(loc.toString(b / fOpt->dwLengthMultiplier));
+        ui->lineEdit_2->setText(roundTo(b / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
         tmpTxt = tr("Side of rectangle") + " b:";
         ui->label_2->setText(tmpTxt);
         ui->lineEdit_1->setFocus();
@@ -197,7 +197,7 @@ void Loop::on_checkBox_isReverce_clicked()
 {
     if (ui->checkBox_isReverce->isChecked()){
         ui->label_N->setVisible(true);
-        ui->lineEdit_N->setText(loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy));
+        ui->lineEdit_N->setText(roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
         ui->label_N_m->setVisible(true);
         ui->lineEdit_N->setVisible(true);
         QString tmpTxt = tr("Inductance") + " L:";
@@ -285,17 +285,17 @@ void Loop::on_pushButton_clicked()
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
         if(loopKind == 0){
             a = findRoundLoop_D(ind, dw);
-            sResult += tr("Loop diameter") + " D: " + loc.toString(a / fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy) + " "
+            sResult += tr("Loop diameter") + " D: " + roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " "
                     + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
         } else if (loopKind == 1){
             a = findIsoIsoscelesTriangleLoop_a(ind, dw);
             b = a;
-            sResult += tr("The side of the equilateral triangle") + " a = b: " + loc.toString(a / fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy) + " "
+            sResult += tr("The side of the equilateral triangle") + " a = b: " + roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " "
                     + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
         } else if (loopKind == 2){
             a = findRectangleLoop_a(ind, dw);
             b = a;
-            sResult += tr("The side of quadrate") + " a = b: " + loc.toString(a / fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy) + " "
+            sResult += tr("The side of quadrate") + " a = b: " + roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " "
                     + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
         }
         if (a < 0){
@@ -353,7 +353,7 @@ void Loop::on_pushButton_clicked()
             ind = findRectangleLoop_I(a, b, dw);
         }
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-        sResult += tr("Inductance") + " L = " + loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
+        sResult += tr("Inductance") + " L = " + roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
                 + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
     }
     sResult += "</p><hr>";

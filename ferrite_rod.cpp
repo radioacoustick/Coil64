@@ -107,12 +107,12 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     QSize size = settings->value("size", this->minimumSize()).toSize();
     settings->endGroup();
-    ui->lineEdit_ind->setText(loc.toString(I / fOpt->dwInductanceMultiplier));
-    ui->lineEdit_Dr->setText(loc.toString(Dr / fOpt->dwLengthMultiplier));
-    ui->lineEdit_Lr->setText(loc.toString(Lr / fOpt->dwLengthMultiplier));
-    ui->lineEdit_mu->setText(loc.toString(mu));
-    ui->lineEdit_dc->setText(loc.toString(dc / fOpt->dwLengthMultiplier));
-    ui->lineEdit_s->setText(loc.toString(s / fOpt->dwLengthMultiplier));
+    ui->lineEdit_ind->setText(roundTo(I / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_Dr->setText(roundTo(Dr / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_Lr->setText(roundTo(Lr / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_mu->setText(roundTo(mu, loc, fOpt->dwAccuracy));
+    ui->lineEdit_dc->setText(roundTo(dc / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_s->setText(roundTo(s / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     if (fOpt->isAWG){
         ui->label_dw_m->setText(tr("AWG"));
         ui->lineEdit_dw->setValidator(awgV);
@@ -121,8 +121,8 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
         } else
             ui->lineEdit_dw->setText("");
     } else
-        ui->lineEdit_dw->setText(loc.toString(dw / fOpt->dwLengthMultiplier));
-    ui->lineEdit_p->setText(loc.toString(p / fOpt->dwLengthMultiplier));
+        ui->lineEdit_dw->setText(roundTo(dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_p->setText(roundTo(p / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     ui->lineEdit_ind->setFocus();
     ui->lineEdit_ind->selectAll();
     resize(size);
@@ -222,8 +222,8 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     sResult += tr("Number of turns of the coil") + " N = " + QString::number(result.N) + "<br/>";
-    sResult += tr("Length of winding") + " lc = " + loc.toString(result.thd, 'f', fOpt->dwAccuracy) + "<br/>";
-    sResult += tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = " + loc.toString(result.sec, 'f', 0);
+    sResult += tr("Length of winding") + " lc = " + roundTo(result.thd, loc, fOpt->dwAccuracy) + "<br/>";
+    sResult += tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = " + roundTo(result.sec, loc, 0);
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }
@@ -248,6 +248,6 @@ void Ferrite_Rod::on_lineEdit_dw_editingFinished()
     }
     double k_m = odCalc(d);
     if (d > 0){
-        ui->lineEdit_p->setText( loc.toString(k_m / fOpt->dwLengthMultiplier));
+        ui->lineEdit_p->setText( roundTo(k_m / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     }
 }

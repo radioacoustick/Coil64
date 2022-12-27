@@ -430,6 +430,29 @@ double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, doub
     return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *result, unsigned int accuracy){
+    double dw = 0, lTmp = 0, N = 0, k, lw, dw_max = 0.25 * D, dw_min = 0, Dk;
+    int i = 0;
+    while (abs(1 - lTmp/L) > 0.05){
+        dw = (dw_min + dw_max) / 2;
+        k = odCalc(dw);
+        Dk = D + k;
+        N = getOneLayerN_withRoundWire(Dk, dw, k, I, &lw, accuracy);
+        lTmp = N * k + k;
+        if (lTmp > L){
+            dw_max = dw;
+        } else {
+            dw_min = dw;
+        }
+        i++;
+        if (i > 500)
+            return 0;
+    }
+    result->sec = lw;
+    result->five = dw;
+    return N;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy){
     return solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy);
 }

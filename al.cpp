@@ -188,7 +188,7 @@ void AL::on_pushButton_calculate_clicked()
             return;
         }
         L_r = (double)N_r * N_r * al / 1000;
-        ui->lineEdit_L_3->setText(loc.toString(L_r / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy));
+        ui->lineEdit_L_3->setText(roundTo(L_r / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
         break;
     default:
         break;

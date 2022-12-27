@@ -71,7 +71,7 @@
             </item>
             <item>
              <property name="text">
-              <string>RM6-R</string>
+              <string notr="true">RM6-R</string>
              </property>
             </item>
             <item>

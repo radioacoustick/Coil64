@@ -100,11 +100,11 @@ void Shield::getOpt(_OptionStruct gOpt){
         ui->radioButton_2->setChecked(false);
         this->on_radioButton_clicked();
     }
-    ui->lineEdit_N->setText(loc.toString(L / fOpt->dwInductanceMultiplier));
-    ui->lineEdit_1->setText(loc.toString(D / fOpt->dwLengthMultiplier));
-    ui->lineEdit_2->setText(loc.toString(l / fOpt->dwLengthMultiplier));
-    ui->lineEdit_3->setText(loc.toString(Ds / fOpt->dwLengthMultiplier));
-    ui->lineEdit_4->setText(loc.toString(Hs / fOpt->dwLengthMultiplier));
+    ui->lineEdit_N->setText(roundTo(L / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_1->setText(roundTo(D / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_2->setText(roundTo(l / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_3->setText(roundTo(Ds / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_4->setText(roundTo(Hs / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     move(pos);
     delete settings;
 }
@@ -187,7 +187,7 @@ void Shield::on_pushButton_clicked()
     sResult += ui->groupBox_3->title() + ": " + sShieldForm + "</p>";
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Inductance of the shielded coil") + " Ls = " + loc.toString(L_shilded / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
+    sResult += tr("Inductance of the shielded coil") + " Ls = " + roundTo(L_shilded / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
             + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
     sResult += tr("Relative reducing of the inductance") + ": " + loc.toString(round(100 - L_shilded * 100 / L)) + "%" + "<br/>";
     sResult += "</p><hr>";

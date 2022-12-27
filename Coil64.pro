@@ -111,6 +111,7 @@ TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_el.ts \
     lang/Coil64_en.ts \
     lang/Coil64_es.ts \
+    lang/Coil64_et.ts \
     lang/Coil64_fa.ts \
     lang/Coil64_fr.ts \
     lang/Coil64_hr.ts \

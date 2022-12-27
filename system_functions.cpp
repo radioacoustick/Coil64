@@ -185,6 +185,7 @@ QStringList translateInstalling(QStringList *lang){
                             << QLocale(QLocale::Czech).name().mid(0,2)
                             << QLocale(QLocale::Dutch).name().mid(0,2)
                             << QLocale(QLocale::English).name().mid(0,2)
+                            << QLocale(QLocale::Estonian).name().mid(0,2)
                             << QLocale(QLocale::Persian).name().mid(0,2)
                             << QLocale(QLocale::French).name().mid(0,2)
                             << QLocale(QLocale::German).name().mid(0,2)
@@ -209,6 +210,7 @@ QStringList translateInstalling(QStringList *lang){
              << QLocale(QLocale::Czech).nativeLanguageName().toUpper()
              << QLocale(QLocale::Dutch).nativeLanguageName().toUpper()
              << QLocale(QLocale::English).nativeLanguageName().toUpper()
+             << QLocale(QLocale::Estonian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Persian).nativeLanguageName().toUpper()
              << QLocale(QLocale::French).nativeLanguageName().toUpper()
              << QLocale(QLocale::German).nativeLanguageName().toUpper()
@@ -237,6 +239,8 @@ QLocale getLanguageLocale (QString lang){
  else if (lang == "cs") loc =  QLocale::Czech;
  else if (lang == "nl") loc =  QLocale::Dutch;
  else if (lang == "en") loc =  QLocale::English;
+ else if (lang == "es") loc =  QLocale::Spanish;
+ else if (lang == "et") loc =  QLocale::Estonian;
  else if (lang == "fa") loc =  QLocale::Persian;
  else if (lang == "fr") loc =  QLocale::French;
  else if (lang == "de") loc =  QLocale::German;
@@ -250,7 +254,6 @@ QLocale getLanguageLocale (QString lang){
  else if (lang == "ro") loc =  QLocale::Romanian;
  else if (lang == "ru") loc =  QLocale::Russian;
  else if (lang == "sr") loc =  QLocale::Serbian;
- else if (lang == "es") loc =  QLocale::Spanish;
  else if (lang == "tr") loc =  QLocale::Turkish;
  else if (lang == "uk") loc =  QLocale::Ukrainian;
  else loc = QLocale::system();
@@ -456,4 +459,18 @@ QIcon reverceIconColors(QIcon ico){
     QPixmap am = QPixmap::fromImage(image);
     QIcon ricon(am);
     return ricon;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString roundTo(double num, QLocale locale, int accuracy){
+    QString snum = locale.toString(num, 'f', accuracy);
+    char decSeparator = locale.decimalPoint().toLatin1();
+    std::string str = snum.toStdString();
+    std::size_t found = str.find(decSeparator);
+    if (found != std::string::npos){
+        str.erase(str.find_last_not_of('0') + 1, std::string::npos); //erase any trailing zeroes
+        if (str.back() == decSeparator)  //remove remaining dot if necessary
+            str.pop_back();
+    }
+    QString res_num = QString::fromStdString(str);
+    return res_num;
 }

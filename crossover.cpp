@@ -200,13 +200,13 @@ void Crossover::fillTable(QStandardItem *item, int count, double wire_d, int awg
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("Wire diameter") + " ["
                          + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "]\nd");
     if (fOpt->isAWG)
-        item = new QStandardItem(loc.toString(wire_d / fOpt->dwLengthMultiplier, 'f', 2) + " - (" + QString::number(awgNumber) + " AWG)");
+        item = new QStandardItem(roundTo(wire_d / fOpt->dwLengthMultiplier, loc, 2) + " - (" + QString::number(awgNumber) + " AWG)");
     else
-        item = new QStandardItem(loc.toString(wire_d / fOpt->dwLengthMultiplier, 'f', 2));
+        item = new QStandardItem(roundTo(wire_d / fOpt->dwLengthMultiplier, loc, 2));
     model->setItem(count - 1, 0, item);
     findBrooksCoil(ind, wire_d, ui->doubleSpinBox_ax->value(), ui->doubleSpinBox_rad->value(),
                    n, nLayer, Nc, c, lengthWire, massWire, DCR);
-    item = new QStandardItem(loc.toString(n, 'f', 1));
+    item = new QStandardItem(roundTo(n, loc, 1));
     model->setItem(count - 1, 1, item);
     item = new QStandardItem(QString::number(ceil(nLayer)));
     model->setItem(count - 1, 2, item);
@@ -214,9 +214,9 @@ void Crossover::fillTable(QStandardItem *item, int count, double wire_d, int awg
     model->setItem(count - 1, 3, item);
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Dimensions of inductor")
                          + " [" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "]\n DxHxW ");
-    item = new QStandardItem(loc.toString(2 * c / fOpt->dwLengthMultiplier, 'f', 1)
-                             + "x" + loc.toString(4 * c / fOpt->dwLengthMultiplier, 'f', 1)
-                             + "x" + loc.toString(c / fOpt->dwLengthMultiplier, 'f', 1));
+    item = new QStandardItem(roundTo(2 * c / fOpt->dwLengthMultiplier, loc, 1)
+                             + "x" + roundTo(4 * c / fOpt->dwLengthMultiplier, loc, 1)
+                             + "x" + roundTo(c / fOpt->dwLengthMultiplier, loc, 1));
     model->setItem(count - 1, 4, item);
     QString _wire_length = formatLength(lengthWire, fOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
@@ -224,11 +224,11 @@ void Crossover::fillTable(QStandardItem *item, int count, double wire_d, int awg
     QString _ssLengthMeasureUnit = list[1];
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("Length of wire without leads") + "\n[" +
                          qApp->translate("Context", _ssLengthMeasureUnit.toUtf8()) + "]");
-    item = new QStandardItem(loc.toString(d_wire_length.toDouble(), 'f', fOpt->dwAccuracy));
+    item = new QStandardItem(roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy));
     model->setItem(count - 1, 5, item);
-    item = new QStandardItem(loc.toString(massWire, 'f', fOpt->dwAccuracy));
+    item = new QStandardItem(roundTo(massWire, loc, fOpt->dwAccuracy));
     model->setItem(count - 1, 6, item);
-    item = new QStandardItem(loc.toString(DCR, 'f', fOpt->dwAccuracy));
+    item = new QStandardItem(roundTo(DCR, loc, fOpt->dwAccuracy));
     model->setItem(count - 1, 7, item);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

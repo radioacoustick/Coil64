@@ -80,12 +80,12 @@ void Find_Permeability::getOpt(_OptionStruct gOpt){
     int y = (screenGeometry.height() - this->height()) / 2;
     QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     settings->endGroup();
-    ui->lineEdit_ind->setText(loc.toString(I / fOpt->dwInductanceMultiplier));
-    ui->lineEdit_N->setText(loc.toString(N));
-    ui->lineEdit_1->setText(loc.toString(OD / fOpt->dwLengthMultiplier));
-    ui->lineEdit_2->setText(loc.toString(ID / fOpt->dwLengthMultiplier));
-    ui->lineEdit_3->setText(loc.toString(h / fOpt->dwLengthMultiplier));
-    ui->lineEdit_4->setText(loc.toString(Ch / fOpt->dwLengthMultiplier));
+    ui->lineEdit_ind->setText(roundTo(I / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_N->setText(roundTo(N, loc, fOpt->dwAccuracy));
+    ui->lineEdit_1->setText(roundTo(OD / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_2->setText(roundTo(ID / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_3->setText(roundTo(h / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_4->setText(roundTo(Ch / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     ui->lineEdit_N->setFocus();
     ui->lineEdit_N->selectAll();
     move(pos);

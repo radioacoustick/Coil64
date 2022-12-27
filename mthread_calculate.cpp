@@ -42,11 +42,22 @@ void MThread_calculate::run(){
             switch (this->coilForm) {
             case _Onelayer_cw:
             case _Onelayer:{
-                //arg: Dk, d, p, I, f, 0, 0, mt
-                result.N = getOneLayerN_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg8 );//number of turns
-                result.thd = find_Cs(arg3, arg1, arg3 * result.N); //self-capacitance
-                result.six = solve_Qr(arg4,arg1,arg3,arg2,arg5, result.N, result.thd, mt, &result);//Q-factor
-                result.fourth = findSRF(arg3 * result.N, arg1, result.sec);//self-resonance frequency
+                //arg: Dk, d, k, I, f, 0, 0, myOpt->dwAccuracy, mt
+                double Dk = 0;
+                double dw = 0;
+                if (arg3 > 0){ //when winding length option is activated, k=0
+                    result.N = getOneLayerN_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg8 );//number of turns
+                    Dk = arg1;
+                    dw = arg2;
+                } else {
+                    result.N = getOneLayerN_byWindingLength(arg1, arg2, arg4, &result, arg8);
+                    dw = result.five;
+                    arg3 = odCalc(dw);
+                    Dk = arg1 + arg3;
+                }
+                result.thd = find_Cs(arg3, Dk, arg3 * result.N); //self-capacitance
+                result.six = solve_Qr(arg4, Dk, arg3, dw, arg5, result.N, result.thd, mt, &result);//Q-factor
+                result.fourth = findSRF(arg3 * result.N, Dk, result.sec);//self-resonance frequency
                 break;
             }
             case _Onelayer_p:{
@@ -132,6 +143,7 @@ void MThread_calculate::run(){
                 //double Dk, double dw, double p, double N, double n, _CoilResult *result, unsigned int accuracy
                 getOneLayerI_Poligonal( arg1, arg2, arg3, arg4, arg6, &result, arg8);
                 result.fourth = find_Cs(arg3, result.seven, arg3 * arg4); //self-capacitance
+                result.five = findSRF(arg4 * arg3, arg1, result.thd);//self-resonance frequency
                 result.six = solve_Qr(result.sec, result.seven, arg3, arg2, arg5, arg4, result.fourth, mt, &result);//Q-factor
                 break;
             }

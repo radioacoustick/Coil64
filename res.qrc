@@ -83,6 +83,7 @@
         <file>res/flags/cs.png</file>
         <file>res/flags/uk.png</file>
         <file>res/flags/lt.png</file>
+        <file>res/flags/et.png</file>
     </qresource>
     <qresource prefix="/menu_ico">
         <file>res/icons8-add-32.png</file>
@@ -145,6 +146,7 @@
         <file>res/icons8-ltspice-32.png</file>
         <file>res/ico1-bandspread.png</file>
         <file>res/ico1-rm-core.png</file>
+        <file>res/icons8-ask-question-32.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>
@@ -169,6 +171,7 @@
         <file>res/translations/Coil64_cs.qm</file>
         <file>res/translations/Coil64_uk.qm</file>
         <file>res/translations/Coil64_lt.qm</file>
+        <file>res/translations/Coil64_et.qm</file>
     </qresource>
     <qresource prefix="/stylesheet">
         <file>res/DarkStyle.qss</file>

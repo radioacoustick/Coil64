@@ -105,6 +105,7 @@ enum _FormCoil
     void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result);
 
     double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy); //get Inductance for One-layer coil with round wire
+    double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *result, unsigned int accuracy); //get Inductance and wire diameter for One-layer coil by winding length
     double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw, unsigned int accuracy); //get Inductance for One-layer coil with round wire
     void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result, unsigned int accuracy);
     void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result); //get Inductance for Multi-layer coil

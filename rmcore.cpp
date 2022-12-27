@@ -126,20 +126,20 @@ void RMcore::getOpt(_OptionStruct gOpt)
     mu = settings->value("mu", 100).toDouble();
     settings->endGroup();
     if (isReverse)
-        ui->lineEdit_N->setText(loc.toString(N));
+        ui->lineEdit_N->setText(roundTo(N, loc, fOpt->dwAccuracy));
     else
-        ui->lineEdit_N->setText(loc.toString(ind / fOpt->dwInductanceMultiplier));
-    ui->lineEdit_a->setText(loc.toString(a / fOpt->dwLengthMultiplier));
-    ui->lineEdit_b->setText(loc.toString(b / fOpt->dwLengthMultiplier));
-    ui->lineEdit_c->setText(loc.toString(c / fOpt->dwLengthMultiplier));
-    ui->lineEdit_e->setText(loc.toString(e / fOpt->dwLengthMultiplier));
-    ui->lineEdit_d2->setText(loc.toString(d2 / fOpt->dwLengthMultiplier));
-    ui->lineEdit_d3->setText(loc.toString(d3 / fOpt->dwLengthMultiplier));
-    ui->lineEdit_d4->setText(loc.toString(d4 / fOpt->dwLengthMultiplier));
-    ui->lineEdit_h1->setText(loc.toString(h1 / fOpt->dwLengthMultiplier));
-    ui->lineEdit_h2->setText(loc.toString(h2 / fOpt->dwLengthMultiplier));
-    ui->lineEdit_g->setText(loc.toString(g / fOpt->dwLengthMultiplier));
-    ui->lineEdit_mu->setText(loc.toString(mu));
+        ui->lineEdit_N->setText(roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_a->setText(roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_b->setText(roundTo(b / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_c->setText(roundTo(c / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_e->setText(roundTo(e / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_d2->setText(roundTo(d2 / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_d3->setText(roundTo(d3 / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_d4->setText(roundTo(d4 / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_h1->setText(roundTo(h1 / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_h2->setText(roundTo(h2 / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_g->setText(roundTo(g / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_mu->setText(roundTo(mu, loc, fOpt->dwAccuracy));
 
     ui->label_g->setText(tr("Centerpost gap")+" g:");
     ui->label_mu->setText(tr("Magnetic permeability")+" µ:");
@@ -185,12 +185,12 @@ void RMcore::on_comboBox_currentIndexChanged(int index)
 void RMcore::on_checkBox_isReverce_clicked()
 {
     if (ui->checkBox_isReverce->isChecked()){
-        ui->lineEdit_N->setText(loc.toString(N, 'f', fOpt->dwAccuracy));
+        ui->lineEdit_N->setText(roundTo(N, loc, fOpt->dwAccuracy));
         QString tmpTxt = tr("Number of turns") + " N:";
         ui->label_N->setText(tmpTxt);
         ui->label_N_m->setVisible(false);
     } else {
-        ui->lineEdit_N->setText(loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy));
+        ui->lineEdit_N->setText(roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
         QString tmpTxt = tr("Inductance") + " L:";
         ui->label_N->setText(tmpTxt);
         ui->label_N_m->setVisible(true);
@@ -303,21 +303,21 @@ void RMcore::on_pushButton_calculate_clicked()
     sResult += "<hr>";
     sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     if (ui->checkBox_isReverce->isChecked()){
-        sResult += tr("Inductance") + " L = " + loc.toString(ind / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " "
+        sResult += tr("Inductance") + " L = " + roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
                 + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8());
     } else {
         sResult += tr("Number of turns of the coil") + " N = " + QString::number(N);
     }
     sResult += "<br/><br/>" + tr("Effective magnetic path length") + " (l<sub>e</sub>): "
-            + loc.toString(result.N/fOpt->dwLengthMultiplier, 'f', fOpt->dwAccuracy)
+            + roundTo(result.N/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy)
             + "&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
     sResult += tr("Effective area of magnetic path") + " (A<sub>e</sub>): "
-            + loc.toString(result.sec/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', fOpt->dwAccuracy)
+            + roundTo(result.sec/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), loc, fOpt->dwAccuracy)
             + "&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>2</sup><br/>";
     sResult += tr("Effective volume") + " (V<sub>e</sub>): "
-            + loc.toString(result.N * result.sec/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), 'f', fOpt->dwAccuracy)
+            + roundTo(result.N * result.sec/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), loc, fOpt->dwAccuracy)
             + "&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>3</sup><br/>";
-    sResult += tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = " + loc.toString(result.thd, 'f', 0);
+    sResult += tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = " + roundTo(result.thd, loc, 0);
     sResult += "</p><hr>";
     emit sendResult(sResult);
 }

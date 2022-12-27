@@ -1,75 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="nl_NL">
+<TS version="2.1" language="et_EE">
 <context>
     <name>AL</name>
     <message>
         <location filename="../al.ui" line="17"/>
         <source>Calculation with AL-factor</source>
-        <translation>Berekening met AL-factor</translation>
+        <translation>Arvutamine AL-teguriga</translation>
     </message>
     <message>
         <location filename="../al.ui" line="30"/>
         <source>You can calculate the A&lt;sub&gt;L&lt;/sub&gt; factor of an any coil with the closed magnetic circuit by direct measuring with a test winding.</source>
-        <translation>U kunt de A &lt;sub&gt;L&lt;/sub&gt; -factor van een willekeurige spoel met het gesloten magnetische circuit berekenen door direct te meten met een testwikkeling.</translation>
+        <translation>Saate arvutada mis tahes suletud magnetahelaga mähise A&lt;sub&gt;L&lt;/sub&gt;-teguri, mõõtes otse testmähisega.</translation>
     </message>
     <message>
         <location filename="../al.ui" line="109"/>
         <location filename="../al.ui" line="250"/>
         <location filename="../al.ui" line="385"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../al.ui" line="201"/>
         <location filename="../al.ui" line="332"/>
         <location filename="../al.ui" line="461"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../al.ui" line="528"/>
         <source>You can determine the A&lt;sub&gt;L&lt;/sub&gt; factor in the first tab knowing the number of turns and the measured inductance.&lt;hr/&gt; In the second tab, you can determine the number of turns with a known A&lt;sub&gt;L&lt;/sub&gt; and with a known required inductance.&lt;hr/&gt; In the third tab, you can calculate the inductance with known A&lt;sub&gt;L&lt;/sub&gt; and the known number of turns.</source>
-        <translatorcomment>Je kunt de A&lt;sub&gt;L&lt;/sub&gt;-factor bepalen in het eerste tabblad door het aantal windingen en de gemeten inductantie te kennen. &lt;hr /&gt; In het tweede tabblad kun je het aantal windingen bepalen met een bekende A&lt;sub&gt;L&lt;/sub&gt; en met een bekende vereiste inductantie. &lt;hr /&gt; In het derde tabblad kun je de inductantie berekenen met bekende A&lt;sub&gt;L&lt;/sub&gt; en het bekende aantal windingen.</translatorcomment>
-        <translation></translation>
+        <translation>A&lt;sub&gt;L&lt;/sub&gt;-teguri saate määrata esimesel kaardil, teades keerdude arvu ja mõõdetud induktiivsust.&lt;hr/&gt; Teisel kaardil saate määrata teadaoleva A&lt;sub-iga keerdude arvu. &gt;L&lt;/sub&gt; ja teadaoleva vajaliku induktiivsusega.&lt;hr/&gt; Kolmandal kaardil saab arvutada induktiivsuse teadaoleva A&lt;sub&gt;L&lt;/sub&gt; ja teadaoleva keerdude arvuga.</translation>
     </message>
     <message>
         <location filename="../al.ui" line="581"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../al.ui" line="607"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="79"/>
         <location filename="../al.cpp" line="80"/>
         <location filename="../al.cpp" line="81"/>
         <source>turn</source>
-        <translation>draai</translation>
+        <translation>keerd</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="82"/>
         <location filename="../al.cpp" line="83"/>
         <location filename="../al.cpp" line="84"/>
         <source>Magnetic factor of the core</source>
-        <translation>Magnetische factor van de kern</translation>
+        <translation>Südamiku magnettegur</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="88"/>
         <location filename="../al.cpp" line="89"/>
         <location filename="../al.cpp" line="90"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="91"/>
         <location filename="../al.cpp" line="92"/>
         <location filename="../al.cpp" line="93"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="141"/>
@@ -82,28 +81,28 @@
         <location filename="../al.cpp" line="183"/>
         <location filename="../al.cpp" line="187"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="141"/>
         <location filename="../al.cpp" line="159"/>
         <location filename="../al.cpp" line="177"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="147"/>
         <location filename="../al.cpp" line="165"/>
         <location filename="../al.cpp" line="183"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="151"/>
         <location filename="../al.cpp" line="169"/>
         <location filename="../al.cpp" line="187"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
 </context>
 <context>
@@ -111,87 +110,87 @@
     <message>
         <location filename="../about.ui" line="38"/>
         <source>About</source>
-        <translation>Over</translation>
+        <translation>Sellest</translation>
     </message>
     <message>
         <location filename="../about.ui" line="107"/>
         <source>About program</source>
-        <translation>Over het programma</translation>
+        <translation>Programmist</translation>
     </message>
     <message>
         <location filename="../about.ui" line="119"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Radio frequency inductor and choke calculator&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Radiofrequentie-inductor en choke-calculator&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Raadiosagedusliku induktiivpooli ja drosseli kalkulaator&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="136"/>
         <source>The app allows to calculate needed number of turns for desired value of inductance of homebrew inductor or to calculate the inductance value of a fabricated inductor. I hope this app could be useful for HAMs, Audiophiles and other radio enthusiasts who needs to make DIY inductors.</source>
-        <translation>De app maakt het mogelijk om het benodigde aantal windingen voor de gewenste waarde van de inductantie van de homebrew inductor te berekenen of om de inductantiewaarde van een gefabriceerde inductor te berekenen. Ik hoop dat deze app nuttig kan zijn voor HAM&apos;s, audiofielen en andere radio-enthousiasten die doe-het-zelfinductors moeten maken.</translation>
+        <translation>Rakendus võimaldab arvutada vajaliku keerdude arvu isetehtud induktiivpooli soovitud väärtuse jaoks või arvutada valmistatud induktiivpooli induktiivsuse väärtust. Loodan, et see rakendus võib olla kasulik HAM-idele, audiofiilidele ja teistele raadiohuvilistele, kes peavad ise tegema induktiivpooli</translation>
     </message>
     <message>
         <location filename="../about.ui" line="164"/>
         <source>HomePage:</source>
-        <translation>Startpagina:</translation>
+        <translation>Koduleht</translation>
     </message>
     <message>
         <location filename="../about.ui" line="193"/>
         <source>Author</source>
-        <translation>Schrijver</translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <location filename="../about.ui" line="226"/>
         <source>Name: Valery Kustarev</source>
-        <translation>Naam: Valery Kustarev</translation>
+        <translation>Nimi: Valeri Kustarev</translation>
     </message>
     <message>
         <location filename="../about.ui" line="401"/>
         <source>Thanks</source>
-        <translation>Bedankt</translation>
+        <translation>Tänud</translation>
     </message>
     <message>
         <location filename="../about.ui" line="423"/>
         <source>Thanks for reports and program testing:</source>
-        <translation>Bedankt voor het testen en testen van programma&apos;s:</translation>
+        <translation>Täname aruannete ja programmi testimise eest</translation>
     </message>
     <message>
         <location filename="../about.ui" line="444"/>
         <source>Translations</source>
-        <translation>Vertaalwerk</translation>
+        <translation>Tõlked</translation>
     </message>
     <message>
         <location filename="../about.ui" line="470"/>
         <source>I would like to thank the following people who volunteered to translate Coil64:</source>
-        <translation>Ik wil graag de volgende mensen bedanken die zich vrijwillig hebben aangemeld om Coil64 te vertalen:</translation>
+        <translation>Tahaksin tänada järgmisi inimesi, kes vabatahtlikult Coil64 tõlkisid:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="524"/>
         <source>The current version of the Coil64 has been compiled by using the following libraries:</source>
-        <translation>De huidige versie van de Coil64 is gecompileerd met behulp van de volgende bibliotheken:</translation>
+        <translation>Coil64 praegune versioon on kompileeritud järgmiste teekide abil</translation>
     </message>
     <message>
         <location filename="../about.ui" line="495"/>
         <source>License</source>
-        <translation>Licentie</translation>
+        <translation>Litsens</translation>
     </message>
     <message>
         <location filename="../about.ui" line="251"/>
         <source>The open source code of the following developers was used:</source>
-        <translation>Er is gebruik gemaakt van de open source code van de volgende ontwikkelaars:</translation>
+        <translation>Kasutatud on järgmiste arendajate avatud lähtekoodi:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="387"/>
         <source>I hope, Coil64 will be useful in your radioamateur creativity. 73!</source>
-        <translation>Ik hoop dat Coil64 nuttig zal zijn voor de creativiteit van je radioamateur. 73!</translation>
+        <translation>Loodan, et Coil64 on sinu raadioamatööri loomisvõimele kasulik. 73!</translation>
     </message>
     <message>
         <location filename="../about.ui" line="512"/>
         <source>Libraries</source>
-        <translation>Bibliotheken</translation>
+        <translation>Teegid</translation>
     </message>
     <message>
         <location filename="../about.ui" line="629"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
 </context>
 <context>
@@ -199,32 +198,32 @@
     <message>
         <location filename="../aircoretoroid.ui" line="17"/>
         <source>Air core toroid coil</source>
-        <translation>Luchtkern ringkern</translation>
+        <translation>Õhksüdamikuga rõngaspool</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="87"/>
         <source>Kind of the winding</source>
-        <translation>Soort van de kronkeling</translation>
+        <translation>Mähise tüüp</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="93"/>
         <source>Round cross-section</source>
-        <translation>Ronde doorsnede</translation>
+        <translation>Ümmargune rstlõige</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="103"/>
         <source>Rectangular cross-section</source>
-        <translation>Rechthoekige doorsnede</translation>
+        <translation>Ristkülikukujuline ristlõige</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="120"/>
         <source>Reverse calculation</source>
-        <translation>Reverse berekening</translation>
+        <translation>Vastupidine arvutus</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="184"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="308"/>
@@ -234,17 +233,17 @@
     <message>
         <location filename="../aircoretoroid.ui" line="353"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="389"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="415"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="105"/>
@@ -254,33 +253,33 @@
     <message>
         <location filename="../aircoretoroid.cpp" line="113"/>
         <source>Outside diameter</source>
-        <translation>Buitendiameter</translation>
+        <translation>Välisläbimõõt</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="114"/>
         <source>Inside diameter</source>
-        <translation>Binnendiameter</translation>
+        <translation>Sisemine diameeter</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="115"/>
         <source>Height</source>
-        <translation>Hoogte</translation>
+        <translation>Kõrgus</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="116"/>
         <source>Wire diameter</source>
-        <translation>Draad diameter</translation>
+        <translation>Traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="163"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="168"/>
         <location filename="../aircoretoroid.cpp" line="287"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="196"/>
@@ -295,13 +294,13 @@
         <location filename="../aircoretoroid.cpp" line="259"/>
         <location filename="../aircoretoroid.cpp" line="263"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="196"/>
         <location filename="../aircoretoroid.cpp" line="225"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="208"/>
@@ -309,7 +308,7 @@
         <location filename="../aircoretoroid.cpp" line="249"/>
         <location filename="../aircoretoroid.cpp" line="263"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="212"/>
@@ -317,22 +316,22 @@
         <location filename="../aircoretoroid.cpp" line="245"/>
         <location filename="../aircoretoroid.cpp" line="259"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="273"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="285"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="290"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
 </context>
 <context>
@@ -340,107 +339,107 @@
     <message>
         <location filename="../amidon.ui" line="17"/>
         <source>Amidon™ inc. Cores</source>
-        <translation>Amidon ™ inc. cores</translation>
+        <translation>Amidon™ inc. südamikud</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="59"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="165"/>
         <source>Information</source>
-        <translation>Informatie</translation>
+        <translation>informatsioon</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="233"/>
         <source>Iron powder toroids</source>
-        <translation>IJzerpoeder toroïden</translation>
+        <translation>Pulberraud rõngad</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="239"/>
         <location filename="../amidon.ui" line="270"/>
         <source>Select material of the toroid</source>
-        <translation>Selecteer het materiaal van de torus</translation>
+        <translation>Rõnga materjali falimine</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="251"/>
         <location filename="../amidon.ui" line="282"/>
         <source>Select dimension type of the toroid</source>
-        <translation>Selecteer het afmetingstype van de torus</translation>
+        <translation>Rõnga mõõtmete tüübi valimine</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="264"/>
         <source>Ferrite toroids</source>
-        <translation>Ferriet toroïden</translation>
+        <translation>Ferriitrõngad</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="295"/>
         <source>E cores</source>
-        <translation>E kernen</translation>
+        <translation>E südamikuga pool</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="301"/>
         <location filename="../amidon.ui" line="355"/>
         <source>Select type</source>
-        <translation>Selecteer type</translation>
+        <translation>Vali tüüp</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="349"/>
         <source>Pot cores</source>
-        <translation>Potkernen</translation>
+        <translation>Ummissüdamikud</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="417"/>
         <source>Multi aperture cores</source>
-        <translation>Meerdere diafragma-kernen</translation>
+        <translation>Mitme avaga südamikud</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="423"/>
         <source>Select material</source>
-        <translation>Selecteer materiaal</translation>
+        <translation>Vali materjal</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="435"/>
         <source>Select the type of the core</source>
-        <translation>Selecteer het type kern</translation>
+        <translation>Südamiku tüübi valimine</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="490"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="594"/>
         <source>Export results</source>
-        <translation>Resultaten exporteren</translation>
+        <translation>Tulemuste eksportimine</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="620"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="653"/>
         <source>Color code</source>
-        <translation>Kleurcode</translation>
+        <translation>Värvikood</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="654"/>
         <source>Material</source>
-        <translation>Materiaal</translation>
+        <translation>Materjal</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="655"/>
         <source>Resonant circuit frequency range</source>
-        <translation>Frequentiebereik resonantiecircuit</translation>
+        <translation>Resonantsahela sagedusvahemik</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="620"/>
         <location filename="../amidon.cpp" line="657"/>
         <location filename="../amidon.cpp" line="696"/>
         <source>Initial magnetic permeability</source>
-        <translation>Aanvankelijke magnetische permeabiliteit</translation>
+        <translation>Esialgne magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="567"/>
@@ -449,7 +448,7 @@
         <location filename="../amidon.cpp" line="924"/>
         <location filename="../amidon.cpp" line="993"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="638"/>
@@ -458,123 +457,123 @@
         <location filename="../amidon.cpp" line="964"/>
         <location filename="../amidon.cpp" line="1038"/>
         <source>factor</source>
-        <translation>factor</translation>
+        <translation>tegur</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="624"/>
         <location filename="../amidon.cpp" line="698"/>
         <source>Saturation flux density</source>
-        <translation>Verzadigingsfluxdichtheid</translation>
+        <translation>Vootiheduse küllastus</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="626"/>
         <location filename="../amidon.cpp" line="700"/>
         <source>Residual flux density</source>
-        <translation>Reststroomdichtheid</translation>
+        <translation>Jääkvoo tihedus</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="702"/>
         <source>Coercive Force</source>
-        <translation>Dwangkracht</translation>
+        <translation>Koertsitiivjõud</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="628"/>
         <location filename="../amidon.cpp" line="704"/>
         <source>Curie Temperature</source>
-        <translation>Curietemperatuur</translation>
+        <translation>Curie temperatuur</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="610"/>
         <location filename="../amidon.cpp" line="614"/>
         <source>Impedance at</source>
-        <translation>Impedantie bij</translation>
+        <translation>Impedants</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="622"/>
         <source>Maximum magnetic permeability</source>
-        <translation>Maximale magnetische permeabiliteit</translation>
+        <translation>Maksimaalne magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="631"/>
         <location filename="../amidon.cpp" line="730"/>
         <source>Working frequency</source>
-        <translation>Werkfrequentie</translation>
+        <translation>Töösagedus</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="632"/>
         <location filename="../amidon.cpp" line="731"/>
         <source>Resonant circuit coils</source>
-        <translation>Resonante circuitspoelen</translation>
+        <translation>Resonantsahela poolid</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="634"/>
         <location filename="../amidon.cpp" line="733"/>
         <source>Wideband transformers</source>
-        <translation>Breedband transformatoren</translation>
+        <translation>Lairiba trafod</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="636"/>
         <location filename="../amidon.cpp" line="735"/>
         <source>Chokes</source>
-        <translation>Gashendel</translation>
+        <translation>Paispoolid</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="879"/>
         <source>Not available</source>
-        <translation>Niet beschikbaar</translation>
+        <translation>Pole saadaval</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1049"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1049"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1057"/>
         <source>Selected core</source>
-        <translation>Geselecteerde kern</translation>
+        <translation>Vali südamik</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1070"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="872"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="873"/>
         <source>Maximum wire diameter</source>
-        <translation>Maximale draaddiameter</translation>
+        <translation>Maksimaalne traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="955"/>
         <location filename="../amidon.cpp" line="1028"/>
         <source>Effective magnetic path length</source>
-        <translation>Effectieve magnetische padlengte</translation>
+        <translation>Effektiivne magnetjõujoone pikkus</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="958"/>
         <location filename="../amidon.cpp" line="1031"/>
         <source>Effective area of magnetic path</source>
-        <translation>Effectief gebied van magnetisch pad</translation>
+        <translation>Effektiivne magnetjuhtme ristlõige</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="961"/>
         <location filename="../amidon.cpp" line="1034"/>
         <source>Effective volume</source>
-        <translation>Effectief volume</translation>
+        <translation>Efektiivne nivoo</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1037"/>
         <source>Power</source>
-        <translation>Macht</translation>
+        <translation>Võimsus</translation>
     </message>
 </context>
 <context>
@@ -582,19 +581,19 @@
     <message>
         <location filename="../bandspread.ui" line="23"/>
         <source>Bandspread calculator</source>
-        <translation>Bandspread-calculator</translation>
+        <translation>Ribalaiuse arvutamine</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="88"/>
         <source>Direct calculation</source>
-        <translation>Directe berekening</translation>
+        <translation>Otsene arvutus</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="94"/>
         <location filename="../bandspread.ui" line="513"/>
         <location filename="../bandspread.cpp" line="344"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="390"/>
@@ -602,80 +601,80 @@
         <location filename="../bandspread.cpp" line="355"/>
         <location filename="../bandspread.cpp" line="373"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="507"/>
         <source>Reverse calculation</source>
-        <translation>Reverse berekening</translation>
+        <translation>Vastupidine arvutus</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="941"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="977"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="1000"/>
         <source>Export results</source>
-        <translation>Resultaten exporteren</translation>
+        <translation>Tulemuste eksportimine</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="1020"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="74"/>
         <location filename="../bandspread.cpp" line="82"/>
         <source>Lowest Frequency</source>
-        <translation>Laagste frequentie</translation>
+        <translation>Madalaim sagedus</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="75"/>
         <location filename="../bandspread.cpp" line="83"/>
         <source>Highest Frequency</source>
-        <translation>Hoogste frequentie</translation>
+        <translation>Kõrgeim sagedus</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="76"/>
         <location filename="../bandspread.cpp" line="84"/>
         <source>Tuning Capacitor Minimum</source>
-        <translation>Afstemcondensator Minimum</translation>
+        <translation>Kondensaatori miinimumhäälestus</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="77"/>
         <location filename="../bandspread.cpp" line="85"/>
         <source>Tuning Capacitor Maximum</source>
-        <translation>Afstemcondensator Maximaal</translation>
+        <translation>Kondensaatori maksimumhäälestus</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="78"/>
         <location filename="../bandspread.cpp" line="86"/>
         <source>Stray Capacitance</source>
-        <translation>Verdwaalde capaciteit</translation>
+        <translation>Hajutatud mahtuvus</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="79"/>
         <location filename="../bandspread.cpp" line="87"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="80"/>
         <location filename="../bandspread.cpp" line="88"/>
         <source>Trimmer Capacitor</source>
-        <translation>Parallelle condensor</translation>
+        <translation>Seadekondensaator</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="81"/>
         <location filename="../bandspread.cpp" line="89"/>
         <source>Padder Capacitor</source>
-        <translation>Serie condensor</translation>
+        <translation>Jadakondensaator</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="90"/>
@@ -683,19 +682,19 @@
         <location filename="../bandspread.cpp" line="202"/>
         <location filename="../bandspread.cpp" line="206"/>
         <source>Valid value range</source>
-        <translation>Geldig waardebereik</translation>
+        <translation>Kehtiv väärtusvahemik</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="266"/>
         <location filename="../bandspread.cpp" line="323"/>
         <source>Minimum LC circuit Capacitance</source>
-        <translation>Minimale LC-kringcapaciteit:</translation>
+        <translation>Minimaalne LC-ahela mahtuvus</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="267"/>
         <location filename="../bandspread.cpp" line="324"/>
         <source>Maximum LC circuit Capacitance</source>
-        <translation>Maximale LC-kringcapaciteit:</translation>
+        <translation>Maksimaalne LC-ahela mahtuvus</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="225"/>
@@ -708,29 +707,29 @@
         <location filename="../bandspread.cpp" line="306"/>
         <location filename="../bandspread.cpp" line="313"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="273"/>
         <source>The C&lt;sub&gt;V&lt;/sub&gt; capacitance range (combined with the circuit stray capacitance) is too narrow to overlap the desired frequency range. Please change your frequency range or variable capacitor parameters and try again.</source>
-        <translation>Het C&lt;sub&gt;V&lt;/sub&gt; capaciteitsbereik (in combinatie met de strooicapaciteit van het circuit) is te smal om het gewenste frequentiebereik te overlappen. Wijzig uw frequentiebereik of variabele condensatorparameters en probeer het opnieuw.</translation>
+        <translation>C&lt;sub&gt;V&lt;/sub&gt; mahtuvuse vahemik (koos vooluahela hajutatud mahtuvusega) on liiga kitsas, et soovitud sagedusvahemikku katta. Muutke oma sagedusvahemikku või muutuva kondensaatori parameetreid ja proovige uuesti.</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="281"/>
         <source>The inductance value is out of range.</source>
-        <translation>De inductantiewaarde is buiten bereik.</translation>
+        <translation>Induktiivsuse väärtus on vahemikust väljas.</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="232"/>
         <location filename="../bandspread.cpp" line="306"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="225"/>
         <location filename="../bandspread.cpp" line="299"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
 </context>
 <context>
@@ -815,7 +814,7 @@
     <message>
         <location filename="../system_functions.cpp" line="351"/>
         <source>in</source>
-        <translation>in</translation>
+        <translation>toll</translation>
     </message>
     <message>
         <location filename="../system_functions.cpp" line="356"/>
@@ -830,7 +829,7 @@
     <message>
         <location filename="../system_functions.cpp" line="390"/>
         <source>fit</source>
-        <translation>fit</translation>
+        <translation>Jalg</translation>
     </message>
 </context>
 <context>
@@ -838,100 +837,100 @@
     <message>
         <location filename="../crossover.ui" line="23"/>
         <source>Audio system filter (crossover) coil</source>
-        <translation>Audiosysteem filter (crossover) spoel</translation>
+        <translation>Helisüsteemi (ristmähis) filterpool</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="63"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="149"/>
         <source>Maximal</source>
-        <translation>Maximaal</translation>
+        <translation>Maksimaalne</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="162"/>
         <source>Minimal</source>
-        <translation>Minimaal</translation>
+        <translation>Minimaalne</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="193"/>
         <source>Winding pitch / wire diameter ratio</source>
-        <translation>Verhouding wikkelafstand / draaddiameter</translation>
+        <translation>Mähise sammu/traadi läbimõõdu suhe</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="223"/>
         <location filename="../crossover.cpp" line="41"/>
         <source>Axial</source>
-        <translation>Axiaal</translation>
+        <translation>Aksiaalne</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="236"/>
         <location filename="../crossover.cpp" line="42"/>
         <source>Radial</source>
-        <translation>Radiaal</translation>
+        <translation>Radiaalne</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="368"/>
         <source>Clear all</source>
-        <translation>Alles wissen</translation>
+        <translation>Kustuta kõik</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="382"/>
         <location filename="../crossover.cpp" line="374"/>
         <source>Save</source>
-        <translation>Save</translation>
+        <translation>Salvesta</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="396"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="423"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="105"/>
         <source>Range of wire diameters</source>
-        <translation>Bereik van draaddiameters</translation>
+        <translation>Traadi läbimõõtude vahemik</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="296"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="54"/>
         <source>Resistance of the coil</source>
-        <translation>Weerstand van de spoel</translation>
+        <translation>Pooli takistus</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="48"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="47"/>
         <source>Wire diameter</source>
-        <translation>Draad diameter</translation>
+        <translation>Traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="51"/>
         <source>Dimensions of inductor</source>
-        <translation>Afmetingen van inductor</translation>
+        <translation>Induktiivpooli mõõtmed</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="52"/>
         <source>Length of wire without leads</source>
-        <translation>Draadlengte zonder toevoerdraden</translation>
+        <translation>Traadi pikkus ilma juhtmeteta</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="53"/>
         <source>Weight of wire</source>
-        <translation>Draad gewicht</translation>
+        <translation>Traadi kaal</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="53"/>
@@ -946,12 +945,12 @@
     <message>
         <location filename="../crossover.cpp" line="79"/>
         <source>Click right mouse button to open menu</source>
-        <translation>Klik met de rechtermuisknop om het menu te openen</translation>
+        <translation>Menüü avamiseks kliki hiire paremat nuppu</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="88"/>
         <source>Remove row</source>
-        <translation>Rij verwijderen</translation>
+        <translation>Eemalda rida</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="141"/>
@@ -968,22 +967,22 @@
     <message>
         <location filename="../crossover.cpp" line="238"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="238"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="49"/>
         <source>Number of layers</source>
-        <translation>Aantal lagen</translation>
+        <translation>Kihtide arv</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="50"/>
         <source>Number of turns per layer</source>
-        <translation>Aantal beurten per laag</translation>
+        <translation>Keerdude arv kihis</translation>
     </message>
 </context>
 <context>
@@ -991,63 +990,63 @@
     <message>
         <location filename="../ecore.ui" line="17"/>
         <source>E-core coil</source>
-        <translation>E-core-spoel</translation>
+        <translation>E südamikuga pool</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="43"/>
         <source>Select the type of the core</source>
-        <translation>Selecteer het type kern</translation>
+        <translation>Südamiku tüübi valimine</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="134"/>
         <source>Reverse calculation</source>
-        <translation>Reverse berekening</translation>
+        <translation>Vastupidine arvutus</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="198"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="494"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="530"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="556"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="133"/>
         <source>Slot size</source>
-        <translation>Slot grootte</translation>
+        <translation>Pesa suurus</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="134"/>
         <source>Centerpost gap</source>
-        <translation>Opening middenstijl</translation>
+        <translation>Keskposti lõhe</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="135"/>
         <source>Magnetic permeability</source>
-        <translation>Magnetische permeabiliteit</translation>
+        <translation>Magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="204"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="209"/>
         <location filename="../ecore.cpp" line="349"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="232"/>
@@ -1064,12 +1063,12 @@
         <location filename="../ecore.cpp" line="296"/>
         <location filename="../ecore.cpp" line="300"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="232"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="245"/>
@@ -1077,49 +1076,49 @@
         <location filename="../ecore.cpp" line="285"/>
         <location filename="../ecore.cpp" line="296"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="258"/>
         <location filename="../ecore.cpp" line="289"/>
         <location filename="../ecore.cpp" line="300"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="331"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="347"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="352"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="354"/>
         <source>Effective magnetic path length</source>
-        <translation>Effectieve magnetische padlengte</translation>
+        <translation>Effektiivne magnetjõujoone pikkus</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="357"/>
         <source>Effective area of magnetic path</source>
-        <translation>Effectief gebied van magnetisch pad</translation>
+        <translation>Effektiivne magnetjuhtme ristlõige</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="360"/>
         <source>Effective volume</source>
-        <translation>Effectief volume</translation>
+        <translation>Efektiivne nivoo</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="363"/>
         <source>Effective magnetic permeability of the core</source>
-        <translation>Effectieve magnetische permeabiliteit van de kern</translation>
+        <translation>Effektiivne südamiku magnetiline läbitavus</translation>
     </message>
 </context>
 <context>
@@ -1127,42 +1126,42 @@
     <message>
         <location filename="../ferrite_rod.ui" line="29"/>
         <source>Coil on a ferrite rod</source>
-        <translation>Spoel op een rerrietstaaf</translation>
+        <translation>Pool ferriitvardal</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="72"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Restrictions of the calculating&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Beperkingen van de berekening&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Arvutamise piirangud&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="85"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;The winding pitch cannot exceed the doubled wire diameter&lt;/li&gt;&lt;li&gt;The coil diameter cannot be greater than doubled rod diameter&lt;/li&gt;&lt;li&gt;Winding length should be less than 3/4 length of the rod&lt;/li&gt;&lt;li&gt;When the coil is shifting it should not reach the edge of the core 1/8 of its length&lt;/li&gt;&lt;li&gt;The initial magnetic permeability of the rod should be greater than 100&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;De winding pitch kan de dubbele draaddiameter niet overschrijden&lt;/li&gt;&lt;li&gt;De diameter van de spoel kan niet groter zijn dan de dubbele diameter van de staaf&lt;/li&gt;&lt;li&gt;De wikkellengte moet minder dan 3/4 lengte van de stang zijn&lt;/li&gt;&lt;li&gt;Wanneer de spoel verschuift, mag deze de rand van de kern niet bereiken met 1/8 van de lengte&lt;/li&gt;&lt;li&gt;De initiële magnetische permeabiliteit van de staaf moet groter zijn dan 100&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;Mähise samm ei tohi ületada kahekordset traadi läbimõõtu&lt;/li&gt;&lt;li&gt;Pooli läbimõõt ei tohi olla suurem kui kahekordse varda läbimõõt&lt;/li&gt;&lt;li&gt;Mähise pikkus peab olema väiksem 3/4 varda pikkusest&lt;/li&gt;&lt;li&gt;Kui mähis nihkub, ei tohiks see ulatuda südamiku servani, mis on 1/8 selle pikkusest&lt;/li&gt;&lt;li&gt;Varda esialgne magnetiline läbitavus peaks olema suurem kui 100&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="108"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="141"/>
         <source>Core parameters:</source>
-        <translation>Parameters van de kern:</translation>
+        <translation>Südamiku parameetrid:</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="275"/>
         <source>Coil parameters:</source>
-        <translation>Parameters van de spoel:</translation>
+        <translation>Pooli parameetrid:</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="475"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="511"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="518"/>
@@ -1172,7 +1171,7 @@
     <message>
         <location filename="../ferrite_rod.ui" line="537"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="544"/>
@@ -1182,37 +1181,37 @@
     <message>
         <location filename="../ferrite_rod.cpp" line="28"/>
         <source>Rod diameter</source>
-        <translation>Staaf diameter</translation>
+        <translation>Varda diameeter</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="29"/>
         <source>Rod length</source>
-        <translation>Staaf lengte</translation>
+        <translation>Varda pikkus</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="30"/>
         <source>Magnetic permeability</source>
-        <translation>Magnetische permeabiliteit</translation>
+        <translation>Magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="31"/>
         <source>Former diameter</source>
-        <translation>Diameter van de spoelvorm</translation>
+        <translation>Aluse läbimõõt</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="32"/>
         <source>Shift</source>
-        <translation>Verschuiving</translation>
+        <translation>Vahetus</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="33"/>
         <source>Wire diameter</source>
-        <translation>Draad diameter</translation>
+        <translation>Traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="34"/>
         <source>Winding pitch</source>
-        <translation>Ruimte tussen de wikkelingen</translation>
+        <translation>Mähise samm</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="117"/>
@@ -1232,53 +1231,53 @@
         <location filename="../ferrite_rod.cpp" line="200"/>
         <location filename="../ferrite_rod.cpp" line="246"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="148"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="166"/>
         <location filename="../ferrite_rod.cpp" line="246"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="170"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="200"/>
         <source>Distance from coil edge to core edge less than 1/8 Lr</source>
-        <translation>Afstand van de spoelrand tot kernrand minder dan 1/8 Lr</translation>
+        <translation>Kaugus pooli servast südamiku servani alla 1/8 Lr</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="211"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="223"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="224"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="225"/>
         <source>Length of winding</source>
-        <translation>Wikkellengte</translation>
+        <translation>Mähise pikkus</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="226"/>
         <source>Effective magnetic permeability of the core</source>
-        <translation>Effectieve magnetische permeabiliteit van de kern</translation>
+        <translation>Effektiivne südamiku magnetiline läbitavus</translation>
     </message>
 </context>
 <context>
@@ -1286,48 +1285,48 @@
     <message>
         <location filename="../find_permeability.ui" line="38"/>
         <source>Find the unknown ferrite toroid permeability</source>
-        <translation>Zoek de onbekende ferriet-toroid permeabiliteit</translation>
+        <translation>Leia tundmatu ferriitrõnga läbitavus</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="72"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You should to wind a few turns on an unknown ferrite or powder iron toroid and should to mesure obtained inductance and dimensions of the ring. Enter the data and estimate the permeability and Al-factor of the toroid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;U moet een paar omwentelingen op een onbekende ferriet- of poederijzertoroid opwinden en moet de verkregen inductie en afmetingen van de ring verkrijgen. Voer de gegevens in en schat de doorlatendheid en Al-factor van de torus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tundmatule ferriit- või pulberraud rõngale tuleks kerida paar keerdu ning mõõta saadud induktiivsus ja rõnga mõõtmed. Sisestage andmed ja hinnake rõnga läbitavust ja Al-tegurit&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="103"/>
         <source>Data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Andmed</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="118"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="125"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="150"/>
         <location filename="../find_permeability.cpp" line="139"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="284"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="320"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="346"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="104"/>
@@ -1335,42 +1334,42 @@
         <location filename="../find_permeability.cpp" line="119"/>
         <location filename="../find_permeability.cpp" line="123"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="104"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="115"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="119"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="136"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="146"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="147"/>
         <source>Relative magnetic permeability of the toroid</source>
-        <translation>Relatieve magnetische permeabiliteit van de torus</translation>
+        <translation>Rõnga suhteline magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="148"/>
         <source>Magnetic factor of the core</source>
-        <translation>Magnetische factor van de kern</translation>
+        <translation>Südamiku magnettegur</translation>
     </message>
 </context>
 <context>
@@ -1378,53 +1377,53 @@
     <message>
         <location filename="../loop.ui" line="35"/>
         <source>A one-turn loop coil</source>
-        <translation>Spiraal met één winding</translation>
+        <translation>Ühe keeru silmuspool</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="105"/>
         <source>Kind of the loop</source>
-        <translation>Soort van de lus</translation>
+        <translation>Silmuse tüüp</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="111"/>
         <source>Round loop</source>
-        <translation>Ronde lus</translation>
+        <translation>Ümmargune silmus</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="121"/>
         <source>Isosceles Triangle loop</source>
-        <translation>Gelijkbenige driehoek lus</translation>
+        <translation>Võrdhaarse kolmnurga silmus</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="128"/>
         <source>Rectangle loop</source>
-        <translation>Rechthoek lus</translation>
+        <translation>Ristkülikukujuline silmus</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="148"/>
         <source>Reverse calculation</source>
-        <translation>Reverse berekening</translation>
+        <translation>Vastupidine arvutus</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="212"/>
         <location filename="../loop.cpp" line="342"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="357"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="393"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="419"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="92"/>
@@ -1434,25 +1433,25 @@
     <message>
         <location filename="../loop.cpp" line="103"/>
         <source>Wire diameter</source>
-        <translation>Draad diameter</translation>
+        <translation>Traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="127"/>
         <location filename="../loop.cpp" line="288"/>
         <source>Loop diameter</source>
-        <translation>Diameter van de lus</translation>
+        <translation>Silmuse diameeter</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="152"/>
         <location filename="../loop.cpp" line="158"/>
         <source>Side of triangle</source>
-        <translation>Kant van driehoek</translation>
+        <translation>Kolmnurga külg</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="183"/>
         <location filename="../loop.cpp" line="189"/>
         <source>Side of rectangle</source>
-        <translation>Kant van rechthoek</translation>
+        <translation>Ristküliku külg</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="263"/>
@@ -1466,60 +1465,60 @@
         <location filename="../loop.cpp" line="334"/>
         <location filename="../loop.cpp" line="338"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="263"/>
         <location filename="../loop.cpp" line="309"/>
         <location filename="../loop.cpp" line="329"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="274"/>
         <location filename="../loop.cpp" line="320"/>
         <location filename="../loop.cpp" line="334"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="278"/>
         <location filename="../loop.cpp" line="324"/>
         <location filename="../loop.cpp" line="338"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="281"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="285"/>
         <location filename="../loop.cpp" line="355"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="293"/>
         <source>The side of the equilateral triangle</source>
-        <translation>De zijkant van de gelijkzijdige driehoek</translation>
+        <translation>Võrdkülgse kolmnurga külg</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="298"/>
         <source>The side of quadrate</source>
-        <translation>De zijkant van quadrate</translation>
+        <translation>Kvadraadi külg</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="304"/>
         <source>Coil can not be realized</source>
-        <translation>Spoel berekening is niet mogelijk</translation>
+        <translation>Pooli ei saa realiseerida</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="203"/>
         <location filename="../loop.cpp" line="356"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
 </context>
 <context>
@@ -1527,37 +1526,37 @@
     <message>
         <location filename="../mainwindow.ui" line="84"/>
         <source>Select the coil form</source>
-        <translation>Selecteer de spoelvorm</translation>
+        <translation>Pooli aluse valimine</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="149"/>
         <source>One layer coil with round wire</source>
-        <translation>Eén-laags spoel met ronde draad</translation>
+        <translation>Ühekihiline ümmarguse traadiga pool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="159"/>
         <source>One layer coil with rect wire</source>
-        <translation>Eén-laags spoel met rechthoekige draad</translation>
+        <translation>Ühekihiline pool ristkülikukujulise traadiga</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="178"/>
         <source>Multilayer coil</source>
-        <translation>Spoel met meerdere lagen</translation>
+        <translation>Mitmekihiline pool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>Multilayer coil with insulated pads</source>
-        <translation>Meerlaagse spoel met geïsoleerde pads</translation>
+        <translation>Mitmekihiline isoleerkihtidega pool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="216"/>
         <source>Ferrite toroid coil</source>
-        <translation>Spoel op een ringkern</translation>
+        <translation>Ferritrõnga mähis</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="236"/>
         <source>Tesla flat spiral coil</source>
-        <translation>Tesla vlakke spiraalvormige spoel</translation>
+        <translation>Tesla lame spiraalpool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1281"/>
@@ -1567,22 +1566,22 @@
     <message>
         <location filename="../mainwindow.ui" line="1507"/>
         <source>Show confirm dialog to delete a result</source>
-        <translation>Toon bevestigingsvenster om een resultaat te verwijderen</translation>
+        <translation>Tulemuse kustutamiseks kuva kinnitusdialoog</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1941"/>
         <source>About Coil64</source>
-        <translation>Over Coil64</translation>
+        <translation>Coil64 kohta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2045"/>
         <source>Ferrite toroid permeability</source>
-        <translation>Ferriet toroid permeabiliteit</translation>
+        <translation>Ferriitrõnga läbitavus</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="291"/>
         <source>Coil</source>
-        <translation>Spoel</translation>
+        <translation>Pool</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="899"/>
@@ -1594,13 +1593,13 @@
         <location filename="../mainwindow.cpp" line="1836"/>
         <location filename="../mainwindow.cpp" line="4923"/>
         <source>Winding pitch</source>
-        <translation>Ruimte tussen de wikkelingen</translation>
+        <translation>Mähise samm</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="630"/>
         <location filename="../mainwindow.ui" line="1024"/>
         <source>Wire material:</source>
-        <translation>Draad materiaal:</translation>
+        <translation>Traadi materjal</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="636"/>
@@ -1608,13 +1607,13 @@
         <location filename="../mainwindow.cpp" line="4827"/>
         <location filename="../mainwindow.cpp" line="5502"/>
         <source>Copper</source>
-        <translation>Koper</translation>
+        <translation>Vask</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="646"/>
         <location filename="../mainwindow.ui" line="1040"/>
         <source>Silver</source>
-        <translation>Zilver</translation>
+        <translation>Hõbe</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="653"/>
@@ -1622,18 +1621,18 @@
         <location filename="../mainwindow.cpp" line="4828"/>
         <location filename="../mainwindow.cpp" line="5503"/>
         <source>Aluminum</source>
-        <translation>Aluminium</translation>
+        <translation>Alumiinium</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="660"/>
         <location filename="../mainwindow.ui" line="1054"/>
         <source>Tin</source>
-        <translation>Tin</translation>
+        <translation>Tina</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="683"/>
         <source>Ratio W/s:</source>
-        <translation>Ratio W/s:</translation>
+        <translation>W/s suhe</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="742"/>
@@ -1653,85 +1652,85 @@
         <location filename="../mainwindow.cpp" line="5585"/>
         <location filename="../mainwindow.cpp" line="5620"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="598"/>
         <location filename="../mainwindow.ui" line="1070"/>
         <source>Select initial data of the calculation</source>
-        <translation>Gegevens voor de berekening selecteren</translation>
+        <translation>Arvutuse algandmete valimine</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1122"/>
         <source>LC circuit</source>
-        <translation>LC-kring</translation>
+        <translation>LC ahel</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1130"/>
         <source>Initial conditions of calculation of a circuit</source>
-        <translation>Beginwaarden voor berekening van een circuit</translation>
+        <translation>Ahela arvutamise algtingimused</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1136"/>
         <source>The capacitance and the inductance are known</source>
-        <translation>De capaciteit en inductantie zijn bekend</translation>
+        <translation>Mahtuvus ja induktiivsus on teada</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1146"/>
         <source>The capacitance and the frequency are known </source>
-        <translation>De capaciteit en frequentie zijn bekend</translation>
+        <translation>Mahtuvus ja sagedus on teada</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1153"/>
         <source>The inductance and the frequency are known</source>
-        <translation>De inductantie en frequentie zijn bekend</translation>
+        <translation>Induktiivsus ja sagedus on teada</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1829"/>
         <source>Additional calculations</source>
-        <translation>Extra berekening</translation>
+        <translation>Lisaarvutus</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1274"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="65"/>
         <source>PCB coil with square winding</source>
-        <translation>Vlakke spoel met vierkante vorm op printplaat</translation>
+        <translation>Ruutspiraalne lamepool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="70"/>
         <source>PCB coil with spiral winding</source>
-        <translation>Vlakke spoel met spiraalvorm op printplaat</translation>
+        <translation>Ringspiraalne lamepool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="139"/>
         <source>One layer close-winding coil</source>
-        <translation>Eén-laags spoel met aaneengesloten windingen</translation>
+        <translation>Ühekihiline tihedalt mähitud pool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="198"/>
         <source>Multilayer coil on a rectangular former</source>
-        <translation>Meerlaagse spoel op een rechthoekige vormgever</translation>
+        <translation>Mitmekihiline mähis ristkülikukujulisel vormil</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="226"/>
         <source>PCB flat coil</source>
-        <translation>PCB platte spoel</translation>
+        <translation>PCB lamepool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1160"/>
         <source>The impedance and the frequency are known</source>
-        <translation>De impedantie en de frequentie zijn bekend</translation>
+        <translation>Impedants ja sagedus on teada</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1647"/>
         <location filename="../mainwindow.cpp" line="280"/>
         <location filename="../mainwindow.cpp" line="372"/>
         <source>Copy selected to clipboard</source>
-        <translation>Kopieer inhoud naar klembord</translation>
+        <translation>Kopeeri valitud lõikelauale</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1670"/>
@@ -1740,7 +1739,7 @@
         <location filename="../mainwindow.cpp" line="281"/>
         <location filename="../mainwindow.cpp" line="373"/>
         <source>Copy all to clipboard</source>
-        <translation>Kopieer alles naar het klembord</translation>
+        <translation>Kopeeri kõik lõikelauale</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1621"/>
@@ -1749,7 +1748,7 @@
         <location filename="../mainwindow.cpp" line="374"/>
         <location filename="../mainwindow.cpp" line="2123"/>
         <source>Save</source>
-        <translation>Save</translation>
+        <translation>Salvesta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1693"/>
@@ -1757,245 +1756,245 @@
         <location filename="../mainwindow.cpp" line="286"/>
         <location filename="../mainwindow.cpp" line="376"/>
         <source>Clear all</source>
-        <translation>Alles wissen</translation>
+        <translation>Kustuta kõik</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1719"/>
         <source>Print all</source>
-        <translation>Alles afdrukken</translation>
+        <translation>Prindi kõik</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1350"/>
         <source>Show images in result</source>
-        <translation>Toon afbeeldingen in resultaat</translation>
+        <translation>Kuva tulemustes pilte</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="169"/>
         <source>One layer coil on a polygonal former</source>
-        <translation>Eén-laags niet cirkelvormig met wikkelafstand</translation>
+        <translation>Ühekihiline mähis hulknurksel alusel</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="604"/>
         <source>Former diameter and wire diameter</source>
-        <translation>Diameter van de spoelvorm en diameter van de draad</translation>
+        <translation>Aluse läbimõõt ja traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="614"/>
         <source>Former diameter and winding length</source>
-        <translation>Diameter van de spoelvorm en lengte van de wikkeling</translation>
+        <translation>Aluse läbimõõt ja mähise pikkus</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1324"/>
         <source>Show title in results</source>
-        <translation>Toon titel in resultaten</translation>
+        <translation>Kuva tulemustes pealkirja</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1385"/>
         <source>Show additional results for single-layer coils</source>
-        <translation>Toon meer resultaten voor enkellaags spoelen</translation>
+        <translation>Kuva ühekihiliste mähiste jaoks täiendavad tulemused</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1408"/>
         <source>Show data for LTSpice</source>
-        <translation>Toon gegevens voor LTSpice</translation>
+        <translation>Kuva LTSpice andmeid</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1428"/>
         <source>Show last result first</source>
-        <translation>Eerst het laatste resultaat weergeven</translation>
+        <translation>Kuva esimesena viimane tulemus</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1487"/>
         <source>Show confirm dialog to clear results</source>
-        <translation>Bevestigingsvenster tonen om resultaten te wissen</translation>
+        <translation>Tulemuste puhastamiseks kuva kinnitusdialoog</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1801"/>
         <source>Theme</source>
-        <translation>Thema</translation>
+        <translation>Teema</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1855"/>
         <source>Ferrite cores</source>
-        <translation>Ferrietkernen</translation>
+        <translation>Ferriitsõdamikud</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2124"/>
         <source>Versions history</source>
-        <translation>Versies geschiedenis</translation>
+        <translation>Versioonide ajalugu</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2133"/>
         <source>Air core toroid coil</source>
-        <translation>Luchtkern ringkern</translation>
+        <translation>Õhksüdamikuga rõngaspool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2144"/>
         <source>Default</source>
-        <translation>Standaard</translation>
+        <translation>Vaikimisi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2152"/>
         <source>Dark</source>
-        <translation>Donker</translation>
+        <translation>Tume</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2161"/>
         <source>Pot core coil</source>
-        <translation>Potkernen</translation>
+        <translation>Ummissüdamikuga pool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2169"/>
         <source>Sunny</source>
-        <translation>Zonnig</translation>
+        <translation>Päikeseline</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2178"/>
         <source>E core coil</source>
-        <translation>E-core-spoel</translation>
+        <translation>E südamikuga pool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2188"/>
         <source>Calculation with AL-factor</source>
-        <translation>Berekening met AL-factor</translation>
+        <translation>Arvutamine AL-teguriga</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2197"/>
         <source>U core coil</source>
-        <translation>U kernspoel</translation>
+        <translation>U südamikuga pool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2207"/>
         <source>Audio system filter (crossover) coil</source>
-        <translation>Audiosysteem filter (crossover) spoel</translation>
+        <translation>Helisüsteemi (ristmähis) filterpool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2216"/>
         <source>Toroidal inductor at RF</source>
-        <translation>Ringkernspoel bij RF</translation>
+        <translation>Rõngasinduktor raadiosagedusel</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2225"/>
         <source>Bandspread Calculator</source>
-        <translation>Bandspread-calculator</translation>
+        <translation>Ribalaiuse arvutamine</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2234"/>
         <source>RM core coil</source>
-        <translation>RM-core-spoel</translation>
+        <translation>Ummissüdamikuga pool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1448"/>
         <source>Save results on exit</source>
-        <translation>Resultaten opslaan bij afsluiten</translation>
+        <translation>Väljumisel salvesta tulemused</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1527"/>
         <source>Show confirm dialog before exit</source>
-        <translation>Bevestigingsvenster weergeven voordat u afsluit</translation>
+        <translation>Näita enne väljumist kinnitusdialoogi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1749"/>
         <location filename="../mainwindow.ui" line="1928"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1787"/>
         <source>&amp;File</source>
-        <translation>&amp;Vijl</translation>
+        <translation>&amp;Fail</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1797"/>
         <source>&amp;Customize</source>
-        <translation>&amp;Aanpassen</translation>
+        <translation>&amp;Kohanda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1816"/>
         <source>&amp;Help</source>
-        <translation>&amp;Helpen</translation>
+        <translation>&amp;Abi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1841"/>
         <source>Actions</source>
-        <translation>Acties</translation>
+        <translation>Tegevused</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1849"/>
         <source>Branded cores</source>
-        <translation>Merkkernen</translation>
+        <translation>Brändiga südamikud</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1899"/>
         <source>&amp;Exit</source>
-        <translation>&amp;Uitgang</translation>
+        <translation>&amp;Välju</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1560"/>
         <location filename="../mainwindow.ui" line="1912"/>
         <location filename="../mainwindow.ui" line="1915"/>
         <source>Options</source>
-        <translation>Opties</translation>
+        <translation>Valikud</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="207"/>
         <source>Multilayer foil-wound coil</source>
-        <translation>Meerlagige spoel met foliewikkeling</translation>
+        <translation>Mitmekihiline fooliumiga mähitud mähis</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1954"/>
         <source>Check for &amp;update</source>
-        <translation>Controleren op &amp;updates</translation>
+        <translation>Kontrolli &amp;uuendusi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1980"/>
         <source>HomePage</source>
-        <translation>Startpagina</translation>
+        <translation>Koduleht</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2009"/>
         <source>Print</source>
-        <translation>Afdrukken</translation>
+        <translation>Prindi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2021"/>
         <source>To null initial data</source>
-        <translation>Ingevoerde data wissen</translation>
+        <translation>Algandmete nullimine</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2054"/>
         <source>Coil on a ferrite rod</source>
-        <translation>Spoel op een rerrietstaaf</translation>
+        <translation>Pool ferriitvardal</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2073"/>
         <source>Meander coil on PCB</source>
-        <translation>Meander spoel op PCB</translation>
+        <translation>Meander-pool trükiplaadil</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2082"/>
         <source>Search coil of a metal detector</source>
-        <translation>Zoekspoel van een metaaldetector</translation>
+        <translation>Metalldetektori otsingupool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2092"/>
         <source>A one-turn loop coil</source>
-        <translation>Spiraal met één winding</translation>
+        <translation>Ühe keeru silmuspool</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2101"/>
         <source>Donate</source>
-        <translation>Doneren</translation>
+        <translation>Anneta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2110"/>
         <source>Influence of the shield of a coil</source>
-        <translation>Invloed van een spoelschild</translation>
+        <translation>Pooli varjestuse mõju</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2115"/>
         <source>Amidon cores</source>
-        <translation>Amidon kernen</translation>
+        <translation>Amidon™ inc. südamikud</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1597"/>
@@ -2004,13 +2003,13 @@
         <location filename="../mainwindow.cpp" line="375"/>
         <location filename="../mainwindow.cpp" line="2088"/>
         <source>Open</source>
-        <translation>Open</translation>
+        <translation>Avamine</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="99"/>
         <location filename="../mainwindow.cpp" line="364"/>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Keel</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="674"/>
@@ -2190,33 +2189,33 @@
         <location filename="../mainwindow.cpp" line="4227"/>
         <location filename="../mainwindow.cpp" line="4274"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="674"/>
         <source>Error. Can not open URL: </source>
-        <translation>Fout. Kan URL niet openen:</translation>
+        <translation>Viga. URL avamine ebaõnnestus: </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="695"/>
         <location filename="../mainwindow.cpp" line="703"/>
         <source>Information</source>
-        <translation>Informatie</translation>
+        <translation>informatsioon</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="695"/>
         <source>The version is up to date: </source>
-        <translation>De versie is actueel:</translation>
+        <translation>Versioon on ajakohane</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="700"/>
         <source>There is a new version of the app.</source>
-        <translation>Er is een nieuwe versie van de app.</translation>
+        <translation>Rakendusel on uus versioon </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="701"/>
         <source>Please visit the URL to download</source>
-        <translation>Ga naar de URL om te downloaden</translation>
+        <translation>Allalaadimiseks külastage URL-i</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="877"/>
@@ -2246,7 +2245,7 @@
         <location filename="../mainwindow.cpp" line="1638"/>
         <location filename="../mainwindow.cpp" line="1744"/>
         <source>Insulation thickness</source>
-        <translation>Isolatiedikte</translation>
+        <translation>Isolatsiooni paksus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1217"/>
@@ -2259,7 +2258,7 @@
         <location filename="../mainwindow.cpp" line="5500"/>
         <location filename="../mainwindow.cpp" line="5587"/>
         <source>Outside diameter</source>
-        <translation>Buitendiameter</translation>
+        <translation>Välisläbimõõt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1218"/>
@@ -2269,13 +2268,13 @@
         <location filename="../mainwindow.cpp" line="1835"/>
         <location filename="../mainwindow.cpp" line="1879"/>
         <source>Inside diameter</source>
-        <translation>Binnendiameter</translation>
+        <translation>Sisemine diameeter</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1221"/>
         <location filename="../mainwindow.cpp" line="1782"/>
         <source>Init magnetic permeability</source>
-        <translation>Initiële magnetische permeabiliteit</translation>
+        <translation>Esialgne magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="855"/>
@@ -2293,7 +2292,7 @@
         <location filename="../mainwindow.cpp" line="1633"/>
         <location filename="../mainwindow.cpp" line="1741"/>
         <source>Former diameter</source>
-        <translation>Diameter van de spoelvorm</translation>
+        <translation>Aluse läbimõõt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="897"/>
@@ -2315,7 +2314,7 @@
         <location filename="../mainwindow.cpp" line="4345"/>
         <location filename="../mainwindow.cpp" line="4347"/>
         <source>Wire diameter</source>
-        <translation>Draad diameter</translation>
+        <translation>Traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="856"/>
@@ -2331,19 +2330,19 @@
         <location filename="../mainwindow.cpp" line="1637"/>
         <location filename="../mainwindow.cpp" line="1695"/>
         <source>Wire diameter with insulation</source>
-        <translation>Draaddikte met isolatie</translation>
+        <translation>Traadi läbimõõt isolatsiooniga</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="943"/>
         <location filename="../mainwindow.cpp" line="1490"/>
         <source>Wire width</source>
-        <translation>Draadbreedte</translation>
+        <translation>Traadi laius</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="944"/>
         <location filename="../mainwindow.cpp" line="1491"/>
         <source>Wire thickness</source>
-        <translation>Draaddikte</translation>
+        <translation>Traadi paksus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1036"/>
@@ -2354,19 +2353,19 @@
         <location filename="../mainwindow.cpp" line="1692"/>
         <location filename="../mainwindow.cpp" line="2284"/>
         <source>Winding length</source>
-        <translation>Wikkellengte</translation>
+        <translation>Mähise pikkus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1087"/>
         <location filename="../mainwindow.cpp" line="1639"/>
         <source>Layers number beetween insulating pads</source>
-        <translation>Aantal lagen tussen de geïsoleerde vlakken</translation>
+        <translation>Kihtide arv isoleerkihtide vahel</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1219"/>
         <location filename="../mainwindow.cpp" line="1781"/>
         <source>Core height</source>
-        <translation>Kernhoogte</translation>
+        <translation>Südamiku kõrgus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="813"/>
@@ -2375,7 +2374,7 @@
         <location filename="../mainwindow.cpp" line="2224"/>
         <location filename="../mainwindow.cpp" line="2234"/>
         <source>Frequency</source>
-        <translation>Frequentie</translation>
+        <translation>Sagedus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3190"/>
@@ -2403,7 +2402,7 @@
         <location filename="../mainwindow.cpp" line="4141"/>
         <location filename="../mainwindow.cpp" line="4184"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3220"/>
@@ -2431,12 +2430,12 @@
         <location filename="../mainwindow.cpp" line="4159"/>
         <location filename="../mainwindow.cpp" line="4188"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4243"/>
         <source>LC tank calculation</source>
-        <translation>LC-tankberekening</translation>
+        <translation>LC võnkeringi arvutamine</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4248"/>
@@ -2461,7 +2460,7 @@
         <location filename="../mainwindow.cpp" line="5573"/>
         <location filename="../mainwindow.cpp" line="5611"/>
         <source>Input</source>
-        <translation>Invoer</translation>
+        <translation>Sisend</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4253"/>
@@ -2486,18 +2485,18 @@
         <location filename="../mainwindow.cpp" line="5582"/>
         <location filename="../mainwindow.cpp" line="5618"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4201"/>
         <source>Frequency of a circuit</source>
-        <translation>Frequentie van de kring</translation>
+        <translation>Ahela sagedus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4211"/>
         <location filename="../mainwindow.cpp" line="4236"/>
         <source>Inductance of a circuit</source>
-        <translation>Inductantie van de kring</translation>
+        <translation>Ahela induktiivsus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2232"/>
@@ -2509,7 +2508,7 @@
         <location filename="../mainwindow.cpp" line="5159"/>
         <location filename="../mainwindow.cpp" line="5262"/>
         <source>Characteristic impedance</source>
-        <translation>Karakteristieke impedantie</translation>
+        <translation>Lainetakistus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2236"/>
@@ -2557,7 +2556,7 @@
         <location filename="../mainwindow.cpp" line="2045"/>
         <location filename="../mainwindow.cpp" line="5868"/>
         <source>Confirmation</source>
-        <translation>Bevestiging</translation>
+        <translation>Kinnitus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="455"/>
@@ -2565,7 +2564,7 @@
         <location filename="../mainwindow.cpp" line="2046"/>
         <location filename="../mainwindow.cpp" line="5869"/>
         <source>Are you sure?</source>
-        <translation>Weet je het zeker?</translation>
+        <translation>Oled kindel?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="458"/>
@@ -2573,7 +2572,7 @@
         <location filename="../mainwindow.cpp" line="2049"/>
         <location filename="../mainwindow.cpp" line="5872"/>
         <source>Yes</source>
-        <translation>Ja</translation>
+        <translation>Jah</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="459"/>
@@ -2581,64 +2580,64 @@
         <location filename="../mainwindow.cpp" line="2050"/>
         <location filename="../mainwindow.cpp" line="5873"/>
         <source>No</source>
-        <translation>Nee</translation>
+        <translation>Ei</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="697"/>
         <source>Something gone wrong</source>
-        <translation>Er is iets misgegaan</translation>
+        <translation>Midagi läks valesti</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="989"/>
         <location filename="../mainwindow.cpp" line="1539"/>
         <source>Number of sides of the former</source>
-        <translation>Aantal zijden van de spoelvorm</translation>
+        <translation>Aluse külgede arv</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1133"/>
         <location filename="../mainwindow.cpp" line="1690"/>
         <source>Former width</source>
-        <translation>Vroegere breedte</translation>
+        <translation>Aluse laius</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1134"/>
         <location filename="../mainwindow.cpp" line="1691"/>
         <source>Former height</source>
-        <translation>Voormalige hoogte</translation>
+        <translation>Aluse kõrgus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1180"/>
         <location filename="../mainwindow.cpp" line="1742"/>
         <source>Foil width</source>
-        <translation>Breedte folie</translation>
+        <translation>Fooliumi laius</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1181"/>
         <location filename="../mainwindow.cpp" line="1743"/>
         <source>Foil thickness</source>
-        <translation>Dikte folie</translation>
+        <translation>Fooliumi paksus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1222"/>
         <location filename="../mainwindow.cpp" line="1790"/>
         <source>Chamfer</source>
-        <translation>Afschuining</translation>
+        <translation>Faasimine</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1316"/>
         <source>Gap between turns</source>
-        <translation>Afstand tussen beurten</translation>
+        <translation>Vahe keerdude vahel</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1336"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1837"/>
         <location filename="../mainwindow.cpp" line="4925"/>
         <source>Width of a PCB trace</source>
-        <translation>Breedte van het PCB spoor</translation>
+        <translation>PCB trassi laius</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2439"/>
@@ -2740,7 +2739,7 @@
         <location filename="../mainwindow.cpp" line="4217"/>
         <location filename="../mainwindow.cpp" line="4227"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2784"/>
@@ -2748,7 +2747,7 @@
         <location filename="../mainwindow.cpp" line="3375"/>
         <location filename="../mainwindow.cpp" line="3850"/>
         <source>The number of sides must be integer and at least three!</source>
-        <translation>Het aantal zijden moet integer zijn en minstens drie!</translation>
+        <translation>Külgede arv peab olema täisarv ja vähemalt kolm!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4391"/>
@@ -2758,34 +2757,34 @@
         <location filename="../mainwindow.cpp" line="5168"/>
         <location filename="../mainwindow.cpp" line="5271"/>
         <source>Input data for LTSpice</source>
-        <translation>Invoergegevens voor LTSpice</translation>
+        <translation>LTSpice sisendandmed</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4825"/>
         <location filename="../mainwindow.cpp" line="5498"/>
         <source>Length of the foil</source>
-        <translation>Lengte van de folie</translation>
+        <translation>Fooliumi pikkus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="5869"/>
         <source> calculation will be deleted</source>
-        <translation> berekening wordt verwijderd</translation>
+        <translation> arvutus kustutatakse</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="644"/>
         <source>Delete this result</source>
-        <translation>Verwijder dit resultaat</translation>
+        <translation>Kustuta see tulemus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1277"/>
         <location filename="../mainwindow.cpp" line="1838"/>
         <source>PCB trace thickness</source>
-        <translation>PCB-spoordikte</translation>
+        <translation>PCB trassi paksus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4274"/>
         <source>Wrong data was entered</source>
-        <translation>Verkeerde data ingegeven</translation>
+        <translation>Sisestati valed andmed</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4339"/>
@@ -2803,7 +2802,7 @@
         <location filename="../mainwindow.cpp" line="5433"/>
         <location filename="../mainwindow.cpp" line="5626"/>
         <source>Length of wire without leads</source>
-        <translation>Draadlengte zonder toevoerdraden</translation>
+        <translation>Traadi pikkus ilma juhtmeteta</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4351"/>
@@ -2813,7 +2812,7 @@
         <location filename="../mainwindow.cpp" line="5129"/>
         <location filename="../mainwindow.cpp" line="5232"/>
         <source>Length of winding</source>
-        <translation>Wikkellengte</translation>
+        <translation>Mähise pikkus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4360"/>
@@ -2828,7 +2827,7 @@
         <location filename="../mainwindow.cpp" line="5334"/>
         <location filename="../mainwindow.cpp" line="5447"/>
         <source>Weight of wire</source>
-        <translation>Draad gewicht</translation>
+        <translation>Traadi kaal</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4360"/>
@@ -2853,7 +2852,7 @@
         <location filename="../mainwindow.cpp" line="5140"/>
         <location filename="../mainwindow.cpp" line="5243"/>
         <source>Reactance of the coil</source>
-        <translation>Reactantie van de spoel</translation>
+        <translation>Pooli reaktiivsus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4366"/>
@@ -2863,7 +2862,7 @@
         <location filename="../mainwindow.cpp" line="5143"/>
         <location filename="../mainwindow.cpp" line="5246"/>
         <source>Self capacitance</source>
-        <translation>Eigen capaciteit</translation>
+        <translation>Omamahtuvus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4371"/>
@@ -2875,7 +2874,7 @@
         <location filename="../mainwindow.cpp" line="5251"/>
         <location filename="../mainwindow.cpp" line="5589"/>
         <source>Coil constructive Q-factor</source>
-        <translation>Q-factor van de spoel</translation>
+        <translation>Pooli konstriktiivne Q-tegur</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4373"/>
@@ -2885,7 +2884,7 @@
         <location filename="../mainwindow.cpp" line="5150"/>
         <location filename="../mainwindow.cpp" line="5253"/>
         <source>Loss resistance</source>
-        <translation>Verliesweerstand</translation>
+        <translation>Kaotakistus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4376"/>
@@ -2895,7 +2894,7 @@
         <location filename="../mainwindow.cpp" line="5153"/>
         <location filename="../mainwindow.cpp" line="5256"/>
         <source>Additional results for parallel LC circuit at the working frequency</source>
-        <translation>Meerdere mogelijkheden voor parallel LC-circuits</translation>
+        <translation>Täiendavad tulemused paralleelse LC-ahela jaoks töösagedusel</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2204"/>
@@ -2909,7 +2908,7 @@
         <location filename="../mainwindow.cpp" line="5155"/>
         <location filename="../mainwindow.cpp" line="5258"/>
         <source>Circuit capacitance</source>
-        <translation>Capaciteit van de kring</translation>
+        <translation>Ahela mahtuvus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4385"/>
@@ -2919,7 +2918,7 @@
         <location filename="../mainwindow.cpp" line="5162"/>
         <location filename="../mainwindow.cpp" line="5265"/>
         <source>Equivalent resistance</source>
-        <translation>Effectieve weerstand</translation>
+        <translation>Ekvivalenttakistus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4387"/>
@@ -2929,7 +2928,7 @@
         <location filename="../mainwindow.cpp" line="5164"/>
         <location filename="../mainwindow.cpp" line="5267"/>
         <source>Bandwidth</source>
-        <translation>Bandbreedte</translation>
+        <translation>Ribalaius</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4387"/>
@@ -2949,7 +2948,7 @@
         <location filename="../mainwindow.cpp" line="5175"/>
         <location filename="../mainwindow.cpp" line="5278"/>
         <source>Working frequency</source>
-        <translation>Werkfrequentie</translation>
+        <translation>Töösagedus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4368"/>
@@ -2965,7 +2964,7 @@
         <location filename="../mainwindow.cpp" line="5248"/>
         <location filename="../mainwindow.cpp" line="5278"/>
         <source>Coil self-resonance frequency</source>
-        <translation>Spoel eigen resonantiefrequentie</translation>
+        <translation>Pooli omaresonantssagedus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1565"/>
@@ -2981,14 +2980,14 @@
         <location filename="../mainwindow.cpp" line="5316"/>
         <location filename="../mainwindow.cpp" line="5426"/>
         <source>Thickness of the coil</source>
-        <translation>Spoeldiameter</translation>
+        <translation>Mähise paksus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4641"/>
         <location filename="../mainwindow.cpp" line="4701"/>
         <location filename="../mainwindow.cpp" line="4765"/>
         <source>Dimensions of inductor</source>
-        <translation>Afmetingen van inductor</translation>
+        <translation>Induktiivpooli mõõtmed</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1566"/>
@@ -3009,7 +3008,7 @@
         <location filename="../mainwindow.cpp" line="5502"/>
         <location filename="../mainwindow.cpp" line="5503"/>
         <source>Resistance of the coil</source>
-        <translation>Weerstand van de spoel</translation>
+        <translation>Pooli takistus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4385"/>
@@ -3028,19 +3027,19 @@
         <location filename="../mainwindow.cpp" line="5335"/>
         <location filename="../mainwindow.cpp" line="5448"/>
         <source>Number of layers</source>
-        <translation>Aantal lagen</translation>
+        <translation>Kihtide arv</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4723"/>
         <source>Number of interlayers</source>
-        <translation>Aantal tussenlagen</translation>
+        <translation>Vahekihtide arv</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4404"/>
         <location filename="../mainwindow.cpp" line="4873"/>
         <location filename="../mainwindow.cpp" line="4874"/>
         <source>Coil can not be realized</source>
-        <translation>Spoel berekening is niet mogelijk</translation>
+        <translation>Pooli ei saa realiseerida</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1564"/>
@@ -3061,7 +3060,7 @@
         <location filename="../mainwindow.cpp" line="5384"/>
         <location filename="../mainwindow.cpp" line="5455"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
 </context>
 <context>
@@ -3069,38 +3068,38 @@
     <message>
         <location filename="../meander_pcb.ui" line="29"/>
         <source>Meander coil on PCB</source>
-        <translation>Meander spoel op PCB</translation>
+        <translation>Meander-pool trükiplaadil</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="87"/>
         <source>Data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Andmed</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="95"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="124"/>
         <location filename="../meander_pcb.cpp" line="131"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="279"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="315"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="341"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="98"/>
@@ -3108,42 +3107,42 @@
         <location filename="../meander_pcb.cpp" line="112"/>
         <location filename="../meander_pcb.cpp" line="116"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="98"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="108"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="112"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="129"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="137"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="138"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="140"/>
         <source>Length of winding</source>
-        <translation>Wikkellengte</translation>
+        <translation>Mähise pikkus</translation>
     </message>
 </context>
 <context>
@@ -3151,59 +3150,59 @@
     <message>
         <location filename="../multiloop.ui" line="35"/>
         <source>Search coil of a metal detector</source>
-        <translation>Zoekspoel van een metaaldetector</translation>
+        <translation>Metalldetektori otsingupool</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="105"/>
         <source>Reverse calculation</source>
-        <translation>Reverse berekening</translation>
+        <translation>Vastupidine arvutus</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="125"/>
         <source>Data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Andmed</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="191"/>
         <location filename="../multiloop.cpp" line="169"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="336"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="372"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="398"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="59"/>
         <location filename="../multiloop.cpp" line="231"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="61"/>
         <source>Inside diameter</source>
-        <translation>Binnendiameter</translation>
+        <translation>Sisemine diameeter</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="63"/>
         <source>Wire diameter</source>
-        <translation>Draad diameter</translation>
+        <translation>Traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="65"/>
         <source>Wire diameter with insulation</source>
-        <translation>Draaddikte met isolatie</translation>
+        <translation>Traadi läbimõõt isolatsiooniga</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="93"/>
@@ -3218,64 +3217,64 @@
         <location filename="../multiloop.cpp" line="151"/>
         <location filename="../multiloop.cpp" line="218"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="118"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="134"/>
         <location filename="../multiloop.cpp" line="218"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="138"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="151"/>
         <source>Coil can not be realized</source>
-        <translation>Spoel berekening is niet mogelijk</translation>
+        <translation>Pooli ei saa realiseerida</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="162"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="174"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="176"/>
         <location filename="../multiloop.cpp" line="236"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="179"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="181"/>
         <source>Mean diameter</source>
-        <translation>Gemiddelde diameter</translation>
+        <translation>Keskmine läbimõõt</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="183"/>
         <source>Thickness of the coil</source>
-        <translation>Spoeldiameter</translation>
+        <translation>Mähise paksus</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="185"/>
         <source>Resistance of the coil</source>
-        <translation>Weerstand van de spoel</translation>
+        <translation>Pooli takistus</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="185"/>
@@ -3285,12 +3284,12 @@
     <message>
         <location filename="../multiloop.cpp" line="190"/>
         <source>Length of wire without leads</source>
-        <translation>Draadlengte zonder toevoerdraden</translation>
+        <translation>Traadi pikkus ilma juhtmeteta</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="194"/>
         <source>Weight of wire</source>
-        <translation>Draad gewicht</translation>
+        <translation>Traadi kaal</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="194"/>
@@ -3303,22 +3302,22 @@
     <message>
         <location filename="../options.ui" line="52"/>
         <source>Measurement Units</source>
-        <translation>Meeteenheden</translation>
+        <translation>Mõõteühikud</translation>
     </message>
     <message>
         <location filename="../options.ui" line="443"/>
         <source>Show additional results for single layer coils</source>
-        <translation>Toon meer resultaten voor enkellaags spoelen</translation>
+        <translation>Kuva ühekihiliste mähiste jaoks täiendavad tulemused</translation>
     </message>
     <message>
         <location filename="../options.ui" line="463"/>
         <source>Show images in results</source>
-        <translation>Toon afbeeldingen in resultaat</translation>
+        <translation>Kuva tulemustes pilte</translation>
     </message>
     <message>
         <location filename="../options.ui" line="67"/>
         <source>Capacitance</source>
-        <translation>Capaciteit</translation>
+        <translation>Mahtuvus</translation>
     </message>
     <message>
         <location filename="../options.ui" line="92"/>
@@ -3338,7 +3337,7 @@
     <message>
         <location filename="../options.ui" line="150"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../options.ui" line="175"/>
@@ -3353,7 +3352,7 @@
     <message>
         <location filename="../options.ui" line="185"/>
         <source>inch</source>
-        <translation>inch</translation>
+        <translation>toll</translation>
     </message>
     <message>
         <location filename="../options.ui" line="190"/>
@@ -3363,7 +3362,7 @@
     <message>
         <location filename="../options.ui" line="201"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../options.ui" line="229"/>
@@ -3383,12 +3382,12 @@
     <message>
         <location filename="../options.ui" line="250"/>
         <source>Wire gauge</source>
-        <translation>Draadmeter</translation>
+        <translation>Traadi mõõtmed</translation>
     </message>
     <message>
         <location filename="../options.ui" line="275"/>
         <source>Metric</source>
-        <translation>Metrisch</translation>
+        <translation>Meetriline</translation>
     </message>
     <message>
         <location filename="../options.ui" line="280"/>
@@ -3398,7 +3397,7 @@
     <message>
         <location filename="../options.ui" line="291"/>
         <source>Frequency</source>
-        <translation>Frequentie</translation>
+        <translation>Sagedus</translation>
     </message>
     <message>
         <location filename="../options.ui" line="313"/>
@@ -3418,137 +3417,137 @@
     <message>
         <location filename="../options.ui" line="397"/>
         <source>Set to default</source>
-        <translation>Ingesteld op standaard</translation>
+        <translation>Seadista vaikeseadeks</translation>
     </message>
     <message>
         <location filename="../options.ui" line="427"/>
         <source>Interface</source>
-        <translation>Interface</translation>
+        <translation>Liides</translation>
     </message>
     <message>
         <location filename="../options.ui" line="433"/>
         <source>Show last result first</source>
-        <translation>Eerst het laatste resultaat weergeven</translation>
+        <translation>Kuva esimesena viimane tulemus</translation>
     </message>
     <message>
         <location filename="../options.ui" line="453"/>
         <source>Show data for LTSpice</source>
-        <translation>Toon gegevens voor LTSpice</translation>
+        <translation>Kuva LTSpice andmeid</translation>
     </message>
     <message>
         <location filename="../options.ui" line="473"/>
         <source>Show title in results</source>
-        <translation>Toon titel in resultaten</translation>
+        <translation>Kuva tulemustes pealkirja</translation>
     </message>
     <message>
         <location filename="../options.ui" line="490"/>
         <source>Show confirm dialog before exit</source>
-        <translation>Bevestigingsvenster weergeven voordat u afsluit</translation>
+        <translation>Näita enne väljumist kinnitusdialoogi</translation>
     </message>
     <message>
         <location filename="../options.ui" line="500"/>
         <source>Show confirm dialog to clear results</source>
-        <translation>Bevestigingsvenster tonen om resultaten te wissen</translation>
+        <translation>Tulemuste puhastamiseks kuva kinnitusdialoog</translation>
     </message>
     <message>
         <location filename="../options.ui" line="527"/>
         <source>Save results on exit</source>
-        <translation>Resultaten opslaan bij afsluiten</translation>
+        <translation>Väljumisel salvesta tulemused</translation>
     </message>
     <message>
         <location filename="../options.ui" line="550"/>
         <source>Interface font</source>
-        <translation>Interface font</translation>
+        <translation>Liidese font</translation>
     </message>
     <message>
         <location filename="../options.ui" line="611"/>
         <source>Output field font</source>
-        <translation>Uitvoerveld lettertype</translation>
+        <translation>Väljund välja font</translation>
     </message>
     <message>
         <location filename="../options.ui" line="674"/>
         <source>Sunny</source>
-        <translation>Zonnig</translation>
+        <translation>Päikeseline</translation>
     </message>
     <message>
         <location filename="../options.ui" line="349"/>
         <source>Decimal and thousand separators</source>
-        <translation>Decimaal en duizend scheidingstekens</translation>
+        <translation>Kümnend- ja tuhane eraldajad</translation>
     </message>
     <message>
         <location filename="../options.ui" line="113"/>
         <source>Number of decimal places</source>
-        <translation>Aantal tekens na decimaalscheidingsteken</translation>
+        <translation>Kümnendkohtade arv</translation>
     </message>
     <message>
         <location filename="../options.ui" line="355"/>
         <source>As in the current locale</source>
-        <translation>Zoals in de huidige locale</translation>
+        <translation>Nagu praeguses lokaadis</translation>
     </message>
     <message>
         <location filename="../options.ui" line="365"/>
         <source>As in the English locale</source>
-        <translation>Zoals in de Engelse locale</translation>
+        <translation>Nagu inglise keeles</translation>
     </message>
     <message>
         <location filename="../options.ui" line="517"/>
         <source>Show confirm dialog to delete a result</source>
-        <translation>Toon bevestigingsvenster om een resultaat te verwijderen</translation>
+        <translation>Tulemuse kustutamiseks kuva kinnitusdialoog</translation>
     </message>
     <message>
         <location filename="../options.ui" line="659"/>
         <source>Theme</source>
-        <translation>Thema</translation>
+        <translation>Teema</translation>
     </message>
     <message>
         <location filename="../options.ui" line="669"/>
         <source>Default</source>
-        <translation>Standaard</translation>
+        <translation>Vaikimisi</translation>
     </message>
     <message>
         <location filename="../options.ui" line="679"/>
         <source>Dark</source>
-        <translation>Donker</translation>
+        <translation>Tume</translation>
     </message>
     <message>
         <location filename="../options.ui" line="691"/>
         <source>Check for update</source>
-        <translation>Controleren op updates</translation>
+        <translation>Kontrolli uuendusi</translation>
     </message>
     <message>
         <location filename="../options.ui" line="697"/>
         <source>Automatically check for update</source>
-        <translation>Automatisch controleren op updates</translation>
+        <translation>Uuenduste automaatne kontroll</translation>
     </message>
     <message>
         <location filename="../options.ui" line="714"/>
         <source>Checking interval</source>
-        <translation>Controle-interval</translation>
+        <translation>Kontrollimise intervall</translation>
     </message>
     <message>
         <location filename="../options.ui" line="720"/>
         <source>Once for 60 days</source>
-        <translation>Eenmaal voor 60 dagen</translation>
+        <translation>Üks kord 60 päeva jooksul</translation>
     </message>
     <message>
         <location filename="../options.ui" line="730"/>
         <source>Once for 120 days</source>
-        <translation>Eenmaal voor 120 dagen</translation>
+        <translation>Üks kord 120 päeva jooksul</translation>
     </message>
     <message>
         <location filename="../options.ui" line="740"/>
         <source>Once for 180 days</source>
-        <translation>Eenmaal voor 180 dagen</translation>
+        <translation>Üks kord 180 päeva jooksul</translation>
     </message>
     <message>
         <location filename="../options.ui" line="757"/>
         <source>Check for a new version</source>
-        <translation>Controleer op nieuwe versie</translation>
+        <translation>Otsi uut versiooni</translation>
     </message>
     <message>
         <location filename="../options.ui" line="775"/>
         <source>Check now!</source>
-        <translation>Nu controleren!</translation>
+        <translation>Kontrolli nüüd!</translation>
     </message>
     <message>
         <location filename="../options.ui" line="825"/>
@@ -3558,7 +3557,7 @@
     <message>
         <location filename="../options.ui" line="839"/>
         <source>Cancel</source>
-        <translation>Annuleren</translation>
+        <translation>Tühista</translation>
     </message>
 </context>
 <context>
@@ -3566,98 +3565,98 @@
     <message>
         <location filename="../potcore.ui" line="17"/>
         <source>Pot core coil</source>
-        <translation>Potkernen</translation>
+        <translation>Ummissüdamikuga pool</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="43"/>
         <source>Select the type of the core</source>
-        <translation>Selecteer het type kern</translation>
+        <translation>Südamiku tüübi valimine</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="99"/>
         <source>Reverse calculation</source>
-        <translation>Reverse berekening</translation>
+        <translation>Vastupidine arvutus</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="163"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="459"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="495"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="521"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="53"/>
         <source>Custom</source>
-        <translation>Op maat</translation>
+        <translation>Kohandatud</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="153"/>
         <source>Outside diameter</source>
-        <translation>Buitendiameter</translation>
+        <translation>Välisläbimõõt</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="154"/>
         <source>Inside diameter</source>
-        <translation>Binnendiameter</translation>
+        <translation>Sisemine diameeter</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="155"/>
         <source>Centerpost diameter</source>
-        <translation>Diameter middenstijl</translation>
+        <translation>Keskposti läbimõõt</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="156"/>
         <source>Centerpost hole diameter</source>
-        <translation>Diameter gat middenstijl</translation>
+        <translation>Keskposti augu läbimõõt</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="157"/>
         <source>Core height</source>
-        <translation>Kernhoogte</translation>
+        <translation>Südamiku kõrgus</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="158"/>
         <source>Centerpost height</source>
-        <translation>Hoogte middenstijl</translation>
+        <translation>Keskposti kõrgus</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="159"/>
         <source>Slot size</source>
-        <translation>Slot grootte</translation>
+        <translation>Pesa suurus</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="160"/>
         <source>Centerpost gap</source>
-        <translation>Opening middenstijl</translation>
+        <translation>Keskposti lõhe</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="161"/>
         <source>Magnetic permeability</source>
-        <translation>Magnetische permeabiliteit</translation>
+        <translation>Magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="201"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="206"/>
         <location filename="../potcore.cpp" line="322"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="237"/>
@@ -3672,61 +3671,61 @@
         <location filename="../potcore.cpp" line="289"/>
         <location filename="../potcore.cpp" line="293"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="237"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="251"/>
         <location filename="../potcore.cpp" line="278"/>
         <location filename="../potcore.cpp" line="289"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="255"/>
         <location filename="../potcore.cpp" line="282"/>
         <location filename="../potcore.cpp" line="293"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="305"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="320"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="325"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="327"/>
         <source>Effective magnetic path length</source>
-        <translation>Effectieve magnetische padlengte</translation>
+        <translation>Effektiivne magnetjõujoone pikkus</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="330"/>
         <source>Effective area of magnetic path</source>
-        <translation>Effectief gebied van magnetisch pad</translation>
+        <translation>Effektiivne magnetjuhtme ristlõige</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="333"/>
         <source>Effective volume</source>
-        <translation>Effectief volume</translation>
+        <translation>Efektiivne nivoo</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="336"/>
         <source>Effective magnetic permeability of the core</source>
-        <translation>Effectieve magnetische permeabiliteit van de kern</translation>
+        <translation>Effektiivne südamiku magnetiline läbitavus</translation>
     </message>
 </context>
 <context>
@@ -3734,17 +3733,17 @@
     <message>
         <location filename="../crossover.cpp" line="200"/>
         <source>Wire diameter</source>
-        <translation>Draad diameter</translation>
+        <translation>Traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="215"/>
         <source>Dimensions of inductor</source>
-        <translation>Afmetingen van inductor</translation>
+        <translation>Induktiivpooli mõõtmed</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="225"/>
         <source>Length of wire without leads</source>
-        <translation>Draadlengte zonder toevoerdraden</translation>
+        <translation>Traadi pikkus ilma juhtmeteta</translation>
     </message>
 </context>
 <context>
@@ -3752,125 +3751,125 @@
     <message>
         <location filename="../rf_toroid.ui" line="29"/>
         <source>Toroidal inductor at RF</source>
-        <translation>Ringkernspoel bij RF</translation>
+        <translation>Rõngasinduktor raadiosagedusel</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="52"/>
         <source>Input</source>
-        <translation>Invoer</translation>
+        <translation>Sisend</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="205"/>
         <source>Select material of the toroid</source>
-        <translation>Selecteer het materiaal van de torus</translation>
+        <translation>Rõnga materjali falimine</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="292"/>
         <source>Information</source>
-        <translation>Informatie</translation>
+        <translation>informatsioon</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="333"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="573"/>
         <location filename="../rf_toroid.cpp" line="466"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="641"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="677"/>
         <source>Export results</source>
-        <translation>Resultaten exporteren</translation>
+        <translation>Tulemuste eksportimine</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="700"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="726"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="46"/>
         <location filename="../rf_toroid.cpp" line="64"/>
         <source>Manually</source>
-        <translation>Handmatig</translation>
+        <translation>Käsitsi</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="59"/>
         <source>Material</source>
-        <translation>Materiaal</translation>
+        <translation>Materjal</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="70"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="71"/>
         <source>Working frequency</source>
-        <translation>Werkfrequentie</translation>
+        <translation>Töösagedus</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="72"/>
         <location filename="../rf_toroid.cpp" line="409"/>
         <source>Self capacitance</source>
-        <translation>Eigen capaciteit</translation>
+        <translation>Omamahtuvus</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="73"/>
         <source>Outside diameter</source>
-        <translation>Buitendiameter</translation>
+        <translation>Välisläbimõõt</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="74"/>
         <source>Inside diameter</source>
-        <translation>Binnendiameter</translation>
+        <translation>Sisemine diameeter</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="75"/>
         <source>Core height</source>
-        <translation>Kernhoogte</translation>
+        <translation>Südamiku kõrgus</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="76"/>
         <source>Chamfer</source>
-        <translation>Afschuining</translation>
+        <translation>Faasimine</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="77"/>
         <source>Wire diameter</source>
-        <translation>Draad diameter</translation>
+        <translation>Traadi läbimõõt</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="215"/>
         <source>Initial magnetic permeability</source>
-        <translation>Aanvankelijke magnetische permeabiliteit</translation>
+        <translation>Esialgne magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="217"/>
         <source>Residual flux density</source>
-        <translation>Reststroomdichtheid</translation>
+        <translation>Jääkvoo tihedus</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="218"/>
         <source>Coercive Force</source>
-        <translation>Dwangkracht</translation>
+        <translation>Koertsitiivjõud</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="234"/>
         <source>The frequency is out of range</source>
-        <translation>De frequentie is buiten bereik</translation>
+        <translation>Sagedus on vahemikust väljas</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="356"/>
@@ -3878,28 +3877,28 @@
         <location filename="../rf_toroid.cpp" line="429"/>
         <location filename="../rf_toroid.cpp" line="434"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="356"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="361"/>
         <location filename="../rf_toroid.cpp" line="429"/>
         <source>One or more dimensions have an invalid value!</source>
-        <translation>Een of meer dimensies hebben een ongeldige waarde!</translation>
+        <translation>Ühel või mitmel mõõdul on vale väärtus!</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="404"/>
         <source>Equivalent series inductance</source>
-        <translation>Equivalente serie-inductantie</translation>
+        <translation>Ekvivalentne jadainduktiivsus</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="407"/>
         <source>Loss resistance</source>
-        <translation>Verliesweerstand</translation>
+        <translation>Kaotakistus</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="407"/>
@@ -3909,22 +3908,22 @@
     <message>
         <location filename="../rf_toroid.cpp" line="411"/>
         <source>Coil constructive Q-factor</source>
-        <translation>Q-factor van de spoel</translation>
+        <translation>Pooli konstriktiivne Q-tegur</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="415"/>
         <source>Input data for LTSpice</source>
-        <translation>Invoergegevens voor LTSpice</translation>
+        <translation>LTSpice sisendandmed</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="434"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="450"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
 </context>
 <context>
@@ -3932,58 +3931,58 @@
     <message>
         <location filename="../rmcore.ui" line="29"/>
         <source>RM core coil</source>
-        <translation>RM-core-spoel</translation>
+        <translation>Ummissüdamikuga pool</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="62"/>
         <source>Select the type of the core</source>
-        <translation>Selecteer het type kern</translation>
+        <translation>Südamiku tüübi valimine</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="132"/>
         <source>Reverse calculation</source>
-        <translation>Reverse berekening</translation>
+        <translation>Vastupidine arvutus</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="196"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="546"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="582"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="608"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="144"/>
         <source>Centerpost gap</source>
-        <translation>Opening middenstijl</translation>
+        <translation>Keskposti lõhe</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="145"/>
         <source>Magnetic permeability</source>
-        <translation>Magnetische permeabiliteit</translation>
+        <translation>Magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="189"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="194"/>
         <location filename="../rmcore.cpp" line="306"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="211"/>
@@ -3996,60 +3995,60 @@
         <location filename="../rmcore.cpp" line="257"/>
         <location filename="../rmcore.cpp" line="261"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="211"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="227"/>
         <location filename="../rmcore.cpp" line="246"/>
         <location filename="../rmcore.cpp" line="257"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="250"/>
         <location filename="../rmcore.cpp" line="261"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="287"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="304"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="309"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="311"/>
         <source>Effective magnetic path length</source>
-        <translation>Effectieve magnetische padlengte</translation>
+        <translation>Effektiivne magnetjõujoone pikkus</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="314"/>
         <source>Effective area of magnetic path</source>
-        <translation>Effectief gebied van magnetisch pad</translation>
+        <translation>Effektiivne magnetjuhtme ristlõige</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="317"/>
         <source>Effective volume</source>
-        <translation>Effectief volume</translation>
+        <translation>Efektiivne nivoo</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="320"/>
         <source>Effective magnetic permeability of the core</source>
-        <translation>Effectieve magnetische permeabiliteit van de kern</translation>
+        <translation>Effektiivne südamiku magnetiline läbitavus</translation>
     </message>
 </context>
 <context>
@@ -4057,73 +4056,73 @@
     <message>
         <location filename="../shield.ui" line="35"/>
         <source>Influence of the shield of a coil</source>
-        <translation>Invloed van een spoelschild</translation>
+        <translation>Pooli varjestuse mõju</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="129"/>
         <source>Form of the coil shield</source>
-        <translation>Vorm van het spoelschild</translation>
+        <translation>Pooli varjestuse vorm</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="135"/>
         <source>Cylinder</source>
-        <translation>Cilinder</translation>
+        <translation>Silinder</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="145"/>
         <source>Box</source>
-        <translation>Doos</translation>
+        <translation>Karp</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="173"/>
         <source>Data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Andmed</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="239"/>
         <location filename="../shield.cpp" line="182"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="428"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="464"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="490"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="67"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="69"/>
         <source>Winding diameter</source>
-        <translation>Wikkeldiameter</translation>
+        <translation>Mähise läbimõõt</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="71"/>
         <source>Winding length</source>
-        <translation>Wikkellengte</translation>
+        <translation>Mähise pikkus</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="73"/>
         <source>Diameter of the coil shield</source>
-        <translation>Diameter van de spoelafscherming</translation>
+        <translation>Pooli varje diameeter</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="75"/>
         <source>Height of the coil shield</source>
-        <translation>Hoogte van het rolscherm</translation>
+        <translation>Pooli varjestuse kõrgus</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="141"/>
@@ -4132,42 +4131,42 @@
         <location filename="../shield.cpp" line="160"/>
         <location filename="../shield.cpp" line="164"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="141"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="152"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="156"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="180"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="189"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="190"/>
         <source>Inductance of the shielded coil</source>
-        <translation>Inductie van de afgeschermde spoel</translation>
+        <translation>Varjestatud pooli induktiivsus</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="192"/>
         <source>Relative reducing of the inductance</source>
-        <translation>Relatieve vermindering van de inductie</translation>
+        <translation>Induktiivsuse suhteline vähenemine</translation>
     </message>
 </context>
 <context>
@@ -4175,58 +4174,58 @@
     <message>
         <location filename="../ucore.ui" line="43"/>
         <source>Select the type of the core</source>
-        <translation>Selecteer het type kern</translation>
+        <translation>Südamiku tüübi valimine</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="17"/>
         <source>U core coil</source>
-        <translation>U kernspoel</translation>
+        <translation>U südamikuga pool</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="124"/>
         <source>Reverse calculation</source>
-        <translation>Reverse berekening</translation>
+        <translation>Vastupidine arvutus</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="188"/>
         <source>Dimensions</source>
-        <translation>Dimensies</translation>
+        <translation>Mõõtmed</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="460"/>
         <source>Context help</source>
-        <translation>Contexthulp</translation>
+        <translation>Käsiraamat</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="496"/>
         <source>Calculate</source>
-        <translation>Berekenen</translation>
+        <translation>Arvuta</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="522"/>
         <source>Close</source>
-        <translation>Einde</translation>
+        <translation>Sulge</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="126"/>
         <source>Slot size</source>
-        <translation>Slot grootte</translation>
+        <translation>Pesa suurus</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="127"/>
         <source>Magnetic permeability</source>
-        <translation>Magnetische permeabiliteit</translation>
+        <translation>Magnetiline läbitavus</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="148"/>
         <source>Number of turns</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Keerdude arv</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="153"/>
         <location filename="../ucore.cpp" line="320"/>
         <source>Inductance</source>
-        <translation>Inductantie</translation>
+        <translation>Induktiivsus</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="212"/>
@@ -4241,12 +4240,12 @@
         <location filename="../ucore.cpp" line="273"/>
         <location filename="../ucore.cpp" line="277"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="212"/>
         <source>One or more inputs are empty!</source>
-        <translation>Een of meer ingangen zijn leeg!</translation>
+        <translation>Üks või mitu sisendit on tühjad!</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="226"/>
@@ -4255,7 +4254,7 @@
         <location filename="../ucore.cpp" line="262"/>
         <location filename="../ucore.cpp" line="273"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>Een of meer ingangen hebben een illegaal formaat!</translation>
+        <translation>Üks või mitu sisendit on illegaalses vormingus!</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="230"/>
@@ -4263,37 +4262,37 @@
         <location filename="../ucore.cpp" line="266"/>
         <location filename="../ucore.cpp" line="277"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>Eén of meer ingangen zijn gelijk aan nul!</translation>
+        <translation>Avamisel üks või mitu sisendid on võrdsed nulliga!</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="302"/>
         <source>Input data</source>
-        <translation>Invoergegevens</translation>
+        <translation>Sisendandmed</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="318"/>
         <source>Result</source>
-        <translation>Resultaten</translation>
+        <translation>Tulemus</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="323"/>
         <source>Number of turns of the coil</source>
-        <translation>Aantal windingen van de spoel</translation>
+        <translation>Pooli keerdude arv</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="325"/>
         <source>Effective magnetic path length</source>
-        <translation>Effectieve magnetische padlengte</translation>
+        <translation>Effektiivne magnetjõujoone pikkus</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="328"/>
         <source>Effective area of magnetic path</source>
-        <translation>Effectief gebied van magnetisch pad</translation>
+        <translation>Effektiivne magnetjuhtme ristlõige</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="331"/>
         <source>Effective volume</source>
-        <translation>Effectief volume</translation>
+        <translation>Efektiivne nivoo</translation>
     </message>
 </context>
 </TS>

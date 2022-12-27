@@ -159,14 +159,14 @@ void RF_Toroid::getOpt(_OptionStruct gOpt)
     ui->label_03->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_04->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_d_m->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
-    ui->lineEdit_N->setText(loc.toString(N));
-    ui->lineEdit_f->setText(loc.toString(f / fOpt->dwFrequencyMultiplier));
-    ui->lineEdit_cs->setText(loc.toString(Cs / fOpt->dwCapacityMultiplier));
-    ui->lineEdit_od->setText(loc.toString(od / fOpt->dwLengthMultiplier));
-    ui->lineEdit_id->setText(loc.toString(id / fOpt->dwLengthMultiplier));
-    ui->lineEdit_h->setText(loc.toString(h / fOpt->dwLengthMultiplier));
-    ui->lineEdit_c->setText(loc.toString(c / fOpt->dwLengthMultiplier));
-    ui->lineEdit_d->setText(loc.toString(d / fOpt->dwLengthMultiplier));
+    ui->lineEdit_N->setText(roundTo(N, loc, fOpt->dwAccuracy));
+    ui->lineEdit_f->setText(roundTo(f / fOpt->dwFrequencyMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_cs->setText(roundTo(Cs / fOpt->dwCapacityMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_od->setText(roundTo(od / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_id->setText(roundTo(id / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_h->setText(roundTo(h / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_c->setText(roundTo(c / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_d->setText(roundTo(d / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     if (fOpt->styleGUI == _DarkStyle)
         styleInfoColor = "<span style=\"color:yellow;\">";
     else
@@ -298,7 +298,7 @@ void RF_Toroid::on_label_cs_toggled(bool checked)
 
     } else {
         ui->lineEdit_cs->setEnabled(true);
-        ui->lineEdit_cs->setText(loc.toString(Cs / fOpt->dwCapacityMultiplier, 'f', 1));
+        ui->lineEdit_cs->setText(roundTo(Cs / fOpt->dwCapacityMultiplier, loc, fOpt->dwAccuracy));
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -395,20 +395,20 @@ void RF_Toroid::on_pushButton_calculate_clicked()
             if (m2 > 0)
                 Q = z.imag() / (z.real() + Rdc); //Coil constructive Q-factor
             QString result = "<p>";
-            QString sComplexZ = loc.toString(z.real(), 'f', fOpt->dwAccuracy) + " + j" + loc.toString(z.imag(), 'f', fOpt->dwAccuracy);
+            QString sComplexZ = roundTo(z.real(), loc, fOpt->dwAccuracy) + " + j" + roundTo(z.imag(), loc, fOpt->dwAccuracy);
             if(z.imag() < 0)
-                sComplexZ = loc.toString(z.real(), 'f', fOpt->dwAccuracy) + " - j" + loc.toString(-z.imag(), 'f', fOpt->dwAccuracy);
+                sComplexZ = roundTo(z.real(), loc, fOpt->dwAccuracy) + " - j" + roundTo(-z.imag(), loc, fOpt->dwAccuracy);
             result += "Z (Ω) = " + sComplexZ + "<br/>";
-            result += "|Z| (Ω) = " + loc.toString(abs(z), 'f', fOpt->dwAccuracy) + "<br/><br/>";
+            result += "|Z| (Ω) = " + roundTo(abs(z), loc, fOpt->dwAccuracy) + "<br/><br/>";
             if (Q >= 0){
                 result += tr("Equivalent series inductance") + " Ls = " +
-                        loc.toString(z.imag() / (2*M_PI*freq)*1e6 / fOpt->dwInductanceMultiplier, 'f', fOpt->dwAccuracy) + " " +
+                        roundTo(z.imag() / (2*M_PI*freq)*1e6 / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " " +
                         qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
-                result += tr("Loss resistance") + " ESR = " + loc.toString(z.real() + Rdc, 'f', fOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+                result += tr("Loss resistance") + " ESR = " + roundTo(z.real() + Rdc, loc, fOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
                 if (isCsAuto)
-                    result += tr("Self capacitance") + " Cs = " + loc.toString(Csm, 'f', 1) + " "
+                    result += tr("Self capacitance") + " Cs = " + roundTo(Csm, loc, fOpt->dwAccuracy) + " "
                         + qApp->translate("Context", "pF") + "<br/>";
-                result += tr("Coil constructive Q-factor") + " Q = " + loc.toString(Q, 'f', fOpt->dwAccuracy) + "<br/>";
+                result += tr("Coil constructive Q-factor") + " Q = " + roundTo(Q, loc, 0) + "<br/>";
                 result += "A<sub>L</sub>&nbsp;= " + loc.toString(round(al))
                         + "&nbsp;" +  qApp->translate("Context","nH") + "/N<sup>2</sup></p>";
                 result += "<hr><p>";

@@ -119,6 +119,7 @@ private slots:
     void on_radioButton_2_clicked(bool checked);
     void on_radioButton_3_clicked(bool checked);
     void on_radioButton_4_clicked(bool checked);
+    void on_radioButton_5_1_toggled(bool checked);
     void on_radioButton_6_toggled(bool checked);
     void on_radioButton_8_toggled(bool checked);
     void on_radioButton_1_2_clicked(bool checked);
@@ -151,6 +152,7 @@ private slots:
     void get_ferriteI_Result(_CoilResult result);
     void get_pcbI_Result(_CoilResult result);
     void get_spiralI_Result(_CoilResult result);
+    void getAddCalculationResult(QString result);
 
     void getOptionStruct(_OptionStruct gOpt);
     void checkAppVersion(QNetworkReply *reply);
@@ -179,6 +181,7 @@ private slots:
     void on_actionThemeSunny_triggered();
 
     void on_toolButton_Help_clicked();
+    void on_toolButton_FAQ_clicked();
     void on_toolButton_Configure_clicked();
     void on_toolButton_Clear_clicked();
     void on_toolButton_CopySel_clicked();
@@ -194,7 +197,7 @@ private slots:
     void on_toolButton_lShowFirst_clicked();
     void on_toolButton_Open_clicked();
     void on_toolButton_Save_clicked();
-
+    void on_toolButton_ltspice_clicked();
 
     void on_actionFerrite_toroid_permeability_triggered();
     void on_actionCoil_on_a_ferrite_rod_triggered();
@@ -212,11 +215,6 @@ private slots:
     void on_actionCross_over_inductor_triggered();
     void on_actionBandspread_Calculator_triggered();
     void on_actionRM_core_coil_triggered();
-
-    void getAddCalculationResult(QString result);
-
-
-    void on_toolButton_ltspice_clicked();
 
 private:
     Ui::MainWindow *mui;
