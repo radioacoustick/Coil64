@@ -332,6 +332,12 @@ double solve_Qpcb(long N, double _I, double _D, double _d, double _W, double _t,
         StripLength = find_actual_spiral_length(N, d, s);
         break;
     }
+    case 2:{
+        for (int i = 0; i < N; i++){
+            StripLength += d - i * s + D - i * s + (d - (i + 1) * s) + (D - (i + 1) * s);
+        }
+        break;
+    }
     default:
         break;
     }

@@ -50,10 +50,11 @@ private:
     Ui::AL *ui;
     _OptionStruct *fOpt;
     QDoubleValidator *dv;
+    QIntValidator *iv;
     QLocale loc;
     int tabIndex;
-    int al, N_m, N_r;
-    double L_m, L_r;
+    int N_m, N_r;
+    double L_m, L_r, al;
 };
 
 #endif // AL_H

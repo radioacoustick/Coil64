@@ -985,8 +985,8 @@ void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _Co
     double Length_spiral = find_actual_spiral_length(N, D, k) * 10;
     double Resistivity_cu = mtrl[Cu][Rho]*1e2;
     double Resistivity_al = mtrl[Al][Rho]*1e2;
-    double Rdcc = (Resistivity_cu * Length_spiral) / (w * t); // resistance of the copper foil
-    double Rdca = (Resistivity_al * Length_spiral) / (w * t); // resistance of the aliminum foil
+    double Rdcc = (Resistivity_cu * Length_spiral) / (w * t) / 10; // resistance of the copper foil
+    double Rdca = (Resistivity_al * Length_spiral) / (w * t) / 10; // resistance of the aliminum foil
     result->N = N;
     result->sec = Length_spiral/1000;
     result->thd = Do;
@@ -1025,8 +1025,8 @@ void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _Coil
     double Length_spiral = find_actual_spiral_length(_N, D, k) * 10;
     double Resistivity_cu = mtrl[Cu][Rho]*1e2;
     double Resistivity_al = mtrl[Al][Rho]*1e2;
-    double Rdcc = (Resistivity_cu * Length_spiral) / (w * t); // resistance of the copper foil
-    double Rdca = (Resistivity_al * Length_spiral) / (w * t); // resistance of the aliminum foil
+    double Rdcc = (Resistivity_cu * Length_spiral) / (w * t) / 10; // resistance of the copper foil
+    double Rdca = (Resistivity_al * Length_spiral) / (w * t) / 10; // resistance of the aliminum foil
     result->N = Ltotal;
     result->sec = Length_spiral / 1000;
     result->thd = Do;
@@ -1128,6 +1128,143 @@ double getPCB_I(double N, double _d, double _s, int layout, _CoilResult *result)
 
     result->five = D / 1e3;
     return (I);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double log_GMD2(double s, double w, double h){
+    return log(w + h) + log(s / (2 * w)) - (-1.46 * w / h + 1.45) / (2.14 * w / h + 1.0);
+}
+
+double rectPCBSpiral(int N, double a, double b, double s, double w, double h){
+    /*
+        "Inductance Formula for Rectangular Planar Spiral Inductors with Rectangular Conductor Cross Section",  H. A. Aebischer 2020
+        https://www.researchgate.net/publication/339137261
+        input in millimeters, output in microhenry
+    */
+    try{
+        a /= 1000.0;
+        b /= 1000.0;
+        s /= 1000.0;
+        w /= 1000.0;
+        h /= 1000.0;
+        double log_GMD1 = log(w + h) - 3.0 / 2.0;
+        double GMD1 = 0.2235 * (w + h);
+        double AMD1 = GMD1;
+        double AMSD1sq = (1.0 / 6.0) * (w * w + h * h);
+        double log_GMD_L = N * (log_GMD1);
+        for(int k = 1; k < N; k++){
+            log_GMD_L += 2 * (N - k) * log_GMD2(k * s, w, h);
+        }
+        log_GMD_L /= N * N;
+        double AMSD_L = N * AMSD1sq;
+        for(int k = 1; k < N; k++){
+            AMSD_L += 2.0 * (N - k) * pow((k * s), 2);
+        }
+        AMSD_L /= N * N;
+        double AMD_L = N * AMD1;
+        for(int k = 1; k < N; k++){
+            AMD_L += 2.0 * (N - k) * exp(log_GMD2(k * s, w, h));
+        }
+        AMD_L /= N * N;
+        double log_GMD_a = 0;
+        for(int ks = -N + 1; ks < N; ks++){
+            log_GMD_a += (N - abs(ks)) * log(a + ks * s);
+        }
+        log_GMD_a /= (N * N);
+        double log_GMD_b = 0;
+        for(int ks = -N + 1; ks < N; ks++){
+            log_GMD_b += (N - abs(ks)) * log(b + ks * s);
+        }
+        log_GMD_b /= N * N;
+        double AMSD_a = 0;
+        for(int ks = -N + 1; ks < N; ks++){
+            AMSD_a += (N - abs(ks)) * pow((a + ks * s), 2);
+        }
+        AMSD_a /= N * N;
+        double AMSD_b = 0;
+        for(int ks = -N + 1; ks < N; ks++){
+            AMSD_b += (N - abs(ks)) * pow((b + ks * s), 2);
+        }
+        AMSD_b /= N * N;
+        double AMD_a = 0;
+        for(int ks = -N + 1; ks < N; ks++){
+            AMD_a += (N - abs(ks)) * (a + ks * s);
+        }
+        AMD_a /= N * N;
+        double AMD_b = 0;
+        for(int ks = -N + 1; ks < N; ks++){
+            AMD_b += (N - abs(ks)) * (b + ks * s);
+        }
+        AMD_b /= N * N;
+        double La = 0.2 * (a * log(a + sqrt(a * a + AMSD_L))- a * log_GMD_L - sqrt(a * a + AMSD_L) + AMD_L);
+        double Lb = 0.2 * (b * log(b + sqrt(b * b + AMSD_L))- b * log_GMD_L - sqrt(b * b + AMSD_L) + AMD_L);
+        double Ma = 0.2 * (a * log(a + sqrt(a * a + AMSD_b))- a * log_GMD_b - sqrt(a * a + AMSD_b) + AMD_b);
+        double Mb = 0.2 * (b * log(b + sqrt(b * b + AMSD_a))- b * log_GMD_a - sqrt(b * b + AMSD_a) + AMD_a);
+        double L = 2 * N * N * (La + Lb - (Ma + Mb));
+        return L;
+    } catch (const std::exception&){
+        return 0;
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double getPCB_RectI(int N, double A, double B, double s, double w, double th, _CoilResult *result){
+
+    if (N < 2)
+        return 0;
+    if (B > A){
+        std::swap(A, B);
+    }
+    double a = A - (N - 1) * s;
+    double b = B - (N - 1) * s;
+    double rho = ((N - 1) * s + w) / (B - (N - 1) * s);
+    switch (N){
+    case 2:
+        if (rho > 0.36001)
+            return 0;
+        break;
+    case 3 ... 7:
+        if (rho > 0.52001)
+            return 0;
+        break;
+    case 8 ... 12:
+        if (rho > 0.78001)
+            return 0;
+        break;
+    case 13 ... 20:
+        if (rho > 0.86001)
+            return 0;
+        break;
+    default:
+        break;
+    }
+    if (N >= 21){
+        if (rho > ((N - 1.0) / (N + 1.0)))
+            return 0;
+    }
+    result->five = (A - (N - 1) * s * 2);
+    return rectPCBSpiral(N, a, b, s, w, th);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getPCB_RectN (double I, double A, double B, double _a, double th, double ratio, _CoilResult *result) {
+
+    double a = A - (A - _a) / 2.0;
+    double iTmp = 0;
+    double s = 0;
+    double w = 0;
+    result->N = 0;
+    result->sec = 0;
+    result->thd = 0;
+    for (int N = 2; N < 10000; N++){
+        s = (A - _a) / (N - 1) / 2;
+        w = s * ratio;
+        double b = B - (N - 1) * s;
+        iTmp = rectPCBSpiral(N, a, b, s, w , th);
+        if ((abs(iTmp - I) / I) < 0.05){
+            result->N = N;
+            result->sec = s;
+            result->thd = w;
+            break;
+        }
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result) {
@@ -1736,3 +1873,4 @@ double toNearestE24(double val, int accurasy){
     }
     return out;
 }
+

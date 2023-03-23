@@ -38,6 +38,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QFileDialog>
 #include <QTextDocumentWriter>
 #include <QCloseEvent>
+#include <QToolTip>
 #include <bitset>
 
 #include "options.h"
@@ -104,6 +105,7 @@ private slots:
     void on_lineEdit_5_editingFinished();
     void on_lineEdit_6_editingFinished();
     void on_horizontalSlider_valueChanged(int value);
+    void on_horizontalSlider_sliderMoved(int position);
 
     void on_lineEdit_N_editingFinished();
     void on_lineEdit_freq2_editingFinished();
@@ -221,6 +223,7 @@ private:
     QNetworkAccessManager *net_manager;
     QDoubleValidator *dv;
     QRegExpValidator *awgV;
+    QIntValidator *iv;
     _FormCoil FormCoil; //Enum variable of a coil form
     _Data *data; //Structure stores the data for calculating
     _OptionStruct *myOpt; //Options Structure contains all app settings

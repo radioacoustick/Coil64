@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QObject>
 #include <QString>
 #include <QtMath>
+#include <QVector>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 #include "definitions.h"
@@ -57,6 +58,7 @@ enum _FormCoil
       double inductance;
       double capacitance;
       double frequency;
+      double B;
       double D;
       double a;
       double b;
@@ -95,6 +97,7 @@ enum _FormCoil
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw, unsigned int accuracy); //get Number of turns for One-layer coil with round wire
+    double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *result, unsigned int accuracy); //get Inductance and wire diameter for One-layer coil by winding length
     double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double I, double *lw, unsigned int accuracy); //get Number of turns for One-layer coil with round wire
     double getOneLayerN_Poligonal(double I, double D, double dw, double  h, double n, _CoilResult *result, unsigned int accuracy);
     void getMultiLayerN(double I, double D, double dw, double k, double lk, double gap, long Ng, _CoilResult *result); //get Number of turns for Multi-layer coil
@@ -102,10 +105,10 @@ enum _FormCoil
     void getMultilayerN_Foil(double Dk, double w, double t, double ins, double I, _CoilResult *result);
     void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, double Ch, _CoilResult *result); //get Number of turns for Ferrite toroid coil
     void getPCB_N (double I, double D, double d, double ratio, int layout, _CoilResult *result);
+    void getPCB_RectN (double I, double A, double B, double a, double th, double ratio, _CoilResult *result);
     void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result);
 
     double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy); //get Inductance for One-layer coil with round wire
-    double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *result, unsigned int accuracy); //get Inductance and wire diameter for One-layer coil by winding length
     double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw, unsigned int accuracy); //get Inductance for One-layer coil with round wire
     void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result, unsigned int accuracy);
     void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result); //get Inductance for Multi-layer coil
@@ -116,6 +119,7 @@ enum _FormCoil
     void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result);
     double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, _CoilResult *result); //get Inductance for Ferrite toroid coil
     double getPCB_I(double N, double _d, double _s, int layout, _CoilResult *result);
+    double getPCB_RectI(int N, double A, double B, double s, double w, double th, _CoilResult *result);
     void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result);
 
     void findToroidPemeability(double N, double I, double Do, double Di, double h, double Ch, _CoilResult *result);

@@ -70,6 +70,11 @@
           <string>PCB coil with spiral winding</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>PCB coil with rectangular winding</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>
@@ -692,6 +697,9 @@
               </item>
               <item>
                <widget class="QSlider" name="horizontalSlider">
+                <property name="toolTip">
+                 <string/>
+                </property>
                 <property name="minimum">
                  <number>30</number>
                 </property>
@@ -1749,7 +1757,7 @@
            <string>Context help</string>
           </property>
           <property name="text">
-           <string>...</string>
+           <string notr="true">...</string>
           </property>
           <property name="icon">
            <iconset resource="res.qrc">

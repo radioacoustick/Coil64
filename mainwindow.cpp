@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt = new _OptionStruct;
     dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
     awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
+    iv = new QIntValidator(this);
 
     mui->lineEdit_1_3->setValidator(dv);
     mui->lineEdit_2_3->setValidator(dv);
@@ -165,6 +166,7 @@ MainWindow::MainWindow(QWidget *parent) :
     data->capacitance = settings->value("capacitance", 0).toDouble();
     data->frequency = settings->value("frequency", 0).toDouble();
     data->inductance = settings->value("inductance", 0).toDouble();
+    data->B = settings->value("B", 0).toDouble();
     data->D = settings->value("D", 0).toDouble();
     data->a = settings->value("a", 0).toDouble();
     data->b = settings->value("b", 0).toDouble();
@@ -390,6 +392,7 @@ MainWindow::~MainWindow()
     delete data;
     delete dv;
     delete awgV;
+    delete iv;
     delete myOpt;
     delete net_manager;
     delete mui;
@@ -535,6 +538,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue("capacitance", data->capacitance);
         settings->setValue("inductance", data->inductance);
         settings->setValue("frequency", data->frequency);
+        settings->setValue("B", data->B);
         settings->setValue("D", data->D);
         settings->setValue("a", data->a);
         settings->setValue("b", data->b);
@@ -1242,29 +1246,12 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(true);
             mui->toolButton_FAQ->setVisible(false);
-            switch (myOpt->layoutPCBcoil) {
-            case 0:{
-                mui->comboBox_checkPCB->setCurrentIndex(0);
-                mui->image->setPixmap(QPixmap(":/images/res/Coil8.png"));
-                break;
-            }
-            case 1:{
-                mui->comboBox_checkPCB->setCurrentIndex(1);
-                mui->image->setPixmap(QPixmap(":/images/res/Coil9.png"));
-                break;
-            }
-            default:
-                break;
-            }
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
             mui->lineEdit_freq->setVisible(true);
             mui->lineEdit_3->setVisible(true);
             mui->label_3->setVisible(true);
             mui->label_03->setVisible(true);
-            mui->lineEdit_4->setVisible(false);
-            mui->label_4->setVisible(false);
-            mui->label_04->setVisible(false);
             mui->lineEdit_5->setVisible(false);
             mui->label_5->setVisible(false);
             mui->label_05->setVisible(false);
@@ -1272,17 +1259,14 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
-            mui->label_1->setText(tr("Outside diameter")+" D:");
-            mui->label_2->setText(tr("Inside diameter")+" d:");
-            mui->label_3->setText(tr("PCB trace thickness")+" t:");
             mui->lineEdit_ind->setText(roundTo(data->inductance / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy));
             mui->lineEdit_ind->selectAll();
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->lineEdit_freq->setText(roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy));
-            mui->lineEdit_1->setText(roundTo(data->Do / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
-            mui->lineEdit_2->setText(roundTo(data->Di / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
-            mui->lineEdit_3->setText(roundTo(data->th / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             mui->horizontalSlider->setValue(data->ratio * 100);
+            mui->horizontalSlider->setToolTip(loc.toString(data->ratio));
+            mui->comboBox_checkPCB->setCurrentIndex(myOpt->layoutPCBcoil);
+            on_comboBox_checkPCB_activated(myOpt->layoutPCBcoil);
             break;
         }
         case _Flat_Spiral:{
@@ -1805,23 +1789,6 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(true);
             mui->toolButton_FAQ->setVisible(false);
-            mui->lineEdit_1_2->setVisible(false);
-            mui->label_1_2->setVisible(false);
-            mui->label_01_2->setVisible(false);
-            switch (myOpt->layoutPCBcoil) {
-            case 0:{
-                mui->comboBox_checkPCB->setCurrentIndex(0);
-                mui->image->setPixmap(QPixmap(":/images/res/Coil8.png"));
-                break;
-            }
-            case 1:{
-                mui->comboBox_checkPCB->setCurrentIndex(1);
-                mui->image->setPixmap(QPixmap(":/images/res/Coil9.png"));
-                break;
-            }
-            default:
-                break;
-            }
             mui->lineEdit_3_2->setVisible(true);
             mui->label_3_2->setVisible(true);
             mui->label_03_2->setVisible(true);
@@ -1842,19 +1809,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
-            mui->label_1_2->setText(tr("Outside diameter")+" D:");
-            mui->label_2_2->setText(tr("Inside diameter")+" d:");
-            mui->label_3_2->setText(tr("Winding pitch")+" s:");
-            mui->label_4_2->setText(tr("Width of a PCB trace") + " W:");
-            mui->label_5_2->setText(tr("PCB trace thickness")+" t:");
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
-            mui->lineEdit_N->setText(roundTo(data->N, loc, myOpt->dwAccuracy));
-            mui->lineEdit_N->selectAll();
             mui->lineEdit_freq2->setText(roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy));
-            mui->lineEdit_2_2->setText(roundTo(data->Di / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
-            mui->lineEdit_3_2->setText(roundTo(data->s / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
-            mui->lineEdit_4_2->setText(roundTo(data->w / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
-            mui->lineEdit_5_2->setText(roundTo(data->th / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->comboBox_checkPCB->setCurrentIndex(myOpt->layoutPCBcoil);
+            on_comboBox_checkPCB_activated(myOpt->layoutPCBcoil);
             break;
         }
         case _Flat_Spiral:{
@@ -1932,6 +1890,7 @@ void MainWindow::on_actionTo_null_data_triggered()
         data->frequency = 0;
         data->inductance = 0;
         data->capacitance = 0;
+        data->B = 0;
         data->D = 0;
         data->a = 0;
         data->b = 0;
@@ -1954,6 +1913,7 @@ void MainWindow::on_actionTo_null_data_triggered()
         data->zo = 0;
         data->s = 0;
         data->Rdc = 0;
+        data->ns = 0;
 
         mui->lineEdit_ind->clear();
         mui->lineEdit_freq->clear();
@@ -1992,6 +1952,8 @@ void MainWindow::on_actionTo_null_data_triggered()
         settings->remove("Shield");
         settings->remove("UCore");
         settings->remove("RMcore");
+        settings->remove("Bandspread");
+        settings->remove("Crossover");
         delete settings;
     }
 }
@@ -2724,7 +2686,7 @@ void MainWindow::on_lineEdit_3_editingFinished()
             break;
         }
         case _PCB_coil:{
-            data->th = loc.toDouble(mui->lineEdit_3->text(), &ok)*myOpt->dwLengthMultiplier;
+            data->a = loc.toDouble(mui->lineEdit_3->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
@@ -2792,6 +2754,11 @@ void MainWindow::on_lineEdit_4_editingFinished()
                 return;
             }
             data->d = d;
+            break;
+        }
+        case _PCB_coil:{
+            data->th = loc.toDouble(mui->lineEdit_3->text(), &ok)*myOpt->dwLengthMultiplier;
+            if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
         default:
@@ -2862,6 +2829,12 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
     data->ratio = (double)value / 100;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_horizontalSlider_sliderMoved(int position)
+{
+    QString hint = loc.toString(position / 100.0);
+    mui->horizontalSlider->setToolTip(hint);
+    QToolTip::showText(QCursor::pos(), hint);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_lineEdit_N_editingFinished()
 {
@@ -2903,7 +2876,11 @@ void MainWindow::on_lineEdit_1_2_editingFinished()
             break;
         }
         case _FerrToroid:
-        case _PCB_coil:
+        case _PCB_coil:{
+            data->Do = loc.toDouble(mui->lineEdit_1_2->text(), &ok)*myOpt->dwLengthMultiplier;
+            if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            break;
+        }
         case _Flat_Spiral:{
             data->Do = loc.toDouble(mui->lineEdit_1_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
@@ -2958,7 +2935,16 @@ void MainWindow::on_lineEdit_2_2_editingFinished()
             break;
         }
         case _FerrToroid:
-        case _PCB_coil:
+        case _PCB_coil:{
+            if(mui->comboBox_checkPCB->currentIndex() != 2){
+                data->Di = loc.toDouble(mui->lineEdit_2_2->text(), &ok)*myOpt->dwLengthMultiplier;
+                if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            } else {
+                data->B = loc.toDouble(mui->lineEdit_2_2->text(), &ok)*myOpt->dwLengthMultiplier;
+                if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            }
+            break;
+        }
         case _Flat_Spiral:{
             data->Di = loc.toDouble(mui->lineEdit_2_2->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
@@ -3629,18 +3615,32 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 break;
             }
             case _PCB_coil:{
-                if (mui->lineEdit_freq->text().isEmpty()||(mui->lineEdit_3->text().isEmpty())){
+                if (mui->lineEdit_freq->text().isEmpty()||(mui->lineEdit_4->text().isEmpty())){
                     showWarning(tr("Warning"), tr("One or more inputs are empty!"));
                     return;
                 }
+                int layoutPCB = mui->comboBox_checkPCB->currentIndex();
                 bool ok1, ok2, ok3, ok4, ok5;
+                if ((layoutPCB == 2) && (mui->lineEdit_3->text().isEmpty())){
+                    showWarning(tr("Warning"), tr("One or more inputs are empty!"));
+                    return;
+                }
+                double a =0;
+                if (layoutPCB == 2){
+                    bool ok6;
+                    a = loc.toDouble(mui->lineEdit_3->text(),&ok6)*myOpt->dwLengthMultiplier;
+                    if (!ok6){
+                        showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+                        return;
+                    }
+                }
                 double I = loc.toDouble(mui->lineEdit_ind->text(),&ok1)*myOpt->dwInductanceMultiplier;
                 double f = loc.toDouble(mui->lineEdit_freq->text(),&ok2)*myOpt->dwFrequencyMultiplier;
                 double OD = loc.toDouble(mui->lineEdit_1->text(),&ok3)*myOpt->dwLengthMultiplier;
                 double ID = loc.toDouble(mui->lineEdit_2->text(),&ok4)*myOpt->dwLengthMultiplier;
-                double th = loc.toDouble(mui->lineEdit_3->text(),&ok5)*myOpt->dwLengthMultiplier;
+                double th = loc.toDouble(mui->lineEdit_4->text(),&ok5)*myOpt->dwLengthMultiplier;
                 double ratio = (double)mui->horizontalSlider->value()/100;
-                int layoutPCB = mui->comboBox_checkPCB->currentIndex();
+
                 if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
                     showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
                     return;
@@ -3650,15 +3650,18 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     return;
                 }
                 if (OD < ID){
-                    showWarning(tr("Warning"), "OD < ID");
+                    if (layoutPCB == 2)
+                        showWarning(tr("Warning"), "A < a");
+                    else
+                        showWarning(tr("Warning"), "OD < ID");
                     return;
                 }
                 data->inductance = I;
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
                 mui->lineEdit_1->setText(loc.toString(OD / myOpt->dwLengthMultiplier));
                 mui->lineEdit_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
-                mui->lineEdit_3->setText(loc.toString(th / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, OD, ID, ratio, layoutPCB, th, f, 0 );
+                mui->lineEdit_4->setText(loc.toString(th / myOpt->dwLengthMultiplier));
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, OD, ID, ratio, layoutPCB, th, f, a );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_pcbN_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -4130,6 +4133,10 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 bool ok1, ok2, ok3, ok4, ok5, ok6;
                 double N = loc.toDouble(mui->lineEdit_N->text(), &ok1);
                 double f = loc.toDouble(mui->lineEdit_freq2->text(), &ok2)*myOpt->dwFrequencyMultiplier;
+                int layoutPCB = mui->comboBox_checkPCB->currentIndex();
+                double A = 0;
+                if (layoutPCB == 2)
+                    A = loc.toDouble(mui->lineEdit_1_2->text(), &ok3)*myOpt->dwLengthMultiplier;
                 double ID = loc.toDouble(mui->lineEdit_2_2->text(), &ok3)*myOpt->dwLengthMultiplier;
                 if ((N == 0)||(ID == 0)||(f == 0)){
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
@@ -4155,14 +4162,13 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     return;
                 }
 
-                int layoutPCB = mui->comboBox_checkPCB->currentIndex();
                 mui->lineEdit_N->setText(loc.toString(N));
                 mui->lineEdit_2_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(s / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(W / myOpt->dwLengthMultiplier));
                 mui->lineEdit_5_2->setText(loc.toString(th / myOpt->dwLengthMultiplier));
 
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, 0, ID, s, W, layoutPCB, th, f );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, A, ID, s, W, layoutPCB, th, f );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_pcbI_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -4933,6 +4939,10 @@ void MainWindow::get_pcbN_Result(_CoilResult result){
             Input += "<img src=\":/images/res/Coil9.png\">";
             break;
         }
+        case 2:{
+            Input += "<img src=\":/images/res/Coil8r.png\">";
+            break;
+        }
         default:
             break;
         }
@@ -4942,20 +4952,26 @@ void MainWindow::get_pcbN_Result(_CoilResult result){
     Input += mui->label_freq->text() + " " + mui->lineEdit_freq->text() + " " + mui->label_freq_m->text() + "<br/>";
     Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
     Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
-    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
+    if (mui->comboBox_checkPCB->currentIndex() == 2)
+        Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
+    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
     Input += mui->groupBox_6->title() + " " + loc.toString((double)mui->horizontalSlider->value()/100) + "</p>";
     c.insertHtml(Input);
     QString Result = "<hr>";
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
-    data->N = result.N;
-    data->s = QString::number(result.sec, 'f', myOpt->dwAccuracy).toDouble();
-    data->w = QString::number(result.thd, 'f', myOpt->dwAccuracy).toDouble();
-    Result += tr("Number of turns of the coil") + " N = " + roundTo(result.N, loc, myOpt->dwAccuracy) + "<br/>";
-    Result += tr("Winding pitch") + " s = " + roundTo(result.sec / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Width of a PCB trace") + " W = " + roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Coil constructive Q-factor") + " Q ≈ " + QString::number(round(result.fourth));
+    if ((result.N != 0) && (result.sec != 0) && (result.thd != 0)){
+        data->N = result.N;
+        data->s = QString::number(result.sec, 'f', myOpt->dwAccuracy).toDouble();
+        data->w = QString::number(result.thd, 'f', myOpt->dwAccuracy).toDouble();
+        Result += tr("Number of turns of the coil") + " N = " + roundTo(result.N, loc, myOpt->dwAccuracy) + "<br/>";
+        Result += tr("Winding pitch") + " s = " + roundTo(result.sec / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
+                + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+        Result += tr("Width of a PCB trace") + " W = " + roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
+                + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+        Result += tr("Coil constructive Q-factor") + " Q ≈ " + QString::number(round(result.fourth));
+    } else {
+        Result += tr("Invalid input parameter combination");
+    }
     Result += "</p><hr>";
     c.insertHtml(Result);
     if(myOpt->isLastShowingFirst)
@@ -5597,6 +5613,10 @@ void MainWindow::get_pcbI_Result(_CoilResult result){
             Input += "<img src=\":/images/res/Coil9.png\">";
             break;
         }
+        case 2:{
+            Input += "<img src=\":/images/res/Coil8r.png\">";
+            break;
+        }
         default:
             break;
         }
@@ -5604,6 +5624,8 @@ void MainWindow::get_pcbI_Result(_CoilResult result){
     Input += "<p><u>" + tr("Input") + ":</u><br/>";
     Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
     Input += mui->label_freq2->text() + " " + mui->lineEdit_freq2->text() + " " + mui->label_freq_m2->text() + "<br/>";
+    if (mui->comboBox_checkPCB->currentIndex() == 2)
+        Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
     Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
     Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
     Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
@@ -5611,13 +5633,22 @@ void MainWindow::get_pcbI_Result(_CoilResult result){
     c.insertHtml(Input);
     QString Result = "<hr>";
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
-    data->inductance = result.N;
-    data->Do = QString::number(result.five, 'f', myOpt->dwAccuracy).toDouble();
-    Result += tr("Inductance") + " L = " + roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Outside diameter")+" D = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";;
-    Result += tr("Coil constructive Q-factor") + " Q ≈ " + QString::number(round(result.fourth));
+    if (result.N > 0){
+        data->inductance = result.N;
+        Result += tr("Inductance") + " L = " + roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " "
+                + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+        if (mui->comboBox_checkPCB->currentIndex() != 2){
+            Result += tr("Outside diameter")+" D = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
+                    + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+            data->Do = QString::number(result.five, 'f', myOpt->dwAccuracy).toDouble();
+        } else {
+            Result += tr("Inside dimension")+" a = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
+                    + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+            data->Di = QString::number(result.five, 'f', myOpt->dwAccuracy).toDouble();
+        }
+        Result += tr("Coil constructive Q-factor") + " Q ≈ " + QString::number(round(result.fourth));
+    } else
+        Result += tr("Invalid input parameter combination");
     Result += "</p><hr>";
     c.insertHtml(Result);
     if(myOpt->isLastShowingFirst)
@@ -5874,6 +5905,67 @@ void MainWindow::getAddCalculationResult(QString result){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_comboBox_checkPCB_activated(int index)
 {
+    int tab = mui->tabWidget->currentIndex();
+    if (index != 2){
+        if (tab == 0){
+            mui->lineEdit_3->setVisible(false);
+            mui->label_3->setVisible(false);
+            mui->label_03->setVisible(false);
+            mui->label_1->setText(tr("Outside diameter")+" D:");
+            mui->label_2->setText(tr("Inside diameter")+" d:");
+            mui->label_4->setText(tr("PCB trace thickness")+" t:");
+            mui->lineEdit_1->setText(roundTo(data->Do / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_2->setText(roundTo(data->Di / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_4->setText(roundTo(data->th / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+        } else {
+            mui->lineEdit_1_2->setVisible(false);
+            mui->label_1_2->setVisible(false);
+            mui->label_01_2->setVisible(false);
+            mui->lineEdit_N->setValidator(dv);
+            mui->lineEdit_N->setText(roundTo(data->N, loc, myOpt->dwAccuracy));
+            mui->lineEdit_N->selectAll();
+            mui->label_1_2->setText(tr("Outside diameter")+" D:");
+            mui->label_2_2->setText(tr("Inside diameter")+" d:");
+            mui->label_3_2->setText(tr("Winding pitch")+" s:");
+            mui->label_4_2->setText(tr("Width of a PCB trace") + " W:");
+            mui->label_5_2->setText(tr("PCB trace thickness")+" t:");
+            mui->lineEdit_2_2->setText(roundTo(data->Di / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_3_2->setText(roundTo(data->s / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_4_2->setText(roundTo(data->w / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_5_2->setText(roundTo(data->th / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+        }
+    } else {
+        if (tab == 0){
+            mui->lineEdit_3->setVisible(true);
+            mui->label_3->setVisible(true);
+            mui->label_03->setVisible(true);
+            mui->label_1->setText(tr("Outside dimension")+" A:");
+            mui->label_2->setText(tr("Outside dimension")+" B:");
+            mui->label_3->setText(tr("Inside dimension")+" a:");
+            mui->label_4->setText(tr("PCB trace thickness")+" t:");
+            mui->lineEdit_1->setText(roundTo(data->Do / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_2->setText(roundTo(data->B / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_3->setText(roundTo(data->Di / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_4->setText(roundTo(data->th / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+        } else {
+            mui->lineEdit_1_2->setVisible(true);
+            mui->label_1_2->setVisible(true);
+            mui->label_01_2->setVisible(true);
+            mui->lineEdit_N->setValidator(iv);
+            mui->lineEdit_N->setText(roundTo(int(data->N), loc, myOpt->dwAccuracy));
+            mui->lineEdit_N->selectAll();
+            mui->label_1_2->setText(tr("Outside dimension")+" A:");
+            mui->label_2_2->setText(tr("Outside dimension")+" B:");
+            mui->label_3_2->setText(tr("Winding pitch")+" s:");
+            mui->label_4_2->setText(tr("Width of a PCB trace") + " W:");
+            mui->label_5_2->setText(tr("PCB trace thickness")+" t:");
+            mui->lineEdit_1_2->setText(roundTo(data->Do / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_2_2->setText(roundTo(data->B / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_3_2->setText(roundTo(data->s / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_4_2->setText(roundTo(data->w / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_5_2->setText(roundTo(data->th / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+        }
+    }
     if (index == 0){
         mui->image->setPixmap(QPixmap(":/images/res/Coil8.png"));
         myOpt->layoutPCBcoil = 0;
@@ -5881,6 +5973,10 @@ void MainWindow::on_comboBox_checkPCB_activated(int index)
     if (index == 1) {
         mui->image->setPixmap(QPixmap(":/images/res/Coil9.png"));
         myOpt->layoutPCBcoil = 1;
+    }
+    if (index == 2) {
+        mui->image->setPixmap(QPixmap(":/images/res/Coil8r.png"));
+        myOpt->layoutPCBcoil = 2;
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

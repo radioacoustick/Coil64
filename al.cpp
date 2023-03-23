@@ -26,12 +26,13 @@ AL::AL(QWidget *parent) :
     ui->setupUi(this);
     fOpt = new _OptionStruct;
     dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    iv = new QIntValidator();
     ui->lineEdit_L_1->setValidator(dv);
     ui->lineEdit_L_2->setValidator(dv);
     ui->lineEdit_L_3->setValidator(dv);
-    ui->lineEdit_N_1->setValidator(dv);
-    ui->lineEdit_N_2->setValidator(dv);
-    ui->lineEdit_N_3->setValidator(dv);
+    ui->lineEdit_N_1->setValidator(iv);
+    ui->lineEdit_N_2->setValidator(iv);
+    ui->lineEdit_N_3->setValidator(iv);
     ui->lineEdit_AL_1->setValidator(dv);
     ui->lineEdit_AL_2->setValidator(dv);
     ui->lineEdit_AL_3->setValidator(dv);
@@ -160,7 +161,7 @@ void AL::on_pushButton_calculate_clicked()
             return;
         }
         L_r = loc.toDouble(ui->lineEdit_L_2->text(), &ok1) * fOpt->dwInductanceMultiplier;
-        al = loc.toInt(ui->lineEdit_AL_2->text(), &ok2);
+        al = loc.toDouble(ui->lineEdit_AL_2->text(), &ok2);
         if((!ok1)||(!ok2)){
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;
@@ -178,7 +179,7 @@ void AL::on_pushButton_calculate_clicked()
             return;
         }
         N_r = loc.toInt(ui->lineEdit_N_3->text(), &ok1);
-        al = loc.toInt(ui->lineEdit_AL_3->text(), &ok2);
+        al = loc.toDouble(ui->lineEdit_AL_3->text(), &ok2);
         if((!ok1)||(!ok2)){
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;

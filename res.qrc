@@ -53,6 +53,7 @@
         <file>res/rm-core1.png</file>
         <file>res/rm-core2.png</file>
         <file>res/rm-core3.png</file>
+        <file>res/Coil8r.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
