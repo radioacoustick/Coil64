@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1195</width>
-    <height>778</height>
+    <width>1579</width>
+    <height>875</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -56,6 +56,20 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_checkMLWinding">
+        <item>
+         <property name="text">
+          <string>Regular winding</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Orthocyclic winding</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>
@@ -282,6 +296,18 @@
        </property>
        <item>
         <widget class="QTabWidget" name="tabWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
@@ -432,6 +458,12 @@
              </item>
              <item row="4" column="0">
               <widget class="QLabel" name="label_5">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="text">
                 <string notr="true">Winding pitch</string>
                </property>
@@ -482,6 +514,12 @@
              </item>
              <item row="3" column="0">
               <widget class="QLabel" name="label_4">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>180</width>
@@ -574,6 +612,18 @@
              </item>
              <item row="5" column="0">
               <widget class="QLabel" name="label_6">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>16777215</height>
+                </size>
+               </property>
                <property name="text">
                 <string notr="true">TextLabel</string>
                </property>
@@ -746,6 +796,12 @@
           </layout>
          </widget>
          <widget class="QWidget" name="tab_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <attribute name="title">
            <string>Inductance</string>
           </attribute>
@@ -1126,6 +1182,12 @@
           </layout>
          </widget>
          <widget class="QWidget" name="tab_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <attribute name="title">
            <string>LC circuit</string>
           </attribute>
@@ -1800,7 +1862,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1195</width>
+     <width>1579</width>
      <height>20</height>
     </rect>
    </property>

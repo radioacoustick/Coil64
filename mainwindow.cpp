@@ -40,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mui->groupBox_6->setVisible(false);
     mui->groupBox_7->setVisible(false);
     mui->comboBox_checkPCB->setVisible(false);
+    mui->comboBox_checkMLWinding->setVisible(false);
     data = new _Data;
     myOpt = new _OptionStruct;
     dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
@@ -73,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt->textFontSize = settings->value("TextFontSize", QFontInfo(QFont()).pixelSize()).toInt();
     myOpt->isEnglishLocale = settings->value( "isEnglishLocale", false ).toBool();
     myOpt->layoutPCBcoil = settings->value("layoutPCBcoil",true).toInt();
+    myOpt->windingKind = settings->value("windingKind",true).toInt();
     myOpt->isWindingLengthOneLayerInit = settings->value("isWindingLengthOneLayerInit",false).toBool();
     myOpt->isSaveOnExit = settings->value("isSaveOnExit",true).toBool();
     myOpt->styleGUI = settings->value("styleGUI",0).toInt();
@@ -499,6 +501,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue("TextFontFamily", myOpt->textFontFamily);
         settings->setValue("TextFontSize", myOpt->textFontSize);
         settings->setValue("isEnglishLocale", myOpt->isEnglishLocale);
+        settings->setValue("windingKind", myOpt->windingKind);
         settings->setValue("layoutPCBcoil", myOpt->layoutPCBcoil);
         settings->setValue("isWindingLengthOneLayerInit", myOpt->isWindingLengthOneLayerInit);
         settings->setValue("isSaveOnExit", myOpt->isSaveOnExit);
@@ -828,6 +831,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(true);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -866,6 +870,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -917,6 +922,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -957,6 +963,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -1010,6 +1017,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(true);
             mui->toolButton_FAQ->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_03->setText(tr("AWG"));
@@ -1050,6 +1058,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
                 mui->lineEdit_4->setText(roundTo(data->k / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             else
                 on_lineEdit_3_editingFinished();
+            mui->comboBox_checkMLWinding->setCurrentIndex(myOpt->windingKind);
+            on_comboBox_checkMLWinding_activated(myOpt->windingKind);
             break;
         }
         case _Multilayer_p:{
@@ -1058,6 +1068,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_03->setText(tr("AWG"));
@@ -1110,6 +1121,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04->setText(tr("AWG"));
@@ -1161,6 +1173,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
@@ -1196,6 +1209,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04->setText(tr("AWG"));
@@ -1245,6 +1259,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(true);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(true);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -1275,6 +1290,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_6->setVisible(false);
             mui->groupBox_onelayer_init->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -1345,6 +1361,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -1397,6 +1414,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -1451,6 +1469,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -1494,6 +1513,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(true);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -1554,6 +1574,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->radioButton_7->setText(tr("Thickness of the coil") + " (c)");
             mui->radioButton_8->setText(tr("Resistance of the coil") + " (Rdc)");
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(true);
             mui->toolButton_FAQ->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04_2->setText(tr("AWG"));
@@ -1589,6 +1610,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_3_2->setText(roundTo(data->c / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             on_radioButton_6_toggled(mui->radioButton_6->isChecked());
             mui->lineEdit_5_2->setText(roundTo(data->k / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->comboBox_checkMLWinding->setCurrentIndex(myOpt->windingKind);
+            on_comboBox_checkMLWinding_activated(myOpt->windingKind);
             break;
         }
         case _Multilayer_p:{
@@ -1596,6 +1619,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_04_2->setText(tr("AWG"));
@@ -1654,6 +1678,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->radioButton_6->setText(tr("Number of turns of the coil") + " (N)");
             mui->radioButton_7->setText(tr("Thickness of the coil") + " (c)");
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_05_2->setText(tr("AWG"));
@@ -1710,6 +1735,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -1749,6 +1775,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -1788,6 +1815,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(true);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->lineEdit_3_2->setVisible(true);
             mui->label_3_2->setVisible(true);
@@ -1820,6 +1848,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->groupBox_2->setVisible(false);
             mui->groupBox_7->setVisible(false);
             mui->comboBox_checkPCB->setVisible(false);
+            mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             if (myOpt->isAWG){
                 mui->label_03_2->setText(tr("AWG"));
@@ -2154,6 +2183,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     case 2:{
         mui->groupBox_List1->setVisible(false);
         mui->comboBox_checkPCB->setVisible(false);
+        mui->comboBox_checkMLWinding->setVisible(false);
         mui->toolButton_FAQ->setVisible(false);
         mui->image->setPixmap(QPixmap(":/images/res/LC.png"));
         mui->lineEdit_1_3->setFocus();
@@ -3438,13 +3468,14 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), "k < d");
                     return;
                 }
+                int windingKind = mui->comboBox_checkMLWinding->currentIndex();
                 data->inductance = I;
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
                 mui->lineEdit_1->setText(loc.toString(D / myOpt->dwLengthMultiplier));
                 mui->lineEdit_2->setText(loc.toString(l / myOpt->dwLengthMultiplier));
                 if (!myOpt->isAWG) mui->lineEdit_3->setText(roundTo(d / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
                 mui->lineEdit_4->setText(loc.toString(k / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, D, d, k, l, 0, 0, 0 );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, D, d, k, l, 0, 0, windingKind );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerN_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -3952,16 +3983,17 @@ void MainWindow::on_pushButton_Calculate_clicked()
                         mui->lineEdit_4_2->setText(loc.toString(Rm));
                 }
                 mui->lineEdit_5_2->setText(loc.toString(k / myOpt->dwLengthMultiplier));
+                int windingKind = mui->comboBox_checkMLWinding->currentIndex();
                 if (mui->radioButton_6->isChecked()){
-                    MThread_calculate *thread= new MThread_calculate( FormCoil, tab, D, l, N, d, k, 0, 0, 0 );
+                    MThread_calculate *thread= new MThread_calculate( FormCoil, tab, D, l, N, d, k, 0, 0, windingKind );
                     connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerI_Result(_CoilResult)));
                     thread->start();
                 } else if (mui->radioButton_7->isChecked()){
-                    MThread_calculate *thread= new MThread_calculate( FormCoil, tab, D, l, c, d, k, 0, 1, 0 );
+                    MThread_calculate *thread= new MThread_calculate( FormCoil, tab, D, l, c, d, k, 0, 1, windingKind );
                     connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerI_Result(_CoilResult)));
                     thread->start();
                 } else if (mui->radioButton_8->isChecked()){
-                    MThread_calculate *thread= new MThread_calculate( FormCoil, tab, D, l, c, Rm, k, 0, 2, 0 );
+                    MThread_calculate *thread= new MThread_calculate( FormCoil, tab, D, l, c, Rm, k, 0, 2, windingKind );
                     connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_multilayerI_Result(_CoilResult)));
                     thread->start();
                 }
@@ -4657,14 +4689,18 @@ void MainWindow::get_multilayerN_Result(_CoilResult result){
         Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     }
     if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil4.png\">";
+        if (myOpt->windingKind == 0)
+            Input += "<img src=\":/images/res/Coil4.png\">";
+        else
+            Input += "<img src=\":/images/res/Coil4o.png\">";
     }
     Input += "<p><u>" + tr("Input") + ":</u><br/>";
     Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
     Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
     Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
     Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
-    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "</p>";
+    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
+    Input += mui->comboBox_checkMLWinding->currentText() + "</p>";
     c.insertHtml(Input);
     QString Result = "<hr>";
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
@@ -5345,14 +5381,21 @@ void MainWindow::get_multilayerI_Result(_CoilResult result){
         Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
     }
     if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil4.png\">";
+        if (myOpt->windingKind == 0)
+            Input += "<img src=\":/images/res/Coil4.png\">";
+        else
+            Input += "<img src=\":/images/res/Coil4o.png\">";
     }
     Input += "<p><u>" + tr("Input") + ":</u><br/>";
     Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
     Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
+    if (mui->radioButton_6->isChecked())
+        Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + "<br/>";
+    else
+        Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
     Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
-    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "</p>";
+    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "<br/>";
+    Input += mui->comboBox_checkMLWinding->currentText() + "</p>";
     c.insertHtml(Input);
     QString Result = "<hr>";
     Result += "<p><u>" + tr("Result") + ":</u><br/>";
@@ -5980,6 +6023,18 @@ void MainWindow::on_comboBox_checkPCB_activated(int index)
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_comboBox_checkMLWinding_activated(int index)
+{
+    if (index == 0){
+        mui->image->setPixmap(QPixmap(":/images/res/Coil4.png"));
+        myOpt->windingKind = 0;
+    }
+    if (index == 1) {
+        mui->image->setPixmap(QPixmap(":/images/res/Coil4o.png"));
+        myOpt->windingKind = 1;
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
 {
     QString url = arg1.toDisplayString();
@@ -6023,3 +6078,4 @@ void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
         }
     }
 }
+

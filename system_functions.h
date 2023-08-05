@@ -75,6 +75,7 @@ enum _StyleGUI {
       bool isSaveOnExit;
       bool isAdditionalResult;
       int layoutPCBcoil;
+      int windingKind;
       bool isWindingLengthOneLayerInit;
       bool isLastShowingFirst;
       int styleGUI;

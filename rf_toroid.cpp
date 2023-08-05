@@ -346,13 +346,16 @@ void RF_Toroid::on_lineEdit_mu2_editingFinished()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RF_Toroid::on_pushButton_calculate_clicked()
 {
-    bool ok1, ok2, ok3, ok4, ok5;
-    double m1 = loc.toDouble(ui->lineEdit_mu1->text(), &ok1);
-    double m2 = loc.toDouble(ui->lineEdit_mu2->text(), &ok2);
-    od = loc.toDouble(ui->lineEdit_od->text(), &ok3) * fOpt->dwLengthMultiplier;;
-    id = loc.toDouble(ui->lineEdit_id->text(), &ok4) * fOpt->dwLengthMultiplier;;
-    h = loc.toDouble(ui->lineEdit_h->text(), &ok5) * fOpt->dwLengthMultiplier;;
-    if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
+    bool ok1, ok2, ok3, ok4, ok5, ok6, ok7, ok8;
+    f = loc.toDouble(ui->lineEdit_f->text(), &ok1) * fOpt->dwFrequencyMultiplier;
+    N = loc.toDouble(ui->lineEdit_N->text(), &ok2);
+    d = loc.toDouble(ui->lineEdit_d->text(), &ok3) * fOpt->dwLengthMultiplier;
+    double m1 = loc.toDouble(ui->lineEdit_mu1->text(), &ok4);
+    double m2 = loc.toDouble(ui->lineEdit_mu2->text(), &ok5);
+    od = loc.toDouble(ui->lineEdit_od->text(), &ok6) * fOpt->dwLengthMultiplier;;
+    id = loc.toDouble(ui->lineEdit_id->text(), &ok7) * fOpt->dwLengthMultiplier;;
+    h = loc.toDouble(ui->lineEdit_h->text(), &ok8) * fOpt->dwLengthMultiplier;;
+    if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5) || (!ok6) || (!ok7) || (!ok8)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         ui->label_result->setText("");
         return;
@@ -362,7 +365,7 @@ void RF_Toroid::on_pushButton_calculate_clicked()
         ui->label_result->setText("");
         return;
     }
-    if ((f > 0) && (N > 0) && (od > 0) && (id > 0) && (h > 0) && (m1 > 0)){
+    if ((f > 0) && (N > 0) && (d > 0) && (od > 0) && (id > 0) && (h > 0) && (m1 > 0)){
         double freq = f * 1e6;
         double iR = id / 2;
         double oR = od / 2;

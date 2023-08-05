@@ -91,6 +91,7 @@ enum _FormCoil
     enum _Mprop {Rho,Chi,Alpha,Dencity};
 
     const double mu0 = 4e-7 * M_PI;
+    const double dens = 0.5 * sqrt(3);
     double const mtrl[4][4] = {{ 2.824e-8, 2.21e-5, 0.0039, 2.69808 }, { 1.7241e-8, - 9.56e-6, 0.00393, 8.96 },
                                { 1.59e-8, - 2.63e-5, 0.0038, 10.5 }, {1.15e-7, 2.4e-6, 0.0042, 7.29}};
     double const E24[25] = {1.0,1.1,1.2,1.3,1.5,1.6,1.8,2.0,2.2,2.4,2.7,3.0,3.3,3.6,3.9,4.3,4.7,5.1,5.6,6.2,6.8,7.5,8.2,9.1,10.0};
@@ -100,7 +101,7 @@ enum _FormCoil
     double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *result, unsigned int accuracy); //get Inductance and wire diameter for One-layer coil by winding length
     double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double I, double *lw, unsigned int accuracy); //get Number of turns for One-layer coil with round wire
     double getOneLayerN_Poligonal(double I, double D, double dw, double  h, double n, _CoilResult *result, unsigned int accuracy);
-    void getMultiLayerN(double I, double D, double dw, double k, double lk, double gap, long Ng, _CoilResult *result); //get Number of turns for Multi-layer coil
+    void getMultiLayerN(double I, double D, double dw, double k, double lk, double gap, long Ng, _CoilResult *result, bool isOrthocyclic); //get Number of turns for Multi-layer coil
     void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result);
     void getMultilayerN_Foil(double Dk, double w, double t, double ins, double I, _CoilResult *result);
     void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, double Ch, _CoilResult *result); //get Number of turns for Ferrite toroid coil
@@ -111,9 +112,9 @@ enum _FormCoil
     double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy); //get Inductance for One-layer coil with round wire
     double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw, unsigned int accuracy); //get Inductance for One-layer coil with round wire
     void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result, unsigned int accuracy);
-    void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result); //get Inductance for Multi-layer coil
-    void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result); //get Inductance for Multi-layer coil
-    void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result);
+    void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result, bool isOrthocyclic); //get Inductance for Multi-layer coil
+    void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic); //get Inductance for Multi-layer coil
+    void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result, bool isOrthocyclic);
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result);
     void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, double dw, double k, _CoilResult *result);
     void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result);

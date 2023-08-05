@@ -54,6 +54,7 @@
         <file>res/rm-core2.png</file>
         <file>res/rm-core3.png</file>
         <file>res/Coil8r.png</file>
+        <file>res/Coil4o.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>

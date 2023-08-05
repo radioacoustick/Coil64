@@ -79,12 +79,13 @@ void MThread_calculate::run(){
             }
             case _Multilayer:{
                 //arg: I, D, d, k, lk
-                getMultiLayerN(arg1, arg2, arg3, arg4, arg5, 0, -1, &result);
+                bool isOrthocyclic = !!arg8;
+                getMultiLayerN(arg1, arg2, arg3, arg4, arg5, 0, -1, &result, isOrthocyclic);
                 break;
             }
             case _Multilayer_p:{
                 //arg: I, D, d, k, lk, gap, ng
-                getMultiLayerN(arg1, arg2, arg3, arg4, arg5, arg6, arg7, &result);
+                getMultiLayerN(arg1, arg2, arg3, arg4, arg5, arg6, arg7, &result, false);
                 break;
             }
             case _Multilayer_r:{
@@ -153,19 +154,20 @@ void MThread_calculate::run(){
             }
             case _Multilayer:{
                 //arg: D, l, c, d, k, 0, 0; D, l, c, Rm, k, 0, 1;
+                bool isOrthocyclic = !!arg8;
                 if (arg7 == 0){
-                    getMultiLayerI_byN(arg1, arg2, arg4, arg5, arg3, &result);
+                    getMultiLayerI_byN(arg1, arg2, arg4, arg5, arg3, &result, isOrthocyclic);
                 } else if (arg7 == 1){
-                    getMultiLayerI(arg1, arg2, arg4, arg5, arg3, 0, -1, &result);
+                    getMultiLayerI(arg1, arg2, arg4, arg5, arg3, 0, -1, &result, isOrthocyclic);
                 } else if (arg7 == 2){
-                    getMultiLayerI_fromResistance(arg1, arg2, arg3, arg5, arg4, &result);
+                    getMultiLayerI_fromResistance(arg1, arg2, arg3, arg5, arg4, &result, isOrthocyclic);
                 }
                 break;
             }
             case _Multilayer_p:{
                 //arg: D, l, c, d, k, g, Ng
                 //double D, double lk, double dw, double k, double b, double gap, long Ng, _CoilResult *result
-                getMultiLayerI(arg1, arg2, arg4, arg5, arg3, arg6, arg7, &result);
+                getMultiLayerI(arg1, arg2, arg4, arg5, arg3, arg6, arg7, &result, false);
                 break;
             }
             case _Multilayer_r:{
