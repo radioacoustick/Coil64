@@ -86,6 +86,7 @@
         <file>res/flags/uk.png</file>
         <file>res/flags/lt.png</file>
         <file>res/flags/et.png</file>
+        <file>res/flags/vi.png</file>
     </qresource>
     <qresource prefix="/menu_ico">
         <file>res/icons8-add-32.png</file>
@@ -174,6 +175,7 @@
         <file>res/translations/Coil64_uk.qm</file>
         <file>res/translations/Coil64_lt.qm</file>
         <file>res/translations/Coil64_et.qm</file>
+        <file>res/translations/Coil64_vi.qm</file>
     </qresource>
     <qresource prefix="/stylesheet">
         <file>res/DarkStyle.qss</file>

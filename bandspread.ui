@@ -395,14 +395,14 @@
               <item row="1" column="0">
                <widget class="QLabel" name="label_cp">
                 <property name="text">
-                 <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Padder Capacitor C&lt;span style=&quot; vertical-align:sub;&quot;&gt;P&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string notr="true">Serial Capacitor C2</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="0">
                <widget class="QLabel" name="label_ct">
                 <property name="text">
-                 <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Trimmer Capacitor C&lt;span style=&quot; vertical-align:sub;&quot;&gt;T&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string notr="true">Parallel capacitor C1</string>
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>
@@ -612,7 +612,7 @@
               <item row="1" column="0">
                <widget class="QLabel" name="label_cp_r">
                 <property name="text">
-                 <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Padder Capacitor C&lt;span style=&quot; vertical-align:sub;&quot;&gt;P&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string notr="true">Serial Capacitor C2</string>
                 </property>
                </widget>
               </item>
@@ -737,7 +737,7 @@
               <item row="0" column="0">
                <widget class="QLabel" name="label_ct_r">
                 <property name="text">
-                 <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Trimmer Capacitor C&lt;span style=&quot; vertical-align:sub;&quot;&gt;T&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string notr="true">Parallel capacitor C1</string>
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>

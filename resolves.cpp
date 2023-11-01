@@ -95,6 +95,10 @@ double find_actual_spiral_length(int N, double Din, double k) {
     return (Lt - Lin);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double find_Helix_turn_length(double r, double p){
+    return sqrt(pow(2 * M_PI * r, 2) + p * p);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double rosaKm(double n){
     //Rosa's round wire mutual inductance correction
     double n2 = n * n;
@@ -501,11 +505,13 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
         gap = 0;
     }
     double Ltotal = 0; // initialize variable of total self-inductance
-    int nLayer = 1;
+    int nLayer = 0;
     double lw = 0;
     double r0 = (D + k) / 2;
     unsigned long int N = 0;
     int Nl = (int) floor(lk / k); // number of turns in layer
+    if (isOrthocyclic)
+        Nl = (int) floor((lk - 0.5 * k) / k);
     double g = exp(-0.25) * dw / 2;
     while (Ltotal < I) // start calculation loop increasing N-turns to reach requiring inductance (I)
     {
@@ -519,7 +525,7 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
         }
         double nx; // x-offset of turn
         if ((isOrthocyclic) && ((nLayer % 2) != 0)){
-           nx = Nc * k + dens * k;
+           nx = Nc * k + 0.5 * k;
         } else
             nx = Nc * k;
         double ny; // y-offset of turn
@@ -528,7 +534,7 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
         } else
             ny = r0 + k * nLayer + n_g;
         double Lns = Mut(ny, ny, g, 0); // self inductance of current turn
-        lw = lw + 2 * M_PI * ny; // length of wire with the current turn
+        lw = lw + find_Helix_turn_length(ny, k); // length of wire with the current turn
         double M = 0; // start calculation loop of the mutual inductance - current turn (N) + all another turns (j)
         if (N > 1) {
             int j;
@@ -537,7 +543,7 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
 
                 double jx; // x-offset of turn
                 if ((isOrthocyclic) && ((nLayer % 2) != 0)){
-                   jx = Jc * k + dens * k;
+                   jx = Jc * k + 0.5 * k;
                 } else
                     jx = Jc * k;
                 int jLayer = (int) floor((j - 2) / Nl);
@@ -561,22 +567,339 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
     double Resistivity = mtrl[Cu][Rho]*1e2;
     double R = (Resistivity * lw * 4) / (M_PI * dw * dw); // resistance of the wire
     double lw0 = lw / 100;
-    double NLayer = nLayer + 1;
     double NumberInterLayer = (double) floor(nLayer / Ng);
     double c;
     if (isOrthocyclic)
-        c = NLayer * dens * k * 10 + NumberInterLayer * gap * 10;
+        c = (nLayer * dens * k + k + NumberInterLayer * gap) *10;
     else
-        c = NLayer * k * 10 + NumberInterLayer * gap * 10;
+        c = (nLayer * k  + NumberInterLayer * gap) * 10;
     result->N = R;
     result->sec = lw0;
-    result->thd = NLayer;
+    result->thd = nLayer + 1;
     result->fourth = c;
     result->five = NumberInterLayer;
     result->six = N;
     // return: N(turns); R(resistance) Ohm; lw0(length of wire) m;
     // NLayer (Number of layer); c (Winding thickness) mm
     // NumberInterLayer (Number of inter-layers);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result, bool isOrthocyclic)
+{
+    D = D / 10;
+    lk = lk / 10;
+    dw = dw / 10;
+    k = k / 10;
+    int Nl, Nc, Jc, nLayer = 0, jLayer;
+    double nx, ny, jx, jy, Lns, M;
+    double Ltotal = 0; // initialize variable of total self-inductance
+    double lw = 0;
+    double r0 = (D + k) / 2;
+    Nl = (int) floor(lk / k);
+    if (isOrthocyclic)
+        Nl = (int) floor((lk - 0.5 * k) / k);
+    double g = exp(-0.25) * dw / 2;
+    for (int w = 1; w < N + 1; w++){
+        Nc = (w - 1) % Nl;
+        nLayer = (int) floor((w - 1) / Nl);
+        if ((isOrthocyclic) && ((nLayer % 2) != 0)){
+            nx = Nc * k + 0.5 * k;
+        } else
+            nx = Nc * k;
+        if (isOrthocyclic){
+            ny = r0 + dens * k * nLayer;
+        } else
+            ny = r0 + k * nLayer;
+        Lns = Mut(ny, ny, g, 0);
+        // self inductance of current turn
+        lw = lw + find_Helix_turn_length(ny, k);
+        M = 0;
+        if (w > 1) {
+            for (int j = w; j >= 2; j--) {
+                Jc = (j - 2) % Nl;
+                if ((isOrthocyclic) && ((nLayer % 2) != 0)){
+                    jx = Jc * k + 0.5 * k;
+                } else
+                    jx = Jc * k;
+                jLayer = (int) floor((j - 2) / Nl);
+                if (isOrthocyclic){
+                    jy = r0 + dens * k * jLayer;
+                } else
+                    jy = r0 + k * jLayer;
+                M = M + 2 * Mut(ny, jy, nx - jx, g);
+            }
+        }
+        Ltotal += Lns + M;
+    }
+    double Resistivity = mtrl[Cu][Rho]*1e2;
+    double Rdc = (Resistivity * lw * 4) / (M_PI * dw * dw);
+    double thickness = 0.0;
+    if (isOrthocyclic)
+        thickness = (nLayer * dens * k + k) * 10;
+    else
+        thickness = (nLayer + 1) * k * 10;
+    result->N = Ltotal; //inductance value
+    result->sec = nLayer + 1; //number of layers
+    result->thd = lw * 0.01; //length of wire
+    result->fourth = Rdc; //resistance to DC
+    result->five = thickness; //coil thickness
+
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic){
+    double bTmp, nTmp, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, n_g = 0, jg = 0, ind1, ind2, N1, N2;
+    int n, Nl, j, Nc, Jc, nLayer, jLayer;
+    ind1 = 0;
+    D = D / 10;
+    lk = lk / 10;
+    c = c / 10;
+    nTmp = 0;
+    bTmp = 0;
+    dw = dw / 10;
+    k = k / 10;
+    gap = gap / 10;
+    if (Ng == -1) {
+        gap = 0;
+    }
+    Ltotal = 0; // initialize variable of total self-inductance
+    lw = 0;
+    r0 = (D + k) / 2;
+    n = 0;
+    Nl = (int) floor(lk / k);
+    if (isOrthocyclic)
+        Nl = (int) floor((lk - 0.5 * k) / k);
+    g = exp(-0.25) * dw / 2;
+    while (bTmp < c) {
+        n++;
+        Nc = (n - 1) % Nl;
+        nLayer = (int) floor((n - 1) / Nl);
+        if (((nLayer % Ng) == 0) && (nLayer > 0)) {
+            n_g = gap;
+        } else {
+            n_g = 0;
+        }
+        if ((isOrthocyclic) && ((nLayer % 2) != 0)){
+            nx = Nc * k + 0.5 * k;
+        } else
+            nx = Nc * k;
+        if (isOrthocyclic){
+            ny = r0 + dens * k * nLayer + n_g;
+        } else
+            ny = r0 + k * nLayer + n_g;
+        Lns = Mut(ny, ny, g, 0);
+        // self inductance of current turn
+        lw = lw + find_Helix_turn_length(ny, k);
+        M = 0;
+        if (n > 1) {
+            for (j = n; j >= 2; j--) {
+                Jc = (j - 2) % Nl;
+                if ((isOrthocyclic) && ((nLayer % 2) != 0)){
+                    jx = Jc * k + 0.5 * k;
+                } else
+                    jx = Jc * k;
+                jLayer = (int) floor((j - 2) / Nl);
+                if (((jLayer % Ng) == 0) && (jLayer > 0)) {
+                    jg = gap;
+                } else {
+                    jg = 0;
+                }
+                if (isOrthocyclic){
+                    jy = r0 + dens * k * jLayer + jg;
+                } else
+                    jy = r0 + k * jLayer + jg;
+                M = M + 2 * Mut(ny, jy, nx - jx, g);
+            }
+        }
+        Ltotal += Lns + M;
+        if (nTmp < c - k) {
+            if (isOrthocyclic)
+                nTmp = (nLayer * dens * k + k);
+            else
+                nTmp = (nLayer + 1) * k;
+            ind1 = Ltotal;
+        }
+        if (isOrthocyclic)
+            bTmp = ((nLayer + 1) * dens * k);
+        else
+            bTmp = nLayer * k;
+    }
+    N1 = n - Nl;
+    N2 = n + Nl;
+    ind2 = Ltotal;
+    result->N = ind1;
+    result->sec = ind2;
+    result->thd = N1;
+    result->fourth = N2;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result, bool isOrthocyclic){
+
+    double dw, bTmp, tmpR, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, N1, N2;
+    int n, Nl, j, Nc, Jc, nLayer = 0, jLayer;
+    double aWire[67][5] = {{0.06, 0.075, 0.09, 0.085, 0.09},
+                               {0.063, 0.078, 0.09, 0.085, 0.09}, {0.07, 0.084, 0.092, 0.092, 0.1}, {0.071, 0.088, 0.095, 0.095, 0.1},
+                               {0.08, 0.095, 0.105, 0.105, 0.11}, {0.09, 0.105, 0.12, 0.115, 0.12}, {0.1, 0.122, 0.13, 0.125, 0.13},
+                               {0.112, 0.134, 0.14, 0.125, 0.14}, {0.12, 0.144, 0.15, 0.145, 0.15}, {0.125, 0.149, 0.155, 0.15, 0.155},
+                               {0.13, 0.155, 0.16, 0.155, 0.16}, {0.14, 0.165, 0.17, 0.165, 0.17}, {0.15, 0.176, 0.19, 0.18, 0.19},
+                               {0.16, 0.187, 0.2, 0.19, 0.2}, {0.17, 0.197, 0.21, 0.2, 0.21}, {0.18, 0.21, 0.22, 0.21, 0.22},
+                               {0.19, 0.22, 0.23, 0.22, 0.23}, {0.2, 0.23, 0.24, 0.23, 0.24}, {0.21, 0.24, 0.25, 0.25, 0.25},
+                               {0.224, 0.256, 0.27, 0.26, 0.27}, {0.236, 0.26, 0.285, 0.27, 0.28}, {0.25, 0.284, 0.3, 0.275, 0.3},
+                               {0.265, 0.305, 0.315, 0.305, 0.31}, {0.28, 0.315, 0.33, 0.315, 0.33}, {0.3, 0.34, 0.35, 0.34, 0.34},
+                               {0.315, 0.35, 0.365, 0.352, 0.36}, {0.335, 0.375, 0.385, 0.375, 0.38}, {0.355, 0.395, 0.414, 0.395, 0.41},
+                               {0.38, 0.42, 0.44, 0.42, 0.44}, {0.4, 0.44, 0.46, 0.442, 0.46}, {0.425, 0.465, 0.485, 0.47, 0.47},
+                               {0.45, 0.49, 0.51, 0.495, 0.5}, {0.475, 0.525, 0.545, 0.495, 0.53}, {0.5, 0.55, 0.57, 0.55, 0.55},
+                               {0.53, 0.58, 0.6, 0.578, 0.6}, {0.56, 0.61, 0.63, 0.61, 0.62}, {0.6, 0.65, 0.67, 0.65, 0.66},
+                               {0.63, 0.68, 0.7, 0.68, 0.69}, {0.67, 0.72, 0.75, 0.72, 0.75}, {0.71, 0.76, 0.79, 0.77, 0.78},
+                               {0.75, 0.81, 0.84, 0.81, 0.83}, {0.8, 0.86, 0.89, 0.86, 0.89}, {0.85, 0.91, 0.94, 0.91, 0.94},
+                               {0.9, 0.96, 0.99, 0.96, 0.99}, {0.93, 0.99, 1.02, 0.99, 1.02}, {0.95, 1.01, 1.04, 1.02, 1.04},
+                               {1.0, 1.07, 1.1, 1.07, 1.11}, {1.06, 1.13, 1.16, 1.14, 1.16}, {1.08, 1.16, 1.19, 1.16, 1.19},
+                               {1.12, 1.19, 1.22, 1.2, 1.23}, {1.18, 1.26, 1.28, 1.26, 1.26}, {1.25, 1.33, 1.35, 1.33, 1.36},
+                               {1.32, 1.4, 1.42, 1.4, 1.42}, {1.4, 1.48, 1.51, 1.48, 1.51}, {1.45, 1.53, 1.56, 1.53, 1.56},
+                               {1.5, 1.58, 1.61, 1.58, 1.61}, {1.56, 1.63, 1.67, 1.64, 1.67}, {1.6, 1.68, 1.71, 1.68, 1.71},
+                               {1.7, 1.78, 1.81, 1.78, 1.81}, {1.74, 1.82, 1.85, 1.82, 1.85}, {1.8, 1.89, 1.92, 1.89, 1.92},
+                               {1.9, 1.99, 2.02, 1.99, 2.02}, {2.0, 2.1, 2.12, 2.1, 2.12}, {2.12, 2.21, 2.24, 2.22, 2.24},
+                               {2.24, 2.34, 2.46, 2.34, 2.46}, {2.36, 2.46, 2.48, 2.36, 2.48}, {2.5, 2.6, 2.63, 2.6, 2.62}};
+
+    D = D / 10;
+    lk = lk / 10;
+    k = k / 10;
+    c = c /10;
+    bTmp = 0;
+    for (int z = 0; z < 67; ++z){
+        dw = aWire[z][0] / 10;
+        Ltotal = 0;
+        // initialize variable of total self-inductance
+        lw = 0;
+        r0 = (D + k) / 2;
+        n = 0;
+        Nl = (int) floor(lk / k);
+        if (isOrthocyclic)
+            Nl = (int) floor((lk - 0.5 * k) / k);
+        g = exp(-0.25) * dw / 2;
+        tmpR = 0;
+        while (tmpR <= Rm){
+            n++;
+            Nc = (n - 1) %  Nl;
+            nLayer = (int) floor((n - 1) / Nl);
+            if ((isOrthocyclic) && ((nLayer % 2) != 0)){
+                nx = Nc * k + 0.5 * k;
+            } else
+                nx = Nc * k;
+            if (isOrthocyclic){
+                ny = r0 + dens * k * nLayer;
+            } else
+                ny = r0 + k * nLayer;
+            Lns = Mut(ny, ny, g, 0);
+            // self inductance of current turn
+            lw +=find_Helix_turn_length(ny, k);
+            M = 0;
+            if (n > 1){
+                for (j = n; j >= 2; j--){
+                    Jc = (j - 2) % Nl;
+                    if ((isOrthocyclic) && ((nLayer % 2) != 0)){
+                        jx = Jc * k + 0.5 * k;
+                    } else
+                        jx = Jc * k;
+                    jLayer = (int) floor((j - 2) / Nl);
+                    if (isOrthocyclic){
+                        jy = r0 + dens * k * jLayer;
+                    } else
+                        jy = r0 + k * jLayer;
+                    M = M + 2 * Mut(ny, jy, nx - jx, g);
+                }
+            }
+            Ltotal += Lns + M;
+            double Resistivity = mtrl[Cu][Rho] * 1e2;
+            tmpR = (Resistivity * lw * 4) / (M_PI * dw * dw);
+        }
+        if (isOrthocyclic)
+            bTmp = (nLayer * dens * k + k);
+        else
+            bTmp = (nLayer + 1) * k;
+        if (bTmp > (c - k))
+            break;
+        else
+            result->N = Ltotal;
+    }
+    N1 = n - Nl;
+    N2 = n + Nl;
+    result->sec = Ltotal;
+    result->thd = N1;
+    result->fourth = N2;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result){
+
+    double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd,
+            Msub, lw, Km, Ks, Lcor, cTmp = 0, nTmp = 0, ind1 = 0, ind2, N1, N2;
+    int n, Nc, Nl, Jc, nLayer, jLayer;
+
+    a = a / 10;
+    b = b / 10;
+    l = l / 10;
+    c = c / 10;
+    dw = dw / 10;
+    k = k / 10;
+    n = 0;
+    Ltotal = 0;
+    a0 = a + k;
+    b0 = b + k;
+    lw = 0;
+    nLayer = 0;
+    Nl = floor(l / k); // Number of turns in layer
+    while (cTmp < (c + k)) {
+        n++;
+        Nc = (n - 1) % Nl; // Position of the turn on x
+        nLayer = floor((n - 1) / Nl); // Position of the turn on y
+        nx = Nc * k; // x-offset of current turn
+        ny = nLayer * k; // y-offset of current turn
+        lengthNa = a0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side a)
+        lengthNb = b0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side b)
+        lw = lw + 2 * (a0 + b0 + 2 * k * (nLayer));
+        Ladd = SelfInductanceStraightWire(lengthNa, dw) + SelfInductanceStraightWire(lengthNb, dw); // half of self-inductance of the current turn
+        Db = 2 * ny + a0; // distance to opposite cunductor of the same turn (side b)
+        Da = 2 * ny + b0; // distance to opposite cunductor of the same turn (side a)
+        Lsub = 2 * MutInductanceStraightWire(lengthNa, lengthNa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthNb, Db);
+        // half mutual inductance with opposite conductor of current turn
+        Madd = 0;
+        Msub = 0;
+        if (n > 1){
+            for (int j = n; j >= 2; j--){
+                Jc = (j - 2) % Nl; // position of previous turn on x
+                jx = Jc * k; // x-offset of previous turn
+                jLayer = floor((j - 2) / Nl); // Position of the turn on y
+                jy = k * jLayer; // y-offset of previous turn
+                lengthJa = a0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side a)
+                lengthJb = b0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side b)
+                D = sqrt(pow(nx - jx, 2) + pow(ny - jy, 2)); // distance to in-phase straight conductor of previous turn
+                Madd = Madd + 2 * MutInductanceStraightWire(lengthNa, lengthJa, D) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, D);
+                // half mutual inductance with in-phase conductor in previous turn
+                Db = sqrt(pow(nx - jx, 2) + pow(ny + jy + a0, 2));
+                // distance to opposite cunductor between the current turn and previous (side b)
+                Da = sqrt(pow(nx - jx, 2) + pow(ny + jy + b0, 2));
+                // distance to opposite cunductor between the current turn and previous (side a)
+                Msub = Msub + 2 * MutInductanceStraightWire(lengthNa, lengthJa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, Db);
+                // half mutual inductance with opposite conductor in previous turn
+            }
+        }
+        Ltotal += 2 * (Ladd - Lsub + Madd - Msub);
+        Ks = rosaKs(k / dw);
+        Km = rosaKm(n);
+        Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
+        Ltotal -= Lcor;
+        if (nTmp < c) {
+            nTmp = (nLayer + 1) * k;
+            ind1 = Ltotal;
+        }
+        cTmp = (nLayer + 1) * k;
+    }
+    N1 = n - Nl;
+    N2 = n + Nl;
+    ind2 = Ltotal;
+    result->N = ind1;
+    result->sec = ind2;
+    result->thd = N1;
+    result->fourth = N2;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result){
@@ -706,312 +1029,6 @@ void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, doubl
     result->sec = nLayer + 1; //number of layers
     result->thd = lw * 0.01; //length of wire
     result->five = (nLayer + 1) * k * 10; //coil thickness
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result, bool isOrthocyclic)
-{
-    D = D / 10;
-    lk = lk / 10;
-    dw = dw / 10;
-    k = k / 10;
-    int Nl, Nc, Jc, nLayer = 0, jLayer;
-    double nx, ny, jx, jy, Lns, M;
-    double Ltotal = 0; // initialize variable of total self-inductance
-    double lw = 0;
-    double r0 = (D + k) / 2;
-    Nl = (int) floor(lk / k);
-    double g = exp(-0.25) * dw / 2;
-    for (int w = 1; w < N + 1; w++){
-        Nc = (w - 1) % Nl;
-        nLayer = (int) floor((w - 1) / Nl);
-        if ((isOrthocyclic) && ((nLayer % 2) != 0)){
-            nx = Nc * k + dens * k;
-        } else
-            nx = Nc * k;
-        if (isOrthocyclic){
-            ny = r0 + dens * k * nLayer;
-        } else
-            ny = r0 + k * nLayer;
-        Lns = Mut(ny, ny, g, 0);
-        // self inductance of current turn
-        lw = lw + 2 * M_PI * ny;
-        M = 0;
-        if (w > 1) {
-            for (int j = w; j >= 2; j--) {
-                Jc = (j - 2) % Nl;
-                if ((isOrthocyclic) && ((nLayer % 2) != 0)){
-                    jx = Jc * k + dens * k;
-                } else
-                    jx = Jc * k;
-                jLayer = (int) floor((j - 2) / Nl);
-                if (isOrthocyclic){
-                    jy = r0 + dens * k * jLayer;
-                } else
-                    jy = r0 + k * jLayer;
-                M = M + 2 * Mut(ny, jy, nx - jx, g);
-            }
-        }
-        Ltotal += Lns + M;
-    }
-    double Resistivity = mtrl[Cu][Rho]*1e2;
-    double Rdc = (Resistivity * lw * 4) / (M_PI * dw * dw);
-    double thickness;
-    if (isOrthocyclic)
-        thickness = (nLayer + 1) * dens * k * 10;
-    else
-        thickness = (nLayer + 1) * k * 10;
-    result->N = Ltotal; //inductance value
-    result->sec = nLayer + 1; //number of layers
-    result->thd = lw * 0.01; //length of wire
-    result->fourth = Rdc; //resistance to DC
-    result->five = thickness; //coil thickness
-
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic){
-    double bTmp, nTmp, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, n_g = 0, jg = 0, ind1, ind2, N1, N2;
-    int n, Nl, j, Nc, Jc, nLayer, jLayer;
-    ind1 = 0;
-    D = D / 10;
-    lk = lk / 10;
-    c = c / 10;
-    nTmp = 0;
-    bTmp = 0;
-    dw = dw / 10;
-    k = k / 10;
-    gap = gap / 10;
-    if (Ng == -1) {
-        gap = 0;
-    }
-    Ltotal = 0; // initialize variable of total self-inductance
-    lw = 0;
-    r0 = (D + k) / 2;
-    n = 0;
-    Nl = (int) floor(lk / k);
-    g = exp(-0.25) * dw / 2;
-    while (bTmp < (c + k)) {
-        n++;
-        Nc = (n - 1) % Nl;
-        nLayer = (int) floor((n - 1) / Nl);
-        if (((nLayer % Ng) == 0) && (nLayer > 0)) {
-            n_g = gap;
-        } else {
-            n_g = 0;
-        }
-        if ((isOrthocyclic) && ((nLayer % 2) != 0)){
-            nx = Nc * k + dens * k;
-        } else
-            nx = Nc * k;
-        if (isOrthocyclic){
-            ny = r0 + dens * k * nLayer + n_g;
-        } else
-            ny = r0 + k * nLayer + n_g;
-        Lns = Mut(ny, ny, g, 0);
-        // self inductance of current turn
-        lw = lw + 2 * M_PI * ny;
-        M = 0;
-        if (n > 1) {
-            for (j = n; j >= 2; j--) {
-                Jc = (j - 2) % Nl;
-                if ((isOrthocyclic) && ((nLayer % 2) != 0)){
-                    jx = Jc * k + dens * k;
-                } else
-                    jx = Jc * k;
-                jLayer = (int) floor((j - 2) / Nl);
-                if (((jLayer % Ng) == 0) && (jLayer > 0)) {
-                    jg = gap;
-                } else {
-                    jg = 0;
-                }
-                if (isOrthocyclic){
-                    jy = r0 + dens * k * jLayer + jg;
-                } else
-                    jy = r0 + k * jLayer + jg;
-                M = M + 2 * Mut(ny, jy, nx - jx, g);
-            }
-        }
-        Ltotal += Lns + M;
-        if (nTmp < c) {
-            nTmp = (nLayer + 1) * k;
-            ind1 = Ltotal;
-        }
-        bTmp = (nLayer + 1) * k;
-    }
-    N1 = n - Nl;
-    N2 = n + Nl;
-    ind2 = Ltotal;
-    result->N = ind1;
-    result->sec = ind2;
-    result->thd = N1;
-    result->fourth = N2;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result){
-
-    double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd,
-            Msub, lw, Km, Ks, Lcor, cTmp = 0, nTmp = 0, ind1 = 0, ind2, N1, N2;
-    int n, Nc, Nl, Jc, nLayer, jLayer;
-
-    a = a / 10;
-    b = b / 10;
-    l = l / 10;
-    c = c / 10;
-    dw = dw / 10;
-    k = k / 10;
-    n = 0;
-    Ltotal = 0;
-    a0 = a + k;
-    b0 = b + k;
-    lw = 0;
-    nLayer = 0;
-    Nl = floor(l / k); // Number of turns in layer
-    while (cTmp < (c + k)) {
-        n++;
-        Nc = (n - 1) % Nl; // Position of the turn on x
-        nLayer = floor((n - 1) / Nl); // Position of the turn on y
-        nx = Nc * k; // x-offset of current turn
-        ny = nLayer * k; // y-offset of current turn
-        lengthNa = a0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side a)
-        lengthNb = b0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side b)
-        lw = lw + 2 * (a0 + b0 + 2 * k * (nLayer));
-        Ladd = SelfInductanceStraightWire(lengthNa, dw) + SelfInductanceStraightWire(lengthNb, dw); // half of self-inductance of the current turn
-        Db = 2 * ny + a0; // distance to opposite cunductor of the same turn (side b)
-        Da = 2 * ny + b0; // distance to opposite cunductor of the same turn (side a)
-        Lsub = 2 * MutInductanceStraightWire(lengthNa, lengthNa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthNb, Db);
-        // half mutual inductance with opposite conductor of current turn
-        Madd = 0;
-        Msub = 0;
-        if (n > 1){
-            for (int j = n; j >= 2; j--){
-                Jc = (j - 2) % Nl; // position of previous turn on x
-                jx = Jc * k; // x-offset of previous turn
-                jLayer = floor((j - 2) / Nl); // Position of the turn on y
-                jy = k * jLayer; // y-offset of previous turn
-                lengthJa = a0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side a)
-                lengthJb = b0 + 2 * k * (nLayer + 1); // lenght of straight conductor of previous turn (side b)
-                D = sqrt(pow(nx - jx, 2) + pow(ny - jy, 2)); // distance to in-phase straight conductor of previous turn
-                Madd = Madd + 2 * MutInductanceStraightWire(lengthNa, lengthJa, D) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, D);
-                // half mutual inductance with in-phase conductor in previous turn
-                Db = sqrt(pow(nx - jx, 2) + pow(ny + jy + a0, 2));
-                // distance to opposite cunductor between the current turn and previous (side b)
-                Da = sqrt(pow(nx - jx, 2) + pow(ny + jy + b0, 2));
-                // distance to opposite cunductor between the current turn and previous (side a)
-                Msub = Msub + 2 * MutInductanceStraightWire(lengthNa, lengthJa, Da) + 2 * MutInductanceStraightWire(lengthNb, lengthJb, Db);
-                // half mutual inductance with opposite conductor in previous turn
-            }
-        }
-        Ltotal += 2 * (Ladd - Lsub + Madd - Msub);
-        Ks = rosaKs(k / dw);
-        Km = rosaKm(n);
-        Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
-        Ltotal -= Lcor;
-        if (nTmp < c) {
-            nTmp = (nLayer + 1) * k;
-            ind1 = Ltotal;
-        }
-        cTmp = (nLayer + 1) * k;
-    }
-    N1 = n - Nl;
-    N2 = n + Nl;
-    ind2 = Ltotal;
-    result->N = ind1;
-    result->sec = ind2;
-    result->thd = N1;
-    result->fourth = N2;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result, bool isOrthocyclic){
-
-    double dw, bTmp, nTmp, tmpR, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, N1, N2;
-    int n, Nl, j, Nc, Jc, nLayer = 0, jLayer;
-    double aWire[67][5] = {{0.06, 0.075, 0.09, 0.085, 0.09},
-                               {0.063, 0.078, 0.09, 0.085, 0.09}, {0.07, 0.084, 0.092, 0.092, 0.1}, {0.071, 0.088, 0.095, 0.095, 0.1},
-                               {0.08, 0.095, 0.105, 0.105, 0.11}, {0.09, 0.105, 0.12, 0.115, 0.12}, {0.1, 0.122, 0.13, 0.125, 0.13},
-                               {0.112, 0.134, 0.14, 0.125, 0.14}, {0.12, 0.144, 0.15, 0.145, 0.15}, {0.125, 0.149, 0.155, 0.15, 0.155},
-                               {0.13, 0.155, 0.16, 0.155, 0.16}, {0.14, 0.165, 0.17, 0.165, 0.17}, {0.15, 0.176, 0.19, 0.18, 0.19},
-                               {0.16, 0.187, 0.2, 0.19, 0.2}, {0.17, 0.197, 0.21, 0.2, 0.21}, {0.18, 0.21, 0.22, 0.21, 0.22},
-                               {0.19, 0.22, 0.23, 0.22, 0.23}, {0.2, 0.23, 0.24, 0.23, 0.24}, {0.21, 0.24, 0.25, 0.25, 0.25},
-                               {0.224, 0.256, 0.27, 0.26, 0.27}, {0.236, 0.26, 0.285, 0.27, 0.28}, {0.25, 0.284, 0.3, 0.275, 0.3},
-                               {0.265, 0.305, 0.315, 0.305, 0.31}, {0.28, 0.315, 0.33, 0.315, 0.33}, {0.3, 0.34, 0.35, 0.34, 0.34},
-                               {0.315, 0.35, 0.365, 0.352, 0.36}, {0.335, 0.375, 0.385, 0.375, 0.38}, {0.355, 0.395, 0.414, 0.395, 0.41},
-                               {0.38, 0.42, 0.44, 0.42, 0.44}, {0.4, 0.44, 0.46, 0.442, 0.46}, {0.425, 0.465, 0.485, 0.47, 0.47},
-                               {0.45, 0.49, 0.51, 0.495, 0.5}, {0.475, 0.525, 0.545, 0.495, 0.53}, {0.5, 0.55, 0.57, 0.55, 0.55},
-                               {0.53, 0.58, 0.6, 0.578, 0.6}, {0.56, 0.61, 0.63, 0.61, 0.62}, {0.6, 0.65, 0.67, 0.65, 0.66},
-                               {0.63, 0.68, 0.7, 0.68, 0.69}, {0.67, 0.72, 0.75, 0.72, 0.75}, {0.71, 0.76, 0.79, 0.77, 0.78},
-                               {0.75, 0.81, 0.84, 0.81, 0.83}, {0.8, 0.86, 0.89, 0.86, 0.89}, {0.85, 0.91, 0.94, 0.91, 0.94},
-                               {0.9, 0.96, 0.99, 0.96, 0.99}, {0.93, 0.99, 1.02, 0.99, 1.02}, {0.95, 1.01, 1.04, 1.02, 1.04},
-                               {1.0, 1.07, 1.1, 1.07, 1.11}, {1.06, 1.13, 1.16, 1.14, 1.16}, {1.08, 1.16, 1.19, 1.16, 1.19},
-                               {1.12, 1.19, 1.22, 1.2, 1.23}, {1.18, 1.26, 1.28, 1.26, 1.26}, {1.25, 1.33, 1.35, 1.33, 1.36},
-                               {1.32, 1.4, 1.42, 1.4, 1.42}, {1.4, 1.48, 1.51, 1.48, 1.51}, {1.45, 1.53, 1.56, 1.53, 1.56},
-                               {1.5, 1.58, 1.61, 1.58, 1.61}, {1.56, 1.63, 1.67, 1.64, 1.67}, {1.6, 1.68, 1.71, 1.68, 1.71},
-                               {1.7, 1.78, 1.81, 1.78, 1.81}, {1.74, 1.82, 1.85, 1.82, 1.85}, {1.8, 1.89, 1.92, 1.89, 1.92},
-                               {1.9, 1.99, 2.02, 1.99, 2.02}, {2.0, 2.1, 2.12, 2.1, 2.12}, {2.12, 2.21, 2.24, 2.22, 2.24},
-                               {2.24, 2.34, 2.46, 2.34, 2.46}, {2.36, 2.46, 2.48, 2.36, 2.48}, {2.5, 2.6, 2.63, 2.6, 2.62}};
-
-    D = D / 10;
-    lk = lk / 10;
-    k = k / 10;
-    c = c /10;
-    bTmp = 0;
-    nTmp = 0;
-    for (int z = 0; z < 67; ++z){
-        dw = aWire[z][0] / 10;
-        Ltotal = 0;
-        // initialize variable of total self-inductance
-        lw = 0;
-        r0 = (D + k) / 2;
-        n = 0;
-        Nl = (int) floor(lk / k);
-        g = exp(-0.25) * dw / 2;
-        tmpR = 0;
-        while (tmpR < Rm){
-            n++;
-            Nc = (n - 1) %  Nl;
-            nLayer = (int) floor((n - 1) / Nl);
-            if ((isOrthocyclic) && ((nLayer % 2) != 0)){
-                nx = Nc * k + dens * k;
-            } else
-                nx = Nc * k;
-            if (isOrthocyclic){
-                ny = r0 + dens * k * nLayer;
-            } else
-                ny = r0 + k * nLayer;
-            Lns = Mut(ny, ny, g, 0);
-            // self inductance of current turn
-            lw = lw + 2 * M_PI * ny;
-            M = 0;
-            if (n > 1){
-                for (j = n; j >= 2; j--){
-                    Jc = (j - 2) % Nl;
-                    if ((isOrthocyclic) && ((nLayer % 2) != 0)){
-                        jx = Jc * k + dens * k;
-                    } else
-                        jx = Jc * k;
-                    jLayer = (int) floor((j - 2) / Nl);
-                    if (isOrthocyclic){
-                        jy = r0 + dens * k * jLayer;
-                    } else
-                        jy = r0 + k * jLayer;
-                    M = M + 2 * Mut(ny, jy, nx - jx, g);
-                }
-            }
-            Ltotal += Lns + M;
-            double Resistivity = mtrl[Cu][Rho] * 1e2;
-            tmpR = (Resistivity * lw * 4) / (M_PI * dw * dw);
-        }
-        bTmp = (nLayer + 1) * k;
-        if (bTmp > c)
-            break;
-        if (nTmp < c){
-            nTmp = (nLayer + 2) * k;
-            result->N = Ltotal;
-        }
-    }
-    N1 = n - Nl;
-    N2 = n + Nl;
-    result->sec = Ltotal;
-    result->thd = N1;
-    result->fourth = N2;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _CoilResult *result){

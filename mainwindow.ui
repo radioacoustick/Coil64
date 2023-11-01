@@ -410,7 +410,7 @@
              <property name="verticalSpacing">
               <number>8</number>
              </property>
-             <item row="1" column="2">
+             <item row="1" column="3">
               <widget class="QLabel" name="label_02">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -423,7 +423,7 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="2">
+             <item row="3" column="3">
               <widget class="QLabel" name="label_04">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -436,7 +436,7 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
+             <item row="0" column="1">
               <widget class="QLabel" name="label_1">
                <property name="text">
                 <string notr="true">Diameter of former D:</string>
@@ -446,7 +446,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
+             <item row="2" column="1">
               <widget class="QLabel" name="label_3">
                <property name="text">
                 <string notr="true">Wire thickness t:</string>
@@ -456,7 +456,7 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
+             <item row="4" column="1">
               <widget class="QLabel" name="label_5">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -472,7 +472,7 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="1">
+             <item row="4" column="2">
               <widget class="QLineEdit" name="lineEdit_5">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -482,7 +482,7 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
+             <item row="0" column="2">
               <widget class="QLineEdit" name="lineEdit_1">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -492,7 +492,7 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="0">
+             <item row="1" column="1">
               <widget class="QLabel" name="label_2">
                <property name="text">
                 <string notr="true">Wire diameter d:</string>
@@ -502,7 +502,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
+             <item row="2" column="2">
               <widget class="QLineEdit" name="lineEdit_3">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -512,7 +512,7 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
+             <item row="3" column="1">
               <widget class="QLabel" name="label_4">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -534,7 +534,7 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
+             <item row="1" column="2">
               <widget class="QLineEdit" name="lineEdit_2">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -544,7 +544,7 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
+             <item row="3" column="2">
               <widget class="QLineEdit" name="lineEdit_4">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -554,7 +554,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="2">
+             <item row="2" column="3">
               <widget class="QLabel" name="label_03">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -567,7 +567,7 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="1">
+             <item row="5" column="2">
               <widget class="QLineEdit" name="lineEdit_6">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -577,14 +577,14 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="2">
+             <item row="5" column="3">
               <widget class="QLabel" name="label_06">
                <property name="text">
                 <string notr="true"/>
                </property>
               </widget>
              </item>
-             <item row="4" column="2">
+             <item row="4" column="3">
               <widget class="QLabel" name="label_05">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -597,7 +597,7 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="2">
+             <item row="0" column="3">
               <widget class="QLabel" name="label_01">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -610,7 +610,7 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="0">
+             <item row="5" column="1">
               <widget class="QLabel" name="label_6">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -628,6 +628,28 @@
                 <string notr="true">TextLabel</string>
                </property>
                <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="checkBox_isInsulation">
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="toolTip">
+                <string>Wire has insulation</string>
+               </property>
+               <property name="accessibleDescription">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string notr="true"/>
+               </property>
+               <property name="shortcut">
+                <string notr="true"/>
+               </property>
+               <property name="checked">
                 <bool>true</bool>
                </property>
               </widget>
@@ -878,7 +900,14 @@
                <property name="verticalSpacing">
                 <number>8</number>
                </property>
-               <item row="4" column="1">
+               <item row="7" column="3">
+                <widget class="QLabel" name="label_07_2">
+                 <property name="text">
+                  <string notr="true"/>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
                 <widget class="QLineEdit" name="lineEdit_5_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -888,7 +917,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
+               <item row="4" column="2">
                 <widget class="QLineEdit" name="lineEdit_4_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -898,14 +927,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="2">
+               <item row="4" column="3">
                 <widget class="QLabel" name="label_04_2">
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
+               <item row="1" column="2">
                 <widget class="QLineEdit" name="lineEdit_2_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -915,14 +944,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="2">
+               <item row="3" column="3">
                 <widget class="QLabel" name="label_03_2">
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1">
+               <item row="0" column="2">
                 <widget class="QLineEdit" name="lineEdit_1_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -932,7 +961,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0">
+               <item row="0" column="1">
                 <widget class="QLabel" name="label_1_2">
                  <property name="text">
                   <string notr="true">Diameter of former D:</string>
@@ -942,14 +971,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="2">
+               <item row="0" column="3">
                 <widget class="QLabel" name="label_01_2">
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
+               <item row="3" column="1">
                 <widget class="QLabel" name="label_3_2">
                  <property name="text">
                   <string notr="true">Wire diameter with insulation k:</string>
@@ -959,7 +988,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="3" column="2">
                 <widget class="QLineEdit" name="lineEdit_3_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -969,14 +998,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="2">
+               <item row="1" column="3">
                 <widget class="QLabel" name="label_02_2">
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
+               <item row="4" column="1">
                 <widget class="QLabel" name="label_4_2">
                  <property name="text">
                   <string notr="true">Winding pitch</string>
@@ -986,7 +1015,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="1" column="1">
                 <widget class="QLabel" name="label_2_2">
                  <property name="text">
                   <string notr="true">Wire diameter d:</string>
@@ -996,14 +1025,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="4" column="2">
+               <item row="5" column="3">
                 <widget class="QLabel" name="label_05_2">
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
                 </widget>
                </item>
-               <item row="4" column="0">
+               <item row="5" column="1">
                 <widget class="QLabel" name="label_5_2">
                  <property name="text">
                   <string notr="true">TextLabel</string>
@@ -1013,7 +1042,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="5" column="0">
+               <item row="6" column="1">
                 <widget class="QLabel" name="label_6_2">
                  <property name="text">
                   <string notr="true">TextLabel</string>
@@ -1023,7 +1052,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="5" column="1">
+               <item row="6" column="2">
                 <widget class="QLineEdit" name="lineEdit_6_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1033,14 +1062,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="5" column="2">
+               <item row="6" column="3">
                 <widget class="QLabel" name="label_06_2">
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
                 </widget>
                </item>
-               <item row="6" column="0">
+               <item row="7" column="1">
                 <widget class="QLabel" name="label_7_2">
                  <property name="text">
                   <string notr="true">TextLabel</string>
@@ -1050,7 +1079,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="6" column="1">
+               <item row="7" column="2">
                 <widget class="QLineEdit" name="lineEdit_7_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1060,10 +1089,37 @@
                  </property>
                 </widget>
                </item>
-               <item row="6" column="2">
-                <widget class="QLabel" name="label_07_2">
+               <item row="3" column="0">
+                <widget class="QCheckBox" name="checkBox_isInsulation2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>15</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="toolTip">
+                  <string>Wire has insulation</string>
+                 </property>
+                 <property name="accessibleDescription">
+                  <string notr="true"/>
+                 </property>
                  <property name="text">
                   <string notr="true"/>
+                 </property>
+                 <property name="shortcut">
+                  <string notr="true"/>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>

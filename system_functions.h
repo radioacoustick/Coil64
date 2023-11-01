@@ -74,6 +74,7 @@ enum _StyleGUI {
       bool isInsertImage;
       bool isSaveOnExit;
       bool isAdditionalResult;
+      bool isAWGhasInsulation;
       int layoutPCBcoil;
       int windingKind;
       bool isWindingLengthOneLayerInit;

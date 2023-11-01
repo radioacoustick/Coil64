@@ -200,8 +200,9 @@ QStringList translateInstalling(QStringList *lang){
                             << QLocale(QLocale::Russian).name().mid(0,2)
                             << QLocale(QLocale::Serbian).name().mid(0,2)
                             << QLocale(QLocale::Spanish).name().mid(0,2)
-                            << QLocale(QLocale::Ukrainian).name().mid(0,2)
                             << QLocale(QLocale::Turkish).name().mid(0,2)
+                            << QLocale(QLocale::Ukrainian).name().mid(0,2)
+                            << QLocale(QLocale::Vietnamese).name().mid(0,2)
                             );
     *lang = (QStringList()
              << QLocale(QLocale::Bulgarian).nativeLanguageName().toUpper()
@@ -225,8 +226,9 @@ QStringList translateInstalling(QStringList *lang){
              << QLocale(QLocale::Russian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Serbian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Spanish).nativeLanguageName().toUpper()
-             << QLocale(QLocale::Ukrainian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Turkish).nativeLanguageName().toUpper()
+             << QLocale(QLocale::Ukrainian).nativeLanguageName().toUpper()
+             << QLocale(QLocale::Vietnamese).nativeLanguageName().toUpper()
              );
     return langList;
 }
@@ -256,6 +258,7 @@ QLocale getLanguageLocale (QString lang){
  else if (lang == "sr") loc =  QLocale::Serbian;
  else if (lang == "tr") loc =  QLocale::Turkish;
  else if (lang == "uk") loc =  QLocale::Ukrainian;
+ else if (lang == "vi") loc =  QLocale::Vietnamese;
  else loc = QLocale::system();
  return loc;
 }

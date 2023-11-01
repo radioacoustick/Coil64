@@ -127,6 +127,7 @@ TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_sr.ts \
     lang/Coil64_tr.ts \
     lang/Coil64_uk.ts \
+    lang/Coil64_vi.ts \
     lang/Coil64_zh.ts
 
 RESOURCES += res.qrc

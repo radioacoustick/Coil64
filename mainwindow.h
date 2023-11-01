@@ -133,6 +133,8 @@ private slots:
     void on_radioButton_CF_clicked();
     void on_radioButton_LF_clicked();
     void on_radioButton_ZF_clicked();
+    void on_checkBox_isInsulation_toggled(bool checked);
+    void on_checkBox_isInsulation2_toggled(bool checked);
 
     void get_onelayerN_roundW_Result(_CoilResult result);
     void get_onelayerN_rectW_Result(_CoilResult result);

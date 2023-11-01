@@ -68,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt->isConfirmClear = settings->value( "isConfirmClear", true ).toBool();
     myOpt->isConfirmDelete = settings->value( "isConfirmDelete", true ).toBool();
     myOpt->isAdditionalResult = settings->value( "isAdditionalResult", true ).toBool();
+    myOpt->isAWGhasInsulation = settings->value( "isAWGwithInsulation", true ).toBool();
     myOpt->mainFontFamily = settings->value("MainFontFamily", QFontInfo(QFont()).family()).toString();
     myOpt->mainFontSize = settings->value("MainFontSize", QFontInfo(QFont()).pixelSize()).toInt();
     myOpt->textFontFamily = settings->value("TextFontFamily", QFontInfo(QFont()).family()).toString();
@@ -493,6 +494,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue("isShowTitle", myOpt->isShowTitle);
         settings->setValue("isShowLTSpice", myOpt->isShowLTSpice);
         settings->setValue("isAdditionalResult", myOpt->isAdditionalResult);
+        settings->setValue("isAWGwithInsulation", myOpt->isAWGhasInsulation);
         settings->setValue("isConfirmExit", myOpt->isConfirmExit);
         settings->setValue("isConfirmClear", myOpt->isConfirmClear);
         settings->setValue("isConfirmDelete", myOpt->isConfirmDelete);
@@ -851,6 +853,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->label_1->setText(tr("Former diameter") + " D:");
             mui->label_3->setText(tr("Wire diameter with insulation") + " k:");
             mui->lineEdit_ind->setText(roundTo(data->inductance / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy));
@@ -907,9 +911,15 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
                     mui->lineEdit_2->setText(converttoAWG(data->d));
                 } else
                     mui->lineEdit_2->setText("");
-            } else
+                mui->checkBox_isInsulation->setVisible(true);
+                mui->checkBox_isInsulation->setChecked(myOpt->isAWGhasInsulation);
+                on_checkBox_isInsulation_toggled(myOpt->isAWGhasInsulation);
+            } else {
                 mui->lineEdit_2->setText(roundTo(data->d / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
-            if (mui->lineEdit_2->text().isEmpty() || (mui->lineEdit_2->text() == "0")|| (data->k > 0))
+                mui->checkBox_isInsulation->setVisible(false);
+                mui->lineEdit_3->setEnabled(true);
+            }
+            if ((mui->lineEdit_2->text().isEmpty() || (mui->lineEdit_2->text() == "0")|| (data->k > 0)) && (mui->checkBox_isInsulation->isChecked()))
                 mui->lineEdit_3->setText(roundTo(data->k / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             else
                 on_lineEdit_2_editingFinished();
@@ -942,6 +952,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->label_1->setText(tr("Former diameter") +" D:");
             mui->label_2->setText(tr("Wire width") + " w:");
             mui->label_3->setText(tr("Wire thickness") + " t:");
@@ -987,6 +999,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->label_1->setText(tr("Former diameter") + " D:");
             mui->label_2->setText(tr("Wire diameter") + " d:");
             mui->label_3->setText(tr("Wire diameter with insulation") + " k:");
@@ -1039,6 +1053,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(false);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->label_1->setText(tr("Former diameter") + " D:");
             mui->label_2->setText(tr("Winding length") + " l:");
             mui->label_3->setText(tr("Wire diameter") + " d:");
@@ -1090,6 +1106,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(true);
             mui->label_06->setVisible(true);
             mui->line_6->setVisible(false);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->label_1->setText(tr("Former diameter") + " D:");
             mui->label_2->setText(tr("Winding length") + " l:");
             mui->label_3->setText(tr("Wire diameter") + " d:");
@@ -1143,6 +1161,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(false);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->label_1->setText(tr("Former width") + " a:");
             mui->label_2->setText(tr("Former height") + " b:");
             mui->label_3->setText(tr("Winding length") + " l:");
@@ -1191,6 +1211,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(false);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->label_1->setText(tr("Former diameter") + " D:");
             mui->label_2->setText(tr("Foil width") + " w:");
             mui->label_3->setText(tr("Foil thickness") + " t:");
@@ -1231,6 +1253,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(true);
             mui->label_06->setVisible(true);
             mui->line_6->setVisible(false);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->label_1->setText(tr("Outside diameter")+" OD:");
             mui->label_2->setText(tr("Inside diameter")+" ID:");
             mui->label_3->setText(tr("Core height") + " h:");
@@ -1274,6 +1298,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(true);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->lineEdit_ind->setText(roundTo(data->inductance / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy));
             mui->lineEdit_ind->selectAll();
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
@@ -1312,6 +1338,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_6->setVisible(false);
             mui->label_06->setVisible(false);
             mui->line_6->setVisible(false);
+            mui->checkBox_isInsulation->setVisible(false);
+            mui->lineEdit_3->setEnabled(true);
             mui->label_1->setText(tr("Inside diameter")+" Di:");
             mui->label_2->setText(tr("Wire diameter") + " d:");
             mui->label_3->setText(tr("Gap between turns") + " s:");
@@ -1389,6 +1417,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Former diameter") + " D:");
             mui->label_2_2->setText(tr("Wire diameter") + " d:");
             mui->label_3_2->setText(tr("Wire diameter with insulation") + " k:");
@@ -1442,6 +1472,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->label_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Former diameter") + " D:");
             mui->label_2_2->setText(tr("Wire diameter") + " d:");
             mui->label_3_2->setText(tr("Wire diameter with insulation") + " k:");
@@ -1455,9 +1486,15 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
                     mui->lineEdit_2_2->setText(converttoAWG(data->d));
                 } else
                     mui->lineEdit_2_2->setText("");
-            } else
+                mui->checkBox_isInsulation2->setVisible(true);
+                mui->checkBox_isInsulation2->setChecked(myOpt->isAWGhasInsulation);
+                on_checkBox_isInsulation2_toggled(myOpt->isAWGhasInsulation);
+            } else {
                 mui->lineEdit_2_2->setText(roundTo(data->d / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
-            if (mui->lineEdit_2_2->text().isEmpty() || (mui->lineEdit_2_2->text() == "0")|| (data->k > 0))
+                mui->checkBox_isInsulation2->setVisible(false);
+                mui->lineEdit_3_2->setEnabled(true);
+            }
+            if ((mui->lineEdit_2_2->text().isEmpty() || (mui->lineEdit_2_2->text() == "0")|| (data->k > 0)) && (mui->checkBox_isInsulation2->isChecked()))
                 mui->lineEdit_3_2->setText(roundTo(data->k / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             else
                 on_lineEdit_2_2_editingFinished();
@@ -1493,6 +1530,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Former diameter") + " D:");
             mui->label_2_2->setText(tr("Wire width") + " w:");
             mui->label_3_2->setText(tr("Wire thickness") + " t:");
@@ -1541,6 +1580,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Former diameter") + " D:");
             mui->label_2_2->setText(tr("Wire diameter") + " d:");
             mui->label_3_2->setText(tr("Wire diameter with insulation") + " k:");
@@ -1600,6 +1641,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Former diameter") + " D:");
             mui->label_2_2->setText(tr("Winding length") + " l:");
             mui->label_3_2->setText(tr("Thickness of the coil") + " c:");
@@ -1645,6 +1688,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(true);
             mui->label_7_2->setVisible(true);
             mui->label_07_2->setVisible(true);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Former diameter") + " D:");
             mui->label_2_2->setText(tr("Winding length") + " l:");
             mui->label_3_2->setText(tr("Thickness of the coil") + " c:");
@@ -1704,6 +1749,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Former width") + " a:");
             mui->label_2_2->setText(tr("Former height") + " b:");
             mui->label_3_2->setText(tr("Winding length") + " l:");
@@ -1757,6 +1804,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Former diameter") + " D:");
             mui->label_2_2->setText(tr("Foil width") + " w:");
             mui->label_3_2->setText(tr("Foil thickness") + " t:");
@@ -1797,6 +1846,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Outside diameter")+" OD:");
             mui->label_2_2->setText(tr("Inside diameter")+" ID:");
             mui->label_3_2->setText(tr("Core height") + " h:");
@@ -1837,6 +1888,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->lineEdit_freq2->setText(roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy));
             mui->comboBox_checkPCB->setCurrentIndex(myOpt->layoutPCBcoil);
@@ -1874,6 +1927,8 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
+            mui->checkBox_isInsulation2->setVisible(false);
+            mui->lineEdit_3_2->setEnabled(true);
             mui->label_1_2->setText(tr("Outside diameter")+" Do:");
             mui->label_2_2->setText(tr("Inside diameter")+" Di:");
             mui->label_3_2->setText(tr("Wire diameter") + " d:");
@@ -2240,6 +2295,32 @@ void MainWindow::on_radioButton_ZF_clicked()
     mui->lineEdit_2_3->setText(roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy));
     mui->label_01_3->setText(tr("Ohm"));
     mui->label_02_3->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_checkBox_isInsulation_toggled(bool checked)
+{
+    if (checked){
+        mui->lineEdit_3->setEnabled(true);
+        myOpt->isAWGhasInsulation = true;
+    } else {
+        mui->lineEdit_3->setEnabled(false);
+        myOpt->isAWGhasInsulation = false;
+    }
+    QToolTip::showText(mui->checkBox_isInsulation->mapToGlobal(QPoint( 0, 0 )), mui->checkBox_isInsulation->toolTip());
+    on_lineEdit_2_editingFinished();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_checkBox_isInsulation2_toggled(bool checked)
+{
+    if (checked){
+        mui->lineEdit_3_2->setEnabled(true);
+        myOpt->isAWGhasInsulation = true;
+    } else {
+        mui->lineEdit_3_2->setEnabled(false);
+        myOpt->isAWGhasInsulation = false;
+    }
+    QToolTip::showText(mui->checkBox_isInsulation2->mapToGlobal(QPoint( 0, 0 )), mui->checkBox_isInsulation2->toolTip());
+    on_lineEdit_2_2_editingFinished();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_1_clicked(bool checked)
@@ -2619,7 +2700,11 @@ void MainWindow::on_lineEdit_2_editingFinished()
                 return;
             }
             data->d = d;
-            double k_m = odCalc(d);
+            double k_m;
+            if ((FormCoil == _Onelayer) && (!mui->checkBox_isInsulation->isChecked()) && (mui->checkBox_isInsulation->isVisible()))
+                k_m = d;
+            else
+                k_m = odCalc(d);
             if (d > 0){
                 mui->lineEdit_3->setText( roundTo(k_m / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             }
@@ -2941,7 +3026,11 @@ void MainWindow::on_lineEdit_2_2_editingFinished()
                 return;
             }
             data->d = d;
-            double k_m = odCalc(d);
+            double k_m;
+            if ((FormCoil == _Onelayer) && (!mui->checkBox_isInsulation2->isChecked()) && (mui->checkBox_isInsulation2->isVisible()))
+                k_m = d;
+            else
+                k_m = odCalc(d);
             if (d > 0){
                 mui->lineEdit_3_2->setText( roundTo(k_m/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             }
@@ -3073,7 +3162,7 @@ void MainWindow::on_lineEdit_4_2_editingFinished()
             break;
         }
         case _Multilayer:{
-            if (mui->radioButton_7->isChecked()){
+            if ((mui->radioButton_6->isChecked()) || (mui->radioButton_7->isChecked())){
                 double d = 0;
                 if (myOpt->isAWG){
                     d = convertfromAWG(mui->lineEdit_4_2->text(), &ok);
@@ -4367,8 +4456,10 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
     if ((myOpt->isWindingLengthOneLayerInit) && (FormCoil == _Onelayer_cw)){
         Input += "</p>";
     } else {
-        Input += "<br/>";
-        Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text();
+        if (mui->lineEdit_3->isEnabled()){
+            Input += "<br/>";
+            Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text();
+        }
         if (FormCoil == _Onelayer_cw){
             Input += "</p>";
         } else {
@@ -5082,7 +5173,8 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
     if (FormCoil == _Onelayer_cw)
         Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
     else {
-        Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
+        if (mui->lineEdit_3_2->isEnabled())
+            Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
         Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "</p>";
     }
     c.insertHtml(Input);
@@ -5420,7 +5512,8 @@ void MainWindow::get_multilayerI_Result(_CoilResult result){
         } else {
             d = loc.toDouble(mui->lineEdit_4_2->text())*myOpt->dwLengthMultiplier;
         }
-        double mass = 2.225 * M_PI * d * d * result.thd;
+        double dencity = mtrl[Cu][Dencity];
+        double mass = 0.25 * dencity * M_PI * d * d * result.thd;
         Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
         Result += tr("Number of layers") + " Nl = " + loc.toString(result.sec);
     } else {
@@ -6078,4 +6171,3 @@ void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
         }
     }
 }
-
