@@ -60,6 +60,12 @@
       </item>
       <item>
        <widget class="QComboBox" name="comboBox_checkMLWinding">
+        <property name="focusPolicy">
+         <enum>Qt::ClickFocus</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">padding:5</string>
+        </property>
         <item>
          <property name="text">
           <string>Regular winding</string>
@@ -74,6 +80,12 @@
       </item>
       <item>
        <widget class="QComboBox" name="comboBox_checkPCB">
+        <property name="focusPolicy">
+         <enum>Qt::ClickFocus</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">padding:5</string>
+        </property>
         <item>
          <property name="text">
           <string>PCB coil with square winding</string>
@@ -135,6 +147,9 @@
            <property name="cursor" stdset="0">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
@@ -152,6 +167,9 @@
            </property>
            <property name="resizeMode">
             <enum>QListView::Adjust</enum>
+           </property>
+           <property name="spacing">
+            <number>5</number>
            </property>
            <item>
             <property name="text">
@@ -268,6 +286,13 @@
      </layout>
     </item>
     <item>
+     <widget class="Line" name="line_12">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QWidget" name="widget" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -307,6 +332,9 @@
            <width>16777215</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
          </property>
          <property name="currentIndex">
           <number>0</number>
@@ -677,6 +705,9 @@
              <layout class="QVBoxLayout" name="verticalLayout_14">
               <item>
                <widget class="QRadioButton" name="radioButton_5_1">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string>Former diameter and wire diameter</string>
                 </property>
@@ -687,6 +718,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_5_2">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string>Former diameter and winding length</string>
                 </property>
@@ -709,6 +743,9 @@
              <layout class="QVBoxLayout" name="verticalLayout_3">
               <item>
                <widget class="QRadioButton" name="radioButton_1">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string>Copper</string>
                 </property>
@@ -719,6 +756,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_2">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string>Silver</string>
                 </property>
@@ -726,6 +766,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_3">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string>Aluminum</string>
                 </property>
@@ -733,6 +776,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_4">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string>Tin</string>
                 </property>
@@ -769,6 +815,9 @@
               </item>
               <item>
                <widget class="QSlider" name="horizontalSlider">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="toolTip">
                  <string/>
                 </property>
@@ -1071,6 +1120,18 @@
                </item>
                <item row="7" column="1">
                 <widget class="QLabel" name="label_7_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>400</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string notr="true">TextLabel</string>
                  </property>
@@ -1146,6 +1207,9 @@
                <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
                  <widget class="QRadioButton" name="radioButton_1_2">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string>Copper</string>
                   </property>
@@ -1156,6 +1220,9 @@
                 </item>
                 <item>
                  <widget class="QRadioButton" name="radioButton_2_2">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string>Silver</string>
                   </property>
@@ -1163,6 +1230,9 @@
                 </item>
                 <item>
                  <widget class="QRadioButton" name="radioButton_3_2">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string>Aluminum</string>
                   </property>
@@ -1170,6 +1240,9 @@
                 </item>
                 <item>
                  <widget class="QRadioButton" name="radioButton_4_2">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string>Tin</string>
                   </property>
@@ -1192,6 +1265,9 @@
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
                  <widget class="QRadioButton" name="radioButton_6">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string notr="true">Number of turns N:</string>
                   </property>
@@ -1202,6 +1278,9 @@
                 </item>
                 <item>
                  <widget class="QRadioButton" name="radioButton_7">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string notr="true">Wire diameter d:</string>
                   </property>
@@ -1212,6 +1291,9 @@
                 </item>
                 <item>
                  <widget class="QRadioButton" name="radioButton_8">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string notr="true">Resistance of the coil to DC</string>
                   </property>
@@ -1258,6 +1340,9 @@
                <layout class="QVBoxLayout" name="verticalLayout_7">
                 <item>
                  <widget class="QRadioButton" name="radioButton_LC">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string>The capacitance and the inductance are known</string>
                   </property>
@@ -1268,6 +1353,9 @@
                 </item>
                 <item>
                  <widget class="QRadioButton" name="radioButton_CF">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string>The capacitance and the frequency are known </string>
                   </property>
@@ -1275,6 +1363,9 @@
                 </item>
                 <item>
                  <widget class="QRadioButton" name="radioButton_LF">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string>The inductance and the frequency are known</string>
                   </property>
@@ -1282,6 +1373,9 @@
                 </item>
                 <item>
                  <widget class="QRadioButton" name="radioButton_ZF">
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
                   <property name="text">
                    <string>The impedance and the frequency are known</string>
                   </property>
@@ -1396,6 +1490,12 @@
            <height>50</height>
           </size>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">margin:2</string>
+         </property>
          <property name="text">
           <string>Calculate</string>
          </property>
@@ -1404,10 +1504,7 @@
            <normaloff>:/menu_ico/res/icons8-enter-key-64.png</normaloff>:/menu_ico/res/icons8-enter-key-64.png</iconset>
          </property>
          <property name="shortcut">
-          <string>Enter</string>
-         </property>
-         <property name="autoExclusive">
-          <bool>false</bool>
+          <string notr="true">Del</string>
          </property>
          <property name="default">
           <bool>true</bool>
@@ -1440,14 +1537,102 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_11">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <layout class="QHBoxLayout" name="_2">
         <property name="spacing">
-         <number>2</number>
+         <number>3</number>
         </property>
         <item>
+         <widget class="QToolButton" name="toolButton_lShowFirst">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Show last result first</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-list-32.png</normaloff>:/menu_ico/res/icons8-list-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_column">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Show text in tabular form</string>
+          </property>
+          <property name="text">
+           <string notr="true"/>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-column-32.png</normaloff>:/menu_ico/res/icons8-column-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_Num">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Show calculation numbering</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-right:3</string>
+          </property>
+          <property name="text">
+           <string notr="true"/>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-bullet-32.png</normaloff>:/menu_ico/res/icons8-bullet-32.png</iconset>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_11">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QToolButton" name="toolButton_showTitle">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Show title in results</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-left:3</string>
           </property>
           <property name="text">
            <string notr="true"/>
@@ -1472,6 +1657,9 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Show images in result</string>
           </property>
@@ -1494,8 +1682,58 @@
           <property name="checkable">
            <bool>true</bool>
           </property>
-          <property name="checked">
-           <bool>false</bool>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_Desc">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Show values description</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-description-32.png</normaloff>:/menu_ico/res/icons8-description-32.png</iconset>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_Color">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Use colored value text</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-right:3</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-color-32.png</normaloff>:/menu_ico/res/icons8-color-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_13">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
           </property>
          </widget>
         </item>
@@ -1507,8 +1745,14 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Show additional results for single-layer coils</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-left:3</string>
           </property>
           <property name="text">
            <string notr="true">...</string>
@@ -1523,15 +1767,18 @@
           <property name="checkable">
            <bool>true</bool>
           </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
          </widget>
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_ltspice">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Show data for LTSpice</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-right:3</string>
           </property>
           <property name="text">
            <string notr="true">...</string>
@@ -1539,46 +1786,6 @@
           <property name="icon">
            <iconset resource="res.qrc">
             <normaloff>:/menu_ico/res/icons8-ltspice-32.png</normaloff>:/menu_ico/res/icons8-ltspice-32.png</iconset>
-          </property>
-          <property name="shortcut">
-           <string notr="true"/>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="toolButton_lShowFirst">
-          <property name="toolTip">
-           <string>Show last result first</string>
-          </property>
-          <property name="text">
-           <string notr="true">...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-list-32.png</normaloff>:/menu_ico/res/icons8-list-32.png</iconset>
-          </property>
-          <property name="shortcut">
-           <string notr="true"/>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="toolButton_soe">
-          <property name="toolTip">
-           <string>Save results on exit</string>
-          </property>
-          <property name="text">
-           <string notr="true">...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-save-close-32.png</normaloff>:/menu_ico/res/icons8-save-close-32.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -1608,7 +1815,36 @@
          </widget>
         </item>
         <item>
+         <widget class="QToolButton" name="toolButton_soe">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Save results on exit</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-left:3</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-save-close-32.png</normaloff>:/menu_ico/res/icons8-save-close-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QToolButton" name="toolButton_cbc">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Show confirm dialog to clear results</string>
           </property>
@@ -1629,6 +1865,9 @@
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_cdsr">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Show confirm dialog to delete a result</string>
           </property>
@@ -1649,6 +1888,9 @@
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_cbe">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Show confirm dialog before exit</string>
           </property>
@@ -1682,6 +1924,9 @@
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_Configure">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Options</string>
           </property>
@@ -1701,6 +1946,9 @@
       </item>
       <item>
        <widget class="QTextBrowser" name="textBrowser">
+        <property name="focusPolicy">
+         <enum>Qt::ClickFocus</enum>
+        </property>
         <property name="statusTip">
          <string/>
         </property>
@@ -1719,6 +1967,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QToolButton" name="toolButton_Open">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Open</string>
           </property>
@@ -1729,6 +1980,9 @@
            <iconset>
             <normalon>:/menu_ico/res/icons8-opened-folder-32.png</normalon>
            </iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
           </property>
          </widget>
         </item>
@@ -1742,6 +1996,9 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
            <string>Save</string>
@@ -1769,6 +2026,9 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Copy selected to clipboard</string>
           </property>
@@ -1778,6 +2038,9 @@
           <property name="icon">
            <iconset resource="res.qrc">
             <normaloff>:/menu_ico/res/icons8-inconsistency-32.png</normaloff>:/menu_ico/res/icons8-inconsistency-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
           </property>
          </widget>
         </item>
@@ -1792,6 +2055,9 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Copy all to clipboard</string>
           </property>
@@ -1801,6 +2067,9 @@
           <property name="icon">
            <iconset resource="res.qrc">
             <normaloff>:/menu_ico/res/icons8-copy-32.png</normaloff>:/menu_ico/res/icons8-copy-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
           </property>
          </widget>
         </item>
@@ -1815,8 +2084,14 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Clear all</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-right:3</string>
           </property>
           <property name="text">
            <string notr="true">...</string>
@@ -1831,6 +2106,13 @@
          </widget>
         </item>
         <item>
+         <widget class="Line" name="line_14">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QToolButton" name="toolButton_Print">
           <property name="enabled">
            <bool>false</bool>
@@ -1841,8 +2123,14 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Print all</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-left:3</string>
           </property>
           <property name="text">
            <string notr="true">...</string>
@@ -1871,6 +2159,9 @@
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_FAQ">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Context help</string>
           </property>
@@ -1885,6 +2176,9 @@
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_Help">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>Context help</string>
           </property>
@@ -1958,6 +2252,7 @@
     <addaction name="actionCheck_for_update"/>
     <addaction name="separator"/>
     <addaction name="actionHelp"/>
+    <addaction name="actionIntrfaceHelp"/>
     <addaction name="actionHomePage"/>
     <addaction name="separator"/>
     <addaction name="actionVersions_history"/>
@@ -2240,6 +2535,9 @@
    <property name="text">
     <string>Donate</string>
    </property>
+   <property name="shortcut">
+    <string notr="true"/>
+   </property>
   </action>
   <action name="actionShiels_influence">
    <property name="icon">
@@ -2262,6 +2560,9 @@
    </property>
    <property name="text">
     <string>Versions history</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true"/>
    </property>
   </action>
   <action name="actionAir_core_toroid_coil">
@@ -2374,6 +2675,19 @@
     <string>RM core coil</string>
    </property>
   </action>
+  <action name="actionIntrfaceHelp">
+   <property name="icon">
+    <iconset>
+     <normalon>:/menu_ico/res/icons8-interface-32.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Interface help</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">F12</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
@@ -2416,8 +2730,6 @@
   <tabstop>toolButton_showTitle</tabstop>
   <tabstop>toolButton_showImg</tabstop>
   <tabstop>toolButton_cbe</tabstop>
-  <tabstop>toolButton_showAdditional</tabstop>
-  <tabstop>toolButton_lShowFirst</tabstop>
   <tabstop>toolButton_soe</tabstop>
   <tabstop>toolButton_cbc</tabstop>
   <tabstop>toolButton_cdsr</tabstop>

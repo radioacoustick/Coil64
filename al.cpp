@@ -118,14 +118,20 @@ void AL::on_tabWidget_currentChanged(int index)
     case 0:
         ui->lineEdit_L_1->setText(loc.toString(L_m / fOpt->dwInductanceMultiplier));
         ui->lineEdit_N_1->setText(loc.toString(N_m));
+        ui->lineEdit_L_1->setFocus();
+        ui->lineEdit_L_1->selectAll();
         break;
     case 1:
         ui->lineEdit_AL_2->setText(loc.toString(al));
         ui->lineEdit_L_2->setText(loc.toString(L_r / fOpt->dwInductanceMultiplier));
+        ui->lineEdit_L_2->setFocus();
+        ui->lineEdit_L_2->selectAll();
         break;
     case 2:
         ui->lineEdit_AL_3->setText(loc.toString(al));
         ui->lineEdit_N_3->setText(loc.toString(N_r));
+        ui->lineEdit_AL_3->setFocus();
+        ui->lineEdit_AL_3->selectAll();
         break;
     default:
         break;

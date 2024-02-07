@@ -30,6 +30,10 @@ Bandspread::Bandspread(QWidget *parent) :
     ui->lineEdit_cvmin->setValidator(dv);
     ui->lineEdit_cvmax->setValidator(dv);
     ui->lineEdit_cs->setValidator(dv);
+    QAction *buttonAction = new QAction(ui->pushButton_export);
+    buttonAction->setShortcuts({QKeySequence("Ctrl+Enter"),QKeySequence("Ctrl+Return")});
+    ui->pushButton_export->addAction(buttonAction);
+    connect(buttonAction, &QAction::triggered, ui->pushButton_export, &QPushButton::click);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Bandspread::~Bandspread()
@@ -116,6 +120,8 @@ void Bandspread::getOpt(_OptionStruct gOpt)
     resize(size);
     move(pos);
     showInductanceRange();
+    ui->lineEdit_flo->setFocus();
+    ui->lineEdit_flo->selectAll();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Bandspread::getCurrentLocale(QLocale locale)
@@ -263,9 +269,10 @@ void Bandspread::on_pushButton_calculate_clicked()
                 Cp = cap->at(1);
                 ui->lineEdit_ct->setText(QString::number(Ct/fOpt->dwCapacityMultiplier));
                 ui->lineEdit_cp->setText(QString::number(Cp/fOpt->dwCapacityMultiplier));
-                ui->label_info->setText(tr("Minimum LC circuit Capacitance") + ": " + QString::number(cap->at(2)/fOpt->dwCapacityMultiplier) + " "
-                                        + qApp->translate("Context", fOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>" + tr("Maximum LC circuit Capacitance") + ": "
-                                        + QString::number(cap->at(3)/fOpt->dwCapacityMultiplier) + " " + qApp->translate("Context", fOpt->ssCapacityMeasureUnit.toUtf8()));
+                ui->label_info->setText(formattedOutput(fOpt, tr("Minimum LC circuit Capacitance") + " Cmin: ", QString::number(cap->at(2)/fOpt->dwCapacityMultiplier),
+                                                        qApp->translate("Context", fOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>" +
+                                        formattedOutput(fOpt, tr("Maximum LC circuit Capacitance") + " Cmax: ", QString::number(cap->at(3)/fOpt->dwCapacityMultiplier),
+                                                        qApp->translate("Context", fOpt->ssCapacityMeasureUnit.toUtf8())));
             } else {
                 ui->lineEdit_ct->setText("");
                 ui->lineEdit_cp->setText("");
@@ -320,9 +327,10 @@ void Bandspread::on_pushButton_calculate_clicked()
             f_high = freq->at(1);
             ui->lineEdit_flo_r->setText(QString::number(f_low/fOpt->dwFrequencyMultiplier));
             ui->lineEdit_fhi_r->setText(QString::number(f_high/fOpt->dwFrequencyMultiplier));
-            ui->label_info_r->setText(tr("Minimum LC circuit Capacitance") + ": " + QString::number(freq->at(2)/fOpt->dwCapacityMultiplier) + " "
-                                    + qApp->translate("Context", fOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>" + tr("Maximum LC circuit Capacitance") + ": "
-                                    + QString::number(freq->at(3)/fOpt->dwCapacityMultiplier) + " " + qApp->translate("Context", fOpt->ssCapacityMeasureUnit.toUtf8()));
+            ui->label_info_r->setText(formattedOutput(fOpt, tr("Minimum LC circuit Capacitance") + " Cmin: ", QString::number(freq->at(2)/fOpt->dwCapacityMultiplier),
+                                                      qApp->translate("Context", fOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>" +
+                                      formattedOutput(fOpt, tr("Maximum LC circuit Capacitance") + " Cmax: ", QString::number(freq->at(3)/fOpt->dwCapacityMultiplier),
+                                                      qApp->translate("Context", fOpt->ssCapacityMeasureUnit.toUtf8())));
         }
         delete freq;
     }
@@ -332,50 +340,40 @@ void Bandspread::on_pushButton_calculate_clicked()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Bandspread::on_pushButton_export_clicked()
 {
-    QString sResult = "<hr>";
-    if (fOpt->isShowTitle){
-        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
-                + windowTitle() + "</h2><br/>";
-    }
-    if (fOpt->isInsertImage){
-        sResult += "<img src=\":/images/res/bandspread.png\">";
-    }
-    sResult += "<p>" + ui->tabWidget->tabText(ui->tabWidget->currentIndex()) + "</p>";
-    sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "<img src=\":/images/res/bandspread.png\">";
+    sCaption += "<p>" + ui->tabWidget->tabText(ui->tabWidget->currentIndex()) + "</p>";
+    QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
     switch (ui->tabWidget->currentIndex()){
     case 0:{
         if ((!ui->lineEdit_ct->text().isEmpty()) && (!ui->lineEdit_cp->text().isEmpty())){
-            sResult += ui->label_flo->text() + " " + ui->lineEdit_flo->text() + " " + ui->label_flo_m->text() + "<br/>";
-            sResult += ui->label_fhi->text() + " " + ui->lineEdit_fhi->text() + " " + ui->label_fhi_m->text() + "<br/>";
-            sResult += ui->label_cvmin->text() + " " + ui->lineEdit_cvmin->text() + " " + ui->label_cvmin_m->text() + "<br/>";
-            sResult += ui->label_cvmax->text() + " " + ui->lineEdit_cvmax->text() + " " + ui->label_cvmax_m->text() + "<br/>";
-            sResult += ui->label_cs->text() + " " + ui->lineEdit_cs->text() + " " + ui->label_cs_m->text() + "<br/>";
-            sResult += ui->label_ind->text() + " " + ui->lineEdit_ind->text() + " " + ui->label_ind_m->text() + "</p>";
-            sResult += "<hr>";
-            sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-            sResult += ui->label_ct->text() + " " + ui->lineEdit_ct->text() + " " + ui->label_ct_m->text() + "<br/>";
-            sResult += ui->label_cp->text() + " " + ui->lineEdit_cp->text() + " " + ui->label_cp_m->text() + "</p>";
+            sInput += formattedOutput(fOpt, ui->label_flo->text(), ui->lineEdit_flo->text(), ui->label_flo_m->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_fhi->text(), ui->lineEdit_fhi->text(), ui->label_fhi_m->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_cvmin->text(), ui->lineEdit_cvmin->text(), ui->label_cvmin_m->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_cvmax->text(), ui->lineEdit_cvmax->text(), ui->label_cvmax_m->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_cs->text(), ui->lineEdit_cs->text(), ui->label_cs_m->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_ind->text(), ui->lineEdit_ind->text(), ui->label_ind_m->text()) + "</p>";
+            QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+            sResult += formattedOutput(fOpt, ui->label_ct->text(), ui->lineEdit_ct->text(), ui->label_ct_m->text()) + "<br/>";
+            sResult += formattedOutput(fOpt, ui->label_cp->text(), ui->lineEdit_cp->text(), ui->label_cp_m->text()) + "</p>";
             sResult += ui->label_info->text();
-            sResult += "<hr>";
-            emit sendResult(sResult);
+            emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
         }
     }
         break;
     case 1:{
         if ((!ui->lineEdit_flo_r->text().isEmpty()) && (!ui->lineEdit_fhi_r->text().isEmpty())){
-            sResult += ui->label_ct_r->text() + " " + ui->lineEdit_ct_r->text() + " " + ui->label_ct_m_r->text() + "<br/>";
-            sResult += ui->label_cp_r->text() + " " + ui->lineEdit_cp_r->text() + " " + ui->label_cp_m_r->text() + "<br/>";
-            sResult += ui->label_cvmin_r->text() + " " + ui->lineEdit_cvmin_r->text() + " " + ui->label_cvmin_m_r->text() + "<br/>";
-            sResult += ui->label_cvmax_r->text() + " " + ui->lineEdit_cvmax_r->text() + " " + ui->label_cvmax_m_r->text() + "<br/>";
-            sResult += ui->label_cs_r->text() + " " + ui->lineEdit_cs_r->text() + " " + ui->label_cs_m_r->text() + "<br/>";
-            sResult += ui->label_ind_r->text() + " " + ui->lineEdit_ind_r->text() + " " + ui->label_ind_m_r->text() + "</p>";
-            sResult += "<hr>";
-            sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-            sResult += ui->label_flo_r->text() + " " + ui->lineEdit_flo_r->text() + " " + ui->label_flo_m_r->text() + "<br/>";
-            sResult += ui->label_fhi_r->text() + " " + ui->lineEdit_fhi_r->text() + " " + ui->label_fhi_m_r->text() + "</p>";
+            sInput += formattedOutput(fOpt, ui->label_ct_r->text(), ui->lineEdit_ct_r->text(), ui->label_ct_m_r->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_cp_r->text(), ui->lineEdit_cp_r->text(), ui->label_cp_m_r->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_cvmin_r->text(), ui->lineEdit_cvmin_r->text(), ui->label_cvmin_m_r->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_cvmax_r->text(), ui->lineEdit_cvmax_r->text(), ui->label_cvmax_m_r->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_cs_r->text(), ui->lineEdit_cs_r->text(), ui->label_cs_m_r->text()) + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_ind_r->text(), ui->lineEdit_ind_r->text(), ui->label_ind_m_r->text()) + "</p>";
+            QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+            sResult += formattedOutput(fOpt, ui->label_flo_r->text(), ui->lineEdit_flo_r->text(), ui->label_flo_m_r->text()) + "<br/>";
+            sResult += formattedOutput(fOpt, ui->label_fhi_r->text(), ui->lineEdit_fhi_r->text(), ui->label_fhi_m_r->text()) + "</p>";
             sResult += ui->label_info_r->text();
-            sResult += "<hr>";
-            emit sendResult(sResult);
+            emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
         }
     }
         break;
@@ -393,6 +391,8 @@ void Bandspread::on_tabWidget_currentChanged(int index)
             ui->lineEdit_flo->setText(roundTo(f_low / fOpt->dwFrequencyMultiplier, loc, fOpt->dwAccuracy));
             ui->lineEdit_fhi->setText(roundTo(f_high / fOpt->dwFrequencyMultiplier, loc, fOpt->dwAccuracy));
         }
+        ui->lineEdit_flo->setFocus();
+        ui->lineEdit_flo->selectAll();
     } else {
         ui->lineEdit_cvmin_r->setText(ui->lineEdit_cvmin->text());
         ui->lineEdit_cvmax_r->setText(ui->lineEdit_cvmax->text());
@@ -406,6 +406,8 @@ void Bandspread::on_tabWidget_currentChanged(int index)
         QString ssCp = ui->lineEdit_cp->text();
         double dCp = ssCp.toDouble();
         ui->lineEdit_cp_r->setText(loc.toString(toNearestE24(dCp, fOpt->dwAccuracy)));
+        ui->lineEdit_ct_r->setFocus();
+        ui->lineEdit_ct_r->selectAll();
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

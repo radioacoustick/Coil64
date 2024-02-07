@@ -240,23 +240,19 @@ void Loop::on_pushButton_3_clicked()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Loop::on_pushButton_clicked()
 {
-    QString sResult = "<hr>";
-    if (fOpt->isShowTitle){
-        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
-                " - " + windowTitle();
-    }
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "";
+    QString sInput = "";
+    QString sResult = "";
     if(loopKind == 0){
-        sResult += " (" + ui->radioButton_round->text() +  + ")</h2><br/>";
-        if (fOpt->isInsertImage)
-            sResult += "<img src=\":/images/res/loop0.png\">";
+        sCaption += " (" + ui->radioButton_round->text() +  + ")";
+        sImage = "<img src=\":/images/res/loop0.png\">";
     } else if (loopKind == 1){
-        sResult += " (" + ui->radioButton_triangle->text() +  + ")</h2><br/>";
-        if (fOpt->isInsertImage)
-            sResult += "<img src=\":/images/res/loop3.png\">";
+        sCaption += " (" + ui->radioButton_triangle->text() +  + ")";
+        sImage = "<img src=\":/images/res/loop3.png\">";
     } else if (loopKind == 2){
-        sResult += " (" + ui->radioButton_rectangle->text() +  + ")</h2><br/>";
-        if (fOpt->isInsertImage)
-            sResult += "<img src=\":/images/res/loop4.png\">";
+        sCaption += " (" + ui->radioButton_rectangle->text() +  + ")";
+        sImage = "<img src=\":/images/res/loop4.png\">";
     }
     if (ui->checkBox_isReverce->isChecked()){
         if ((ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_3->text().isEmpty())){
@@ -278,25 +274,24 @@ void Loop::on_pushButton_clicked()
             showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
             return;
         }
-        sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
-        sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + " " + ui->label_N_m->text() + "<br/>";
-        sResult += ui->label_3->text() + " " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "</p>";
-        sResult += "<hr>";
-        sResult += "<p><u>" + tr("Result") + ":</u><br/>";
+        sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
+        sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text(), ui->label_N_m->text()) + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "</p>";
+        sResult = "<p><u>" + tr("Result") + ":</u><br/>";
         if(loopKind == 0){
             a = findRoundLoop_D(ind, dw);
-            sResult += tr("Loop diameter") + " D: " + roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " "
-                    + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+            sResult += formattedOutput(fOpt, tr("Loop diameter") + " D: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         } else if (loopKind == 1){
             a = findIsoIsoscelesTriangleLoop_a(ind, dw);
             b = a;
-            sResult += tr("The side of the equilateral triangle") + " a = b: " + roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " "
-                    + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+            sResult += formattedOutput(fOpt, tr("The side of the equilateral triangle") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         } else if (loopKind == 2){
             a = findRectangleLoop_a(ind, dw);
             b = a;
-            sResult += tr("The side of quadrate") + " a = b: " + roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " "
-                    + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+            sResult += formattedOutput(fOpt, tr("The side of quadrate") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         }
         if (a < 0){
             a = 0;
@@ -339,12 +334,11 @@ void Loop::on_pushButton_clicked()
                 return;
             }
         }
-        sResult += "<br/><u>" + tr("Dimensions") + ":</u><br/>";
-        sResult += ui->label_1->text() + " " + ui->lineEdit_1->text() + " " + ui->label_01->text() + "<br/>";
+        sInput = "<p><u>" + tr("Dimensions") + ":</u><br/>";
+        sInput += formattedOutput(fOpt, ui->label_1->text(), ui->lineEdit_1->text(), ui->label_01->text()) + "<br/>";
         if (loopKind != 0)
-            sResult += ui->label_2->text() + " " + ui->lineEdit_2->text() + " " + ui->label_02->text() + "<br/>";
-        sResult += ui->label_3->text() + " " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "</p>";
-        sResult += "<hr>";
+            sInput += formattedOutput(fOpt, ui->label_2->text(), ui->lineEdit_2->text(), ui->label_02->text()) + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "</p>";
         if(loopKind == 0){
             ind = findRoundLoop_I(a, dw);
         } else if (loopKind == 1){
@@ -352,11 +346,11 @@ void Loop::on_pushButton_clicked()
         } else if (loopKind == 2){
             ind = findRectangleLoop_I(a, b, dw);
         }
-        sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-        sResult += tr("Inductance") + " L = " + roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
-                + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+        sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+        sResult += formattedOutput(fOpt, tr("Inductance") + " L = ", roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy),
+                                   qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
     }
-    sResult += "</p><hr>";
-    emit sendResult(sResult);
+    sResult += "</p>";
+    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
 }
 

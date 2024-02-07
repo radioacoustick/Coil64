@@ -67,18 +67,23 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt->isConfirmExit = settings->value( "isConfirmExit", true ).toBool();
     myOpt->isConfirmClear = settings->value( "isConfirmClear", true ).toBool();
     myOpt->isConfirmDelete = settings->value( "isConfirmDelete", true ).toBool();
+    myOpt->isOutputValueColored = settings->value( "isOutputValueColored", false ).toBool();
+    myOpt->isOutputInTwoColumns = settings->value( "isOutputInTwoColumns", false ).toBool();
+    myOpt->isShowValueDescription = settings->value( "isShowValueDescription", true ).toBool();
+    myOpt->isShowCalcNum = settings->value( "isShowCalcNum", true ).toBool();
     myOpt->isAdditionalResult = settings->value( "isAdditionalResult", true ).toBool();
     myOpt->isAWGhasInsulation = settings->value( "isAWGwithInsulation", true ).toBool();
     myOpt->mainFontFamily = settings->value("MainFontFamily", QFontInfo(QFont()).family()).toString();
     myOpt->mainFontSize = settings->value("MainFontSize", QFontInfo(QFont()).pixelSize()).toInt();
     myOpt->textFontFamily = settings->value("TextFontFamily", QFontInfo(QFont()).family()).toString();
     myOpt->textFontSize = settings->value("TextFontSize", QFontInfo(QFont()).pixelSize()).toInt();
+    myOpt->styleGUI = settings->value("styleGUI",0).toInt();
+    myOpt->vTextColor = settings->value("valueTextColor", 0).toInt();
     myOpt->isEnglishLocale = settings->value( "isEnglishLocale", false ).toBool();
     myOpt->layoutPCBcoil = settings->value("layoutPCBcoil",true).toInt();
     myOpt->windingKind = settings->value("windingKind",true).toInt();
     myOpt->isWindingLengthOneLayerInit = settings->value("isWindingLengthOneLayerInit",false).toBool();
     myOpt->isSaveOnExit = settings->value("isSaveOnExit",true).toBool();
-    myOpt->styleGUI = settings->value("styleGUI",0).toInt();
     myOpt->isLastShowingFirst = settings->value("isLastShowingFirst",true).toBool();
     if (myOpt->isSaveOnExit)
         calc_count = settings->value( "calc_count", 0 ).toInt();
@@ -146,6 +151,10 @@ MainWindow::MainWindow(QWidget *parent) :
     mui->toolButton_cdsr->setChecked(myOpt->isConfirmDelete);
     mui->toolButton_soe->setChecked(myOpt->isSaveOnExit);
     mui->toolButton_lShowFirst->setChecked(myOpt->isLastShowingFirst);
+    mui->toolButton_Color->setChecked(myOpt->isOutputValueColored);
+    mui->toolButton_Desc->setChecked(myOpt->isShowValueDescription);
+    mui->toolButton_column->setChecked(myOpt->isOutputInTwoColumns);
+    mui->toolButton_Num->setChecked(myOpt->isShowCalcNum);
 
     settings->beginGroup("Measure_Units");
     myOpt->dwAccuracy = settings->value("Accuracy", 3).toUInt();
@@ -278,6 +287,11 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     mui->retranslateUi(this);
 
+    QAction *buttonAction = new QAction(mui->pushButton_Calculate);
+    buttonAction->setShortcuts({QKeySequence("Enter"),QKeySequence("Return")});
+    mui->pushButton_Calculate->addAction(buttonAction);
+    connect(buttonAction, &QAction::triggered, mui->pushButton_Calculate, &QPushButton::click);
+
     mui->textBrowser->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(mui->textBrowser, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(on_textBrowser_customContextMenuRequested(QPoint)));
     mui->textBrowser->installEventFilter(this);
@@ -336,10 +350,8 @@ MainWindow::MainWindow(QWidget *parent) :
     case _DefaultStyle:
         on_actionThemeDefault_triggered();
         break;
-    case _DarkStyle:{
+    case _DarkStyle:
         on_actionThemeDark_triggered();
-        invertGUIconColor();
-    }
         break;
     case _SunnyStyle:
         on_actionThemeSunny_triggered();
@@ -451,6 +463,12 @@ void MainWindow::on_textBrowser_textChanged(){
         mui->actionPrint->setEnabled(true);
         mui->actionClear_all->setEnabled(true);
     }
+    QTextCursor c = mui->textBrowser->textCursor();
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::closeEvent(QCloseEvent *event){
@@ -498,8 +516,13 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue("isConfirmExit", myOpt->isConfirmExit);
         settings->setValue("isConfirmClear", myOpt->isConfirmClear);
         settings->setValue("isConfirmDelete", myOpt->isConfirmDelete);
+        settings->setValue("isOutputValueColored", myOpt->isOutputValueColored);
+        settings->setValue("isOutputInTwoColumns", myOpt->isOutputInTwoColumns);
+        settings->setValue("isShowValueDescription", myOpt->isShowValueDescription);
+        settings->setValue("isShowCalcNum", myOpt->isShowCalcNum);
         settings->setValue("MainFontFamily", myOpt->mainFontFamily);
         settings->setValue("MainFontSize", myOpt->mainFontSize);
+        settings->setValue("valueTextColor",  myOpt->vTextColor);
         settings->setValue("TextFontFamily", myOpt->textFontFamily);
         settings->setValue("TextFontSize", myOpt->textFontSize);
         settings->setValue("isEnglishLocale", myOpt->isEnglishLocale);
@@ -598,6 +621,10 @@ void MainWindow::resetUiFont(){
     f1.setFamily(myOpt->mainFontFamily);
     f1.setPixelSize(myOpt->mainFontSize);
     qApp->setFont(f1);
+    foreach (QWidget *widget, QApplication::allWidgets()) {
+        widget->setFont(QApplication::font());
+        widget->update();
+    }
     mui->toolButton_Clear->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_CopyAll->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_CopySel->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
@@ -614,8 +641,12 @@ void MainWindow::resetUiFont(){
     mui->toolButton_cdsr->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_soe->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_lShowFirst->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_Color->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_Desc->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_column->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_ltspice->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_FAQ->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_Num->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     QFont f2 = mui->textBrowser->font();
     f2.setFamily(myOpt->textFontFamily);
     f2.setPixelSize(myOpt->textFontSize);
@@ -645,15 +676,30 @@ void MainWindow::invertGUIconColor()
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::prepareHeader(QTextCursor *c)
+void MainWindow::showOutput(QString caption, QString image, QString input, QString result)
 {
-    if(myOpt->isLastShowingFirst)
-        c->movePosition(QTextCursor::Start);
-    else
-        c->movePosition(QTextCursor::End);
+    QTextCursor c = mui->textBrowser->textCursor();
     calc_count++;
-    c->insertHtml("<hr/><a href=\"del\" title=\"" +tr("Delete this result") + "\">" + QString(QChar(CLEAR_CHAR)) + "</a><hr/><b>"
-                  + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat) + "<br/><br/>");
+    QString outputHTML = "";
+    QString sTitle = "";
+    if (myOpt->isShowCalcNum)
+        c.insertHtml("<hr/><a href=\"del\" title=\"" +tr("Delete this result") + "\">" + QString(QChar(CLEAR_CHAR)) + "</a><b> – "
+                     + QString::number(calc_count)+ "</b> - " + loc.toString(QDateTime::currentDateTime(), QLocale::ShortFormat) + "<br/><br/>");
+    else if (!myOpt->isOutputInTwoColumns)
+        c.insertHtml("<hr/><br/>");
+    if (myOpt->isShowTitle)
+        sTitle += "<h4>" + caption + "</h4>";
+    if (myOpt->isInsertImage)
+        sTitle += "<p>"+ image + "</p>";
+    if (myOpt->isOutputInTwoColumns){
+        outputHTML += "<p><table  border='1' style='border-style:solid;margin:2;'><tbody><tr><td style='padding:5'>" + sTitle + input +
+                "</td><td style='padding:5'>" + result + "</td></tr></tbody></table><br/></p>";
+    } else {
+        outputHTML += "<p>" + sTitle + input + result + "<br/></p>";
+    }
+    c.insertHtml(outputHTML);
+    mui->pushButton_Calculate->setEnabled(true);
+    this->setCursor(Qt::ArrowCursor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::checkMaterial1(Material *mt){
@@ -785,6 +831,11 @@ void MainWindow::on_actionHelp_triggered()
         QDesktopServices::openUrl(QUrl("https://coil32.net/lc-resonance-calculation.html"));
     }
 }
+
+void MainWindow::on_actionIntrfaceHelp_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://coil32.net/detail/about-coil64.html"));
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionDonate_triggered()
 {
@@ -805,7 +856,6 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
 {
     int tab = mui->tabWidget->currentIndex();
     FormCoil = (_FormCoil)currentRow;
-    mui->toolButton_ltspice->setEnabled(false);
     switch (tab) {
     case 0:{
         mui->label_ind->setText(tr("Inductance") + " L:");
@@ -835,7 +885,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
-            mui->toolButton_ltspice->setEnabled(true);
+            mui->toolButton_showAdditional->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -876,7 +926,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
-            mui->toolButton_ltspice->setEnabled(true);
+            mui->toolButton_showAdditional->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -934,7 +984,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
-            mui->toolButton_ltspice->setEnabled(true);
+            mui->toolButton_showAdditional->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -977,7 +1027,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
-            mui->toolButton_ltspice->setEnabled(true);
+            mui->toolButton_showAdditional->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -1033,6 +1083,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(true);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_03->setText(tr("AWG"));
                 mui->lineEdit_3->setValidator(awgV);
@@ -1086,6 +1137,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_03->setText(tr("AWG"));
                 mui->lineEdit_3->setValidator(awgV);
@@ -1141,6 +1193,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_04->setText(tr("AWG"));
                 mui->lineEdit_4->setValidator(awgV);
@@ -1195,6 +1248,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
             mui->lineEdit_freq->setVisible(false);
@@ -1233,6 +1287,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_04->setText(tr("AWG"));
                 mui->lineEdit_4->setValidator(awgV);
@@ -1285,6 +1340,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(true);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
             mui->lineEdit_freq->setVisible(true);
@@ -1318,6 +1374,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
                 mui->lineEdit_2->setValidator(awgV);
@@ -1370,7 +1427,6 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
         mui->label_04_2->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_05_2->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
         mui->label_06_2->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
-        mui->lineEdit_N->setFocus();
         mui->lineEdit_1_2->setValidator(dv);
         mui->lineEdit_2_2->setValidator(dv);
         mui->lineEdit_3_2->setValidator(dv);
@@ -1391,7 +1447,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
-            mui->toolButton_ltspice->setEnabled(true);
+            mui->toolButton_showAdditional->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1399,6 +1455,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             }
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
+            mui->lineEdit_N->setFocus();
             mui->label_freq2->setVisible(true);
             mui->label_freq_m2->setVisible(true);
             mui->lineEdit_freq2->setVisible(true);
@@ -1446,7 +1503,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
-            mui->toolButton_ltspice->setEnabled(true);
+            mui->toolButton_showAdditional->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1454,6 +1511,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             }
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
+            mui->lineEdit_N->setFocus();
             mui->label_freq2->setVisible(true);
             mui->label_freq_m2->setVisible(true);
             mui->lineEdit_freq2->setVisible(true);
@@ -1508,10 +1566,11 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
-            mui->toolButton_ltspice->setEnabled(true);
+            mui->toolButton_showAdditional->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
+            mui->lineEdit_N->setFocus();
             mui->label_freq2->setVisible(true);
             mui->label_freq_m2->setVisible(true);
             mui->lineEdit_freq2->setVisible(true);
@@ -1554,7 +1613,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
-            mui->toolButton_ltspice->setEnabled(true);
+            mui->toolButton_showAdditional->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1562,6 +1621,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             }
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
+            mui->lineEdit_N->setFocus();
             mui->label_freq2->setVisible(true);
             mui->label_freq_m2->setVisible(true);
             mui->lineEdit_freq2->setVisible(true);
@@ -1617,12 +1677,14 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(true);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_04_2->setText(tr("AWG"));
                 mui->lineEdit_4_2->setValidator(awgV);
             }
             mui->label_N->setVisible(false);
             mui->lineEdit_N->setVisible(false);
+            mui->lineEdit_1_2->setFocus();
             mui->label_freq2->setVisible(false);
             mui->label_freq_m2->setVisible(false);
             mui->lineEdit_freq2->setVisible(false);
@@ -1655,6 +1717,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_5_2->setText(roundTo(data->k / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             mui->comboBox_checkMLWinding->setCurrentIndex(myOpt->windingKind);
             on_comboBox_checkMLWinding_activated(myOpt->windingKind);
+            mui->lineEdit_1_2->selectAll();
             break;
         }
         case _Multilayer_p:{
@@ -1664,12 +1727,14 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_04_2->setText(tr("AWG"));
                 mui->lineEdit_4_2->setValidator(awgV);
             }
             mui->label_N->setVisible(false);
             mui->lineEdit_N->setVisible(false);
+            mui->lineEdit_1_2->setFocus();
             mui->label_freq2->setVisible(false);
             mui->label_freq_m2->setVisible(false);
             mui->lineEdit_freq2->setVisible(false);
@@ -1713,6 +1778,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
                 on_lineEdit_4_2_editingFinished();
             mui->lineEdit_6_2->setText(roundTo(data->g / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             mui->lineEdit_7_2->setText(roundTo(data->Ng / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
+            mui->lineEdit_1_2->selectAll();
             break;
         }
         case _Multilayer_r:{
@@ -1725,12 +1791,14 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_05_2->setText(tr("AWG"));
                 mui->lineEdit_5_2->setValidator(awgV);
             }
             mui->label_N->setVisible(false);
             mui->lineEdit_N->setVisible(false);
+            mui->lineEdit_1_2->setFocus();
             mui->label_freq2->setVisible(false);
             mui->label_freq_m2->setVisible(false);
             mui->lineEdit_freq2->setVisible(false);
@@ -1775,6 +1843,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
                 mui->lineEdit_6_2->setText(roundTo(data->k / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             else
                 on_lineEdit_5_2_editingFinished();
+            mui->lineEdit_1_2->selectAll();
             break;
         }
         case _Multilayer_f:{
@@ -1784,8 +1853,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
+            mui->lineEdit_N->setFocus();
             mui->label_freq2->setVisible(false);
             mui->label_freq_m2->setVisible(false);
             mui->lineEdit_freq2->setVisible(false);
@@ -1826,8 +1897,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
+            mui->lineEdit_N->setFocus();
             mui->label_freq2->setVisible(false);
             mui->label_freq_m2->setVisible(false);
             mui->lineEdit_freq2->setVisible(false);
@@ -1868,6 +1941,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(true);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             mui->lineEdit_3_2->setVisible(true);
             mui->label_3_2->setVisible(true);
             mui->label_03_2->setVisible(true);
@@ -1876,6 +1950,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_04_2->setVisible(true);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
+            mui->lineEdit_N->setFocus();
             mui->label_freq2->setVisible(true);
             mui->label_freq_m2->setVisible(true);
             mui->lineEdit_freq2->setVisible(true);
@@ -1903,12 +1978,14 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_03_2->setText(tr("AWG"));
                 mui->lineEdit_3_2->setValidator(awgV);
             }
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
+            mui->lineEdit_N->setFocus();
             mui->label_freq2->setVisible(false);
             mui->label_freq_m2->setVisible(false);
             mui->lineEdit_freq2->setVisible(false);
@@ -1991,6 +2068,7 @@ void MainWindow::on_actionTo_null_data_triggered()
         data->Ng = 0;
         data->Do = 0;
         data->Di = 0;
+        data->th = 0;
         data->h = 0;
         data->mu = 0;
         data->ratio = 0.5;
@@ -2068,10 +2146,10 @@ void MainWindow::on_actionThemeDark_triggered()
     mui->actionThemeSunny->setChecked(false);
     mui->actionThemeDark->setChecked(true);
     mui->actionThemeDefault->setChecked(false);
-    resetUiFont();
     if((myOpt->styleGUI == _DefaultStyle)||(myOpt->styleGUI == _SunnyStyle))
         invertGUIconColor();
     myOpt->styleGUI = _DarkStyle;
+    resetUiFont();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionThemeSunny_triggered()
@@ -2084,14 +2162,14 @@ void MainWindow::on_actionThemeSunny_triggered()
         qApp->setStyleSheet(qsStylesheet);
         qfSunnystyle.close();
     }
-    //setStyleSheet(DARK_STYLE);
+    //setStyleSheet(SUNNY_STYLE);
     mui->actionThemeSunny->setChecked(true);
     mui->actionThemeDark->setChecked(false);
     mui->actionThemeDefault->setChecked(false);
-    resetUiFont();
     if(myOpt->styleGUI == _DarkStyle)
         invertGUIconColor();
     myOpt->styleGUI = _SunnyStyle;
+    resetUiFont();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionClear_all_triggered()
@@ -2177,6 +2255,9 @@ void MainWindow::on_actionSave_triggered()
             delete settings;
         }
         QString filters(".pdf (*.pdf);;.odf (*.odf);;.htm (*.htm)");
+        if (myOpt->isOutputInTwoColumns){
+            filters.remove(13, 14);
+        }
         QString defaultFilter(".htm (*.htm)");
         QString fileName = QFileDialog::getSaveFileName(this, tr("Save"), savePath + "/" + loc.toString(QDateTime::currentDateTime(), "yyyy-MM-dd_hh_mm_ss"), filters, &defaultFilter);
         if (!fileName.isEmpty()){
@@ -2185,30 +2266,41 @@ void MainWindow::on_actionSave_triggered()
             if (p < 0){
                 fileName.append(ext);
             }
-            if (ext == ".odf"){
-                QTextDocumentWriter textwriter(fileName);
-                textwriter.write(document);
-            }
-            if (ext == ".pdf"){
-                QPrinter printer(QPrinter::PrinterResolution);
-                printer.setOutputFormat(QPrinter::PdfFormat);
-                printer.setPaperSize(QPrinter::A4);
-                printer.setOutputFileName(fileName);
-                printer.setPageMargins(QMarginsF(50, 50, 50, 50));
-                QFont oldFont(document->defaultFont());
-                QFont newFont = oldFont;
-                newFont.setFamily("Courier New");
-                newFont.setPointSize(6);
-                document->setDefaultFont(newFont);
-                document->setPageSize(printer.pageRect().size());
-                document->print(&printer);
-                document->setDefaultFont(oldFont);
-            }
             if (ext == ".htm"){
                 QFile file(fileName);
                 file.open(QIODevice::WriteOnly);
                 file.write(document->toHtml().toUtf8());
                 file.close();
+            }
+            if ((ext == ".odf") || (ext == ".pdf")){
+                QString oldTxt = document->toHtml();
+                QString newText = document->toHtml().remove(CLEAR_CHAR);
+                document->setHtml(newText);
+                if (ext == ".odf"){
+                    QTextDocumentWriter textwriter(fileName);
+                    textwriter.setFormat("odf");
+                    textwriter.write(document);
+                }
+                if (ext == ".pdf"){
+                    QPrinter printer(QPrinter::PrinterResolution);
+                    printer.setOutputFormat(QPrinter::PdfFormat);
+                    printer.setPaperSize(QPrinter::A4);
+                    printer.setOutputFileName(fileName);
+                    printer.setPageMargins(QMarginsF(50, 50, 50, 50));
+                    QFont oldFont(document->defaultFont());
+                    QFont newFont = oldFont;
+                    newFont.setFamily("Courier New");
+                    if (myOpt->isOutputInTwoColumns)
+                        newFont.setPointSize(8);
+                    else
+                        newFont.setPointSize(6);
+                    document->setDefaultFont(newFont);
+                    document->setPageSize(printer.pageRect().size());
+                    document->print(&printer);
+                    document->setDefaultFont(oldFont);
+                }
+                document->setHtml(oldTxt);
+                QTextCursor c = mui->textBrowser->textCursor();
             }
         }
     }
@@ -2241,7 +2333,6 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         mui->comboBox_checkMLWinding->setVisible(false);
         mui->toolButton_FAQ->setVisible(false);
         mui->image->setPixmap(QPixmap(":/images/res/LC.png"));
-        mui->lineEdit_1_3->setFocus();
         if (mui->radioButton_LC->isChecked())
             on_radioButton_LC_clicked();
         if (mui->radioButton_CF->isChecked())
@@ -2250,6 +2341,8 @@ void MainWindow::on_tabWidget_currentChanged(int index)
             on_radioButton_LF_clicked();
         if (mui->radioButton_ZF->isChecked())
             on_radioButton_ZF_clicked();
+        mui->lineEdit_1_3->setFocus();
+        mui->lineEdit_1_3->selectAll();
         break;
     }
     default:
@@ -2265,6 +2358,8 @@ void MainWindow::on_radioButton_LC_clicked()
     mui->lineEdit_2_3->setText(roundTo(data->capacitance / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy));
     mui->label_01_3->setText(qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()));
     mui->label_02_3->setText(qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()));
+    mui->lineEdit_1_3->setFocus();
+    mui->lineEdit_1_3->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_CF_clicked()
@@ -2275,6 +2370,8 @@ void MainWindow::on_radioButton_CF_clicked()
     mui->lineEdit_2_3->setText(roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy));
     mui->label_01_3->setText(qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()));
     mui->label_02_3->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
+    mui->lineEdit_1_3->setFocus();
+    mui->lineEdit_1_3->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_LF_clicked()
@@ -2285,6 +2382,8 @@ void MainWindow::on_radioButton_LF_clicked()
     mui->lineEdit_2_3->setText(roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy));
     mui->label_01_3->setText(qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()));
     mui->label_02_3->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
+    mui->lineEdit_1_3->setFocus();
+    mui->lineEdit_1_3->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_ZF_clicked()
@@ -2295,6 +2394,8 @@ void MainWindow::on_radioButton_ZF_clicked()
     mui->lineEdit_2_3->setText(roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy));
     mui->label_01_3->setText(tr("Ohm"));
     mui->label_02_3->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
+    mui->lineEdit_1_3->setFocus();
+    mui->lineEdit_1_3->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_checkBox_isInsulation_toggled(bool checked)
@@ -2326,21 +2427,29 @@ void MainWindow::on_checkBox_isInsulation2_toggled(bool checked)
 void MainWindow::on_radioButton_1_clicked(bool checked)
 {
     mui->radioButton_1_2->setChecked(checked);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_2_clicked(bool checked)
 {
     mui->radioButton_2_2->setChecked(checked);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_3_clicked(bool checked)
 {
     mui->radioButton_3_2->setChecked(checked);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_4_clicked(bool checked)
 {
     mui->radioButton_4_2->setChecked(checked);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_5_1_toggled(bool checked)
@@ -2379,27 +2488,42 @@ void MainWindow::on_radioButton_5_1_toggled(bool checked)
             mui->label_03->setVisible(false);
             myOpt->isWindingLengthOneLayerInit = true;
         }
+        mui->lineEdit_ind->setFocus();
+        mui->lineEdit_ind->selectAll();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_1_2_clicked(bool checked)
 {
     mui->radioButton_1->setChecked(checked);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_2_2_clicked(bool checked)
 {
     mui->radioButton_2->setChecked(checked);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_3_2_clicked(bool checked)
 {
     mui->radioButton_3->setChecked(checked);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_radioButton_4_2_clicked(bool checked)
 {
     mui->radioButton_4->setChecked(checked);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_Num_clicked()
+{
+    myOpt->isShowCalcNum = mui->toolButton_Num->isChecked();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_toolButton_showTitle_clicked()
@@ -2415,6 +2539,21 @@ void MainWindow::on_toolButton_showImg_clicked()
 void MainWindow::on_toolButton_ltspice_clicked()
 {
     myOpt->isShowLTSpice = mui->toolButton_ltspice->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_Color_clicked()
+{
+    myOpt->isOutputValueColored = mui->toolButton_Color->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_Desc_clicked()
+{
+    myOpt->isShowValueDescription = mui->toolButton_Desc->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_column_clicked()
+{
+    myOpt->isOutputInTwoColumns = mui->toolButton_column->isChecked();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_toolButton_showAdditional_clicked()
@@ -2528,6 +2667,8 @@ void MainWindow::on_radioButton_6_toggled(bool checked)
             mui->label_04_2->setVisible(true);
             mui->lineEdit_4_2->setText(roundTo(data->c / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
         }
+        mui->lineEdit_1_2->setFocus();
+        mui->lineEdit_1_2->selectAll();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2551,13 +2692,14 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
             } else
                 mui->lineEdit_4_2->setText(roundTo(data->d / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
         }
+        mui->lineEdit_1_2->setFocus();
+        mui->lineEdit_1_2->selectAll();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::getOptionStruct(_OptionStruct gOpt){
     *myOpt = gOpt;
     completeOptionsStructure(myOpt);
-    resetUiFont();
     on_tabWidget_currentChanged(mui->tabWidget->currentIndex());
     mui->toolButton_showImg->setChecked(myOpt->isInsertImage);
     mui->toolButton_showTitle->setChecked(myOpt->isShowTitle);
@@ -2568,6 +2710,10 @@ void MainWindow::getOptionStruct(_OptionStruct gOpt){
     mui->toolButton_cdsr->setChecked(myOpt->isConfirmDelete);
     mui->toolButton_soe->setChecked(myOpt->isSaveOnExit);
     mui->toolButton_lShowFirst->setChecked(myOpt->isLastShowingFirst);
+    mui->toolButton_Desc->setChecked(myOpt->isShowValueDescription);
+    mui->toolButton_column->setChecked(myOpt->isOutputInTwoColumns);
+    mui->toolButton_Color->setChecked(myOpt->isOutputValueColored);
+    mui->toolButton_Num->setChecked(myOpt->isShowCalcNum);
     if(myOpt->isEnglishLocale)loc = QLocale::English;
     else loc = getLanguageLocale(lang);
     this->setLocale(loc);
@@ -4347,6 +4493,8 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 return;
             }
             QString tmpStr = "";
+            QString label1 = "";
+            QString label2 = "";
             bool ok1, ok2;
             if (mui->radioButton_LC->isChecked()){
                 data->inductance = loc.toDouble(mui->lineEdit_1_3->text(), &ok1)*myOpt->dwInductanceMultiplier;
@@ -4356,8 +4504,10 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     return;
                 }
                 data->frequency = CalcLC0(data->inductance, data->capacitance);
-                tmpStr += tr("Frequency of a circuit") + " f = " + roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy)
-                        + " " + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
+                tmpStr += formattedOutput(myOpt, tr("Frequency of a circuit") + " f = ", roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                          qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
+                label1 = " L: ";
+                label2 = " C: ";
             } else if (mui->radioButton_CF->isChecked()){
                 data->capacitance = loc.toDouble(mui->lineEdit_1_3->text(), &ok1)*myOpt->dwCapacityMultiplier;
                 data->frequency = loc.toDouble(mui->lineEdit_2_3->text(), &ok2)*myOpt->dwFrequencyMultiplier;
@@ -4366,8 +4516,10 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     return;
                 }
                 data->inductance = CalcLC1(data->capacitance, data->frequency);
-                tmpStr += tr("Inductance of a circuit") + " L = " + roundTo(data->inductance / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy)
-                        + " " + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+                tmpStr += formattedOutput(myOpt, tr("Inductance of a circuit") + " L = ", roundTo(data->inductance / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                                          qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
+                label1 = " C: ";
+                label2 = " f: ";
             } else if (mui->radioButton_LF->isChecked()){
                 data->inductance = loc.toDouble(mui->lineEdit_1_3->text(), &ok1)*myOpt->dwInductanceMultiplier;
                 data->frequency = loc.toDouble(mui->lineEdit_2_3->text(), &ok2)*myOpt->dwFrequencyMultiplier;
@@ -4376,8 +4528,10 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     return;
                 }
                 data->capacitance = CalcLC2(data->inductance, data->frequency);
-                tmpStr += tr("Circuit capacitance") + " C = " + roundTo(data->capacitance / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy)
-                        + " " + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
+                tmpStr += formattedOutput(myOpt, tr("Circuit capacitance") + " C = ", roundTo(data->capacitance / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                          qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
+                label1 = " L: ";
+                label2 = " f: ";
             } else if (mui->radioButton_ZF->isChecked()){
                 data->zo = loc.toDouble(mui->lineEdit_1_3->text(), &ok1);
                 data->frequency = loc.toDouble(mui->lineEdit_2_3->text(), &ok2)*myOpt->dwFrequencyMultiplier;
@@ -4389,40 +4543,28 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 CalcLC3(data->zo,data->frequency,&result);
                 data->capacitance = toNearestE24(result.N, myOpt->dwAccuracy);
                 data->inductance = CalcLC1(data->capacitance, data->frequency);
-                tmpStr += tr("Circuit capacitance") + " C = " + roundTo(data->capacitance / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy)
-                        + " " + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
-                tmpStr += tr("Inductance of a circuit") + " L = " + roundTo(data->inductance / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy)
-                        + " " + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+                tmpStr += formattedOutput(myOpt, tr("Circuit capacitance") + " C = ", roundTo(data->capacitance / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                          qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
+                tmpStr += formattedOutput(myOpt, tr("Inductance of a circuit") + " L = ", roundTo(data->inductance / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                                          qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
+                label1 = " Z: ";
+                label2 = " f: ";
             }
-            QTextCursor c = mui->textBrowser->textCursor();
-            QString Input = "<hr>";
-            if (myOpt->isShowTitle){
-                prepareHeader(&c);
-                Input = "<h2>" + windowTitle() + " - " + tr("LC tank calculation") + "</h2><br/>";
-            }
-            if (myOpt->isInsertImage){
-                Input += "<img src=\":/images/res/LC.png\">";
-            }
-            Input += "<p><u>" + tr("Input") + ":</u><br/>";
-            Input += mui->groupBox_1_3->title() + ": " + mui->lineEdit_1_3->text() + " " + mui->label_01_3->text() + "<br/>";
-            Input += mui->groupBox_2_3->title() + ": " + mui->lineEdit_2_3->text() + " " + mui->label_02_3->text() + "</p>";
-            c.insertHtml(Input);
-            QString Result = "<hr>";
-            Result += "<p><u>" + tr("Result") + ":</u><br/>";
-            Result += tmpStr;
+            QString sCaption = windowTitle() + " - " + tr("LC tank calculation");
+            QString sImage = "<img src=\":/images/res/LC.png\">";
+            QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+            sInput += formattedOutput(myOpt, mui->groupBox_1_3->title() + label1, mui->lineEdit_1_3->text(), mui->label_01_3->text()) + "<br/>";
+            sInput += formattedOutput(myOpt, mui->groupBox_2_3->title() + label2, mui->lineEdit_2_3->text(), mui->label_02_3->text()) + "</p>";
+            QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+            sResult += tmpStr;
             if (!mui->radioButton_ZF->isChecked()){
                 data->zo = 1000 * sqrt(data->inductance / data->capacitance);
-                Result += tr("Characteristic impedance") + " Z<sub>0</sub> = " + roundTo(data->zo, loc, myOpt->dwAccuracy) + " " + tr("Ohm");
+                sResult += formattedOutput(myOpt, tr("Characteristic impedance") + " Z<sub>0</sub> = ", roundTo(data->zo, loc, myOpt->dwAccuracy), tr("Ohm"));
             }
-            Result += "</p><hr>";
-            c.insertHtml(Result);
-            if(myOpt->isLastShowingFirst)
-                c.movePosition(QTextCursor::Start);
-            else
-                c.movePosition(QTextCursor::End);
-            mui->textBrowser->setTextCursor(c);
-            mui->pushButton_Calculate->setEnabled(true);
-            this->setCursor(Qt::ArrowCursor);
+            sResult += "</p>";
+            showOutput(sCaption, sImage, sInput, sResult);
+            mui->lineEdit_1_3->setFocus();
+            mui->lineEdit_1_3->selectAll();
             break;
         }
         default:
@@ -4435,40 +4577,29 @@ void MainWindow::on_pushButton_Calculate_clicked()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GET NUMBER OF TURNS ROUTINES
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
+void MainWindow::get_onelayerN_roundW_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "";
     if (myOpt->isInsertImage){
         if (FormCoil == _Onelayer_cw)
-            Input += "<img src=\":/images/res/Coil1.png\">";
+            sImage = "<img src=\":/images/res/Coil1.png\">";
         else
-            Input += "<img src=\":/images/res/Coil2.png\">";
+            sImage = "<img src=\":/images/res/Coil2.png\">";
     }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_freq->text() + " " + mui->lineEdit_freq->text() + " " + mui->label_freq_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text();
-    if ((myOpt->isWindingLengthOneLayerInit) && (FormCoil == _Onelayer_cw)){
-        Input += "</p>";
-    } else {
-        if (mui->lineEdit_3->isEnabled()){
-            Input += "<br/>";
-            Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text();
-        }
-        if (FormCoil == _Onelayer_cw){
-            Input += "</p>";
-        } else {
-            Input += "<br/>";
-            Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "</p>";
-        }
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_freq->text(), mui->lineEdit_freq->text(), mui->label_freq_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
+    if (!((myOpt->isWindingLengthOneLayerInit) && (FormCoil == _Onelayer_cw))){
+        if (mui->lineEdit_3->isEnabled())
+            sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
+        if (!(FormCoil == _Onelayer_cw))
+            sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
     }
-    c.insertHtml(Input);
-    QString Result = "<hr>";
+    QString material_name = getCheckedRadioButton(mui->groupBox)->text();
+    sInput += formattedOutput(myOpt, mui->groupBox->title().mid(0, mui->groupBox->title().length() - 1) + " Mt:", material_name) + "</p>";
     double I = loc.toDouble(mui->lineEdit_ind->text())*myOpt->dwInductanceMultiplier;
     double d = 0;
     double k = 0;
@@ -4488,28 +4619,29 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
             p = loc.toDouble(mui->lineEdit_4->text())*myOpt->dwLengthMultiplier;
     }
     double f = loc.toDouble(mui->lineEdit_freq->text())*myOpt->dwFrequencyMultiplier;
+    QString sResult = "";
     if (result.N > 0){
         data->N = result.N;
-        Result += "<p><u>" + tr("Result") + ":</u><br/>";
-        Result += tr("Number of turns of the coil") + " N = " + roundTo(result.N, loc, myOpt->dwAccuracy) + "<br/>";
+        sResult += "<p><u>" + tr("Result") + ":</u><br/>";
+        sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", roundTo(result.N, loc, myOpt->dwAccuracy)) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
         QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
-        Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-                qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
         if ((myOpt->isWindingLengthOneLayerInit) && (FormCoil == _Onelayer_cw)){
             d = result.five;
             data->d = d;
             if (myOpt->isAWG)
-                Result += tr("Wire diameter") + " AWG# = " + converttoAWG(d)  + "<br/>";
+                sResult += formattedOutput(myOpt, tr("Wire diameter") + " AWG# = ", converttoAWG(d))  + "<br/>";
             else
-                Result += tr("Wire diameter") + " dw = " + roundTo( (result.five)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ) + " " +
-                        qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+                sResult += formattedOutput(myOpt, tr("Wire diameter") + " dw = ", roundTo( (result.five)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
+                                          qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         } else {
             data->l = result.N * p + k;
-            Result += tr("Length of winding") + " l = " + roundTo( (data->l)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ) + " " +
-                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (data->l)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
+                                      qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         }
         Material mt = Cu;
         checkMaterial1(&mt);
@@ -4517,179 +4649,154 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result){
         double mass = 0.25 * dencity * M_PI * d * d * result.sec;
         double Resistivity = mtrl[mt][Rho]*1e6;
         double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
-        Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
-        Result += tr("Resistance of the coil") + " Rdc = " + roundTo(R, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
         double reactance = 2 * M_PI * I * f;
-        Result += tr("Reactance of the coil") + " X = " + roundTo(reactance, loc, myOpt->dwAccuracy) + " " + tr("Ohm");
-        Result += "<br/><br/>";
+        sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+        sResult += "<br/><br/>";
         if (f < 0.7 * result.fourth){
-            Result += tr("Self capacitance") + " Cs = " + roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + " "
-                    + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
-            Result += tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy) + " "
-                    + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                      qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                      qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             double Ql = (double)result.six;
-            Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
             double ESR = result.seven;
-            Result += tr("Loss resistance") + " ESR = " + roundTo(ESR, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
+            sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
             if(myOpt->isAdditionalResult){
-                Result += "<hr><p>";
-                Result += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
+                sResult += "<hr/><p>";
+                sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
                 data->capacitance = CalcLC2(I, f);
-                Result += " => "  + tr("Circuit capacitance") + ": Ck = " +
-                        roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
+                sResult += " => "  + tr("Circuit capacitance") + ": Ck = " + roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + " "
                         + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
                 double ro = 1000 * sqrt(I / data->capacitance);
-                Result += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
+                sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
                 double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
                 double Re = ro * Qs;
-                Result += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+                sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
                 double deltaf = 1000 * data->frequency / Qs;
-                Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+                sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy)+ " " + tr("kHz");
             }
             if(myOpt->isShowLTSpice){
-                Result += "<hr><p>";
-                Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-                Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-                Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-                Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-                Result += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+                sResult += "<hr/><p>";
+                sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+                sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+                sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+                sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+                sResult += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
             }
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
             mui->statusBar->showMessage(message);
-            Result += "<span style=\"color:blue;\">" + message + "</span>";
+            sResult += "<span style=\"color:blue;\">" + message + "</span>";
         }
-        Result += "</p><hr>";
+        sResult += "</p>";
     } else {
-        Result += "<span style=\"color:red;\">" + tr("Coil can not be realized") + "! </span>";
+        sResult += "<span style=\"color:red;\">" + tr("Coil can not be realized") + "! </span>";
     }
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    showOutput(sCaption, sImage, sInput, sResult);
     mui->lineEdit_ind->setFocus();
     mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_onelayerN_rectW_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil2_square.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_freq->text() + " " + mui->lineEdit_freq->text() + " " + mui->label_freq_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
-    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
-    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
-    Input += mui->label_5->text() + " " + mui->lineEdit_5->text() + " " + mui->label_05->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
+void MainWindow::get_onelayerN_rectW_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil2_square.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_freq->text(), mui->lineEdit_freq->text(), mui->label_freq_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5->text(), mui->lineEdit_5->text(), mui->label_05->text()) + "<br/>";
+    QString material_name = getCheckedRadioButton(mui->groupBox)->text();
+    sInput += formattedOutput(myOpt, mui->groupBox->title().mid(0, mui->groupBox->title().length() - 1) + " Mt:", material_name) + "</p>";
     double I = loc.toDouble(mui->lineEdit_ind->text())*myOpt->dwInductanceMultiplier;
     double w = loc.toDouble(mui->lineEdit_2->text())*myOpt->dwLengthMultiplier;
     double t = loc.toDouble(mui->lineEdit_3->text())*myOpt->dwLengthMultiplier;
     double p = loc.toDouble(mui->lineEdit_5->text())*myOpt->dwLengthMultiplier;
     double f = loc.toDouble(mui->lineEdit_freq->text())*myOpt->dwFrequencyMultiplier;
     data->N = result.N;
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
-    Result += tr("Number of turns of the coil") + " N = " + roundTo(result.N, loc, myOpt->dwAccuracy) + "<br/>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+    sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", roundTo(result.N, loc, myOpt->dwAccuracy)) + "<br/>";
     QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Length of winding") + " l = " + roundTo( (result.N * p + w)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ) + " " +
-            qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (result.N * p + w)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     Material mt = Cu;
     checkMaterial1(&mt);
     double dencity = mtrl[mt][Dencity];
     double mass = dencity * w * t * result.sec;
     double Resistivity = mtrl[mt][Rho]*1e6;
     double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
-    Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
     double reactance = 2 * M_PI * I * f;
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(R, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-    Result += tr("Reactance of the coil") + " X = " + roundTo(reactance, loc, myOpt->dwAccuracy) + " " + tr("Ohm");
-    Result += "<br/><br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+    sResult += "<br/><br/>";
     if (f < 0.7 * result.fourth){
-        Result += tr("Self capacitance") + " Cs = " + roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
-        Result += tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
         double Ql = (double)result.six;
-        Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
         double ESR = result.seven;
-        Result += tr("Loss resistance") + " ESR = " + roundTo(ESR, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
+        sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
         if(myOpt->isAdditionalResult){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
             data->capacitance = CalcLC2(I, f);
-            Result += " => "  + tr("Circuit capacitance") + ": Ck = " +
+            sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
                     roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
                     + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
             double ro = 1000 * sqrt(I / data->capacitance);
-            Result += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
+            sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
             double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
             double Re = ro * Qs;
-            Result += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+            sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
             double deltaf = 1000 * data->frequency / Qs;
-            Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+            sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
         }
         if(myOpt->isShowLTSpice){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-            Result += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            sResult += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
         }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
         mui->statusBar->showMessage(message);
-        Result += "<span style=\"color:blue;\">" + message + "</span>";
+        sResult += "<span style=\"color:blue;\">" + message + "</span>";
     }
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil3.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_freq->text() + " " + mui->lineEdit_freq->text() + " " + mui->label_freq_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
-    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
-    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
-    Input += mui->label_5->text() + " " + mui->lineEdit_5->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
+void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil3.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_freq->text(), mui->lineEdit_freq->text(), mui->label_freq_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5->text(), mui->lineEdit_5->text()) + "<br/>";
+    QString material_name = getCheckedRadioButton(mui->groupBox)->text();
+    sInput += formattedOutput(myOpt, mui->groupBox->title().mid(0, mui->groupBox->title().length() - 1) + " Mt:", material_name) + "</p>";
     double I = loc.toDouble(mui->lineEdit_ind->text())*myOpt->dwInductanceMultiplier;
     double d = 0;
     if (myOpt->isAWG){
@@ -4701,115 +4808,101 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result){
     double p = loc.toDouble(mui->lineEdit_4->text())*myOpt->dwLengthMultiplier;
     double f = loc.toDouble(mui->lineEdit_freq->text())*myOpt->dwFrequencyMultiplier;
     data->N = result.N;
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
-    Result += tr("Number of turns of the coil") + " N = " + roundTo(result.N, loc, myOpt->dwAccuracy) + "<br/>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+    sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", roundTo(result.N, loc, myOpt->dwAccuracy)) + "<br/>";
     QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Length of winding") + " l = " + roundTo( (result.N * p + k)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ) + " " +
-            qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (result.N * p + k)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     Material mt = Cu;
     checkMaterial1(&mt);
     double dencity = mtrl[mt][Dencity];
     double mass = 0.25 * dencity * M_PI * d * d * result.thd;
     double Resistivity = mtrl[mt][Rho]*1e6;
     double R = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
-    Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
     double reactance = 2 * M_PI * I * f;
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(R, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-    Result += tr("Reactance of the coil") + " X = " + roundTo(reactance, loc, myOpt->dwAccuracy) + " " + tr("Ohm");
-    Result += "<br/><br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+    sResult += "<br/><br/>";
     if (f < 0.7 * result.five){
-        Result += tr("Self capacitance") + " Cs = " + roundTo(result.fourth/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
-        Result += tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.fourth/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
         double Ql = (double)result.six;
-        Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
         double ESR = result.seven;
-        Result += tr("Loss resistance") + " ESR = " + roundTo(ESR, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
+        sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
         if(myOpt->isAdditionalResult){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
             data->capacitance = CalcLC2(I, f);
-            Result += " => "  + tr("Circuit capacitance") + ": Ck = " +
+            sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
                     roundTo((data->capacitance - result.fourth) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
                     + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
             double ro = 1000 * sqrt(I / data->capacitance);
-            Result += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
+            sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
             double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
             double Re = ro * Qs;
-            Result += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+            sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
             double deltaf = 1000 * data->frequency / Qs;
-            Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+            sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
         }
         if(myOpt->isShowLTSpice){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-            Result += "Parallel capacitance: " + QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            sResult += "Parallel capacitance: " + QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p" + "</p>";
         }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
         mui->statusBar->showMessage(message);
-        Result += "<span style=\"color:blue;\">" + message + "</span>";
+        sResult += "<span style=\"color:blue;\">" + message + "</span>";
     }
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
     mui->lineEdit_ind->setFocus();
     mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_multilayerN_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        if (myOpt->windingKind == 0)
-            Input += "<img src=\":/images/res/Coil4.png\">";
-        else
-            Input += "<img src=\":/images/res/Coil4o.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
-    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
-    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
-    Input += mui->comboBox_checkMLWinding->currentText() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+void MainWindow::get_multilayerN_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "";
+    if (myOpt->windingKind == 0)
+        sImage = "<img src=\":/images/res/Coil4.png\">";
+    else
+        sImage = "<img src=\":/images/res/Coil4o.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
+    sInput += mui->comboBox_checkMLWinding->currentText() + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     data->N = result.six;
-    Result += tr("Number of turns of the coil") + " N = " + QString::number(result.six) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", QString::number(result.six)) + "<br/>";
     data->c = result.fourth;
-    Result += tr("Thickness of the coil") + " c = " + roundTo(result.fourth / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Thickness of the coil") + " c = ", roundTo(result.fourth / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     double D = loc.toDouble(mui->lineEdit_1->text())*myOpt->dwLengthMultiplier;
     double width = (2 * result.fourth + D) / myOpt->dwLengthMultiplier;
-    Result += tr("Dimensions of inductor") + ": " + mui->lineEdit_2->text() + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier))
-            + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier)) + " " + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Dimensions of inductor") + " S: ", mui->lineEdit_2->text() + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier))
+                              + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier)), qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
     double d = 0;
     if (myOpt->isAWG){
         d = convertfromAWG(mui->lineEdit_3->text());
@@ -4821,55 +4914,42 @@ void MainWindow::get_multilayerN_Result(_CoilResult result){
     double Resistivity = mtrl[Cu][Rho]*1e6;
     double Rdc = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
     data->Rdc = Rdc;
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(Rdc, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-    Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
-    Result += tr("Number of layers") + " Nl = " + loc.toString(result.thd);
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(Rdc, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Number of layers") + " Nl = ", loc.toString(result.thd));
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_multilayerNgap_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil4-0.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
-    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
-    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
-    Input += mui->label_5->text() + " " + mui->lineEdit_5->text() + " " + mui->label_05->text() + "<br/>";
-    Input += mui->label_6->text() + " " + mui->lineEdit_6->text() + " " + mui->label_06->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+void MainWindow::get_multilayerNgap_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil4-0.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5->text(), mui->lineEdit_5->text(), mui->label_05->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_6->text(), mui->lineEdit_6->text(), mui->label_06->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     data->N = result.six;
-    Result += tr("Number of turns of the coil") + " N = " + QString::number(result.six) + "<br/>";
-    Result += tr("Thickness of the coil") + " c = " + roundTo(result.fourth / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", QString::number(result.six)) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Thickness of the coil") + " c = ", roundTo(result.fourth / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     double D = loc.toDouble(mui->lineEdit_1->text())*myOpt->dwLengthMultiplier;
     double width = (2 * result.fourth + D) / myOpt->dwLengthMultiplier;
-    Result += tr("Dimensions of inductor") + ": " + mui->lineEdit_2->text() + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier))
-            + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier)) + " " + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Dimensions of inductor") + " S: ", mui->lineEdit_2->text() + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier))
+                              + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier)), qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
     double d = 0;
     if (myOpt->isAWG){
         d = convertfromAWG(mui->lineEdit_3->text());
@@ -4881,59 +4961,46 @@ void MainWindow::get_multilayerNgap_Result(_CoilResult result){
     double Resistivity = mtrl[Cu][Rho]*1e6;
     double Rdc = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
     data->Rdc = Rdc;
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(Rdc, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-    Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
-    Result += tr("Number of layers") + " Nl = " + loc.toString(result.thd) + "<br/>";
-    Result += tr("Number of interlayers") + " Ng = " + loc.toString(result.five);
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(Rdc, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Number of layers") + " Nl = ", loc.toString(result.thd)) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Number of interlayers") + " Np = ", loc.toString(result.five));
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_multilayerN_Rect_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil4_square.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
-    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
-    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
-    Input += mui->label_5->text() + " " + mui->lineEdit_5->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+void MainWindow::get_multilayerN_Rect_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil4_square.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5->text(), mui->lineEdit_5->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     data->N = result.N;
     data->c = result.five;
-    Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N) + "<br/>";
-    Result += tr("Number of layers") + " Nl = " + loc.toString(result.sec) + "<br/>";
-    Result += tr("Thickness of the coil") + " c = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", loc.toString(result.N)) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Number of layers") + " Nl = ", loc.toString(result.sec)) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Thickness of the coil") + " c = ", roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     double a = loc.toDouble(mui->lineEdit_1->text())*myOpt->dwLengthMultiplier;
     double width = (2 * result.five + a) / myOpt->dwLengthMultiplier;
     double b = loc.toDouble(mui->lineEdit_2->text())*myOpt->dwLengthMultiplier;
     double height = (2 * result.five + b) / myOpt->dwLengthMultiplier;
-    Result += tr("Dimensions of inductor") + ": " + mui->lineEdit_3->text() + "x" + loc.toString(ceil(width))
-            + "x" + loc.toString(ceil(height)) + " " + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Dimensions of inductor") + " S: ", mui->lineEdit_3->text() + "x" + loc.toString(ceil(width))
+                              + "x" + loc.toString(ceil(height)) + " ", qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
     double d = 0;
     if (myOpt->isAWG){
         d = convertfromAWG(mui->lineEdit_4->text());
@@ -4945,240 +5012,177 @@ void MainWindow::get_multilayerN_Rect_Result(_CoilResult result){
     double Resistivity = mtrl[Cu][Rho]*1e6;
     double Rdc = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
     data->Rdc = Rdc;
-    Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(result.fourth, loc, myOpt->dwAccuracy) + " " + tr("Ohm");
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(result.fourth, loc, myOpt->dwAccuracy), tr("Ohm"));
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerN_Foil_Result(_CoilResult result)
 {
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil11.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
-    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
-    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil11.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     data->N = result.N;
-    Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N) + "<br/>";
-    Result += tr("Outside diameter") + " Do = " + roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", loc.toString(result.N)) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Outside diameter") + " Do = ", roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     QString _foil_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _foil_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_foil_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of the foil") + " lf = " + roundTo(d_foil_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(result.fourth, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + " (" + tr("Copper") + ")<br/>";
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(result.five, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + " (" + tr("Aluminum") + ")";
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += formattedOutput(myOpt, tr("Length of the foil") + " lf = ", roundTo(d_foil_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(result.fourth, loc, myOpt->dwAccuracy), tr("Ohm")) + " (" + tr("Copper") + ")<br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(result.five, loc, myOpt->dwAccuracy), tr("Ohm")) + " (" + tr("Aluminum") + ")";
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_ferrToroidN_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/T-core.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
-    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
-    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
-    Input += mui->label_5->text() + " " + mui->lineEdit_5->text() + "<br/>";
-    Input += mui->label_6->text() + " " + mui->lineEdit_6->text() + " " + mui->label_06->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+void MainWindow::get_ferrToroidN_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/T-core.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5->text(), mui->lineEdit_5->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_6->text(), mui->lineEdit_6->text(), mui->label_06->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if (result.sec > 0) {
         data->N = result.N;
-        Result += tr("Number of turns of the coil") + " N = " + roundTo(result.N, loc, myOpt->dwAccuracy) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", roundTo(result.N, loc, myOpt->dwAccuracy)) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
         QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
-        Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-                qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-        Result += "A<sub>L</sub>&nbsp;= " + loc.toString(result.thd)
-                + "&nbsp;" +  qApp->translate("Context","nH") + "/N<sup>2</sup>";
+        sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(myOpt, "A<sub>L</sub> = ", loc.toString(result.thd),  qApp->translate("Context","nH") + "/N<sup>2</sup>");
     } else {
-        Result += "<span style=\"color:red;\">" + tr("Coil can not be realized") + "! </span>";
+        sResult += "<span style=\"color:red;\">" + tr("Coil can not be realized") + "! </span>";
         mui->statusBar->showMessage(tr("Coil can not be realized") + "!");
     }
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_pcbN_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
+void MainWindow::get_pcbN_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    sCaption += mui->comboBox_checkPCB->currentText() + "<br/>";
+    QString sImage = "";
+    switch (myOpt->layoutPCBcoil) {
+    case 0:{
+        sImage += "<img src=\":/images/res/Coil8.png\">";
+        break;
     }
-    Input += "<h3>" + mui->comboBox_checkPCB->currentText() + "</h3><br/>";
-    if (myOpt->isInsertImage){
-        switch (myOpt->layoutPCBcoil) {
-        case 0:{
-            Input += "<img src=\":/images/res/Coil8.png\">";
-            break;
-        }
-        case 1:{
-            Input += "<img src=\":/images/res/Coil9.png\">";
-            break;
-        }
-        case 2:{
-            Input += "<img src=\":/images/res/Coil8r.png\">";
-            break;
-        }
-        default:
-            break;
-        }
+    case 1:{
+        sImage += "<img src=\":/images/res/Coil9.png\">";
+        break;
     }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_freq->text() + " " + mui->lineEdit_freq->text() + " " + mui->label_freq_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
+    case 2:{
+        sImage += "<img src=\":/images/res/Coil8r.png\">";
+        break;
+    }
+    default:
+        break;
+    }
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_freq->text(), mui->lineEdit_freq->text(), mui->label_freq_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
     if (mui->comboBox_checkPCB->currentIndex() == 2)
-        Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "<br/>";
-    Input += mui->label_4->text() + " " + mui->lineEdit_4->text() + " " + mui->label_04->text() + "<br/>";
-    Input += mui->groupBox_6->title() + " " + loc.toString((double)mui->horizontalSlider->value()/100) + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+        sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->groupBox_6->title(), loc.toString((double)mui->horizontalSlider->value()/100)) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if ((result.N != 0) && (result.sec != 0) && (result.thd != 0)){
         data->N = result.N;
         data->s = QString::number(result.sec, 'f', myOpt->dwAccuracy).toDouble();
         data->w = QString::number(result.thd, 'f', myOpt->dwAccuracy).toDouble();
-        Result += tr("Number of turns of the coil") + " N = " + roundTo(result.N, loc, myOpt->dwAccuracy) + "<br/>";
-        Result += tr("Winding pitch") + " s = " + roundTo(result.sec / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-        Result += tr("Width of a PCB trace") + " W = " + roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-        Result += tr("Coil constructive Q-factor") + " Q ≈ " + QString::number(round(result.fourth));
+        sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", roundTo(result.N, loc, myOpt->dwAccuracy)) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Winding pitch") + " s = ", roundTo(result.sec / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Width of a PCB trace") + " W = ", roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q ≈ ", QString::number(round(result.fourth)));
     } else {
-        Result += tr("Invalid input parameter combination");
+        sResult += tr("Invalid input parameter combination");
     }
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_spiralN_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil10.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_ind->text() + " " + mui->lineEdit_ind->text() + " " + mui->label_ind_m->text() + "<br/>";
-    Input += mui->label_1->text() + " " + mui->lineEdit_1->text() + " " + mui->label_01->text() + "<br/>";
-    Input += mui->label_2->text() + " " + mui->lineEdit_2->text() + " " + mui->label_02->text() + "<br/>";
-    Input += mui->label_3->text() + " " + mui->lineEdit_3->text() + " " + mui->label_03->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+void MainWindow::get_spiralN_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil10.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_ind->text(), mui->lineEdit_ind->text(), mui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1->text(), mui->lineEdit_1->text(), mui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2->text(), mui->lineEdit_2->text(), mui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     data->N = result.N;
     data->Do = result.thd;
-    Result += tr("Number of turns of the coil") + " N = " + loc.toString(result.N) + "<br/>";
-    Result += tr("Outside diameter") + " Do = " + roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", loc.toString(result.N)) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Outside diameter") + " Do = ", roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "</p>";
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "</p>";
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_ind->setFocus();
+    mui->lineEdit_ind->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GET INDUCTANCE ROUTINES
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        if (FormCoil == _Onelayer_cw)
-            Input += "<img src=\":/images/res/Coil1.png\">";
-        else
-            Input += "<img src=\":/images/res/Coil2.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
-    Input += mui->label_freq2->text() + " " + mui->lineEdit_freq2->text() + " " + mui->label_freq_m2->text() + "<br/>";
-    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
+void MainWindow::get_onelayerI_roundW_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "";
     if (FormCoil == _Onelayer_cw)
-        Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
+        sImage = "<img src=\":/images/res/Coil1.png\">";
+    else
+        sImage = "<img src=\":/images/res/Coil2.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_N->text(), mui->lineEdit_N->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_freq2->text(), mui->lineEdit_freq2->text(), mui->label_freq_m2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    if (FormCoil == _Onelayer_cw)
+        sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
     else {
         if (mui->lineEdit_3_2->isEnabled())
-            Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-        Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "</p>";
+            sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
+        sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), mui->label_04_2->text()) + "<br/>";
     }
-    c.insertHtml(Input);
-    QString Result = "<hr>";
+    QString material_name = getCheckedRadioButton(mui->groupBox_2)->text();
+    sInput += formattedOutput(myOpt, mui->groupBox_2->title().mid(0, mui->groupBox_2->title().length() - 1) + " Mt:", material_name) + "</p>";
     double N = loc.toDouble(mui->lineEdit_N->text());
     double d = 0;
     if (myOpt->isAWG){
@@ -5193,195 +5197,173 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result){
     else
         p = loc.toDouble(mui->lineEdit_4_2->text())*myOpt->dwLengthMultiplier;
     double f = loc.toDouble(mui->lineEdit_freq2->text())*myOpt->dwFrequencyMultiplier;
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     double I = result.N;
     data->inductance = result.N;
-    Result += tr("Inductance") + " L = " + roundTo(I/myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(I/myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
     QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Length of winding") + " l = " + roundTo( (N * p + k)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ) + " " +
-            qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (N * p + k)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     Material mt = Cu;
     checkMaterial2(&mt);
     double dencity = mtrl[mt][Dencity];
     double mass = 0.25 * dencity * M_PI * d * d * result.sec;
     double Resistivity = mtrl[mt][Rho]*1e6;
     double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
-    Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
     double reactance = 2 * M_PI * I * f;
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(R, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-    Result += tr("Reactance of the coil") + " X = " + roundTo(reactance, loc, myOpt->dwAccuracy) + " " + tr("Ohm");
-    Result += "<br/><br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+    sResult += "<br/><br/>";
     if (f < 0.7 * result.fourth){
-        Result += tr("Self capacitance") + " Cs = " + roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
-        Result += tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
         double Ql = (double)result.six;
-        Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
         double ESR = result.seven;
-        Result += tr("Loss resistance") + " ESR = " + roundTo(ESR, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
+        sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
         if(myOpt->isAdditionalResult){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
             data->capacitance = CalcLC2(I, f);
-            Result += " => "  + tr("Circuit capacitance") + ": Ck = " +
+            sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
                     roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
                     + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
             double ro = 1000 * sqrt(I / data->capacitance);
-            Result += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
+            sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
             double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
             double Re = ro * Qs;
-            Result += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+            sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
             double deltaf = 1000 * f / Qs;
-            Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+            sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
         }
         if(myOpt->isShowLTSpice){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-            Result += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            sResult += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
         }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
         mui->statusBar->showMessage(message);
-        Result += "<span style=\"color:blue;\">" + message + "</span>";
+        sResult += "<span style=\"color:blue;\">" + message + "</span>";
     }
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_onelayerI_rectW_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil2_square.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
-    Input += mui->label_freq2->text() + " " + mui->lineEdit_freq2->text() + " " + mui->label_freq_m2->text() + "<br/>";
-    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
-    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
+void MainWindow::get_onelayerI_rectW_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil2_square.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_N->text(), mui->lineEdit_N->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_freq2->text(), mui->lineEdit_freq2->text(), mui->label_freq_m2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), mui->label_04_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text(), mui->label_05_2->text()) + "<br/>";
+    QString material_name = getCheckedRadioButton(mui->groupBox_2)->text();
+    sInput += formattedOutput(myOpt, mui->groupBox_2->title().mid(0, mui->groupBox_2->title().length() - 1) + " Mt:", material_name) + "</p>";
     double N = loc.toDouble(mui->lineEdit_N->text());
     double w = loc.toDouble(mui->lineEdit_2_2->text())*myOpt->dwLengthMultiplier;
     double t = loc.toDouble(mui->lineEdit_3_2->text())*myOpt->dwLengthMultiplier;
     double p = loc.toDouble(mui->lineEdit_5_2->text())*myOpt->dwLengthMultiplier;
     double f = loc.toDouble(mui->lineEdit_freq2->text())*myOpt->dwFrequencyMultiplier;
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     double I = result.N;
     data->inductance = result.N;
-    Result += tr("Inductance") + " L = " + roundTo(I/myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(I/myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
     QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Length of winding") + " l = " + roundTo( (N * p + w)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ) + " " +
-            qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (N * p + w)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     Material mt = Cu;
     checkMaterial2(&mt);
     double dencity = mtrl[mt][Dencity];
     double mass = dencity * w * t * result.sec;
-    Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
     double reactance = 2 * M_PI * I * f;
     double Resistivity = mtrl[mt][Rho]*1e6;
     double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(R, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-    Result += tr("Reactance of the coil") + " X = " + roundTo(reactance, loc, myOpt->dwAccuracy) + " " + tr("Ohm");
-    Result += "<br/><br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+    sResult += "<br/><br/>";
     if (f < 0.7 * result.fourth){
-        Result += tr("Self capacitance") + " Cs = " + roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
-        Result += tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
         double Ql = (double)result.six;
-        Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
         double ESR = result.seven;
-        Result += tr("Loss resistance") + " ESR = " + roundTo(ESR, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
+        sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
         if(myOpt->isAdditionalResult){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
             data->capacitance = CalcLC2(I, f);
-            Result += " => "  + tr("Circuit capacitance") + ": Ck = " +
+            sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
                     roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
                     + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
             double ro = 1000 * sqrt(I / data->capacitance);
-            Result += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
+            sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
             double Qs= 1 / (0.001 + 1 / Ql);// Complete LC Q-factor including capacitor Q-factor equal to 1000
             double Re = ro * Qs;
-            Result += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+            sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
             double deltaf = 1000 * data->frequency / Qs;
-            Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+            sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
         }
         if(myOpt->isShowLTSpice){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-            Result += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            sResult += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
         }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
         mui->statusBar->showMessage(message);
-        Result += "<span style=\"color:blue;\">" + message + "</span>";
+        sResult += "<span style=\"color:blue;\">" + message + "</span>";
     }
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil3.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
-    Input += mui->label_freq2->text() + " " + mui->lineEdit_freq2->text() + " " + mui->label_freq_m2->text() + "<br/>";
-    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
-    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
+void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil3.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_N->text(), mui->lineEdit_N->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_freq2->text(), mui->lineEdit_freq2->text(), mui->label_freq_m2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), mui->label_04_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text()) + "<br/>";
+    QString material_name = getCheckedRadioButton(mui->groupBox_2)->text();
+    sInput += formattedOutput(myOpt, mui->groupBox_2->title().mid(0, mui->groupBox_2->title().length() - 1) + " Mt:", material_name) + "</p>";
     double N = loc.toDouble(mui->lineEdit_N->text());
     double d = 0;
     if (myOpt->isAWG){
@@ -5392,120 +5374,108 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result){
     double k = loc.toDouble(mui->lineEdit_3_2->text())*myOpt->dwLengthMultiplier;
     double p = loc.toDouble(mui->lineEdit_4_2->text())*myOpt->dwLengthMultiplier;
     double f = loc.toDouble(mui->lineEdit_freq2->text())*myOpt->dwFrequencyMultiplier;
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     double I = result.sec;
     data->inductance = result.sec;
-    Result += tr("Inductance") + " L = " + roundTo(I/myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(I/myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
     double lW = result.thd;
     QString _wire_length = formatLength(lW, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Length of winding") + " l = " + roundTo( (N * p + k)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (N * p + k)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     Material mt = Cu;
     checkMaterial2(&mt);
     double dencity = mtrl[mt][Dencity];
     double mass = 0.25 * dencity * M_PI * d * d * lW;
-    Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
     double reactance = 2 * M_PI * I * f;
     double Resistivity = mtrl[mt][Rho]*1e6;
     double R = (Resistivity * lW * 4) / (M_PI * d * d); // DC resistance of the wire
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(R, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
-    Result += tr("Reactance of the coil") + " X = " + roundTo(reactance, loc, myOpt->dwAccuracy) + " " + tr("Ohm");
-    Result += "<br/><br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+    sResult += "<br/><br/>";
     if (f < 0.7 * result.five){
-        Result += tr("Self capacitance") + " Cs = " + roundTo(result.fourth/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
-        Result += tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.fourth/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
         double Ql = (double)result.six;
-        Result += tr("Coil constructive Q-factor") + " Q = " + QString::number(result.six) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
         double ESR = result.seven;
-        Result += tr("Loss resistance") + " ESR = " + roundTo(ESR, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "</p>";
+        sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
         if(myOpt->isAdditionalResult){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
             data->capacitance = CalcLC2(I, f);
-            Result += " => "  + tr("Circuit capacitance") + ": Ck = " +
+            sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
                     roundTo((data->capacitance - result.fourth) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
                     + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
             double ro = 1000 * sqrt(I / data->capacitance);
-            Result += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
+            sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
             double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
             double Re = ro * Qs;
-            Result += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+            sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
             double deltaf = 1000 * f / Qs;
-            Result += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+            sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
         }
         if(myOpt->isShowLTSpice){
-            Result += "<hr><p>";
-            Result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-            Result += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-            Result += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-            Result += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-            Result += "Parallel capacitance: " + QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+            sResult += "<hr/><p>";
+            sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+            sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
+            sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
+            sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
+            sResult += "Parallel capacitance: " + QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p" + "</p>";
         }
     } else {
         QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
         mui->statusBar->showMessage(message);
-        Result += "<span style=\"color:blue;\">" + message + "</span>";
+        sResult += "<span style=\"color:blue;\">" + message + "</span>";
     }
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_multilayerI_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        if (myOpt->windingKind == 0)
-            Input += "<img src=\":/images/res/Coil4.png\">";
-        else
-            Input += "<img src=\":/images/res/Coil4o.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    if (mui->radioButton_6->isChecked())
-        Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + "<br/>";
+void MainWindow::get_multilayerI_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "";
+    if (myOpt->windingKind == 0)
+        sImage = "<img src=\":/images/res/Coil4.png\">";
     else
-        Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
-    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "<br/>";
-    Input += mui->comboBox_checkMLWinding->currentText() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+        sImage = "<img src=\":/images/res/Coil4o.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    if (mui->radioButton_6->isChecked())
+        sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text()) + "<br/>";
+    else
+        sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), mui->label_04_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text(), mui->label_05_2->text()) + "<br/>";
+    sInput += mui->comboBox_checkMLWinding->currentText() + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if (mui->radioButton_6->isChecked()){
-        Result += tr("Inductance") + " L = " + roundTo(result.N, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
         data->inductance = result.N;
-        Result += tr("Thickness of the coil") + " c = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Thickness of the coil") + " c = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         data->c = result.five;
-        Result += tr("Resistance of the coil") + " Rdc = " + roundTo(result.fourth, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(result.fourth, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
         data->Rdc = result.fourth;
         QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
         QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
-        Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-                qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
         double d = 0;
         if (myOpt->isAWG){
             d = convertfromAWG(mui->lineEdit_4_2->text());
@@ -5514,107 +5484,81 @@ void MainWindow::get_multilayerI_Result(_CoilResult result){
         }
         double dencity = mtrl[Cu][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.thd;
-        Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
-        Result += tr("Number of layers") + " Nl = " + loc.toString(result.sec);
+        sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Number of layers") + " Nl = ", loc.toString(result.sec));
     } else {
         double N1 = result.thd;
         double N2 = result.fourth;
         double L1 = result.N;
         double L2 = result.sec;
-        data->inductance = sqrt(L1*L2);
-        Result += tr("Number of turns of the coil") + " N = " + loc.toString(N1) + "..." + loc.toString(N2) + "<br/>";
-        Result += tr("Inductance") + " L = " + roundTo(L1 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + "..."
-                + roundTo(L2 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
+        data->inductance = (L1 + L2)/2;
+        sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", loc.toString(N1) + "..." + loc.toString(N2)) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(L1 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + "..."
+                                  + roundTo(L2 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()));
     }
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_1_2->setFocus();
+    mui->lineEdit_1_2->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_multilayerIgap_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil4-0.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
-    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "<br/>";
-    Input += mui->label_6_2->text() + " " + mui->lineEdit_6_2->text() + " " + mui->label_06_2->text() + "<br/>";
-    Input += mui->label_7_2->text() + " " + mui->lineEdit_7_2->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
+void MainWindow::get_multilayerIgap_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil4-0.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), mui->label_04_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text(), mui->label_05_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_6_2->text(), mui->lineEdit_6_2->text(), mui->label_06_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_7_2->text(), mui->lineEdit_7_2->text()) + "</p>";
     double N1 = result.thd;
     double N2 = result.fourth;
     double L1 = result.N;
     double L2 = result.sec;
-    data->inductance = sqrt(L1*L2);
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
-    Result += tr("Number of turns of the coil") + " N = " + loc.toString(N1) + "..." + loc.toString(N2) + "<br/>";
-    Result += tr("Inductance") + " L = " + roundTo(L1 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + "..."
-            + roundTo(L2 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    data->inductance = (L1 + L2) / 2;
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+    sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", loc.toString(N1) + "..." + loc.toString(N2)) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(L1 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + "..."
+                              + roundTo(L2 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()));
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_1_2->setFocus();
+    mui->lineEdit_1_2->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_multilayerI_Rect_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil4_square.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
+void MainWindow::get_multilayerI_Rect_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil4_square.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
     if (mui->radioButton_6->isChecked())
-        Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + "<br/>";
+        sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text()) + "<br/>";
     else
-        Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
-    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "<br/>";
-    Input += mui->label_6_2->text() + " " + mui->lineEdit_6_2->text() + " " + mui->label_06_2->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+        sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), mui->label_04_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text(), mui->label_05_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_6_2->text(), mui->lineEdit_6_2->text(), mui->label_06_2->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if (mui->radioButton_6->isChecked()){
-        Result += tr("Inductance") + " L = " + roundTo(result.N, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
         data->inductance = result.N;
-        Result += tr("Thickness of the coil") + " c = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Thickness of the coil") + " c = ", roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         data->c = result.five;
         QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
         QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
-        Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-                qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
         double d = 0;
         if (myOpt->isAWG){
             d = convertfromAWG(mui->lineEdit_5_2->text());
@@ -5625,213 +5569,155 @@ void MainWindow::get_multilayerI_Rect_Result(_CoilResult result){
         double mass = 0.25 * dencity * M_PI * d * d * result.thd;
         double Resistivity = mtrl[Cu][Rho]*1e6;
         double Rdc = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
-        Result += tr("Resistance of the coil") + " Rdc = " + roundTo(Rdc, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(Rdc, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
         data->Rdc = result.fourth;
-        Result += tr("Weight of wire") + " m = " + roundTo(mass, loc, myOpt->dwAccuracy) + " " + tr("g") + "<br/>";
-        Result += tr("Number of layers") + " Nl = " + loc.toString(result.sec);
+        sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Number of layers") + " Nl = ", loc.toString(result.sec));
     } else {
         double N1 = result.thd;
         double N2 = result.fourth;
         double L1 = result.N;
         double L2 = result.sec;
-        data->inductance = sqrt(L1*L2);
-        Result += tr("Number of turns of the coil") + " N = " + loc.toString(N1) + "..." + loc.toString(N2) + "<br/>";
-        Result += tr("Inductance") + " L = " + roundTo(L1 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + "..."
-                + roundTo(L2 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8());
+        data->inductance = (L1 + L2) / 2;
+        sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", loc.toString(N1) + "..." + loc.toString(N2)) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(L1 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + "..."
+                                  + roundTo(L2 / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()));
     }
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_1_2->setFocus();
+    mui->lineEdit_1_2->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::get_multilayerI_Foil_Result(_CoilResult result)
 {
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil11.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
-    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil11.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_N->text(), mui->lineEdit_N->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), mui->label_04_2->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     data->inductance = result.N;
-    Result += tr("Inductance") + " L = " + roundTo(result.N, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
     QString _foil_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _foil_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_foil_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of the foil") + " lf = " + roundTo(d_foil_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Outside diameter") + " Do = " + roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(result.fourth, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + " (" + tr("Copper") + ")<br/>";
-    Result += tr("Resistance of the coil") + " Rdc = " + roundTo(result.five, loc, myOpt->dwAccuracy) + " " + tr("Ohm") + " (" + tr("Aluminum") + ")";
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += formattedOutput(myOpt, tr("Length of the foil") + " lf = ", roundTo(d_foil_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Outside diameter") + " Do = ", roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(result.fourth, loc, myOpt->dwAccuracy), tr("Ohm")) + " (" + tr("Copper") + ")<br/>";
+    sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(result.five, loc, myOpt->dwAccuracy), tr("Ohm")) + " (" + tr("Aluminum") + ")";
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_ferriteI_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/T-core.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
-    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + "<br/>";
-    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+void MainWindow::get_ferriteI_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/T-core.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_N->text(), mui->lineEdit_N->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text(), mui->label_05_2->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     data->inductance = result.N;
-    Result += tr("Inductance") + " L = " + roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
-    Result += "A<sub>L</sub>&nbsp;= " + loc.toString(result.thd)
-            + "&nbsp;" +  qApp->translate("Context","nH") + "/N<sup>2</sup>";
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, "A<sub>L</sub> = ", loc.toString(result.thd), qApp->translate("Context","nH") + "/N<sup>2</sup>");
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_pcbI_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2>";
+void MainWindow::get_pcbI_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    sCaption += mui->comboBox_checkPCB->currentText() + "<br/>";
+    QString sImage = "";
+    switch (myOpt->layoutPCBcoil) {
+    case 0:{
+        sImage = "<img src=\":/images/res/Coil8.png\">";
+        break;
     }
-    Input += "<h3>" + mui->comboBox_checkPCB->currentText() + "</h3><br/>";
-    if (myOpt->isInsertImage){
-        switch (myOpt->layoutPCBcoil) {
-        case 0:{
-            Input += "<img src=\":/images/res/Coil8.png\">";
-            break;
-        }
-        case 1:{
-            Input += "<img src=\":/images/res/Coil9.png\">";
-            break;
-        }
-        case 2:{
-            Input += "<img src=\":/images/res/Coil8r.png\">";
-            break;
-        }
-        default:
-            break;
-        }
+    case 1:{
+        sImage = "<img src=\":/images/res/Coil9.png\">";
+        break;
     }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
-    Input += mui->label_freq2->text() + " " + mui->lineEdit_freq2->text() + " " + mui->label_freq_m2->text() + "<br/>";
+    case 2:{
+        sImage = "<img src=\":/images/res/Coil8r.png\">";
+        break;
+    }
+    default:
+        break;
+    }
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_N->text(), mui->lineEdit_N->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_freq2->text(), mui->lineEdit_freq2->text(), mui->label_freq_m2->text()) + "<br/>";
     if (mui->comboBox_checkPCB->currentIndex() == 2)
-        Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "<br/>";
-    Input += mui->label_4_2->text() + " " + mui->lineEdit_4_2->text() + " " + mui->label_04_2->text() + "<br/>";
-    Input += mui->label_5_2->text() + " " + mui->lineEdit_5_2->text() + " " + mui->label_05_2->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+        sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), mui->label_04_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text(), mui->label_05_2->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if (result.N > 0){
         data->inductance = result.N;
-        Result += tr("Inductance") + " L = " + roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " "
-                + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                                  qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
         if (mui->comboBox_checkPCB->currentIndex() != 2){
-            Result += tr("Outside diameter")+" D = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-                    + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Outside diameter")+" D = ", roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                                      qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
             data->Do = QString::number(result.five, 'f', myOpt->dwAccuracy).toDouble();
         } else {
-            Result += tr("Inside dimension")+" a = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy) + " "
-                    + qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Inside dimension")+" a = ", roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                                      qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
             data->Di = QString::number(result.five, 'f', myOpt->dwAccuracy).toDouble();
         }
-        Result += tr("Coil constructive Q-factor") + " Q ≈ " + QString::number(round(result.fourth));
+        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q ≈ ", QString::number(round(result.fourth)));
     } else
-        Result += tr("Invalid input parameter combination");
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+        sResult += tr("Invalid input parameter combination");
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::get_spiralI_Result(_CoilResult result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    QString Input = "<hr>";
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-        Input = "<h2>" + windowTitle() + " - " + mui->listWidget->currentItem()->text() + "</h2><br/>";
-    }
-    if (myOpt->isInsertImage){
-        Input += "<img src=\":/images/res/Coil10.png\">";
-    }
-    Input += "<p><u>" + tr("Input") + ":</u><br/>";
-    Input += mui->label_N->text() + " " + mui->lineEdit_N->text() + "<br/>";
-    Input += mui->label_1_2->text() + " " + mui->lineEdit_1_2->text() + " " + mui->label_01_2->text() + "<br/>";
-    Input += mui->label_2_2->text() + " " + mui->lineEdit_2_2->text() + " " + mui->label_02_2->text() + "<br/>";
-    Input += mui->label_3_2->text() + " " + mui->lineEdit_3_2->text() + " " + mui->label_03_2->text() + "</p>";
-    c.insertHtml(Input);
-    QString Result = "<hr>";
-    Result += "<p><u>" + tr("Result") + ":</u><br/>";
+void MainWindow::get_spiralI_Result(_CoilResult result)
+{
+    QString sCaption = windowTitle() + " - " + mui->listWidget->currentItem()->text();
+    QString sImage = "<img src=\":/images/res/Coil10.png\">";
+    QString sInput = "<p><u>" + tr("Input") + ":</u><br/>";
+    sInput += formattedOutput(myOpt, mui->label_N->text(), mui->lineEdit_N->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     data->inductance = result.N;
-    Result += tr("Inductance") + " L = " + roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy) + " "
-            + qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
+                              qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
     QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    Result += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8());
-    Result += "</p><hr>";
-    c.insertHtml(Result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
-    mui->pushButton_Calculate->setEnabled(true);
-    this->setCursor(Qt::ArrowCursor);
+    sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
+                              qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()));
+    sResult += "</p>";
+    showOutput(sCaption, sImage, sInput, sResult);
+    mui->lineEdit_N->setFocus();
+    mui->lineEdit_N->selectAll();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// ADDITIONAL CALCULATIONS MENU
@@ -6026,17 +5912,9 @@ void MainWindow::on_actionU_core_coil_triggered()
     fucore->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::getAddCalculationResult(QString result){
-    QTextCursor c = mui->textBrowser->textCursor();
-    if (myOpt->isShowTitle){
-        prepareHeader(&c);
-    }
-    c.insertHtml(result);
-    if(myOpt->isLastShowingFirst)
-        c.movePosition(QTextCursor::Start);
-    else
-        c.movePosition(QTextCursor::End);
-    mui->textBrowser->setTextCursor(c);
+void MainWindow::getAddCalculationResult(QString resultTxt){
+    QStringList result = resultTxt.split(LIST_SEPARATOR);
+    showOutput(result[0], result[1], result[2], result[3]);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_comboBox_checkPCB_activated(int index)
@@ -6161,7 +6039,7 @@ void MainWindow::on_textBrowser_anchorClicked(const QUrl &arg1)
             }
         }
         cursor.setPosition(start - 2, QTextCursor::MoveAnchor);
-        cursor.setPosition(i - 1, QTextCursor::KeepAnchor);
+        cursor.setPosition(i, QTextCursor::KeepAnchor);
         cursor.removeSelectedText();
         cursor.clearSelection();
         mui->textBrowser->setTextCursor(cursor);

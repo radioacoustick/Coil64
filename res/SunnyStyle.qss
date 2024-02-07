@@ -59,6 +59,19 @@ QListView::item:selected {
     color: #000000;
 }
 
+QListView::item:selected:!active {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #F6DF89, stop: 1 #E7C025);
+}
+
+QListView::item:selected:active {
+  background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #F6DF89, stop: 1 #E7C025);
+}
+
+QListView::item:hover {
+  background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #F6DF89, stop: 1 #E7C025);
+  border: 1px solid #308CC6;
+}
+
 QComboBox::item:selected {
   background-color: #FDEEB9;
   border: 1px solid #308CC6;

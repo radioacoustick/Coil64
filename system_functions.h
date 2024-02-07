@@ -23,6 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QProcess>
 #include <QSettings>
 #include <QString>
+#include <QRadioButton>
 #include <QLocale>
 #include <QSysInfo>
 #include <QMessageBox>
@@ -61,8 +62,13 @@ enum _StyleGUI {
       QString ssLengthMeasureUnit;
       QString mainFontFamily;
       QString textFontFamily;
+      int vTextColor;
       int mainFontSize;
       int textFontSize;
+      bool isOutputInTwoColumns;
+      bool isOutputValueColored;
+      bool isShowValueDescription;
+      bool isShowCalcNum;
       bool isAutomaticUpdate;
       bool isEnglishLocale;
       bool isConfirmExit;
@@ -92,11 +98,14 @@ QString defineSavePath();
 void showWarning(QString title, QString msg);
 void showInfo(QString title, QString msg);
 QStringList translateInstalling(QStringList *lang);
+QStringList getValueTextColorNames(int styleGUI);
 QLocale getLanguageLocale (QString lang);
 void completeOptionsStructure(_OptionStruct *opt);
 QString formatLength(double length, double lengthMultiplyer);
 QPixmap revercePixmapColors(const QPixmap *pm);
 QIcon reverceIconColors(QIcon ico);
 QString roundTo(double num, QLocale locale, int accuracy);
+QRadioButton *getCheckedRadioButton(QWidget *w);
+QString formattedOutput(_OptionStruct *mOpt, QString header, QString value, QString footer = NULL);
 
 #endif // SYSTEM_FUNCTIONS_H

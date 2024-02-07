@@ -477,3 +477,61 @@ QString roundTo(double num, QLocale locale, int accuracy){
     QString res_num = QString::fromStdString(str);
     return res_num;
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QStringList getValueTextColorNames(int styleGUI)
+{
+    QStringList colorNames =  (QStringList()<<"blue"<<"darkCyan"<<"red"<<"green"<<"black"<<"yellow"<<"cyan"<<"magenta"<<"gray");
+    if (styleGUI == _DarkStyle){
+        colorNames.clear();
+        colorNames <<"yellow"<<"cyan"<<"magenta"<<"gray"<<"white"<<"blue"<<"darkCyan"<<"red"<<"green";
+    }
+    return colorNames;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QRadioButton* getCheckedRadioButton(QWidget *w)
+{
+    int ii = 0;
+    foreach (QRadioButton *button, w->findChildren<QRadioButton*>()) {
+        if (button->isChecked()) {
+            return button;
+        }
+        ii++;
+    }
+    return NULL;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// formatHeader() utility function for formattedOutput()
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void formatHeader(QString *header, QString fmt){
+    if (header->indexOf(fmt) > 0){
+        int in = header->indexOf(fmt);
+        int space_cnt = 0;
+        for (int i = in; i >= 0; i--){
+            in = i;
+            if (header->at(i) == ' '){
+                space_cnt++;
+                if ((space_cnt == 1) && (fmt == ":"))
+                    break;
+                else if (space_cnt > 1)
+                    break;
+            }
+        }
+        *header = header->mid(in);
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString formattedOutput(_OptionStruct *mOpt, QString header, QString value, QString footer)
+{
+    QString valurTextColor = getValueTextColorNames(mOpt->styleGUI)[mOpt->vTextColor];
+    QString output = "";
+    if (!mOpt->isShowValueDescription){
+        formatHeader(&header, "=");
+        formatHeader(&header, ":");
+        formatHeader(&header, "≈");
+    }
+    if (mOpt->isOutputValueColored)
+        output = header + " <span style=\"color:"+ valurTextColor +";\">" + value + "</span> " + footer;
+    else
+        output = header + " " + value + " " + footer;
+    return output;
+}

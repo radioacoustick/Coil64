@@ -52,6 +52,7 @@ private slots:
 private:
     Ui::Options *ui;
     _OptionStruct *oOpt;
+    QStringList colorNames;
 };
 
 Q_DECLARE_METATYPE(_OptionStruct)

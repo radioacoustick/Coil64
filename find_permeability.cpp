@@ -62,6 +62,8 @@ Find_Permeability::~Find_Permeability()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Find_Permeability::getOpt(_OptionStruct gOpt){
     *fOpt = gOpt;
+    ui->label_ind->setText(tr("Inductance") + " L:");
+    ui->label_N->setText(tr("Number of turns") + " N:");
     ui->label_ind_m->setText(qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
     ui->label_01->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_02->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
@@ -125,30 +127,24 @@ void Find_Permeability::on_pushButton_clicked()
     }
     _CoilResult result;
     findToroidPemeability(N, I, OD, ID, h, Ch, &result);
-    QString sResult = "<hr>";
-    if (fOpt->isShowTitle){
-        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
-                + windowTitle() + "</h2><br/>";
-    }
-    if (fOpt->isInsertImage){
-        sResult += "<img src=\":/images/res/T-core.png\">";
-    }
-    sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
-    sResult += ui->label_ind->text() + ": L = " + ui->lineEdit_ind->text() + " " + ui->label_ind_m->text() + "<br/>";
-    sResult += ui->label_N->text() + ": N = " + ui->lineEdit_N->text() + "<br/>";
-    sResult += "<u>" + tr("Dimensions") + ":</u><br/>";
-    sResult += ui->label_1->text() + " = " + ui->lineEdit_1->text() + " " + ui->label_01->text() + "<br/>";
-    sResult += ui->label_2->text() + " = " + ui->lineEdit_2->text() + " " + ui->label_02->text() + "<br/>";
-    sResult += ui->label_3->text() + " = " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "<br/>";
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "<img src=\":/images/res/T-core.png\">";
+    QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_ind->text(), ui->lineEdit_ind->text(), ui->label_ind_m->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text()) + "<br/>";
+    sInput += "<u>" + tr("Dimensions") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_1->text(), ui->lineEdit_1->text(), ui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_2->text(), ui->lineEdit_2->text(), ui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "<br/>";
     if (Ch > 0)
-        sResult += ui->label_4->text() + " = " + ui->lineEdit_4->text() + " " + ui->label_04->text();
-    sResult += "</p><hr>";
-    sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Relative magnetic permeability of the toroid") + " μ<sub>r</sub> = " + loc.toString(result.N) + "<br/>";
-    sResult += tr("Magnetic factor of the core") + " A<sub>L</sub> = " + loc.toString(result.sec, 'f', 0)+ "&nbsp;"
-            +  qApp->translate("Context","nH") + "/N<sup>2</sup>";
-    sResult += "</p><hr>";
-    emit sendResult(sResult);
+        sInput += formattedOutput(fOpt, ui->label_4->text(), ui->lineEdit_4->text(), ui->label_04->text());
+    sInput += "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+    sResult += formattedOutput(fOpt, tr("Relative magnetic permeability of the toroid") + " μ<sub>r</sub> = ", loc.toString(result.N)) + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Magnetic factor of the core") + " A<sub>L</sub> = ", loc.toString(result.sec, 'f', 0),
+                               qApp->translate("Context","nH") + "/N<sup>2</sup>");
+    sResult += "</p>";
+    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Find_Permeability::on_pushButton_2_clicked()

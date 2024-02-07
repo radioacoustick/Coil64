@@ -57,6 +57,7 @@ Meander_pcb::~Meander_pcb()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Meander_pcb::getOpt(_OptionStruct gOpt){
     *fOpt = gOpt;
+    ui->label_N->setText(tr("Number of turns") + " N:");
     ui->label_01->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_02->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_03->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
@@ -118,29 +119,22 @@ void Meander_pcb::on_pushButton_clicked()
     }
     _CoilResult result;
     findMeadrPCB_I(a, d, h, W, N, &result);
-    QString sResult = "<hr>";
-    if (fOpt->isShowTitle){
-        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
-                + windowTitle() + "</h2><br/>";
-    }
-    if (fOpt->isInsertImage){
-        sResult += "<img src=\":/images/res/meandr_pcb.png\">";
-    }
-    sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
-    sResult += ui->label_N->text() + ": N = " + ui->lineEdit_N->text() + "<br/>";
-    sResult += "<u>" + tr("Dimensions") + ":</u><br/>";
-    sResult += ui->label_1->text() + " = " + ui->lineEdit_1->text() + " " + ui->label_01->text() + "<br/>";
-    sResult += ui->label_2->text() + " = " + ui->lineEdit_2->text() + " " + ui->label_02->text() + "<br/>";
-    sResult += ui->label_3->text() + " = " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "<br/>";
-    sResult += ui->label_4->text() + " = " + ui->lineEdit_4->text() + " " + ui->label_04->text() + "</p>";
-    sResult += "<hr>";
-    sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Inductance") + " L = " + roundTo(result.N / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
-            + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
-    sResult += tr("Length of winding") + " l = " + roundTo( (result.sec)/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " " +
-            qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8());
-    sResult += "</p><hr>";
-    emit sendResult(sResult);
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "<img src=\":/images/res/meandr_pcb.png\">";
+    QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text()) + "<br/>";
+    sInput += "<u>" + tr("Dimensions") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_1->text(), ui->lineEdit_1->text(), ui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_2->text(), ui->lineEdit_2->text(), ui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_4->text(), ui->lineEdit_4->text(), ui->label_04->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+    sResult += formattedOutput(fOpt, tr("Inductance") + " L = ", roundTo(result.N / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy),
+                               qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Length of winding") + " l = ", roundTo( (result.sec)/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                               qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
+    sResult += "</p>";
+    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Meander_pcb::on_pushButton_2_clicked()

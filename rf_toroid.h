@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #ifndef RF_TOROID_H
 #define RF_TOROID_H
 
+#include <QtWidgets>
 #include <QDialog>
 #include <QFile>
 #include <QTextStream>

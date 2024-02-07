@@ -17,6 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 
 #include "options.h"
 #include "ui_options.h"
+#include "system_functions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Options::Options(QWidget *parent) :
@@ -72,6 +73,10 @@ void Options::getOpt(_OptionStruct gOpt){
     ui->checkBox_8->setChecked(oOpt->isLastShowingFirst);
     ui->checkBox_9->setChecked(oOpt->isShowTitle);
     ui->checkBox_10->setChecked(oOpt->isShowLTSpice);
+    ui->checkBox_11->setChecked(oOpt->isOutputValueColored);
+    ui->checkBox_12->setChecked(oOpt->isShowValueDescription);
+    ui->checkBox_13->setChecked(oOpt->isOutputInTwoColumns);
+    ui->checkBox_14->setChecked(oOpt->isShowCalcNum);
 
     ui->fontComboBox_1->setCurrentText(oOpt->mainFontFamily);
     ui->fontspinBox_1->setValue(oOpt->mainFontSize);
@@ -101,6 +106,19 @@ void Options::getOpt(_OptionStruct gOpt){
     f1.setFamily(oOpt->mainFontFamily);
     f1.setPixelSize(oOpt->mainFontSize);
     this->setFont(f1);
+
+    QComboBox *comboBox = ui->comboBox;
+
+    colorNames = getValueTextColorNames(oOpt->styleGUI);
+    comboBox->setFocusPolicy(Qt::NoFocus);
+    int sze = comboBox ->style()->pixelMetric(QStyle::PM_IconViewIconSize);
+    QPixmap pixmap(sze, sze - 2);
+    foreach (const QString &colorName, colorNames) {
+        pixmap.fill(QColor(colorName));
+        QIcon *ico = new QIcon(pixmap);
+        comboBox ->addItem(*ico, QString(), colorName);
+    }
+    ui->comboBox->setCurrentIndex(oOpt->vTextColor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Options::on_pushButton_clicked()
@@ -126,7 +144,12 @@ void Options::on_pushButton_2_clicked()
     oOpt->isLastShowingFirst = ui->checkBox_8->isChecked();
     oOpt->isShowTitle = ui->checkBox_9->isChecked();
     oOpt->isShowLTSpice = ui->checkBox_10->isChecked();
+    oOpt->isOutputValueColored = ui->checkBox_11->isChecked();
+    oOpt->isShowValueDescription = ui->checkBox_12->isChecked();
+    oOpt->isOutputInTwoColumns = ui->checkBox_13->isChecked();
+    oOpt->isShowCalcNum = ui->checkBox_14->isChecked();
     oOpt->styleGUI = ui->comboBox_style->currentIndex();
+    oOpt->vTextColor = ui->comboBox->currentIndex();
 
 
     oOpt->mainFontFamily = ui->fontComboBox_1->currentText();

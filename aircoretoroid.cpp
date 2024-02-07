@@ -183,15 +183,14 @@ void AirCoreToroid::on_checkBox_isReverce_clicked()
     default:
         break;
     }
+    ui->lineEdit_N->setFocus();
+    ui->lineEdit_N->selectAll();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void AirCoreToroid::on_pushButton_calculate_clicked()
 {
-    QString sResult = "<hr>";
-    if (fOpt->isShowTitle){
-        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
-                " - " + windowTitle();
-    }
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "";
     if ((ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_1->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->lineEdit_4->text().isEmpty())){
         showWarning(tr("Warning"), tr("One or more inputs are empty!"));
         return;
@@ -217,9 +216,8 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
         return;
     }
     if(windingKind == 0){
-        sResult += " (" + ui->radioButton_round->text() +  + ")</h2><br/>";
-        if (fOpt->isInsertImage)
-            sResult += "<img src=\":/images/res/toroid-round.png\">";
+        sCaption += " (" + ui->radioButton_round->text() +  + ")";
+        sImage = "<img src=\":/images/res/toroid-round.png\">";
     } else if (windingKind == 1){
         if(ui->lineEdit_3->text().isEmpty()){
             showWarning(tr("Warning"), tr("One or more inputs are empty!"));
@@ -234,9 +232,8 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;
         }
-        sResult += " (" + ui->radioButton_rect->text() +  + ")</h2><br/>";
-        if (fOpt->isInsertImage)
-            sResult += "<img src=\":/images/res/toroid-square.png\">";
+        sCaption += " (" + ui->radioButton_rect->text() +  + ")";
+        sImage = "<img src=\":/images/res/toroid-square.png\">";
     }
     _CoilResult result;
     if (ui->checkBox_isReverce->isChecked()){
@@ -270,25 +267,24 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
             N = result.N;
         }
     }
-    sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
+    QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
     if (ui->checkBox_isReverce->isChecked())
-        sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text()) + "<br/>";
     else
-        sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + " " + ui->label_N_m->text() + "<br/>";
-    sResult += ui->label_1->text() + " " + ui->lineEdit_1->text() + " " + ui->label_01->text() + "<br/>";
-    sResult += ui->label_2->text() + " " + ui->lineEdit_2->text() + " " + ui->label_02->text() + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text(), ui->label_N_m->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_1->text(), ui->lineEdit_1->text(), ui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_2->text(), ui->lineEdit_2->text(), ui->label_02->text()) + "<br/>";
     if (windingKind == 1){
-        sResult += ui->label_3->text() + " " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "<br/>";
     }
-    sResult += ui->label_4->text() + " " + ui->lineEdit_4->text() + " " + ui->label_04->text() + "</p>";
-    sResult += "<hr>";
-    sResult += "<p><u>" + tr("Result") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_4->text(), ui->lineEdit_4->text(), ui->label_04->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if (ui->checkBox_isReverce->isChecked()){
-        sResult += tr("Inductance") + " L = " + roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
-                + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8());
+        sResult += formattedOutput(fOpt, tr("Inductance") + " L = ", roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy),
+                                   qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
     } else {
-        sResult += tr("Number of turns of the coil") + " N = " + roundTo(N, loc, fOpt->dwAccuracy);
+        sResult += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", roundTo(N, loc, fOpt->dwAccuracy));
     }
-    sResult += "</p><hr>";
-    emit sendResult(sResult);
+    sResult += "</p>";
+    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
 }

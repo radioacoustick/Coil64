@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>563</width>
+    <width>687</width>
     <height>390</height>
    </rect>
   </property>
@@ -21,8 +21,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>563</width>
-    <height>390</height>
+    <width>700</width>
+    <height>500</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -78,7 +78,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -92,14 +92,17 @@
             <item row="0" column="0">
              <widget class="QLabel" name="label_N">
               <property name="text">
-               <string>Number of turns</string>
+               <string notr="true">Number of turns</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
             <item row="0" column="1">
              <widget class="QLineEdit" name="lineEdit_N">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -146,14 +149,14 @@
             <item row="1" column="0">
              <widget class="QLabel" name="label_2">
               <property name="text">
-               <string notr="true">d</string>
+               <string notr="true">d:</string>
               </property>
              </widget>
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_1">
               <property name="text">
-               <string notr="true">a</string>
+               <string notr="true">a:</string>
               </property>
              </widget>
             </item>
@@ -187,7 +190,7 @@
             <item row="2" column="0">
              <widget class="QLabel" name="label_3">
               <property name="text">
-               <string notr="true">h</string>
+               <string notr="true">h:</string>
               </property>
              </widget>
             </item>
@@ -201,7 +204,7 @@
             <item row="3" column="0">
              <widget class="QLabel" name="label_4">
               <property name="text">
-               <string notr="true">W</string>
+               <string notr="true">W:</string>
               </property>
              </widget>
             </item>
@@ -275,6 +278,9 @@
          <height>40</height>
         </size>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="toolTip">
         <string>Context help</string>
        </property>
@@ -284,6 +290,9 @@
        <property name="icon">
         <iconset resource="res.qrc">
          <normaloff>:/menu_ico/res/icons8-help-32.png</normaloff>:/menu_ico/res/icons8-help-32.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string notr="true">F1</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -311,6 +320,12 @@
          <height>40</height>
         </size>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string notr="true">Enter</string>
+       </property>
        <property name="text">
         <string>Calculate</string>
        </property>
@@ -336,6 +351,12 @@
          <width>0</width>
          <height>40</height>
         </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string notr="true">Esc</string>
        </property>
        <property name="text">
         <string>Close</string>

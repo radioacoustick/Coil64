@@ -25,6 +25,7 @@ Ferrite_Rod::Ferrite_Rod(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
+    ui->label_ind->setText(tr("Inductance") + " L:");
     ui->label_Dr->setText(tr("Rod diameter") + " Dr:");
     ui->label_Lr->setText(tr("Rod length") + " Lr:");
     ui->label_mu->setText(tr("Magnetic permeability") + " µ:");
@@ -200,32 +201,26 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
         showWarning(tr("Warning"), tr("Distance from coil edge to core edge less than 1/8 Lr"));
         return;
     }
-    QString sResult = "<hr>";
-    if (fOpt->isShowTitle){
-        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
-                + windowTitle() + "</h2><br/>";
-    }
-    if (fOpt->isInsertImage){
-        sResult += "<img src=\":/images/res/Ferrite-rod.png\">";
-    }
-    sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
-    sResult += ui->label_ind->text() + " = " + ui->lineEdit_ind->text() + " " + ui->label_ind_m->text() + "<br/>";
-    sResult += "<p><u>" + ui->groupBox_core->title() + ":</u><br/>";
-    sResult += ui->label_Dr->text() + " = " + ui->lineEdit_Dr->text() + " " + ui->label_Dr_m->text() + "<br/>";
-    sResult += ui->label_Lr->text() + " = " + ui->lineEdit_Lr->text() + " " + ui->label_Lr_m->text() + "<br/>";
-    sResult += ui->label_mu->text() + ui->lineEdit_mu->text() + "<br/>";
-    sResult += "<p><u>" + ui->groupBox_coil->title() + ":</u><br/>";
-    sResult += ui->label_dc->text() + " = " + ui->lineEdit_dc->text() + " " + ui->label_dc_m->text() + "<br/>";
-    sResult += ui->label_s->text() + " = " + ui->lineEdit_s->text() + " " + ui->label_s_m->text() + "<br/>";
-    sResult += ui->label_dw->text() + " = " + ui->lineEdit_dw->text() + " " + ui->label_dw_m->text() + "<br/>";
-    sResult += ui->label_p->text() + " = " + ui->lineEdit_p->text() + " " + ui->label_p_m->text() + "</p>";
-    sResult += "<hr>";
-    sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Number of turns of the coil") + " N = " + QString::number(result.N) + "<br/>";
-    sResult += tr("Length of winding") + " lc = " + roundTo(result.thd, loc, fOpt->dwAccuracy) + "<br/>";
-    sResult += tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = " + roundTo(result.sec, loc, 0);
-    sResult += "</p><hr>";
-    emit sendResult(sResult);
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "<img src=\":/images/res/Ferrite-rod.png\">";
+    QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_ind->text(), ui->lineEdit_ind->text(), ui->label_ind_m->text()) + "<br/>";
+    sInput += "<p><u>" + ui->groupBox_core->title() + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_Dr->text(), ui->lineEdit_Dr->text(), ui->label_Dr_m->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_Lr->text(), ui->lineEdit_Lr->text(), ui->label_Lr_m->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_mu->text(), ui->lineEdit_mu->text()) + "<br/>";
+    sInput += "<p><u>" + ui->groupBox_coil->title() + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_dc->text(), ui->lineEdit_dc->text(), ui->label_dc_m->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_s->text(), ui->lineEdit_s->text(), ui->label_s_m->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_dw->text(), ui->lineEdit_dw->text(), ui->label_dw_m->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_p->text(), ui->lineEdit_p->text(), ui->label_p_m->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+    sResult += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", QString::number(result.N)) + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Length of winding") + " lc = ", roundTo(result.thd/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                               qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = ", roundTo(result.sec, loc, 0));
+    sResult += "</p>";
+    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Ferrite_Rod::on_pushButton_clicked()

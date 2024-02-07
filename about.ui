@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>469</height>
+    <height>550</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,13 +22,13 @@
   <property name="minimumSize">
    <size>
     <width>650</width>
-    <height>469</height>
+    <height>550</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>650</width>
-    <height>469</height>
+    <height>550</height>
    </size>
   </property>
   <property name="contextMenuPolicy">
@@ -50,25 +50,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>:/new/images/res/program.png</pixmap>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
@@ -94,7 +75,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>5</number>
          </property>
          <widget class="QWidget" name="tab_1">
           <property name="sizePolicy">
@@ -618,6 +599,46 @@ p, li { white-space: pre-wrap; }
               <number>19</number>
              </property>
             </widget>
+           </item>
+           <item>
+            <widget class="Line" name="line_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="label_8">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Free Icons:</string>
+               </property>
+               <property name="margin">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string notr="true">&lt;a href=&quot;https://icons8.com/icons&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;https://icons8.com/icons&lt;/span&gt;&lt;/a&gt;</string>
+               </property>
+               <property name="margin">
+                <number>10</number>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>

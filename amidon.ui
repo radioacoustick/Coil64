@@ -145,6 +145,9 @@
             <height>281</height>
            </size>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="frameShape">
            <enum>QFrame::WinPanel</enum>
           </property>
@@ -225,8 +228,11 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::TabFocus</enum>
+         </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_airon_tor">
           <attribute name="title">
@@ -240,7 +246,11 @@
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_5">
               <item>
-               <widget class="QComboBox" name="comboBox_tm"/>
+               <widget class="QComboBox" name="comboBox_tm">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -252,7 +262,11 @@
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
-               <widget class="QComboBox" name="comboBox_td"/>
+               <widget class="QComboBox" name="comboBox_td">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -271,7 +285,11 @@
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
-               <widget class="QComboBox" name="comboBox_fm"/>
+               <widget class="QComboBox" name="comboBox_fm">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -283,7 +301,11 @@
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_8">
               <item>
-               <widget class="QComboBox" name="comboBox_fd"/>
+               <widget class="QComboBox" name="comboBox_fd">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -303,6 +325,9 @@
              <layout class="QVBoxLayout" name="verticalLayout_10">
               <item>
                <widget class="QRadioButton" name="radioButton_e01">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">EA-77-188</string>
                 </property>
@@ -313,6 +338,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_e02">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">EA-77-250</string>
                 </property>
@@ -320,6 +348,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_e03">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">EA-77-375</string>
                 </property>
@@ -327,6 +358,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_e04">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">EA-77-500</string>
                 </property>
@@ -334,6 +368,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_e05">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">EA-77-625</string>
                 </property>
@@ -357,6 +394,9 @@
              <layout class="QVBoxLayout" name="verticalLayout_9">
               <item>
                <widget class="QRadioButton" name="radioButton_p01">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">PC1107-77</string>
                 </property>
@@ -367,6 +407,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_p02">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">PC1408-77</string>
                 </property>
@@ -374,6 +417,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_p03">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">PC1811-77</string>
                 </property>
@@ -381,6 +427,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_p04">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">PC2213-77</string>
                 </property>
@@ -388,6 +437,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_p05">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">PC2616-77</string>
                 </property>
@@ -395,6 +447,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_p06">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">PC3019-77</string>
                 </property>
@@ -402,6 +457,9 @@
               </item>
               <item>
                <widget class="QRadioButton" name="radioButton_p07">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
                 <property name="text">
                  <string notr="true">PC3622-77</string>
                 </property>
@@ -424,7 +482,11 @@
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_12">
               <item>
-               <widget class="QComboBox" name="comboBox_bn_m"/>
+               <widget class="QComboBox" name="comboBox_bn_m">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -436,7 +498,11 @@
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_13">
               <item>
-               <widget class="QComboBox" name="comboBox_bn_t"/>
+               <widget class="QComboBox" name="comboBox_bn_t">
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -557,12 +623,18 @@
          <height>40</height>
         </size>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string/>
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
          <normaloff>:/menu_ico/res/icons8-help-32.png</normaloff>:/menu_ico/res/icons8-help-32.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string notr="true">F1</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -590,6 +662,12 @@
          <height>40</height>
         </size>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string notr="true">Enter</string>
+       </property>
        <property name="text">
         <string>Export results</string>
        </property>
@@ -615,6 +693,12 @@
          <width>0</width>
          <height>40</height>
         </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string notr="true">Esc</string>
        </property>
        <property name="text">
         <string>Close</string>

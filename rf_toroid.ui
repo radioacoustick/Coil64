@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>740</width>
-    <height>600</height>
+    <height>708</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -61,6 +61,9 @@
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::NoFocus</enum>
               </property>
               <property name="text">
                <string notr="true">Self capacitance Cs:</string>
@@ -213,6 +216,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string notr="true"/>
             </property>
@@ -235,17 +241,23 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string notr="true">µ'' =</string>
+               <string notr="true">µ'':</string>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
              <widget class="QLineEdit" name="lineEdit_mu1">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>220</width>
+                <height>16777215</height>
+               </size>
               </property>
               <property name="text">
                <string notr="true"/>
@@ -261,17 +273,23 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string notr="true">µ' =</string>
+               <string notr="true">µ':</string>
               </property>
              </widget>
             </item>
             <item row="2" column="1">
              <widget class="QLineEdit" name="lineEdit_mu2">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>220</width>
+                <height>16777215</height>
+               </size>
               </property>
               <property name="text">
                <string notr="true"/>
@@ -505,6 +523,9 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="focusPolicy">
+               <enum>Qt::NoFocus</enum>
+              </property>
              </widget>
             </item>
            </layout>
@@ -637,6 +658,9 @@
          <height>40</height>
         </size>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="toolTip">
         <string>Context help</string>
        </property>
@@ -646,6 +670,9 @@
        <property name="icon">
         <iconset resource="res.qrc">
          <normaloff>:/menu_ico/res/icons8-help-32.png</normaloff>:/menu_ico/res/icons8-help-32.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string notr="true">F1</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -673,6 +700,12 @@
          <height>40</height>
         </size>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="statusTip">
+        <string notr="true">Ctrl+Enter</string>
+       </property>
        <property name="text">
         <string>Export results</string>
        </property>
@@ -695,6 +728,12 @@
          <width>200</width>
          <height>40</height>
         </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="statusTip">
+        <string notr="true">Enter</string>
        </property>
        <property name="text">
         <string>Calculate</string>
@@ -722,6 +761,12 @@
          <height>40</height>
         </size>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="statusTip">
+        <string notr="true">Esc</string>
+       </property>
        <property name="text">
         <string>Close</string>
        </property>
@@ -744,15 +789,14 @@
  <tabstops>
   <tabstop>lineEdit_N</tabstop>
   <tabstop>lineEdit_f</tabstop>
+  <tabstop>lineEdit_d</tabstop>
+  <tabstop>lineEdit_cs</tabstop>
   <tabstop>lineEdit_mu1</tabstop>
   <tabstop>lineEdit_mu2</tabstop>
   <tabstop>lineEdit_od</tabstop>
   <tabstop>lineEdit_id</tabstop>
   <tabstop>lineEdit_h</tabstop>
   <tabstop>lineEdit_c</tabstop>
-  <tabstop>pushButton_calculate</tabstop>
-  <tabstop>pushButton_close</tabstop>
-  <tabstop>pushButton_help</tabstop>
  </tabstops>
  <resources>
   <include location="res.qrc"/>

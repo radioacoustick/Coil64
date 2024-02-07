@@ -17,6 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #ifndef BANDSPREAD_H
 #define BANDSPREAD_H
 
+#include <QtWidgets>
 #include <QDialog>
 #include <QScreen>
 #include <QDoubleValidator>

@@ -164,7 +164,7 @@ private slots:
     void setLanguage();
     void resetUiFont();
     void invertGUIconColor();
-    void prepareHeader(QTextCursor *c);
+    void showOutput(QString caption, QString image, QString input, QString result);
     void checkMaterial1(Material *mt);
     void checkMaterial2(Material *mt);
 
@@ -173,6 +173,7 @@ private slots:
     void on_actionPrint_triggered();
     void on_actionAbout_triggered();
     void on_actionHelp_triggered();
+    void on_actionIntrfaceHelp_triggered();
     void on_actionHomePage_triggered();
     void on_actionVersions_history_triggered();
     void on_actionDonate_triggered();
@@ -192,6 +193,7 @@ private slots:
     void on_toolButton_CopySel_clicked();
     void on_toolButton_CopyAll_clicked();
     void on_toolButton_Print_clicked();
+    void on_toolButton_Num_clicked();
     void on_toolButton_showTitle_clicked();
     void on_toolButton_showImg_clicked();
     void on_toolButton_showAdditional_clicked();
@@ -203,6 +205,9 @@ private slots:
     void on_toolButton_Open_clicked();
     void on_toolButton_Save_clicked();
     void on_toolButton_ltspice_clicked();
+    void on_toolButton_Color_clicked();
+    void on_toolButton_Desc_clicked();
+    void on_toolButton_column_clicked();
 
     void on_actionFerrite_toroid_permeability_triggered();
     void on_actionCoil_on_a_ferrite_rod_triggered();

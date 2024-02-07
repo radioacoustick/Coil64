@@ -74,8 +74,12 @@ RF_Toroid::RF_Toroid(QWidget *parent) :
     ui->label_id->setText(tr("Inside diameter") + " ID:");
     ui->label_h->setText(tr("Core height") + " H:");
     ui->label_c->setText(tr("Chamfer") + " C:");
-    ui->label_d->setText(tr("Wire diameter") + " d:");
+    ui->label_d->setText(tr("Wire diameter") + " dw:");
     ui->lineEdit_N->setFocus();
+    QAction *buttonAction = new QAction(ui->pushButton_export);
+    buttonAction->setShortcuts({QKeySequence("Ctrl+Enter"),QKeySequence("Ctrl+Return")});
+    ui->pushButton_export->addAction(buttonAction);
+    connect(buttonAction, &QAction::triggered, ui->pushButton_export, &QPushButton::click);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RF_Toroid::~RF_Toroid()
@@ -401,28 +405,29 @@ void RF_Toroid::on_pushButton_calculate_clicked()
             QString sComplexZ = roundTo(z.real(), loc, fOpt->dwAccuracy) + " + j" + roundTo(z.imag(), loc, fOpt->dwAccuracy);
             if(z.imag() < 0)
                 sComplexZ = roundTo(z.real(), loc, fOpt->dwAccuracy) + " - j" + roundTo(-z.imag(), loc, fOpt->dwAccuracy);
-            result += "Z (Ω) = " + sComplexZ + "<br/>";
-            result += "|Z| (Ω) = " + roundTo(abs(z), loc, fOpt->dwAccuracy) + "<br/><br/>";
+            result += "Z (Ω) = " + formattedOutput(fOpt, "", sComplexZ) + "<br/>";
+            result += "|Z| (Ω) = " + formattedOutput(fOpt, "", roundTo(abs(z), loc, fOpt->dwAccuracy)) + "<br/><br/>";
             if (Q >= 0){
-                result += tr("Equivalent series inductance") + " Ls = " +
-                        roundTo(z.imag() / (2*M_PI*freq)*1e6 / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " " +
-                        qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
-                result += tr("Loss resistance") + " ESR = " + roundTo(z.real() + Rdc, loc, fOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+                result += formattedOutput(fOpt, tr("Equivalent series inductance") + " Ls = ",
+                                          roundTo(z.imag() / (2*M_PI*freq)*1e6 / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy),
+                                          qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
+                result += formattedOutput(fOpt, tr("Loss resistance") + " ESR = ", roundTo(z.real() + Rdc, loc, fOpt->dwAccuracy), tr("Ohm")) + "<br/>";
                 if (isCsAuto)
-                    result += tr("Self capacitance") + " Cs = " + roundTo(Csm, loc, fOpt->dwAccuracy) + " "
-                        + qApp->translate("Context", "pF") + "<br/>";
-                result += tr("Coil constructive Q-factor") + " Q = " + roundTo(Q, loc, 0) + "<br/>";
-                result += "A<sub>L</sub>&nbsp;= " + loc.toString(round(al))
-                        + "&nbsp;" +  qApp->translate("Context","nH") + "/N<sup>2</sup></p>";
-                result += "<hr><p>";
-                result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-                result += "Inductance: " + QString::number(z.imag() / (2*M_PI*freq)*1e6, 'f', fOpt->dwAccuracy) + "μ" + "<br/>";
-                result += "Series resistance: " + QString::number(Rdc * 1000, 'f', 3) + "m" + "<br/>";
-                result += "Parallel resistance: " + QString::number(Q * z.imag() / 1000, 'f', fOpt->dwAccuracy) + "k" + "<br/>";
-                if (isCsAuto)
-                    result += "Parallel capacitance: " + QString::number(Csm, 'f', fOpt->dwAccuracy) + "p";
-                else
-                    result += "Parallel capacitance: " + QString::number(Cs, 'f', fOpt->dwAccuracy) + "p";
+                    result += formattedOutput(fOpt, tr("Self capacitance") + " Cs = ", roundTo(Csm, loc, fOpt->dwAccuracy),
+                                              qApp->translate("Context", "pF")) + "<br/>";
+                result += formattedOutput(fOpt, tr("Coil constructive Q-factor") + " Q = ", roundTo(Q, loc, 0)) + "<br/>";
+                result += formattedOutput(fOpt, "A<sub>L</sub> = ", loc.toString(round(al)), qApp->translate("Context","nH") + "/N<sup>2</sup>") + "</p>";
+                result += "<hr/><p>";
+                if(fOpt->isShowLTSpice){
+                    result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
+                    result += "Inductance: " + QString::number(z.imag() / (2*M_PI*freq)*1e6, 'f', fOpt->dwAccuracy) + "μ" + "<br/>";
+                    result += "Series resistance: " + QString::number(Rdc * 1000, 'f', 3) + "m" + "<br/>";
+                    result += "Parallel resistance: " + QString::number(Q * z.imag() / 1000, 'f', fOpt->dwAccuracy) + "k" + "<br/>";
+                    if (isCsAuto)
+                        result += "Parallel capacitance: " + QString::number(Csm, 'f', fOpt->dwAccuracy) + "p";
+                    else
+                        result += "Parallel capacitance: " + QString::number(Cs, 'f', fOpt->dwAccuracy) + "p";
+                }
             } else {
                 result += "Q &lt; 0";
             }
@@ -442,34 +447,27 @@ void RF_Toroid::on_pushButton_calculate_clicked()
 void RF_Toroid::on_pushButton_export_clicked()
 {
     if (!ui->label_result->text().isEmpty()){
-        QString sResult = "<hr>";
-        if (fOpt->isShowTitle){
-            sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
-                    + windowTitle() + "</h2><br/>";
-        }
-        if (fOpt->isInsertImage){
-            sResult += "<img src=\":/images/res/T-core.png\">";
-        }
-        sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
-        sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + "<br/>";
-        sResult += ui->label_f->text() + " " + ui->lineEdit_f->text() + " " + ui->label_f_m->text() + "<br/>";
+        QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+        QString sImage = "<img src=\":/images/res/T-core.png\">";
+        QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
+        sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text()) + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_f->text(), ui->lineEdit_f->text(), ui->label_f_m->text()) + "<br/>";
         if (!isCsAuto)
-            sResult += ui->label_cs->text() + " " + ui->lineEdit_cs->text() + " " + ui->label_cs_m->text() + "<br/>";
+            sInput += formattedOutput(fOpt, ui->label_cs->text(), ui->lineEdit_cs->text(), ui->label_cs_m->text()) + "<br/>";
         if (ui->comboBox->currentIndex() > 0)
-            sResult += "<u>" + ui->comboBox->currentText() + "</u><br/>";
-        sResult += ui->label_2->text() + " " + ui->lineEdit_mu1->text() + "<br/>";
-        sResult += ui->label_3->text() + " " + ui->lineEdit_mu2->text() + "<br/>";
+            sInput += "<u>" + ui->comboBox->currentText() + "</u><br/>";
+        sInput += formattedOutput(fOpt, ui->label_2->text(), ui->lineEdit_mu1->text()) + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_mu2->text()) + "<br/>";
         if (ui->comboBox_2->currentIndex() > 0)
-            sResult += "<u>" + ui->comboBox_2->currentText() + "</u><br/>";
-        sResult += ui->label_od->text() + " " + ui->lineEdit_od->text() + " " + ui->label_01->text() + "<br/>";
-        sResult += ui->label_id->text() + " " + ui->lineEdit_id->text() + " " + ui->label_02->text() + "<br/>";
-        sResult += ui->label_h->text() + " " + ui->lineEdit_h->text() + " " + ui->label_03->text() + "<br/>";
-        sResult += ui->label_c->text() + " " + ui->lineEdit_c->text() + " " + ui->label_04->text() + "<br/>";
-        sResult += "<hr>";
-        sResult += "<p><u>" + tr("Result") + ":</u><br/>";
+            sInput += "<u>" + ui->comboBox_2->currentText() + "</u><br/>";
+        sInput += formattedOutput(fOpt, ui->label_od->text(), ui->lineEdit_od->text(), ui->label_01->text()) + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_id->text(), ui->lineEdit_id->text(), ui->label_02->text()) + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_h->text(), ui->lineEdit_h->text(), ui->label_03->text()) + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_c->text(), ui->lineEdit_c->text(), ui->label_04->text());
+        QString sResult = "<p><u>" + tr("Result") + ":</u>";
         sResult += ui->label_result->text();
-        sResult += "</p><hr>";
-        emit sendResult(sResult);
+        sResult += "</p>";
+        emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -151,49 +151,42 @@ void Multiloop::on_pushButton_clicked()
         showWarning(tr("Warning"),tr("Coil can not be realized") + "!");
         return;
     }
-    QString sResult = "<hr>";
-    if (fOpt->isShowTitle){
-        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
-                + windowTitle() + "</h2><br/>";
-    }
-    if (fOpt->isInsertImage){
-        sResult += "<img src=\":/images/res/multi_loop.png\">";
-    }
-    sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "<img src=\":/images/res/multi_loop.png\">";
+    QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
     QString measureUnit = "";
     if (!ui->checkBox_isReverce->isChecked())
         measureUnit = "";
     else
         measureUnit = ui->label_N_m->text();
-    sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + " " + measureUnit + "<br/>";
-    sResult += "<u>" + tr("Dimensions") + ":</u><br/>";
-    sResult += ui->label_1->text() + " " + ui->lineEdit_1->text() + " " + ui->label_01->text() + "<br/>";
-    sResult += ui->label_2->text() + " " + ui->lineEdit_2->text() + " " + ui->label_02->text() + "<br/>";
-    sResult += ui->label_3->text() + " " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "</p>";
-    sResult += "<hr>";
-    sResult += "<p><u>" + tr("Result") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text(), measureUnit) + "<br/>";
+    sInput += "<u>" + tr("Dimensions") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_1->text(), ui->lineEdit_1->text(), ui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_2->text(), ui->lineEdit_2->text(), ui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if (!ui->checkBox_isReverce->isChecked()){
-        sResult += tr("Inductance") + " L = " + roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
-                + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
+        sResult += formattedOutput(fOpt, tr("Inductance") + " L = ", roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy),
+                                   qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
     } else {
-        sResult += tr("Number of turns of the coil") + " N = " + roundTo(nTurns, loc, fOpt->dwAccuracy) + "<br/>";
+        sResult += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", roundTo(nTurns, loc, fOpt->dwAccuracy)) + "<br/>";
     }
-    sResult += tr("Mean diameter") + " Dm = " + roundTo( (result.N)/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy ) + " " +
-            qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    sResult += tr("Thickness of the coil") + " T = " + roundTo( (result.sec)/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy) + " " +
-            qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    sResult += tr("Resistance of the coil") + " R = " + roundTo(result.fourth, loc, fOpt->dwAccuracy) + " " + tr("Ohm") + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Mean diameter") + " Dm = ", roundTo( (result.N)/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy ),
+                               qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Thickness of the coil") + " T = ", roundTo( (result.sec)/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                               qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Resistance of the coil") + " R = ", roundTo(result.fourth, loc, fOpt->dwAccuracy), tr("Ohm")) + "<br/>";
     QString _wire_length = formatLength(result.thd, fOpt->dwLengthMultiplier);
     QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
-    sResult += tr("Length of wire without leads") + " lw = " + roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy) + " " +
-            qApp->translate("Context",_ssLengthMeasureUnit.toUtf8()) + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy),
+                               qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
     double dencity = mtrl[Cu][Dencity];
     double mass = 0.25 * dencity * M_PI * dw * dw * result.thd;
-    sResult += tr("Weight of wire") + " m = " + roundTo(mass, loc, fOpt->dwAccuracy) + " " + tr("g") + "<br/>";
-    sResult += "</p><hr>";
-    emit sendResult(sResult);
+    sResult += formattedOutput(fOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, fOpt->dwAccuracy), tr("g")) + "<br/>";
+    sResult += "</p>";
+    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Multiloop::on_pushButton_2_clicked()

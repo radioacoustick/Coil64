@@ -19,10 +19,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #define DEFINES
 
 #define APP_NAME "Coil64"
-#define VERSION "2.1.29"
+#define VERSION "2.2.30"
 #define PROGRAM_SITE "https://coil32.net"
 #define VERSION_FILE "qversion.txt"
 #define CLEAR_CHAR 0x274C
+#define LIST_SEPARATOR "$"
 #define AWG_REG_EX "([0]{1,4})|([1-3]{1}[0-9]{1})|(40)|([1-9]{1})"
 #define MAX_DOUBLE 1.79769e+308
 #define PORTABLE_SAVE_LOCATION "/Save"

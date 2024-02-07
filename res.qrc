@@ -150,6 +150,11 @@
         <file>res/ico1-bandspread.png</file>
         <file>res/ico1-rm-core.png</file>
         <file>res/icons8-ask-question-32.png</file>
+        <file>res/icons8-color-32.png</file>
+        <file>res/icons8-description-32.png</file>
+        <file>res/icons8-column-32.png</file>
+        <file>res/icons8-bullet-32.png</file>
+        <file>res/icons8-interface-32.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

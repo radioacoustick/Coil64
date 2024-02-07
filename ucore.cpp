@@ -154,6 +154,8 @@ void UCore::on_checkBox_isReverce_clicked()
         ui->label_N->setText(tmpTxt);
         ui->label_N_m->setVisible(true);
     }
+    ui->lineEdit_N->setFocus();
+    ui->lineEdit_N->selectAll();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void UCore::on_pushButton_close_clicked()
@@ -197,6 +199,8 @@ void UCore::on_comboBox_currentIndexChanged(int index)
     default:
         break;
     }
+    ui->lineEdit_N->setFocus();
+    ui->lineEdit_N->selectAll();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void UCore::on_pushButton_help_clicked()
@@ -279,58 +283,52 @@ void UCore::on_pushButton_calculate_clicked()
         }
         N = findUCore_N(ind,A,B,C,D,E,F,s,mu,&result);
     }
-    QString sResult = "<hr>";
-    if (fOpt->isShowTitle){
-        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() +
-                " - " + windowTitle() + "</h2><br/>";
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "";
+    switch (index) {
+    case 0:
+        sImage = "<img src=\":/images/res/UU-core.png\">";
+        break;
+    case 1:
+        sImage = "<img src=\":/images/res/UR-core.png\">";
+        break;
+    case 2:
+        sImage = "<img src=\":/images/res/UY-core.png\">";
+        break;
+    default:
+        break;
     }
-    if (fOpt->isInsertImage){
-        switch (index) {
-        case 0:
-            sResult += "<img src=\":/images/res/UU-core.png\">";
-            break;
-        case 1:
-            sResult += "<img src=\":/images/res/UR-core.png\">";
-            break;
-        case 2:
-            sResult += "<img src=\":/images/res/UY-core.png\">";
-             break;
-        default:
-            break;
-        }
-    }
-    sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
+    QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
     if (ui->checkBox_isReverce->isChecked())
-        sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text()) + "<br/>";
     else
-        sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + " " + ui->label_N_m->text() + "<br/>";
-    sResult += ui->label_a->text() + " " + ui->lineEdit_a->text() + " " + ui->label_01->text() + "<br/>";
-    sResult += ui->label_b->text() + " " + ui->lineEdit_b->text() + " " + ui->label_02->text() + "<br/>";
-    sResult += ui->label_c->text() + " " + ui->lineEdit_c->text() + " " + ui->label_03->text() + "<br/>";
-    sResult += ui->label_d->text() + " " + ui->lineEdit_d->text() + " " + ui->label_04->text() + "<br/>";
-    sResult += ui->label_e->text() + " " + ui->lineEdit_e->text() + " " + ui->label_05->text() + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text(), ui->label_N_m->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_a->text(), ui->lineEdit_a->text(), ui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_b->text(), ui->lineEdit_b->text(), ui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_c->text(), ui->lineEdit_c->text(), ui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_d->text(), ui->lineEdit_d->text(), ui->label_04->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_e->text(), ui->lineEdit_e->text(), ui->label_05->text()) + "<br/>";
     if (index == 1)
-        sResult += ui->label_f->text() + " " + ui->lineEdit_f->text() + " " + ui->label_06->text() + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_f->text(), ui->lineEdit_f->text(), ui->label_06->text()) + "<br/>";
     if (index > 0)
-        sResult += ui->label_s->text() + " " + ui->lineEdit_s->text() + " " + ui->label_07->text() + "<br/>";
-    sResult += ui->label_mu->text() + " " + ui->lineEdit_mu->text() + "<br/>";
-    sResult += "<hr>";
-    sResult += "<p><u>" + tr("Result") + ":</u><br/>";
+        sInput += formattedOutput(fOpt, ui->label_s->text(), ui->lineEdit_s->text(), ui->label_07->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_mu->text(), ui->lineEdit_mu->text()) + "<br/>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if (ui->checkBox_isReverce->isChecked()){
-        sResult += tr("Inductance") + " L = " + roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
-                + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8());
+        sResult += formattedOutput(fOpt, tr("Inductance") + " L = ", roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy),
+                                   qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
     } else {
-        sResult += tr("Number of turns of the coil") + " N = " + QString::number(N);
+        sResult += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", QString::number(N));
     }
-    sResult += "<br/><br/>" + tr("Effective magnetic path length") + " (l<sub>e</sub>): "
-            + roundTo(result.N/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy)
-            + "&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
-    sResult += tr("Effective area of magnetic path") + " (A<sub>e</sub>): "
-            + roundTo(result.sec/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), loc, fOpt->dwAccuracy)
-            + "&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>2</sup><br/>";
-    sResult += tr("Effective volume") + " (V<sub>e</sub>): "
-            + roundTo(result.N * result.sec/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), loc, fOpt->dwAccuracy)
-            + "&nbsp;" + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>3</sup><br/>";
-    sResult += "</p><hr>";
-    emit sendResult(sResult);
+    sResult += "<br/><br/>" + formattedOutput(fOpt, tr("Effective magnetic path length") + " (l<sub>e</sub>): ",
+                                              roundTo(result.N/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                                              qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Effective area of magnetic path") + " (A<sub>e</sub>): ",
+                               roundTo(result.sec/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), loc, fOpt->dwAccuracy),
+                               qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>2</sup>") + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Effective volume") + " (V<sub>e</sub>): ",
+                               roundTo(result.N * result.sec/(fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier * fOpt->dwLengthMultiplier), loc, fOpt->dwAccuracy),
+                               qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>3</sup>") + "<br/>";
+    sResult += "</p>";
+    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
 }

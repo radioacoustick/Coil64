@@ -169,27 +169,20 @@ void Shield::on_pushButton_clicked()
         sShieldForm = ui->radioButton_2->text();
     }
     double L_shilded = findSheildedInductance(L, D, Ds, l, Hs);
-    QString sResult = "<hr>";
-    if (fOpt->isShowTitle){
-        sResult = "<h2>" +QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - "
-                + windowTitle() + "</h2><br/>";
-    }
-    if (fOpt->isInsertImage){
-        sResult += "<img src=\":/images/res/shield.png\">";
-    }
-    sResult += "<p><u>" + tr("Input data") + ":</u><br/>";
-    sResult += ui->label_N->text() + " " + ui->lineEdit_N->text() + " " + ui->label_N_m->text() + "<br/>";
-    sResult += "<u>" + tr("Dimensions") + ":</u><br/>";
-    sResult += ui->label_1->text() + " " + ui->lineEdit_1->text() + " " + ui->label_01->text() + "<br/>";
-    sResult += ui->label_2->text() + " " + ui->lineEdit_2->text() + " " + ui->label_02->text() + "<br/>";
-    sResult += ui->label_3->text() + " " + ui->lineEdit_3->text() + " " + ui->label_03->text() + "<br/>";
-    sResult += ui->label_4->text() + " " + ui->lineEdit_4->text() + " " + ui->label_04->text() + "<br/>";
-    sResult += ui->groupBox_3->title() + ": " + sShieldForm + "</p>";
-    sResult += "<hr>";
-    sResult += "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += tr("Inductance of the shielded coil") + " Ls = " + roundTo(L_shilded / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy) + " "
-            + qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()) + "<br/>";
-    sResult += tr("Relative reducing of the inductance") + ": " + loc.toString(round(100 - L_shilded * 100 / L)) + "%" + "<br/>";
-    sResult += "</p><hr>";
-    emit sendResult(sResult);
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "<img src=\":/images/res/shield.png\">";
+    QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text(), ui->label_N_m->text()) + "<br/>";
+    sInput += "<u>" + tr("Dimensions") + ":</u><br/>";
+    sInput += formattedOutput(fOpt, ui->label_1->text(), ui->lineEdit_1->text(), ui->label_01->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_2->text(), ui->lineEdit_2->text(), ui->label_02->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_4->text(), ui->lineEdit_4->text(), ui->label_04->text()) + "<br/>";
+    sInput += ui->groupBox_3->title() + ": " + sShieldForm + "</p>";
+    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+    sResult += formattedOutput(fOpt, tr("Inductance of the shielded coil") + " Ls = ", roundTo(L_shilded / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy),
+                               qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(fOpt, tr("Relative reducing of the inductance") + " Rel = ", "- " + loc.toString(round(100 - L_shilded * 100 / L)), "%") + "<br/>";
+    sResult += "</p>";
+    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
 }
