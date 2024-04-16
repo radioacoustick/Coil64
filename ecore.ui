@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>688</width>
-    <height>458</height>
+    <height>468</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -132,11 +132,44 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_isReverce">
-         <property name="text">
-          <string>Reverse calculation</string>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <property name="leftMargin">
+          <number>5</number>
          </property>
-        </widget>
+         <property name="topMargin">
+          <number>5</number>
+         </property>
+         <property name="rightMargin">
+          <number>5</number>
+         </property>
+         <property name="bottomMargin">
+          <number>5</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="checkBox_isReverce">
+           <property name="text">
+            <string>Reverse calculation</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QToolButton" name="toolButton_saturation">
+           <property name="toolTip">
+            <string>Saturation current</string>
+           </property>
+           <property name="text">
+            <string notr="true"/>
+           </property>
+           <property name="icon">
+            <iconset resource="res.qrc">
+             <normaloff>:/menu_ico/res/icons8-magnetic-32.png</normaloff>:/menu_ico/res/icons8-magnetic-32.png</iconset>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout">
@@ -594,7 +627,6 @@
  </widget>
  <tabstops>
   <tabstop>comboBox</tabstop>
-  <tabstop>checkBox_isReverce</tabstop>
   <tabstop>lineEdit_N</tabstop>
   <tabstop>lineEdit_a</tabstop>
   <tabstop>lineEdit_b</tabstop>

@@ -61,6 +61,7 @@ ECore::~ECore()
     settings->setValue("pos", this->pos());
     settings->setValue("size", this->size());
     settings->setValue("isReverse", ui->checkBox_isReverce->isChecked());
+    settings->setValue("isShowSaturation", ui->toolButton_saturation->isChecked());
     settings->setValue("currStdCore", ui->comboBox->currentIndex());
     settings->setValue("ind", ind);
     settings->setValue("N", N);
@@ -102,6 +103,7 @@ void ECore::getOpt(_OptionStruct gOpt)
     QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     QSize size = settings->value("size", this->minimumSize()).toSize();
     bool isReverse = settings->value("isReverse", false).toBool();
+    bool isShowSaturation = settings->value("isShowSaturation", false).toBool();
     currStdCore = settings->value("currStdCore", 1).toInt();
 
     N = settings->value("N", 0).toDouble();
@@ -139,6 +141,8 @@ void ECore::getOpt(_OptionStruct gOpt)
     move(pos);
     ui->checkBox_isReverce->setChecked(isReverse);
     on_checkBox_isReverce_clicked();
+    ui->toolButton_saturation->setChecked(isShowSaturation);
+    ui->toolButton_saturation->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
     delete settings;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -360,5 +364,16 @@ void ECore::on_pushButton_calculate_clicked()
                                qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<sup>3</sup><br/>";
     sResult += formattedOutput(fOpt, tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = ", roundTo(result.thd, loc, 0));
     sResult += "</p>";
-    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
+    QString n = "";
+    if (ui->checkBox_isReverce->isChecked())
+        n = ui->lineEdit_N->text();
+    else
+        n = QString::number(N);
+    QString sSatData = n + ";" + loc.toString(result.thd) + ";" + loc.toString(result.N);
+    emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult + LIST_SEPARATOR + sSatData);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ECore::on_toolButton_saturation_toggled(bool checked)
+{
+    emit showSaturation(checked);
 }

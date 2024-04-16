@@ -95,6 +95,18 @@ double find_actual_spiral_length(int N, double Din, double k) {
     return (Lt - Lin);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double getToroidEqMagLength(double OD, double ID){
+    return M_PI * log(OD / ID) / (1.0 / ID - 1.0 / OD);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double getToroidEqCrossSec(double OD, double ID, double he){
+    return 0.5 * he * pow(log(OD / ID), 2) / (1.0 / ID - 1.0 / OD);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double getSaturationCurrent(double Bs, double le, double mu, double N){
+    return 1e-4 * Bs * le / (mu0 * mu * N); // le [mm], Bs [Gs], return value in [mA]
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double find_Helix_turn_length(double r, double p){
     return sqrt(pow(2 * M_PI * r, 2) + p * p);
 }
@@ -437,7 +449,7 @@ double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, doub
 double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *result, unsigned int accuracy){
     double dw = 0, lTmp = 0, N = 0, k, lw, dw_max = 0.25 * D, dw_min = 0, Dk;
     int i = 0;
-    while (abs(1 - lTmp/L) > 0.05){
+    while (fabs(1 - lTmp/L) > 0.05){
         dw = (dw_min + dw_max) / 2;
         k = odCalc(dw);
         Dk = D + k;
@@ -1146,9 +1158,13 @@ void getFerriteN(double L, double Do, double Di, double h, double dw, double mu,
     } while (w1 < w);
     double al = round(0.2  * he * mu * log(Do / Di));
     double lw = 0.001 * Lt;
+    double le = getToroidEqMagLength(Do, Di);
+    double Ae = getToroidEqCrossSec(Do, Di, he);
     result->N = w;
     result->sec = lw;
     result->thd = al;
+    result->fourth = le;
+    result->five = Ae;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, _CoilResult *result){
@@ -1156,7 +1172,11 @@ double getFerriteI(double N, double Do, double Di, double h, double mu, double C
     double k = 0.8584 * pow(cr, 2) / (h * (Do - Di) / 2); //correction factor for the chamfer
     double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
     double al = round(0.2  * he * mu * log(Do / Di));
+    double le = getToroidEqMagLength(Do, Di);
+    double Ae = getToroidEqCrossSec(Do, Di, he);
     result->thd = al;
+    result->fourth = le;
+    result->five = Ae;
     return 2e-04 * mu * he * N * N * log(Do / Di);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1213,7 +1233,7 @@ double getPCB_I(double N, double _d, double _s, int layout, _CoilResult *result)
 double log_GMD2(double s, double w, double h){
     return log(w + h) + log(s / (2 * w)) - (-1.46 * w / h + 1.45) / (2.14 * w / h + 1.0);
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double rectPCBSpiral(int N, double a, double b, double s, double w, double h){
     /*
         "Inductance Formula for Rectangular Planar Spiral Inductors with Rectangular Conductor Cross Section",  H. A. Aebischer 2020
@@ -1286,6 +1306,35 @@ double rectPCBSpiral(int N, double a, double b, double s, double w, double h){
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+bool is_PCB_Rect_valid(int N, double s, double w, double B){
+    double rho = ((N - 1) * s + w) / (B - (N - 1) * s);
+    switch (N){
+    case 2:
+        if (rho > 0.36001)
+            return false;
+        break;
+    case 3 ... 7:
+        if (rho > 0.52001)
+            return false;
+        break;
+    case 8 ... 12:
+        if (rho > 0.78001)
+            return false;
+        break;
+    case 13 ... 20:
+        if (rho > 0.86001)
+            return false;
+        break;
+    default:
+        break;
+    }
+    if (N >= 21){
+        if (rho > ((N - 1.0) / (N + 1.0)))
+            return false;
+    }
+    return true;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double getPCB_RectI(int N, double A, double B, double s, double w, double th, _CoilResult *result){
 
     if (N < 2)
@@ -1295,55 +1344,52 @@ double getPCB_RectI(int N, double A, double B, double s, double w, double th, _C
     }
     double a = A - (N - 1) * s;
     double b = B - (N - 1) * s;
-    double rho = ((N - 1) * s + w) / (B - (N - 1) * s);
-    switch (N){
-    case 2:
-        if (rho > 0.36001)
-            return 0;
-        break;
-    case 3 ... 7:
-        if (rho > 0.52001)
-            return 0;
-        break;
-    case 8 ... 12:
-        if (rho > 0.78001)
-            return 0;
-        break;
-    case 13 ... 20:
-        if (rho > 0.86001)
-            return 0;
-        break;
-    default:
-        break;
-    }
-    if (N >= 21){
-        if (rho > ((N - 1.0) / (N + 1.0)))
-            return 0;
-    }
+    if (!is_PCB_Rect_valid(N, s, w, B))
+        return 0;
     result->five = (A - (N - 1) * s * 2);
     return rectPCBSpiral(N, a, b, s, w, th);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getPCB_RectN (double I, double A, double B, double _a, double th, double ratio, _CoilResult *result) {
-
     double a = A - (A - _a) / 2.0;
-    double iTmp = 0;
-    double s = 0;
-    double w = 0;
     result->N = 0;
     result->sec = 0;
     result->thd = 0;
-    for (int N = 2; N < 10000; N++){
-        s = (A - _a) / (N - 1) / 2;
-        w = s * ratio;
-        double b = B - (N - 1) * s;
-        iTmp = rectPCBSpiral(N, a, b, s, w , th);
-        if ((abs(iTmp - I) / I) < 0.05){
-            result->N = N;
-            result->sec = s;
-            result->thd = w;
-            break;
-        }
+    int n_min = 2;
+    int n_max = 10000;
+    double s_min = (A - _a) / (n_min - 1) / 2;
+    double w_min = s_min * ratio;
+    double b_min = B - (n_min - 1) * s_min;
+    double s_max = (A - _a) / (n_max - 1) / 2;
+    double w_max = s_max * ratio;
+    double b_max = B - (n_max - 1) * s_max;
+    double i_min = rectPCBSpiral(n_min, a, b_min, s_min, w_min , th);
+    double i_max = rectPCBSpiral(n_max, a, b_max, s_max, w_max , th);
+    if ((i_min > I) || (i_max < I)){
+        return;
+    } else {
+        double s = 0;
+        double w = 0;
+        int n_tmp = n_max / 2;
+        do {
+            s = (A - _a) / (n_tmp - 1) / 2;
+            w = s * ratio;
+            double b = B - (n_tmp - 1) * s;
+            double iTmp = rectPCBSpiral(n_tmp, a, b, s, w , th);
+            if ((fabs(iTmp - I) / I) < 0.05)
+                break;
+            if (iTmp > I){
+                n_max = n_tmp;
+            } else {
+                n_min = n_tmp;
+            }
+            n_tmp = (n_min + n_max) / 2;
+        } while (abs(n_max - n_min) > 1);
+        if (!is_PCB_Rect_valid(n_tmp, s, w, B))
+            return;
+        result->N = n_tmp;
+        result->sec = s;
+        result->thd = w;
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1953,4 +1999,3 @@ double toNearestE24(double val, int accurasy){
     }
     return out;
 }
-

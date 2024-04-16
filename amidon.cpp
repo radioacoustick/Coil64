@@ -221,6 +221,10 @@ Amidon::Amidon(QWidget *parent) :
     for(int i = 0; i < MultiapertureMaterial.length(); i++){
         ui->comboBox_bn_m->addItem(MultiapertureMaterial.at(i));
     }
+    QAction *buttonAction = new QAction(ui->pushButton_export);
+    buttonAction->setShortcuts({QKeySequence("Ctrl+Enter"),QKeySequence("Ctrl+Return")});
+    ui->pushButton_export->addAction(buttonAction);
+    connect(buttonAction, &QAction::triggered, ui->pushButton_export, &QPushButton::click);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Amidon::~Amidon()
@@ -583,8 +587,8 @@ void Amidon::on_comboBox_bn_t_currentIndexChanged(int index){
         QString sH = bn_size_val.at(5);
         QStringList lH = sH.split("±");
         QString H = lH.at(0);
-        double hole_diam = H.toDouble()/fOpt->dwLengthMultiplier;
-        hole_area = M_PI * hole_diam / 4;
+        double hole_diam = H.toDouble();
+        hole_area = M_PI * hole_diam * hole_diam / 4;
         QString sLowFreq = "";
         QString sHighFreq = "";
         switch (bn_material_index) {
@@ -663,17 +667,17 @@ void Amidon::on_comboBox_td_currentTextChanged(const QString &arg1){
                 QString OD = t_size_val[1];
                 QString ID = t_size_val[2];
                 QString H = t_size_val[3];
-                double id = ID.toDouble()*25.4/fOpt->dwLengthMultiplier;
-                double od = OD.toDouble()*25.4/fOpt->dwLengthMultiplier;
-                double h = H.toDouble()*25.4/fOpt->dwLengthMultiplier;
-                hole_area = M_PI * od / 4;
+                double id = ID.toDouble() * 25.4;
+                double od = OD.toDouble() * 25.4;
+                double h = H.toDouble() * 25.4;
+                hole_area = M_PI * id * id / 4;
                 int accuracy = fOpt->indexLengthMultiplier + 1;
                 if (accuracy == 4)
                     accuracy = 0;
                 info += tr("Dimensions") + " (OD x ID x H): " + styleInfoColor + "<br/>"
-                        + roundTo(od, loc, accuracy) + " x "
-                        + roundTo(id, loc, accuracy) + " x "
-                        + roundTo(h, loc, accuracy) +
+                        + roundTo(od / fOpt->dwLengthMultiplier, loc, accuracy) + " x "
+                        + roundTo(id / fOpt->dwLengthMultiplier, loc, accuracy) + " x "
+                        + roundTo(h / fOpt->dwLengthMultiplier, loc, accuracy) +
                         + "</span> " + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
                 al = TToroid_AL[tm_index][i];
                 info += "A<sub>L</sub> " + tr("factor") + ": " + styleInfoColor
@@ -695,8 +699,10 @@ void Amidon::on_comboBox_fd_currentTextChanged(const QString &arg1)
         QStringList ffeatures = ffeatures_str.split(",");
         QString info = tr("Initial magnetic permeability") + " (μ<sub>i</sub>): " + styleInfoColor  + ffeatures.at(0)
                 + "</span><br/>";
+        fMu = loc.toDouble(ffeatures.at(0));
         info += tr("Saturation flux density") + " (Bs): " + styleInfoColor  + ffeatures.at(1)
                 + "</span> Gs<br/>";
+        fBs = loc.toDouble(ffeatures.at(1));
         info += tr("Residual flux density") + " (Br): " + styleInfoColor  + ffeatures.at(2)
                 + "</span> Gs<br/>";
         info += tr("Coercive Force") + " (Hc): " + styleInfoColor  + ffeatures.at(3)
@@ -710,17 +716,18 @@ void Amidon::on_comboBox_fd_currentTextChanged(const QString &arg1)
                 QString OD = f_size_val[1];
                 QString ID = f_size_val[2];
                 QString H = f_size_val[3];
-                double id = ID.toDouble()*25.4/fOpt->dwLengthMultiplier;
-                double od = OD.toDouble()*25.4/fOpt->dwLengthMultiplier;
-                double h = H.toDouble()*25.4/fOpt->dwLengthMultiplier;
-                hole_area = M_PI * od / 4;
+                double id = ID.toDouble() * 25.4;
+                double od = OD.toDouble() * 25.4;
+                double h = H.toDouble() * 25.4;
+                fLe = getToroidEqMagLength(od, id);
+                hole_area = M_PI * id * id / 4;
                 int accuracy = fOpt->indexLengthMultiplier + 1;
                 if (accuracy == 4)
                     accuracy = 0;
                 info += tr("Dimensions") + " (OD x ID x H): " + styleInfoColor + "<br/>"
-                        + roundTo(od, loc, accuracy) + " x "
-                        + roundTo(id, loc, accuracy) + " x "
-                        + roundTo(h, loc, accuracy) +
+                        + roundTo(od / fOpt->dwLengthMultiplier, loc, accuracy) + " x "
+                        + roundTo(id / fOpt->dwLengthMultiplier, loc, accuracy) + " x "
+                        + roundTo(h / fOpt->dwLengthMultiplier, loc, accuracy) +
                         + "</span> " + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<br/>";
                 al = FToroid_AL[fm_index][i];
                 info += "A<sub>L</sub> " + tr("factor") + ": " + styleInfoColor
@@ -845,6 +852,7 @@ void Amidon::onCalculate()
         double ind = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
         int N = 0;
         QString Result = "";
+        double satI = 0;
         if (ind > 0){
             ui->label_result->clear();
             switch (ui->tabWidget->currentIndex()) {
@@ -853,12 +861,15 @@ void Amidon::onCalculate()
                 break;
             case _FToroid:
                 N = round(sqrt(1000 * ind / al));
+                satI = getSaturationCurrent(fBs, fLe, fMu, N);
                 break;
             case _PotCore:
                 N = round(sqrt(ind / al * 1000));
+                satI = getSaturationCurrent(fBs, fLe, fMu, N);
                 break;
             case _ECore:
                 N = round(1000 * sqrt(ind / al / 1000));
+                satI = getSaturationCurrent(fBs, fLe, fMu, N);
                 break;
             case _MCore:
                 N = round(1000 * sqrt(ind / al / 1000));
@@ -868,13 +879,16 @@ void Amidon::onCalculate()
             }
         }
         if (N  > 0){
-            double max_dw = 2 * sqrt(0.7 * hole_area / N / M_PI);
+            double max_dw = 2 * sqrt(0.4 * hole_area / N / M_PI);
             Result += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", loc.toString(N)) + "<br/>";
             Result += formattedOutput(fOpt, tr("Maximum wire diameter") + " dw_max = ", roundTo(max_dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
             QString awg = converttoAWG(max_dw);
             if (!awg.isEmpty())
                 Result += " (" + awg +" AWG)";
+            if ((std::isnormal(satI)) && (satI > 0)){
+                Result += "<br/>" + tr("Saturation current") + ": I<sub>s</sub> = " + roundTo(satI, loc , fOpt->dwAccuracy) + " " + tr("mA");
+            }
         } else {
             Result += tr("Not available");
         }
@@ -949,6 +963,9 @@ void Amidon::resolvePotCore(int index)
         double le = le_s.toDouble();
         double ae = ae_s.toDouble();
         double ve = ve_s.toDouble();
+        fMu = 10 * al * le / (4 * M_PI * ae);
+        fBs = 4900;
+        fLe = le;
         int accuracy = fOpt->indexLengthMultiplier + 1;
         if (accuracy == 4)
             accuracy = 0;
@@ -1024,6 +1041,9 @@ void Amidon::resolveECore(int index)
         double le = le_s.toDouble();
         double ae = ae_s.toDouble();
         double ve = ve_s.toDouble();
+        fMu = 10 * al * le / (4 * M_PI * ae);
+        fBs = 4900;
+        fLe = le;
         double W = W_s.toDouble();
         info += tr("Effective magnetic path length") + " (l<sub>e</sub>): " + styleInfoColor
                 + roundTo(le/fOpt->dwLengthMultiplier, loc, accuracy)
@@ -1036,7 +1056,7 @@ void Amidon::resolveECore(int index)
                 + "</span> " + qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()) + "<sup>3</sup><br/>";
         info += tr("Power") + " (W): " + styleInfoColor  + roundTo(W, loc, accuracy) + "</span> W<br/>";
         info += "A<sub>L</sub> " + tr("factor") + ": " + styleInfoColor
-                + al_s + "</span> µH/(N/1000)<sup>2</sup>";
+                + al_s + "</span> mH/(N/1000)<sup>2</sup>";
         ui->label_info->setText("<p>" + info + "</p>");
         onCalculate();
     }

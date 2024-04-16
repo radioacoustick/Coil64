@@ -425,158 +425,168 @@
         <translation>Κοντά</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="653"/>
+        <location filename="../amidon.cpp" line="657"/>
         <source>Color code</source>
         <translation>Κωδικός χρώματος</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="654"/>
+        <location filename="../amidon.cpp" line="658"/>
         <source>Material</source>
         <translation>Υλικό</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="655"/>
+        <location filename="../amidon.cpp" line="659"/>
         <source>Resonant circuit frequency range</source>
         <translation>Περιοχή συχνοτήτων κυκλωμάτων συντονισμού</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="620"/>
-        <location filename="../amidon.cpp" line="657"/>
-        <location filename="../amidon.cpp" line="696"/>
+        <location filename="../amidon.cpp" line="624"/>
+        <location filename="../amidon.cpp" line="661"/>
+        <location filename="../amidon.cpp" line="700"/>
         <source>Initial magnetic permeability</source>
         <translation>Αρχική μαγνητική διαπερατότητα</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="567"/>
-        <location filename="../amidon.cpp" line="673"/>
-        <location filename="../amidon.cpp" line="720"/>
-        <location filename="../amidon.cpp" line="924"/>
-        <location filename="../amidon.cpp" line="993"/>
+        <location filename="../amidon.cpp" line="571"/>
+        <location filename="../amidon.cpp" line="677"/>
+        <location filename="../amidon.cpp" line="727"/>
+        <location filename="../amidon.cpp" line="938"/>
+        <location filename="../amidon.cpp" line="1010"/>
         <source>Dimensions</source>
         <translation>Διαστάσεις</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="638"/>
-        <location filename="../amidon.cpp" line="679"/>
-        <location filename="../amidon.cpp" line="726"/>
-        <location filename="../amidon.cpp" line="964"/>
-        <location filename="../amidon.cpp" line="1038"/>
+        <location filename="../amidon.cpp" line="642"/>
+        <location filename="../amidon.cpp" line="683"/>
+        <location filename="../amidon.cpp" line="733"/>
+        <location filename="../amidon.cpp" line="981"/>
+        <location filename="../amidon.cpp" line="1058"/>
         <source>factor</source>
         <translation>παράγοντας</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="624"/>
-        <location filename="../amidon.cpp" line="698"/>
+        <location filename="../amidon.cpp" line="628"/>
+        <location filename="../amidon.cpp" line="703"/>
         <source>Saturation flux density</source>
         <translation>Πυκνότητα ροής κορεσμού</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="626"/>
-        <location filename="../amidon.cpp" line="700"/>
+        <location filename="../amidon.cpp" line="630"/>
+        <location filename="../amidon.cpp" line="706"/>
         <source>Residual flux density</source>
         <translation>Υπολειπόμενη πυκνότητα ροής</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="702"/>
+        <location filename="../amidon.cpp" line="708"/>
         <source>Coercive Force</source>
         <translation>Καταναγκαστική δύναμη</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="628"/>
-        <location filename="../amidon.cpp" line="704"/>
+        <location filename="../amidon.cpp" line="632"/>
+        <location filename="../amidon.cpp" line="710"/>
         <source>Curie Temperature</source>
         <translation>Θερμοκρασία Curie</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="610"/>
         <location filename="../amidon.cpp" line="614"/>
+        <location filename="../amidon.cpp" line="618"/>
         <source>Impedance at</source>
         <translation>Αντίσταση στις</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="622"/>
+        <location filename="../amidon.cpp" line="626"/>
         <source>Maximum magnetic permeability</source>
         <translation>Μέγιστη μαγνητική διαπερατότητα</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="631"/>
-        <location filename="../amidon.cpp" line="730"/>
+        <location filename="../amidon.cpp" line="635"/>
+        <location filename="../amidon.cpp" line="737"/>
         <source>Working frequency</source>
         <translation>Συχνότητα λειτουργίας</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="632"/>
-        <location filename="../amidon.cpp" line="731"/>
+        <location filename="../amidon.cpp" line="636"/>
+        <location filename="../amidon.cpp" line="738"/>
         <source>Resonant circuit coils</source>
         <translation>Επαγωγικά κυκλώματα κυκλώματος</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="634"/>
-        <location filename="../amidon.cpp" line="733"/>
+        <location filename="../amidon.cpp" line="638"/>
+        <location filename="../amidon.cpp" line="740"/>
         <source>Wideband transformers</source>
         <translation>Μετασχηματιστές ευρείας ζώνης</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="636"/>
-        <location filename="../amidon.cpp" line="735"/>
+        <location filename="../amidon.cpp" line="640"/>
+        <location filename="../amidon.cpp" line="742"/>
         <source>Chokes</source>
         <translation>Εμφράξεις</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="879"/>
+        <location filename="../amidon.cpp" line="890"/>
+        <source>Saturation current</source>
+        <translation>Ρεύμα κορεσμού</translation>
+    </message>
+    <message>
+        <location filename="../amidon.cpp" line="890"/>
+        <source>mA</source>
+        <translation>mA</translation>
+    </message>
+    <message>
+        <location filename="../amidon.cpp" line="893"/>
         <source>Not available</source>
         <translation>Μη διαθέσιμος</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1049"/>
+        <location filename="../amidon.cpp" line="1069"/>
         <source>Warning</source>
         <translation>Προειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1049"/>
+        <location filename="../amidon.cpp" line="1069"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Μία ή περισσότερες εισόδους είναι ίσες με null!</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1054"/>
+        <location filename="../amidon.cpp" line="1074"/>
         <source>Selected core</source>
         <translation>Επιλεγμένος πυρήνας</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1065"/>
+        <location filename="../amidon.cpp" line="1085"/>
         <source>Input data</source>
         <translation>Εισαγωγή δεδομένων</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="872"/>
+        <location filename="../amidon.cpp" line="883"/>
         <source>Number of turns of the coil</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="873"/>
+        <location filename="../amidon.cpp" line="884"/>
         <source>Maximum wire diameter</source>
         <translation>Μέγιστη διάμετρο καλωδίου</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="955"/>
-        <location filename="../amidon.cpp" line="1028"/>
+        <location filename="../amidon.cpp" line="972"/>
+        <location filename="../amidon.cpp" line="1048"/>
         <source>Effective magnetic path length</source>
         <translation>Αποτελεσματικό μήκος μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="958"/>
-        <location filename="../amidon.cpp" line="1031"/>
+        <location filename="../amidon.cpp" line="975"/>
+        <location filename="../amidon.cpp" line="1051"/>
         <source>Effective area of magnetic path</source>
         <translation>Αποτελεσματική περιοχή της μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="961"/>
-        <location filename="../amidon.cpp" line="1034"/>
+        <location filename="../amidon.cpp" line="978"/>
+        <location filename="../amidon.cpp" line="1054"/>
         <source>Effective volume</source>
         <translation>Αποτελεσματική ένταση</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="1037"/>
+        <location filename="../amidon.cpp" line="1057"/>
         <source>Power</source>
         <translation>Ισχύς</translation>
     </message>
@@ -750,26 +760,26 @@
         <translation>kHz</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="610"/>
         <location filename="../amidon.cpp" line="614"/>
-        <location filename="../amidon.cpp" line="633"/>
-        <location filename="../amidon.cpp" line="635"/>
+        <location filename="../amidon.cpp" line="618"/>
         <location filename="../amidon.cpp" line="637"/>
-        <location filename="../amidon.cpp" line="732"/>
-        <location filename="../amidon.cpp" line="734"/>
-        <location filename="../amidon.cpp" line="736"/>
+        <location filename="../amidon.cpp" line="639"/>
+        <location filename="../amidon.cpp" line="641"/>
+        <location filename="../amidon.cpp" line="739"/>
+        <location filename="../amidon.cpp" line="741"/>
+        <location filename="../amidon.cpp" line="743"/>
         <location filename="../system_functions.cpp" line="297"/>
         <source>MHz</source>
         <translation>MHz</translation>
     </message>
     <message>
-        <location filename="../amidon.cpp" line="612"/>
         <location filename="../amidon.cpp" line="616"/>
+        <location filename="../amidon.cpp" line="620"/>
         <source>Ohm</source>
         <translation>Ω</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="417"/>
+        <location filename="../rf_toroid.cpp" line="421"/>
         <location filename="../system_functions.cpp" line="306"/>
         <source>pF</source>
         <translation>pF</translation>
@@ -787,9 +797,9 @@
     <message>
         <location filename="../al.cpp" line="79"/>
         <location filename="../find_permeability.cpp" line="145"/>
-        <location filename="../mainwindow.cpp" line="5074"/>
-        <location filename="../mainwindow.cpp" line="5638"/>
-        <location filename="../rf_toroid.cpp" line="419"/>
+        <location filename="../mainwindow.cpp" line="5239"/>
+        <location filename="../mainwindow.cpp" line="5821"/>
+        <location filename="../rf_toroid.cpp" line="423"/>
         <location filename="../system_functions.cpp" line="325"/>
         <source>nH</source>
         <translation>nH</translation>
@@ -1003,125 +1013,130 @@
         <translation>Επιλέξτε τον τύπο του πυρήνα</translation>
     </message>
     <message>
-        <location filename="../ecore.ui" line="137"/>
+        <location filename="../ecore.ui" line="151"/>
         <source>Reverse calculation</source>
         <translation>Αντίστροφος υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../ecore.ui" line="201"/>
+        <location filename="../ecore.ui" line="158"/>
+        <source>Saturation current</source>
+        <translation>Ρεύμα κορεσμού</translation>
+    </message>
+    <message>
+        <location filename="../ecore.ui" line="234"/>
         <source>Dimensions</source>
         <translation>Διαστάσεις</translation>
     </message>
     <message>
-        <location filename="../ecore.ui" line="500"/>
+        <location filename="../ecore.ui" line="533"/>
         <source>Context help</source>
         <translation>Βοήθεια περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../ecore.ui" line="545"/>
+        <location filename="../ecore.ui" line="578"/>
         <source>Calculate</source>
         <translation>Υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../ecore.ui" line="577"/>
+        <location filename="../ecore.ui" line="610"/>
         <source>Close</source>
         <translation>Κοντά</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="133"/>
+        <location filename="../ecore.cpp" line="135"/>
         <source>Slot size</source>
         <translation>Μέγεθος αυλακώσεων</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="134"/>
+        <location filename="../ecore.cpp" line="136"/>
         <source>Centerpost gap</source>
         <translation>Κεντρικό κενό</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="135"/>
+        <location filename="../ecore.cpp" line="137"/>
         <source>Magnetic permeability</source>
         <translation>Μαγνητική διαπερατότητα</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="206"/>
+        <location filename="../ecore.cpp" line="210"/>
         <source>Number of turns</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="211"/>
-        <location filename="../ecore.cpp" line="347"/>
+        <location filename="../ecore.cpp" line="215"/>
+        <location filename="../ecore.cpp" line="351"/>
         <source>Inductance</source>
         <translation>Επαγωγή</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="236"/>
-        <location filename="../ecore.cpp" line="249"/>
-        <location filename="../ecore.cpp" line="258"/>
+        <location filename="../ecore.cpp" line="240"/>
+        <location filename="../ecore.cpp" line="253"/>
         <location filename="../ecore.cpp" line="262"/>
         <location filename="../ecore.cpp" line="266"/>
         <location filename="../ecore.cpp" line="270"/>
         <location filename="../ecore.cpp" line="274"/>
         <location filename="../ecore.cpp" line="278"/>
         <location filename="../ecore.cpp" line="282"/>
-        <location filename="../ecore.cpp" line="289"/>
+        <location filename="../ecore.cpp" line="286"/>
         <location filename="../ecore.cpp" line="293"/>
-        <location filename="../ecore.cpp" line="300"/>
+        <location filename="../ecore.cpp" line="297"/>
         <location filename="../ecore.cpp" line="304"/>
+        <location filename="../ecore.cpp" line="308"/>
         <source>Warning</source>
         <translation>Προειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="236"/>
+        <location filename="../ecore.cpp" line="240"/>
         <source>One or more inputs are empty!</source>
         <translation>Μία ή περισσότερες είσοδοι είναι κενές!</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="249"/>
-        <location filename="../ecore.cpp" line="258"/>
-        <location filename="../ecore.cpp" line="289"/>
-        <location filename="../ecore.cpp" line="300"/>
+        <location filename="../ecore.cpp" line="253"/>
+        <location filename="../ecore.cpp" line="262"/>
+        <location filename="../ecore.cpp" line="293"/>
+        <location filename="../ecore.cpp" line="304"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Μία ή περισσότερες εισόδους έχουν παράνομη μορφή!</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="262"/>
-        <location filename="../ecore.cpp" line="293"/>
-        <location filename="../ecore.cpp" line="304"/>
+        <location filename="../ecore.cpp" line="266"/>
+        <location filename="../ecore.cpp" line="297"/>
+        <location filename="../ecore.cpp" line="308"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Μία ή περισσότερες εισόδους είναι ίσες με null!</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="330"/>
+        <location filename="../ecore.cpp" line="334"/>
         <source>Input data</source>
         <translation>Εισαγωγή δεδομένων</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="345"/>
+        <location filename="../ecore.cpp" line="349"/>
         <source>Result</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="350"/>
+        <location filename="../ecore.cpp" line="354"/>
         <source>Number of turns of the coil</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="352"/>
+        <location filename="../ecore.cpp" line="356"/>
         <source>Effective magnetic path length</source>
         <translation>Αποτελεσματικό μήκος μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="355"/>
+        <location filename="../ecore.cpp" line="359"/>
         <source>Effective area of magnetic path</source>
         <translation>Αποτελεσματική περιοχή της μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="358"/>
+        <location filename="../ecore.cpp" line="362"/>
         <source>Effective volume</source>
         <translation>Αποτελεσματική ένταση</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="361"/>
+        <location filename="../ecore.cpp" line="365"/>
         <source>Effective magnetic permeability of the core</source>
         <translation>Αποτελεσματική μαγνητική διαπερατότητα του πυρήνα</translation>
     </message>
@@ -1530,1620 +1545,1646 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="115"/>
+        <location filename="../mainwindow.ui" line="109"/>
         <source>Select the coil form</source>
         <translation>Επιλέξτε τη μορφή πηνίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="186"/>
+        <location filename="../mainwindow.ui" line="180"/>
         <source>One layer coil with round wire</source>
         <translation>Πηνίο με ένα στρώμα με στρογγυλό σύρμα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="196"/>
+        <location filename="../mainwindow.ui" line="190"/>
         <source>One layer coil with rect wire</source>
         <translation>Πηνίο με ένα στρώμα με ορθογώνιο σύρμα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="215"/>
+        <location filename="../mainwindow.ui" line="209"/>
         <source>Multilayer coil</source>
         <translation>Πολυστρωματικό πηνίο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="225"/>
+        <location filename="../mainwindow.ui" line="219"/>
         <source>Multilayer coil with insulated pads</source>
         <translation>Πολυστρωματικό πηνίο με μονωμένα μαξιλάρια</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="253"/>
+        <location filename="../mainwindow.ui" line="247"/>
         <source>Ferrite toroid coil</source>
         <translation>Πηνίο φερρίτη δαχτυλίδι</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="273"/>
+        <location filename="../mainwindow.ui" line="267"/>
         <source>Tesla flat spiral coil</source>
         <translation>Tesla επίπεδη σπείρα σπείρα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1872"/>
+        <location filename="../mainwindow.ui" line="1975"/>
         <source>Show confirm dialog to delete a result</source>
         <translation>Εμφάνιση διαλόγου επιβεβαίωσης για να διαγράψετε ένα αποτέλεσμα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2376"/>
+        <location filename="../mainwindow.ui" line="2480"/>
         <source>About Coil64</source>
         <translation>Σχετικά με το Coil64</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2480"/>
+        <location filename="../mainwindow.ui" line="2584"/>
         <source>Ferrite toroid permeability</source>
         <translation>Διαπερατότητα του δακτυλίου των φερριτών</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="350"/>
+        <location filename="../mainwindow.ui" line="338"/>
         <source>Coil</source>
         <translation>Πηνίο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="954"/>
-        <location filename="../mainwindow.cpp" line="1011"/>
-        <location filename="../mainwindow.cpp" line="1057"/>
-        <location filename="../mainwindow.cpp" line="1537"/>
-        <location filename="../mainwindow.cpp" line="1598"/>
-        <location filename="../mainwindow.cpp" line="1648"/>
-        <location filename="../mainwindow.cpp" line="5121"/>
-        <location filename="../mainwindow.cpp" line="5943"/>
-        <location filename="../mainwindow.cpp" line="5973"/>
+        <location filename="../mainwindow.cpp" line="1060"/>
+        <location filename="../mainwindow.cpp" line="1118"/>
+        <location filename="../mainwindow.cpp" line="1165"/>
+        <location filename="../mainwindow.cpp" line="1653"/>
+        <location filename="../mainwindow.cpp" line="1715"/>
+        <location filename="../mainwindow.cpp" line="1766"/>
+        <location filename="../mainwindow.cpp" line="5304"/>
+        <location filename="../mainwindow.cpp" line="6175"/>
+        <location filename="../mainwindow.cpp" line="6205"/>
         <source>Winding pitch</source>
         <translation>Αποστασή βήματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="741"/>
-        <location filename="../mainwindow.ui" line="1205"/>
+        <location filename="../mainwindow.ui" line="732"/>
+        <location filename="../mainwindow.ui" line="1268"/>
         <source>Wire material:</source>
         <translation>Υλικό σύρματος:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="750"/>
-        <location filename="../mainwindow.ui" line="1214"/>
-        <location filename="../mainwindow.cpp" line="5044"/>
-        <location filename="../mainwindow.cpp" line="5615"/>
+        <location filename="../mainwindow.ui" line="741"/>
+        <location filename="../mainwindow.ui" line="1277"/>
+        <location filename="../mainwindow.cpp" line="5209"/>
+        <location filename="../mainwindow.cpp" line="5798"/>
         <source>Copper</source>
         <translation>Χαλκός</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="763"/>
-        <location filename="../mainwindow.ui" line="1227"/>
+        <location filename="../mainwindow.ui" line="754"/>
+        <location filename="../mainwindow.ui" line="1290"/>
         <source>Silver</source>
         <translation>Ασημί</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="773"/>
-        <location filename="../mainwindow.ui" line="1237"/>
-        <location filename="../mainwindow.cpp" line="5045"/>
-        <location filename="../mainwindow.cpp" line="5616"/>
+        <location filename="../mainwindow.ui" line="764"/>
+        <location filename="../mainwindow.ui" line="1300"/>
+        <location filename="../mainwindow.cpp" line="5210"/>
+        <location filename="../mainwindow.cpp" line="5799"/>
         <source>Aluminum</source>
         <translation>Αλουμίνιο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="783"/>
-        <location filename="../mainwindow.ui" line="1247"/>
+        <location filename="../mainwindow.ui" line="774"/>
+        <location filename="../mainwindow.ui" line="1310"/>
         <source>Tin</source>
         <translation>Κασσίτερος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="806"/>
+        <location filename="../mainwindow.ui" line="797"/>
         <source>Ratio W/s:</source>
         <translation>Αναλογία W / s:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="877"/>
-        <location filename="../mainwindow.cpp" line="861"/>
-        <location filename="../mainwindow.cpp" line="2355"/>
-        <location filename="../mainwindow.cpp" line="2379"/>
-        <location filename="../mainwindow.cpp" line="5203"/>
-        <location filename="../mainwindow.cpp" line="5289"/>
-        <location filename="../mainwindow.cpp" line="5380"/>
-        <location filename="../mainwindow.cpp" line="5465"/>
-        <location filename="../mainwindow.cpp" line="5496"/>
-        <location filename="../mainwindow.cpp" line="5525"/>
-        <location filename="../mainwindow.cpp" line="5550"/>
-        <location filename="../mainwindow.cpp" line="5583"/>
-        <location filename="../mainwindow.cpp" line="5605"/>
-        <location filename="../mainwindow.cpp" line="5636"/>
-        <location filename="../mainwindow.cpp" line="5678"/>
-        <location filename="../mainwindow.cpp" line="5709"/>
+        <location filename="../mainwindow.ui" line="871"/>
+        <location filename="../mainwindow.cpp" line="962"/>
+        <location filename="../mainwindow.cpp" line="2486"/>
+        <location filename="../mainwindow.cpp" line="2510"/>
+        <location filename="../mainwindow.cpp" line="5386"/>
+        <location filename="../mainwindow.cpp" line="5472"/>
+        <location filename="../mainwindow.cpp" line="5563"/>
+        <location filename="../mainwindow.cpp" line="5648"/>
+        <location filename="../mainwindow.cpp" line="5679"/>
+        <location filename="../mainwindow.cpp" line="5708"/>
+        <location filename="../mainwindow.cpp" line="5733"/>
+        <location filename="../mainwindow.cpp" line="5766"/>
+        <location filename="../mainwindow.cpp" line="5788"/>
+        <location filename="../mainwindow.cpp" line="5819"/>
+        <location filename="../mainwindow.cpp" line="5879"/>
+        <location filename="../mainwindow.cpp" line="5910"/>
         <source>Inductance</source>
         <translation>Επαγωγή</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="703"/>
-        <location filename="../mainwindow.ui" line="1263"/>
+        <location filename="../mainwindow.ui" line="694"/>
+        <location filename="../mainwindow.ui" line="1326"/>
         <source>Select initial data of the calculation</source>
         <translation>Επιλέξτε τα αρχικά δεδομένα υπολογισμού</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1330"/>
+        <location filename="../mainwindow.ui" line="1393"/>
         <source>LC circuit</source>
         <translation>LC κύκλωμα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1338"/>
+        <location filename="../mainwindow.ui" line="1401"/>
         <source>Initial conditions of calculation of a circuit</source>
         <translation>Αρχικές συνθήκες του υπολογισμού ενός κυκλώματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1347"/>
+        <location filename="../mainwindow.ui" line="1410"/>
         <source>The capacitance and the inductance are known</source>
         <translation>Η χωρητικότητα και αυτεπαγωγής είναι γνωστές</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1360"/>
+        <location filename="../mainwindow.ui" line="1423"/>
         <source>The capacitance and the frequency are known </source>
         <translation>Η χωρητικότητα και η συχνότητα είναι γνωστή </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1370"/>
+        <location filename="../mainwindow.ui" line="1433"/>
         <source>The inductance and the frequency are known</source>
         <translation>Επαγωγή και συχνότητα είναι γνωστά</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2264"/>
+        <location filename="../mainwindow.ui" line="2367"/>
         <source>Additional calculations</source>
         <translation>Πρόσθετος υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1500"/>
+        <location filename="../mainwindow.ui" line="1563"/>
         <source>Calculate</source>
         <translation>Υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="91"/>
+        <location filename="../mainwindow.ui" line="85"/>
         <source>PCB coil with square winding</source>
         <translation>Επίπεδο πηνίο για PCB τετράγωνο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="96"/>
+        <location filename="../mainwindow.ui" line="90"/>
         <source>PCB coil with spiral winding</source>
         <translation>Επίπεδo πηνίο για PCB ελικοειδής</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="176"/>
+        <location filename="../mainwindow.ui" line="170"/>
         <source>One layer close-winding coil</source>
         <translation>Πηνίο κλεισίματος με ένα στρώμα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="235"/>
+        <location filename="../mainwindow.ui" line="229"/>
         <source>Multilayer coil on a rectangular former</source>
         <translation>Πολυστρωματικό πηνίο σε ορθογώνιο διαμορφωτή</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="263"/>
+        <location filename="../mainwindow.ui" line="257"/>
         <source>PCB flat coil</source>
         <translation>Επίπεδo πηνίο για PCB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1380"/>
+        <location filename="../mainwindow.ui" line="1443"/>
         <source>The impedance and the frequency are known</source>
         <translation>Η σύνθετη αντίσταση και η συχνότητα είναι γνωστά</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2033"/>
-        <location filename="../mainwindow.cpp" line="300"/>
-        <location filename="../mainwindow.cpp" line="390"/>
+        <location filename="../mainwindow.ui" line="2136"/>
+        <location filename="../mainwindow.cpp" line="316"/>
+        <location filename="../mainwindow.cpp" line="409"/>
         <source>Copy selected to clipboard</source>
         <translation>Αντιγραφή επιλεγμένου στο πρόχειρο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2062"/>
-        <location filename="../mainwindow.ui" line="2428"/>
-        <location filename="../mainwindow.ui" line="2431"/>
-        <location filename="../mainwindow.cpp" line="301"/>
-        <location filename="../mainwindow.cpp" line="391"/>
+        <location filename="../mainwindow.ui" line="2165"/>
+        <location filename="../mainwindow.ui" line="2532"/>
+        <location filename="../mainwindow.ui" line="2535"/>
+        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="410"/>
         <source>Copy all to clipboard</source>
         <translation>Αντιγραφή όλων στο πρόχειρο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2004"/>
-        <location filename="../mainwindow.ui" line="2402"/>
-        <location filename="../mainwindow.cpp" line="303"/>
-        <location filename="../mainwindow.cpp" line="392"/>
-        <location filename="../mainwindow.cpp" line="2262"/>
+        <location filename="../mainwindow.ui" line="2107"/>
+        <location filename="../mainwindow.ui" line="2506"/>
+        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="411"/>
+        <location filename="../mainwindow.cpp" line="2391"/>
         <source>Save</source>
         <translation>Αποθηκεύσετε</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2091"/>
-        <location filename="../mainwindow.ui" line="2499"/>
-        <location filename="../mainwindow.cpp" line="306"/>
-        <location filename="../mainwindow.cpp" line="394"/>
+        <location filename="../mainwindow.ui" line="2194"/>
+        <location filename="../mainwindow.ui" line="2603"/>
+        <location filename="../mainwindow.cpp" line="322"/>
+        <location filename="../mainwindow.cpp" line="413"/>
         <source>Clear all</source>
         <translation>Τα καθαρίζω όλα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2130"/>
+        <location filename="../mainwindow.ui" line="2233"/>
         <source>Print all</source>
         <translation>Εκτυπώστε όλα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1664"/>
+        <location filename="../mainwindow.ui" line="1744"/>
         <source>Show images in result</source>
         <translation>Εμφάνιση εικόνων στα αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="71"/>
+        <location filename="../mainwindow.ui" line="65"/>
         <source>Regular winding</source>
         <translation>Κανονική περιέλιξη</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="76"/>
+        <location filename="../mainwindow.ui" line="70"/>
         <source>Orthocyclic winding</source>
         <translation>Ορθοκυκλική περιέλιξη</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="101"/>
+        <location filename="../mainwindow.ui" line="95"/>
         <source>PCB coil with rectangular winding</source>
         <translation>Επίπεδo πηνίο για PCB ορθογώνιος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="206"/>
+        <location filename="../mainwindow.ui" line="200"/>
         <source>One layer coil on a polygonal former</source>
         <translation>Ένα στρώμα μη κυκλικό με περιέλιξη βήματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="712"/>
+        <location filename="../mainwindow.ui" line="703"/>
         <source>Former diameter and wire diameter</source>
         <translation>Διάμετ πλαισίου και διάμετ σύρματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="725"/>
+        <location filename="../mainwindow.ui" line="716"/>
         <source>Former diameter and winding length</source>
         <translation>Διάμετ πλαισίου και μήκος τυλίγματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="669"/>
-        <location filename="../mainwindow.ui" line="1171"/>
+        <location filename="../mainwindow.ui" line="660"/>
+        <location filename="../mainwindow.ui" line="1234"/>
         <source>Wire has insulation</source>
         <translation>Το σύρμα έχει μόνωση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1632"/>
+        <location filename="../mainwindow.ui" line="1712"/>
         <source>Show title in results</source>
         <translation>Εμφάνιση τίτλου στα αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1693"/>
+        <location filename="../mainwindow.ui" line="1773"/>
         <source>Show values description</source>
         <translation>Εμφάνιση περιγραφής τιμών</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1713"/>
+        <location filename="../mainwindow.ui" line="1793"/>
         <source>Use colored value text</source>
         <translation>Χρησιμοποιήστε έγχρωμο κείμενο αξίας</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1752"/>
+        <location filename="../mainwindow.ui" line="1832"/>
         <source>Show additional results for single-layer coils</source>
         <translation>Δείτε αποτελέσματα για μονής στρώσης πηνία</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1778"/>
+        <location filename="../mainwindow.ui" line="1858"/>
         <source>Show data for LTSpice</source>
         <translation>Εμφάνιση δεδομένων για το LTSpice</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1550"/>
+        <location filename="../mainwindow.ui" line="1630"/>
         <source>Show last result first</source>
         <translation>Εμφάνιση πρώτα το τελευταίο αποτέλεσμα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1596"/>
+        <location filename="../mainwindow.ui" line="1676"/>
         <source>Show calculation numbering</source>
         <translation>Εμφάνιση αρίθμησης υπολογισμού</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1849"/>
+        <location filename="../mainwindow.ui" line="1952"/>
         <source>Show confirm dialog to clear results</source>
         <translation>Εμφάνιση διαλόγου επιβεβαίωσης για να διαγράψετε τα αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2235"/>
+        <location filename="../mainwindow.ui" line="1884"/>
+        <location filename="../mainwindow.ui" line="2802"/>
+        <source>Saturation current</source>
+        <translation>Ρεύμα κορεσμού</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2338"/>
         <source>Theme</source>
         <translation>Θέμα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2290"/>
+        <location filename="../mainwindow.ui" line="2393"/>
         <source>Ferrite cores</source>
         <translation>Πυρήνες φερρίτη</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2562"/>
+        <location filename="../mainwindow.ui" line="2666"/>
         <source>Versions history</source>
         <translation>Ιστορικό εκδόσεων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2574"/>
+        <location filename="../mainwindow.ui" line="2678"/>
         <source>Air core toroid coil</source>
         <translation>Τοροειδές πηνίο αέρα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2585"/>
+        <location filename="../mainwindow.ui" line="2689"/>
         <source>Default</source>
         <translation>Προκαθορισμένο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2593"/>
+        <location filename="../mainwindow.ui" line="2697"/>
         <source>Dark</source>
         <translation>Σκοτάδι</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2602"/>
+        <location filename="../mainwindow.ui" line="2706"/>
         <source>Pot core coil</source>
         <translation>Πυρήνες δοχείων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2610"/>
+        <location filename="../mainwindow.ui" line="2714"/>
         <source>Sunny</source>
         <translation>Ηλιόλουστος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2619"/>
+        <location filename="../mainwindow.ui" line="2723"/>
         <source>E core coil</source>
         <translation>Πηνίο E-core</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2629"/>
+        <location filename="../mainwindow.ui" line="2733"/>
         <source>Calculation with AL-factor</source>
         <translation>Υπολογισμός με συντελεστή AL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2638"/>
+        <location filename="../mainwindow.ui" line="2742"/>
         <source>U core coil</source>
         <translation>Πηνίο πυρήνα U</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2648"/>
+        <location filename="../mainwindow.ui" line="2752"/>
         <source>Audio system filter (crossover) coil</source>
         <translation>Πηνίο φίλτρου συστήματος ήχου (crossover)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2657"/>
+        <location filename="../mainwindow.ui" line="2761"/>
         <source>Toroidal inductor at RF</source>
         <translation>Τοροειδής επαγωγέας σε RF</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2666"/>
+        <location filename="../mainwindow.ui" line="2770"/>
         <source>Bandspread Calculator</source>
         <translation>Υπολογιστής πυκνωτής επέκτασης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2675"/>
+        <location filename="../mainwindow.ui" line="2779"/>
         <source>RM core coil</source>
         <translation>Πηνίο RM-core</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2685"/>
+        <location filename="../mainwindow.ui" line="2789"/>
         <source>Interface help</source>
         <translation>Βοήθεια διεπαφής</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1823"/>
+        <location filename="../mainwindow.ui" line="1926"/>
         <source>Save results on exit</source>
         <translation>Αποθήκευση αποτελεσμάτων κατά την έξοδο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1895"/>
+        <location filename="../mainwindow.ui" line="1998"/>
         <source>Show confirm dialog before exit</source>
         <translation>Εμφάνιση διαλόγου επιβεβαίωσης πριν από την έξοδο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2166"/>
-        <location filename="../mainwindow.ui" line="2183"/>
-        <location filename="../mainwindow.ui" line="2363"/>
+        <location filename="../mainwindow.ui" line="2269"/>
+        <location filename="../mainwindow.ui" line="2286"/>
+        <location filename="../mainwindow.ui" line="2467"/>
         <source>Context help</source>
         <translation>Βοήθεια περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2221"/>
+        <location filename="../mainwindow.ui" line="2324"/>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2231"/>
+        <location filename="../mainwindow.ui" line="2334"/>
         <source>&amp;Customize</source>
         <translation>&amp;Προσαρμογή</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2250"/>
+        <location filename="../mainwindow.ui" line="2353"/>
         <source>&amp;Help</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2276"/>
+        <location filename="../mainwindow.ui" line="2379"/>
         <source>Actions</source>
         <translation>Ενέργειες</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2284"/>
+        <location filename="../mainwindow.ui" line="2387"/>
         <source>Branded cores</source>
         <translation>Επώνυμοι πυρήνες</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2334"/>
+        <location filename="../mainwindow.ui" line="2438"/>
         <source>&amp;Exit</source>
         <translation>&amp;Εξοδος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1931"/>
-        <location filename="../mainwindow.ui" line="2347"/>
-        <location filename="../mainwindow.ui" line="2350"/>
+        <location filename="../mainwindow.ui" line="2034"/>
+        <location filename="../mainwindow.ui" line="2451"/>
+        <location filename="../mainwindow.ui" line="2454"/>
         <source>Options</source>
         <translation>Επιλογές</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="244"/>
+        <location filename="../mainwindow.ui" line="238"/>
         <source>Multilayer foil-wound coil</source>
         <translation>Πολυστρωματικό πηνίο επαγωγής με περιέλιξη αλουμινίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1573"/>
+        <location filename="../mainwindow.ui" line="1653"/>
         <source>Show text in tabular form</source>
         <translation>Εμφάνιση κειμένου σε μορφή πίνακα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2389"/>
+        <location filename="../mainwindow.ui" line="2493"/>
         <source>Check for &amp;update</source>
         <translation>Ελεγχος για εν&amp;ημερώσεις</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2415"/>
+        <location filename="../mainwindow.ui" line="2519"/>
         <source>HomePage</source>
         <translation>Αρχική Σελίδα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2444"/>
+        <location filename="../mainwindow.ui" line="2548"/>
         <source>Print</source>
         <translation>Τυπώνω</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2456"/>
+        <location filename="../mainwindow.ui" line="2560"/>
         <source>To null initial data</source>
         <translation>Ακυρα αρχικά δεδομένα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2489"/>
+        <location filename="../mainwindow.ui" line="2593"/>
         <source>Coil on a ferrite rod</source>
         <translation>Πηνίο σε ράβδο φερρίτη</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2508"/>
+        <location filename="../mainwindow.ui" line="2612"/>
         <source>Meander coil on PCB</source>
         <translation>Meander πηνίο σε PCB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2517"/>
+        <location filename="../mainwindow.ui" line="2621"/>
         <source>Search coil of a metal detector</source>
         <translation>Αναζήτηση πηνίο ανιχνευτή μετάλλων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2527"/>
+        <location filename="../mainwindow.ui" line="2631"/>
         <source>A one-turn loop coil</source>
         <translation>Πηνίο μίας σπείρας</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2536"/>
+        <location filename="../mainwindow.ui" line="2640"/>
         <source>Donate</source>
         <translation>Προσφέρω</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2548"/>
+        <location filename="../mainwindow.ui" line="2652"/>
         <source>Influence of the shield of a coil</source>
         <translation>Επίδραση μιας ασπίδας πηνίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2553"/>
+        <location filename="../mainwindow.ui" line="2657"/>
         <source>Amidon cores</source>
         <translation>Πυρήνες αμιδίων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1974"/>
-        <location filename="../mainwindow.ui" line="2468"/>
-        <location filename="../mainwindow.cpp" line="304"/>
-        <location filename="../mainwindow.cpp" line="393"/>
-        <location filename="../mainwindow.cpp" line="2224"/>
+        <location filename="../mainwindow.ui" line="2077"/>
+        <location filename="../mainwindow.ui" line="2572"/>
+        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="2353"/>
         <source>Open</source>
         <translation>Ανοιξε</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="109"/>
-        <location filename="../mainwindow.cpp" line="382"/>
+        <location filename="../mainwindow.cpp" line="111"/>
+        <location filename="../mainwindow.cpp" line="401"/>
         <source>Language</source>
         <translation>Γλώσσα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="731"/>
-        <location filename="../mainwindow.cpp" line="754"/>
-        <location filename="../mainwindow.cpp" line="2745"/>
-        <location filename="../mainwindow.cpp" line="2754"/>
-        <location filename="../mainwindow.cpp" line="2771"/>
-        <location filename="../mainwindow.cpp" line="2776"/>
-        <location filename="../mainwindow.cpp" line="2782"/>
-        <location filename="../mainwindow.cpp" line="2800"/>
-        <location filename="../mainwindow.cpp" line="2825"/>
-        <location filename="../mainwindow.cpp" line="2845"/>
-        <location filename="../mainwindow.cpp" line="2862"/>
-        <location filename="../mainwindow.cpp" line="2868"/>
-        <location filename="../mainwindow.cpp" line="2873"/>
-        <location filename="../mainwindow.cpp" line="2879"/>
-        <location filename="../mainwindow.cpp" line="2890"/>
+        <location filename="../mainwindow.cpp" line="832"/>
+        <location filename="../mainwindow.cpp" line="855"/>
+        <location filename="../mainwindow.cpp" line="2902"/>
         <location filename="../mainwindow.cpp" line="2911"/>
-        <location filename="../mainwindow.cpp" line="2917"/>
-        <location filename="../mainwindow.cpp" line="2929"/>
-        <location filename="../mainwindow.cpp" line="2941"/>
-        <location filename="../mainwindow.cpp" line="2946"/>
-        <location filename="../mainwindow.cpp" line="2951"/>
-        <location filename="../mainwindow.cpp" line="2956"/>
-        <location filename="../mainwindow.cpp" line="2973"/>
-        <location filename="../mainwindow.cpp" line="2979"/>
-        <location filename="../mainwindow.cpp" line="2985"/>
-        <location filename="../mainwindow.cpp" line="2996"/>
-        <location filename="../mainwindow.cpp" line="3014"/>
-        <location filename="../mainwindow.cpp" line="3022"/>
-        <location filename="../mainwindow.cpp" line="3038"/>
-        <location filename="../mainwindow.cpp" line="3043"/>
+        <location filename="../mainwindow.cpp" line="2928"/>
+        <location filename="../mainwindow.cpp" line="2933"/>
+        <location filename="../mainwindow.cpp" line="2939"/>
+        <location filename="../mainwindow.cpp" line="2958"/>
+        <location filename="../mainwindow.cpp" line="2983"/>
+        <location filename="../mainwindow.cpp" line="3003"/>
+        <location filename="../mainwindow.cpp" line="3020"/>
+        <location filename="../mainwindow.cpp" line="3026"/>
+        <location filename="../mainwindow.cpp" line="3031"/>
+        <location filename="../mainwindow.cpp" line="3037"/>
         <location filename="../mainwindow.cpp" line="3048"/>
-        <location filename="../mainwindow.cpp" line="3053"/>
-        <location filename="../mainwindow.cpp" line="3058"/>
-        <location filename="../mainwindow.cpp" line="3074"/>
-        <location filename="../mainwindow.cpp" line="3079"/>
-        <location filename="../mainwindow.cpp" line="3105"/>
+        <location filename="../mainwindow.cpp" line="3069"/>
+        <location filename="../mainwindow.cpp" line="3075"/>
+        <location filename="../mainwindow.cpp" line="3087"/>
+        <location filename="../mainwindow.cpp" line="3099"/>
+        <location filename="../mainwindow.cpp" line="3104"/>
+        <location filename="../mainwindow.cpp" line="3109"/>
         <location filename="../mainwindow.cpp" line="3114"/>
         <location filename="../mainwindow.cpp" line="3131"/>
-        <location filename="../mainwindow.cpp" line="3136"/>
-        <location filename="../mainwindow.cpp" line="3142"/>
-        <location filename="../mainwindow.cpp" line="3147"/>
-        <location filename="../mainwindow.cpp" line="3171"/>
-        <location filename="../mainwindow.cpp" line="3188"/>
-        <location filename="../mainwindow.cpp" line="3194"/>
-        <location filename="../mainwindow.cpp" line="3199"/>
+        <location filename="../mainwindow.cpp" line="3137"/>
+        <location filename="../mainwindow.cpp" line="3143"/>
+        <location filename="../mainwindow.cpp" line="3154"/>
+        <location filename="../mainwindow.cpp" line="3172"/>
+        <location filename="../mainwindow.cpp" line="3180"/>
+        <location filename="../mainwindow.cpp" line="3196"/>
+        <location filename="../mainwindow.cpp" line="3201"/>
         <location filename="../mainwindow.cpp" line="3206"/>
-        <location filename="../mainwindow.cpp" line="3209"/>
-        <location filename="../mainwindow.cpp" line="3215"/>
-        <location filename="../mainwindow.cpp" line="3234"/>
-        <location filename="../mainwindow.cpp" line="3240"/>
-        <location filename="../mainwindow.cpp" line="3246"/>
-        <location filename="../mainwindow.cpp" line="3249"/>
-        <location filename="../mainwindow.cpp" line="3255"/>
-        <location filename="../mainwindow.cpp" line="3260"/>
-        <location filename="../mainwindow.cpp" line="3265"/>
-        <location filename="../mainwindow.cpp" line="3270"/>
-        <location filename="../mainwindow.cpp" line="3281"/>
-        <location filename="../mainwindow.cpp" line="3301"/>
-        <location filename="../mainwindow.cpp" line="3307"/>
-        <location filename="../mainwindow.cpp" line="3319"/>
+        <location filename="../mainwindow.cpp" line="3211"/>
+        <location filename="../mainwindow.cpp" line="3216"/>
+        <location filename="../mainwindow.cpp" line="3232"/>
+        <location filename="../mainwindow.cpp" line="3237"/>
+        <location filename="../mainwindow.cpp" line="3263"/>
+        <location filename="../mainwindow.cpp" line="3272"/>
+        <location filename="../mainwindow.cpp" line="3289"/>
+        <location filename="../mainwindow.cpp" line="3294"/>
+        <location filename="../mainwindow.cpp" line="3300"/>
+        <location filename="../mainwindow.cpp" line="3305"/>
         <location filename="../mainwindow.cpp" line="3329"/>
-        <location filename="../mainwindow.cpp" line="3341"/>
-        <location filename="../mainwindow.cpp" line="3353"/>
-        <location filename="../mainwindow.cpp" line="3358"/>
-        <location filename="../mainwindow.cpp" line="3363"/>
-        <location filename="../mainwindow.cpp" line="3379"/>
-        <location filename="../mainwindow.cpp" line="3384"/>
-        <location filename="../mainwindow.cpp" line="3390"/>
-        <location filename="../mainwindow.cpp" line="3401"/>
+        <location filename="../mainwindow.cpp" line="3346"/>
+        <location filename="../mainwindow.cpp" line="3352"/>
+        <location filename="../mainwindow.cpp" line="3357"/>
+        <location filename="../mainwindow.cpp" line="3364"/>
+        <location filename="../mainwindow.cpp" line="3367"/>
+        <location filename="../mainwindow.cpp" line="3373"/>
+        <location filename="../mainwindow.cpp" line="3392"/>
+        <location filename="../mainwindow.cpp" line="3398"/>
+        <location filename="../mainwindow.cpp" line="3404"/>
+        <location filename="../mainwindow.cpp" line="3407"/>
         <location filename="../mainwindow.cpp" line="3413"/>
         <location filename="../mainwindow.cpp" line="3418"/>
-        <location filename="../mainwindow.cpp" line="3434"/>
+        <location filename="../mainwindow.cpp" line="3423"/>
+        <location filename="../mainwindow.cpp" line="3428"/>
         <location filename="../mainwindow.cpp" line="3439"/>
-        <location filename="../mainwindow.cpp" line="3455"/>
-        <location filename="../mainwindow.cpp" line="3472"/>
-        <location filename="../mainwindow.cpp" line="3478"/>
-        <location filename="../mainwindow.cpp" line="3498"/>
-        <location filename="../mainwindow.cpp" line="3502"/>
-        <location filename="../mainwindow.cpp" line="3506"/>
-        <location filename="../mainwindow.cpp" line="3527"/>
-        <location filename="../mainwindow.cpp" line="3543"/>
-        <location filename="../mainwindow.cpp" line="3547"/>
-        <location filename="../mainwindow.cpp" line="3551"/>
-        <location filename="../mainwindow.cpp" line="3555"/>
-        <location filename="../mainwindow.cpp" line="3577"/>
-        <location filename="../mainwindow.cpp" line="3589"/>
-        <location filename="../mainwindow.cpp" line="3593"/>
+        <location filename="../mainwindow.cpp" line="3459"/>
+        <location filename="../mainwindow.cpp" line="3465"/>
+        <location filename="../mainwindow.cpp" line="3477"/>
+        <location filename="../mainwindow.cpp" line="3487"/>
+        <location filename="../mainwindow.cpp" line="3499"/>
+        <location filename="../mainwindow.cpp" line="3511"/>
+        <location filename="../mainwindow.cpp" line="3516"/>
+        <location filename="../mainwindow.cpp" line="3521"/>
+        <location filename="../mainwindow.cpp" line="3537"/>
+        <location filename="../mainwindow.cpp" line="3542"/>
+        <location filename="../mainwindow.cpp" line="3548"/>
+        <location filename="../mainwindow.cpp" line="3559"/>
+        <location filename="../mainwindow.cpp" line="3571"/>
+        <location filename="../mainwindow.cpp" line="3576"/>
+        <location filename="../mainwindow.cpp" line="3592"/>
         <location filename="../mainwindow.cpp" line="3597"/>
-        <location filename="../mainwindow.cpp" line="3601"/>
-        <location filename="../mainwindow.cpp" line="3624"/>
-        <location filename="../mainwindow.cpp" line="3641"/>
-        <location filename="../mainwindow.cpp" line="3645"/>
-        <location filename="../mainwindow.cpp" line="3649"/>
-        <location filename="../mainwindow.cpp" line="3653"/>
-        <location filename="../mainwindow.cpp" line="3657"/>
-        <location filename="../mainwindow.cpp" line="3680"/>
-        <location filename="../mainwindow.cpp" line="3695"/>
-        <location filename="../mainwindow.cpp" line="3699"/>
-        <location filename="../mainwindow.cpp" line="3703"/>
-        <location filename="../mainwindow.cpp" line="3720"/>
-        <location filename="../mainwindow.cpp" line="3737"/>
-        <location filename="../mainwindow.cpp" line="3741"/>
-        <location filename="../mainwindow.cpp" line="3745"/>
-        <location filename="../mainwindow.cpp" line="3763"/>
-        <location filename="../mainwindow.cpp" line="3779"/>
-        <location filename="../mainwindow.cpp" line="3783"/>
-        <location filename="../mainwindow.cpp" line="3787"/>
-        <location filename="../mainwindow.cpp" line="3804"/>
-        <location filename="../mainwindow.cpp" line="3814"/>
-        <location filename="../mainwindow.cpp" line="3818"/>
-        <location filename="../mainwindow.cpp" line="3822"/>
-        <location filename="../mainwindow.cpp" line="3826"/>
-        <location filename="../mainwindow.cpp" line="3842"/>
-        <location filename="../mainwindow.cpp" line="3859"/>
-        <location filename="../mainwindow.cpp" line="3863"/>
-        <location filename="../mainwindow.cpp" line="3867"/>
-        <location filename="../mainwindow.cpp" line="3885"/>
-        <location filename="../mainwindow.cpp" line="3891"/>
+        <location filename="../mainwindow.cpp" line="3613"/>
+        <location filename="../mainwindow.cpp" line="3630"/>
+        <location filename="../mainwindow.cpp" line="3636"/>
+        <location filename="../mainwindow.cpp" line="3656"/>
+        <location filename="../mainwindow.cpp" line="3660"/>
+        <location filename="../mainwindow.cpp" line="3664"/>
+        <location filename="../mainwindow.cpp" line="3685"/>
+        <location filename="../mainwindow.cpp" line="3701"/>
+        <location filename="../mainwindow.cpp" line="3705"/>
+        <location filename="../mainwindow.cpp" line="3709"/>
+        <location filename="../mainwindow.cpp" line="3713"/>
+        <location filename="../mainwindow.cpp" line="3735"/>
+        <location filename="../mainwindow.cpp" line="3747"/>
+        <location filename="../mainwindow.cpp" line="3751"/>
+        <location filename="../mainwindow.cpp" line="3755"/>
+        <location filename="../mainwindow.cpp" line="3759"/>
+        <location filename="../mainwindow.cpp" line="3782"/>
+        <location filename="../mainwindow.cpp" line="3799"/>
+        <location filename="../mainwindow.cpp" line="3803"/>
+        <location filename="../mainwindow.cpp" line="3807"/>
+        <location filename="../mainwindow.cpp" line="3811"/>
+        <location filename="../mainwindow.cpp" line="3815"/>
+        <location filename="../mainwindow.cpp" line="3838"/>
+        <location filename="../mainwindow.cpp" line="3853"/>
+        <location filename="../mainwindow.cpp" line="3857"/>
+        <location filename="../mainwindow.cpp" line="3861"/>
+        <location filename="../mainwindow.cpp" line="3878"/>
+        <location filename="../mainwindow.cpp" line="3895"/>
         <location filename="../mainwindow.cpp" line="3899"/>
-        <location filename="../mainwindow.cpp" line="3911"/>
-        <location filename="../mainwindow.cpp" line="3915"/>
-        <location filename="../mainwindow.cpp" line="3920"/>
-        <location filename="../mainwindow.cpp" line="3922"/>
-        <location filename="../mainwindow.cpp" line="3947"/>
-        <location filename="../mainwindow.cpp" line="3951"/>
-        <location filename="../mainwindow.cpp" line="3974"/>
+        <location filename="../mainwindow.cpp" line="3903"/>
+        <location filename="../mainwindow.cpp" line="3921"/>
+        <location filename="../mainwindow.cpp" line="3937"/>
+        <location filename="../mainwindow.cpp" line="3941"/>
+        <location filename="../mainwindow.cpp" line="3945"/>
+        <location filename="../mainwindow.cpp" line="3962"/>
+        <location filename="../mainwindow.cpp" line="3972"/>
+        <location filename="../mainwindow.cpp" line="3976"/>
         <location filename="../mainwindow.cpp" line="3980"/>
-        <location filename="../mainwindow.cpp" line="3995"/>
-        <location filename="../mainwindow.cpp" line="3999"/>
-        <location filename="../mainwindow.cpp" line="4003"/>
-        <location filename="../mainwindow.cpp" line="4022"/>
-        <location filename="../mainwindow.cpp" line="4038"/>
-        <location filename="../mainwindow.cpp" line="4042"/>
-        <location filename="../mainwindow.cpp" line="4046"/>
-        <location filename="../mainwindow.cpp" line="4050"/>
-        <location filename="../mainwindow.cpp" line="4071"/>
-        <location filename="../mainwindow.cpp" line="4083"/>
-        <location filename="../mainwindow.cpp" line="4087"/>
-        <location filename="../mainwindow.cpp" line="4091"/>
-        <location filename="../mainwindow.cpp" line="4095"/>
-        <location filename="../mainwindow.cpp" line="4117"/>
-        <location filename="../mainwindow.cpp" line="4134"/>
-        <location filename="../mainwindow.cpp" line="4138"/>
+        <location filename="../mainwindow.cpp" line="3984"/>
+        <location filename="../mainwindow.cpp" line="4000"/>
+        <location filename="../mainwindow.cpp" line="4017"/>
+        <location filename="../mainwindow.cpp" line="4021"/>
+        <location filename="../mainwindow.cpp" line="4025"/>
+        <location filename="../mainwindow.cpp" line="4043"/>
+        <location filename="../mainwindow.cpp" line="4049"/>
+        <location filename="../mainwindow.cpp" line="4057"/>
+        <location filename="../mainwindow.cpp" line="4069"/>
+        <location filename="../mainwindow.cpp" line="4073"/>
+        <location filename="../mainwindow.cpp" line="4078"/>
+        <location filename="../mainwindow.cpp" line="4080"/>
+        <location filename="../mainwindow.cpp" line="4084"/>
+        <location filename="../mainwindow.cpp" line="4109"/>
+        <location filename="../mainwindow.cpp" line="4113"/>
+        <location filename="../mainwindow.cpp" line="4136"/>
         <location filename="../mainwindow.cpp" line="4142"/>
-        <location filename="../mainwindow.cpp" line="4146"/>
-        <location filename="../mainwindow.cpp" line="4150"/>
-        <location filename="../mainwindow.cpp" line="4171"/>
-        <location filename="../mainwindow.cpp" line="4197"/>
-        <location filename="../mainwindow.cpp" line="4202"/>
-        <location filename="../mainwindow.cpp" line="4206"/>
-        <location filename="../mainwindow.cpp" line="4240"/>
+        <location filename="../mainwindow.cpp" line="4157"/>
+        <location filename="../mainwindow.cpp" line="4161"/>
+        <location filename="../mainwindow.cpp" line="4165"/>
+        <location filename="../mainwindow.cpp" line="4184"/>
+        <location filename="../mainwindow.cpp" line="4200"/>
+        <location filename="../mainwindow.cpp" line="4204"/>
+        <location filename="../mainwindow.cpp" line="4208"/>
+        <location filename="../mainwindow.cpp" line="4212"/>
+        <location filename="../mainwindow.cpp" line="4233"/>
+        <location filename="../mainwindow.cpp" line="4245"/>
+        <location filename="../mainwindow.cpp" line="4249"/>
+        <location filename="../mainwindow.cpp" line="4253"/>
         <location filename="../mainwindow.cpp" line="4257"/>
-        <location filename="../mainwindow.cpp" line="4261"/>
-        <location filename="../mainwindow.cpp" line="4278"/>
-        <location filename="../mainwindow.cpp" line="4295"/>
-        <location filename="../mainwindow.cpp" line="4299"/>
-        <location filename="../mainwindow.cpp" line="4303"/>
-        <location filename="../mainwindow.cpp" line="4325"/>
-        <location filename="../mainwindow.cpp" line="4335"/>
-        <location filename="../mainwindow.cpp" line="4339"/>
-        <location filename="../mainwindow.cpp" line="4343"/>
-        <location filename="../mainwindow.cpp" line="4347"/>
-        <location filename="../mainwindow.cpp" line="4362"/>
-        <location filename="../mainwindow.cpp" line="4373"/>
-        <location filename="../mainwindow.cpp" line="4377"/>
-        <location filename="../mainwindow.cpp" line="4381"/>
-        <location filename="../mainwindow.cpp" line="4397"/>
-        <location filename="../mainwindow.cpp" line="4409"/>
-        <location filename="../mainwindow.cpp" line="4413"/>
-        <location filename="../mainwindow.cpp" line="4420"/>
-        <location filename="../mainwindow.cpp" line="4424"/>
-        <location filename="../mainwindow.cpp" line="4428"/>
-        <location filename="../mainwindow.cpp" line="4445"/>
-        <location filename="../mainwindow.cpp" line="4459"/>
-        <location filename="../mainwindow.cpp" line="4463"/>
-        <location filename="../mainwindow.cpp" line="4467"/>
-        <location filename="../mainwindow.cpp" line="4488"/>
-        <location filename="../mainwindow.cpp" line="4492"/>
-        <location filename="../mainwindow.cpp" line="4503"/>
-        <location filename="../mainwindow.cpp" line="4515"/>
-        <location filename="../mainwindow.cpp" line="4527"/>
+        <location filename="../mainwindow.cpp" line="4279"/>
+        <location filename="../mainwindow.cpp" line="4296"/>
+        <location filename="../mainwindow.cpp" line="4300"/>
+        <location filename="../mainwindow.cpp" line="4304"/>
+        <location filename="../mainwindow.cpp" line="4308"/>
+        <location filename="../mainwindow.cpp" line="4312"/>
+        <location filename="../mainwindow.cpp" line="4333"/>
+        <location filename="../mainwindow.cpp" line="4359"/>
+        <location filename="../mainwindow.cpp" line="4364"/>
+        <location filename="../mainwindow.cpp" line="4368"/>
+        <location filename="../mainwindow.cpp" line="4402"/>
+        <location filename="../mainwindow.cpp" line="4419"/>
+        <location filename="../mainwindow.cpp" line="4423"/>
+        <location filename="../mainwindow.cpp" line="4440"/>
+        <location filename="../mainwindow.cpp" line="4457"/>
+        <location filename="../mainwindow.cpp" line="4461"/>
+        <location filename="../mainwindow.cpp" line="4465"/>
+        <location filename="../mainwindow.cpp" line="4487"/>
+        <location filename="../mainwindow.cpp" line="4497"/>
+        <location filename="../mainwindow.cpp" line="4501"/>
+        <location filename="../mainwindow.cpp" line="4505"/>
+        <location filename="../mainwindow.cpp" line="4509"/>
+        <location filename="../mainwindow.cpp" line="4524"/>
+        <location filename="../mainwindow.cpp" line="4535"/>
         <location filename="../mainwindow.cpp" line="4539"/>
-        <location filename="../mainwindow.cpp" line="4574"/>
+        <location filename="../mainwindow.cpp" line="4543"/>
+        <location filename="../mainwindow.cpp" line="4559"/>
+        <location filename="../mainwindow.cpp" line="4571"/>
+        <location filename="../mainwindow.cpp" line="4575"/>
+        <location filename="../mainwindow.cpp" line="4582"/>
+        <location filename="../mainwindow.cpp" line="4586"/>
+        <location filename="../mainwindow.cpp" line="4590"/>
+        <location filename="../mainwindow.cpp" line="4594"/>
+        <location filename="../mainwindow.cpp" line="4610"/>
+        <location filename="../mainwindow.cpp" line="4624"/>
+        <location filename="../mainwindow.cpp" line="4628"/>
+        <location filename="../mainwindow.cpp" line="4632"/>
+        <location filename="../mainwindow.cpp" line="4653"/>
+        <location filename="../mainwindow.cpp" line="4657"/>
+        <location filename="../mainwindow.cpp" line="4668"/>
+        <location filename="../mainwindow.cpp" line="4680"/>
+        <location filename="../mainwindow.cpp" line="4692"/>
+        <location filename="../mainwindow.cpp" line="4704"/>
+        <location filename="../mainwindow.cpp" line="4739"/>
         <source>Warning</source>
         <translation>Προειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="731"/>
+        <location filename="../mainwindow.cpp" line="832"/>
         <source>Error. Can not open URL: </source>
         <translation>Λάθος. Δεν είναι δυνατή η ανοιχτή διεύθυνση URL:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="752"/>
-        <location filename="../mainwindow.cpp" line="760"/>
+        <location filename="../mainwindow.cpp" line="853"/>
+        <location filename="../mainwindow.cpp" line="861"/>
         <source>Information</source>
         <translation>Πληροφορίες</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="752"/>
+        <location filename="../mainwindow.cpp" line="853"/>
         <source>The version is up to date: </source>
         <translation>Η έκδοση είναι ενημερωμένη:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="757"/>
+        <location filename="../mainwindow.cpp" line="858"/>
         <source>There is a new version of the app.</source>
         <translation>Υπάρχει μια νέα έκδοση της εφαρμογής.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="758"/>
+        <location filename="../mainwindow.cpp" line="859"/>
         <source>Please visit the URL to download</source>
         <translation>Παρακαλούμε επισκεφθείτε τη διεύθυνση URL που θα κατεβάσετε</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="932"/>
-        <location filename="../mainwindow.cpp" line="1033"/>
-        <location filename="../mainwindow.cpp" line="1088"/>
-        <location filename="../mainwindow.cpp" line="1142"/>
-        <location filename="../mainwindow.cpp" line="1198"/>
-        <location filename="../mainwindow.cpp" line="1292"/>
-        <location filename="../mainwindow.cpp" line="1379"/>
-        <location filename="../mainwindow.cpp" line="1453"/>
-        <location filename="../mainwindow.cpp" line="1509"/>
-        <location filename="../mainwindow.cpp" line="1619"/>
-        <location filename="../mainwindow.cpp" line="1682"/>
-        <location filename="../mainwindow.cpp" line="1732"/>
-        <location filename="../mainwindow.cpp" line="1796"/>
-        <location filename="../mainwindow.cpp" line="1983"/>
-        <location filename="../mainwindow.cpp" line="2465"/>
-        <location filename="../mainwindow.cpp" line="2687"/>
+        <location filename="../mainwindow.cpp" line="1038"/>
+        <location filename="../mainwindow.cpp" line="1141"/>
+        <location filename="../mainwindow.cpp" line="1196"/>
+        <location filename="../mainwindow.cpp" line="1250"/>
+        <location filename="../mainwindow.cpp" line="1306"/>
+        <location filename="../mainwindow.cpp" line="1403"/>
+        <location filename="../mainwindow.cpp" line="1490"/>
+        <location filename="../mainwindow.cpp" line="1568"/>
+        <location filename="../mainwindow.cpp" line="1625"/>
+        <location filename="../mainwindow.cpp" line="1737"/>
+        <location filename="../mainwindow.cpp" line="1800"/>
+        <location filename="../mainwindow.cpp" line="1850"/>
+        <location filename="../mainwindow.cpp" line="1914"/>
+        <location filename="../mainwindow.cpp" line="2104"/>
+        <location filename="../mainwindow.cpp" line="2596"/>
+        <location filename="../mainwindow.cpp" line="2844"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1010"/>
-        <location filename="../mainwindow.cpp" line="1167"/>
-        <location filename="../mainwindow.cpp" line="1273"/>
-        <location filename="../mainwindow.cpp" line="1597"/>
-        <location filename="../mainwindow.cpp" line="1763"/>
-        <location filename="../mainwindow.cpp" line="1883"/>
+        <location filename="../mainwindow.cpp" line="1117"/>
+        <location filename="../mainwindow.cpp" line="1275"/>
+        <location filename="../mainwindow.cpp" line="1381"/>
+        <location filename="../mainwindow.cpp" line="1714"/>
+        <location filename="../mainwindow.cpp" line="1881"/>
+        <location filename="../mainwindow.cpp" line="2001"/>
         <source>Insulation thickness</source>
         <translation>Πάχος μόνωσης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1313"/>
-        <location filename="../mainwindow.cpp" line="1924"/>
-        <location filename="../mainwindow.cpp" line="2009"/>
-        <location filename="../mainwindow.cpp" line="5036"/>
-        <location filename="../mainwindow.cpp" line="5148"/>
-        <location filename="../mainwindow.cpp" line="5613"/>
-        <location filename="../mainwindow.cpp" line="5681"/>
-        <location filename="../mainwindow.cpp" line="5928"/>
-        <location filename="../mainwindow.cpp" line="5941"/>
+        <location filename="../mainwindow.cpp" line="1424"/>
+        <location filename="../mainwindow.cpp" line="2045"/>
+        <location filename="../mainwindow.cpp" line="2130"/>
+        <location filename="../mainwindow.cpp" line="5201"/>
+        <location filename="../mainwindow.cpp" line="5331"/>
+        <location filename="../mainwindow.cpp" line="5796"/>
+        <location filename="../mainwindow.cpp" line="5882"/>
+        <location filename="../mainwindow.cpp" line="6160"/>
+        <location filename="../mainwindow.cpp" line="6173"/>
         <source>Outside diameter</source>
         <translation>Εξωτερική διάμετρος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1314"/>
-        <location filename="../mainwindow.cpp" line="1400"/>
-        <location filename="../mainwindow.cpp" line="1925"/>
-        <location filename="../mainwindow.cpp" line="2010"/>
-        <location filename="../mainwindow.cpp" line="5929"/>
-        <location filename="../mainwindow.cpp" line="5942"/>
+        <location filename="../mainwindow.cpp" line="1425"/>
+        <location filename="../mainwindow.cpp" line="1511"/>
+        <location filename="../mainwindow.cpp" line="2046"/>
+        <location filename="../mainwindow.cpp" line="2131"/>
+        <location filename="../mainwindow.cpp" line="6161"/>
+        <location filename="../mainwindow.cpp" line="6174"/>
         <source>Inside diameter</source>
         <translation>Εσωτερική διάμετρος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1317"/>
-        <location filename="../mainwindow.cpp" line="1927"/>
-        <source>Init magnetic permeability</source>
-        <translation>Init μαγνητική διαπερατότητα</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="908"/>
-        <location filename="../mainwindow.cpp" line="951"/>
-        <location filename="../mainwindow.cpp" line="1007"/>
-        <location filename="../mainwindow.cpp" line="1054"/>
-        <location filename="../mainwindow.cpp" line="1109"/>
-        <location filename="../mainwindow.cpp" line="1163"/>
-        <location filename="../mainwindow.cpp" line="1270"/>
-        <location filename="../mainwindow.cpp" line="1479"/>
-        <location filename="../mainwindow.cpp" line="1534"/>
+        <location filename="../mainwindow.cpp" line="1013"/>
+        <location filename="../mainwindow.cpp" line="1057"/>
+        <location filename="../mainwindow.cpp" line="1114"/>
+        <location filename="../mainwindow.cpp" line="1162"/>
+        <location filename="../mainwindow.cpp" line="1217"/>
+        <location filename="../mainwindow.cpp" line="1271"/>
+        <location filename="../mainwindow.cpp" line="1378"/>
         <location filename="../mainwindow.cpp" line="1594"/>
-        <location filename="../mainwindow.cpp" line="1645"/>
-        <location filename="../mainwindow.cpp" line="1708"/>
-        <location filename="../mainwindow.cpp" line="1758"/>
-        <location filename="../mainwindow.cpp" line="1880"/>
+        <location filename="../mainwindow.cpp" line="1650"/>
+        <location filename="../mainwindow.cpp" line="1711"/>
+        <location filename="../mainwindow.cpp" line="1763"/>
+        <location filename="../mainwindow.cpp" line="1826"/>
+        <location filename="../mainwindow.cpp" line="1876"/>
+        <location filename="../mainwindow.cpp" line="1998"/>
         <source>Former diameter</source>
         <translation>Διάμετρος του</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="952"/>
-        <location filename="../mainwindow.cpp" line="1055"/>
-        <location filename="../mainwindow.cpp" line="1111"/>
-        <location filename="../mainwindow.cpp" line="1165"/>
-        <location filename="../mainwindow.cpp" line="1222"/>
-        <location filename="../mainwindow.cpp" line="1316"/>
-        <location filename="../mainwindow.cpp" line="1401"/>
-        <location filename="../mainwindow.cpp" line="1480"/>
-        <location filename="../mainwindow.cpp" line="1535"/>
-        <location filename="../mainwindow.cpp" line="1646"/>
-        <location filename="../mainwindow.cpp" line="1711"/>
-        <location filename="../mainwindow.cpp" line="1761"/>
-        <location filename="../mainwindow.cpp" line="1826"/>
-        <location filename="../mainwindow.cpp" line="2011"/>
-        <location filename="../mainwindow.cpp" line="2459"/>
-        <location filename="../mainwindow.cpp" line="2683"/>
-        <location filename="../mainwindow.cpp" line="4637"/>
-        <location filename="../mainwindow.cpp" line="4639"/>
+        <location filename="../mainwindow.cpp" line="1058"/>
+        <location filename="../mainwindow.cpp" line="1163"/>
+        <location filename="../mainwindow.cpp" line="1219"/>
+        <location filename="../mainwindow.cpp" line="1273"/>
+        <location filename="../mainwindow.cpp" line="1330"/>
+        <location filename="../mainwindow.cpp" line="1427"/>
+        <location filename="../mainwindow.cpp" line="1512"/>
+        <location filename="../mainwindow.cpp" line="1595"/>
+        <location filename="../mainwindow.cpp" line="1651"/>
+        <location filename="../mainwindow.cpp" line="1764"/>
+        <location filename="../mainwindow.cpp" line="1829"/>
+        <location filename="../mainwindow.cpp" line="1879"/>
+        <location filename="../mainwindow.cpp" line="1944"/>
+        <location filename="../mainwindow.cpp" line="2132"/>
+        <location filename="../mainwindow.cpp" line="2590"/>
+        <location filename="../mainwindow.cpp" line="2840"/>
+        <location filename="../mainwindow.cpp" line="4802"/>
+        <location filename="../mainwindow.cpp" line="4804"/>
         <source>Wire diameter</source>
         <translation>Διάμετρο σύρματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="909"/>
-        <location filename="../mainwindow.cpp" line="953"/>
-        <location filename="../mainwindow.cpp" line="1056"/>
-        <location filename="../mainwindow.cpp" line="1112"/>
-        <location filename="../mainwindow.cpp" line="1166"/>
-        <location filename="../mainwindow.cpp" line="1223"/>
-        <location filename="../mainwindow.cpp" line="1481"/>
-        <location filename="../mainwindow.cpp" line="1536"/>
-        <location filename="../mainwindow.cpp" line="1647"/>
-        <location filename="../mainwindow.cpp" line="1712"/>
-        <location filename="../mainwindow.cpp" line="1762"/>
-        <location filename="../mainwindow.cpp" line="1827"/>
+        <location filename="../mainwindow.cpp" line="1014"/>
+        <location filename="../mainwindow.cpp" line="1059"/>
+        <location filename="../mainwindow.cpp" line="1164"/>
+        <location filename="../mainwindow.cpp" line="1220"/>
+        <location filename="../mainwindow.cpp" line="1274"/>
+        <location filename="../mainwindow.cpp" line="1331"/>
+        <location filename="../mainwindow.cpp" line="1596"/>
+        <location filename="../mainwindow.cpp" line="1652"/>
+        <location filename="../mainwindow.cpp" line="1765"/>
+        <location filename="../mainwindow.cpp" line="1830"/>
+        <location filename="../mainwindow.cpp" line="1880"/>
+        <location filename="../mainwindow.cpp" line="1945"/>
         <source>Wire diameter with insulation</source>
         <translation>Διάμετρος σύρματος με μόνωση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1008"/>
-        <location filename="../mainwindow.cpp" line="1595"/>
+        <location filename="../mainwindow.cpp" line="1115"/>
+        <location filename="../mainwindow.cpp" line="1712"/>
         <source>Wire width</source>
         <translation>Πλάτος σύρματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1009"/>
-        <location filename="../mainwindow.cpp" line="1596"/>
+        <location filename="../mainwindow.cpp" line="1116"/>
+        <location filename="../mainwindow.cpp" line="1713"/>
         <source>Wire thickness</source>
         <translation>Πάχος καλωδίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1110"/>
-        <location filename="../mainwindow.cpp" line="1164"/>
-        <location filename="../mainwindow.cpp" line="1221"/>
-        <location filename="../mainwindow.cpp" line="1709"/>
-        <location filename="../mainwindow.cpp" line="1759"/>
-        <location filename="../mainwindow.cpp" line="1824"/>
-        <location filename="../mainwindow.cpp" line="2479"/>
+        <location filename="../mainwindow.cpp" line="1218"/>
+        <location filename="../mainwindow.cpp" line="1272"/>
+        <location filename="../mainwindow.cpp" line="1329"/>
+        <location filename="../mainwindow.cpp" line="1827"/>
+        <location filename="../mainwindow.cpp" line="1877"/>
+        <location filename="../mainwindow.cpp" line="1942"/>
+        <location filename="../mainwindow.cpp" line="2610"/>
         <source>Winding length</source>
         <translation>Μήκος της περιέλιξης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1168"/>
-        <location filename="../mainwindow.cpp" line="1764"/>
+        <location filename="../mainwindow.cpp" line="1276"/>
+        <location filename="../mainwindow.cpp" line="1882"/>
         <source>Layers number beetween insulating pads</source>
         <translation>Αριθμός των στρωμάτων μεταξύ των μονωτικών μαξιλαριών</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1315"/>
-        <location filename="../mainwindow.cpp" line="1926"/>
+        <location filename="../mainwindow.cpp" line="1426"/>
+        <location filename="../mainwindow.cpp" line="2047"/>
         <source>Core height</source>
         <translation>Υψος πυρήνας</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="862"/>
-        <location filename="../mainwindow.cpp" line="1423"/>
-        <location filename="../mainwindow.cpp" line="2369"/>
-        <location filename="../mainwindow.cpp" line="2381"/>
-        <location filename="../mainwindow.cpp" line="2393"/>
+        <location filename="../mainwindow.cpp" line="963"/>
+        <location filename="../mainwindow.cpp" line="1534"/>
+        <location filename="../mainwindow.cpp" line="2500"/>
+        <location filename="../mainwindow.cpp" line="2512"/>
+        <location filename="../mainwindow.cpp" line="2524"/>
         <source>Frequency</source>
         <translation>Συχνότητα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3472"/>
-        <location filename="../mainwindow.cpp" line="3478"/>
-        <location filename="../mainwindow.cpp" line="3527"/>
-        <location filename="../mainwindow.cpp" line="3577"/>
-        <location filename="../mainwindow.cpp" line="3624"/>
-        <location filename="../mainwindow.cpp" line="3680"/>
-        <location filename="../mainwindow.cpp" line="3720"/>
-        <location filename="../mainwindow.cpp" line="3763"/>
-        <location filename="../mainwindow.cpp" line="3804"/>
-        <location filename="../mainwindow.cpp" line="3842"/>
-        <location filename="../mainwindow.cpp" line="3885"/>
-        <location filename="../mainwindow.cpp" line="3891"/>
-        <location filename="../mainwindow.cpp" line="3974"/>
-        <location filename="../mainwindow.cpp" line="3980"/>
-        <location filename="../mainwindow.cpp" line="4022"/>
-        <location filename="../mainwindow.cpp" line="4071"/>
-        <location filename="../mainwindow.cpp" line="4117"/>
-        <location filename="../mainwindow.cpp" line="4171"/>
-        <location filename="../mainwindow.cpp" line="4240"/>
-        <location filename="../mainwindow.cpp" line="4278"/>
-        <location filename="../mainwindow.cpp" line="4325"/>
-        <location filename="../mainwindow.cpp" line="4362"/>
-        <location filename="../mainwindow.cpp" line="4397"/>
-        <location filename="../mainwindow.cpp" line="4445"/>
-        <location filename="../mainwindow.cpp" line="4488"/>
+        <location filename="../mainwindow.cpp" line="3630"/>
+        <location filename="../mainwindow.cpp" line="3636"/>
+        <location filename="../mainwindow.cpp" line="3685"/>
+        <location filename="../mainwindow.cpp" line="3735"/>
+        <location filename="../mainwindow.cpp" line="3782"/>
+        <location filename="../mainwindow.cpp" line="3838"/>
+        <location filename="../mainwindow.cpp" line="3878"/>
+        <location filename="../mainwindow.cpp" line="3921"/>
+        <location filename="../mainwindow.cpp" line="3962"/>
+        <location filename="../mainwindow.cpp" line="4000"/>
+        <location filename="../mainwindow.cpp" line="4043"/>
+        <location filename="../mainwindow.cpp" line="4049"/>
+        <location filename="../mainwindow.cpp" line="4136"/>
+        <location filename="../mainwindow.cpp" line="4142"/>
+        <location filename="../mainwindow.cpp" line="4184"/>
+        <location filename="../mainwindow.cpp" line="4233"/>
+        <location filename="../mainwindow.cpp" line="4279"/>
+        <location filename="../mainwindow.cpp" line="4333"/>
+        <location filename="../mainwindow.cpp" line="4402"/>
+        <location filename="../mainwindow.cpp" line="4440"/>
+        <location filename="../mainwindow.cpp" line="4487"/>
+        <location filename="../mainwindow.cpp" line="4524"/>
+        <location filename="../mainwindow.cpp" line="4559"/>
+        <location filename="../mainwindow.cpp" line="4610"/>
+        <location filename="../mainwindow.cpp" line="4653"/>
         <source>One or more inputs are empty!</source>
         <translation>Μία ή περισσότερες είσοδοι είναι κενές!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3502"/>
-        <location filename="../mainwindow.cpp" line="3547"/>
-        <location filename="../mainwindow.cpp" line="3593"/>
-        <location filename="../mainwindow.cpp" line="3645"/>
-        <location filename="../mainwindow.cpp" line="3699"/>
-        <location filename="../mainwindow.cpp" line="3741"/>
-        <location filename="../mainwindow.cpp" line="3783"/>
-        <location filename="../mainwindow.cpp" line="3818"/>
-        <location filename="../mainwindow.cpp" line="3863"/>
-        <location filename="../mainwindow.cpp" line="3915"/>
-        <location filename="../mainwindow.cpp" line="3951"/>
-        <location filename="../mainwindow.cpp" line="3999"/>
-        <location filename="../mainwindow.cpp" line="4042"/>
-        <location filename="../mainwindow.cpp" line="4087"/>
-        <location filename="../mainwindow.cpp" line="4138"/>
-        <location filename="../mainwindow.cpp" line="4202"/>
-        <location filename="../mainwindow.cpp" line="4261"/>
-        <location filename="../mainwindow.cpp" line="4299"/>
-        <location filename="../mainwindow.cpp" line="4339"/>
-        <location filename="../mainwindow.cpp" line="4377"/>
-        <location filename="../mainwindow.cpp" line="4409"/>
-        <location filename="../mainwindow.cpp" line="4424"/>
-        <location filename="../mainwindow.cpp" line="4463"/>
-        <location filename="../mainwindow.cpp" line="4492"/>
+        <location filename="../mainwindow.cpp" line="3660"/>
+        <location filename="../mainwindow.cpp" line="3705"/>
+        <location filename="../mainwindow.cpp" line="3751"/>
+        <location filename="../mainwindow.cpp" line="3803"/>
+        <location filename="../mainwindow.cpp" line="3857"/>
+        <location filename="../mainwindow.cpp" line="3899"/>
+        <location filename="../mainwindow.cpp" line="3941"/>
+        <location filename="../mainwindow.cpp" line="3976"/>
+        <location filename="../mainwindow.cpp" line="4021"/>
+        <location filename="../mainwindow.cpp" line="4073"/>
+        <location filename="../mainwindow.cpp" line="4113"/>
+        <location filename="../mainwindow.cpp" line="4161"/>
+        <location filename="../mainwindow.cpp" line="4204"/>
+        <location filename="../mainwindow.cpp" line="4249"/>
+        <location filename="../mainwindow.cpp" line="4300"/>
+        <location filename="../mainwindow.cpp" line="4364"/>
+        <location filename="../mainwindow.cpp" line="4423"/>
+        <location filename="../mainwindow.cpp" line="4461"/>
+        <location filename="../mainwindow.cpp" line="4501"/>
+        <location filename="../mainwindow.cpp" line="4539"/>
+        <location filename="../mainwindow.cpp" line="4571"/>
+        <location filename="../mainwindow.cpp" line="4586"/>
+        <location filename="../mainwindow.cpp" line="4628"/>
+        <location filename="../mainwindow.cpp" line="4657"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Μία ή περισσότερες εισόδους είναι ίσες με null!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4553"/>
+        <location filename="../mainwindow.cpp" line="4718"/>
         <source>LC tank calculation</source>
         <translation>Υπολογισμός δεξαμενής LC</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4555"/>
-        <location filename="../mainwindow.cpp" line="4590"/>
-        <location filename="../mainwindow.cpp" line="4706"/>
-        <location filename="../mainwindow.cpp" line="4790"/>
-        <location filename="../mainwindow.cpp" line="4883"/>
-        <location filename="../mainwindow.cpp" line="4930"/>
-        <location filename="../mainwindow.cpp" line="4978"/>
-        <location filename="../mainwindow.cpp" line="5027"/>
-        <location filename="../mainwindow.cpp" line="5056"/>
-        <location filename="../mainwindow.cpp" line="5106"/>
-        <location filename="../mainwindow.cpp" line="5139"/>
-        <location filename="../mainwindow.cpp" line="5172"/>
-        <location filename="../mainwindow.cpp" line="5271"/>
-        <location filename="../mainwindow.cpp" line="5357"/>
-        <location filename="../mainwindow.cpp" line="5453"/>
-        <location filename="../mainwindow.cpp" line="5510"/>
-        <location filename="../mainwindow.cpp" line="5538"/>
-        <location filename="../mainwindow.cpp" line="5597"/>
-        <location filename="../mainwindow.cpp" line="5627"/>
-        <location filename="../mainwindow.cpp" line="5666"/>
-        <location filename="../mainwindow.cpp" line="5702"/>
+        <location filename="../mainwindow.cpp" line="4720"/>
+        <location filename="../mainwindow.cpp" line="4755"/>
+        <location filename="../mainwindow.cpp" line="4871"/>
+        <location filename="../mainwindow.cpp" line="4955"/>
+        <location filename="../mainwindow.cpp" line="5048"/>
+        <location filename="../mainwindow.cpp" line="5095"/>
+        <location filename="../mainwindow.cpp" line="5143"/>
+        <location filename="../mainwindow.cpp" line="5192"/>
+        <location filename="../mainwindow.cpp" line="5221"/>
+        <location filename="../mainwindow.cpp" line="5289"/>
+        <location filename="../mainwindow.cpp" line="5322"/>
+        <location filename="../mainwindow.cpp" line="5355"/>
+        <location filename="../mainwindow.cpp" line="5454"/>
+        <location filename="../mainwindow.cpp" line="5540"/>
+        <location filename="../mainwindow.cpp" line="5636"/>
+        <location filename="../mainwindow.cpp" line="5693"/>
+        <location filename="../mainwindow.cpp" line="5721"/>
+        <location filename="../mainwindow.cpp" line="5780"/>
+        <location filename="../mainwindow.cpp" line="5810"/>
+        <location filename="../mainwindow.cpp" line="5867"/>
+        <location filename="../mainwindow.cpp" line="5903"/>
         <source>Input</source>
         <translation>Εισαγωγή</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4558"/>
-        <location filename="../mainwindow.cpp" line="4625"/>
-        <location filename="../mainwindow.cpp" line="4722"/>
-        <location filename="../mainwindow.cpp" line="4811"/>
-        <location filename="../mainwindow.cpp" line="4890"/>
-        <location filename="../mainwindow.cpp" line="4938"/>
-        <location filename="../mainwindow.cpp" line="4985"/>
-        <location filename="../mainwindow.cpp" line="5033"/>
-        <location filename="../mainwindow.cpp" line="5064"/>
-        <location filename="../mainwindow.cpp" line="5115"/>
-        <location filename="../mainwindow.cpp" line="5144"/>
-        <location filename="../mainwindow.cpp" line="5200"/>
-        <location filename="../mainwindow.cpp" line="5286"/>
-        <location filename="../mainwindow.cpp" line="5377"/>
-        <location filename="../mainwindow.cpp" line="5463"/>
-        <location filename="../mainwindow.cpp" line="5523"/>
-        <location filename="../mainwindow.cpp" line="5548"/>
-        <location filename="../mainwindow.cpp" line="5603"/>
-        <location filename="../mainwindow.cpp" line="5634"/>
-        <location filename="../mainwindow.cpp" line="5675"/>
-        <location filename="../mainwindow.cpp" line="5707"/>
+        <location filename="../mainwindow.cpp" line="4723"/>
+        <location filename="../mainwindow.cpp" line="4790"/>
+        <location filename="../mainwindow.cpp" line="4887"/>
+        <location filename="../mainwindow.cpp" line="4976"/>
+        <location filename="../mainwindow.cpp" line="5055"/>
+        <location filename="../mainwindow.cpp" line="5103"/>
+        <location filename="../mainwindow.cpp" line="5150"/>
+        <location filename="../mainwindow.cpp" line="5198"/>
+        <location filename="../mainwindow.cpp" line="5229"/>
+        <location filename="../mainwindow.cpp" line="5298"/>
+        <location filename="../mainwindow.cpp" line="5327"/>
+        <location filename="../mainwindow.cpp" line="5383"/>
+        <location filename="../mainwindow.cpp" line="5469"/>
+        <location filename="../mainwindow.cpp" line="5560"/>
+        <location filename="../mainwindow.cpp" line="5646"/>
+        <location filename="../mainwindow.cpp" line="5706"/>
+        <location filename="../mainwindow.cpp" line="5731"/>
+        <location filename="../mainwindow.cpp" line="5786"/>
+        <location filename="../mainwindow.cpp" line="5817"/>
+        <location filename="../mainwindow.cpp" line="5876"/>
+        <location filename="../mainwindow.cpp" line="5908"/>
         <source>Result</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4507"/>
+        <location filename="../mainwindow.cpp" line="4672"/>
         <source>Frequency of a circuit</source>
         <translation>Συχνότητα ενός κυκλώματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4519"/>
-        <location filename="../mainwindow.cpp" line="4548"/>
+        <location filename="../mainwindow.cpp" line="4684"/>
+        <location filename="../mainwindow.cpp" line="4713"/>
         <source>Inductance of a circuit</source>
         <translation>Αυτεπαγωγή ενός κυκλώματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2391"/>
-        <location filename="../mainwindow.cpp" line="4562"/>
-        <location filename="../mainwindow.cpp" line="4673"/>
-        <location filename="../mainwindow.cpp" line="4760"/>
-        <location filename="../mainwindow.cpp" line="4849"/>
-        <location filename="../mainwindow.cpp" line="5241"/>
-        <location filename="../mainwindow.cpp" line="5327"/>
-        <location filename="../mainwindow.cpp" line="5419"/>
+        <location filename="../mainwindow.cpp" line="2522"/>
+        <location filename="../mainwindow.cpp" line="4727"/>
+        <location filename="../mainwindow.cpp" line="4838"/>
+        <location filename="../mainwindow.cpp" line="4925"/>
+        <location filename="../mainwindow.cpp" line="5014"/>
+        <location filename="../mainwindow.cpp" line="5424"/>
+        <location filename="../mainwindow.cpp" line="5510"/>
+        <location filename="../mainwindow.cpp" line="5602"/>
         <source>Characteristic impedance</source>
         <translation>Χαρακτηριστική αντίσταση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2395"/>
-        <location filename="../mainwindow.cpp" line="2680"/>
-        <location filename="../mainwindow.cpp" line="4562"/>
-        <location filename="../mainwindow.cpp" line="4653"/>
-        <location filename="../mainwindow.cpp" line="4655"/>
-        <location filename="../mainwindow.cpp" line="4665"/>
-        <location filename="../mainwindow.cpp" line="4673"/>
-        <location filename="../mainwindow.cpp" line="4740"/>
-        <location filename="../mainwindow.cpp" line="4741"/>
-        <location filename="../mainwindow.cpp" line="4751"/>
-        <location filename="../mainwindow.cpp" line="4760"/>
-        <location filename="../mainwindow.cpp" line="4829"/>
+        <location filename="../mainwindow.cpp" line="2526"/>
+        <location filename="../mainwindow.cpp" line="2837"/>
+        <location filename="../mainwindow.cpp" line="4727"/>
+        <location filename="../mainwindow.cpp" line="4818"/>
+        <location filename="../mainwindow.cpp" line="4820"/>
         <location filename="../mainwindow.cpp" line="4830"/>
-        <location filename="../mainwindow.cpp" line="4840"/>
-        <location filename="../mainwindow.cpp" line="4849"/>
-        <location filename="../mainwindow.cpp" line="4917"/>
-        <location filename="../mainwindow.cpp" line="4964"/>
-        <location filename="../mainwindow.cpp" line="5016"/>
-        <location filename="../mainwindow.cpp" line="5044"/>
-        <location filename="../mainwindow.cpp" line="5045"/>
-        <location filename="../mainwindow.cpp" line="5221"/>
-        <location filename="../mainwindow.cpp" line="5222"/>
-        <location filename="../mainwindow.cpp" line="5232"/>
-        <location filename="../mainwindow.cpp" line="5241"/>
-        <location filename="../mainwindow.cpp" line="5307"/>
-        <location filename="../mainwindow.cpp" line="5308"/>
-        <location filename="../mainwindow.cpp" line="5318"/>
-        <location filename="../mainwindow.cpp" line="5327"/>
-        <location filename="../mainwindow.cpp" line="5399"/>
-        <location filename="../mainwindow.cpp" line="5400"/>
-        <location filename="../mainwindow.cpp" line="5410"/>
-        <location filename="../mainwindow.cpp" line="5419"/>
-        <location filename="../mainwindow.cpp" line="5471"/>
-        <location filename="../mainwindow.cpp" line="5572"/>
-        <location filename="../mainwindow.cpp" line="5615"/>
-        <location filename="../mainwindow.cpp" line="5616"/>
+        <location filename="../mainwindow.cpp" line="4838"/>
+        <location filename="../mainwindow.cpp" line="4905"/>
+        <location filename="../mainwindow.cpp" line="4906"/>
+        <location filename="../mainwindow.cpp" line="4916"/>
+        <location filename="../mainwindow.cpp" line="4925"/>
+        <location filename="../mainwindow.cpp" line="4994"/>
+        <location filename="../mainwindow.cpp" line="4995"/>
+        <location filename="../mainwindow.cpp" line="5005"/>
+        <location filename="../mainwindow.cpp" line="5014"/>
+        <location filename="../mainwindow.cpp" line="5082"/>
+        <location filename="../mainwindow.cpp" line="5129"/>
+        <location filename="../mainwindow.cpp" line="5181"/>
+        <location filename="../mainwindow.cpp" line="5209"/>
+        <location filename="../mainwindow.cpp" line="5210"/>
+        <location filename="../mainwindow.cpp" line="5404"/>
+        <location filename="../mainwindow.cpp" line="5405"/>
+        <location filename="../mainwindow.cpp" line="5415"/>
+        <location filename="../mainwindow.cpp" line="5424"/>
+        <location filename="../mainwindow.cpp" line="5490"/>
+        <location filename="../mainwindow.cpp" line="5491"/>
+        <location filename="../mainwindow.cpp" line="5501"/>
+        <location filename="../mainwindow.cpp" line="5510"/>
+        <location filename="../mainwindow.cpp" line="5582"/>
+        <location filename="../mainwindow.cpp" line="5583"/>
+        <location filename="../mainwindow.cpp" line="5593"/>
+        <location filename="../mainwindow.cpp" line="5602"/>
+        <location filename="../mainwindow.cpp" line="5654"/>
+        <location filename="../mainwindow.cpp" line="5755"/>
+        <location filename="../mainwindow.cpp" line="5798"/>
+        <location filename="../mainwindow.cpp" line="5799"/>
         <source>Ohm</source>
         <translation>Ω</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="479"/>
-        <location filename="../mainwindow.cpp" line="2043"/>
-        <location filename="../mainwindow.cpp" line="2181"/>
-        <location filename="../mainwindow.cpp" line="6021"/>
+        <location filename="../mainwindow.cpp" line="499"/>
+        <location filename="../mainwindow.cpp" line="2164"/>
+        <location filename="../mainwindow.cpp" line="2303"/>
+        <location filename="../mainwindow.cpp" line="6253"/>
         <source>Confirmation</source>
         <translation>Επιβεβαίωση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="480"/>
-        <location filename="../mainwindow.cpp" line="2044"/>
-        <location filename="../mainwindow.cpp" line="2182"/>
-        <location filename="../mainwindow.cpp" line="6022"/>
+        <location filename="../mainwindow.cpp" line="500"/>
+        <location filename="../mainwindow.cpp" line="2165"/>
+        <location filename="../mainwindow.cpp" line="2304"/>
+        <location filename="../mainwindow.cpp" line="6254"/>
         <source>Are you sure?</source>
         <translation>Είσαι σίγουρος?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="483"/>
-        <location filename="../mainwindow.cpp" line="2047"/>
-        <location filename="../mainwindow.cpp" line="2185"/>
-        <location filename="../mainwindow.cpp" line="6025"/>
+        <location filename="../mainwindow.cpp" line="503"/>
+        <location filename="../mainwindow.cpp" line="2168"/>
+        <location filename="../mainwindow.cpp" line="2307"/>
+        <location filename="../mainwindow.cpp" line="6257"/>
         <source>Yes</source>
         <translation>Ναί</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="484"/>
-        <location filename="../mainwindow.cpp" line="2048"/>
-        <location filename="../mainwindow.cpp" line="2186"/>
-        <location filename="../mainwindow.cpp" line="6026"/>
+        <location filename="../mainwindow.cpp" line="504"/>
+        <location filename="../mainwindow.cpp" line="2169"/>
+        <location filename="../mainwindow.cpp" line="2308"/>
+        <location filename="../mainwindow.cpp" line="6258"/>
         <source>No</source>
         <translation>Οχι</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="754"/>
+        <location filename="../mainwindow.cpp" line="855"/>
         <source>Something gone wrong</source>
         <translation>Κάτι πήγε στραβά</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1058"/>
-        <location filename="../mainwindow.cpp" line="1649"/>
+        <location filename="../mainwindow.cpp" line="1166"/>
+        <location filename="../mainwindow.cpp" line="1767"/>
         <source>Number of sides of the former</source>
         <translation>Πόσες άκρες</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1219"/>
-        <location filename="../mainwindow.cpp" line="1822"/>
+        <location filename="../mainwindow.cpp" line="1327"/>
+        <location filename="../mainwindow.cpp" line="1940"/>
         <source>Former width</source>
         <translation>Πρώην πλάτος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1220"/>
-        <location filename="../mainwindow.cpp" line="1823"/>
+        <location filename="../mainwindow.cpp" line="1328"/>
+        <location filename="../mainwindow.cpp" line="1941"/>
         <source>Former height</source>
         <translation>Πρώην ύψος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1271"/>
-        <location filename="../mainwindow.cpp" line="1881"/>
+        <location filename="../mainwindow.cpp" line="1379"/>
+        <location filename="../mainwindow.cpp" line="1999"/>
         <source>Foil width</source>
         <translation>Πλάτος αλουμινίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1272"/>
-        <location filename="../mainwindow.cpp" line="1882"/>
+        <location filename="../mainwindow.cpp" line="1380"/>
+        <location filename="../mainwindow.cpp" line="2000"/>
         <source>Foil thickness</source>
         <translation>Πάχος φύλλου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1318"/>
-        <location filename="../mainwindow.cpp" line="1935"/>
+        <location filename="../mainwindow.cpp" line="1428"/>
+        <location filename="../mainwindow.cpp" line="2048"/>
+        <source>Magnetic permeability</source>
+        <translation>Μαγνητική διαπερατότητα</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1429"/>
+        <location filename="../mainwindow.cpp" line="2056"/>
         <source>Chamfer</source>
         <translation>Λοξότμηση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1402"/>
+        <location filename="../mainwindow.cpp" line="1513"/>
         <source>Gap between turns</source>
         <translation>Διάκενο μεταξύ στροφών</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1422"/>
+        <location filename="../mainwindow.cpp" line="1533"/>
         <source>Number of turns</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5123"/>
-        <location filename="../mainwindow.cpp" line="5944"/>
-        <location filename="../mainwindow.cpp" line="5974"/>
+        <location filename="../mainwindow.cpp" line="5240"/>
+        <location filename="../mainwindow.cpp" line="5822"/>
+        <source>Effective magnetic path length</source>
+        <translation>Αποτελεσματικό μήκος μαγνητικής διαδρομής</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="5243"/>
+        <location filename="../mainwindow.cpp" line="5825"/>
+        <source>Effective area of magnetic path</source>
+        <translation>Αποτελεσματική περιοχή της μαγνητικής διαδρομής</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="5246"/>
+        <location filename="../mainwindow.cpp" line="5828"/>
+        <source>Effective volume</source>
+        <translation>Αποτελεσματική ένταση</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="5306"/>
+        <location filename="../mainwindow.cpp" line="6176"/>
+        <location filename="../mainwindow.cpp" line="6206"/>
         <source>Width of a PCB trace</source>
         <translation>Πλάτος του ενός αγωγού εκτύπωσης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5956"/>
-        <location filename="../mainwindow.cpp" line="5957"/>
-        <location filename="../mainwindow.cpp" line="5971"/>
-        <location filename="../mainwindow.cpp" line="5972"/>
+        <location filename="../mainwindow.cpp" line="6188"/>
+        <location filename="../mainwindow.cpp" line="6189"/>
+        <location filename="../mainwindow.cpp" line="6203"/>
+        <location filename="../mainwindow.cpp" line="6204"/>
         <source>Outside dimension</source>
         <translation>Εξωτερική διάσταση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5685"/>
-        <location filename="../mainwindow.cpp" line="5958"/>
+        <location filename="../mainwindow.cpp" line="5886"/>
+        <location filename="../mainwindow.cpp" line="6190"/>
         <source>Inside dimension</source>
         <translation>Εσωτερική διάσταση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2684"/>
+        <location filename="../mainwindow.cpp" line="2841"/>
         <source>mm</source>
         <translation>mm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2745"/>
-        <location filename="../mainwindow.cpp" line="2754"/>
-        <location filename="../mainwindow.cpp" line="2771"/>
-        <location filename="../mainwindow.cpp" line="2776"/>
-        <location filename="../mainwindow.cpp" line="2782"/>
-        <location filename="../mainwindow.cpp" line="2800"/>
-        <location filename="../mainwindow.cpp" line="2825"/>
-        <location filename="../mainwindow.cpp" line="2845"/>
-        <location filename="../mainwindow.cpp" line="2862"/>
-        <location filename="../mainwindow.cpp" line="2868"/>
-        <location filename="../mainwindow.cpp" line="2873"/>
-        <location filename="../mainwindow.cpp" line="2879"/>
-        <location filename="../mainwindow.cpp" line="2890"/>
+        <location filename="../mainwindow.cpp" line="2902"/>
         <location filename="../mainwindow.cpp" line="2911"/>
-        <location filename="../mainwindow.cpp" line="2917"/>
-        <location filename="../mainwindow.cpp" line="2929"/>
-        <location filename="../mainwindow.cpp" line="2941"/>
-        <location filename="../mainwindow.cpp" line="2946"/>
-        <location filename="../mainwindow.cpp" line="2951"/>
-        <location filename="../mainwindow.cpp" line="2956"/>
-        <location filename="../mainwindow.cpp" line="2973"/>
-        <location filename="../mainwindow.cpp" line="2979"/>
-        <location filename="../mainwindow.cpp" line="2985"/>
-        <location filename="../mainwindow.cpp" line="2996"/>
-        <location filename="../mainwindow.cpp" line="3014"/>
-        <location filename="../mainwindow.cpp" line="3022"/>
-        <location filename="../mainwindow.cpp" line="3038"/>
+        <location filename="../mainwindow.cpp" line="2928"/>
+        <location filename="../mainwindow.cpp" line="2933"/>
+        <location filename="../mainwindow.cpp" line="2939"/>
+        <location filename="../mainwindow.cpp" line="2958"/>
+        <location filename="../mainwindow.cpp" line="2983"/>
+        <location filename="../mainwindow.cpp" line="3003"/>
+        <location filename="../mainwindow.cpp" line="3020"/>
+        <location filename="../mainwindow.cpp" line="3026"/>
+        <location filename="../mainwindow.cpp" line="3031"/>
+        <location filename="../mainwindow.cpp" line="3037"/>
         <location filename="../mainwindow.cpp" line="3048"/>
-        <location filename="../mainwindow.cpp" line="3053"/>
-        <location filename="../mainwindow.cpp" line="3058"/>
-        <location filename="../mainwindow.cpp" line="3074"/>
-        <location filename="../mainwindow.cpp" line="3079"/>
-        <location filename="../mainwindow.cpp" line="3105"/>
+        <location filename="../mainwindow.cpp" line="3069"/>
+        <location filename="../mainwindow.cpp" line="3075"/>
+        <location filename="../mainwindow.cpp" line="3087"/>
+        <location filename="../mainwindow.cpp" line="3099"/>
+        <location filename="../mainwindow.cpp" line="3104"/>
+        <location filename="../mainwindow.cpp" line="3109"/>
         <location filename="../mainwindow.cpp" line="3114"/>
         <location filename="../mainwindow.cpp" line="3131"/>
-        <location filename="../mainwindow.cpp" line="3136"/>
-        <location filename="../mainwindow.cpp" line="3142"/>
-        <location filename="../mainwindow.cpp" line="3147"/>
-        <location filename="../mainwindow.cpp" line="3171"/>
-        <location filename="../mainwindow.cpp" line="3188"/>
-        <location filename="../mainwindow.cpp" line="3194"/>
-        <location filename="../mainwindow.cpp" line="3199"/>
+        <location filename="../mainwindow.cpp" line="3137"/>
+        <location filename="../mainwindow.cpp" line="3143"/>
+        <location filename="../mainwindow.cpp" line="3154"/>
+        <location filename="../mainwindow.cpp" line="3172"/>
+        <location filename="../mainwindow.cpp" line="3180"/>
+        <location filename="../mainwindow.cpp" line="3196"/>
         <location filename="../mainwindow.cpp" line="3206"/>
-        <location filename="../mainwindow.cpp" line="3209"/>
-        <location filename="../mainwindow.cpp" line="3215"/>
-        <location filename="../mainwindow.cpp" line="3234"/>
-        <location filename="../mainwindow.cpp" line="3240"/>
-        <location filename="../mainwindow.cpp" line="3246"/>
-        <location filename="../mainwindow.cpp" line="3249"/>
-        <location filename="../mainwindow.cpp" line="3255"/>
-        <location filename="../mainwindow.cpp" line="3260"/>
-        <location filename="../mainwindow.cpp" line="3265"/>
-        <location filename="../mainwindow.cpp" line="3270"/>
-        <location filename="../mainwindow.cpp" line="3281"/>
-        <location filename="../mainwindow.cpp" line="3301"/>
-        <location filename="../mainwindow.cpp" line="3307"/>
-        <location filename="../mainwindow.cpp" line="3319"/>
+        <location filename="../mainwindow.cpp" line="3211"/>
+        <location filename="../mainwindow.cpp" line="3216"/>
+        <location filename="../mainwindow.cpp" line="3232"/>
+        <location filename="../mainwindow.cpp" line="3237"/>
+        <location filename="../mainwindow.cpp" line="3263"/>
+        <location filename="../mainwindow.cpp" line="3272"/>
+        <location filename="../mainwindow.cpp" line="3289"/>
+        <location filename="../mainwindow.cpp" line="3294"/>
+        <location filename="../mainwindow.cpp" line="3300"/>
+        <location filename="../mainwindow.cpp" line="3305"/>
         <location filename="../mainwindow.cpp" line="3329"/>
-        <location filename="../mainwindow.cpp" line="3341"/>
-        <location filename="../mainwindow.cpp" line="3353"/>
-        <location filename="../mainwindow.cpp" line="3358"/>
-        <location filename="../mainwindow.cpp" line="3363"/>
-        <location filename="../mainwindow.cpp" line="3379"/>
-        <location filename="../mainwindow.cpp" line="3390"/>
-        <location filename="../mainwindow.cpp" line="3401"/>
+        <location filename="../mainwindow.cpp" line="3346"/>
+        <location filename="../mainwindow.cpp" line="3352"/>
+        <location filename="../mainwindow.cpp" line="3357"/>
+        <location filename="../mainwindow.cpp" line="3364"/>
+        <location filename="../mainwindow.cpp" line="3367"/>
+        <location filename="../mainwindow.cpp" line="3373"/>
+        <location filename="../mainwindow.cpp" line="3392"/>
+        <location filename="../mainwindow.cpp" line="3398"/>
+        <location filename="../mainwindow.cpp" line="3404"/>
+        <location filename="../mainwindow.cpp" line="3407"/>
         <location filename="../mainwindow.cpp" line="3413"/>
         <location filename="../mainwindow.cpp" line="3418"/>
-        <location filename="../mainwindow.cpp" line="3434"/>
+        <location filename="../mainwindow.cpp" line="3423"/>
+        <location filename="../mainwindow.cpp" line="3428"/>
         <location filename="../mainwindow.cpp" line="3439"/>
-        <location filename="../mainwindow.cpp" line="3455"/>
-        <location filename="../mainwindow.cpp" line="3498"/>
-        <location filename="../mainwindow.cpp" line="3543"/>
-        <location filename="../mainwindow.cpp" line="3589"/>
-        <location filename="../mainwindow.cpp" line="3641"/>
-        <location filename="../mainwindow.cpp" line="3695"/>
-        <location filename="../mainwindow.cpp" line="3737"/>
-        <location filename="../mainwindow.cpp" line="3779"/>
-        <location filename="../mainwindow.cpp" line="3814"/>
-        <location filename="../mainwindow.cpp" line="3859"/>
-        <location filename="../mainwindow.cpp" line="3899"/>
-        <location filename="../mainwindow.cpp" line="3911"/>
-        <location filename="../mainwindow.cpp" line="3947"/>
-        <location filename="../mainwindow.cpp" line="3995"/>
-        <location filename="../mainwindow.cpp" line="4038"/>
-        <location filename="../mainwindow.cpp" line="4083"/>
-        <location filename="../mainwindow.cpp" line="4134"/>
-        <location filename="../mainwindow.cpp" line="4197"/>
-        <location filename="../mainwindow.cpp" line="4257"/>
-        <location filename="../mainwindow.cpp" line="4295"/>
-        <location filename="../mainwindow.cpp" line="4335"/>
-        <location filename="../mainwindow.cpp" line="4373"/>
-        <location filename="../mainwindow.cpp" line="4413"/>
-        <location filename="../mainwindow.cpp" line="4420"/>
-        <location filename="../mainwindow.cpp" line="4459"/>
-        <location filename="../mainwindow.cpp" line="4503"/>
-        <location filename="../mainwindow.cpp" line="4515"/>
-        <location filename="../mainwindow.cpp" line="4527"/>
-        <location filename="../mainwindow.cpp" line="4539"/>
+        <location filename="../mainwindow.cpp" line="3459"/>
+        <location filename="../mainwindow.cpp" line="3465"/>
+        <location filename="../mainwindow.cpp" line="3477"/>
+        <location filename="../mainwindow.cpp" line="3487"/>
+        <location filename="../mainwindow.cpp" line="3499"/>
+        <location filename="../mainwindow.cpp" line="3511"/>
+        <location filename="../mainwindow.cpp" line="3516"/>
+        <location filename="../mainwindow.cpp" line="3521"/>
+        <location filename="../mainwindow.cpp" line="3537"/>
+        <location filename="../mainwindow.cpp" line="3548"/>
+        <location filename="../mainwindow.cpp" line="3559"/>
+        <location filename="../mainwindow.cpp" line="3571"/>
+        <location filename="../mainwindow.cpp" line="3576"/>
+        <location filename="../mainwindow.cpp" line="3592"/>
+        <location filename="../mainwindow.cpp" line="3597"/>
+        <location filename="../mainwindow.cpp" line="3613"/>
+        <location filename="../mainwindow.cpp" line="3656"/>
+        <location filename="../mainwindow.cpp" line="3701"/>
+        <location filename="../mainwindow.cpp" line="3747"/>
+        <location filename="../mainwindow.cpp" line="3799"/>
+        <location filename="../mainwindow.cpp" line="3853"/>
+        <location filename="../mainwindow.cpp" line="3895"/>
+        <location filename="../mainwindow.cpp" line="3937"/>
+        <location filename="../mainwindow.cpp" line="3972"/>
+        <location filename="../mainwindow.cpp" line="4017"/>
+        <location filename="../mainwindow.cpp" line="4057"/>
+        <location filename="../mainwindow.cpp" line="4069"/>
+        <location filename="../mainwindow.cpp" line="4109"/>
+        <location filename="../mainwindow.cpp" line="4157"/>
+        <location filename="../mainwindow.cpp" line="4200"/>
+        <location filename="../mainwindow.cpp" line="4245"/>
+        <location filename="../mainwindow.cpp" line="4296"/>
+        <location filename="../mainwindow.cpp" line="4359"/>
+        <location filename="../mainwindow.cpp" line="4419"/>
+        <location filename="../mainwindow.cpp" line="4457"/>
+        <location filename="../mainwindow.cpp" line="4497"/>
+        <location filename="../mainwindow.cpp" line="4535"/>
+        <location filename="../mainwindow.cpp" line="4575"/>
+        <location filename="../mainwindow.cpp" line="4582"/>
+        <location filename="../mainwindow.cpp" line="4624"/>
+        <location filename="../mainwindow.cpp" line="4668"/>
+        <location filename="../mainwindow.cpp" line="4680"/>
+        <location filename="../mainwindow.cpp" line="4692"/>
+        <location filename="../mainwindow.cpp" line="4704"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Μία ή περισσότερες εισόδους έχουν παράνομη μορφή!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3043"/>
-        <location filename="../mainwindow.cpp" line="3384"/>
-        <location filename="../mainwindow.cpp" line="3657"/>
-        <location filename="../mainwindow.cpp" line="4150"/>
+        <location filename="../mainwindow.cpp" line="3201"/>
+        <location filename="../mainwindow.cpp" line="3542"/>
+        <location filename="../mainwindow.cpp" line="3815"/>
+        <location filename="../mainwindow.cpp" line="4312"/>
         <source>The number of sides must be integer and at least three!</source>
         <translation>Ο αριθμός των πλευρών πρέπει να είναι ακέραιος και τουλάχιστον τρεις!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4682"/>
-        <location filename="../mainwindow.cpp" line="4769"/>
-        <location filename="../mainwindow.cpp" line="4858"/>
-        <location filename="../mainwindow.cpp" line="5250"/>
-        <location filename="../mainwindow.cpp" line="5336"/>
-        <location filename="../mainwindow.cpp" line="5428"/>
+        <location filename="../mainwindow.cpp" line="4847"/>
+        <location filename="../mainwindow.cpp" line="4934"/>
+        <location filename="../mainwindow.cpp" line="5023"/>
+        <location filename="../mainwindow.cpp" line="5433"/>
+        <location filename="../mainwindow.cpp" line="5519"/>
+        <location filename="../mainwindow.cpp" line="5611"/>
         <source>Input data for LTSpice</source>
         <translation>Εισαγωγή δεδομένων για LTSpice</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5042"/>
-        <location filename="../mainwindow.cpp" line="5611"/>
+        <location filename="../mainwindow.cpp" line="5207"/>
+        <location filename="../mainwindow.cpp" line="5794"/>
         <source>Length of the foil</source>
         <translation>Μήκος του φύλλου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5127"/>
-        <location filename="../mainwindow.cpp" line="5691"/>
+        <location filename="../mainwindow.cpp" line="5310"/>
+        <location filename="../mainwindow.cpp" line="5892"/>
         <source>Invalid input parameter combination</source>
         <translation>Μη έγκυρος συνδυασμός παραμέτρων εισαγωγής</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6022"/>
+        <location filename="../mainwindow.cpp" line="6254"/>
         <source> calculation will be deleted</source>
         <translation> ο υπολογισμός θα διαγραφεί</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="686"/>
+        <location filename="../mainwindow.cpp" line="781"/>
         <source>Delete this result</source>
         <translation>Διαγράψτε αυτό το αποτέλεσμα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5930"/>
-        <location filename="../mainwindow.cpp" line="5945"/>
-        <location filename="../mainwindow.cpp" line="5959"/>
-        <location filename="../mainwindow.cpp" line="5975"/>
+        <location filename="../mainwindow.cpp" line="6162"/>
+        <location filename="../mainwindow.cpp" line="6177"/>
+        <location filename="../mainwindow.cpp" line="6191"/>
+        <location filename="../mainwindow.cpp" line="6207"/>
         <source>PCB trace thickness</source>
         <translation>Πάχος ίχνους PCB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4574"/>
+        <location filename="../mainwindow.cpp" line="4739"/>
         <source>Wrong data was entered</source>
         <translation>Λάθος δεδομένα έχουν καταχωρηθεί</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4631"/>
-        <location filename="../mainwindow.cpp" line="4728"/>
-        <location filename="../mainwindow.cpp" line="4817"/>
-        <location filename="../mainwindow.cpp" line="4904"/>
-        <location filename="../mainwindow.cpp" line="4951"/>
-        <location filename="../mainwindow.cpp" line="5002"/>
-        <location filename="../mainwindow.cpp" line="5072"/>
-        <location filename="../mainwindow.cpp" line="5154"/>
-        <location filename="../mainwindow.cpp" line="5209"/>
-        <location filename="../mainwindow.cpp" line="5295"/>
-        <location filename="../mainwindow.cpp" line="5387"/>
-        <location filename="../mainwindow.cpp" line="5477"/>
-        <location filename="../mainwindow.cpp" line="5560"/>
-        <location filename="../mainwindow.cpp" line="5715"/>
+        <location filename="../mainwindow.cpp" line="4796"/>
+        <location filename="../mainwindow.cpp" line="4893"/>
+        <location filename="../mainwindow.cpp" line="4982"/>
+        <location filename="../mainwindow.cpp" line="5069"/>
+        <location filename="../mainwindow.cpp" line="5116"/>
+        <location filename="../mainwindow.cpp" line="5167"/>
+        <location filename="../mainwindow.cpp" line="5237"/>
+        <location filename="../mainwindow.cpp" line="5337"/>
+        <location filename="../mainwindow.cpp" line="5392"/>
+        <location filename="../mainwindow.cpp" line="5478"/>
+        <location filename="../mainwindow.cpp" line="5570"/>
+        <location filename="../mainwindow.cpp" line="5660"/>
+        <location filename="../mainwindow.cpp" line="5743"/>
+        <location filename="../mainwindow.cpp" line="5916"/>
         <source>Length of wire without leads</source>
         <translation>Μήκος του σύρματος χωρίς άκρα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4643"/>
-        <location filename="../mainwindow.cpp" line="4730"/>
-        <location filename="../mainwindow.cpp" line="4819"/>
-        <location filename="../mainwindow.cpp" line="5211"/>
-        <location filename="../mainwindow.cpp" line="5297"/>
-        <location filename="../mainwindow.cpp" line="5389"/>
+        <location filename="../mainwindow.cpp" line="4808"/>
+        <location filename="../mainwindow.cpp" line="4895"/>
+        <location filename="../mainwindow.cpp" line="4984"/>
+        <location filename="../mainwindow.cpp" line="5394"/>
+        <location filename="../mainwindow.cpp" line="5480"/>
+        <location filename="../mainwindow.cpp" line="5572"/>
         <source>Length of winding</source>
         <translation>Μήκος της περιέλιξης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4652"/>
-        <location filename="../mainwindow.cpp" line="4738"/>
-        <location filename="../mainwindow.cpp" line="4827"/>
-        <location filename="../mainwindow.cpp" line="4918"/>
-        <location filename="../mainwindow.cpp" line="4965"/>
-        <location filename="../mainwindow.cpp" line="5015"/>
-        <location filename="../mainwindow.cpp" line="5219"/>
-        <location filename="../mainwindow.cpp" line="5303"/>
-        <location filename="../mainwindow.cpp" line="5395"/>
-        <location filename="../mainwindow.cpp" line="5487"/>
-        <location filename="../mainwindow.cpp" line="5574"/>
+        <location filename="../mainwindow.cpp" line="4817"/>
+        <location filename="../mainwindow.cpp" line="4903"/>
+        <location filename="../mainwindow.cpp" line="4992"/>
+        <location filename="../mainwindow.cpp" line="5083"/>
+        <location filename="../mainwindow.cpp" line="5130"/>
+        <location filename="../mainwindow.cpp" line="5180"/>
+        <location filename="../mainwindow.cpp" line="5402"/>
+        <location filename="../mainwindow.cpp" line="5486"/>
+        <location filename="../mainwindow.cpp" line="5578"/>
+        <location filename="../mainwindow.cpp" line="5670"/>
+        <location filename="../mainwindow.cpp" line="5757"/>
         <source>Weight of wire</source>
         <translation>Βάρος του καλωδίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4652"/>
-        <location filename="../mainwindow.cpp" line="4738"/>
-        <location filename="../mainwindow.cpp" line="4827"/>
-        <location filename="../mainwindow.cpp" line="4918"/>
-        <location filename="../mainwindow.cpp" line="4965"/>
-        <location filename="../mainwindow.cpp" line="5015"/>
-        <location filename="../mainwindow.cpp" line="5219"/>
-        <location filename="../mainwindow.cpp" line="5303"/>
-        <location filename="../mainwindow.cpp" line="5395"/>
-        <location filename="../mainwindow.cpp" line="5487"/>
-        <location filename="../mainwindow.cpp" line="5574"/>
+        <location filename="../mainwindow.cpp" line="4817"/>
+        <location filename="../mainwindow.cpp" line="4903"/>
+        <location filename="../mainwindow.cpp" line="4992"/>
+        <location filename="../mainwindow.cpp" line="5083"/>
+        <location filename="../mainwindow.cpp" line="5130"/>
+        <location filename="../mainwindow.cpp" line="5180"/>
+        <location filename="../mainwindow.cpp" line="5402"/>
+        <location filename="../mainwindow.cpp" line="5486"/>
+        <location filename="../mainwindow.cpp" line="5578"/>
+        <location filename="../mainwindow.cpp" line="5670"/>
+        <location filename="../mainwindow.cpp" line="5757"/>
         <source>g</source>
         <translation>g</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4655"/>
-        <location filename="../mainwindow.cpp" line="4741"/>
-        <location filename="../mainwindow.cpp" line="4830"/>
-        <location filename="../mainwindow.cpp" line="5222"/>
-        <location filename="../mainwindow.cpp" line="5308"/>
-        <location filename="../mainwindow.cpp" line="5400"/>
+        <location filename="../mainwindow.cpp" line="4820"/>
+        <location filename="../mainwindow.cpp" line="4906"/>
+        <location filename="../mainwindow.cpp" line="4995"/>
+        <location filename="../mainwindow.cpp" line="5405"/>
+        <location filename="../mainwindow.cpp" line="5491"/>
+        <location filename="../mainwindow.cpp" line="5583"/>
         <source>Reactance of the coil</source>
         <translation>Άεργη αντίσταση πηνίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4658"/>
-        <location filename="../mainwindow.cpp" line="4744"/>
-        <location filename="../mainwindow.cpp" line="4833"/>
-        <location filename="../mainwindow.cpp" line="5225"/>
-        <location filename="../mainwindow.cpp" line="5311"/>
-        <location filename="../mainwindow.cpp" line="5403"/>
+        <location filename="../mainwindow.cpp" line="4823"/>
+        <location filename="../mainwindow.cpp" line="4909"/>
+        <location filename="../mainwindow.cpp" line="4998"/>
+        <location filename="../mainwindow.cpp" line="5408"/>
+        <location filename="../mainwindow.cpp" line="5494"/>
+        <location filename="../mainwindow.cpp" line="5586"/>
         <source>Self capacitance</source>
         <translation>Αυτο-χωρητικότητα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4663"/>
-        <location filename="../mainwindow.cpp" line="4749"/>
-        <location filename="../mainwindow.cpp" line="4838"/>
-        <location filename="../mainwindow.cpp" line="5125"/>
-        <location filename="../mainwindow.cpp" line="5230"/>
-        <location filename="../mainwindow.cpp" line="5316"/>
-        <location filename="../mainwindow.cpp" line="5408"/>
-        <location filename="../mainwindow.cpp" line="5689"/>
+        <location filename="../mainwindow.cpp" line="4828"/>
+        <location filename="../mainwindow.cpp" line="4914"/>
+        <location filename="../mainwindow.cpp" line="5003"/>
+        <location filename="../mainwindow.cpp" line="5308"/>
+        <location filename="../mainwindow.cpp" line="5413"/>
+        <location filename="../mainwindow.cpp" line="5499"/>
+        <location filename="../mainwindow.cpp" line="5591"/>
+        <location filename="../mainwindow.cpp" line="5890"/>
         <source>Coil constructive Q-factor</source>
         <translation>Συντελεστής  Q-Πηνίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4665"/>
-        <location filename="../mainwindow.cpp" line="4751"/>
-        <location filename="../mainwindow.cpp" line="4840"/>
-        <location filename="../mainwindow.cpp" line="5232"/>
-        <location filename="../mainwindow.cpp" line="5318"/>
-        <location filename="../mainwindow.cpp" line="5410"/>
+        <location filename="../mainwindow.cpp" line="4830"/>
+        <location filename="../mainwindow.cpp" line="4916"/>
+        <location filename="../mainwindow.cpp" line="5005"/>
+        <location filename="../mainwindow.cpp" line="5415"/>
+        <location filename="../mainwindow.cpp" line="5501"/>
+        <location filename="../mainwindow.cpp" line="5593"/>
         <source>Loss resistance</source>
         <translation>Απώλεια αντοχής</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4668"/>
-        <location filename="../mainwindow.cpp" line="4754"/>
-        <location filename="../mainwindow.cpp" line="4843"/>
-        <location filename="../mainwindow.cpp" line="5235"/>
-        <location filename="../mainwindow.cpp" line="5321"/>
-        <location filename="../mainwindow.cpp" line="5413"/>
+        <location filename="../mainwindow.cpp" line="4833"/>
+        <location filename="../mainwindow.cpp" line="4919"/>
+        <location filename="../mainwindow.cpp" line="5008"/>
+        <location filename="../mainwindow.cpp" line="5418"/>
+        <location filename="../mainwindow.cpp" line="5504"/>
+        <location filename="../mainwindow.cpp" line="5596"/>
         <source>Additional results for parallel LC circuit at the working frequency</source>
         <translation>Πρόσθετα αποτελέσματα για παράλληλο κύκλωμα LC στη συχνότητα εργασίας</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2357"/>
-        <location filename="../mainwindow.cpp" line="2367"/>
-        <location filename="../mainwindow.cpp" line="4531"/>
-        <location filename="../mainwindow.cpp" line="4546"/>
-        <location filename="../mainwindow.cpp" line="4670"/>
-        <location filename="../mainwindow.cpp" line="4756"/>
-        <location filename="../mainwindow.cpp" line="4845"/>
-        <location filename="../mainwindow.cpp" line="5237"/>
-        <location filename="../mainwindow.cpp" line="5323"/>
-        <location filename="../mainwindow.cpp" line="5415"/>
+        <location filename="../mainwindow.cpp" line="2488"/>
+        <location filename="../mainwindow.cpp" line="2498"/>
+        <location filename="../mainwindow.cpp" line="4696"/>
+        <location filename="../mainwindow.cpp" line="4711"/>
+        <location filename="../mainwindow.cpp" line="4835"/>
+        <location filename="../mainwindow.cpp" line="4921"/>
+        <location filename="../mainwindow.cpp" line="5010"/>
+        <location filename="../mainwindow.cpp" line="5420"/>
+        <location filename="../mainwindow.cpp" line="5506"/>
+        <location filename="../mainwindow.cpp" line="5598"/>
         <source>Circuit capacitance</source>
         <translation>χωρητικότητα κυκλώματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4676"/>
-        <location filename="../mainwindow.cpp" line="4763"/>
-        <location filename="../mainwindow.cpp" line="4852"/>
-        <location filename="../mainwindow.cpp" line="5244"/>
-        <location filename="../mainwindow.cpp" line="5330"/>
-        <location filename="../mainwindow.cpp" line="5422"/>
+        <location filename="../mainwindow.cpp" line="4841"/>
+        <location filename="../mainwindow.cpp" line="4928"/>
+        <location filename="../mainwindow.cpp" line="5017"/>
+        <location filename="../mainwindow.cpp" line="5427"/>
+        <location filename="../mainwindow.cpp" line="5513"/>
+        <location filename="../mainwindow.cpp" line="5605"/>
         <source>Equivalent resistance</source>
         <translation>Ισοδύναμη αντίσταση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4678"/>
-        <location filename="../mainwindow.cpp" line="4765"/>
-        <location filename="../mainwindow.cpp" line="4854"/>
-        <location filename="../mainwindow.cpp" line="5246"/>
-        <location filename="../mainwindow.cpp" line="5332"/>
-        <location filename="../mainwindow.cpp" line="5424"/>
+        <location filename="../mainwindow.cpp" line="4843"/>
+        <location filename="../mainwindow.cpp" line="4930"/>
+        <location filename="../mainwindow.cpp" line="5019"/>
+        <location filename="../mainwindow.cpp" line="5429"/>
+        <location filename="../mainwindow.cpp" line="5515"/>
+        <location filename="../mainwindow.cpp" line="5607"/>
         <source>Bandwidth</source>
         <translation>εύρος ζώνης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4678"/>
-        <location filename="../mainwindow.cpp" line="4765"/>
-        <location filename="../mainwindow.cpp" line="4854"/>
-        <location filename="../mainwindow.cpp" line="5246"/>
-        <location filename="../mainwindow.cpp" line="5332"/>
-        <location filename="../mainwindow.cpp" line="5424"/>
+        <location filename="../mainwindow.cpp" line="4843"/>
+        <location filename="../mainwindow.cpp" line="4930"/>
+        <location filename="../mainwindow.cpp" line="5019"/>
+        <location filename="../mainwindow.cpp" line="5429"/>
+        <location filename="../mainwindow.cpp" line="5515"/>
+        <location filename="../mainwindow.cpp" line="5607"/>
         <source>kHz</source>
         <translation>kHz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4689"/>
-        <location filename="../mainwindow.cpp" line="4776"/>
-        <location filename="../mainwindow.cpp" line="4865"/>
-        <location filename="../mainwindow.cpp" line="5257"/>
-        <location filename="../mainwindow.cpp" line="5343"/>
-        <location filename="../mainwindow.cpp" line="5435"/>
+        <location filename="../mainwindow.cpp" line="4854"/>
+        <location filename="../mainwindow.cpp" line="4941"/>
+        <location filename="../mainwindow.cpp" line="5030"/>
+        <location filename="../mainwindow.cpp" line="5440"/>
+        <location filename="../mainwindow.cpp" line="5526"/>
+        <location filename="../mainwindow.cpp" line="5618"/>
         <source>Working frequency</source>
         <translation>Συχνότητα λειτουργίας</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4660"/>
-        <location filename="../mainwindow.cpp" line="4689"/>
-        <location filename="../mainwindow.cpp" line="4746"/>
-        <location filename="../mainwindow.cpp" line="4776"/>
-        <location filename="../mainwindow.cpp" line="4835"/>
-        <location filename="../mainwindow.cpp" line="4865"/>
-        <location filename="../mainwindow.cpp" line="5227"/>
-        <location filename="../mainwindow.cpp" line="5257"/>
-        <location filename="../mainwindow.cpp" line="5313"/>
-        <location filename="../mainwindow.cpp" line="5343"/>
-        <location filename="../mainwindow.cpp" line="5405"/>
-        <location filename="../mainwindow.cpp" line="5435"/>
+        <location filename="../mainwindow.cpp" line="4825"/>
+        <location filename="../mainwindow.cpp" line="4854"/>
+        <location filename="../mainwindow.cpp" line="4911"/>
+        <location filename="../mainwindow.cpp" line="4941"/>
+        <location filename="../mainwindow.cpp" line="5000"/>
+        <location filename="../mainwindow.cpp" line="5030"/>
+        <location filename="../mainwindow.cpp" line="5410"/>
+        <location filename="../mainwindow.cpp" line="5440"/>
+        <location filename="../mainwindow.cpp" line="5496"/>
+        <location filename="../mainwindow.cpp" line="5526"/>
+        <location filename="../mainwindow.cpp" line="5588"/>
+        <location filename="../mainwindow.cpp" line="5618"/>
         <source>Coil self-resonance frequency</source>
         <translation>Συχνότητα αποσυντονισμού πηνίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1675"/>
-        <location filename="../mainwindow.cpp" line="1710"/>
-        <location filename="../mainwindow.cpp" line="1760"/>
-        <location filename="../mainwindow.cpp" line="1790"/>
-        <location filename="../mainwindow.cpp" line="1825"/>
-        <location filename="../mainwindow.cpp" line="2655"/>
-        <location filename="../mainwindow.cpp" line="2666"/>
-        <location filename="../mainwindow.cpp" line="4894"/>
-        <location filename="../mainwindow.cpp" line="4941"/>
-        <location filename="../mainwindow.cpp" line="4990"/>
-        <location filename="../mainwindow.cpp" line="5468"/>
-        <location filename="../mainwindow.cpp" line="5553"/>
+        <location filename="../mainwindow.cpp" line="1793"/>
+        <location filename="../mainwindow.cpp" line="1828"/>
+        <location filename="../mainwindow.cpp" line="1878"/>
+        <location filename="../mainwindow.cpp" line="1908"/>
+        <location filename="../mainwindow.cpp" line="1943"/>
+        <location filename="../mainwindow.cpp" line="2812"/>
+        <location filename="../mainwindow.cpp" line="2823"/>
+        <location filename="../mainwindow.cpp" line="5059"/>
+        <location filename="../mainwindow.cpp" line="5106"/>
+        <location filename="../mainwindow.cpp" line="5155"/>
+        <location filename="../mainwindow.cpp" line="5651"/>
+        <location filename="../mainwindow.cpp" line="5736"/>
         <source>Thickness of the coil</source>
         <translation>Πάχος του πηνίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4898"/>
-        <location filename="../mainwindow.cpp" line="4945"/>
-        <location filename="../mainwindow.cpp" line="4996"/>
+        <location filename="../mainwindow.cpp" line="5063"/>
+        <location filename="../mainwindow.cpp" line="5110"/>
+        <location filename="../mainwindow.cpp" line="5161"/>
         <source>Dimensions of inductor</source>
         <translation>Διαστάσεις του επαγωγέα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1676"/>
-        <location filename="../mainwindow.cpp" line="2679"/>
-        <location filename="../mainwindow.cpp" line="4653"/>
-        <location filename="../mainwindow.cpp" line="4740"/>
-        <location filename="../mainwindow.cpp" line="4829"/>
-        <location filename="../mainwindow.cpp" line="4917"/>
-        <location filename="../mainwindow.cpp" line="4964"/>
-        <location filename="../mainwindow.cpp" line="5016"/>
-        <location filename="../mainwindow.cpp" line="5044"/>
-        <location filename="../mainwindow.cpp" line="5045"/>
-        <location filename="../mainwindow.cpp" line="5221"/>
-        <location filename="../mainwindow.cpp" line="5307"/>
-        <location filename="../mainwindow.cpp" line="5399"/>
-        <location filename="../mainwindow.cpp" line="5471"/>
-        <location filename="../mainwindow.cpp" line="5572"/>
-        <location filename="../mainwindow.cpp" line="5615"/>
-        <location filename="../mainwindow.cpp" line="5616"/>
+        <location filename="../mainwindow.cpp" line="1794"/>
+        <location filename="../mainwindow.cpp" line="2836"/>
+        <location filename="../mainwindow.cpp" line="4818"/>
+        <location filename="../mainwindow.cpp" line="4905"/>
+        <location filename="../mainwindow.cpp" line="4994"/>
+        <location filename="../mainwindow.cpp" line="5082"/>
+        <location filename="../mainwindow.cpp" line="5129"/>
+        <location filename="../mainwindow.cpp" line="5181"/>
+        <location filename="../mainwindow.cpp" line="5209"/>
+        <location filename="../mainwindow.cpp" line="5210"/>
+        <location filename="../mainwindow.cpp" line="5404"/>
+        <location filename="../mainwindow.cpp" line="5490"/>
+        <location filename="../mainwindow.cpp" line="5582"/>
+        <location filename="../mainwindow.cpp" line="5654"/>
+        <location filename="../mainwindow.cpp" line="5755"/>
+        <location filename="../mainwindow.cpp" line="5798"/>
+        <location filename="../mainwindow.cpp" line="5799"/>
         <source>Resistance of the coil</source>
         <translation>Αντίσταση του πηνίου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4676"/>
-        <location filename="../mainwindow.cpp" line="4763"/>
-        <location filename="../mainwindow.cpp" line="4852"/>
-        <location filename="../mainwindow.cpp" line="5244"/>
-        <location filename="../mainwindow.cpp" line="5330"/>
-        <location filename="../mainwindow.cpp" line="5422"/>
+        <location filename="../mainwindow.cpp" line="4841"/>
+        <location filename="../mainwindow.cpp" line="4928"/>
+        <location filename="../mainwindow.cpp" line="5017"/>
+        <location filename="../mainwindow.cpp" line="5427"/>
+        <location filename="../mainwindow.cpp" line="5513"/>
+        <location filename="../mainwindow.cpp" line="5605"/>
         <source>kOhm</source>
         <translation>kOhm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4919"/>
-        <location filename="../mainwindow.cpp" line="4966"/>
-        <location filename="../mainwindow.cpp" line="4989"/>
-        <location filename="../mainwindow.cpp" line="5488"/>
-        <location filename="../mainwindow.cpp" line="5575"/>
+        <location filename="../mainwindow.cpp" line="5084"/>
+        <location filename="../mainwindow.cpp" line="5131"/>
+        <location filename="../mainwindow.cpp" line="5154"/>
+        <location filename="../mainwindow.cpp" line="5671"/>
+        <location filename="../mainwindow.cpp" line="5758"/>
         <source>Number of layers</source>
         <translation>Αριθμός στρώσεων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4967"/>
+        <location filename="../mainwindow.cpp" line="5132"/>
         <source>Number of interlayers</source>
         <translation>Αριθμός ενδιάμεσες στρώσεις</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4695"/>
-        <location filename="../mainwindow.cpp" line="5076"/>
-        <location filename="../mainwindow.cpp" line="5077"/>
+        <location filename="../mainwindow.cpp" line="4860"/>
+        <location filename="../mainwindow.cpp" line="5250"/>
+        <location filename="../mainwindow.cpp" line="5251"/>
         <source>Coil can not be realized</source>
         <translation>Πηνίο δεν μπορεί να υλοποιηθεί</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1674"/>
-        <location filename="../mainwindow.cpp" line="1789"/>
-        <location filename="../mainwindow.cpp" line="2651"/>
-        <location filename="../mainwindow.cpp" line="2662"/>
-        <location filename="../mainwindow.cpp" line="4626"/>
-        <location filename="../mainwindow.cpp" line="4723"/>
-        <location filename="../mainwindow.cpp" line="4812"/>
-        <location filename="../mainwindow.cpp" line="4892"/>
-        <location filename="../mainwindow.cpp" line="4940"/>
-        <location filename="../mainwindow.cpp" line="4988"/>
-        <location filename="../mainwindow.cpp" line="5035"/>
-        <location filename="../mainwindow.cpp" line="5067"/>
-        <location filename="../mainwindow.cpp" line="5120"/>
-        <location filename="../mainwindow.cpp" line="5147"/>
-        <location filename="../mainwindow.cpp" line="5495"/>
-        <location filename="../mainwindow.cpp" line="5524"/>
-        <location filename="../mainwindow.cpp" line="5582"/>
+        <location filename="../mainwindow.cpp" line="1792"/>
+        <location filename="../mainwindow.cpp" line="1907"/>
+        <location filename="../mainwindow.cpp" line="2808"/>
+        <location filename="../mainwindow.cpp" line="2819"/>
+        <location filename="../mainwindow.cpp" line="4791"/>
+        <location filename="../mainwindow.cpp" line="4888"/>
+        <location filename="../mainwindow.cpp" line="4977"/>
+        <location filename="../mainwindow.cpp" line="5057"/>
+        <location filename="../mainwindow.cpp" line="5105"/>
+        <location filename="../mainwindow.cpp" line="5153"/>
+        <location filename="../mainwindow.cpp" line="5200"/>
+        <location filename="../mainwindow.cpp" line="5232"/>
+        <location filename="../mainwindow.cpp" line="5303"/>
+        <location filename="../mainwindow.cpp" line="5330"/>
+        <location filename="../mainwindow.cpp" line="5678"/>
+        <location filename="../mainwindow.cpp" line="5707"/>
+        <location filename="../mainwindow.cpp" line="5765"/>
         <source>Number of turns of the coil</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
@@ -3683,27 +3724,32 @@
         <translation>Επιλέξτε τον τύπο του πυρήνα</translation>
     </message>
     <message>
-        <location filename="../potcore.ui" line="103"/>
+        <location filename="../potcore.ui" line="117"/>
         <source>Reverse calculation</source>
         <translation>Αντίστροφος υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../potcore.ui" line="167"/>
+        <location filename="../potcore.ui" line="124"/>
+        <source>Saturation current</source>
+        <translation>Ρεύμα κορεσμού</translation>
+    </message>
+    <message>
+        <location filename="../potcore.ui" line="200"/>
         <source>Dimensions</source>
         <translation>Διαστάσεις</translation>
     </message>
     <message>
-        <location filename="../potcore.ui" line="466"/>
+        <location filename="../potcore.ui" line="499"/>
         <source>Context help</source>
         <translation>Βοήθεια περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../potcore.ui" line="511"/>
+        <location filename="../potcore.ui" line="544"/>
         <source>Calculate</source>
         <translation>Υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../potcore.ui" line="543"/>
+        <location filename="../potcore.ui" line="576"/>
         <source>Close</source>
         <translation>Κοντά</translation>
     </message>
@@ -3713,127 +3759,127 @@
         <translation>Εθιμο</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="153"/>
+        <location filename="../potcore.cpp" line="155"/>
         <source>Outside diameter</source>
         <translation>Εξωτερική διάμετρος</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="154"/>
+        <location filename="../potcore.cpp" line="156"/>
         <source>Inside diameter</source>
         <translation>Εσωτερική διάμετρος</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="155"/>
+        <location filename="../potcore.cpp" line="157"/>
         <source>Centerpost diameter</source>
         <translation>Διάμετρος κεντρικού σταθμού</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="156"/>
+        <location filename="../potcore.cpp" line="158"/>
         <source>Centerpost hole diameter</source>
         <translation>Διάμετρος οπής στο κέντρο</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="157"/>
+        <location filename="../potcore.cpp" line="159"/>
         <source>Core height</source>
         <translation>Υψος πυρήνας</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="158"/>
+        <location filename="../potcore.cpp" line="160"/>
         <source>Centerpost height</source>
         <translation>Κεντρικό ύψος</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="159"/>
+        <location filename="../potcore.cpp" line="161"/>
         <source>Slot size</source>
         <translation>Μέγεθος αυλακώσεων</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="160"/>
+        <location filename="../potcore.cpp" line="162"/>
         <source>Centerpost gap</source>
         <translation>Κεντρικό κενό</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="161"/>
+        <location filename="../potcore.cpp" line="163"/>
         <source>Magnetic permeability</source>
         <translation>Μαγνητική διαπερατότητα</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="201"/>
+        <location filename="../potcore.cpp" line="205"/>
         <source>Number of turns</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="206"/>
-        <location filename="../potcore.cpp" line="320"/>
+        <location filename="../potcore.cpp" line="210"/>
+        <location filename="../potcore.cpp" line="324"/>
         <source>Inductance</source>
         <translation>Επαγωγή</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="241"/>
-        <location filename="../potcore.cpp" line="255"/>
+        <location filename="../potcore.cpp" line="245"/>
         <location filename="../potcore.cpp" line="259"/>
         <location filename="../potcore.cpp" line="263"/>
         <location filename="../potcore.cpp" line="267"/>
         <location filename="../potcore.cpp" line="271"/>
         <location filename="../potcore.cpp" line="275"/>
-        <location filename="../potcore.cpp" line="282"/>
+        <location filename="../potcore.cpp" line="279"/>
         <location filename="../potcore.cpp" line="286"/>
-        <location filename="../potcore.cpp" line="293"/>
+        <location filename="../potcore.cpp" line="290"/>
         <location filename="../potcore.cpp" line="297"/>
+        <location filename="../potcore.cpp" line="301"/>
         <source>Warning</source>
         <translation>Προειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="241"/>
+        <location filename="../potcore.cpp" line="245"/>
         <source>One or more inputs are empty!</source>
         <translation>Μία ή περισσότερες είσοδοι είναι κενές!</translation>
-    </message>
-    <message>
-        <location filename="../potcore.cpp" line="255"/>
-        <location filename="../potcore.cpp" line="282"/>
-        <location filename="../potcore.cpp" line="293"/>
-        <source>One or more inputs have an illegal format!</source>
-        <translation>Μία ή περισσότερες εισόδους έχουν παράνομη μορφή!</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="259"/>
         <location filename="../potcore.cpp" line="286"/>
         <location filename="../potcore.cpp" line="297"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Μία ή περισσότερες εισόδους έχουν παράνομη μορφή!</translation>
+    </message>
+    <message>
+        <location filename="../potcore.cpp" line="263"/>
+        <location filename="../potcore.cpp" line="290"/>
+        <location filename="../potcore.cpp" line="301"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Μία ή περισσότερες εισόδους είναι ίσες με null!</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="304"/>
+        <location filename="../potcore.cpp" line="308"/>
         <source>Input data</source>
         <translation>Εισαγωγή δεδομένων</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="318"/>
+        <location filename="../potcore.cpp" line="322"/>
         <source>Result</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="323"/>
+        <location filename="../potcore.cpp" line="327"/>
         <source>Number of turns of the coil</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="325"/>
+        <location filename="../potcore.cpp" line="329"/>
         <source>Effective magnetic path length</source>
         <translation>Αποτελεσματικό μήκος μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="328"/>
+        <location filename="../potcore.cpp" line="332"/>
         <source>Effective area of magnetic path</source>
         <translation>Αποτελεσματική περιοχή της μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="331"/>
+        <location filename="../potcore.cpp" line="335"/>
         <source>Effective volume</source>
         <translation>Αποτελεσματική ένταση</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="334"/>
+        <location filename="../potcore.cpp" line="338"/>
         <source>Effective magnetic permeability of the core</source>
         <translation>Αποτελεσματική μαγνητική διαπερατότητα του πυρήνα</translation>
     </message>
@@ -3885,27 +3931,32 @@
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="594"/>
-        <location filename="../rf_toroid.cpp" line="467"/>
+        <source>Show data for LTSpice</source>
+        <translation type="unfinished">Εμφάνιση δεδομένων για το LTSpice</translation>
+    </message>
+    <message>
+        <location filename="../rf_toroid.ui" line="611"/>
+        <location filename="../rf_toroid.cpp" line="471"/>
         <source>Result</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="665"/>
+        <location filename="../rf_toroid.ui" line="682"/>
         <source>Context help</source>
         <translation>Βοήθεια περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="710"/>
+        <location filename="../rf_toroid.ui" line="727"/>
         <source>Export results</source>
         <translation>Εξαγωγή αποτελεσμάτων</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="739"/>
+        <location filename="../rf_toroid.ui" line="756"/>
         <source>Calculate</source>
         <translation>Υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="771"/>
+        <location filename="../rf_toroid.ui" line="788"/>
         <source>Close</source>
         <translation>Κοντά</translation>
     </message>
@@ -3932,7 +3983,7 @@
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="72"/>
-        <location filename="../rf_toroid.cpp" line="416"/>
+        <location filename="../rf_toroid.cpp" line="420"/>
         <source>Self capacitance</source>
         <translation>Αυτο-χωρητικότητα</translation>
     </message>
@@ -3962,76 +4013,76 @@
         <translation>Διάμετρο σύρματος</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="219"/>
+        <location filename="../rf_toroid.cpp" line="223"/>
         <source>Initial magnetic permeability</source>
         <translation>Αρχική μαγνητική διαπερατότητα</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="221"/>
+        <location filename="../rf_toroid.cpp" line="225"/>
         <source>Residual flux density</source>
         <translation>Υπολειπόμενη πυκνότητα ροής</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="222"/>
+        <location filename="../rf_toroid.cpp" line="226"/>
         <source>Coercive Force</source>
         <translation>Καταναγκαστική δύναμη</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="238"/>
+        <location filename="../rf_toroid.cpp" line="242"/>
         <source>The frequency is out of range</source>
         <translation>Η συχνότητα είναι εκτός εύρους</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="363"/>
-        <location filename="../rf_toroid.cpp" line="368"/>
-        <location filename="../rf_toroid.cpp" line="437"/>
-        <location filename="../rf_toroid.cpp" line="442"/>
+        <location filename="../rf_toroid.cpp" line="367"/>
+        <location filename="../rf_toroid.cpp" line="372"/>
+        <location filename="../rf_toroid.cpp" line="441"/>
+        <location filename="../rf_toroid.cpp" line="446"/>
         <source>Warning</source>
         <translation>Προειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="363"/>
+        <location filename="../rf_toroid.cpp" line="367"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Μία ή περισσότερες εισόδους έχουν παράνομη μορφή!</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="368"/>
-        <location filename="../rf_toroid.cpp" line="437"/>
+        <location filename="../rf_toroid.cpp" line="372"/>
+        <location filename="../rf_toroid.cpp" line="441"/>
         <source>One or more dimensions have an invalid value!</source>
         <translation>Μία ή περισσότερες ιδιότητες έχουν μη έγκυρη τιμή!</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="411"/>
+        <location filename="../rf_toroid.cpp" line="415"/>
         <source>Equivalent series inductance</source>
         <translation>Ισοδύναμη επαγωγική σειρά</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="414"/>
+        <location filename="../rf_toroid.cpp" line="418"/>
         <source>Loss resistance</source>
         <translation>Απώλεια αντοχής</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="414"/>
+        <location filename="../rf_toroid.cpp" line="418"/>
         <source>Ohm</source>
         <translation>Ω</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="418"/>
+        <location filename="../rf_toroid.cpp" line="422"/>
         <source>Coil constructive Q-factor</source>
         <translation>Συντελεστής  Q-Πηνίου</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="422"/>
+        <location filename="../rf_toroid.cpp" line="426"/>
         <source>Input data for LTSpice</source>
         <translation>Εισαγωγή δεδομένων για LTSpice</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="442"/>
+        <location filename="../rf_toroid.cpp" line="446"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Μία ή περισσότερες εισόδους είναι ίσες με null!</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.cpp" line="452"/>
+        <location filename="../rf_toroid.cpp" line="456"/>
         <source>Input data</source>
         <translation>Εισαγωγή δεδομένων</translation>
     </message>
@@ -4049,116 +4100,155 @@
         <translation>Επιλέξτε τον τύπο του πυρήνα</translation>
     </message>
     <message>
-        <location filename="../rmcore.ui" line="135"/>
+        <location filename="../rmcore.ui" line="149"/>
         <source>Reverse calculation</source>
         <translation>Αντίστροφος υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../rmcore.ui" line="199"/>
+        <location filename="../rmcore.ui" line="156"/>
+        <source>Saturation current</source>
+        <translation>Ρεύμα κορεσμού</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.ui" line="232"/>
         <source>Dimensions</source>
         <translation>Διαστάσεις</translation>
     </message>
     <message>
-        <location filename="../rmcore.ui" line="552"/>
+        <location filename="../rmcore.ui" line="585"/>
         <source>Context help</source>
         <translation>Βοήθεια περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../rmcore.ui" line="597"/>
+        <location filename="../rmcore.ui" line="630"/>
         <source>Calculate</source>
         <translation>Υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../rmcore.ui" line="629"/>
+        <location filename="../rmcore.ui" line="662"/>
         <source>Close</source>
         <translation>Κοντά</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="144"/>
+        <location filename="../rmcore.cpp" line="146"/>
         <source>Centerpost gap</source>
         <translation>Κεντρικό κενό</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="145"/>
+        <location filename="../rmcore.cpp" line="147"/>
         <source>Magnetic permeability</source>
         <translation>Μαγνητική διαπερατότητα</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="191"/>
+        <location filename="../rmcore.cpp" line="195"/>
         <source>Number of turns</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="196"/>
-        <location filename="../rmcore.cpp" line="304"/>
+        <location filename="../rmcore.cpp" line="200"/>
+        <location filename="../rmcore.cpp" line="308"/>
         <source>Inductance</source>
         <translation>Επαγωγή</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="215"/>
-        <location filename="../rmcore.cpp" line="231"/>
+        <location filename="../rmcore.cpp" line="219"/>
         <location filename="../rmcore.cpp" line="235"/>
         <location filename="../rmcore.cpp" line="239"/>
         <location filename="../rmcore.cpp" line="243"/>
-        <location filename="../rmcore.cpp" line="250"/>
+        <location filename="../rmcore.cpp" line="247"/>
         <location filename="../rmcore.cpp" line="254"/>
-        <location filename="../rmcore.cpp" line="261"/>
+        <location filename="../rmcore.cpp" line="258"/>
         <location filename="../rmcore.cpp" line="265"/>
+        <location filename="../rmcore.cpp" line="269"/>
         <source>Warning</source>
         <translation>Προειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="215"/>
+        <location filename="../rmcore.cpp" line="219"/>
         <source>One or more inputs are empty!</source>
         <translation>Μία ή περισσότερες είσοδοι είναι κενές!</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="231"/>
-        <location filename="../rmcore.cpp" line="250"/>
-        <location filename="../rmcore.cpp" line="261"/>
+        <location filename="../rmcore.cpp" line="235"/>
+        <location filename="../rmcore.cpp" line="254"/>
+        <location filename="../rmcore.cpp" line="265"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Μία ή περισσότερες εισόδους έχουν παράνομη μορφή!</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="254"/>
-        <location filename="../rmcore.cpp" line="265"/>
+        <location filename="../rmcore.cpp" line="258"/>
+        <location filename="../rmcore.cpp" line="269"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Μία ή περισσότερες εισόδους είναι ίσες με null!</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="286"/>
+        <location filename="../rmcore.cpp" line="290"/>
         <source>Input data</source>
         <translation>Εισαγωγή δεδομένων</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="302"/>
+        <location filename="../rmcore.cpp" line="306"/>
         <source>Result</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="307"/>
+        <location filename="../rmcore.cpp" line="311"/>
         <source>Number of turns of the coil</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="309"/>
+        <location filename="../rmcore.cpp" line="313"/>
         <source>Effective magnetic path length</source>
         <translation>Αποτελεσματικό μήκος μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="312"/>
+        <location filename="../rmcore.cpp" line="316"/>
         <source>Effective area of magnetic path</source>
         <translation>Αποτελεσματική περιοχή της μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="315"/>
+        <location filename="../rmcore.cpp" line="319"/>
         <source>Effective volume</source>
         <translation>Αποτελεσματική ένταση</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="318"/>
+        <location filename="../rmcore.cpp" line="322"/>
         <source>Effective magnetic permeability of the core</source>
         <translation>Αποτελεσματική μαγνητική διαπερατότητα του πυρήνα</translation>
+    </message>
+</context>
+<context>
+    <name>SaturationDockWidget</name>
+    <message>
+        <location filename="../scdockwidget.ui" line="13"/>
+        <source>Saturation Current</source>
+        <translation>Ρεύμα κορεσμού</translation>
+    </message>
+    <message>
+        <location filename="../scdockwidget.ui" line="26"/>
+        <location filename="../scdockwidget.cpp" line="26"/>
+        <source>Material</source>
+        <translation>Υλικό</translation>
+    </message>
+    <message>
+        <location filename="../scdockwidget.ui" line="131"/>
+        <source>Result</source>
+        <translation>Αποτελέσματα</translation>
+    </message>
+    <message>
+        <location filename="../scdockwidget.cpp" line="21"/>
+        <source>Manually</source>
+        <translation>Χειροκίνητα</translation>
+    </message>
+    <message>
+        <location filename="../scdockwidget.cpp" line="133"/>
+        <source>Saturation current</source>
+        <translation>Ρεύμα κορεσμού</translation>
+    </message>
+    <message>
+        <location filename="../scdockwidget.cpp" line="133"/>
+        <source>mA</source>
+        <translation>mA</translation>
     </message>
 </context>
 <context>
@@ -4292,115 +4382,120 @@
         <translation>Πηνίο πυρήνα U</translation>
     </message>
     <message>
-        <location filename="../ucore.ui" line="127"/>
+        <location filename="../ucore.ui" line="141"/>
         <source>Reverse calculation</source>
         <translation>Αντίστροφος υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../ucore.ui" line="191"/>
+        <location filename="../ucore.ui" line="148"/>
+        <source>Saturation current</source>
+        <translation>Ρεύμα κορεσμού</translation>
+    </message>
+    <message>
+        <location filename="../ucore.ui" line="224"/>
         <source>Dimensions</source>
         <translation>Διαστάσεις</translation>
     </message>
     <message>
-        <location filename="../ucore.ui" line="466"/>
+        <location filename="../ucore.ui" line="499"/>
         <source>Context help</source>
         <translation>Βοήθεια περιβάλλοντος</translation>
     </message>
     <message>
-        <location filename="../ucore.ui" line="511"/>
+        <location filename="../ucore.ui" line="544"/>
         <source>Calculate</source>
         <translation>Υπολογισμός</translation>
     </message>
     <message>
-        <location filename="../ucore.ui" line="543"/>
+        <location filename="../ucore.ui" line="576"/>
         <source>Close</source>
         <translation>Κοντά</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="126"/>
+        <location filename="../ucore.cpp" line="128"/>
         <source>Slot size</source>
         <translation>Μέγεθος αυλακώσεων</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="127"/>
+        <location filename="../ucore.cpp" line="129"/>
         <source>Magnetic permeability</source>
         <translation>Μαγνητική διαπερατότητα</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="148"/>
+        <location filename="../ucore.cpp" line="152"/>
         <source>Number of turns</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="153"/>
-        <location filename="../ucore.cpp" line="318"/>
+        <location filename="../ucore.cpp" line="157"/>
+        <location filename="../ucore.cpp" line="322"/>
         <source>Inductance</source>
         <translation>Επαγωγή</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="216"/>
-        <location filename="../ucore.cpp" line="230"/>
+        <location filename="../ucore.cpp" line="220"/>
         <location filename="../ucore.cpp" line="234"/>
-        <location filename="../ucore.cpp" line="243"/>
-        <location filename="../ucore.cpp" line="251"/>
+        <location filename="../ucore.cpp" line="238"/>
+        <location filename="../ucore.cpp" line="247"/>
         <location filename="../ucore.cpp" line="255"/>
         <location filename="../ucore.cpp" line="259"/>
-        <location filename="../ucore.cpp" line="266"/>
+        <location filename="../ucore.cpp" line="263"/>
         <location filename="../ucore.cpp" line="270"/>
-        <location filename="../ucore.cpp" line="277"/>
+        <location filename="../ucore.cpp" line="274"/>
         <location filename="../ucore.cpp" line="281"/>
+        <location filename="../ucore.cpp" line="285"/>
         <source>Warning</source>
         <translation>Προειδοποίηση</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="216"/>
+        <location filename="../ucore.cpp" line="220"/>
         <source>One or more inputs are empty!</source>
         <translation>Μία ή περισσότερες είσοδοι είναι κενές!</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="230"/>
-        <location filename="../ucore.cpp" line="243"/>
-        <location filename="../ucore.cpp" line="251"/>
-        <location filename="../ucore.cpp" line="266"/>
-        <location filename="../ucore.cpp" line="277"/>
+        <location filename="../ucore.cpp" line="234"/>
+        <location filename="../ucore.cpp" line="247"/>
+        <location filename="../ucore.cpp" line="255"/>
+        <location filename="../ucore.cpp" line="270"/>
+        <location filename="../ucore.cpp" line="281"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Μία ή περισσότερες εισόδους έχουν παράνομη μορφή!</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="234"/>
-        <location filename="../ucore.cpp" line="255"/>
-        <location filename="../ucore.cpp" line="270"/>
-        <location filename="../ucore.cpp" line="281"/>
+        <location filename="../ucore.cpp" line="238"/>
+        <location filename="../ucore.cpp" line="259"/>
+        <location filename="../ucore.cpp" line="274"/>
+        <location filename="../ucore.cpp" line="285"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Μία ή περισσότερες εισόδους είναι ίσες με null!</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="301"/>
+        <location filename="../ucore.cpp" line="305"/>
         <source>Input data</source>
         <translation>Εισαγωγή δεδομένων</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="316"/>
+        <location filename="../ucore.cpp" line="320"/>
         <source>Result</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="321"/>
+        <location filename="../ucore.cpp" line="325"/>
         <source>Number of turns of the coil</source>
         <translation>Αριθμός σπειρών του πηνίου</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="323"/>
+        <location filename="../ucore.cpp" line="327"/>
         <source>Effective magnetic path length</source>
         <translation>Αποτελεσματικό μήκος μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="326"/>
+        <location filename="../ucore.cpp" line="330"/>
         <source>Effective area of magnetic path</source>
         <translation>Αποτελεσματική περιοχή της μαγνητικής διαδρομής</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="329"/>
+        <location filename="../ucore.cpp" line="333"/>
         <source>Effective volume</source>
         <translation>Αποτελεσματική ένταση</translation>
     </message>

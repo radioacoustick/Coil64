@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1579</width>
-    <height>875</height>
+    <width>1239</width>
+    <height>840</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1038</width>
+    <width>800</width>
     <height>640</height>
    </size>
   </property>
@@ -36,16 +36,10 @@
       <item>
        <widget class="QLabel" name="image">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>375</width>
-          <height>281</height>
-         </size>
         </property>
         <property name="text">
          <string notr="true"/>
@@ -60,6 +54,18 @@
       </item>
       <item>
        <widget class="QComboBox" name="comboBox_checkMLWinding">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>281</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="focusPolicy">
          <enum>Qt::ClickFocus</enum>
         </property>
@@ -80,6 +86,18 @@
       </item>
       <item>
        <widget class="QComboBox" name="comboBox_checkPCB">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>281</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="focusPolicy">
          <enum>Qt::ClickFocus</enum>
         </property>
@@ -340,12 +358,6 @@
           <number>0</number>
          </property>
          <widget class="QWidget" name="tab_1">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
           <attribute name="title">
            <string>Coil</string>
           </attribute>
@@ -432,11 +444,8 @@
            </item>
            <item>
             <layout class="QGridLayout" name="gridLayout">
-             <property name="horizontalSpacing">
-              <number>6</number>
-             </property>
-             <property name="verticalSpacing">
-              <number>8</number>
+             <property name="sizeConstraint">
+              <enum>QLayout::SetMaximumSize</enum>
              </property>
              <item row="1" column="3">
               <widget class="QLabel" name="label_02">
@@ -662,6 +671,12 @@
              </item>
              <item row="2" column="0">
               <widget class="QCheckBox" name="checkBox_isInsulation">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="focusPolicy">
                 <enum>Qt::NoFocus</enum>
                </property>
@@ -856,6 +871,9 @@
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
@@ -945,10 +963,7 @@
               </widget>
              </item>
              <item>
-              <layout class="QGridLayout" name="gridLayout_4">
-               <property name="verticalSpacing">
-                <number>8</number>
-               </property>
+              <layout class="QGridLayout" name="gridLayout_4" columnstretch="0,1,0,0">
                <item row="7" column="3">
                 <widget class="QLabel" name="label_07_2">
                  <property name="text">
@@ -978,6 +993,12 @@
                </item>
                <item row="4" column="3">
                 <widget class="QLabel" name="label_04_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
@@ -995,6 +1016,12 @@
                </item>
                <item row="3" column="3">
                 <widget class="QLabel" name="label_03_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
@@ -1012,6 +1039,12 @@
                </item>
                <item row="0" column="1">
                 <widget class="QLabel" name="label_1_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">Diameter of former D:</string>
                  </property>
@@ -1022,6 +1055,12 @@
                </item>
                <item row="0" column="3">
                 <widget class="QLabel" name="label_01_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
@@ -1029,6 +1068,12 @@
                </item>
                <item row="3" column="1">
                 <widget class="QLabel" name="label_3_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">Wire diameter with insulation k:</string>
                  </property>
@@ -1049,6 +1094,12 @@
                </item>
                <item row="1" column="3">
                 <widget class="QLabel" name="label_02_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
@@ -1056,6 +1107,12 @@
                </item>
                <item row="4" column="1">
                 <widget class="QLabel" name="label_4_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">Winding pitch</string>
                  </property>
@@ -1066,6 +1123,12 @@
                </item>
                <item row="1" column="1">
                 <widget class="QLabel" name="label_2_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">Wire diameter d:</string>
                  </property>
@@ -1076,6 +1139,12 @@
                </item>
                <item row="5" column="3">
                 <widget class="QLabel" name="label_05_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
@@ -1083,6 +1152,12 @@
                </item>
                <item row="5" column="1">
                 <widget class="QLabel" name="label_5_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">TextLabel</string>
                  </property>
@@ -1093,6 +1168,12 @@
                </item>
                <item row="6" column="1">
                 <widget class="QLabel" name="label_6_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">TextLabel</string>
                  </property>
@@ -1113,6 +1194,12 @@
                </item>
                <item row="6" column="3">
                 <widget class="QLabel" name="label_06_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string notr="true">mm</string>
                  </property>
@@ -1537,7 +1624,24 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_11">
       <item>
-       <layout class="QHBoxLayout" name="_2">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>0</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_1">
         <property name="spacing">
          <number>3</number>
         </property>
@@ -1786,6 +1890,29 @@
           <property name="icon">
            <iconset resource="res.qrc">
             <normaloff>:/menu_ico/res/icons8-ltspice-32.png</normaloff>:/menu_ico/res/icons8-ltspice-32.png</iconset>
+          </property>
+          <property name="shortcut">
+           <string notr="true"/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_Saturation">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Saturation current</string>
+          </property>
+          <property name="text">
+           <string notr="true">...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/icons8-magnetic-32.png</normaloff>:/menu_ico/res/icons8-magnetic-32.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2212,7 +2339,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1579</width>
+     <width>1239</width>
      <height>20</height>
     </rect>
    </property>
@@ -2298,6 +2425,7 @@
     <addaction name="separator"/>
     <addaction name="actionFerrite_toroid_permeability"/>
     <addaction name="actionAL_factor_calculation"/>
+    <addaction name="actionSaturation_current"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuActions"/>
@@ -2686,6 +2814,16 @@
    </property>
    <property name="shortcut">
     <string notr="true">F12</string>
+   </property>
+  </action>
+  <action name="actionSaturation_current">
+   <property name="icon">
+    <iconset>
+     <normalon>:/menu_ico/res/icons8-magnetic-32.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Saturation current</string>
    </property>
   </action>
  </widget>

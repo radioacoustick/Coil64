@@ -42,6 +42,7 @@ public:
     ~ECore();
 
 signals:
+    void showSaturation(bool);
     void sendResult(QString);
 
 private slots:
@@ -52,6 +53,7 @@ private slots:
     void on_checkBox_isReverce_clicked();
     void on_pushButton_help_clicked();
     void on_pushButton_calculate_clicked();
+    void on_toolButton_saturation_toggled(bool checked);
 
 private:
     Ui::ECore *ui;

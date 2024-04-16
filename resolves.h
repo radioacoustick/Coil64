@@ -86,6 +86,14 @@ enum _FormCoil
     };
 #pragma pack(pop)
 
+#pragma pack(push,1)
+    struct _FerriteData{
+      double N;
+      double mu;
+      double le;
+    };
+#pragma pack(pop)
+
 
     enum Material {Al, Cu, Ag, Ti};
     enum _Mprop {Rho,Chi,Alpha,Dencity};
@@ -162,6 +170,8 @@ enum _FormCoil
     QString converttoAWG (double d, bool *isOK = NULL);
     double findPadderCapacitance(double Ct,double Cv_low,double Cv_high,double Cstray,double cap_ratio);
     double findTrimmerCapacitance(double Cp,double Cv_low,double Cv_high,double Cstray,double cap_ratio);
+    double getToroidEqMagLength(double OD, double ID);
+    double getSaturationCurrent(double Bs, double le, double mu, double N);
 
 
 #endif // RESOLVES_H

@@ -186,5 +186,17 @@ void Options::on_pushButton_4_clicked()
     ui->comboBox_wire->setCurrentIndex(0);
     ui->checkBox->setChecked(true);
     ui->checkBox_2->setChecked(true);
+    ui->checkBox_4->setChecked(true);
+    ui->checkBox_5->setChecked(true);
+    ui->checkBox_6->setChecked(true);
+    ui->checkBox_7->setChecked(true);
+    ui->checkBox_8->setChecked(true);
+    ui->checkBox_9->setChecked(true);
+    ui->checkBox_10->setChecked(true);
+    ui->checkBox_11->setChecked(false);
+    ui->checkBox_12->setChecked(true);
+    ui->checkBox_13->setChecked(false);
+    ui->checkBox_14->setChecked(true);
+    ui->comboBox->setCurrentIndex(0);
     ui->radioButton_loc1->setChecked(true);
 }

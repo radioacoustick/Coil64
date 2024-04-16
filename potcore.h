@@ -27,6 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 
 #include "system_functions.h"
 #include "resolves.h"
+#include "scdockwidget.h"
 
 
 namespace Ui {
@@ -42,6 +43,7 @@ public:
     ~PotCore();
 
 signals:
+    void showSaturation(bool);
     void sendResult(QString);
 
 private slots:
@@ -54,6 +56,8 @@ private slots:
     void on_pushButton_help_clicked();
     void on_pushButton_calculate_clicked();
 
+    void on_toolButton_saturation_toggled(bool checked);
+
 private:
     Ui::PotCore *ui;
     _OptionStruct *fOpt;
@@ -61,6 +65,7 @@ private:
     QLocale loc;
     double N, ind, d1, d2, d3, d4, h1, h2, b, g, mu;
     int currStdCore;
+    SaturationDockWidget *satCurrentDockWidget;
 };
 
 #endif // POTCORE_H

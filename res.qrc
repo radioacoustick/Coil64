@@ -155,6 +155,7 @@
         <file>res/icons8-column-32.png</file>
         <file>res/icons8-bullet-32.png</file>
         <file>res/icons8-interface-32.png</file>
+        <file>res/icons8-magnetic-32.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

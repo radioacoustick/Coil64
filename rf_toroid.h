@@ -71,6 +71,8 @@ private slots:
     void on_pushButton_export_clicked();
     void on_pushButton_help_clicked();
 
+    void on_toolButton_ltspice_toggled(bool checked);
+
 private:
     Ui::RF_Toroid *ui;
     _OptionStruct *fOpt;
@@ -79,6 +81,7 @@ private:
     QString styleInfoColor;
     double N, f, Cs, od, id, h, c, d, mu1, mu2;
     bool isCsAuto = false;
+    bool isShowLtspice;
 };
 
 #endif // RF_TOROID_H

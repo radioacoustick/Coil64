@@ -589,6 +589,23 @@
         </widget>
        </item>
        <item>
+        <widget class="QToolButton" name="toolButton_ltspice">
+         <property name="toolTip">
+          <string>Show data for LTSpice</string>
+         </property>
+         <property name="text">
+          <string notr="true"/>
+         </property>
+         <property name="icon">
+          <iconset resource="res.qrc">
+           <normaloff>:/menu_ico/res/icons8-ltspice-32.png</normaloff>:/menu_ico/res/icons8-ltspice-32.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
           <string>Result</string>

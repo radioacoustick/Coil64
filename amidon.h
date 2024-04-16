@@ -17,6 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #ifndef AMIDON_H
 #define AMIDON_H
 
+#include <QtWidgets>
 #include <QDialog>
 #include <QScreen>
 #include <QPainter>
@@ -95,6 +96,9 @@ private:
     QString styleInfoColor;
     double al;
     double hole_area;
+    double fMu;
+    double fBs;
+    double fLe;
 };
 extern QString FToroidSize[];
 

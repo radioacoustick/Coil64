@@ -253,7 +253,7 @@ double get_Xic(Material mt, double f, double w, double t){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Q-FACTOR OF THE ONE-LAYER COIL WITH ROUND WIRE (WITH PROXIMITY EFFECT)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa, double N, double Cs, Material mt, _CoilResult *result){
+unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa, double fsr, double N, double Cs, Material mt, _CoilResult *result){
     //I->inductance µH
     //l->winding length mm, Df->coilwinding diameter mm, pm->winding pitch mm, dw->wire diameter mm
     //fm->frequency MHz, N->number of turns, mt->material of wire
@@ -275,12 +275,12 @@ unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa,
     Rc = 1 / (2 * M_PI * f * Cs * 1e-12);
     R_ind = 1 / (1 / Rl + 1 / Rc);
     result->seven = Rac;
-    return round(R_ind / Rac);
+    return round((R_ind / Rac) * (1 - fa / fsr));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Q-FACTOR OF THE ONE-LAYER COIL WITH RECTANGULAR WIRE
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t, double fa,  double N, double Cs, Material mt, _CoilResult *result){
+unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t, double fa, double fsr,  double N, double Cs, Material mt, _CoilResult *result){
     //I->inductance µH
     //l->winding length mm, Df->coilwinding diameter mm, pm->winding pitch mm, _w->wire width mm, _t->wire thickness mm
     //fm->frequency MHz, N->number of turns, mt->material of wire
@@ -303,7 +303,7 @@ unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t,
     Rc = 1 / (2 * M_PI * f * Cs * 1e-12);
     R_ind = 1 / (1 / Rl + 1 / Rc);
     result->seven = Rac;
-    return round(R_ind / Rac);
+    return round((R_ind / Rac) * (1 - fa / fsr));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Q-FACTOR OF THE PCB SPIRAL COIL
@@ -347,6 +347,5 @@ double solve_Qpcb(long N, double _I, double _D, double _d, double _W, double _t,
     double Psi = (Xi / 3) * pow(3 * W / (2 * s), 4);
     double Rac = Rdc * (Xi + Psi);
     double Xl = 2 * M_PI * f * I;
-    double q = Xl / Rac;
-    return q;
+    return (Xl / Rac);
 }

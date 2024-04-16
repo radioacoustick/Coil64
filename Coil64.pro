@@ -54,7 +54,8 @@ SOURCES += main.cpp\
     crossover.cpp \
     rf_toroid.cpp \
     bandspread.cpp \
-    rmcore.cpp
+    rmcore.cpp \
+    scdockwidget.cpp
 
 HEADERS  += mainwindow.h \
     resolves.h \
@@ -83,7 +84,8 @@ HEADERS  += mainwindow.h \
     spline.h \
     rf_toroid.h \
     bandspread.h \
-    rmcore.h
+    rmcore.h \
+    scdockwidget.h
 
 FORMS    += mainwindow.ui \
     options.ui \
@@ -103,7 +105,8 @@ FORMS    += mainwindow.ui \
     crossover.ui \
     rf_toroid.ui \
     bandspread.ui \
-    rmcore.ui
+    rmcore.ui \
+    scdockwidget.ui
 
 TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_cs.ts \

@@ -59,6 +59,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "rf_toroid.h"
 #include "bandspread.h"
 #include "rmcore.h"
+#include "scdockwidget.h"
 
 #include "mthread_calculate.h"
 #include "resolves.h"
@@ -80,6 +81,8 @@ public:
 
 signals:
     void sendOpt(_OptionStruct);
+    void sendOptToDock(_OptionStruct);
+    void sendFerriteData(_FerriteData);
     void sendStyleGUI(int);
     void sendLocale(QLocale);
 public slots:
@@ -87,6 +90,9 @@ public slots:
 
 private slots:
     void closeEvent(QCloseEvent *event);
+    void resizeEvent(QResizeEvent*);
+    void moveEvent(QMoveEvent*);
+    void changeEvent(QEvent *e);
     bool eventFilter(QObject *watched, QEvent *event);
     void on_textBrowser_customContextMenuRequested(const QPoint &pos);
     void on_textBrowser_textChanged();
@@ -167,6 +173,7 @@ private slots:
     void showOutput(QString caption, QString image, QString input, QString result);
     void checkMaterial1(Material *mt);
     void checkMaterial2(Material *mt);
+    void on_dockWidgetClosed();
 
     void on_actionOptions_triggered();
     void on_actionExit_triggered();
@@ -208,6 +215,8 @@ private slots:
     void on_toolButton_Color_clicked();
     void on_toolButton_Desc_clicked();
     void on_toolButton_column_clicked();
+    void on_toolButton_Saturation_clicked();
+    void showSaturationDockWidget(bool isShow);
 
     void on_actionFerrite_toroid_permeability_triggered();
     void on_actionCoil_on_a_ferrite_rod_triggered();
@@ -225,6 +234,7 @@ private slots:
     void on_actionCross_over_inductor_triggered();
     void on_actionBandspread_Calculator_triggered();
     void on_actionRM_core_coil_triggered();
+    void on_actionSaturation_current_triggered();
 
 private:
     Ui::MainWindow *mui;
@@ -239,6 +249,7 @@ private:
     unsigned int calc_count; //Calculating number
     QLocale loc;
     QMenu *popupmenu;
+    SaturationDockWidget *satCurrentDockWidget;
 };
 
 #endif // MAINWINDOW_H

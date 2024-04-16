@@ -70,6 +70,8 @@ MainWindow::MainWindow(QWidget *parent) :
     myOpt->isOutputValueColored = settings->value( "isOutputValueColored", false ).toBool();
     myOpt->isOutputInTwoColumns = settings->value( "isOutputInTwoColumns", false ).toBool();
     myOpt->isShowValueDescription = settings->value( "isShowValueDescription", true ).toBool();
+    myOpt->isDockWidgetFloating = settings->value( "isDockWidgetFloating", false ).toBool();
+    myOpt->isDockWidgetVisible = settings->value( "isDockWidgetVisible", false ).toBool();
     myOpt->isShowCalcNum = settings->value( "isShowCalcNum", true ).toBool();
     myOpt->isAdditionalResult = settings->value( "isAdditionalResult", true ).toBool();
     myOpt->isAWGhasInsulation = settings->value( "isAWGwithInsulation", true ).toBool();
@@ -205,6 +207,20 @@ MainWindow::MainWindow(QWidget *parent) :
     data->Rdc = settings->value("Rdc", 0).toDouble();
     settings->endGroup();
 
+
+
+    satCurrentDockWidget = new SaturationDockWidget(this);
+    satCurrentDockWidget->setAllowedAreas(Qt::AllDockWidgetAreas);
+    satCurrentDockWidget->setFloating(myOpt->isDockWidgetFloating);
+    addDockWidget(Qt::RightDockWidgetArea, satCurrentDockWidget);
+    connect(this, SIGNAL(sendFerriteData(_FerriteData)), satCurrentDockWidget, SLOT(getFerriteData(_FerriteData)));
+    connect(this, SIGNAL(sendOptToDock(_OptionStruct)), satCurrentDockWidget, SLOT(getOpt(_OptionStruct)));
+    connect(satCurrentDockWidget, SIGNAL(sendClose()), this, SLOT(on_dockWidgetClosed()));
+    emit sendOptToDock(*myOpt);
+    if (myOpt->isDockWidgetVisible)
+        mui->toolButton_Saturation->setChecked(true);
+    else
+        mui->toolButton_Saturation->setChecked(false);
 
     if (myOpt->isAutomaticUpdate){
         switch (myOpt->upDateInterval) {
@@ -344,6 +360,8 @@ MainWindow::MainWindow(QWidget *parent) :
             }
         }
     }
+    delete settings;
+
     this->on_textBrowser_textChanged();
     on_tabWidget_currentChanged(tab);
     switch (myOpt->styleGUI) {
@@ -359,7 +377,8 @@ MainWindow::MainWindow(QWidget *parent) :
     default:
         break;
     }
-    delete settings;
+    if(myOpt->styleGUI == _DarkStyle)
+        invertGUIconColor();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::setLanguage(){
@@ -403,6 +422,7 @@ MainWindow::~MainWindow()
     QFile hlptempFile(hlptempFileName);
     if (hlptempFile.exists())
         hlptempFile.remove();
+    delete satCurrentDockWidget;
     delete popupmenu;
     delete data;
     delete dv;
@@ -544,6 +564,12 @@ void MainWindow::closeEvent(QCloseEvent *event){
             file.close();
             settings->setValue("calc_count", calc_count);
         }
+        if (satCurrentDockWidget != nullptr){
+            myOpt->isDockWidgetFloating = satCurrentDockWidget->isFloating();
+            myOpt->isDockWidgetVisible = satCurrentDockWidget->isVisible();
+            settings->setValue("isDockWidgetFloating", myOpt->isDockWidgetFloating);
+            settings->setValue("isDockWidgetVisible", myOpt->isDockWidgetVisible);
+        }
         settings->endGroup();
 
         settings->beginGroup( "Measure_Units" );
@@ -599,6 +625,67 @@ void MainWindow::closeEvent(QCloseEvent *event){
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::resizeEvent(QResizeEvent *)
+{
+    int w = (int) 235 * sqrt(mui->toolButton_Configure->iconSize().width());
+    if (this->width() < w){
+        mui->horizontalLayout_5->insertWidget(0, mui->toolButton_lShowFirst);
+        mui->horizontalLayout_5->insertWidget(1, mui->toolButton_column);
+        mui->horizontalLayout_5->insertWidget(2, mui->toolButton_Num);
+        mui->horizontalLayout_5->insertWidget(3, mui->line_11);
+        mui->horizontalLayout_5->insertWidget(4, mui->toolButton_showTitle);
+        mui->horizontalLayout_5->insertWidget(5, mui->toolButton_showImg);
+        mui->horizontalLayout_5->insertWidget(6, mui->toolButton_Desc);
+        mui->horizontalLayout_5->addWidget(mui->toolButton_Color);
+        mui->horizontalLayout_5->insertWidget(7, mui->line_13);
+    } else {
+        mui->horizontalLayout_1->insertWidget(0, mui->toolButton_lShowFirst);
+        mui->horizontalLayout_1->insertWidget(1, mui->toolButton_column);
+        mui->horizontalLayout_1->insertWidget(2, mui->toolButton_Num);
+        mui->horizontalLayout_1->insertWidget(3, mui->line_11);
+        mui->horizontalLayout_1->insertWidget(4, mui->toolButton_showTitle);
+        mui->horizontalLayout_1->insertWidget(5, mui->toolButton_showImg);
+        mui->horizontalLayout_1->insertWidget(6, mui->toolButton_Desc);
+        mui->horizontalLayout_1->insertWidget(7, mui->toolButton_Color);
+        mui->horizontalLayout_1->insertWidget(8, mui->line_13);
+    }
+    if (satCurrentDockWidget != nullptr){
+        if((satCurrentDockWidget->isFloating()) && (satCurrentDockWidget->isVisible())){
+            satCurrentDockWidget->setVisible(false);
+            satCurrentDockWidget->setVisible(true);
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::moveEvent(QMoveEvent *)
+{
+    if (satCurrentDockWidget != nullptr){
+        if (satCurrentDockWidget->isFloating()){
+            QPoint p = satCurrentDockWidget->mapToGlobal(QPoint(0,0));
+            p.setX(this->geometry().x() + this->size().width());
+            p.setY(this->geometry().y());
+            satCurrentDockWidget->move(p);
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::changeEvent(QEvent *e)
+{
+    if( e->type() == QEvent::WindowStateChange ){
+        QWindowStateChangeEvent* event = static_cast< QWindowStateChangeEvent* >( e );
+
+        if( event->oldState() == Qt::WindowMaximized )
+        {
+            if (myOpt->isDockWidgetFloating)
+                satCurrentDockWidget->setFloating(true);
+        }
+        else if( event->oldState() == Qt::WindowNoState && this->windowState() == Qt::WindowMaximized )
+        {
+            satCurrentDockWidget->setFloating(false);
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool MainWindow::eventFilter(QObject *watched, QEvent *event){
     if (event->type() == QEvent::ShortcutOverride) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
@@ -625,6 +712,7 @@ void MainWindow::resetUiFont(){
         widget->setFont(QApplication::font());
         widget->update();
     }
+    mui->listWidget->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_Clear->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_CopyAll->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_CopySel->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
@@ -647,10 +735,12 @@ void MainWindow::resetUiFont(){
     mui->toolButton_ltspice->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_FAQ->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     mui->toolButton_Num->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
+    mui->toolButton_Saturation->setIconSize(QSize(myOpt->mainFontSize * 2, myOpt->mainFontSize * 2));
     QFont f2 = mui->textBrowser->font();
     f2.setFamily(myOpt->textFontFamily);
     f2.setPixelSize(myOpt->textFontSize);
     mui->textBrowser->setFont(f2);
+    this->resizeEvent(NULL);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::invertGUIconColor()
@@ -679,6 +769,11 @@ void MainWindow::invertGUIconColor()
 void MainWindow::showOutput(QString caption, QString image, QString input, QString result)
 {
     QTextCursor c = mui->textBrowser->textCursor();
+    if(myOpt->isLastShowingFirst)
+        c.movePosition(QTextCursor::Start);
+    else
+        c.movePosition(QTextCursor::End);
+    mui->textBrowser->setTextCursor(c);
     calc_count++;
     QString outputHTML = "";
     QString sTitle = "";
@@ -724,6 +819,12 @@ void MainWindow::checkMaterial2(Material *mt){
     else if (mui->radioButton_4_2->isChecked()){
         *mt = Ti;
     }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_dockWidgetClosed()
+{
+    myOpt->isDockWidgetVisible = false;
+    mui->toolButton_Saturation->setChecked(false);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::checkAppVersion(QNetworkReply *reply){
@@ -876,6 +977,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
         mui->lineEdit_6->setValidator(dv);
         mui->lineEdit_freq->setValidator(dv);
         mui->lineEdit_ind->setValidator(dv);
+        mui->toolButton_Saturation->setEnabled(false);
+        mui->toolButton_ltspice->setEnabled(false);
+        satCurrentDockWidget->hide();
         switch (FormCoil) {
         case _Onelayer_cw:{
             mui->image->setPixmap(QPixmap(":/images/res/Coil1.png"));
@@ -886,6 +990,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_showAdditional->setEnabled(true);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -927,6 +1032,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_showAdditional->setEnabled(true);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -985,6 +1091,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_showAdditional->setEnabled(true);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
@@ -1028,6 +1135,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_showAdditional->setEnabled(true);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02->setText(tr("AWG"));
@@ -1177,7 +1285,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
                     mui->lineEdit_3->setText("");
             } else
                 mui->lineEdit_3->setText(roundTo(data->d / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
-            if (mui->lineEdit_3->text().isEmpty() || (mui->lineEdit_3->text() == "0")|| (data->k > 0))
+            if (mui->lineEdit_3->text().isEmpty() || (mui->lineEdit_3->text() == "0")||(data->k > 0))
                 mui->lineEdit_4->setText(roundTo(data->k / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             else
                 on_lineEdit_3_editingFinished();
@@ -1287,6 +1395,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            if(myOpt->isDockWidgetVisible)
+                satCurrentDockWidget->show();
+            mui->toolButton_Saturation->setEnabled(true);
             mui->toolButton_showAdditional->setEnabled(false);
             if (myOpt->isAWG){
                 mui->label_04->setText(tr("AWG"));
@@ -1314,7 +1425,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_2->setText(tr("Inside diameter")+" ID:");
             mui->label_3->setText(tr("Core height") + " h:");
             mui->label_4->setText(tr("Wire diameter") + " d:");
-            mui->label_5->setText(tr("Init magnetic permeability")+" μ:");
+            mui->label_5->setText(tr("Magnetic permeability")+" μ:");
             mui->label_6->setText(tr("Chamfer") + " C:");
             mui->label_06->setText(qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8()));
             mui->lineEdit_ind->setText(roundTo(data->inductance / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy));
@@ -1439,6 +1550,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
         mui->lineEdit_1_2->setVisible(true);
         mui->label_1_2->setVisible(true);
         mui->label_01_2->setVisible(true);
+        satCurrentDockWidget->hide();
+        mui->toolButton_Saturation->setEnabled(false);
+        mui->toolButton_ltspice->setEnabled(false);
         switch (FormCoil) {
         case _Onelayer_cw:{
             mui->image->setPixmap(QPixmap(":/images/res/Coil1.png"));
@@ -1448,6 +1562,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_showAdditional->setEnabled(true);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1504,6 +1619,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_showAdditional->setEnabled(true);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1567,6 +1683,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_showAdditional->setEnabled(true);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -1614,6 +1731,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(true);
             mui->toolButton_showAdditional->setEnabled(true);
+            mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             if (myOpt->isAWG){
                 mui->label_02_2->setText(tr("AWG"));
@@ -1897,6 +2015,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkPCB->setVisible(false);
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
+            if(myOpt->isDockWidgetVisible)
+                satCurrentDockWidget->show();
+            mui->toolButton_Saturation->setEnabled(true);
             mui->toolButton_showAdditional->setEnabled(false);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
@@ -1924,7 +2045,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_1_2->setText(tr("Outside diameter")+" OD:");
             mui->label_2_2->setText(tr("Inside diameter")+" ID:");
             mui->label_3_2->setText(tr("Core height") + " h:");
-            mui->label_4_2->setText(tr("Init magnetic permeability")+" μ:");
+            mui->label_4_2->setText(tr("Magnetic permeability")+" μ:");
             mui->lineEdit_N->setText(roundTo(data->N, loc, myOpt->dwAccuracy));
             mui->lineEdit_N->selectAll();
             mui->lineEdit_1_2->setText(roundTo(data->Do / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
@@ -2116,6 +2237,7 @@ void MainWindow::on_actionTo_null_data_triggered()
         settings->remove("RMcore");
         settings->remove("Bandspread");
         settings->remove("Crossover");
+        settings->remove("Saturation_Dock");
         delete settings;
     }
 }
@@ -2192,6 +2314,13 @@ void MainWindow::on_actionClear_all_triggered()
             mui->statusBar->clearMessage();
             calc_count = 0;
         }
+    }
+    if (satCurrentDockWidget != nullptr){
+        _FerriteData ferriteData;
+        ferriteData.N = 0;
+        ferriteData.mu = 0;
+        ferriteData.le = 0;
+        emit sendFerriteData(ferriteData);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2332,6 +2461,8 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         mui->comboBox_checkPCB->setVisible(false);
         mui->comboBox_checkMLWinding->setVisible(false);
         mui->toolButton_FAQ->setVisible(false);
+        satCurrentDockWidget->hide();
+        mui->toolButton_Saturation->setEnabled(false);
         mui->image->setPixmap(QPixmap(":/images/res/LC.png"));
         if (mui->radioButton_LC->isChecked())
             on_radioButton_LC_clicked();
@@ -2554,6 +2685,32 @@ void MainWindow::on_toolButton_Desc_clicked()
 void MainWindow::on_toolButton_column_clicked()
 {
     myOpt->isOutputInTwoColumns = mui->toolButton_column->isChecked();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_toolButton_Saturation_clicked()
+{
+        if (satCurrentDockWidget->isVisible()){
+            satCurrentDockWidget->hide();
+            myOpt->isDockWidgetVisible = false;
+            mui->toolButton_Saturation->setChecked(false);
+        } else {
+            satCurrentDockWidget->show();
+            myOpt->isDockWidgetVisible = true;
+            mui->toolButton_Saturation->setChecked(true);
+        }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::showSaturationDockWidget(bool isShow)
+{
+    if (isShow){
+        satCurrentDockWidget->show();
+        myOpt->isDockWidgetVisible = true;
+        mui->toolButton_Saturation->setChecked(true);
+    } else {
+        satCurrentDockWidget->hide();
+        myOpt->isDockWidgetVisible = false;
+        mui->toolButton_Saturation->setChecked(false);
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_toolButton_showAdditional_clicked()
@@ -2783,16 +2940,17 @@ void MainWindow::on_lineEdit_1_editingFinished()
             switch (myOpt->layoutPCBcoil) {
             case 0:{
                 data->Di = data->Do * 0.362;
+                mui->lineEdit_2->setText(roundTo(data->Di / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
                 break;
             }
             case 1:{
                 data->Di = data->Do * 0.4;
+                mui->lineEdit_2->setText(roundTo(data->Di / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
                 break;
             }
             default:
                 break;
             }
-            mui->lineEdit_2->setText(roundTo(data->Di / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             break;
         }
         case _Flat_Spiral:{
@@ -3917,9 +4075,13 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 }
                 if (OD < ID){
                     if (layoutPCB == 2)
-                        showWarning(tr("Warning"), "A < a");
+                        showWarning(tr("Warning"), "A < B");
                     else
-                        showWarning(tr("Warning"), "OD < ID");
+                        showWarning(tr("Warning"), "D < d");
+                    return;
+                }
+                if ((layoutPCB == 2) && (OD < a)){
+                    showWarning(tr("Warning"), "A < a");
                     return;
                 }
                 data->inductance = I;
@@ -4428,7 +4590,10 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), "s <= W");
                     return;
                 }
-
+                if ((layoutPCB == 2) && (A < ID)){
+                    showWarning(tr("Warning"), "A < B");
+                    return;
+                }
                 mui->lineEdit_N->setText(loc.toString(N));
                 mui->lineEdit_2_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(s / myOpt->dwLengthMultiplier));
@@ -5072,12 +5237,30 @@ void MainWindow::get_ferrToroidN_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
                                   qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
         sResult += formattedOutput(myOpt, "A<sub>L</sub> = ", loc.toString(result.thd),  qApp->translate("Context","nH") + "/N<sup>2</sup>");
+        sResult += "<br/><br/>" + formattedOutput(myOpt, tr("Effective magnetic path length") + " (l<sub>e</sub>): ",
+                                                  roundTo(result.fourth/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                                                  qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(myOpt, tr("Effective area of magnetic path") + " (A<sub>e</sub>): ",
+                                   roundTo(result.five/(myOpt->dwLengthMultiplier * myOpt->dwLengthMultiplier), loc, myOpt->dwAccuracy),
+                                   qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<sup>2</sup><br/>";
+        sResult += formattedOutput(myOpt, tr("Effective volume") + " (V<sub>e</sub>): ",
+                                   roundTo(result.fourth * result.five/(myOpt->dwLengthMultiplier * myOpt->dwLengthMultiplier * myOpt->dwLengthMultiplier), loc, myOpt->dwAccuracy),
+                                   qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<sup>3</sup><br/>";
     } else {
         sResult += "<span style=\"color:red;\">" + tr("Coil can not be realized") + "! </span>";
         mui->statusBar->showMessage(tr("Coil can not be realized") + "!");
     }
     sResult += "</p>";
     showOutput(sCaption, sImage, sInput, sResult);
+    if (satCurrentDockWidget != nullptr){
+        if(satCurrentDockWidget->isVisible()){
+            _FerriteData ferriteData;
+            ferriteData.N = result.N;
+            ferriteData.mu = loc.toDouble(mui->lineEdit_5->text());
+            ferriteData.le = result.fourth;
+            emit sendFerriteData(ferriteData);
+        }
+    }
     mui->lineEdit_ind->setFocus();
     mui->lineEdit_ind->selectAll();
 }
@@ -5113,7 +5296,7 @@ void MainWindow::get_pcbN_Result(_CoilResult result)
     sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
     sInput += formattedOutput(myOpt, mui->groupBox_6->title(), loc.toString((double)mui->horizontalSlider->value()/100)) + "</p>";
     QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
-    if ((result.N != 0) && (result.sec != 0) && (result.thd != 0)){
+    if ((result.N > 0) && (result.sec > 0) && (result.thd > 0)){
         data->N = result.N;
         data->s = QString::number(result.sec, 'f', myOpt->dwAccuracy).toDouble();
         data->w = QString::number(result.thd, 'f', myOpt->dwAccuracy).toDouble();
@@ -5636,8 +5819,26 @@ void MainWindow::get_ferriteI_Result(_CoilResult result)
     sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
                               qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
     sResult += formattedOutput(myOpt, "A<sub>L</sub> = ", loc.toString(result.thd), qApp->translate("Context","nH") + "/N<sup>2</sup>");
+    sResult += "<br/><br/>" + formattedOutput(myOpt, tr("Effective magnetic path length") + " (l<sub>e</sub>): ",
+                                              roundTo(result.fourth/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+                                              qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+    sResult += formattedOutput(myOpt, tr("Effective area of magnetic path") + " (A<sub>e</sub>): ",
+                               roundTo(result.five/(myOpt->dwLengthMultiplier * myOpt->dwLengthMultiplier), loc, myOpt->dwAccuracy),
+                               qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<sup>2</sup><br/>";
+    sResult += formattedOutput(myOpt, tr("Effective volume") + " (V<sub>e</sub>): ",
+                               roundTo(result.fourth * result.five/(myOpt->dwLengthMultiplier * myOpt->dwLengthMultiplier * myOpt->dwLengthMultiplier), loc, myOpt->dwAccuracy),
+                               qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<sup>3</sup><br/>";
     sResult += "</p>";
     showOutput(sCaption, sImage, sInput, sResult);
+    if (satCurrentDockWidget != nullptr){
+        if(satCurrentDockWidget->isVisible()){
+            _FerriteData ferriteData;
+            ferriteData.N = loc.toDouble(mui->lineEdit_N->text());
+            ferriteData.mu = loc.toDouble(mui->lineEdit_4_2->text());
+            ferriteData.le = result.fourth;
+            emit sendFerriteData(ferriteData);
+        }
+    }
     mui->lineEdit_N->setFocus();
     mui->lineEdit_N->selectAll();
 }
@@ -5785,11 +5986,22 @@ void MainWindow::on_actionRM_core_coil_triggered()
     RMcore *fRMcore = new RMcore();
     fRMcore->setAttribute(Qt::WA_DeleteOnClose, true);
     connect(fRMcore, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(fRMcore, SIGNAL(showSaturation(bool)), this, SLOT(showSaturationDockWidget(bool)));
     connect(this, SIGNAL(sendOpt(_OptionStruct)), fRMcore, SLOT(getOpt(_OptionStruct)));
     connect(this, SIGNAL(sendLocale(QLocale)), fRMcore, SLOT(getCurrentLocale(QLocale)));
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     fRMcore->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionSaturation_current_triggered()
+{
+    if(satCurrentDockWidget != nullptr)
+        if (satCurrentDockWidget->isHidden()){
+            satCurrentDockWidget->show();
+            myOpt->isDockWidgetVisible = true;
+            mui->toolButton_Saturation->setChecked(true);
+        }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionCoil_on_a_ferrite_rod_triggered()
@@ -5881,11 +6093,12 @@ void MainWindow::on_actionPot_core_coil_triggered()
     PotCore *fpotcore = new PotCore();
     fpotcore->setAttribute(Qt::WA_DeleteOnClose, true);
     connect(fpotcore, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(fpotcore, SIGNAL(showSaturation(bool)), this, SLOT(showSaturationDockWidget(bool)));
     connect(this, SIGNAL(sendOpt(_OptionStruct)), fpotcore, SLOT(getOpt(_OptionStruct)));
     connect(this, SIGNAL(sendLocale(QLocale)), fpotcore, SLOT(getCurrentLocale(QLocale)));
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
-    fpotcore->exec();
+    fpotcore->show();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionE_core_coil_triggered()
@@ -5893,6 +6106,7 @@ void MainWindow::on_actionE_core_coil_triggered()
     ECore *fecore = new ECore();
     fecore->setAttribute(Qt::WA_DeleteOnClose, true);
     connect(fecore, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(fecore, SIGNAL(showSaturation(bool)), this, SLOT(showSaturationDockWidget(bool)));
     connect(this, SIGNAL(sendOpt(_OptionStruct)), fecore, SLOT(getOpt(_OptionStruct)));
     connect(this, SIGNAL(sendLocale(QLocale)), fecore, SLOT(getCurrentLocale(QLocale)));
     emit sendLocale(loc);
@@ -5905,6 +6119,7 @@ void MainWindow::on_actionU_core_coil_triggered()
     UCore *fucore = new UCore();
     fucore->setAttribute(Qt::WA_DeleteOnClose, true);
     connect(fucore, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(fucore, SIGNAL(showSaturation(bool)), this, SLOT(showSaturationDockWidget(bool)));
     connect(this, SIGNAL(sendOpt(_OptionStruct)), fucore, SLOT(getOpt(_OptionStruct)));
     connect(this, SIGNAL(sendLocale(QLocale)), fucore, SLOT(getCurrentLocale(QLocale)));
     emit sendLocale(loc);
@@ -5915,6 +6130,23 @@ void MainWindow::on_actionU_core_coil_triggered()
 void MainWindow::getAddCalculationResult(QString resultTxt){
     QStringList result = resultTxt.split(LIST_SEPARATOR);
     showOutput(result[0], result[1], result[2], result[3]);
+    if (satCurrentDockWidget != nullptr){
+        if (satCurrentDockWidget->isVisible()){
+            _FerriteData ferriteData;
+            if(result.length() > 4){
+                QString satData = result[4];
+                QStringList satDataList = satData.split(";");
+                ferriteData.N = loc.toDouble(satDataList[0]);
+                ferriteData.mu = loc.toDouble(satDataList[1]);
+                ferriteData.le = loc.toDouble(satDataList[2]);
+            } else {
+                ferriteData.N = 0;
+                ferriteData.mu = 0;
+                ferriteData.le = 0;
+            }
+            emit sendFerriteData(ferriteData);
+        }
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_comboBox_checkPCB_activated(int index)

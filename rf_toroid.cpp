@@ -95,6 +95,7 @@ RF_Toroid::~RF_Toroid()
     settings->setValue("f", f);
     settings->setValue("Cs", Cs);
     settings->setValue("isCsAuto", isCsAuto);
+    settings->setValue("isShowLtspice", isShowLtspice);
     settings->setValue("od", od);
     settings->setValue("id", id);
     settings->setValue("h", h);
@@ -145,6 +146,7 @@ void RF_Toroid::getOpt(_OptionStruct gOpt)
     f = settings->value("f", 0).toDouble();
     Cs = settings->value("Cs", 0).toDouble();
     isCsAuto = settings->value("isCsAuto", true).toBool();
+    isShowLtspice = settings->value("isShowLtspice", true).toBool();
     od = settings->value("od", 0).toDouble();
     id = settings->value("id", 0).toDouble();
     h = settings->value("h", 0).toDouble();
@@ -176,11 +178,13 @@ void RF_Toroid::getOpt(_OptionStruct gOpt)
     else
         styleInfoColor = "<span style=\"color:blue;\">";
     ui->label_cs->setChecked(isCsAuto);
+    ui->toolButton_ltspice->setChecked(isShowLtspice);
     on_label_cs_toggled(isCsAuto);
     ui->comboBox->setCurrentIndex(matInit);
     on_comboBox_currentIndexChanged(matInit);
     ui->comboBox_2->setCurrentIndex(sizeInit);
     on_comboBox_2_currentIndexChanged(sizeInit);
+    ui->toolButton_ltspice->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RF_Toroid::getCurrentLocale(QLocale locale)
@@ -418,7 +422,7 @@ void RF_Toroid::on_pushButton_calculate_clicked()
                 result += formattedOutput(fOpt, tr("Coil constructive Q-factor") + " Q = ", roundTo(Q, loc, 0)) + "<br/>";
                 result += formattedOutput(fOpt, "A<sub>L</sub> = ", loc.toString(round(al)), qApp->translate("Context","nH") + "/N<sup>2</sup>") + "</p>";
                 result += "<hr/><p>";
-                if(fOpt->isShowLTSpice){
+                if(isShowLtspice){
                     result += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
                     result += "Inductance: " + QString::number(z.imag() / (2*M_PI*freq)*1e6, 'f', fOpt->dwAccuracy) + "μ" + "<br/>";
                     result += "Series resistance: " + QString::number(Rdc * 1000, 'f', 3) + "m" + "<br/>";
@@ -475,4 +479,8 @@ void RF_Toroid::on_pushButton_help_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://coil32.net/rf-toroid.html"));
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void RF_Toroid::on_toolButton_ltspice_toggled(bool checked)
+{
+    isShowLtspice = checked;
+}

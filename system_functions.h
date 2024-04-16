@@ -81,6 +81,8 @@ enum _StyleGUI {
       bool isSaveOnExit;
       bool isAdditionalResult;
       bool isAWGhasInsulation;
+      bool isDockWidgetFloating;
+      bool isDockWidgetVisible;
       int layoutPCBcoil;
       int windingKind;
       bool isWindingLengthOneLayerInit;
