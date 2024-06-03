@@ -86,7 +86,7 @@ Crossover::Crossover(QWidget *parent) :
     }
     tablepopupmenu = new QMenu(this);
     QAction *action0 = new QAction(tr("Remove row"), this);
-    action0->setIcon(QPixmap(":/menu_ico/res/icons8-delete-30.png"));
+    action0->setIcon(QPixmap(":/menu_ico/res/ico2-delete.png"));
     tablepopupmenu->addAction(action0);
     connect(action0, SIGNAL(triggered()), this, SLOT(on_removeRow()));
 }
@@ -171,6 +171,13 @@ void Crossover::getOpt(_OptionStruct gOpt)
     ui->toolButton_Save->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
     ui->toolButton_Clear->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
     ui->pushButton_close->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
+        ui->toolButton_Help->setIcon(reverceIconColors(ui->toolButton_Help->icon()));
+        ui->toolButton_Clear->setIcon(reverceIconColors(ui->toolButton_Clear->icon()));
+        ui->toolButton_Save->setIcon(reverceIconColors(ui->toolButton_Save->icon()));
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Crossover::getCurrentLocale(QLocale locale)

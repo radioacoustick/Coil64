@@ -204,8 +204,8 @@ QTabBar::tab:!selected{
 }
 
 QPushButton {
-  background-color: #505F69;
-  border: 1px solid #32414B;
+  background-color: #262627;
+  border: 1px solid #74B3DC;
   color: #F0F0F0;
   border-radius: 4px;
   padding: 3px;
@@ -302,12 +302,12 @@ QListView::item:hover {
 }
 
 QToolButton {
-  border: 1px solid #8f8f91;
-  background-color: qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 #505F69 ,stop:1 #888dd9);
+  border: 1px solid #AFAFA1;
+  background-color: qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 #363637 ,stop:0.3 #565657, stop:1 #363637);
 }
 
 QToolButton:pressed {
-  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #505F69, stop: 1 #f6f7fa);
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #505F69, stop: 1 #f6f7fA);
 }
 
 QToolButton:hover {
@@ -315,8 +315,13 @@ QToolButton:hover {
 }
 
 QToolButton:checked {
-  border: 1px solid #11283F;
-  background-color: qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 #8AA4B5 ,stop:1 #A0A6FF);
+  border: 1px solid #AFAFA1;
+  background-color: qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 #010102 ,stop:0.3 #363637, stop:1 #010102);
+}
+
+QToolButton:disabled {
+  border: 1px solid #363637;
+  background-color: rgba(255, 255, 255, 95);
 }
 
 QToolButton:checked:hover {
@@ -335,4 +340,18 @@ QTableView {
 QTableView QTableCornerButton::section {
     background-color: #646464;
     border: 1px solid gray;
+}
+
+QDockWidget::close-button, QDockWidget::float-button {
+    border: 1px solid #148CD2;
+    background: white;
+    padding: 0px;
+}
+
+QDockWidget::close-button:hover, QDockWidget::float-button:hover {
+    background: lightgray;
+}
+
+QDockWidget::close-button:pressed, QDockWidget::float-button:pressed {
+    background: gray;
 }

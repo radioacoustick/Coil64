@@ -20,6 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 
 #include <QDialog>
 #include <QResource>
+#include <QBuffer>
 
 #include "system_functions.h"
 

@@ -65,7 +65,6 @@ private slots:
     void on_tabWidget_currentChanged(int index);
     void on_comboBox_fd_currentTextChanged(const QString &arg1);
     void on_comboBox_td_currentTextChanged(const QString &arg1);
-    void on_lineEdit_ind_textChanged();
     void on_radioButton_p01_clicked(bool checked);
     void on_radioButton_p02_clicked(bool checked);
     void on_radioButton_p03_clicked(bool checked);
@@ -78,6 +77,8 @@ private slots:
     void on_radioButton_e03_clicked(bool checked);
     void on_radioButton_e04_clicked(bool checked);
     void on_radioButton_e05_clicked(bool checked);
+    void on_lineEdit_ind_textChanged();
+    void on_lineEdit_dw_textChanged(const QString &arg1);
 
     void drawToroid(QColor colour1, QColor colour2);
     void drawImage(QPixmap image);
@@ -94,6 +95,10 @@ private:
     QDoubleValidator *dv;
     QLocale loc;
     QString styleInfoColor;
+    QList<double> *tTorDimen;
+    QList<double> *fTorDimen;
+    unsigned int N = 0;
+    double dw;
     double al;
     double hole_area;
     double fMu;

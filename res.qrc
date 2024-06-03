@@ -89,20 +89,6 @@
         <file>res/flags/vi.png</file>
     </qresource>
     <qresource prefix="/menu_ico">
-        <file>res/icons8-add-32.png</file>
-        <file>res/icons8-available-updates-32.png</file>
-        <file>res/icons8-browse-page-32.png</file>
-        <file>res/icons8-copy-32.png</file>
-        <file>res/icons8-delete-30.png</file>
-        <file>res/icons8-exit-32.png</file>
-        <file>res/icons8-full-image-32.png</file>
-        <file>res/icons8-help-32.png</file>
-        <file>res/icons8-inconsistency-32.png</file>
-        <file>res/icons8-info-32.png</file>
-        <file>res/icons8-opened-folder-32.png</file>
-        <file>res/icons8-print-32.png</file>
-        <file>res/icons8-save-32.png</file>
-        <file>res/icons8-settings-32.png</file>
         <file>res/ico1-ferrite.png</file>
         <file>res/ico1-ferrite2.png</file>
         <file>res/ico1-multi-layer.png</file>
@@ -110,52 +96,67 @@
         <file>res/ico1-one-layer.png</file>
         <file>res/ico1-pcb-coil.png</file>
         <file>res/ico1-spiral.png</file>
-        <file>res/icons8-enter-key-64.png</file>
         <file>res/ico1-one-layer0.png</file>
-        <file>res/icons8-delete-database-32.png</file>
-        <file>res/icons8-ok-32.png</file>
-        <file>res/icons8-reply-all-arrow-32.png</file>
-        <file>res/icons8-cancel-32.png</file>
-        <file>res/icons8-unavailable-32.png</file>
         <file>res/ico1-ferrite-rod.png</file>
-        <file>res/icons8-apple-logo-32.png</file>
-        <file>res/icons8-linux-32.png</file>
-        <file>res/icons8-windows-xp-32.png</file>
         <file>res/ico1-multi-layer-rect.png</file>
         <file>res/ico1-meandr.png</file>
         <file>res/ico1-multiloop.png</file>
         <file>res/ico1-one-layer1.png</file>
         <file>res/ico1-loop.png</file>
-        <file>res/icons8-donate-32.png</file>
         <file>res/ico1-shield.png</file>
-        <file>res/icons8-a-32.png</file>
-        <file>res/icons8-delete-bin-32.png</file>
-        <file>res/icons8-save-close-32.png</file>
-        <file>res/icons8-sign-out-32.png</file>
-        <file>res/icons8-delete-history-32.png</file>
-        <file>res/icons8-list-32.png</file>
         <file>res/ico1-multi-tape.png</file>
-        <file>res/icons8-repository-32.png</file>
         <file>res/ico1-one-layer-sw.png</file>
-        <file>res/icons8-change-theme-32.png</file>
         <file>res/ico1-potcore.png</file>
         <file>res/ico1-ecore.png</file>
         <file>res/ico1-al.png</file>
         <file>res/ico1-ucore.png</file>
-        <file>res/icons8-audio-32.png</file>
-        <file>res/icons8-show-title-32.png</file>
-        <file>res/icons8-cpp-50.png</file>
-        <file>res/icons8-qt-50.png</file>
-        <file>res/icons8-ltspice-32.png</file>
         <file>res/ico1-bandspread.png</file>
         <file>res/ico1-rm-core.png</file>
-        <file>res/icons8-ask-question-32.png</file>
-        <file>res/icons8-color-32.png</file>
-        <file>res/icons8-description-32.png</file>
-        <file>res/icons8-column-32.png</file>
-        <file>res/icons8-bullet-32.png</file>
-        <file>res/icons8-interface-32.png</file>
-        <file>res/icons8-magnetic-32.png</file>
+        <file>res/ico2-a.png</file>
+        <file>res/ico2-add.png</file>
+        <file>res/ico2-ask-question.png</file>
+        <file>res/ico2-audio.png</file>
+        <file>res/ico2-available-updates.png</file>
+        <file>res/ico2-browse-page.png</file>
+        <file>res/ico2-bullet.png</file>
+        <file>res/ico2-cancel.png</file>
+        <file>res/ico2-change-theme.png</file>
+        <file>res/ico2-color.png</file>
+        <file>res/ico2-column.png</file>
+        <file>res/ico2-copy.png</file>
+        <file>res/ico2-cpp.png</file>
+        <file>res/ico2-delete-bin.png</file>
+        <file>res/ico2-delete-database.png</file>
+        <file>res/ico2-delete-history.png</file>
+        <file>res/ico2-delete.png</file>
+        <file>res/ico2-description.png</file>
+        <file>res/ico2-donate.png</file>
+        <file>res/ico2-enter-key.png</file>
+        <file>res/ico2-exit.png</file>
+        <file>res/ico2-export.png</file>
+        <file>res/ico2-full-image.png</file>
+        <file>res/ico2-help.png</file>
+        <file>res/ico2-inconsistency.png</file>
+        <file>res/ico2-info.png</file>
+        <file>res/ico2-interface.png</file>
+        <file>res/ico2-linux.png</file>
+        <file>res/ico2-list.png</file>
+        <file>res/ico2-ltspice.png</file>
+        <file>res/ico2-mac-os.png</file>
+        <file>res/ico2-magnetic.png</file>
+        <file>res/ico2-ok.png</file>
+        <file>res/ico2-open-folder.png</file>
+        <file>res/ico2-print.png</file>
+        <file>res/ico2-reply-all-arrow.png</file>
+        <file>res/ico2-repository.png</file>
+        <file>res/ico2-save-close.png</file>
+        <file>res/ico2-save.png</file>
+        <file>res/ico2-settings.png</file>
+        <file>res/ico2-show-title.png</file>
+        <file>res/ico2-sign-out.png</file>
+        <file>res/ico2-unavailable.png</file>
+        <file>res/ico2-windows.png</file>
+        <file>res/ico2-qt.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

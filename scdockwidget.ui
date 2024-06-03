@@ -2,9 +2,17 @@
 <ui version="4.0">
  <class>SaturationDockWidget</class>
  <widget class="QDockWidget" name="SaturationDockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>228</width>
+    <height>328</height>
+   </rect>
+  </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/menu_ico/res/icons8-magnetic-32.png</normaloff>:/menu_ico/res/icons8-magnetic-32.png</iconset>
+    <normaloff>:/menu_ico/res/ico2-magnetic.png</normaloff>:/menu_ico/res/ico2-magnetic.png</iconset>
   </property>
   <property name="features">
    <set>QDockWidget::DockWidgetFeatureMask</set>

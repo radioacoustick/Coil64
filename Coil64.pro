@@ -135,7 +135,10 @@ TRANSLATIONS += lang/Coil64_bg.ts \
 
 RESOURCES += res.qrc
 
-win32: RC_FILE = resource.rc
+win32:{
+  RC_FILE = resource.rc
+  DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050200
+}
 unix:{
   !macx:{
     QMAKE_LFLAGS += -no-pie

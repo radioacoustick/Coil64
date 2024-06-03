@@ -70,7 +70,6 @@ private slots:
     void on_pushButton_calculate_clicked();
     void on_pushButton_export_clicked();
     void on_pushButton_help_clicked();
-
     void on_toolButton_ltspice_toggled(bool checked);
 
 private:

@@ -24,7 +24,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/menu_ico/res/icons8-audio-32.png</normaloff>:/menu_ico/res/icons8-audio-32.png</iconset>
+    <normaloff>:/menu_ico/res/ico2-audio.png</normaloff>:/menu_ico/res/ico2-audio.png</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -306,7 +306,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-enter-key-64.png</normaloff>:/menu_ico/res/icons8-enter-key-64.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-enter-key.png</normaloff>:/menu_ico/res/ico2-enter-key.png</iconset>
           </property>
           <property name="default">
            <bool>true</bool>
@@ -387,7 +387,7 @@
             </property>
             <property name="icon">
              <iconset resource="res.qrc">
-              <normaloff>:/menu_ico/res/icons8-delete-30.png</normaloff>:/menu_ico/res/icons8-delete-30.png</iconset>
+              <normaloff>:/menu_ico/res/ico2-delete.png</normaloff>:/menu_ico/res/ico2-delete.png</iconset>
             </property>
             <property name="shortcut">
              <string notr="true">Del</string>
@@ -407,7 +407,7 @@
             </property>
             <property name="icon">
              <iconset resource="res.qrc">
-              <normaloff>:/menu_ico/res/icons8-save-32.png</normaloff>:/menu_ico/res/icons8-save-32.png</iconset>
+              <normaloff>:/menu_ico/res/ico2-save.png</normaloff>:/menu_ico/res/ico2-save.png</iconset>
             </property>
             <property name="shortcut">
              <string notr="true">Ctrl+S</string>
@@ -427,7 +427,7 @@
             </property>
             <property name="icon">
              <iconset resource="res.qrc">
-              <normaloff>:/menu_ico/res/icons8-help-32.png</normaloff>:/menu_ico/res/icons8-help-32.png</iconset>
+              <normaloff>:/menu_ico/res/ico2-help.png</normaloff>:/menu_ico/res/ico2-help.png</iconset>
             </property>
             <property name="shortcut">
              <string notr="true">F1</string>
@@ -457,7 +457,7 @@
             </property>
             <property name="icon">
              <iconset resource="res.qrc">
-              <normaloff>:/menu_ico/res/icons8-unavailable-32.png</normaloff>:/menu_ico/res/icons8-unavailable-32.png</iconset>
+              <normaloff>:/menu_ico/res/ico2-unavailable.png</normaloff>:/menu_ico/res/ico2-unavailable.png</iconset>
             </property>
            </widget>
           </item>

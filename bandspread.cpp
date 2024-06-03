@@ -122,6 +122,12 @@ void Bandspread::getOpt(_OptionStruct gOpt)
     showInductanceRange();
     ui->lineEdit_flo->setFocus();
     ui->lineEdit_flo->selectAll();
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
+        ui->pushButton_help->setIcon(reverceIconColors(ui->pushButton_help->icon()));
+        ui->pushButton_export->setIcon(reverceIconColors(ui->pushButton_export->icon()));
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Bandspread::getCurrentLocale(QLocale locale)

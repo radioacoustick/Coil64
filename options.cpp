@@ -119,6 +119,12 @@ void Options::getOpt(_OptionStruct gOpt){
         comboBox ->addItem(*ico, QString(), colorName);
     }
     ui->comboBox->setCurrentIndex(oOpt->vTextColor);
+    if (oOpt->styleGUI == _DarkStyle){
+        ui->pushButton->setIcon(reverceIconColors(ui->pushButton->icon()));
+        ui->pushButton_2->setIcon(reverceIconColors(ui->pushButton_2->icon()));
+        ui->pushButton_3->setIcon(reverceIconColors(ui->pushButton_3->icon()));
+        ui->pushButton_4->setIcon(reverceIconColors(ui->pushButton_4->icon()));
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Options::on_pushButton_clicked()

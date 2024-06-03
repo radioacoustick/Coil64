@@ -119,6 +119,11 @@ void AirCoreToroid::getOpt(_OptionStruct gOpt)
     ui->checkBox_isReverce->setChecked(isReverse);
     on_checkBox_isReverce_clicked();
     delete settings;
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
+        ui->pushButton_help->setIcon(reverceIconColors(ui->pushButton_help->icon()));
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void AirCoreToroid::getCurrentLocale(QLocale locale)
@@ -246,10 +251,13 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;
         }
-        if (windingKind == 0)
+        if (windingKind == 0){
             ind = findAirCoreRoundToroid_I(N,OD,ID,dw);
-        else
-            ind = getFerriteI(N, OD, ID, h, 1, dw / 2, &result);
+            lw = getToroidWireLength(OD, ID, 0, dw , N, NULL, true);
+        } else {
+            ind = getFerriteI(N, OD, ID, h, 1, dw / 2, 0, &result);
+            lw = getToroidWireLength(OD, ID, h, dw, N);
+        }
     } else {
         ind = loc.toDouble(ui->lineEdit_N->text(), &ok1)*fOpt->dwInductanceMultiplier;
         if (ind == 0){
@@ -260,11 +268,13 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
             showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             return;
         }
-        if (windingKind == 0)
+        if (windingKind == 0){
             N = findAirCoreRoundToroid_N(ind, OD, ID, dw);
-        else {
+            lw = getToroidWireLength(OD, ID, 0, dw , N, NULL, true);
+        } else {
             getFerriteN(ind, OD, ID, h, dw, 1, dw / 2, &result);
             N = result.N;
+            lw = getToroidWireLength(OD, ID, h, dw, N);
         }
     }
     QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
@@ -284,6 +294,16 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
                                    qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
     } else {
         sResult += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", roundTo(N, loc, fOpt->dwAccuracy));
+    }
+    if (lw > 0){
+        QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
+        QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+        QString d_wire_length = list[0];
+        QString _ssLengthMeasureUnit = list[1];
+        if (d_wire_length != "-100"){
+            sResult += "<br/>" + formattedOutput(fOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy),
+                                      qApp->translate("Context", _ssLengthMeasureUnit.toUtf8()));
+        }
     }
     sResult += "</p>";
     emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);

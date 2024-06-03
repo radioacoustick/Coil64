@@ -26,6 +26,7 @@ Loop::Loop(QWidget *parent) :
     fOpt = new _OptionStruct;
     dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
     awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
+    lw = 0.0;
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
@@ -104,6 +105,11 @@ void Loop::getOpt(_OptionStruct gOpt){
     ui->label_3->setText(tmpTxt);
     on_checkBox_isReverce_clicked();
     delete settings;
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton->setIcon(reverceIconColors(ui->pushButton->icon()));
+        ui->pushButton_2->setIcon(reverceIconColors(ui->pushButton_2->icon()));
+        ui->pushButton_3->setIcon(reverceIconColors(ui->pushButton_3->icon()));
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Loop::on_radioButton_round_clicked()
@@ -282,16 +288,19 @@ void Loop::on_pushButton_clicked()
             a = findRoundLoop_D(ind, dw);
             sResult += formattedOutput(fOpt, tr("Loop diameter") + " D: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
                                        qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+            lw = a * M_PI;
         } else if (loopKind == 1){
             a = findIsoIsoscelesTriangleLoop_a(ind, dw);
             b = a;
             sResult += formattedOutput(fOpt, tr("The side of the equilateral triangle") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
                                        qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+            lw = 3.0 * a;
         } else if (loopKind == 2){
             a = findRectangleLoop_a(ind, dw);
             b = a;
             sResult += formattedOutput(fOpt, tr("The side of quadrate") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
                                        qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+            lw = 4.0 * a;
         }
         if (a < 0){
             a = 0;
@@ -341,14 +350,27 @@ void Loop::on_pushButton_clicked()
         sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "</p>";
         if(loopKind == 0){
             ind = findRoundLoop_I(a, dw);
+            lw = a * M_PI;
         } else if (loopKind == 1){
             ind = findIsoIsoscelesTriangleLoop_I(a, b, dw);
+            lw = 2 * a + b;
         } else if (loopKind == 2){
             ind = findRectangleLoop_I(a, b, dw);
+            lw = 2 * a + 2 * b;
         }
         sResult = "<p><u>" + tr("Result") + ":</u><br/>";
         sResult += formattedOutput(fOpt, tr("Inductance") + " L = ", roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy),
                                    qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
+    }
+    if (lw > 0){
+        QString _wire_length = formatLength(0.001 * lw, fOpt->dwLengthMultiplier);
+        QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+        QString d_wire_length = list[0];
+        QString _ssLengthMeasureUnit = list[1];
+        if (d_wire_length != "-100"){
+            sResult += formattedOutput(fOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy),
+                                      qApp->translate("Context", _ssLengthMeasureUnit.toUtf8()));
+        }
     }
     sResult += "</p>";
     emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);

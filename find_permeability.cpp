@@ -92,6 +92,11 @@ void Find_Permeability::getOpt(_OptionStruct gOpt){
     ui->lineEdit_N->selectAll();
     move(pos);
     delete settings;
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton->setIcon(reverceIconColors(ui->pushButton->icon()));
+        ui->pushButton_2->setIcon(reverceIconColors(ui->pushButton_2->icon()));
+        ui->pushButton_3->setIcon(reverceIconColors(ui->pushButton_3->icon()));
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Find_Permeability::getCurrentLocale(QLocale locale){

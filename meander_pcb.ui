@@ -289,7 +289,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/menu_ico/res/icons8-help-32.png</normaloff>:/menu_ico/res/icons8-help-32.png</iconset>
+         <normaloff>:/menu_ico/res/ico2-help.png</normaloff>:/menu_ico/res/ico2-help.png</iconset>
        </property>
        <property name="shortcut">
         <string notr="true">F1</string>
@@ -331,7 +331,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/menu_ico/res/icons8-enter-key-64.png</normaloff>:/menu_ico/res/icons8-enter-key-64.png</iconset>
+         <normaloff>:/menu_ico/res/ico2-enter-key.png</normaloff>:/menu_ico/res/ico2-enter-key.png</iconset>
        </property>
        <property name="shortcut">
         <string notr="true">Enter</string>
@@ -363,7 +363,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/menu_ico/res/icons8-unavailable-32.png</normaloff>:/menu_ico/res/icons8-unavailable-32.png</iconset>
+         <normaloff>:/menu_ico/res/ico2-unavailable.png</normaloff>:/menu_ico/res/ico2-unavailable.png</iconset>
        </property>
        <property name="shortcut">
         <string notr="true">Esc</string>

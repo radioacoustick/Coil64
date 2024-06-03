@@ -126,7 +126,7 @@ enum _FormCoil
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result);
     void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, double dw, double k, _CoilResult *result);
     void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result);
-    double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, _CoilResult *result); //get Inductance for Ferrite toroid coil
+    double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, double dw, _CoilResult *result); //get Inductance for Ferrite toroid coil
     double getPCB_I(double N, double _d, double _s, int layout, _CoilResult *result);
     double getPCB_RectI(int N, double A, double B, double s, double w, double th, _CoilResult *result);
     void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result);
@@ -164,7 +164,7 @@ enum _FormCoil
     void CalcLC3(double Zo, double f, _CoilResult *result);
 
     double odCalc(double id);
-    double toNearestE24(double val, int accurasy);
+    double toNearestE24(double val, int accurasy, bool isToLowVal = false);
     double find_actual_spiral_length(int N, double Din, double k);
     double convertfromAWG (QString AWG, bool *isOK = NULL);
     QString converttoAWG (double d, bool *isOK = NULL);
@@ -172,6 +172,7 @@ enum _FormCoil
     double findTrimmerCapacitance(double Cp,double Cv_low,double Cv_high,double Cstray,double cap_ratio);
     double getToroidEqMagLength(double OD, double ID);
     double getSaturationCurrent(double Bs, double le, double mu, double N);
+    double getToroidWireLength(double Do, double Di, double h, double dw, double N, double *one_layer_dw = NULL, bool isRound = false);
 
 
 #endif // RESOLVES_H

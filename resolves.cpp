@@ -1126,38 +1126,50 @@ void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _Coil
     result->five = Rdca;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, double Ch, _CoilResult *result){
-    double w = 0, wt;
-    double cr = Ch / M_SQRT2; //Chamfer radius
-    double k = 0.8584 * pow(cr, 2) / (h * (Do - Di) / 2); //correction factor for the chamfer
-    double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
-    w = 100 * sqrt(L / (2 * he * mu * log(Do / Di)));
+double getToroidWireLength(double Do, double Di, double h, double dw, double N, double *one_layer_dw, bool isRound){
     double D1t = Do;
     double D2t = Di;
     double ht = h;
+    double Da = (Do - Di) / 2.0;
     double Lt = 0;
-    double w1 = 0;
-    do {
-        wt = M_PI * D2t / dw;
-        // Number of turns that fit into internal diameter
-        w1 = w1 + wt; // Increasing Number of turns counter
-        if (w1 >= w) {
-            Lt = Lt + (w - (w1 - wt)) * (D1t - D2t + ht * 2);
-            // Wire length of this layer with previos counter
-            break;
+    double n1 = 0;
+    if (dw > 0){
+        do {
+            double nt = M_PI * (D2t - dw) / dw; // Number of turns that fit into singlelayer in internal diameter
+            double perim = D1t - D2t + ht * 2 + 2 * dw;
+            if (isRound){
+                perim = M_PI * Da;
+            }
+            n1 = n1 + nt; // Increasing Number of turns counter
+            if (n1 >= N) {
+                Lt = Lt + (N - (n1 - nt)) * perim; // Wire length of this layer with previos counter
+                break;
+            }
+            Lt = Lt + nt * perim; // Wire length of this layer
+            D1t += dw; // Increasing coil size
+            D2t -= dw;
+            Da += dw;
+            ht += 2 * dw;
+            if (D2t <= dw) {
+                Lt = -100;
+                break;
+            }
+        } while (n1 < N);
+        if (one_layer_dw != NULL){
+            *one_layer_dw = toNearestE24(0.9 * M_PI  * Di / N, 1, true);
         }
-        Lt = Lt + wt * (D1t - D2t + ht * 2); // Wire length of this layer
-        Lt = Lt + Lt * 0.03;
-        D1t = D1t + dw; // Increasing coil size
-        D2t = D2t - dw;
-        ht = ht + 2 * dw;
-        if (D2t <= dw) {
-            Lt = -100;
-            break;
-        }
-    } while (w1 < w);
+        return 0.001 * Lt;
+    } else
+        return 0.0;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void getFerriteN(double L, double Do, double Di, double h, double dw, double mu, double Ch, _CoilResult *result){
+    double cr = Ch / M_SQRT2; //Chamfer radius
+    double k = 0.8584 * pow(cr, 2) / (h * (Do - Di) / 2); //correction factor for the chamfer
+    double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
+    double w = 100 * sqrt(L / (2 * he * mu * log(Do / Di)));
+    double lw = getToroidWireLength(Do, Di, h, dw, w);
     double al = round(0.2  * he * mu * log(Do / Di));
-    double lw = 0.001 * Lt;
     double le = getToroidEqMagLength(Do, Di);
     double Ae = getToroidEqCrossSec(Do, Di, he);
     result->N = w;
@@ -1167,13 +1179,15 @@ void getFerriteN(double L, double Do, double Di, double h, double dw, double mu,
     result->five = Ae;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, _CoilResult *result){
+double getFerriteI(double N, double Do, double Di, double h, double mu, double Ch, double dw, _CoilResult *result){
     double cr = Ch / M_SQRT2; //Chamfer radius
     double k = 0.8584 * pow(cr, 2) / (h * (Do - Di) / 2); //correction factor for the chamfer
     double he = h * (1 - k); //correction ΣA/l with chamfer by correcting h
     double al = round(0.2  * he * mu * log(Do / Di));
     double le = getToroidEqMagLength(Do, Di);
     double Ae = getToroidEqCrossSec(Do, Di, he);
+    double lw = getToroidWireLength(Do, Di, h, dw, N);
+    result->sec = lw;
     result->thd = al;
     result->fourth = le;
     result->five = Ae;
@@ -1981,7 +1995,7 @@ double findTrimmerCapacitance(double Cp,double Cv_low,double Cv_high,double Cstr
     return Ct;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double toNearestE24(double val, int accurasy){
+double toNearestE24(double val, int accurasy, bool isToLowVal){
     QString sVal = QString::number(val, 'E', accurasy);
     QString sVal_man = sVal.left(sVal.indexOf('E'));
     QString sVal_ord = sVal.mid(sVal.indexOf('E') + 1);
@@ -1990,10 +2004,14 @@ double toNearestE24(double val, int accurasy){
     double out = 0;
     for (int i = 0; i < 24; i++){
         if ((mant >= E24[i]) && (mant < E24[i + 1])){
-            if ((mant - E24[i]) < (E24[i + 1] - mant)){
-                out = E24[i] * pow(10, ordt);
+            if (!isToLowVal){
+                if ((mant - E24[i]) < (E24[i + 1] - mant)){
+                    out = E24[i] * pow(10, ordt);
+                } else {
+                    out = E24[i + 1] * pow(10, ordt);
+                }
             } else {
-                out = E24[i + 1] * pow(10, ordt);
+                out = E24[i] * pow(10, ordt);
             }
         }
     }

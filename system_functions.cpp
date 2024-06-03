@@ -532,6 +532,6 @@ QString formattedOutput(_OptionStruct *mOpt, QString header, QString value, QStr
     if (mOpt->isOutputValueColored)
         output = header + " <span style=\"color:"+ valurTextColor +";\">" + value + "</span> " + footer;
     else
-        output = header + " " + value + " " + footer;
+        output = header + " <span>" + value + "</span> " + footer;
     return output;
 }

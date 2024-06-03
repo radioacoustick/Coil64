@@ -39,7 +39,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/menu_ico/res/icons8-info-32.png</normaloff>:/menu_ico/res/icons8-info-32.png</iconset>
+    <normaloff>:/menu_ico/res/ico2-info.png</normaloff>:/menu_ico/res/ico2-info.png</iconset>
   </property>
   <property name="toolTipDuration">
    <number>2</number>
@@ -550,7 +550,7 @@ p, li { white-space: pre-wrap; }
                 <string notr="true"/>
                </property>
                <property name="pixmap">
-                <pixmap resource="res.qrc">:/menu_ico/res/icons8-cpp-50.png</pixmap>
+                <pixmap resource="res.qrc">:/menu_ico/res/ico2-cpp.png</pixmap>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -563,7 +563,7 @@ p, li { white-space: pre-wrap; }
                 <string notr="true"/>
                </property>
                <property name="pixmap">
-                <pixmap resource="res.qrc">:/menu_ico/res/icons8-qt-50.png</pixmap>
+                <pixmap resource="res.qrc">:/menu_ico/res/ico2-qt.png</pixmap>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -587,7 +587,7 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/icons8-windows-xp-32.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;Windows: Qt 5.13.2 (mingw32, gcc 5.5.0, 32bit, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/icons8-linux-32.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;Linux: Qt 5.12.0 (gcc 5.4.0, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/icons8-apple-logo-32.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;OS X: Qt 5.9.1 (clang-800.0.42.1, 64bit)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-windows.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;Windows: Qt 5.13.2 (mingw32, gcc 5.5.0, 32bit, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-linux.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;Linux: Qt 5.12.0 (gcc 5.4.0, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-mac-os.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;OS X: Qt 5.9.1 (clang-800.0.42.1, 64bit)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -677,7 +677,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/menu_ico/res/icons8-unavailable-32.png</normaloff>:/menu_ico/res/icons8-unavailable-32.png</iconset>
+         <normaloff>:/menu_ico/res/ico2-unavailable.png</normaloff>:/menu_ico/res/ico2-unavailable.png</iconset>
        </property>
        <property name="shortcut">
         <string notr="true">Esc</string>

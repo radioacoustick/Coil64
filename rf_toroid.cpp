@@ -185,6 +185,13 @@ void RF_Toroid::getOpt(_OptionStruct gOpt)
     ui->comboBox_2->setCurrentIndex(sizeInit);
     on_comboBox_2_currentIndexChanged(sizeInit);
     ui->toolButton_ltspice->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
+        ui->pushButton_help->setIcon(reverceIconColors(ui->pushButton_help->icon()));
+        ui->pushButton_export->setIcon(reverceIconColors(ui->pushButton_export->icon()));
+        ui->toolButton_ltspice->setIcon(reverceIconColors(ui->toolButton_ltspice->icon()));
+    }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RF_Toroid::getCurrentLocale(QLocale locale)
@@ -411,6 +418,31 @@ void RF_Toroid::on_pushButton_calculate_clicked()
                 sComplexZ = roundTo(z.real(), loc, fOpt->dwAccuracy) + " - j" + roundTo(-z.imag(), loc, fOpt->dwAccuracy);
             result += "Z (Ω) = " + formattedOutput(fOpt, "", sComplexZ) + "<br/>";
             result += "|Z| (Ω) = " + formattedOutput(fOpt, "", roundTo(abs(z), loc, fOpt->dwAccuracy)) + "<br/><br/>";
+            double one_layer_dw = 0.0;
+            double max_dw = 2 * sqrt(0.1 * id * id / N);
+            double lw = getToroidWireLength(od, id, h, d, N, &one_layer_dw);
+            QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
+            QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+            QString d_wire_length = list[0];
+            QString _ssLengthMeasureUnit = list[1];
+            if (d_wire_length != "-100"){
+                result +=  "<br/>" + formattedOutput(fOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy),
+                                                     qApp->translate("Context", _ssLengthMeasureUnit.toUtf8()));
+            } else {
+                result += "<br/><span style=\"color:red;\">" + tr("Coil can not be realized") + "! </span>";
+            }
+            double dw1 = std::min(max_dw, one_layer_dw);
+            int accuracy = 2;
+            if (round(dw1) > 1.0){
+                accuracy = 1;
+            }
+            result += "<br/>" + formattedOutput(fOpt, tr("Recommended wire diameter for singlelayer winding") + " dw_1 = ",
+                                                roundTo(dw1 / fOpt->dwLengthMultiplier, loc, accuracy),
+                                                qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
+            QString awg1 = converttoAWG(dw1);
+            if (!awg1.isEmpty())
+                result += " (" + awg1 +" AWG)";
+            result +=  "<hr/>";
             if (Q >= 0){
                 result += formattedOutput(fOpt, tr("Equivalent series inductance") + " Ls = ",
                                           roundTo(z.imag() / (2*M_PI*freq)*1e6 / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy),

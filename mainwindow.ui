@@ -1588,7 +1588,7 @@
          </property>
          <property name="icon">
           <iconset resource="res.qrc">
-           <normaloff>:/menu_ico/res/icons8-enter-key-64.png</normaloff>:/menu_ico/res/icons8-enter-key-64.png</iconset>
+           <normaloff>:/menu_ico/res/ico2-enter-key.png</normaloff>:/menu_ico/res/ico2-enter-key.png</iconset>
          </property>
          <property name="shortcut">
           <string notr="true">Del</string>
@@ -1658,7 +1658,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-list-32.png</normaloff>:/menu_ico/res/icons8-list-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-list.png</normaloff>:/menu_ico/res/ico2-list.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -1681,7 +1681,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-column-32.png</normaloff>:/menu_ico/res/icons8-column-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-column.png</normaloff>:/menu_ico/res/ico2-column.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -1707,7 +1707,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-bullet-32.png</normaloff>:/menu_ico/res/icons8-bullet-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-bullet.png</normaloff>:/menu_ico/res/ico2-bullet.png</iconset>
           </property>
           <property name="checkable">
            <bool>true</bool>
@@ -1743,7 +1743,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-show-title-32.png</normaloff>:/menu_ico/res/icons8-show-title-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-show-title.png</normaloff>:/menu_ico/res/ico2-show-title.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true">Ctrl+S</string>
@@ -1772,7 +1772,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-full-image-32.png</normaloff>:/menu_ico/res/icons8-full-image-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-full-image.png</normaloff>:/menu_ico/res/ico2-full-image.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1801,7 +1801,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-description-32.png</normaloff>:/menu_ico/res/icons8-description-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-description.png</normaloff>:/menu_ico/res/ico2-description.png</iconset>
           </property>
           <property name="checkable">
            <bool>true</bool>
@@ -1824,7 +1824,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-color-32.png</normaloff>:/menu_ico/res/icons8-color-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-color.png</normaloff>:/menu_ico/res/ico2-color.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -1863,7 +1863,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-add-32.png</normaloff>:/menu_ico/res/icons8-add-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-add.png</normaloff>:/menu_ico/res/ico2-add.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -1889,7 +1889,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-ltspice-32.png</normaloff>:/menu_ico/res/icons8-ltspice-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-ltspice.png</normaloff>:/menu_ico/res/ico2-ltspice.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -1912,7 +1912,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-magnetic-32.png</normaloff>:/menu_ico/res/icons8-magnetic-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-magnetic.png</normaloff>:/menu_ico/res/ico2-magnetic.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -1957,7 +1957,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-save-close-32.png</normaloff>:/menu_ico/res/icons8-save-close-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-save-close.png</normaloff>:/menu_ico/res/ico2-save-close.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -1980,7 +1980,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-delete-history-32.png</normaloff>:/menu_ico/res/icons8-delete-history-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-delete-history.png</normaloff>:/menu_ico/res/ico2-delete-history.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2003,7 +2003,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-delete-bin-32.png</normaloff>:/menu_ico/res/icons8-delete-bin-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-delete-bin.png</normaloff>:/menu_ico/res/ico2-delete-bin.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2026,7 +2026,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-sign-out-32.png</normaloff>:/menu_ico/res/icons8-sign-out-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-sign-out.png</normaloff>:/menu_ico/res/ico2-sign-out.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2062,7 +2062,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-settings-32.png</normaloff>:/menu_ico/res/icons8-settings-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-settings.png</normaloff>:/menu_ico/res/ico2-settings.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2104,9 +2104,8 @@
            <string notr="true">...</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normalon>:/menu_ico/res/icons8-opened-folder-32.png</normalon>
-           </iconset>
+           <iconset resource="res.qrc">
+            <normaloff>:/menu_ico/res/ico2-open-folder.png</normaloff>:/menu_ico/res/ico2-open-folder.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2135,7 +2134,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-save-32.png</normaloff>:/menu_ico/res/icons8-save-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-save.png</normaloff>:/menu_ico/res/ico2-save.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2164,7 +2163,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-inconsistency-32.png</normaloff>:/menu_ico/res/icons8-inconsistency-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-inconsistency.png</normaloff>:/menu_ico/res/ico2-inconsistency.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2193,7 +2192,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-copy-32.png</normaloff>:/menu_ico/res/icons8-copy-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-copy.png</normaloff>:/menu_ico/res/ico2-copy.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2225,7 +2224,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-delete-30.png</normaloff>:/menu_ico/res/icons8-delete-30.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-delete.png</normaloff>:/menu_ico/res/ico2-delete.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2264,7 +2263,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-print-32.png</normaloff>:/menu_ico/res/icons8-print-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-print.png</normaloff>:/menu_ico/res/ico2-print.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2297,7 +2296,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-ask-question-32.png</normaloff>:/menu_ico/res/icons8-ask-question-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-ask-question.png</normaloff>:/menu_ico/res/ico2-ask-question.png</iconset>
           </property>
          </widget>
         </item>
@@ -2314,7 +2313,7 @@
           </property>
           <property name="icon">
            <iconset resource="res.qrc">
-            <normaloff>:/menu_ico/res/icons8-help-32.png</normaloff>:/menu_ico/res/icons8-help-32.png</iconset>
+            <normaloff>:/menu_ico/res/ico2-help.png</normaloff>:/menu_ico/res/ico2-help.png</iconset>
           </property>
           <property name="shortcut">
            <string notr="true"/>
@@ -2363,7 +2362,7 @@
      </property>
      <property name="icon">
       <iconset resource="res.qrc">
-       <normaloff>:/menu_ico/res/icons8-change-theme-32.png</normaloff>:/menu_ico/res/icons8-change-theme-32.png</iconset>
+       <normaloff>:/menu_ico/res/ico2-change-theme.png</normaloff>:/menu_ico/res/ico2-change-theme.png</iconset>
      </property>
      <addaction name="actionThemeDefault"/>
      <addaction name="actionThemeSunny"/>
@@ -2454,9 +2453,8 @@
   </widget>
   <action name="actionExit">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-exit-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-exit.png</normaloff>:/menu_ico/res/ico2-exit.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Exit</string>
@@ -2467,9 +2465,8 @@
   </action>
   <action name="actionOptions">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-settings-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-settings.png</normaloff>:/menu_ico/res/ico2-settings.png</iconset>
    </property>
    <property name="text">
     <string>Options</string>
@@ -2483,9 +2480,8 @@
   </action>
   <action name="actionHelp">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-help-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-help.png</normaloff>:/menu_ico/res/ico2-help.png</iconset>
    </property>
    <property name="text">
     <string>Context help</string>
@@ -2496,9 +2492,8 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-info-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-info.png</normaloff>:/menu_ico/res/ico2-info.png</iconset>
    </property>
    <property name="text">
     <string>About Coil64</string>
@@ -2509,9 +2504,8 @@
   </action>
   <action name="actionCheck_for_update">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-available-updates-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-available-updates.png</normaloff>:/menu_ico/res/ico2-available-updates.png</iconset>
    </property>
    <property name="text">
     <string>Check for &amp;update</string>
@@ -2522,9 +2516,8 @@
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-save-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-save.png</normaloff>:/menu_ico/res/ico2-save.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -2535,9 +2528,8 @@
   </action>
   <action name="actionHomePage">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-browse-page-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-browse-page.png</normaloff>:/menu_ico/res/ico2-browse-page.png</iconset>
    </property>
    <property name="text">
     <string>HomePage</string>
@@ -2548,9 +2540,8 @@
   </action>
   <action name="actionCopy">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-copy-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-copy.png</normaloff>:/menu_ico/res/ico2-copy.png</iconset>
    </property>
    <property name="text">
     <string>Copy all to clipboard</string>
@@ -2564,9 +2555,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-print-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-print.png</normaloff>:/menu_ico/res/ico2-print.png</iconset>
    </property>
    <property name="text">
     <string>Print</string>
@@ -2578,7 +2568,7 @@
   <action name="actionTo_null_data">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/menu_ico/res/icons8-delete-database-32.png</normaloff>:/menu_ico/res/icons8-delete-database-32.png</iconset>
+     <normaloff>:/menu_ico/res/ico2-delete-database.png</normaloff>:/menu_ico/res/ico2-delete-database.png</iconset>
    </property>
    <property name="text">
     <string>To null initial data</string>
@@ -2590,7 +2580,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/menu_ico/res/icons8-opened-folder-32.png</normaloff>:/menu_ico/res/icons8-opened-folder-32.png</iconset>
+     <normaloff>:/menu_ico/res/ico2-open-folder.png</normaloff>:/menu_ico/res/ico2-open-folder.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -2619,9 +2609,8 @@
   </action>
   <action name="actionClear_all">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-delete-30.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-delete.png</normaloff>:/menu_ico/res/ico2-delete.png</iconset>
    </property>
    <property name="text">
     <string>Clear all</string>
@@ -2658,7 +2647,7 @@
   <action name="actionDonate">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/menu_ico/res/icons8-donate-32.png</normaloff>:/menu_ico/res/icons8-donate-32.png</iconset>
+     <normaloff>:/menu_ico/res/ico2-donate.png</normaloff>:/menu_ico/res/ico2-donate.png</iconset>
    </property>
    <property name="text">
     <string>Donate</string>
@@ -2677,6 +2666,10 @@
    </property>
   </action>
   <action name="actionAmidon_cores">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-a.png</normaloff>:/menu_ico/res/ico2-a.png</iconset>
+   </property>
    <property name="text">
     <string>Amidon cores</string>
    </property>
@@ -2684,7 +2677,7 @@
   <action name="actionVersions_history">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/menu_ico/res/icons8-repository-32.png</normaloff>:/menu_ico/res/icons8-repository-32.png</iconset>
+     <normaloff>:/menu_ico/res/ico2-repository.png</normaloff>:/menu_ico/res/ico2-repository.png</iconset>
    </property>
    <property name="text">
     <string>Versions history</string>
@@ -2768,9 +2761,8 @@
   </action>
   <action name="actionCross_over_inductor">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-audio-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-audio.png</normaloff>:/menu_ico/res/ico2-audio.png</iconset>
    </property>
    <property name="text">
     <string>Audio system filter (crossover) coil</string>
@@ -2805,9 +2797,8 @@
   </action>
   <action name="actionIntrfaceHelp">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-interface-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-interface.png</normaloff>:/menu_ico/res/ico2-interface.png</iconset>
    </property>
    <property name="text">
     <string>Interface help</string>
@@ -2818,9 +2809,8 @@
   </action>
   <action name="actionSaturation_current">
    <property name="icon">
-    <iconset>
-     <normalon>:/menu_ico/res/icons8-magnetic-32.png</normalon>
-    </iconset>
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico2-magnetic.png</normaloff>:/menu_ico/res/ico2-magnetic.png</iconset>
    </property>
    <property name="text">
     <string>Saturation current</string>

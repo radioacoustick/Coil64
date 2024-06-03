@@ -129,6 +129,11 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     resize(size);
     move(pos);
     delete settings;
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
+        ui->pushButton->setIcon(reverceIconColors(ui->pushButton->icon()));
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Ferrite_Rod::getCurrentLocale(QLocale locale){

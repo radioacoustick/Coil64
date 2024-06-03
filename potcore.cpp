@@ -169,6 +169,12 @@ void PotCore::getOpt(_OptionStruct gOpt)
     ui->toolButton_saturation->setChecked(isShowSaturation);
     ui->toolButton_saturation->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
     delete settings;
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
+        ui->pushButton_help->setIcon(reverceIconColors(ui->pushButton_help->icon()));
+        ui->toolButton_saturation->setIcon(reverceIconColors(ui->toolButton_saturation->icon()));
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void PotCore::getCurrentLocale(QLocale locale)

@@ -65,7 +65,7 @@ private:
     QLocale loc;
 
     int loopKind;
-    double ind, a, b, dw;
+    double ind, a, b, dw, lw;
 };
 
 #endif // LOOP_H

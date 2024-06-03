@@ -97,6 +97,10 @@ void AL::getOpt(_OptionStruct gOpt)
     resize(size);
     move(pos);
     delete settings;
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void AL::getCurrentLocale(QLocale locale)

@@ -202,7 +202,10 @@ Amidon::Amidon(QWidget *parent) :
     fOpt = new _OptionStruct;
     fOpt->mainFontSize = 0;
     dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    tTorDimen = new QList<double>{0,0,0};
+    fTorDimen = new QList<double>{0,0,0};
     ui->lineEdit_ind->setValidator(dv);
+    ui->lineEdit_dw->setValidator(dv);
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
     effect->setBlurRadius(0);
     effect->setColor(palette().color(QPalette::Shadow));
@@ -269,6 +272,7 @@ Amidon::~Amidon()
     settings->setValue("pos", this->pos());
     settings->setValue("size", this->size());
     settings->setValue("L", I);
+    settings->setValue("dw", dw);
     settings->setValue("tab", tab);
     settings->setValue("t_material", t_material);
     settings->setValue("t_size", t_size);
@@ -282,6 +286,8 @@ Amidon::~Amidon()
     delete settings;
     delete fOpt;
     delete dv;
+    delete tTorDimen;
+    delete fTorDimen;
     delete ui;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -310,6 +316,7 @@ void Amidon::getOpt(_OptionStruct gOpt)
     int y = (screenGeometry.height() - this->height()) / 2;
     QPoint pos = settings->value("pos", QPoint(x, y)).toPoint();
     double I = settings->value("L", 0).toDouble();
+    dw = settings->value("dw", 0).toDouble();
     int tab = settings->value("tab", 0).toInt();
     int t_material = settings->value("t_material", 0).toInt();
     int f_material = settings->value("f_material", 0).toInt();
@@ -320,7 +327,10 @@ void Amidon::getOpt(_OptionStruct gOpt)
     int p_index = settings->value("p_index", 0).toInt();
     int e_index = settings->value("e_index", 0).toInt();
     settings->endGroup();
+    ui->label_dw->setText(tr("Wire diameter") + " dw:");
+    ui->label_dw_u->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->lineEdit_ind->setText(roundTo(I / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_dw->setText(roundTo(dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     ui->comboBox_tm->setCurrentIndex(t_material);
     ui->comboBox_fm->setCurrentIndex(f_material);
     ui->comboBox_bn_m->setCurrentIndex(bn_material);
@@ -386,6 +396,11 @@ void Amidon::getOpt(_OptionStruct gOpt)
         styleInfoColor = "<span style=\"color:blue;\">";
     delete settings;
     on_tabWidget_currentChanged(ui->tabWidget->currentIndex());
+    if (fOpt->styleGUI == _DarkStyle){
+        ui->pushButton_export->setIcon(reverceIconColors(ui->pushButton_export->icon()));
+        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
+        ui->pushButton_help->setIcon(reverceIconColors(ui->pushButton_help->icon()));
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Amidon::on_tabWidget_currentChanged(int index)
@@ -393,6 +408,9 @@ void Amidon::on_tabWidget_currentChanged(int index)
     if (fOpt->mainFontSize > 0){
         switch (index) {
         case _TToroid:{
+            ui->label_dw->setVisible(true);
+            ui->lineEdit_dw->setVisible(true);
+            ui->label_dw_u->setVisible(true);
             ui->image->setPixmap(QPixmap(":/images/res/T-description.png"));
             QString tfeatures_str = TToroid_Features[ui->comboBox_tm->currentIndex()];
             QStringList tfeatures = tfeatures_str.split(",");
@@ -403,12 +421,18 @@ void Amidon::on_tabWidget_currentChanged(int index)
         }
             break;
         case _FToroid:{
+            ui->label_dw->setVisible(true);
+            ui->lineEdit_dw->setVisible(true);
+            ui->label_dw_u->setVisible(true);
             ui->image->setPixmap(QPixmap(":/images/res/F-description.png"));
             drawToroid(Qt::black,0x2F4F4F);
             on_comboBox_fd_currentTextChanged(ui->comboBox_fd->currentText());
         }
             break;
         case _ECore:{
+            ui->label_dw->setVisible(false);
+            ui->lineEdit_dw->setVisible(false);
+            ui->label_dw_u->setVisible(false);
             ui->image->setPixmap(QPixmap(":/images/res/E-description.png"));
             drawImage(QPixmap(":/images/res/e-core.jpg"));
             if (ui->radioButton_e01->isChecked())
@@ -424,6 +448,9 @@ void Amidon::on_tabWidget_currentChanged(int index)
         }
             break;
         case _PotCore:{
+            ui->label_dw->setVisible(false);
+            ui->lineEdit_dw->setVisible(false);
+            ui->label_dw_u->setVisible(false);
             ui->image->setPixmap(QPixmap(":/images/res/P-description.png"));
             drawImage(QPixmap(":/images/res/pot-core.jpg"));
             if (ui->radioButton_p01->isChecked())
@@ -444,6 +471,9 @@ void Amidon::on_tabWidget_currentChanged(int index)
         }
             break;
         case _MCore:{
+            ui->label_dw->setVisible(false);
+            ui->lineEdit_dw->setVisible(false);
+            ui->label_dw_u->setVisible(false);
             on_comboBox_bn_t_currentIndexChanged(ui->comboBox_bn_t->currentIndex());
         }
             break;
@@ -671,6 +701,9 @@ void Amidon::on_comboBox_td_currentTextChanged(const QString &arg1){
                 double od = OD.toDouble() * 25.4;
                 double h = H.toDouble() * 25.4;
                 hole_area = M_PI * id * id / 4;
+                tTorDimen->replace(0, od);
+                tTorDimen->replace(1, id);
+                tTorDimen->replace(2, h);
                 int accuracy = fOpt->indexLengthMultiplier + 1;
                 if (accuracy == 4)
                     accuracy = 0;
@@ -721,6 +754,9 @@ void Amidon::on_comboBox_fd_currentTextChanged(const QString &arg1)
                 double h = H.toDouble() * 25.4;
                 fLe = getToroidEqMagLength(od, id);
                 hole_area = M_PI * id * id / 4;
+                fTorDimen->replace(0, od);
+                fTorDimen->replace(1, id);
+                fTorDimen->replace(2, h);
                 int accuracy = fOpt->indexLengthMultiplier + 1;
                 if (accuracy == 4)
                     accuracy = 0;
@@ -849,45 +885,78 @@ void Amidon::drawImage(QPixmap image)
 void Amidon::onCalculate()
 {
     if (fOpt->mainFontSize > 0){
-        double ind = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
-        int N = 0;
+        bool ok;
+        double ind = loc.toDouble(ui->lineEdit_ind->text(), &ok)*fOpt->dwInductanceMultiplier;
         QString Result = "";
-        double satI = 0;
-        if (ind > 0){
-            ui->label_result->clear();
-            switch (ui->tabWidget->currentIndex()) {
-            case _TToroid:
-                N = round(100 * sqrt(ind / al));
-                break;
-            case _FToroid:
-                N = round(sqrt(1000 * ind / al));
-                satI = getSaturationCurrent(fBs, fLe, fMu, N);
-                break;
-            case _PotCore:
-                N = round(sqrt(ind / al * 1000));
-                satI = getSaturationCurrent(fBs, fLe, fMu, N);
-                break;
-            case _ECore:
-                N = round(1000 * sqrt(ind / al / 1000));
-                satI = getSaturationCurrent(fBs, fLe, fMu, N);
-                break;
-            case _MCore:
-                N = round(1000 * sqrt(ind / al / 1000));
-                break;
-            default:
-                break;
+        if (ok){
+            double satI = 0;
+            if (ind > 0){
+                ui->label_result->clear();
+                switch (ui->tabWidget->currentIndex()) {
+                case _TToroid:
+                    N = round(100 * sqrt(ind / al));
+                    break;
+                case _FToroid:
+                    N = round(sqrt(1000 * ind / al));
+                    satI = getSaturationCurrent(fBs, fLe, fMu, N);
+                    break;
+                case _PotCore:
+                    N = round(sqrt(ind / al * 1000));
+                    satI = getSaturationCurrent(fBs, fLe, fMu, N);
+                    break;
+                case _ECore:
+                    N = round(1000 * sqrt(ind / al / 1000));
+                    satI = getSaturationCurrent(fBs, fLe, fMu, N);
+                    break;
+                case _MCore:
+                    N = round(1000 * sqrt(ind / al / 1000));
+                    break;
+                default:
+                    break;
+                }
             }
-        }
-        if (N  > 0){
-            double max_dw = 2 * sqrt(0.4 * hole_area / N / M_PI);
-            Result += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", loc.toString(N)) + "<br/>";
-            Result += formattedOutput(fOpt, tr("Maximum wire diameter") + " dw_max = ", roundTo(max_dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
-                                      qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
-            QString awg = converttoAWG(max_dw);
-            if (!awg.isEmpty())
-                Result += " (" + awg +" AWG)";
-            if ((std::isnormal(satI)) && (satI > 0)){
-                Result += "<br/>" + tr("Saturation current") + ": I<sub>s</sub> = " + roundTo(satI, loc , fOpt->dwAccuracy) + " " + tr("mA");
+            if (N  > 0){
+                double max_dw = 2 * sqrt(0.4 * hole_area / N / M_PI);
+                Result += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", loc.toString(N)) + "<br/>";
+                Result += formattedOutput(fOpt, tr("Maximum wire diameter") + " dw_max = ", roundTo(max_dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                                          qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
+                QString awg = converttoAWG(max_dw);
+                if (!awg.isEmpty())
+                    Result += " (" + awg +" AWG)";
+                if ((ui->tabWidget->currentIndex() == _TToroid) || (ui->tabWidget->currentIndex() == _FToroid)){
+                    if ((dw > max_dw) || (dw == 0)){
+                        dw  = max_dw;
+                        ui->lineEdit_dw->setText(roundTo(dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+                    }
+                    double lw = 0.0;
+                    double one_layer_dw = 0.0;
+                    if (ui->tabWidget->currentIndex() == _TToroid)
+                        lw = getToroidWireLength(tTorDimen->at(0), tTorDimen->at(1), tTorDimen->at(2), dw, N, &one_layer_dw);
+                    if (ui->tabWidget->currentIndex() == _FToroid)
+                        lw = getToroidWireLength(fTorDimen->at(0), fTorDimen->at(1), fTorDimen->at(2), dw, N, &one_layer_dw);
+                    QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
+                    QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+                    QString d_wire_length = list[0];
+                    QString _ssLengthMeasureUnit = list[1];
+                    double dw1 = std::min(max_dw, one_layer_dw);
+                    Result += "<br/>" + formattedOutput(fOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy),
+                                                        qApp->translate("Context", _ssLengthMeasureUnit.toUtf8()));
+                    int accuracy = 2;
+                    if (round(dw1) > 1.0){
+                        accuracy = 1;
+                    }
+                    Result += "<br/>" + formattedOutput(fOpt, tr("Recommended wire diameter for singlelayer winding") + " dw_1 = ",
+                                                        roundTo(dw1 / fOpt->dwLengthMultiplier, loc, accuracy),
+                                                        qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
+                    QString awg1 = converttoAWG(dw1);
+                    if (!awg1.isEmpty())
+                        Result += " (" + awg1 +" AWG)";
+                }
+                if ((std::isnormal(satI)) && (satI > 0)){
+                    Result += "<br/>" + formattedOutput(fOpt, tr("Saturation current") + ": I<sub>s</sub> = ", roundTo(satI, loc , fOpt->dwAccuracy), " " + tr("mA"));
+                }
+            } else {
+                Result += tr("Not available");
             }
         } else {
             Result += tr("Not available");
@@ -1062,6 +1131,48 @@ void Amidon::resolveECore(int index)
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Amidon::on_lineEdit_dw_textChanged(const QString &arg1)
+{
+    QString result = ui->label_result->text();
+    if ((!result.isEmpty()) && (!arg1.isEmpty())){
+        bool ok;
+        ui->label_result->clear();
+        double d = loc.toDouble(arg1, &ok) * fOpt->dwLengthMultiplier;
+        if (ok){
+            double lw = 0;
+            double max_dw = 2 * sqrt(0.4 * hole_area / N / M_PI);
+            if (d > max_dw){
+               d  = max_dw;
+               ui->lineEdit_dw->setText(roundTo(d / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+            }
+            if (ui->tabWidget->currentIndex() == _TToroid)
+                lw = getToroidWireLength(tTorDimen->at(0), tTorDimen->at(1), tTorDimen->at(2), d, N);
+            if (ui->tabWidget->currentIndex() == _FToroid)
+                lw = getToroidWireLength(fTorDimen->at(0), fTorDimen->at(1), fTorDimen->at(2), d, N);
+            QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
+            QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+            QString d_wire_length = list[0];
+            QString _ssLengthMeasureUnit = list[1];
+            int i0 = result.indexOf(">", result.lastIndexOf("lw ="));
+            int i1 = result.indexOf("<", i0);
+            if ((!d_wire_length.isEmpty()) && (d_wire_length != "-100") && (i0 > 0) && (i1 > 0)){
+                result.remove(i0 + 1, i1 - i0 - 1);
+                result.insert(i0 + 1, roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy));
+            }
+            i0 = result.indexOf(">", result.lastIndexOf("lw ="));
+            i1 = result.indexOf("<", i0);
+            int i3 = result.indexOf(" ", i1);
+            int i4 = result.indexOf("<", i3);
+            if ((i3 > 0) && (i4 > 0)){
+                result.remove(i3 + 1, i4 - i3 - 1);
+                result.insert(i3 + 1, qApp->translate("Context", _ssLengthMeasureUnit.toUtf8()));
+            }
+            ui->label_result->setText(result);
+            dw = d;
+        }
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Amidon::on_pushButton_export_clicked()
 {
     double I = loc.toDouble(ui->lineEdit_ind->text())*fOpt->dwInductanceMultiplier;
@@ -1083,7 +1194,8 @@ void Amidon::on_pushButton_export_clicked()
     ui->image->pixmap()->save(&buffer2, "PNG");
     sImage += QString("<br/><img src=\"data:image/png;base64,") + byteArray2.toBase64() + "\"/>";
     QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
-    sInput += formattedOutput(fOpt, ui->groupBox_ind->title() + " L = ", ui->lineEdit_ind->text(), ui->label_2->text()) + "</p>";
+    sInput += formattedOutput(fOpt, ui->groupBox_ind->title() + " L: ", ui->lineEdit_ind->text(), ui->label_2->text()) + "<br/>";
+    sInput += formattedOutput(fOpt, ui->label_dw->text(), ui->lineEdit_dw->text(), ui->label_dw_u->text()) + "</p>";
     if (fOpt->isShowValueDescription){
         sInput += "<p><u>" + ui->groupBox_info->title() + ":</u></p>";
         sInput += ui->label_info->text();

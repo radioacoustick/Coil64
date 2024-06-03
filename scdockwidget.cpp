@@ -130,7 +130,7 @@ void SaturationDockWidget::on_lineEdit_Bs_textChanged()
         try{
             double satI = getSaturationCurrent(Bs, le, mu, N);
             if (std::isnormal(satI))
-                ui->label_result->setText(tr("Saturation current") + ":<br/>I<sub>s</sub> = " + roundTo(satI, loc , fOpt->dwAccuracy) + " " + tr("mA"));
+                ui->label_result->setText(formattedOutput(fOpt, tr("Saturation current") + ":<br/>I<sub>s</sub> = ", roundTo(satI, loc , fOpt->dwAccuracy), tr("mA")));
             else
                 ui->label_result->setText("");
         } catch(...){

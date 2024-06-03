@@ -45,7 +45,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_1">
       <attribute name="title">
@@ -419,7 +419,7 @@
            </property>
            <property name="icon">
             <iconset resource="res.qrc">
-             <normaloff>:/menu_ico/res/icons8-reply-all-arrow-32.png</normaloff>:/menu_ico/res/icons8-reply-all-arrow-32.png</iconset>
+             <normaloff>:/menu_ico/res/ico2-reply-all-arrow.png</normaloff>:/menu_ico/res/ico2-reply-all-arrow.png</iconset>
            </property>
            <property name="shortcut">
             <string notr="true"/>
@@ -873,7 +873,7 @@
             </property>
             <property name="icon">
              <iconset resource="res.qrc">
-              <normaloff>:/menu_ico/res/icons8-available-updates-32.png</normaloff>:/menu_ico/res/icons8-available-updates-32.png</iconset>
+              <normaloff>:/menu_ico/res/ico2-available-updates.png</normaloff>:/menu_ico/res/ico2-available-updates.png</iconset>
             </property>
             <property name="shortcut">
              <string notr="true"/>
@@ -923,7 +923,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/menu_ico/res/icons8-ok-32.png</normaloff>:/menu_ico/res/icons8-ok-32.png</iconset>
+         <normaloff>:/menu_ico/res/ico2-ok.png</normaloff>:/menu_ico/res/ico2-ok.png</iconset>
        </property>
        <property name="shortcut">
         <string notr="true">Return</string>
@@ -937,7 +937,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/menu_ico/res/icons8-cancel-32.png</normaloff>:/menu_ico/res/icons8-cancel-32.png</iconset>
+         <normaloff>:/menu_ico/res/ico2-cancel.png</normaloff>:/menu_ico/res/ico2-cancel.png</iconset>
        </property>
        <property name="shortcut">
         <string notr="true">Esc</string>
