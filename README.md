@@ -1,6 +1,6 @@
 # Coil64
 [Coil64](https://coil32.net) is inductance coil calculator, that allows to calculate the single-layer and multi-layer air core inductors, the ferrite toroid inductors or chokes, flat square coils on PCB etc.
-You can help to translate application by the [Crowdin Coil64 project](https://crwd.in/coil64). The app uses [icons8.com]([https://icons8.com/license](https://github.com/icons8/windows-10-icons)) free icons.
+You can help to translate application by the [Crowdin Coil64 project](https://crwd.in/coil64). The app uses [icons8.com](https://github.com/icons8/windows-10-icons) free icons.
 
 HOW TO USE
 
