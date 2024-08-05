@@ -106,9 +106,9 @@ void Loop::getOpt(_OptionStruct gOpt){
     on_checkBox_isReverce_clicked();
     delete settings;
     if (fOpt->styleGUI == _DarkStyle){
-        ui->pushButton->setIcon(reverceIconColors(ui->pushButton->icon()));
-        ui->pushButton_2->setIcon(reverceIconColors(ui->pushButton_2->icon()));
-        ui->pushButton_3->setIcon(reverceIconColors(ui->pushButton_3->icon()));
+        ui->pushButton->setIcon(reverseIconColors(ui->pushButton->icon()));
+        ui->pushButton_2->setIcon(reverseIconColors(ui->pushButton_2->icon()));
+        ui->pushButton_3->setIcon(reverseIconColors(ui->pushButton_3->icon()));
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -364,7 +364,7 @@ void Loop::on_pushButton_clicked()
     }
     if (lw > 0){
         QString _wire_length = formatLength(0.001 * lw, fOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         if (d_wire_length != "-100"){

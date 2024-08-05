@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>550</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,13 +22,13 @@
   <property name="minimumSize">
    <size>
     <width>650</width>
-    <height>550</height>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>650</width>
-    <height>550</height>
+    <height>600</height>
    </size>
   </property>
   <property name="contextMenuPolicy">
@@ -484,8 +484,8 @@
               <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="placeholderText">
               <string notr="true"/>
@@ -573,6 +573,25 @@ p, li { white-space: pre-wrap; }
             </layout>
            </item>
            <item>
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-mxe.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&lt;a href=&quot;https://github.com/mxe/mxe&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1e90ff;&quot;&gt;MXE (M cross environment)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="margin">
+              <number>10</number>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="Line" name="line_2">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -587,7 +606,7 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-windows.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;Windows: Qt 5.13.2 (mingw32, gcc 5.5.0, 32bit, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-linux.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;Linux: Qt 5.12.0 (gcc 5.4.0, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-mac-os.png&quot; style=&quot;vertical-align: middle;&quot;/&gt;&amp;nbsp;OS X: Qt 5.9.1 (clang-800.0.42.1, 64bit)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-windows.png&quot; style=&quot;vertical-align: middle;&quot;/&gt; Windows 7-11: Qt 5.13.2 (MinGW-w64, gcc 5.5.0, 32bit, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-windows-xp.png&quot; style=&quot;vertical-align: middle;&quot;/&gt; Windows XP: Qt 5.7.1 (MinGW-w64, gcc 5.5.0, 32bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-linux.png&quot; style=&quot;vertical-align: middle;&quot;/&gt; Linux: Qt 5.12.0 (gcc 5.4.0, 64bit)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/menu_ico/res/ico2-mac-os.png&quot; style=&quot;vertical-align: middle;&quot;/&gt; OS X: Qt 5.9.1 (clang-800.0.42.1, 64bit)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -628,7 +647,7 @@ p, li { white-space: pre-wrap; }
              <item>
               <widget class="QLabel" name="label">
                <property name="text">
-                <string notr="true">&lt;a href=&quot;https://icons8.com/icons&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;https://icons8.com/icons&lt;/span&gt;&lt;/a&gt;</string>
+                <string notr="true">&lt;a href=&quot;https://github.com/icons8/windows-10-icons&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;https://icons8.com/icons&lt;/span&gt;&lt;/a&gt;</string>
                </property>
                <property name="margin">
                 <number>10</number>

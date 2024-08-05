@@ -136,9 +136,6 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <property name="styleSheet">
-               <string notr="true">padding:5;margin:5</string>
-              </property>
               <property name="frame">
                <bool>true</bool>
               </property>

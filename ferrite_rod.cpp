@@ -130,9 +130,9 @@ void Ferrite_Rod::getOpt(_OptionStruct gOpt){
     move(pos);
     delete settings;
     if (fOpt->styleGUI == _DarkStyle){
-        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
-        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
-        ui->pushButton->setIcon(reverceIconColors(ui->pushButton->icon()));
+        ui->pushButton_calculate->setIcon(reverseIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverseIconColors(ui->pushButton_close->icon()));
+        ui->pushButton->setIcon(reverseIconColors(ui->pushButton->icon()));
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

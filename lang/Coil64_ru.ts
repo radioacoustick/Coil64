@@ -188,12 +188,12 @@
         <translation>Библиотеки</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="621"/>
+        <location filename="../about.ui" line="640"/>
         <source>Free Icons:</source>
         <translation>Бесплатные иконки:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="676"/>
+        <location filename="../about.ui" line="695"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
@@ -415,17 +415,17 @@
         <translation>Выбрать тип сердечника</translation>
     </message>
     <message>
-        <location filename="../amidon.ui" line="624"/>
+        <location filename="../amidon.ui" line="627"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../amidon.ui" line="744"/>
+        <location filename="../amidon.ui" line="747"/>
         <source>Export results</source>
         <translation>Экспортировать результат</translation>
     </message>
     <message>
-        <location filename="../amidon.ui" line="776"/>
+        <location filename="../amidon.ui" line="779"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
@@ -620,150 +620,249 @@
         <translation>Расчет сопрягающих конденсаторов</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="91"/>
+        <location filename="../bandspread.ui" line="97"/>
         <source>Direct calculation</source>
         <translation>Прямой расчет</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="97"/>
-        <location filename="../bandspread.ui" line="519"/>
-        <location filename="../bandspread.cpp" line="352"/>
+        <location filename="../bandspread.ui" line="103"/>
+        <location filename="../bandspread.ui" line="567"/>
+        <location filename="../bandspread.ui" line="989"/>
+        <location filename="../bandspread.cpp" line="489"/>
         <source>Input data</source>
         <translation>Входные данные</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="393"/>
-        <location filename="../bandspread.ui" line="790"/>
-        <location filename="../bandspread.cpp" line="362"/>
-        <location filename="../bandspread.cpp" line="378"/>
+        <location filename="../bandspread.ui" line="441"/>
+        <location filename="../bandspread.ui" line="851"/>
+        <location filename="../bandspread.ui" line="1448"/>
+        <location filename="../bandspread.cpp" line="424"/>
+        <location filename="../bandspread.cpp" line="500"/>
+        <location filename="../bandspread.cpp" line="517"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="513"/>
+        <location filename="../bandspread.ui" line="561"/>
         <source>Reverse calculation</source>
         <translation>Обратный расчет</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="953"/>
+        <location filename="../bandspread.ui" line="977"/>
+        <source>Local Oscillator tracking</source>
+        <translation>Соряжение контура гетеродина</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1313"/>
+        <source>Local Oscillator frequency position</source>
+        <translation>Положение частоты гетеродина</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1331"/>
+        <source>Below incoming frequency</source>
+        <translation>Ниже входной частоты</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1336"/>
+        <source>Above incoming frequency</source>
+        <translation>Выше входной частоты</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1003"/>
+        <source>microH</source>
+        <translation>мкГн</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1539"/>
         <source>Context help</source>
         <translation>Контекстная справка</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="998"/>
+        <location filename="../bandspread.ui" line="1584"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="1027"/>
+        <location filename="../bandspread.ui" line="1613"/>
         <source>Export results</source>
         <translation>Экспортировать результат</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="1053"/>
+        <location filename="../bandspread.ui" line="1639"/>
         <source>Calculate</source>
         <translation>Рассчитать</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="78"/>
-        <location filename="../bandspread.cpp" line="86"/>
+        <location filename="../bandspread.cpp" line="101"/>
+        <location filename="../bandspread.cpp" line="109"/>
+        <location filename="../bandspread.cpp" line="128"/>
         <source>Lowest Frequency</source>
         <translation>Наинизшая частота</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="79"/>
-        <location filename="../bandspread.cpp" line="87"/>
+        <location filename="../bandspread.cpp" line="102"/>
+        <location filename="../bandspread.cpp" line="110"/>
+        <location filename="../bandspread.cpp" line="129"/>
         <source>Highest Frequency</source>
         <translation>Наивысшая частота</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="80"/>
-        <location filename="../bandspread.cpp" line="88"/>
+        <location filename="../bandspread.cpp" line="103"/>
+        <location filename="../bandspread.cpp" line="111"/>
+        <location filename="../bandspread.cpp" line="130"/>
         <source>Tuning Capacitor Minimum</source>
         <translation>Минимум конденсатора настройки</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="81"/>
-        <location filename="../bandspread.cpp" line="89"/>
+        <location filename="../bandspread.cpp" line="104"/>
+        <location filename="../bandspread.cpp" line="112"/>
+        <location filename="../bandspread.cpp" line="131"/>
         <source>Tuning Capacitor Maximum</source>
         <translation>Максимум конденсатора настройки</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="82"/>
-        <location filename="../bandspread.cpp" line="90"/>
+        <location filename="../bandspread.cpp" line="105"/>
+        <location filename="../bandspread.cpp" line="113"/>
+        <location filename="../bandspread.cpp" line="132"/>
         <source>Stray Capacitance</source>
         <translation>Паразитная емкость</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="83"/>
-        <location filename="../bandspread.cpp" line="91"/>
+        <location filename="../bandspread.cpp" line="106"/>
+        <location filename="../bandspread.cpp" line="114"/>
+        <location filename="../bandspread.cpp" line="117"/>
+        <location filename="../bandspread.cpp" line="119"/>
+        <location filename="../bandspread.cpp" line="134"/>
+        <location filename="../bandspread.cpp" line="430"/>
+        <location filename="../bandspread.cpp" line="437"/>
         <source>Inductance</source>
         <translation>Индуктивность</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="85"/>
-        <location filename="../bandspread.cpp" line="93"/>
+        <location filename="../bandspread.cpp" line="108"/>
+        <location filename="../bandspread.cpp" line="116"/>
+        <location filename="../bandspread.cpp" line="427"/>
+        <location filename="../bandspread.cpp" line="435"/>
         <source>Serial Capacitor</source>
         <translation>Последовательный конденсатор</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="94"/>
-        <location filename="../bandspread.cpp" line="210"/>
-        <location filename="../bandspread.cpp" line="214"/>
-        <location filename="../bandspread.cpp" line="218"/>
+        <location filename="../bandspread.cpp" line="118"/>
+        <location filename="../bandspread.cpp" line="120"/>
         <source>Valid value range</source>
         <translation>Допустимый диапазон значений</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="278"/>
-        <location filename="../bandspread.cpp" line="336"/>
+        <location filename="../bandspread.cpp" line="127"/>
+        <source>Automatically find the optimal</source>
+        <translation>Автоматический поиск оптимального</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="133"/>
+        <source>Intermediate frequency</source>
+        <translation>Промежуточная частота</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="286"/>
+        <location filename="../bandspread.cpp" line="346"/>
         <source>Minimum LC circuit Capacitance</source>
         <translation>Минимальная емкость контура</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="280"/>
-        <location filename="../bandspread.cpp" line="338"/>
+        <location filename="../bandspread.cpp" line="289"/>
+        <location filename="../bandspread.cpp" line="349"/>
         <source>Maximum LC circuit Capacitance</source>
         <translation>Максимальная емкость контура</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="237"/>
-        <location filename="../bandspread.cpp" line="244"/>
-        <location filename="../bandspread.cpp" line="251"/>
-        <location filename="../bandspread.cpp" line="258"/>
-        <location filename="../bandspread.cpp" line="286"/>
-        <location filename="../bandspread.cpp" line="294"/>
-        <location filename="../bandspread.cpp" line="312"/>
-        <location filename="../bandspread.cpp" line="319"/>
-        <location filename="../bandspread.cpp" line="326"/>
+        <location filename="../bandspread.cpp" line="296"/>
+        <location filename="../bandspread.cpp" line="470"/>
+        <source>The Cv capacitance range (combined with the circuit stray capacitance) is too narrow to overlap the desired frequency range. Please change your frequency range or variable capacitor parameters and try again.</source>
+        <translation>Диапазон емкости Cv (в сочетании с паразитной емкостью цепи) слишком узок, чтобы перекрыть желаемый диапазон частот. Пожалуйста, измените диапазон частот или параметры переменного конденсатора и повторите попытку.</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="439"/>
+        <source>Zero error tracking points</source>
+        <translation>Частоты точного сопряжения</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="450"/>
+        <source>Peak tracking error</source>
+        <translation>Максимальная ошибка сопряжения</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="453"/>
+        <source>Local oscillator frequency range</source>
+        <translation>Диапазон частот гетеродина</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="458"/>
+        <source>Image frequency range</source>
+        <translation>Диапазон зеркальных частот</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="467"/>
+        <source>Unable to create Local Oscillator LC-circuit. Try changing the LO frequency position and try again.</source>
+        <translation>Невозможно создать LC-контур гетеродина. Попробуйте изменить положение частоты гетеродина и повторите попытку.</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="466"/>
+        <location filename="../bandspread.cpp" line="469"/>
+        <location filename="../bandspread.cpp" line="473"/>
+        <location filename="../bandspread.cpp" line="476"/>
+        <location filename="../bandspread.cpp" line="527"/>
+        <source>Solution failed</source>
+        <translation>Решение не удалось</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="245"/>
+        <location filename="../bandspread.cpp" line="252"/>
+        <location filename="../bandspread.cpp" line="259"/>
+        <location filename="../bandspread.cpp" line="266"/>
+        <location filename="../bandspread.cpp" line="296"/>
+        <location filename="../bandspread.cpp" line="304"/>
+        <location filename="../bandspread.cpp" line="322"/>
+        <location filename="../bandspread.cpp" line="329"/>
+        <location filename="../bandspread.cpp" line="336"/>
+        <location filename="../bandspread.cpp" line="380"/>
+        <location filename="../bandspread.cpp" line="385"/>
+        <location filename="../bandspread.cpp" line="390"/>
+        <location filename="../bandspread.cpp" line="395"/>
+        <location filename="../bandspread.cpp" line="400"/>
+        <location filename="../bandspread.cpp" line="408"/>
+        <location filename="../bandspread.cpp" line="413"/>
+        <location filename="../bandspread.cpp" line="467"/>
+        <location filename="../bandspread.cpp" line="470"/>
+        <location filename="../bandspread.cpp" line="474"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="84"/>
-        <location filename="../bandspread.cpp" line="92"/>
+        <location filename="../bandspread.cpp" line="107"/>
+        <location filename="../bandspread.cpp" line="115"/>
+        <location filename="../bandspread.cpp" line="425"/>
+        <location filename="../bandspread.cpp" line="433"/>
         <source>Parallel Capacitor</source>
         <translation>Параллельный конденсатор</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="286"/>
-        <source>The C&lt;sub&gt;V&lt;/sub&gt; capacitance range (combined with the circuit stray capacitance) is too narrow to overlap the desired frequency range. Please change your frequency range or variable capacitor parameters and try again.</source>
-        <translation>Диапазон емкости C&lt;sub&gt;V&lt;/sub&gt; (в сочетании с паразитной емкостью цепи) слишком узок, чтобы перекрыть требуемый частотный диапазон. Измените диапазон частот или параметры переменного конденсатора и повторите попытку.</translation>
-    </message>
-    <message>
-        <location filename="../bandspread.cpp" line="294"/>
+        <location filename="../bandspread.cpp" line="304"/>
+        <location filename="../bandspread.cpp" line="474"/>
         <source>The inductance value is out of range.</source>
         <translation>Значение индуктивности вне допустимого диапазона.</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="244"/>
-        <location filename="../bandspread.cpp" line="319"/>
+        <location filename="../bandspread.cpp" line="252"/>
+        <location filename="../bandspread.cpp" line="329"/>
+        <location filename="../bandspread.cpp" line="385"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Одно или несколько значений равны нулю!</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="237"/>
-        <location filename="../bandspread.cpp" line="312"/>
+        <location filename="../bandspread.cpp" line="245"/>
+        <location filename="../bandspread.cpp" line="322"/>
+        <location filename="../bandspread.cpp" line="380"/>
+        <location filename="../bandspread.cpp" line="408"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Одно или несколько значений имеют недопустимый формат!</translation>
     </message>
@@ -3463,12 +3562,12 @@
         <translation>Единицы измерения</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="733"/>
+        <location filename="../options.ui" line="730"/>
         <source>Show additional results for single layer coils</source>
         <translation>Показывать дополнительные результаты для однослойных катушек</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="670"/>
+        <location filename="../options.ui" line="667"/>
         <source>Show images in results</source>
         <translation>Показывать изображения в результатах</translation>
     </message>
@@ -3493,147 +3592,147 @@
         <translation>мкФ</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="156"/>
+        <location filename="../options.ui" line="153"/>
         <source>Dimensions</source>
         <translation>Размеры</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="184"/>
+        <location filename="../options.ui" line="181"/>
         <source>mm</source>
         <translation>мм</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="189"/>
+        <location filename="../options.ui" line="186"/>
         <source>cm</source>
         <translation>см</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="194"/>
+        <location filename="../options.ui" line="191"/>
         <source>inch</source>
         <translation>дюйм</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="199"/>
+        <location filename="../options.ui" line="196"/>
         <source>mil</source>
         <translation>мил</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="210"/>
+        <location filename="../options.ui" line="207"/>
         <source>Inductance</source>
         <translation>Индуктивность</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="241"/>
+        <location filename="../options.ui" line="238"/>
         <source>nH</source>
         <translation>нГн</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="246"/>
+        <location filename="../options.ui" line="243"/>
         <source>microH</source>
         <translation>мкГн</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="251"/>
+        <location filename="../options.ui" line="248"/>
         <source>mH</source>
         <translation>мГн</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="262"/>
+        <location filename="../options.ui" line="259"/>
         <source>Wire gauge</source>
         <translation>Размерность провода</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="290"/>
+        <location filename="../options.ui" line="287"/>
         <source>Metric</source>
         <translation>Метрическая</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="295"/>
+        <location filename="../options.ui" line="292"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="306"/>
+        <location filename="../options.ui" line="303"/>
         <source>Frequency</source>
         <translation>Частота</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="331"/>
+        <location filename="../options.ui" line="328"/>
         <source>Hz</source>
         <translation>Гц</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="336"/>
+        <location filename="../options.ui" line="333"/>
         <source>kHz</source>
         <translation>кГц</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="341"/>
+        <location filename="../options.ui" line="338"/>
         <source>MHz</source>
         <translation>МГц</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="418"/>
+        <location filename="../options.ui" line="415"/>
         <source>Set to default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="448"/>
+        <location filename="../options.ui" line="445"/>
         <source>Interface</source>
         <translation>Интерфейс</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="629"/>
+        <location filename="../options.ui" line="626"/>
         <source>Show last result first</source>
         <translation>Показать последние результаты первыми</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="646"/>
+        <location filename="../options.ui" line="643"/>
         <source>Show calculation numbering</source>
         <translation>Показывать нумерацию расчетов</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="743"/>
+        <location filename="../options.ui" line="740"/>
         <source>Show data for LTSpice</source>
         <translation>Показать данные для LTSpice</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="660"/>
+        <location filename="../options.ui" line="657"/>
         <source>Show title in results</source>
         <translation>Показывать заголовки в результатах</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="454"/>
+        <location filename="../options.ui" line="451"/>
         <source>Show confirm dialog before exit</source>
         <translation>Показать диалог подтверждения перед выходом</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="491"/>
+        <location filename="../options.ui" line="488"/>
         <source>Show confirm dialog to clear results</source>
         <translation>Показать диалог подтверждения при очистке результатов</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="464"/>
+        <location filename="../options.ui" line="461"/>
         <source>Save results on exit</source>
         <translation>Сохранять результаты при выходе</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="514"/>
+        <location filename="../options.ui" line="511"/>
         <source>Interface font</source>
         <translation>Шрифт приложения</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="575"/>
+        <location filename="../options.ui" line="572"/>
         <source>Output field font</source>
         <translation>Шрифт поля вывода</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="771"/>
+        <location filename="../options.ui" line="768"/>
         <source>Sunny</source>
         <translation>Солнечная</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="367"/>
+        <location filename="../options.ui" line="364"/>
         <source>Decimal and thousand separators</source>
         <translation>Десятичный и тысячный разделители</translation>
     </message>
@@ -3643,102 +3742,102 @@
         <translation>Число знаков после десятичного разделителя</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="373"/>
+        <location filename="../options.ui" line="370"/>
         <source>As in the current locale</source>
         <translation>Как в текущих настройках языка</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="383"/>
+        <location filename="../options.ui" line="380"/>
         <source>As in the English locale</source>
         <translation>Как в английском языке</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="481"/>
+        <location filename="../options.ui" line="478"/>
         <source>Show confirm dialog to delete a result</source>
         <translation>Показать диалог подтверждения при удалении результата</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="623"/>
+        <location filename="../options.ui" line="620"/>
         <source>Output field text</source>
         <translation>Текст поля вывода</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="639"/>
+        <location filename="../options.ui" line="636"/>
         <source>Show text in tabular form</source>
         <translation>Показывать текст в табличной форме</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="680"/>
+        <location filename="../options.ui" line="677"/>
         <source>Show values description</source>
         <translation>Показывать описание значений</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="695"/>
+        <location filename="../options.ui" line="692"/>
         <source>Use colored value text</source>
         <translation>Использовать цветной текст значений</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="756"/>
+        <location filename="../options.ui" line="753"/>
         <source>Theme</source>
         <translation>Тема</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="766"/>
+        <location filename="../options.ui" line="763"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="776"/>
+        <location filename="../options.ui" line="773"/>
         <source>Dark</source>
         <translation>Темная</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="788"/>
+        <location filename="../options.ui" line="785"/>
         <source>Check for update</source>
         <translation>Проверить обновления</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="794"/>
+        <location filename="../options.ui" line="791"/>
         <source>Automatically check for update</source>
         <translation>Автоматически проверять обновления</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="811"/>
+        <location filename="../options.ui" line="808"/>
         <source>Checking interval</source>
         <translation>Интервал проверки обновлений</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="817"/>
+        <location filename="../options.ui" line="814"/>
         <source>Once for 60 days</source>
         <translation>Раз в 60 дней</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="827"/>
+        <location filename="../options.ui" line="824"/>
         <source>Once for 120 days</source>
         <translation>Раз в 120 дней</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="837"/>
+        <location filename="../options.ui" line="834"/>
         <source>Once for 180 days</source>
         <translation>Раз в 180 дней</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="854"/>
+        <location filename="../options.ui" line="851"/>
         <source>Check for a new version</source>
         <translation>Проверить наличие новой версии</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="872"/>
+        <location filename="../options.ui" line="869"/>
         <source>Check now!</source>
         <translation>Проверить сейчас!</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="922"/>
+        <location filename="../options.ui" line="919"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="936"/>
+        <location filename="../options.ui" line="933"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
@@ -3973,22 +4072,22 @@
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="701"/>
+        <location filename="../rf_toroid.ui" line="704"/>
         <source>Context help</source>
         <translation>Контекстная справка</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="746"/>
+        <location filename="../rf_toroid.ui" line="749"/>
         <source>Export results</source>
         <translation>Экспортировать результат</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="775"/>
+        <location filename="../rf_toroid.ui" line="778"/>
         <source>Calculate</source>
         <translation>Рассчитать</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="807"/>
+        <location filename="../rf_toroid.ui" line="810"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>

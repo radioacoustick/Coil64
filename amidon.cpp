@@ -397,9 +397,9 @@ void Amidon::getOpt(_OptionStruct gOpt)
     delete settings;
     on_tabWidget_currentChanged(ui->tabWidget->currentIndex());
     if (fOpt->styleGUI == _DarkStyle){
-        ui->pushButton_export->setIcon(reverceIconColors(ui->pushButton_export->icon()));
-        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
-        ui->pushButton_help->setIcon(reverceIconColors(ui->pushButton_help->icon()));
+        ui->pushButton_export->setIcon(reverseIconColors(ui->pushButton_export->icon()));
+        ui->pushButton_close->setIcon(reverseIconColors(ui->pushButton_close->icon()));
+        ui->pushButton_help->setIcon(reverseIconColors(ui->pushButton_help->icon()));
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -935,7 +935,7 @@ void Amidon::onCalculate()
                     if (ui->tabWidget->currentIndex() == _FToroid)
                         lw = getToroidWireLength(fTorDimen->at(0), fTorDimen->at(1), fTorDimen->at(2), dw, N, &one_layer_dw);
                     QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
-                    QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+                    QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
                     QString d_wire_length = list[0];
                     QString _ssLengthMeasureUnit = list[1];
                     double dw1 = std::min(max_dw, one_layer_dw);
@@ -1150,7 +1150,7 @@ void Amidon::on_lineEdit_dw_textChanged(const QString &arg1)
             if (ui->tabWidget->currentIndex() == _FToroid)
                 lw = getToroidWireLength(fTorDimen->at(0), fTorDimen->at(1), fTorDimen->at(2), d, N);
             QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
-            QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+            QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
             QString d_wire_length = list[0];
             QString _ssLengthMeasureUnit = list[1];
             int i0 = result.indexOf(">", result.lastIndexOf("lw ="));

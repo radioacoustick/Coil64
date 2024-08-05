@@ -172,11 +172,11 @@ void Crossover::getOpt(_OptionStruct gOpt)
     ui->toolButton_Clear->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
     ui->pushButton_close->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
     if (fOpt->styleGUI == _DarkStyle){
-        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
-        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
-        ui->toolButton_Help->setIcon(reverceIconColors(ui->toolButton_Help->icon()));
-        ui->toolButton_Clear->setIcon(reverceIconColors(ui->toolButton_Clear->icon()));
-        ui->toolButton_Save->setIcon(reverceIconColors(ui->toolButton_Save->icon()));
+        ui->pushButton_calculate->setIcon(reverseIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverseIconColors(ui->pushButton_close->icon()));
+        ui->toolButton_Help->setIcon(reverseIconColors(ui->toolButton_Help->icon()));
+        ui->toolButton_Clear->setIcon(reverseIconColors(ui->toolButton_Clear->icon()));
+        ui->toolButton_Save->setIcon(reverseIconColors(ui->toolButton_Save->icon()));
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -226,7 +226,7 @@ void Crossover::fillTable(QStandardItem *item, int count, double wire_d, int awg
                              + "x" + roundTo(c / fOpt->dwLengthMultiplier, loc, 1));
     model->setItem(count - 1, 4, item);
     QString _wire_length = formatLength(lengthWire, fOpt->dwLengthMultiplier);
-    QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+    QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("Length of wire without leads") + "\n[" +
@@ -376,7 +376,7 @@ void Crossover::on_toolButton_Save_clicked()
         QString filters(".csv (*.csv);;All files (*.*)");
         QString defaultFilter(".csv (*.csv)");
         QString dataDelimiter = ",";
-        if (loc.decimalPoint() == ",")
+        if (loc.decimalPoint() == ',')
             dataDelimiter = ";";
         QString fileName = QFileDialog::getSaveFileName(this, tr("Save"), savePath, filters, &defaultFilter);
         if (!fileName.isEmpty()){

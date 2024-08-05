@@ -105,9 +105,9 @@ void Multiloop::getOpt(_OptionStruct gOpt){
     move(pos);
     delete settings;
     if (fOpt->styleGUI == _DarkStyle){
-        ui->pushButton->setIcon(reverceIconColors(ui->pushButton->icon()));
-        ui->pushButton_2->setIcon(reverceIconColors(ui->pushButton_2->icon()));
-        ui->pushButton_3->setIcon(reverceIconColors(ui->pushButton_3->icon()));
+        ui->pushButton->setIcon(reverseIconColors(ui->pushButton->icon()));
+        ui->pushButton_2->setIcon(reverseIconColors(ui->pushButton_2->icon()));
+        ui->pushButton_3->setIcon(reverseIconColors(ui->pushButton_3->icon()));
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -182,7 +182,7 @@ void Multiloop::on_pushButton_clicked()
                                qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
     sResult += formattedOutput(fOpt, tr("Resistance of the coil") + " R = ", roundTo(result.fourth, loc, fOpt->dwAccuracy), tr("Ohm")) + "<br/>";
     QString _wire_length = formatLength(result.thd, fOpt->dwLengthMultiplier);
-    QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+    QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
     sResult += formattedOutput(fOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy),

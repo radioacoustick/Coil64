@@ -55,6 +55,7 @@
         <file>res/rm-core3.png</file>
         <file>res/Coil8r.png</file>
         <file>res/Coil4o.png</file>
+        <file>res/bandspread-t.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -157,6 +158,8 @@
         <file>res/ico2-unavailable.png</file>
         <file>res/ico2-windows.png</file>
         <file>res/ico2-qt.png</file>
+        <file>res/ico2-windows-xp.png</file>
+        <file>res/ico2-mxe.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

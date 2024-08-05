@@ -168,8 +168,6 @@ enum _FormCoil
     double find_actual_spiral_length(int N, double Din, double k);
     double convertfromAWG (QString AWG, bool *isOK = NULL);
     QString converttoAWG (double d, bool *isOK = NULL);
-    double findPadderCapacitance(double Ct,double Cv_low,double Cv_high,double Cstray,double cap_ratio);
-    double findTrimmerCapacitance(double Cp,double Cv_low,double Cv_high,double Cstray,double cap_ratio);
     double getToroidEqMagLength(double OD, double ID);
     double getSaturationCurrent(double Bs, double le, double mu, double N);
     double getToroidWireLength(double Do, double Di, double h, double dw, double N, double *one_layer_dw = NULL, bool isRound = false);

@@ -186,11 +186,11 @@ void RF_Toroid::getOpt(_OptionStruct gOpt)
     on_comboBox_2_currentIndexChanged(sizeInit);
     ui->toolButton_ltspice->setIconSize(QSize(fOpt->mainFontSize * 2, fOpt->mainFontSize * 2));
     if (fOpt->styleGUI == _DarkStyle){
-        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
-        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
-        ui->pushButton_help->setIcon(reverceIconColors(ui->pushButton_help->icon()));
-        ui->pushButton_export->setIcon(reverceIconColors(ui->pushButton_export->icon()));
-        ui->toolButton_ltspice->setIcon(reverceIconColors(ui->toolButton_ltspice->icon()));
+        ui->pushButton_calculate->setIcon(reverseIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverseIconColors(ui->pushButton_close->icon()));
+        ui->pushButton_help->setIcon(reverseIconColors(ui->pushButton_help->icon()));
+        ui->pushButton_export->setIcon(reverseIconColors(ui->pushButton_export->icon()));
+        ui->toolButton_ltspice->setIcon(reverseIconColors(ui->toolButton_ltspice->icon()));
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -422,7 +422,7 @@ void RF_Toroid::on_pushButton_calculate_clicked()
             double max_dw = 2 * sqrt(0.1 * id * id / N);
             double lw = getToroidWireLength(od, id, h, d, N, &one_layer_dw);
             QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
-            QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+            QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
             QString d_wire_length = list[0];
             QString _ssLengthMeasureUnit = list[1];
             if (d_wire_length != "-100"){

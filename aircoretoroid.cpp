@@ -120,9 +120,9 @@ void AirCoreToroid::getOpt(_OptionStruct gOpt)
     on_checkBox_isReverce_clicked();
     delete settings;
     if (fOpt->styleGUI == _DarkStyle){
-        ui->pushButton_calculate->setIcon(reverceIconColors(ui->pushButton_calculate->icon()));
-        ui->pushButton_close->setIcon(reverceIconColors(ui->pushButton_close->icon()));
-        ui->pushButton_help->setIcon(reverceIconColors(ui->pushButton_help->icon()));
+        ui->pushButton_calculate->setIcon(reverseIconColors(ui->pushButton_calculate->icon()));
+        ui->pushButton_close->setIcon(reverseIconColors(ui->pushButton_close->icon()));
+        ui->pushButton_help->setIcon(reverseIconColors(ui->pushButton_help->icon()));
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -297,7 +297,7 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
     }
     if (lw > 0){
         QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), QString::SkipEmptyParts);
+        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         if (d_wire_length != "-100"){

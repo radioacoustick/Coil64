@@ -599,6 +599,9 @@
        </item>
        <item>
         <widget class="QScrollArea" name="scrollArea">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
@@ -607,8 +610,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>364</width>
-            <height>74</height>
+            <width>378</width>
+            <height>76</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_14">

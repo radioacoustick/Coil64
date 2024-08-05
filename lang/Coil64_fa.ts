@@ -188,12 +188,12 @@
         <translation>کتابخانه ها</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="621"/>
+        <location filename="../about.ui" line="640"/>
         <source>Free Icons:</source>
         <translation>آیکن های رایگان:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="676"/>
+        <location filename="../about.ui" line="695"/>
         <source>Close</source>
         <translation>نزدیک</translation>
     </message>
@@ -415,17 +415,17 @@
         <translation>نوع هسته را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../amidon.ui" line="624"/>
+        <location filename="../amidon.ui" line="627"/>
         <source>Result</source>
         <translation>نتایج</translation>
     </message>
     <message>
-        <location filename="../amidon.ui" line="744"/>
+        <location filename="../amidon.ui" line="747"/>
         <source>Export results</source>
         <translation>نتایج صادرات</translation>
     </message>
     <message>
-        <location filename="../amidon.ui" line="776"/>
+        <location filename="../amidon.ui" line="779"/>
         <source>Close</source>
         <translation>نزدیک</translation>
     </message>
@@ -620,150 +620,249 @@
         <translation>ماشین حساب خازن کوپلینگ</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="91"/>
+        <location filename="../bandspread.ui" line="97"/>
         <source>Direct calculation</source>
         <translation>محاسبه مستقیم</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="97"/>
-        <location filename="../bandspread.ui" line="519"/>
-        <location filename="../bandspread.cpp" line="352"/>
+        <location filename="../bandspread.ui" line="103"/>
+        <location filename="../bandspread.ui" line="567"/>
+        <location filename="../bandspread.ui" line="989"/>
+        <location filename="../bandspread.cpp" line="489"/>
         <source>Input data</source>
         <translation>داده های ورودی</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="393"/>
-        <location filename="../bandspread.ui" line="790"/>
-        <location filename="../bandspread.cpp" line="362"/>
-        <location filename="../bandspread.cpp" line="378"/>
+        <location filename="../bandspread.ui" line="441"/>
+        <location filename="../bandspread.ui" line="851"/>
+        <location filename="../bandspread.ui" line="1448"/>
+        <location filename="../bandspread.cpp" line="424"/>
+        <location filename="../bandspread.cpp" line="500"/>
+        <location filename="../bandspread.cpp" line="517"/>
         <source>Result</source>
         <translation>نتایج</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="513"/>
+        <location filename="../bandspread.ui" line="561"/>
         <source>Reverse calculation</source>
         <translation>محاسبه معکوس</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="953"/>
+        <location filename="../bandspread.ui" line="977"/>
+        <source>Local Oscillator tracking</source>
+        <translation>ردیابی نوسانگر محلی</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1313"/>
+        <source>Local Oscillator frequency position</source>
+        <translation>موقعیت فرکانس نوسانگر محلی</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1331"/>
+        <source>Below incoming frequency</source>
+        <translation>زیر فرکانس ورودی</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1336"/>
+        <source>Above incoming frequency</source>
+        <translation>بالاتر از فرکانس ورودی</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1003"/>
+        <source>microH</source>
+        <translation>microH</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.ui" line="1539"/>
         <source>Context help</source>
         <translation>راهنماي محتوا</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="998"/>
+        <location filename="../bandspread.ui" line="1584"/>
         <source>Close</source>
         <translation>نزدیک</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="1027"/>
+        <location filename="../bandspread.ui" line="1613"/>
         <source>Export results</source>
         <translation>نتایج صادرات</translation>
     </message>
     <message>
-        <location filename="../bandspread.ui" line="1053"/>
+        <location filename="../bandspread.ui" line="1639"/>
         <source>Calculate</source>
         <translation>محاسبه کردن</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="78"/>
-        <location filename="../bandspread.cpp" line="86"/>
+        <location filename="../bandspread.cpp" line="101"/>
+        <location filename="../bandspread.cpp" line="109"/>
+        <location filename="../bandspread.cpp" line="128"/>
         <source>Lowest Frequency</source>
         <translation>پایین ترین فرکانس</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="79"/>
-        <location filename="../bandspread.cpp" line="87"/>
+        <location filename="../bandspread.cpp" line="102"/>
+        <location filename="../bandspread.cpp" line="110"/>
+        <location filename="../bandspread.cpp" line="129"/>
         <source>Highest Frequency</source>
         <translation>بالاترین فرکانس</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="80"/>
-        <location filename="../bandspread.cpp" line="88"/>
+        <location filename="../bandspread.cpp" line="103"/>
+        <location filename="../bandspread.cpp" line="111"/>
+        <location filename="../bandspread.cpp" line="130"/>
         <source>Tuning Capacitor Minimum</source>
         <translation>حداقل خازن تنظیم</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="81"/>
-        <location filename="../bandspread.cpp" line="89"/>
+        <location filename="../bandspread.cpp" line="104"/>
+        <location filename="../bandspread.cpp" line="112"/>
+        <location filename="../bandspread.cpp" line="131"/>
         <source>Tuning Capacitor Maximum</source>
         <translation>حداکثر خازن تنظیم</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="82"/>
-        <location filename="../bandspread.cpp" line="90"/>
+        <location filename="../bandspread.cpp" line="105"/>
+        <location filename="../bandspread.cpp" line="113"/>
+        <location filename="../bandspread.cpp" line="132"/>
         <source>Stray Capacitance</source>
         <translation>ظرفیت سرگردان</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="83"/>
-        <location filename="../bandspread.cpp" line="91"/>
+        <location filename="../bandspread.cpp" line="106"/>
+        <location filename="../bandspread.cpp" line="114"/>
+        <location filename="../bandspread.cpp" line="117"/>
+        <location filename="../bandspread.cpp" line="119"/>
+        <location filename="../bandspread.cpp" line="134"/>
+        <location filename="../bandspread.cpp" line="430"/>
+        <location filename="../bandspread.cpp" line="437"/>
         <source>Inductance</source>
         <translation>اندوکتانس</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="85"/>
-        <location filename="../bandspread.cpp" line="93"/>
+        <location filename="../bandspread.cpp" line="108"/>
+        <location filename="../bandspread.cpp" line="116"/>
+        <location filename="../bandspread.cpp" line="427"/>
+        <location filename="../bandspread.cpp" line="435"/>
         <source>Serial Capacitor</source>
         <translation>خازن سریال</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="94"/>
-        <location filename="../bandspread.cpp" line="210"/>
-        <location filename="../bandspread.cpp" line="214"/>
-        <location filename="../bandspread.cpp" line="218"/>
+        <location filename="../bandspread.cpp" line="118"/>
+        <location filename="../bandspread.cpp" line="120"/>
         <source>Valid value range</source>
         <translation>محدوده مقدار معتبر</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="278"/>
-        <location filename="../bandspread.cpp" line="336"/>
+        <location filename="../bandspread.cpp" line="127"/>
+        <source>Automatically find the optimal</source>
+        <translation>به طور خودکار بهینه را پیدا کنید</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="133"/>
+        <source>Intermediate frequency</source>
+        <translation>فرکانس متوسط</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="286"/>
+        <location filename="../bandspread.cpp" line="346"/>
         <source>Minimum LC circuit Capacitance</source>
         <translation>حداقل ظرفیت مدار LC</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="280"/>
-        <location filename="../bandspread.cpp" line="338"/>
+        <location filename="../bandspread.cpp" line="289"/>
+        <location filename="../bandspread.cpp" line="349"/>
         <source>Maximum LC circuit Capacitance</source>
         <translation>حداکثر ظرفیت مدار LC</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="237"/>
-        <location filename="../bandspread.cpp" line="244"/>
-        <location filename="../bandspread.cpp" line="251"/>
-        <location filename="../bandspread.cpp" line="258"/>
-        <location filename="../bandspread.cpp" line="286"/>
-        <location filename="../bandspread.cpp" line="294"/>
-        <location filename="../bandspread.cpp" line="312"/>
-        <location filename="../bandspread.cpp" line="319"/>
-        <location filename="../bandspread.cpp" line="326"/>
+        <location filename="../bandspread.cpp" line="296"/>
+        <location filename="../bandspread.cpp" line="470"/>
+        <source>The Cv capacitance range (combined with the circuit stray capacitance) is too narrow to overlap the desired frequency range. Please change your frequency range or variable capacitor parameters and try again.</source>
+        <translation>محدوده خازنی Cv (همراه با خازن سرگردان مدار) برای همپوشانی با محدوده فرکانس مورد نظر بسیار باریک است. لطفاً محدوده فرکانس یا پارامترهای خازن متغیر خود را تغییر دهید و دوباره امتحان کنید.</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="439"/>
+        <source>Zero error tracking points</source>
+        <translation>نقاط ردیابی خطای صفر</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="450"/>
+        <source>Peak tracking error</source>
+        <translation>حداکثر خطای ردیابی</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="453"/>
+        <source>Local oscillator frequency range</source>
+        <translation>محدوده فرکانس نوسان ساز محلی</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="458"/>
+        <source>Image frequency range</source>
+        <translation>محدوده فرکانس تصویر</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="467"/>
+        <source>Unable to create Local Oscillator LC-circuit. Try changing the LO frequency position and try again.</source>
+        <translation>ایجاد مدار LC نوسانگر محلی ممکن نیست. موقعیت فرکانس LO را تغییر دهید و دوباره امتحان کنید.</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="466"/>
+        <location filename="../bandspread.cpp" line="469"/>
+        <location filename="../bandspread.cpp" line="473"/>
+        <location filename="../bandspread.cpp" line="476"/>
+        <location filename="../bandspread.cpp" line="527"/>
+        <source>Solution failed</source>
+        <translation>راه حل شکست خورد</translation>
+    </message>
+    <message>
+        <location filename="../bandspread.cpp" line="245"/>
+        <location filename="../bandspread.cpp" line="252"/>
+        <location filename="../bandspread.cpp" line="259"/>
+        <location filename="../bandspread.cpp" line="266"/>
+        <location filename="../bandspread.cpp" line="296"/>
+        <location filename="../bandspread.cpp" line="304"/>
+        <location filename="../bandspread.cpp" line="322"/>
+        <location filename="../bandspread.cpp" line="329"/>
+        <location filename="../bandspread.cpp" line="336"/>
+        <location filename="../bandspread.cpp" line="380"/>
+        <location filename="../bandspread.cpp" line="385"/>
+        <location filename="../bandspread.cpp" line="390"/>
+        <location filename="../bandspread.cpp" line="395"/>
+        <location filename="../bandspread.cpp" line="400"/>
+        <location filename="../bandspread.cpp" line="408"/>
+        <location filename="../bandspread.cpp" line="413"/>
+        <location filename="../bandspread.cpp" line="467"/>
+        <location filename="../bandspread.cpp" line="470"/>
+        <location filename="../bandspread.cpp" line="474"/>
         <source>Warning</source>
         <translation>اخطار</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="84"/>
-        <location filename="../bandspread.cpp" line="92"/>
+        <location filename="../bandspread.cpp" line="107"/>
+        <location filename="../bandspread.cpp" line="115"/>
+        <location filename="../bandspread.cpp" line="425"/>
+        <location filename="../bandspread.cpp" line="433"/>
         <source>Parallel Capacitor</source>
         <translation>خازن موازی</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="286"/>
-        <source>The C&lt;sub&gt;V&lt;/sub&gt; capacitance range (combined with the circuit stray capacitance) is too narrow to overlap the desired frequency range. Please change your frequency range or variable capacitor parameters and try again.</source>
-        <translation>محدوده ظرفیت C&lt;sub&gt;V&lt;/sub&gt; (همراه با ظرفیت خازن مدار) برای همپوشانی با محدوده فرکانس مورد نظر بسیار باریک است. لطفاً محدوده فرکانس یا پارامترهای خازن متغیر خود را تغییر دهید و دوباره امتحان کنید.</translation>
-    </message>
-    <message>
-        <location filename="../bandspread.cpp" line="294"/>
+        <location filename="../bandspread.cpp" line="304"/>
+        <location filename="../bandspread.cpp" line="474"/>
         <source>The inductance value is out of range.</source>
         <translation>مقدار اندوکتانس خارج از محدوده است.</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="244"/>
-        <location filename="../bandspread.cpp" line="319"/>
+        <location filename="../bandspread.cpp" line="252"/>
+        <location filename="../bandspread.cpp" line="329"/>
+        <location filename="../bandspread.cpp" line="385"/>
         <source>One or more inputs are equal to null!</source>
         <translation>یک یا چند ورودی برابر با صفر است!</translation>
     </message>
     <message>
-        <location filename="../bandspread.cpp" line="237"/>
-        <location filename="../bandspread.cpp" line="312"/>
+        <location filename="../bandspread.cpp" line="245"/>
+        <location filename="../bandspread.cpp" line="322"/>
+        <location filename="../bandspread.cpp" line="380"/>
+        <location filename="../bandspread.cpp" line="408"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>یک یا چند ورودی فرمت غیرقانونی دارند!</translation>
     </message>
@@ -3464,12 +3563,12 @@
         <translation>واحد اندازه گیری</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="733"/>
+        <location filename="../options.ui" line="730"/>
         <source>Show additional results for single layer coils</source>
         <translation>نمایش نتایج اضافی برای سیم پیچ تک لایه </translation>
     </message>
     <message>
-        <location filename="../options.ui" line="670"/>
+        <location filename="../options.ui" line="667"/>
         <source>Show images in results</source>
         <translation>نمایش تصاویر در نتیجه</translation>
     </message>
@@ -3494,147 +3593,147 @@
         <translation>microF</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="156"/>
+        <location filename="../options.ui" line="153"/>
         <source>Dimensions</source>
         <translation>ابعاد</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="184"/>
+        <location filename="../options.ui" line="181"/>
         <source>mm</source>
         <translation>میلی متر</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="189"/>
+        <location filename="../options.ui" line="186"/>
         <source>cm</source>
         <translation>سانتی متر</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="194"/>
+        <location filename="../options.ui" line="191"/>
         <source>inch</source>
         <translation>اینچ</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="199"/>
+        <location filename="../options.ui" line="196"/>
         <source>mil</source>
         <translation>میلی</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="210"/>
+        <location filename="../options.ui" line="207"/>
         <source>Inductance</source>
         <translation>اندوکتانس</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="241"/>
+        <location filename="../options.ui" line="238"/>
         <source>nH</source>
         <translation>nH</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="246"/>
+        <location filename="../options.ui" line="243"/>
         <source>microH</source>
         <translation>microH</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="251"/>
+        <location filename="../options.ui" line="248"/>
         <source>mH</source>
         <translation>mH</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="262"/>
+        <location filename="../options.ui" line="259"/>
         <source>Wire gauge</source>
         <translation>سنج سنج</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="290"/>
+        <location filename="../options.ui" line="287"/>
         <source>Metric</source>
         <translation>متریک</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="295"/>
+        <location filename="../options.ui" line="292"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="306"/>
+        <location filename="../options.ui" line="303"/>
         <source>Frequency</source>
         <translation>فرکانس</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="331"/>
+        <location filename="../options.ui" line="328"/>
         <source>Hz</source>
         <translation>Hz</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="336"/>
+        <location filename="../options.ui" line="333"/>
         <source>kHz</source>
         <translation>kHz</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="341"/>
+        <location filename="../options.ui" line="338"/>
         <source>MHz</source>
         <translation>MHz</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="418"/>
+        <location filename="../options.ui" line="415"/>
         <source>Set to default</source>
         <translation>تنظیم پیش فرض</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="448"/>
+        <location filename="../options.ui" line="445"/>
         <source>Interface</source>
         <translation>رابط</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="629"/>
+        <location filename="../options.ui" line="626"/>
         <source>Show last result first</source>
         <translation>نمایش آخرین نتیجه اول</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="646"/>
+        <location filename="../options.ui" line="643"/>
         <source>Show calculation numbering</source>
         <translation>نمایش شماره گذاری محاسباتی</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="743"/>
+        <location filename="../options.ui" line="740"/>
         <source>Show data for LTSpice</source>
         <translation>نمایش داده ها برای LTSpice</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="660"/>
+        <location filename="../options.ui" line="657"/>
         <source>Show title in results</source>
         <translation>نمایش عنوان در نتایج</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="454"/>
+        <location filename="../options.ui" line="451"/>
         <source>Show confirm dialog before exit</source>
         <translation>نمایش قبل از خروج را تایپ کنید</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="491"/>
+        <location filename="../options.ui" line="488"/>
         <source>Show confirm dialog to clear results</source>
         <translation>نمایش گفتگوی تایید برای پاک کردن نتایج</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="464"/>
+        <location filename="../options.ui" line="461"/>
         <source>Save results on exit</source>
         <translation>نتایج را در هنگام خروج ذخیره کنید</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="514"/>
+        <location filename="../options.ui" line="511"/>
         <source>Interface font</source>
         <translation>فونت رابط</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="575"/>
+        <location filename="../options.ui" line="572"/>
         <source>Output field font</source>
         <translation>فونت بخش خروجی</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="771"/>
+        <location filename="../options.ui" line="768"/>
         <source>Sunny</source>
         <translation>آفتابی</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="367"/>
+        <location filename="../options.ui" line="364"/>
         <source>Decimal and thousand separators</source>
         <translation>ده هزار و چند جدایه</translation>
     </message>
@@ -3644,102 +3743,102 @@
         <translation>تعداد علائم بعد از تقسیم دهی</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="373"/>
+        <location filename="../options.ui" line="370"/>
         <source>As in the current locale</source>
         <translation>همانطور که در محلی فعلی است</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="383"/>
+        <location filename="../options.ui" line="380"/>
         <source>As in the English locale</source>
         <translation>همانطور که در زبان انگلیسی است</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="481"/>
+        <location filename="../options.ui" line="478"/>
         <source>Show confirm dialog to delete a result</source>
         <translation>گفتگوی تأیید را برای حذف نتیجه نمایش دهید</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="623"/>
+        <location filename="../options.ui" line="620"/>
         <source>Output field text</source>
         <translation>متن فیلد خروجی</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="639"/>
+        <location filename="../options.ui" line="636"/>
         <source>Show text in tabular form</source>
         <translation>نمایش متن به شکل جدول</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="680"/>
+        <location filename="../options.ui" line="677"/>
         <source>Show values description</source>
         <translation>نمایش توضیحات مقادیر</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="695"/>
+        <location filename="../options.ui" line="692"/>
         <source>Use colored value text</source>
         <translation>از متن ارزش رنگی استفاده کنید</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="756"/>
+        <location filename="../options.ui" line="753"/>
         <source>Theme</source>
         <translation>موضوع</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="766"/>
+        <location filename="../options.ui" line="763"/>
         <source>Default</source>
         <translation>پیش فرض</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="776"/>
+        <location filename="../options.ui" line="773"/>
         <source>Dark</source>
         <translation>تاریک</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="788"/>
+        <location filename="../options.ui" line="785"/>
         <source>Check for update</source>
         <translation>بررسی به روز رسانی</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="794"/>
+        <location filename="../options.ui" line="791"/>
         <source>Automatically check for update</source>
         <translation>بررسی خودکار به روز رسانی</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="811"/>
+        <location filename="../options.ui" line="808"/>
         <source>Checking interval</source>
         <translation>فاصله بررسی کردن</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="817"/>
+        <location filename="../options.ui" line="814"/>
         <source>Once for 60 days</source>
         <translation>هر 60 روز یک بار</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="827"/>
+        <location filename="../options.ui" line="824"/>
         <source>Once for 120 days</source>
         <translation>هر 120 روز یک بار</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="837"/>
+        <location filename="../options.ui" line="834"/>
         <source>Once for 180 days</source>
         <translation>هر 180 روز یک بار</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="854"/>
+        <location filename="../options.ui" line="851"/>
         <source>Check for a new version</source>
         <translation>بررسی نسخه ی جدید</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="872"/>
+        <location filename="../options.ui" line="869"/>
         <source>Check now!</source>
         <translation>بررسی کن</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="922"/>
+        <location filename="../options.ui" line="919"/>
         <source>OK</source>
         <translation>خوب</translation>
     </message>
     <message>
-        <location filename="../options.ui" line="936"/>
+        <location filename="../options.ui" line="933"/>
         <source>Cancel</source>
         <translation>لغو</translation>
     </message>
@@ -3974,22 +4073,22 @@
         <translation>نتایج</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="701"/>
+        <location filename="../rf_toroid.ui" line="704"/>
         <source>Context help</source>
         <translation>راهنماي محتوا</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="746"/>
+        <location filename="../rf_toroid.ui" line="749"/>
         <source>Export results</source>
         <translation>نتایج صادرات</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="775"/>
+        <location filename="../rf_toroid.ui" line="778"/>
         <source>Calculate</source>
         <translation>محاسبه کردن</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="807"/>
+        <location filename="../rf_toroid.ui" line="810"/>
         <source>Close</source>
         <translation>نزدیک</translation>
     </message>

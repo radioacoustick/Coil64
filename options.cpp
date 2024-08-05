@@ -120,10 +120,10 @@ void Options::getOpt(_OptionStruct gOpt){
     }
     ui->comboBox->setCurrentIndex(oOpt->vTextColor);
     if (oOpt->styleGUI == _DarkStyle){
-        ui->pushButton->setIcon(reverceIconColors(ui->pushButton->icon()));
-        ui->pushButton_2->setIcon(reverceIconColors(ui->pushButton_2->icon()));
-        ui->pushButton_3->setIcon(reverceIconColors(ui->pushButton_3->icon()));
-        ui->pushButton_4->setIcon(reverceIconColors(ui->pushButton_4->icon()));
+        ui->pushButton->setIcon(reverseIconColors(ui->pushButton->icon()));
+        ui->pushButton_2->setIcon(reverseIconColors(ui->pushButton_2->icon()));
+        ui->pushButton_3->setIcon(reverseIconColors(ui->pushButton_3->icon()));
+        ui->pushButton_4->setIcon(reverseIconColors(ui->pushButton_4->icon()));
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

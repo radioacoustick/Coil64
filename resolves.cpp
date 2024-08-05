@@ -1967,34 +1967,6 @@ void findBrooksCoil(double I, double d, double pa, double pr,
     massWire = 2.225 * M_PI * d * d * lengthWire;           //Weight of the wire [g]
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findPadderCapacitance(double Ct,double Cv_low,double Cv_high,double Cstray,double cap_ratio) {
-    double chp = Cv_high + Ct;
-    double clp = Cv_low + Ct;
-    double beta = (cap_ratio - 1) * Cstray;
-    double a = cap_ratio * clp - chp + beta;
-    double b = (cap_ratio - 1) * clp * chp + beta * (clp + chp);
-    double c = beta * clp * chp;
-    return (-b - sqrt(b * b - 4 * a * c)) / (2.0 * a);
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findTrimmerCapacitance(double Cp,double Cv_low,double Cv_high,double Cstray,double cap_ratio) {
-    double Ct = 0.0;
-    if (Cp < 0.00001) {
-        Ct = (Cv_high + Cstray - cap_ratio * (Cv_low + Cstray)) / (cap_ratio - 1);
-    } else {
-        double k0 = (1 - cap_ratio) * Cstray;
-        double k1 = k0 * Cp * Cp;
-        double k2 = k0 * Cp + Cp * Cp;
-        double k3 = k0 * Cp - cap_ratio * Cp * Cp;
-        double k4 = k0 + (1 - cap_ratio) * Cp;
-        double a = k4;
-        double b = k2 + k3 + k4 * (Cv_low + Cv_high);
-        double c = k1 + k2 * Cv_high + k3 * Cv_low + k4 * Cv_low * Cv_high;
-        Ct = (-b - sqrt(b * b - 4 * a * c)) / (2.0 * a);
-    }
-    return Ct;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double toNearestE24(double val, int accurasy, bool isToLowVal){
     QString sVal = QString::number(val, 'E', accurasy);
     QString sVal_man = sVal.left(sVal.indexOf('E'));

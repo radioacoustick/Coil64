@@ -18,9 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "about.h"
 #include "ui_about.h"
 #include "definitions.h"
-
-QString reversPixmapColorHTML(QString input, int start){
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString reversePixmapColorHTML(QString input, int start){
     int i1 = input.indexOf(".png", start);
     int i2 = input.indexOf(">", start);
     QString sImg1 = input.mid(start + 10, i1 - start - 6);
@@ -37,6 +36,22 @@ QString reversPixmapColorHTML(QString input, int start){
     input.insert(start, url);
     delete pixmap;
     return input;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void reverseLabelRichTextIconColor(QLabel *label){
+    QString txt = label->text();
+    int j = 0;
+    do {
+        if (j == 0){
+            j = txt.indexOf("<img", j);
+            txt = reversePixmapColorHTML(txt, j);
+        } else {
+            j = txt.indexOf("<img", j + 1);
+            if (j > 0)
+                txt = reversePixmapColorHTML(txt, j);
+        }
+    } while(j > 0);
+    label->setText(txt);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 About::About(QWidget *parent) :
@@ -69,22 +84,11 @@ About::~About()
 void About::getStyleGUI(int styleGUI)
 {
     if (styleGUI == _DarkStyle){
-        ui->label_27->setPixmap(revercePixmapColors(ui->label_27->pixmap()));
-        ui->label_18->setPixmap(revercePixmapColors(ui->label_18->pixmap()));
-        ui->pushButton->setIcon(reverceIconColors(ui->pushButton->icon()));
-        QString txt = ui->label_13->text();
-        int j = 0;
-        do {
-            if (j == 0){
-                j = txt.indexOf("<img", j);
-                txt = reversPixmapColorHTML(txt, j);
-            } else {
-                j = txt.indexOf("<img", j + 1);
-                if (j > 0)
-                    txt = reversPixmapColorHTML(txt, j);
-            }
-        } while(j > 0);
-        ui->label_13->setText(txt);
+        ui->label_27->setPixmap(reversePixmapColors(ui->label_27->pixmap()));
+        ui->label_18->setPixmap(reversePixmapColors(ui->label_18->pixmap()));
+        ui->pushButton->setIcon(reverseIconColors(ui->pushButton->icon()));
+        reverseLabelRichTextIconColor(ui->label_13);
+        reverseLabelRichTextIconColor(ui->label_21);
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

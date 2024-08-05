@@ -25,10 +25,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QSettings>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QtMath>
 
 #include "system_functions.h"
 #include "resolves.h"
-#include "math.h"
+#include "bandspread_utils.h"
 
 namespace Ui {
 class Bandspread;
@@ -48,7 +49,6 @@ signals:
 private slots:
     void getOpt(_OptionStruct gOpt);
     void getCurrentLocale(QLocale locale);
-    void showInductanceRange();
     void on_tabWidget_currentChanged(int index);
     void on_pushButton_close_clicked();
     void on_pushButton_help_clicked();
@@ -60,15 +60,29 @@ private slots:
     void on_lineEdit_cvmax_editingFinished();
     void on_lineEdit_cs_editingFinished();
     void on_lineEdit_ind_editingFinished();
-
+    void on_lineEdit_flo_t_editingFinished();
+    void on_lineEdit_fhi_t_editingFinished();
+    void on_lineEdit_IF_editingFinished();
+    void on_lineEdit_cvmin_t_editingFinished();
+    void on_lineEdit_cvmax_t_editingFinished();
+    void on_lineEdit_cs_t_editingFinished();
+    void on_lineEdit_Le_editingFinished();
+    void on_horizontalSlider_L_valueChanged(int value);
+    void on_horizontalSlider_Le_valueChanged(int value);
+    void showInductanceRange();
+    void on_toolButton_plus_clicked();
+    void on_toolButton_minus_clicked();
+    void on_toolButton_plus_L_clicked();
+    void on_toolButton_minus_L_clicked();
+    void on_checkBox_toggled(bool checked);
 
 private:
     Ui::Bandspread *ui;
     _OptionStruct *fOpt;
     QDoubleValidator *dv;
     QLocale loc;
-
-    double ind, f_low, f_high, Cv_min, Cv_max, Cs, Ct = 0, Cp = 0;
+    int L_value_pos;
+    double ind, f_low, f_high, f_i, Cv_min, Cv_max, Cs, Ct = 0, Cp = 0;
 };
 
 #endif // BANDSPREAD_H

@@ -274,8 +274,10 @@ unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa,
     Rl = 2 * M_PI * f * Induct;
     Rc = 1 / (2 * M_PI * f * Cs * 1e-12);
     R_ind = 1 / (1 / Rl + 1 / Rc);
-    result->seven = Rac;
-    return round((R_ind / Rac) * (1 - fa / fsr));
+    double Q = (R_ind / Rac) * (1 - fa / fsr);
+    double ESR = R_ind / Q;
+    result->seven = ESR;
+    return round(Q);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Q-FACTOR OF THE ONE-LAYER COIL WITH RECTANGULAR WIRE
@@ -302,8 +304,10 @@ unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t,
     Rl = 2 * M_PI * f * Induct;
     Rc = 1 / (2 * M_PI * f * Cs * 1e-12);
     R_ind = 1 / (1 / Rl + 1 / Rc);
-    result->seven = Rac;
-    return round((R_ind / Rac) * (1 - fa / fsr));
+    double Q = (R_ind / Rac) * (1 - fa / fsr);
+    double ESR = R_ind / Q;
+    result->seven = ESR;
+    return round(Q);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Q-FACTOR OF THE PCB SPIRAL COIL

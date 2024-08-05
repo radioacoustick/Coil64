@@ -39,6 +39,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <sys/utsname.h>
 #endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+  const auto skip_empty_parts = Qt::SkipEmptyParts;
+#else
+  const auto skip_empty_parts = QString::SkipEmptyParts;
+#endif
+
 enum _StyleGUI {
     _DefaultStyle,
     _SunnyStyle,
@@ -104,8 +110,8 @@ QStringList getValueTextColorNames(int styleGUI);
 QLocale getLanguageLocale (QString lang);
 void completeOptionsStructure(_OptionStruct *opt);
 QString formatLength(double length, double lengthMultiplyer);
-QPixmap revercePixmapColors(const QPixmap *pm);
-QIcon reverceIconColors(QIcon ico);
+QPixmap reversePixmapColors(const QPixmap *pm);
+QIcon reverseIconColors(QIcon ico);
 QString roundTo(double num, QLocale locale, int accuracy);
 QRadioButton *getCheckedRadioButton(QWidget *w);
 QString formattedOutput(_OptionStruct *mOpt, QString header, QString value, QString footer = NULL);

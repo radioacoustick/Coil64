@@ -91,7 +91,7 @@ QString getOSVersion(){
                 file.close();
                 int index=strList.indexOf(QRegExp("^PRETTY_NAME.*"));
                 QString sname = strList[index];
-                QStringList _name = sname.split(QRegExp("="), QString::SkipEmptyParts);
+                QStringList _name = sname.split(QRegExp("="), skip_empty_parts);
                 QString name = _name[1];
                 name.truncate(name.lastIndexOf('\n'));
                 name.remove(QRegExp("\""));
@@ -448,14 +448,14 @@ QString defineSavePath(){
     return savePath;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-QPixmap revercePixmapColors(const QPixmap *pm){
+QPixmap reversePixmapColors(const QPixmap *pm){
     QImage image(pm->toImage());
     image.invertPixels();
     QPixmap am = QPixmap::fromImage(image);
     return am;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-QIcon reverceIconColors(QIcon ico){
+QIcon reverseIconColors(QIcon ico){
     QPixmap pm = ico.pixmap(ico.actualSize(QSize(32, 32)));
     QImage image(pm.toImage());
     image.invertPixels();

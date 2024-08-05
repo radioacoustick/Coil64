@@ -355,3 +355,25 @@ QDockWidget::close-button:hover, QDockWidget::float-button:hover {
 QDockWidget::close-button:pressed, QDockWidget::float-button:pressed {
     background: gray;
 }
+
+QComboBox {
+    border: 1px solid darkgray;
+    border-radius: 3px;
+    padding: 1px 1px 1px 1px;
+    min-width: 6em;
+}
+
+QSpinBox {
+    border: 3px solid darkgray;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+}
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+    width: 16px;
+}

@@ -30,7 +30,7 @@ TARGET = Coil64
 TEMPLATE = app
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+    mainwindow.cpp \
     resolves.cpp \
     bessel.cpp \
     resolve_q.cpp \
@@ -54,6 +54,7 @@ SOURCES += main.cpp\
     crossover.cpp \
     rf_toroid.cpp \
     bandspread.cpp \
+    bandspread_utils.cpp \
     rmcore.cpp \
     scdockwidget.cpp
 
@@ -84,6 +85,7 @@ HEADERS  += mainwindow.h \
     spline.h \
     rf_toroid.h \
     bandspread.h \
+    bandspread_utils.h \
     rmcore.h \
     scdockwidget.h
 
@@ -134,6 +136,7 @@ TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_zh.ts
 
 RESOURCES += res.qrc
+QMAKE_CXXFLAGS += -Wno-deprecated-declarations
 
 win32:{
   RC_FILE = resource.rc
