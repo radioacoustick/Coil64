@@ -1677,27 +1677,27 @@
     <message>
         <location filename="../mainwindow.ui" line="204"/>
         <source>One layer coil with round wire</source>
-        <translation>کویل یک لایه با سیم گرد</translation>
+        <translation>سیم پیچ یک لایه با سیم گرد</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="214"/>
         <source>One layer coil with rect wire</source>
-        <translation>یک لایه کویل با سیم مستطیل شکل</translation>
+        <translation>سیم پیچ یک لایه با سیم مستطیل شکل</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="233"/>
         <source>Multilayer coil</source>
-        <translation>کویل چند لایه</translation>
+        <translation>سیم پیچ چند لایه</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="243"/>
         <source>Multilayer coil with insulated pads</source>
-        <translation>کویل چند لایه با پد عایق</translation>
+        <translation>سیم پیچ چند لایه با پد عایق</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="271"/>
         <source>Ferrite toroid coil</source>
-        <translation>کویل در یک حلقه فریت</translation>
+        <translation>سیم پیچ روی فریت حلقوی</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="291"/>
@@ -1840,27 +1840,27 @@
     <message>
         <location filename="../mainwindow.ui" line="109"/>
         <source>PCB coil with square winding</source>
-        <translation>کویل مسطح با حلقه ی مربعی روی فیبر مدارچاپی</translation>
+        <translation>سیم پیچ مدار چاپی با پیچش مربعی</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="114"/>
         <source>PCB coil with spiral winding</source>
-        <translation>کویل مسطح با حلقه ی مارپیچی روی فیبر مدارچاپی</translation>
+        <translation>سیم پیچ مدار چاپی با پیچش حلقوی</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="194"/>
         <source>One layer close-winding coil</source>
-        <translation>یک سیم پیچ نزدیک سیم پیچ</translation>
+        <translation>سیم پیچ یک لایه با سیم های کنار هم</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="253"/>
         <source>Multilayer coil on a rectangular former</source>
-        <translation>کویل چند لایه در سابق مستطیل شکل</translation>
+        <translation>سیم پیچ چند لایه روی بستر مستطیل شکل</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="281"/>
         <source>PCB flat coil</source>
-        <translation>کویل مسطح PCB</translation>
+        <translation>سیم پیچ مدار چاپی</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1467"/>
@@ -1923,12 +1923,12 @@
     <message>
         <location filename="../mainwindow.ui" line="119"/>
         <source>PCB coil with rectangular winding</source>
-        <translation>سیم پیچ PCB با سیم پیچ مستطیلی</translation>
+        <translation>سیم پیچ مدار چاپی با پیچش مستطیلی</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="224"/>
         <source>One layer coil on a polygonal former</source>
-        <translation>کویل تک لایه با سیم پیچی مورّب غیر حلقوی</translation>
+        <translation>سیم پیچ یک لایه روی بستر چندضلعی</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="727"/>
@@ -2129,7 +2129,7 @@
     <message>
         <location filename="../mainwindow.ui" line="262"/>
         <source>Multilayer foil-wound coil</source>
-        <translation>سیم پیچ القایی چند لایه با سیم پیچ فویل</translation>
+        <translation>سیم پیچ چند لایه با فویل</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1677"/>
