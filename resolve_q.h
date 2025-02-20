@@ -29,6 +29,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 
 unsigned long int solve_Qr(double I, double Df, double pm, double Dw, double fa, double fsr, double N, double Cs, Material mt, _CoilResult *result);
 unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t, double fa, double fsr,  double N, double Cs, Material mt, _CoilResult *result);
-double solve_Qpcb(long N, double _I, double _D, double _d, double _W, double _t, double _s,  double _f, int layout);
+double solve_Qpcb(long N, double _I, double _D, double _d, double _W, double _t, double _s,  double _f, double tand, int layout);
 
 #endif // RESOLVE_Q_H

@@ -52,6 +52,7 @@ Loop::~Loop()
     settings->setValue("a", a);
     settings->setValue("b", b);
     settings->setValue("d", dw);
+    settings->setValue("mu", mu);
     settings->setValue("isReverse", ui->checkBox_isReverce->isChecked());
     settings->setValue("loopKind", loopKind);
     settings->endGroup();
@@ -88,6 +89,7 @@ void Loop::getOpt(_OptionStruct gOpt){
     a = settings->value("a", 0).toDouble();
     b = settings->value("b", 0).toDouble();
     dw = settings->value("d", 0).toDouble();
+    mu = settings->value("mu", 1).toDouble();
     settings->endGroup();
     if (fOpt->isAWG){
         ui->label_03->setText(tr("AWG"));
@@ -98,11 +100,12 @@ void Loop::getOpt(_OptionStruct gOpt){
             ui->lineEdit_3->setText("");
     } else
         ui->lineEdit_3->setText(roundTo(dw / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
+    ui->lineEdit_4->setText(roundTo(mu, loc, fOpt->dwAccuracy));
     resize(size);
     move(pos);
     ui->checkBox_isReverce->setChecked(isReverse);
-    QString tmpTxt = tr("Wire diameter") + " d:";
-    ui->label_3->setText(tmpTxt);
+    ui->label_3->setText(tr("Wire diameter") + " d:");
+    ui->label_4->setText(tr("Wire magnetic permeability") + " μ:");
     on_checkBox_isReverce_clicked();
     delete settings;
     if (fOpt->styleGUI == _DarkStyle){
@@ -250,6 +253,12 @@ void Loop::on_pushButton_clicked()
     QString sImage = "";
     QString sInput = "";
     QString sResult = "";
+    bool ok4;
+    mu = loc.toDouble(ui->lineEdit_4->text(), &ok4);
+    if(!ok4){
+        showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+        return;
+    }
     if(loopKind == 0){
         sCaption += " (" + ui->radioButton_round->text() +  + ")";
         sImage = "<img src=\":/images/res/loop0.png\">";
@@ -285,18 +294,18 @@ void Loop::on_pushButton_clicked()
         sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "</p>";
         sResult = "<p><u>" + tr("Result") + ":</u><br/>";
         if(loopKind == 0){
-            a = findRoundLoop_D(ind, dw);
+            a = findRoundLoop_D(ind, dw, mu);
             sResult += formattedOutput(fOpt, tr("Loop diameter") + " D: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
                                        qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
             lw = a * M_PI;
         } else if (loopKind == 1){
-            a = findIsoIsoscelesTriangleLoop_a(ind, dw);
+            a = findIsoIsoscelesTriangleLoop_a(ind, dw, mu);
             b = a;
             sResult += formattedOutput(fOpt, tr("The side of the equilateral triangle") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
                                        qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
             lw = 3.0 * a;
         } else if (loopKind == 2){
-            a = findRectangleLoop_a(ind, dw);
+            a = findRectangleLoop_a(ind, dw, mu);
             b = a;
             sResult += formattedOutput(fOpt, tr("The side of quadrate") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
                                        qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
@@ -349,13 +358,13 @@ void Loop::on_pushButton_clicked()
             sInput += formattedOutput(fOpt, ui->label_2->text(), ui->lineEdit_2->text(), ui->label_02->text()) + "<br/>";
         sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "</p>";
         if(loopKind == 0){
-            ind = findRoundLoop_I(a, dw);
+            ind = findRoundLoop_I(a, dw, mu);
             lw = a * M_PI;
         } else if (loopKind == 1){
-            ind = findIsoIsoscelesTriangleLoop_I(a, b, dw);
+            ind = findIsoIsoscelesTriangleLoop_I(a, b, dw, mu);
             lw = 2 * a + b;
         } else if (loopKind == 2){
-            ind = findRectangleLoop_I(a, b, dw);
+            ind = findRectangleLoop_I(a, b, dw, mu);
             lw = 2 * a + 2 * b;
         }
         sResult = "<p><u>" + tr("Result") + ":</u><br/>";

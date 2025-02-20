@@ -1598,19 +1598,17 @@ double findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *r
     return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findRoundLoop_I(double D, double dw){
-    //
-
-    return 0.0002 * M_PI * D * (log(8 * D / dw) - 2);
+double findRoundLoop_I(double D, double dw, double mu){
+    return mu * 0.0002 * M_PI * D * (log(8 * D / dw) - 2);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findRoundLoop_D(double Ind, double dw){
+double findRoundLoop_D(double Ind, double dw, double mu){
     double tmpI = 0;
     double D = 2 * dw;
     unsigned long int i = 0;
     while (tmpI <= Ind){
         i++;
-        tmpI = findRoundLoop_I(D, dw);
+        tmpI = findRoundLoop_I(D, dw, mu);
         D += 0.01;
         if ((D > 2e4) || ((i == 1) && (tmpI > Ind)))
             return -1;
@@ -1618,7 +1616,7 @@ double findRoundLoop_D(double Ind, double dw){
     return D;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findIsoIsoscelesTriangleLoop_I(double _a, double _b, double dw){
+double findIsoIsoscelesTriangleLoop_I(double _a, double _b, double dw, double mu){
     //
 
     double c = _a / 1000;
@@ -1630,16 +1628,16 @@ double findIsoIsoscelesTriangleLoop_I(double _a, double _b, double dw){
     double a3 = 2 * (b + c) * asinh(b * b / (sqrt(4 * b * b * c * c - pow(b, 4))));
     double a4 = 2 * c * asinh((2 * c * c - b * b) / (sqrt(4 * b * b * c * c - pow(b, 4))));
     double a5 = 2 * c + b;
-    return 0.2 * (a1 + a2 - a3 - a4 - a5);
+    return mu * 0.2 * (a1 + a2 - a3 - a4 - a5);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findIsoIsoscelesTriangleLoop_a(double Ind, double dw){
+double findIsoIsoscelesTriangleLoop_a(double Ind, double dw, double mu){
     double tmpI = 0;
     double  a = 2 * dw;
     unsigned long int i = 0;
     while (tmpI <= Ind){
         i++;
-        tmpI = findIsoIsoscelesTriangleLoop_I(a, a, dw);
+        tmpI = findIsoIsoscelesTriangleLoop_I(a, a, dw, mu);
         a += 0.01;
         if ((a > 2e4) || ((i == 1) && (tmpI > Ind)))
             return -1;
@@ -1647,7 +1645,7 @@ double findIsoIsoscelesTriangleLoop_a(double Ind, double dw){
     return a;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findRectangleLoop_I(double _a, double _b, double dw){
+double findRectangleLoop_I(double _a, double _b, double dw, double mu){
     //
 
     double a = _a / 1000;
@@ -1661,16 +1659,16 @@ double findRectangleLoop_I(double _a, double _b, double dw){
     double a4 = a * log((a + d) / b);
     double a5 = b * log(2 * b / r);
     double a6 = a * log(2 * a / r);
-    return 0.4 * (a1 + a2 - a3 - a4 + a5 + a6);
+    return mu  * 0.4 * (a1 + a2 - a3 - a4 + a5 + a6);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findRectangleLoop_a(double Ind, double dw){
+double findRectangleLoop_a(double Ind, double dw, double mu){
     double tmpI = 0;
     double  a = 2 * dw;
     unsigned long int i = 0;
     while (tmpI <= Ind){
         i++;
-        tmpI = findRectangleLoop_I(a, a, dw);
+        tmpI = findRectangleLoop_I(a, a, dw, mu);
         a += 0.01;
         if ((a > 2e4) || ((i == 1) && (tmpI > Ind)))
             return -1;

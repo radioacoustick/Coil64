@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 
 #include "rf_toroid.h"
 #include "ui_rf_toroid.h"
-
+#include "proxystyle.h"
 
 enum _ToroidDataTableColumn
 {
@@ -76,6 +76,7 @@ RF_Toroid::RF_Toroid(QWidget *parent) :
     ui->label_c->setText(tr("Chamfer") + " C:");
     ui->label_d->setText(tr("Wire diameter") + " dw:");
     ui->lineEdit_N->setFocus();
+    ui->label_cs->setStyle(new ProxyStyle(ui->label_cs->style()));
     QAction *buttonAction = new QAction(ui->pushButton_export);
     buttonAction->setShortcuts({QKeySequence("Ctrl+Enter"),QKeySequence("Ctrl+Return")});
     ui->pushButton_export->addAction(buttonAction);
@@ -309,7 +310,7 @@ void RF_Toroid::on_label_cs_toggled(bool checked)
     isCsAuto = checked;
     if (checked){
         ui->lineEdit_cs->setEnabled(false);
-        ui->lineEdit_cs->setText("");
+        ui->lineEdit_cs->setText("Auto");
 
     } else {
         ui->lineEdit_cs->setEnabled(true);
@@ -361,15 +362,18 @@ void RF_Toroid::on_lineEdit_mu2_editingFinished()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RF_Toroid::on_pushButton_calculate_clicked()
 {
+    ui->label_result->setText("");
+    if (ui->lineEdit_cs->hasFocus())
+        ui->lineEdit_N->setFocus();
     bool ok1, ok2, ok3, ok4, ok5, ok6, ok7, ok8;
     f = loc.toDouble(ui->lineEdit_f->text(), &ok1) * fOpt->dwFrequencyMultiplier;
     N = loc.toDouble(ui->lineEdit_N->text(), &ok2);
     d = loc.toDouble(ui->lineEdit_d->text(), &ok3) * fOpt->dwLengthMultiplier;
     double m1 = loc.toDouble(ui->lineEdit_mu1->text(), &ok4);
     double m2 = loc.toDouble(ui->lineEdit_mu2->text(), &ok5);
-    od = loc.toDouble(ui->lineEdit_od->text(), &ok6) * fOpt->dwLengthMultiplier;;
-    id = loc.toDouble(ui->lineEdit_id->text(), &ok7) * fOpt->dwLengthMultiplier;;
-    h = loc.toDouble(ui->lineEdit_h->text(), &ok8) * fOpt->dwLengthMultiplier;;
+    od = loc.toDouble(ui->lineEdit_od->text(), &ok6) * fOpt->dwLengthMultiplier;
+    id = loc.toDouble(ui->lineEdit_id->text(), &ok7) * fOpt->dwLengthMultiplier;
+    h = loc.toDouble(ui->lineEdit_h->text(), &ok8) * fOpt->dwLengthMultiplier;
     if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5) || (!ok6) || (!ok7) || (!ok8)){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         ui->label_result->setText("");
@@ -379,6 +383,15 @@ void RF_Toroid::on_pushButton_calculate_clicked()
         showWarning(tr("Warning"), tr("One or more dimensions have an invalid value!"));
         ui->label_result->setText("");
         return;
+    }
+    if (!isCsAuto){
+        bool ok9;
+        Cs = loc.toDouble(ui->lineEdit_cs->text(), &ok9) * fOpt->dwCapacityMultiplier;
+        if(!ok9){
+            showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            ui->label_result->setText("");
+            return;
+        }
     }
     if ((f > 0) && (N > 0) && (d > 0) && (od > 0) && (id > 0) && (h > 0) && (m1 > 0)){
         double freq = f * 1e6;
@@ -465,7 +478,10 @@ void RF_Toroid::on_pushButton_calculate_clicked()
                         result += "Parallel capacitance: " + QString::number(Cs, 'f', fOpt->dwAccuracy) + "p";
                 }
             } else {
-                result += "Q &lt; 0";
+                if (isCsAuto)
+                    result += formattedOutput(fOpt, tr("Self capacitance") + " Cs = ", roundTo(Csm, loc, fOpt->dwAccuracy),
+                                              qApp->translate("Context", "pF")) + "<br/>";
+                result += tr("The coil reactance is negative. The operating frequency is probably above the coil self-resonance frequency.");
             }
             result += "</p>";
             ui->label_result->setText(result);

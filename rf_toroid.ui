@@ -65,6 +65,9 @@
               <property name="focusPolicy">
                <enum>Qt::NoFocus</enum>
               </property>
+              <property name="toolTip">
+               <string>Check the box for automatic calculation</string>
+              </property>
               <property name="text">
                <string notr="true">Self capacitance Cs:</string>
               </property>
@@ -645,6 +648,9 @@
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                 </property>
                </widget>
               </item>

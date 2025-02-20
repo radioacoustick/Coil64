@@ -59,6 +59,7 @@ SOURCES += main.cpp\
     scdockwidget.cpp
 
 HEADERS  += mainwindow.h \
+    proxystyle.h \
     resolves.h \
     bessel.h \
     resolve_q.h \

@@ -31,7 +31,7 @@ class MThread_calculate : public QThread
     Q_OBJECT
 public:
     explicit MThread_calculate(int _coilForm, int _tab, double _arg1, double _arg2, double _arg3, double _arg4,
-                               double _arg5, double _arg6, double _arg7, double _arg8, Material _mt = Cu);
+                               double _arg5, double _arg6, double _arg7, double _arg8, Material _mt = Cu, double _tand = 0);
     void run();
 signals:
     void sendResult(_CoilResult);
@@ -46,6 +46,7 @@ private:
     double arg6;
     double arg7;
     double arg8;
+    double tand;
     Material mt;
 };
 

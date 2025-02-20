@@ -1,4 +1,4 @@
-/* mainwindow.cpp - source text to Coil64 - Radio frequency inductor and choke calculator
+﻿/* mainwindow.cpp - source text to Coil64 - Radio frequency inductor and choke calculator
 Copyright (C) 2019 Kustarev V.
 
 This program is free software; you can redistribute it and/or modify
@@ -204,6 +204,7 @@ MainWindow::MainWindow(QWidget *parent) :
     data->zo = settings->value("zo",0).toDouble();
     data->s = settings->value("s", 0).toDouble();
     data->Rdc = settings->value("Rdc", 0).toDouble();
+    data->tand = settings->value("tand", 0.04).toDouble();
     settings->endGroup();
 
 
@@ -616,6 +617,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
         settings->setValue("zo", data->zo);
         settings->setValue("s", data->s);
         settings->setValue("Rdc", data->Rdc);
+        settings->setValue("tand", data->tand);
         settings->endGroup();
         settings->setValue("mainWindowGeometry", saveGeometry());
         settings->setValue("mainWindowState", saveState());
@@ -1458,9 +1460,10 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_5->setVisible(false);
             mui->label_5->setVisible(false);
             mui->label_05->setVisible(false);
-            mui->lineEdit_6->setVisible(false);
-            mui->label_6->setVisible(false);
+            mui->lineEdit_6->setVisible(true);
+            mui->label_6->setVisible(true);
             mui->label_06->setVisible(false);
+            mui->label_6->setText(tr("Substrate dielectric loss")+" tanδ eff:");
             mui->checkBox_isInsulation->setVisible(false);
             mui->lineEdit_3->setEnabled(true);
             mui->lineEdit_ind->setText(roundTo(data->inductance / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy));
@@ -1470,6 +1473,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->horizontalSlider->setValue(data->ratio * 100);
             mui->horizontalSlider->setToolTip(loc.toString(data->ratio));
             mui->comboBox_checkPCB->setCurrentIndex(myOpt->layoutPCBcoil);
+            mui->lineEdit_6->setText(loc.toString(data->tand));
             on_comboBox_checkPCB_activated(myOpt->layoutPCBcoil);
             break;
         }
@@ -2081,17 +2085,19 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_5_2->setVisible(true);
             mui->label_5_2->setVisible(true);
             mui->label_05_2->setVisible(true);
-            mui->lineEdit_6_2->setVisible(false);
-            mui->label_6_2->setVisible(false);
+            mui->lineEdit_6_2->setVisible(true);
+            mui->label_6_2->setVisible(true);
             mui->label_06_2->setVisible(false);
             mui->lineEdit_7_2->setVisible(false);
             mui->label_7_2->setVisible(false);
             mui->label_07_2->setVisible(false);
             mui->checkBox_isInsulation2->setVisible(false);
+            mui->label_6_2->setText(tr("Substrate dielectric loss")+" tanδ eff:");
             mui->lineEdit_3_2->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
             mui->lineEdit_freq2->setText(roundTo(data->frequency / myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy));
             mui->comboBox_checkPCB->setCurrentIndex(myOpt->layoutPCBcoil);
+            mui->lineEdit_6_2->setText(loc.toString(data->tand));
             on_comboBox_checkPCB_activated(myOpt->layoutPCBcoil);
             break;
         }
@@ -3240,6 +3246,11 @@ void MainWindow::on_lineEdit_6_editingFinished()
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
+        case _PCB_coil:{
+            data->tand = loc.toDouble(mui->lineEdit_6->text(), &ok);
+            if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            break;
+        }
         default:
             break;
         }
@@ -3611,6 +3622,11 @@ void MainWindow::on_lineEdit_6_2_editingFinished()
         }
         case _FerrToroid:{
             data->Ch = loc.toDouble(mui->lineEdit_6_2->text(), &ok);
+            if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+            break;
+        }
+        case _PCB_coil:{
+            data->tand = loc.toDouble(mui->lineEdit_6_2->text(), &ok);
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
@@ -4075,6 +4091,8 @@ void MainWindow::on_pushButton_Calculate_clicked()
                         return;
                     }
                 }
+                bool ok7;
+                double tand = loc.toDouble(mui->lineEdit_6->text(),&ok7);
                 double I = loc.toDouble(mui->lineEdit_ind->text(),&ok1)*myOpt->dwInductanceMultiplier;
                 double f = loc.toDouble(mui->lineEdit_freq->text(),&ok2)*myOpt->dwFrequencyMultiplier;
                 double OD = loc.toDouble(mui->lineEdit_1->text(),&ok3)*myOpt->dwLengthMultiplier;
@@ -4082,11 +4100,11 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 double th = loc.toDouble(mui->lineEdit_4->text(),&ok5)*myOpt->dwLengthMultiplier;
                 double ratio = (double)mui->horizontalSlider->value()/100;
 
-                if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)){
+                if((!ok1)||(!ok2)||(!ok3)||(!ok4)||(!ok5)||(!ok7)){
                     showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
                     return;
                 }
-                if ((I == 0)||(f == 0)||(OD == 0)||(ID == 0)||(th == 0)){
+                if ((I == 0)||(f == 0)||(OD == 0)||(ID == 0)||(th == 0)||(tand == 0)){
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
                     return;
                 }
@@ -4101,12 +4119,16 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), "A < a");
                     return;
                 }
+                if ((tand >= 1) || (tand < 0.0)){
+                    showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+                    return;
+                }
                 data->inductance = I;
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
                 mui->lineEdit_1->setText(loc.toString(OD / myOpt->dwLengthMultiplier));
                 mui->lineEdit_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4->setText(loc.toString(th / myOpt->dwLengthMultiplier));
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, OD, ID, ratio, layoutPCB, th, f, a );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, I, OD, ID, ratio, layoutPCB, th, f, a, Cu, tand );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_pcbN_Result(_CoilResult)));
                 thread->start();
                 break;
@@ -4583,7 +4605,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), tr("One or more inputs are empty!"));
                     return;
                 }
-                bool ok1, ok2, ok3, ok4, ok5, ok6;
+                bool ok1, ok2, ok3, ok4, ok5, ok6, ok7;
                 double N = loc.toDouble(mui->lineEdit_N->text(), &ok1);
                 double f = loc.toDouble(mui->lineEdit_freq2->text(), &ok2)*myOpt->dwFrequencyMultiplier;
                 int layoutPCB = mui->comboBox_checkPCB->currentIndex();
@@ -4602,11 +4624,12 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 double s = loc.toDouble(mui->lineEdit_3_2->text(), &ok4)*myOpt->dwLengthMultiplier;
                 double W = loc.toDouble(mui->lineEdit_4_2->text(), &ok5)*myOpt->dwLengthMultiplier;
                 double th = loc.toDouble(mui->lineEdit_5_2->text(), &ok6)*myOpt->dwLengthMultiplier;
-                if((!ok4)||(!ok5)||(!ok6)){
+                double tand = loc.toDouble(mui->lineEdit_6_2->text(),&ok7);
+                if((!ok4)||(!ok5)||(!ok6)||(!ok7)){
                     showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
                     return;
                 }
-                if ((s == 0)||(W == 0)||(th == 0)){
+                if ((s == 0)||(W == 0)||(th == 0)||(tand == 0)){
                     showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
                     return;
                 }
@@ -4618,13 +4641,17 @@ void MainWindow::on_pushButton_Calculate_clicked()
                     showWarning(tr("Warning"), "A < B");
                     return;
                 }
+                if ((tand >= 1) || (tand < 0.0)){
+                    showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
+                    return;
+                }
                 mui->lineEdit_N->setText(loc.toString(N));
                 mui->lineEdit_2_2->setText(loc.toString(ID / myOpt->dwLengthMultiplier));
                 mui->lineEdit_3_2->setText(loc.toString(s / myOpt->dwLengthMultiplier));
                 mui->lineEdit_4_2->setText(loc.toString(W / myOpt->dwLengthMultiplier));
                 mui->lineEdit_5_2->setText(loc.toString(th / myOpt->dwLengthMultiplier));
 
-                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, A, ID, s, W, layoutPCB, th, f );
+                MThread_calculate *thread= new MThread_calculate( FormCoil, tab, N, A, ID, s, W, layoutPCB, th, f, Cu, tand );
                 connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_pcbI_Result(_CoilResult)));
                 thread->start();
                 break;

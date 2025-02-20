@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "mthread_calculate.h"
 
 MThread_calculate::MThread_calculate(int _coilForm, int _tab, double _arg1, double _arg2, double _arg3, double _arg4,
-                                     double _arg5, double _arg6, double _arg7, double _arg8, Material _mt)
+                                     double _arg5, double _arg6, double _arg7, double _arg8, Material _mt, double _tand)
 {
     this->coilForm = _coilForm;
     this->tab = _tab;
@@ -30,6 +30,7 @@ MThread_calculate::MThread_calculate(int _coilForm, int _tab, double _arg1, doub
     this->arg6 = _arg6;
     this->arg7 = _arg7;
     this->arg8 = _arg8;
+    this->tand = _tand;
     this->mt = _mt;
     qRegisterMetaType<_CoilResult>();
 }
@@ -111,7 +112,7 @@ void MThread_calculate::run(){
                 else
                     getPCB_RectN(arg1, arg2, arg3, arg8, arg6, arg4, &result);
                 if ((result.sec != 0) && (result.thd != 0))
-                    result.fourth = solve_Qpcb(result.N, arg1, arg2, arg3, result.thd, arg6, result.sec, arg7, layoutPCB);
+                    result.fourth = solve_Qpcb(result.N, arg1, arg2, arg3, result.thd, arg6, result.sec, arg7, tand, layoutPCB);
                 break;
             }
             case _Flat_Spiral:{
@@ -199,7 +200,7 @@ void MThread_calculate::run(){
                 else
                     result.N = getPCB_RectI(arg1,arg2,arg3,arg4,arg5,arg7, &result);
                 //long N, double _I, double _D, double _d, double _W, double _t, double _s,  double _f, int layout
-                result.fourth = solve_Qpcb(arg1, result.N, arg2, arg3, arg5, arg7, arg4, arg8, layoutPCB);
+                result.fourth = solve_Qpcb(arg1, result.N, arg2, arg3, arg5, arg7, arg4, arg8, tand, layoutPCB);
                 break;
             }
             case _Flat_Spiral:{

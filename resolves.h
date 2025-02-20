@@ -82,6 +82,7 @@ enum _FormCoil
       double zo;
       double s;
       double Rdc;
+      double tand;
       int ns;
     };
 #pragma pack(pop)
@@ -138,13 +139,13 @@ enum _FormCoil
     double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *result);
     double findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result);
 
-    double findRoundLoop_I(double D, double dw);
+    double findRoundLoop_I(double D, double dw, double mu);
     double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw);
-    double findRoundLoop_D(double Ind, double dw);
-    double findIsoIsoscelesTriangleLoop_I(double _a, double _b, double dw);
-    double findIsoIsoscelesTriangleLoop_a(double Ind, double dw);
-    double findRectangleLoop_I(double _a, double _b, double dw);
-    double findRectangleLoop_a(double Ind, double dw);
+    double findRoundLoop_D(double Ind, double dw, double mu);
+    double findIsoIsoscelesTriangleLoop_I(double _a, double _b, double dw, double mu);
+    double findIsoIsoscelesTriangleLoop_a(double Ind, double dw, double mu);
+    double findRectangleLoop_I(double _a, double _b, double dw, double mu);
+    double findRectangleLoop_a(double Ind, double dw, double mu);
     double findSheildedInductance(double I, double D, double Ds, double l, double Hs);
     double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw);
     double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw);
