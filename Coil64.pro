@@ -134,7 +134,8 @@ TRANSLATIONS += lang/Coil64_bg.ts \
     lang/Coil64_tr.ts \
     lang/Coil64_uk.ts \
     lang/Coil64_vi.ts \
-    lang/Coil64_zh.ts
+    lang/Coil64_zh.ts \
+    lang/Coil64_tw.ts
 
 RESOURCES += res.qrc
 QMAKE_CXXFLAGS += -Wno-deprecated-declarations

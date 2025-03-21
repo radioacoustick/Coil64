@@ -88,6 +88,7 @@
         <file>res/flags/lt.png</file>
         <file>res/flags/et.png</file>
         <file>res/flags/vi.png</file>
+        <file>res/flags/tw.png</file>
     </qresource>
     <qresource prefix="/menu_ico">
         <file>res/ico1-ferrite.png</file>
@@ -186,6 +187,7 @@
         <file>res/translations/Coil64_lt.qm</file>
         <file>res/translations/Coil64_et.qm</file>
         <file>res/translations/Coil64_vi.qm</file>
+        <file>res/translations/Coil64_tw.qm</file>
     </qresource>
     <qresource prefix="/stylesheet">
         <file>res/DarkStyle.qss</file>
