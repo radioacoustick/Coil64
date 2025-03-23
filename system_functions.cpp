@@ -181,6 +181,7 @@ QStringList translateInstalling(QStringList *lang){
     QStringList langList = (QStringList()
                             << QLocale(QLocale::Bulgarian).name().mid(0,2)
                             << QLocale(QLocale::Chinese).name().mid(0,2)
+                            << QString("tw") // for the reason that there's not TraditionalChinese, so use this for substitution
                             << QLocale(QLocale::Croatian).name().mid(0,2)
                             << QLocale(QLocale::Czech).name().mid(0,2)
                             << QLocale(QLocale::Dutch).name().mid(0,2)
@@ -207,6 +208,7 @@ QStringList translateInstalling(QStringList *lang){
     *lang = (QStringList()
              << QLocale(QLocale::Bulgarian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Chinese).nativeLanguageName().toUpper()
+             << QString("繁體中文")
              << QLocale(QLocale::Croatian).nativeLanguageName().toUpper()
              << QLocale(QLocale::Czech).nativeLanguageName().toUpper()
              << QLocale(QLocale::Dutch).nativeLanguageName().toUpper()
@@ -237,6 +239,7 @@ QLocale getLanguageLocale (QString lang){
  QLocale loc;
  if (lang == "bg") loc = QLocale::Bulgarian;
  else if (lang == "zh") loc =  QLocale::Chinese;
+ else if (lang == "tw") loc =  QLocale::LiteraryChinese;
  else if (lang == "hr") loc =  QLocale::Croatian;
  else if (lang == "cs") loc =  QLocale::Czech;
  else if (lang == "nl") loc =  QLocale::Dutch;

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<TS version="2.1" language="zh-TW">
 <context>
     <name>AL</name>
     <message>
         <location filename="../al.ui" line="17"/>
         <source>Calculation with AL-factor</source>
-        <translation>使用 AL 因数计算</translation>
+        <translation>使用 AL 因數計算</translation>
     </message>
     <message>
         <location filename="../al.ui" line="30"/>
         <source>You can calculate the A&lt;sub&gt;L&lt;/sub&gt; factor of an any coil with the closed magnetic circuit by direct measuring with a test winding.</source>
-        <translation>您可以通过使用测试绕组直接，计算任何线圈的 A&lt;sub&gt;L&lt;/sub&gt;系数。</translation>
+        <translation>您可以通過使用測試繞組直接，計算任何線圈的 A&lt;sub&gt;L&lt;/sub&gt;係數。</translation>
     </message>
     <message>
         <location filename="../al.ui" line="112"/>
         <location filename="../al.ui" line="253"/>
         <location filename="../al.ui" line="388"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../al.ui" line="204"/>
@@ -30,7 +30,7 @@
     <message>
         <location filename="../al.ui" line="531"/>
         <source>You can determine the A&lt;sub&gt;L&lt;/sub&gt; factor in the first tab knowing the number of turns and the measured inductance.&lt;hr/&gt; In the second tab, you can determine the number of turns with a known A&lt;sub&gt;L&lt;/sub&gt; and with a known required inductance.&lt;hr/&gt; In the third tab, you can calculate the inductance with known A&lt;sub&gt;L&lt;/sub&gt; and the known number of turns.</source>
-        <translation>您可以确定第一个A&lt;sub&gt;L&lt;/sub&gt;的 因数，了解转弯数和测量电感&lt;hr/&gt;在第二个选项卡中，您可以确定具有已知 A&lt;sub&gt;L&lt;/sub&gt; 的转弯数&lt;/sub&gt;以及已知所需的电感&lt;hr/&gt;在第三个选项卡中，您可以计算使用已知 A&lt;sub&gt;L&lt;/sub&gt; 和已知转弯数的电感。</translation>
+        <translation>您可以確定第一個A&lt;sub&gt;L&lt;/sub&gt;的 因數，瞭解轉彎數和測量電感&lt;hr/&gt;在第二個選項卡中，您可以確定具有已知 A&lt;sub&gt;L&lt;/sub&gt; 的轉彎數&lt;/sub&gt;以及已知所需的電感&lt;hr/&gt;在第三個選項卡中，您可以計算使用已知 A&lt;sub&gt;L&lt;/sub&gt; 和已知轉彎數的電感。</translation>
     </message>
     <message>
         <location filename="../al.ui" line="590"/>
@@ -47,7 +47,7 @@
         <location filename="../al.cpp" line="81"/>
         <location filename="../al.cpp" line="82"/>
         <source>turn</source>
-        <translation>转</translation>
+        <translation>轉</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="83"/>
@@ -88,21 +88,21 @@
         <location filename="../al.cpp" line="170"/>
         <location filename="../al.cpp" line="188"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="158"/>
         <location filename="../al.cpp" line="176"/>
         <location filename="../al.cpp" line="194"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="162"/>
         <location filename="../al.cpp" line="180"/>
         <location filename="../al.cpp" line="198"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
 </context>
 <context>
@@ -115,22 +115,22 @@
     <message>
         <location filename="../about.ui" line="88"/>
         <source>About program</source>
-        <translation>关于节目</translation>
+        <translation>關於節目</translation>
     </message>
     <message>
         <location filename="../about.ui" line="100"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Radio frequency inductor and choke calculator&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;射频电感和扼流圈计算器&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;射頻電感和扼流圈計算器&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="117"/>
         <source>The app allows to calculate needed number of turns for desired value of inductance of homebrew inductor or to calculate the inductance value of a fabricated inductor. I hope this app could be useful for HAMs, Audiophiles and other radio enthusiasts who needs to make DIY inductors.</source>
-        <translation>该应用程序允许计算所需的自制电感的电感值所需的匝数或计算制造的电感的电感值。 我希望这个应用程序可以用于HAM，发烧友和其他需要制作DIY电感的无线电爱好者。</translation>
+        <translation>該應用程序允許計算所需的自舉電感的電感值所需的匝數或計算製造的電感的電感值。 我希望這個應用程序可以用於HAM，發燒友和其他需要製作DIY電感的無線電愛好者。</translation>
     </message>
     <message>
         <location filename="../about.ui" line="145"/>
         <source>HomePage:</source>
-        <translation>主页：</translation>
+        <translation>主頁：</translation>
     </message>
     <message>
         <location filename="../about.ui" line="174"/>
@@ -145,52 +145,52 @@
     <message>
         <location filename="../about.ui" line="405"/>
         <source>Thanks</source>
-        <translation>谢谢</translation>
+        <translation>謝謝</translation>
     </message>
     <message>
         <location filename="../about.ui" line="427"/>
         <source>Thanks for reports and program testing:</source>
-        <translation>感谢您的报告和程序测试：</translation>
+        <translation>感謝您的報告和程序測試：</translation>
     </message>
     <message>
         <location filename="../about.ui" line="448"/>
         <source>Translations</source>
-        <translation>翻译</translation>
+        <translation>翻譯</translation>
     </message>
     <message>
         <location filename="../about.ui" line="474"/>
         <source>I would like to thank the following people who volunteered to translate Coil64:</source>
-        <translation>我要感谢以下自愿翻译Coil64的人：</translation>
+        <translation>我要感謝以下自願翻譯Coil64的人：</translation>
     </message>
     <message>
         <location filename="../about.ui" line="531"/>
         <source>The current version of the Coil64 has been compiled by using the following libraries:</source>
-        <translation>Coil64的当前版本已使用以下库编译：</translation>
+        <translation>Coil64的當前版本已使用以下庫編譯：</translation>
     </message>
     <message>
         <location filename="../about.ui" line="502"/>
         <source>License</source>
-        <translation>执照</translation>
+        <translation>執照</translation>
     </message>
     <message>
         <location filename="../about.ui" line="232"/>
         <source>The open source code of the following developers was used:</source>
-        <translation>使用了以下开发者的开源代码：</translation>
+        <translation>使用了以下開發者的開源代碼：</translation>
     </message>
     <message>
         <location filename="../about.ui" line="391"/>
         <source>I hope, Coil64 will be useful in your radioamateur creativity. 73!</source>
-        <translation>我希望，Coil64对你的无线电专业创意很有用。73！</translation>
+        <translation>我希望，Coil64對你的無線電專業創意很有用。73！</translation>
     </message>
     <message>
         <location filename="../about.ui" line="519"/>
         <source>Libraries</source>
-        <translation>图书馆</translation>
+        <translation>圖書館</translation>
     </message>
     <message>
         <location filename="../about.ui" line="640"/>
         <source>Free Icons:</source>
-        <translation>免费图示：</translation>
+        <translation>免費圖示：</translation>
     </message>
     <message>
         <location filename="../about.ui" line="695"/>
@@ -203,17 +203,17 @@
     <message>
         <location filename="../aircoretoroid.ui" line="17"/>
         <source>Air core toroid coil</source>
-        <translation>空芯环形线圈</translation>
+        <translation>空芯環形線圈</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="87"/>
         <source>Kind of the winding</source>
-        <translation>绕组种类</translation>
+        <translation>繞組種類</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="96"/>
         <source>Round cross-section</source>
-        <translation>圆形截面</translation>
+        <translation>圓形截面</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="109"/>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../aircoretoroid.ui" line="126"/>
         <source>Reverse calculation</source>
-        <translation>反向计算</translation>
+        <translation>反向計算</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.ui" line="190"/>
@@ -305,7 +305,7 @@
         <location filename="../aircoretoroid.cpp" line="200"/>
         <location filename="../aircoretoroid.cpp" line="228"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="212"/>
@@ -313,7 +313,7 @@
         <location filename="../aircoretoroid.cpp" line="251"/>
         <location filename="../aircoretoroid.cpp" line="268"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="216"/>
@@ -321,12 +321,12 @@
         <location filename="../aircoretoroid.cpp" line="247"/>
         <location filename="../aircoretoroid.cpp" line="264"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="280"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../aircoretoroid.cpp" line="291"/>
@@ -349,7 +349,7 @@
     <message>
         <location filename="../amidon.ui" line="17"/>
         <source>Amidon™ inc. Cores</source>
-        <translation>Amidon™inc。 核心数</translation>
+        <translation>Amidon™inc。 核心數</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="59"/>
@@ -364,55 +364,55 @@
     <message>
         <location filename="../amidon.ui" line="245"/>
         <source>Iron powder toroids</source>
-        <translation>铁粉环形</translation>
+        <translation>鐵粉環形</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="251"/>
         <location filename="../amidon.ui" line="290"/>
         <source>Select material of the toroid</source>
-        <translation>选择环形材料</translation>
+        <translation>選擇環形材料</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="267"/>
         <location filename="../amidon.ui" line="306"/>
         <source>Select dimension type of the toroid</source>
-        <translation>选择环形的尺寸类型</translation>
+        <translation>選擇環形的尺寸類型</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="284"/>
         <source>Ferrite toroids</source>
-        <translation>铁氧体磁环</translation>
+        <translation>鐵氧體磁環</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="323"/>
         <source>E cores</source>
-        <translation>电子核心</translation>
+        <translation>電子核心</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="329"/>
         <location filename="../amidon.ui" line="398"/>
         <source>Select type</source>
-        <translation>选择类型</translation>
+        <translation>選擇類型</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="392"/>
         <source>Pot cores</source>
-        <translation>锅芯</translation>
+        <translation>鍋芯</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="481"/>
         <source>Multi aperture cores</source>
-        <translation>多孔纤芯</translation>
+        <translation>多孔纖芯</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="487"/>
         <source>Select material</source>
-        <translation>选择材料</translation>
+        <translation>選擇材料</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="503"/>
         <source>Select the type of the core</source>
-        <translation>选择核心的类型</translation>
+        <translation>選擇核心的類型</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="627"/>
@@ -422,7 +422,7 @@
     <message>
         <location filename="../amidon.ui" line="747"/>
         <source>Export results</source>
-        <translation>汇出结果</translation>
+        <translation>匯出結果</translation>
     </message>
     <message>
         <location filename="../amidon.ui" line="779"/>
@@ -432,7 +432,7 @@
     <message>
         <location filename="../amidon.cpp" line="687"/>
         <source>Color code</source>
-        <translation>色标</translation>
+        <translation>色標</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="688"/>
@@ -442,14 +442,14 @@
     <message>
         <location filename="../amidon.cpp" line="689"/>
         <source>Resonant circuit frequency range</source>
-        <translation>谐振电路频率范围</translation>
+        <translation>諧振電路頻率範圍</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="654"/>
         <location filename="../amidon.cpp" line="691"/>
         <location filename="../amidon.cpp" line="733"/>
         <source>Initial magnetic permeability</source>
-        <translation>初始磁导率</translation>
+        <translation>初始磁導率</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="601"/>
@@ -473,24 +473,24 @@
         <location filename="../amidon.cpp" line="658"/>
         <location filename="../amidon.cpp" line="736"/>
         <source>Saturation flux density</source>
-        <translation>饱和磁通密度</translation>
+        <translation>飽和磁通密度</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="660"/>
         <location filename="../amidon.cpp" line="739"/>
         <source>Residual flux density</source>
-        <translation>残留通量密度</translation>
+        <translation>殘留通量密度</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="741"/>
         <source>Coercive Force</source>
-        <translation>矫顽力</translation>
+        <translation>矯頑力</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="662"/>
         <location filename="../amidon.cpp" line="743"/>
         <source>Curie Temperature</source>
-        <translation>居里温度</translation>
+        <translation>居里溫度</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="330"/>
@@ -506,7 +506,7 @@
     <message>
         <location filename="../amidon.cpp" line="656"/>
         <source>Maximum magnetic permeability</source>
-        <translation>最大磁导率</translation>
+        <translation>最大磁導率</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="665"/>
@@ -518,13 +518,13 @@
         <location filename="../amidon.cpp" line="666"/>
         <location filename="../amidon.cpp" line="774"/>
         <source>Resonant circuit coils</source>
-        <translation>谐振电路线圈</translation>
+        <translation>諧振電路線圈</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="668"/>
         <location filename="../amidon.cpp" line="776"/>
         <source>Wideband transformers</source>
-        <translation>宽带变压器</translation>
+        <translation>寬帶變壓器</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="670"/>
@@ -540,12 +540,12 @@
     <message>
         <location filename="../amidon.cpp" line="948"/>
         <source>Recommended wire diameter for singlelayer winding</source>
-        <translation>单层绕线推荐线径</translation>
+        <translation>單層繞線推薦線徑</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="956"/>
         <source>Saturation current</source>
-        <translation>饱和电流</translation>
+        <translation>飽和電流</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="956"/>
@@ -556,7 +556,7 @@
         <location filename="../amidon.cpp" line="959"/>
         <location filename="../amidon.cpp" line="962"/>
         <source>Not available</source>
-        <translation>无法使用</translation>
+        <translation>無法使用</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1180"/>
@@ -566,17 +566,17 @@
     <message>
         <location filename="../amidon.cpp" line="1180"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1185"/>
         <source>Selected core</source>
-        <translation>精选核心</translation>
+        <translation>精選核心</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1196"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="920"/>
@@ -586,25 +586,25 @@
     <message>
         <location filename="../amidon.cpp" line="921"/>
         <source>Maximum wire diameter</source>
-        <translation>最大线径</translation>
+        <translation>最大線徑</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1041"/>
         <location filename="../amidon.cpp" line="1117"/>
         <source>Effective magnetic path length</source>
-        <translation>有效磁路长度</translation>
+        <translation>有效磁路長度</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1044"/>
         <location filename="../amidon.cpp" line="1120"/>
         <source>Effective area of magnetic path</source>
-        <translation>磁路有效面积</translation>
+        <translation>磁路有效面積</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1047"/>
         <location filename="../amidon.cpp" line="1123"/>
         <source>Effective volume</source>
-        <translation>有效容积</translation>
+        <translation>有效容積</translation>
     </message>
     <message>
         <location filename="../amidon.cpp" line="1126"/>
@@ -617,12 +617,12 @@
     <message>
         <location filename="../bandspread.ui" line="23"/>
         <source>Bandspread calculator</source>
-        <translation>范围拉伸电容器计算器</translation>
+        <translation>範圍拉伸電容器計算器</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="97"/>
         <source>Direct calculation</source>
-        <translation>直接计算</translation>
+        <translation>直接計算</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="103"/>
@@ -630,7 +630,7 @@
         <location filename="../bandspread.ui" line="989"/>
         <location filename="../bandspread.cpp" line="489"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="441"/>
@@ -645,27 +645,27 @@
     <message>
         <location filename="../bandspread.ui" line="561"/>
         <source>Reverse calculation</source>
-        <translation>反向计算</translation>
+        <translation>反向計算</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="977"/>
         <source>Local Oscillator tracking</source>
-        <translation>本地振荡器跟踪</translation>
+        <translation>本地振盪器跟踪</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="1313"/>
         <source>Local Oscillator frequency position</source>
-        <translation>本地振荡器频率位置</translation>
+        <translation>本地振盪器頻率位置</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="1331"/>
         <source>Below incoming frequency</source>
-        <translation>低于传入频率</translation>
+        <translation>低於傳入頻率</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="1336"/>
         <source>Above incoming frequency</source>
-        <translation>高于传入频率</translation>
+        <translation>高於傳入頻率</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="1003"/>
@@ -685,7 +685,7 @@
     <message>
         <location filename="../bandspread.ui" line="1613"/>
         <source>Export results</source>
-        <translation>汇出结果</translation>
+        <translation>匯出結果</translation>
     </message>
     <message>
         <location filename="../bandspread.ui" line="1639"/>
@@ -697,35 +697,35 @@
         <location filename="../bandspread.cpp" line="109"/>
         <location filename="../bandspread.cpp" line="128"/>
         <source>Lowest Frequency</source>
-        <translation>最低频率</translation>
+        <translation>最低頻率</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="102"/>
         <location filename="../bandspread.cpp" line="110"/>
         <location filename="../bandspread.cpp" line="129"/>
         <source>Highest Frequency</source>
-        <translation>最高频率</translation>
+        <translation>最高頻率</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="103"/>
         <location filename="../bandspread.cpp" line="111"/>
         <location filename="../bandspread.cpp" line="130"/>
         <source>Tuning Capacitor Minimum</source>
-        <translation>调谐电容最小值</translation>
+        <translation>調諧電容最小值</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="104"/>
         <location filename="../bandspread.cpp" line="112"/>
         <location filename="../bandspread.cpp" line="131"/>
         <source>Tuning Capacitor Maximum</source>
-        <translation>调谐电容最大值</translation>
+        <translation>調諧電容最大值</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="105"/>
         <location filename="../bandspread.cpp" line="113"/>
         <location filename="../bandspread.cpp" line="132"/>
         <source>Stray Capacitance</source>
-        <translation>杂散电容</translation>
+        <translation>雜散電容</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="106"/>
@@ -744,66 +744,66 @@
         <location filename="../bandspread.cpp" line="427"/>
         <location filename="../bandspread.cpp" line="435"/>
         <source>Serial Capacitor</source>
-        <translation>串联电容</translation>
+        <translation>串聯電容</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="118"/>
         <location filename="../bandspread.cpp" line="120"/>
         <source>Valid value range</source>
-        <translation>有效值范围</translation>
+        <translation>有效值範圍</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="127"/>
         <source>Automatically find the optimal</source>
-        <translation>自动寻找最优</translation>
+        <translation>自動尋找最優</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="133"/>
         <source>Intermediate frequency</source>
-        <translation>中频</translation>
+        <translation>中頻</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="286"/>
         <location filename="../bandspread.cpp" line="346"/>
         <source>Minimum LC circuit Capacitance</source>
-        <translation>最小 LC 电路电容</translation>
+        <translation>最小 LC 電路電容</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="289"/>
         <location filename="../bandspread.cpp" line="349"/>
         <source>Maximum LC circuit Capacitance</source>
-        <translation>最大 LC 电路电容</translation>
+        <translation>最大 LC 電路電容</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="296"/>
         <location filename="../bandspread.cpp" line="470"/>
         <source>The Cv capacitance range (combined with the circuit stray capacitance) is too narrow to overlap the desired frequency range. Please change your frequency range or variable capacitor parameters and try again.</source>
-        <translation>Cv 电容范围（与电路杂散电容结合）太窄，无法与所需的频率范围重叠。请变更频率范围或可变电容器参数，然后重试。</translation>
+        <translation>Cv 電容範圍（與電路雜散電容結合）太窄，無法與所需的頻率範圍重疊。請變更頻率範圍或可變電容器參數，然後重試。</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="439"/>
         <source>Zero error tracking points</source>
-        <translation>零误差追踪点</translation>
+        <translation>零誤差追蹤點</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="450"/>
         <source>Peak tracking error</source>
-        <translation>最大跟踪误差</translation>
+        <translation>最大跟蹤誤差</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="453"/>
         <source>Local oscillator frequency range</source>
-        <translation>本地振荡器频率范围</translation>
+        <translation>本地振盪器頻率範圍</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="458"/>
         <source>Image frequency range</source>
-        <translation>影像频率范围</translation>
+        <translation>影像頻率範圍</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="467"/>
         <source>Unable to create Local Oscillator LC-circuit. Try changing the LO frequency position and try again.</source>
-        <translation>无法建立本地振荡器 LC 电路。尝试变更 LO 频率位置，然后重试。</translation>
+        <translation>無法建立本地振盪器 LC 電路。嘗試變更 LO 頻率位置，然後重試。</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="466"/>
@@ -812,7 +812,7 @@
         <location filename="../bandspread.cpp" line="476"/>
         <location filename="../bandspread.cpp" line="527"/>
         <source>Solution failed</source>
-        <translation>解决方案失败</translation>
+        <translation>解決方案失敗</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="245"/>
@@ -843,20 +843,20 @@
         <location filename="../bandspread.cpp" line="425"/>
         <location filename="../bandspread.cpp" line="433"/>
         <source>Parallel Capacitor</source>
-        <translation>并联电容</translation>
+        <translation>並聯電容</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="304"/>
         <location filename="../bandspread.cpp" line="474"/>
         <source>The inductance value is out of range.</source>
-        <translation>电感值超出范围。</translation>
+        <translation>電感值超出範圍。</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="252"/>
         <location filename="../bandspread.cpp" line="329"/>
         <location filename="../bandspread.cpp" line="385"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../bandspread.cpp" line="245"/>
@@ -864,7 +864,7 @@
         <location filename="../bandspread.cpp" line="380"/>
         <location filename="../bandspread.cpp" line="408"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
 </context>
 <context>
@@ -896,7 +896,7 @@
         <location filename="../amidon.cpp" line="646"/>
         <location filename="../amidon.cpp" line="650"/>
         <source>Ohm</source>
-        <translation>欧姆</translation>
+        <translation>歐姆</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="466"/>
@@ -908,7 +908,7 @@
     <message>
         <location filename="../system_functions.cpp" line="311"/>
         <source>nF</source>
-        <translation>纳法</translation>
+        <translation>納法</translation>
     </message>
     <message>
         <location filename="../system_functions.cpp" line="316"/>
@@ -923,7 +923,7 @@
         <location filename="../rf_toroid.cpp" line="468"/>
         <location filename="../system_functions.cpp" line="325"/>
         <source>nH</source>
-        <translation>纳亨</translation>
+        <translation>納亨</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="39"/>
@@ -955,7 +955,7 @@
     <message>
         <location filename="../system_functions.cpp" line="359"/>
         <source>mil</source>
-        <translation>密尔</translation>
+        <translation>密爾</translation>
     </message>
     <message>
         <location filename="../system_functions.cpp" line="383"/>
@@ -973,7 +973,7 @@
     <message>
         <location filename="../crossover.ui" line="23"/>
         <source>Audio system filter (crossover) coil</source>
-        <translation>音频系统滤波器（分频器）线圈</translation>
+        <translation>音頻系統濾波器（分頻器）線圈</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="63"/>
@@ -993,19 +993,19 @@
     <message>
         <location filename="../crossover.ui" line="196"/>
         <source>Winding pitch / wire diameter ratio</source>
-        <translation>绕线节距/线径比</translation>
+        <translation>繞線節距/線徑比</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="226"/>
         <location filename="../crossover.cpp" line="41"/>
         <source>Axial</source>
-        <translation>轴向</translation>
+        <translation>軸向</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="239"/>
         <location filename="../crossover.cpp" line="42"/>
         <source>Radial</source>
-        <translation>径向</translation>
+        <translation>徑向</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="383"/>
@@ -1031,7 +1031,7 @@
     <message>
         <location filename="../crossover.ui" line="108"/>
         <source>Range of wire diameters</source>
-        <translation>线径范围</translation>
+        <translation>線徑範圍</translation>
     </message>
     <message>
         <location filename="../crossover.ui" line="305"/>
@@ -1066,7 +1066,7 @@
     <message>
         <location filename="../crossover.cpp" line="53"/>
         <source>Weight of wire</source>
-        <translation>电线重量</translation>
+        <translation>電線重量</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="53"/>
@@ -1081,12 +1081,12 @@
     <message>
         <location filename="../crossover.cpp" line="79"/>
         <source>Click right mouse button to open menu</source>
-        <translation>单击鼠标右键打开菜单</translation>
+        <translation>單擊鼠標右鍵打開菜單</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="88"/>
         <source>Remove row</source>
-        <translation>删除行</translation>
+        <translation>刪除行</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="141"/>
@@ -1108,7 +1108,7 @@
     <message>
         <location filename="../crossover.cpp" line="245"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="49"/>
@@ -1118,7 +1118,7 @@
     <message>
         <location filename="../crossover.cpp" line="50"/>
         <source>Number of turns per layer</source>
-        <translation>每层匝数</translation>
+        <translation>每層匝數</translation>
     </message>
 </context>
 <context>
@@ -1126,22 +1126,22 @@
     <message>
         <location filename="../ecore.ui" line="17"/>
         <source>E-core coil</source>
-        <translation>电子芯线圈</translation>
+        <translation>電子芯線圈</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="43"/>
         <source>Select the type of the core</source>
-        <translation>选择核心的类型</translation>
+        <translation>選擇核心的類型</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="151"/>
         <source>Reverse calculation</source>
-        <translation>反向计算</translation>
+        <translation>反向計算</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="158"/>
         <source>Saturation current</source>
-        <translation>饱和电流</translation>
+        <translation>飽和電流</translation>
     </message>
     <message>
         <location filename="../ecore.ui" line="234"/>
@@ -1171,12 +1171,12 @@
     <message>
         <location filename="../ecore.cpp" line="136"/>
         <source>Centerpost gap</source>
-        <translation>中心柱间隙</translation>
+        <translation>中心柱間隙</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="137"/>
         <source>Magnetic permeability</source>
-        <translation>磁导率</translation>
+        <translation>磁導率</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="216"/>
@@ -1209,7 +1209,7 @@
     <message>
         <location filename="../ecore.cpp" line="246"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="259"/>
@@ -1217,19 +1217,19 @@
         <location filename="../ecore.cpp" line="299"/>
         <location filename="../ecore.cpp" line="310"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="272"/>
         <location filename="../ecore.cpp" line="303"/>
         <location filename="../ecore.cpp" line="314"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="340"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="355"/>
@@ -1244,22 +1244,22 @@
     <message>
         <location filename="../ecore.cpp" line="362"/>
         <source>Effective magnetic path length</source>
-        <translation>有效磁路长度</translation>
+        <translation>有效磁路長度</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="365"/>
         <source>Effective area of magnetic path</source>
-        <translation>磁路有效面积</translation>
+        <translation>磁路有效面積</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="368"/>
         <source>Effective volume</source>
-        <translation>有效容积</translation>
+        <translation>有效容積</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="371"/>
         <source>Effective magnetic permeability of the core</source>
-        <translation>磁芯有效磁导率</translation>
+        <translation>磁芯有效磁導率</translation>
     </message>
 </context>
 <context>
@@ -1267,17 +1267,17 @@
     <message>
         <location filename="../ferrite_rod.ui" line="29"/>
         <source>Coil on a ferrite rod</source>
-        <translation>线圈在铁氧体棒上</translation>
+        <translation>線圈在鐵氧體棒上</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="72"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Restrictions of the calculating&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;限制计算&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;限制計算&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="85"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;The winding pitch cannot exceed the doubled wire diameter&lt;/li&gt;&lt;li&gt;The coil diameter cannot be greater than doubled rod diameter&lt;/li&gt;&lt;li&gt;Winding length should be less than 3/4 length of the rod&lt;/li&gt;&lt;li&gt;When the coil is shifting it should not reach the edge of the core 1/8 of its length&lt;/li&gt;&lt;li&gt;The initial magnetic permeability of the rod should be greater than 100&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;绕组间距不能超过双倍的线径&lt;/li&gt;&lt;li&gt;线圈直径不能大于杆直径的两倍&lt;/li&gt;&lt;li&gt;绕组长度应小于杆的3/4长度&lt;/li&gt;&lt;li&gt;当线圈移动时，它不应到达芯长度的1/8&lt;/li&gt;&lt;li&gt;棒的初始磁导率应大于100&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ul&gt;&lt;li&gt;繞組間距不能超過雙倍的線徑&lt;/li&gt;&lt;li&gt;線圈直徑不能大於桿直徑的兩倍&lt;/li&gt;&lt;li&gt;繞組長度應小於桿的3/4長度&lt;/li&gt;&lt;li&gt;當線圈移動時，它不應到達芯長度的1/8&lt;/li&gt;&lt;li&gt;棒的初始磁導率應大於100&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="108"/>
@@ -1288,12 +1288,12 @@
     <message>
         <location filename="../ferrite_rod.ui" line="141"/>
         <source>Core parameters:</source>
-        <translation>核心参数：</translation>
+        <translation>核心參數：</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="275"/>
         <source>Coil parameters:</source>
-        <translation>线圈参数：</translation>
+        <translation>線圈參數：</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="478"/>
@@ -1323,17 +1323,17 @@
     <message>
         <location filename="../ferrite_rod.cpp" line="29"/>
         <source>Rod diameter</source>
-        <translation>杆直径</translation>
+        <translation>桿直徑</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="30"/>
         <source>Rod length</source>
-        <translation>杆长</translation>
+        <translation>桿長</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="31"/>
         <source>Magnetic permeability</source>
-        <translation>磁导率</translation>
+        <translation>磁導率</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="32"/>
@@ -1343,7 +1343,7 @@
     <message>
         <location filename="../ferrite_rod.cpp" line="33"/>
         <source>Shift</source>
-        <translation>轮班</translation>
+        <translation>輪班</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="34"/>
@@ -1378,28 +1378,28 @@
     <message>
         <location filename="../ferrite_rod.cpp" line="154"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="172"/>
         <location filename="../ferrite_rod.cpp" line="246"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="176"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="206"/>
         <source>Distance from coil edge to core edge less than 1/8 Lr</source>
-        <translation>线圈边緣到核心邊緣的距離小於1/8 Lr</translation>
+        <translation>線圈邊緣到核心邊緣的距離小於1/8 Lr</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="211"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../ferrite_rod.cpp" line="222"/>
@@ -1419,7 +1419,7 @@
     <message>
         <location filename="../ferrite_rod.cpp" line="226"/>
         <source>Effective magnetic permeability of the core</source>
-        <translation>磁芯有效磁导率</translation>
+        <translation>磁芯有效磁導率</translation>
     </message>
 </context>
 <context>
@@ -1427,17 +1427,17 @@
     <message>
         <location filename="../find_permeability.ui" line="38"/>
         <source>Find the unknown ferrite toroid permeability</source>
-        <translation>找出未知的铁素体环形磁导率</translation>
+        <translation>找出未知的鐵素體環形磁導率</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="72"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You should to wind a few turns on an unknown ferrite or powder iron toroid and should to mesure obtained inductance and dimensions of the ring. Enter the data and estimate the permeability and Al-factor of the toroid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您应该在未知的铁氧体或粉铁环上缠绕几圈，并且应该确定获得的电感和环的尺寸。 输入数据并估算环形的渗透率和Al因子。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您應該在未知的鐵氧體或粉鐵環上纏繞幾圈，並且應該確定獲得的電感和環的尺寸。 輸入數據並估算環形的滲透率和Al因子。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../find_permeability.ui" line="103"/>
         <source>Data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="65"/>
@@ -1481,22 +1481,22 @@
     <message>
         <location filename="../find_permeability.cpp" line="111"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="122"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="126"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="137"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="147"/>
@@ -1506,7 +1506,7 @@
     <message>
         <location filename="../find_permeability.cpp" line="148"/>
         <source>Relative magnetic permeability of the toroid</source>
-        <translation>环形的相对磁导率</translation>
+        <translation>環形的相對磁導率</translation>
     </message>
     <message>
         <location filename="../find_permeability.cpp" line="149"/>
@@ -1524,27 +1524,27 @@
     <message>
         <location filename="../loop.ui" line="105"/>
         <source>Kind of the loop</source>
-        <translation>回圈的种类</translation>
+        <translation>迴圈的種類</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="114"/>
         <source>Round loop</source>
-        <translation>圆形回圈</translation>
+        <translation>圓形迴圈</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="127"/>
         <source>Isosceles Triangle loop</source>
-        <translation>等腰三角环路</translation>
+        <translation>等腰三角環路</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="137"/>
         <source>Rectangle loop</source>
-        <translation>矩形环路</translation>
+        <translation>矩形環路</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="157"/>
         <source>Reverse calculation</source>
-        <translation>反向计算</translation>
+        <translation>反向計算</translation>
     </message>
     <message>
         <location filename="../loop.ui" line="221"/>
@@ -1587,13 +1587,13 @@
         <location filename="../loop.cpp" line="161"/>
         <location filename="../loop.cpp" line="167"/>
         <source>Side of triangle</source>
-        <translation>三角形的边</translation>
+        <translation>三角形的邊</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="192"/>
         <location filename="../loop.cpp" line="198"/>
         <source>Side of rectangle</source>
-        <translation>矩形的边</translation>
+        <translation>矩形的邊</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="259"/>
@@ -1615,7 +1615,7 @@
         <location filename="../loop.cpp" line="322"/>
         <location filename="../loop.cpp" line="342"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="259"/>
@@ -1623,24 +1623,24 @@
         <location filename="../loop.cpp" line="333"/>
         <location filename="../loop.cpp" line="347"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="108"/>
         <source>Wire magnetic permeability</source>
-        <translation>导线磁导率</translation>
+        <translation>導線磁導率</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="289"/>
         <location filename="../loop.cpp" line="337"/>
         <location filename="../loop.cpp" line="351"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="292"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="295"/>
@@ -1651,12 +1651,12 @@
     <message>
         <location filename="../loop.cpp" line="304"/>
         <source>The side of the equilateral triangle</source>
-        <translation>等边三角形的一侧</translation>
+        <translation>等邊三角形的一側</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="310"/>
         <source>The side of quadrate</source>
-        <translation>四边形的边</translation>
+        <translation>四邊形的邊</translation>
     </message>
     <message>
         <location filename="../loop.cpp" line="317"/>
@@ -1715,7 +1715,7 @@
     <message>
         <location filename="../mainwindow.ui" line="1999"/>
         <source>Show confirm dialog to delete a result</source>
-        <translation>显示确认对话框以删除结果</translation>
+        <translation>顯示確認對話框以刪除結果</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2499"/>
@@ -1838,7 +1838,7 @@
     <message>
         <location filename="../mainwindow.ui" line="2390"/>
         <source>Additional calculations</source>
-        <translation>额外计算</translation>
+        <translation>额外的计算</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1587"/>
@@ -1863,12 +1863,12 @@
     <message>
         <location filename="../mainwindow.ui" line="253"/>
         <source>Multilayer coil on a rectangular former</source>
-        <translation>矩形模型上的多层线圈</translation>
+        <translation>矩形模型上的多層線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="281"/>
         <source>PCB flat coil</source>
-        <translation>PCB线圈</translation>
+        <translation>PCB線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1467"/>
@@ -1921,22 +1921,22 @@
     <message>
         <location filename="../mainwindow.ui" line="77"/>
         <source>Regular winding</source>
-        <translation>常规绕线</translation>
+        <translation>常規繞線</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="82"/>
         <source>Orthocyclic winding</source>
-        <translation>正循环缠绕</translation>
+        <translation>正循環纏繞</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="119"/>
         <source>PCB coil with rectangular winding</source>
-        <translation>矩形绕组PCB线圈</translation>
+        <translation>矩形繞組PCB線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="224"/>
         <source>One layer coil on a polygonal former</source>
-        <translation>与线圈间距非圆形单层线圈</translation>
+        <translation>與線圈間距非圓形單層線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="727"/>
@@ -1952,17 +1952,17 @@
         <location filename="../mainwindow.ui" line="684"/>
         <location filename="../mainwindow.ui" line="1258"/>
         <source>Wire has insulation</source>
-        <translation>电线有绝缘层</translation>
+        <translation>電線有絕緣層</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1736"/>
         <source>Show title in results</source>
-        <translation>在结果中显示标题</translation>
+        <translation>在結果中顯示標題</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1797"/>
         <source>Show values description</source>
-        <translation>显示值说明</translation>
+        <translation>顯示值說明</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1817"/>
@@ -1977,53 +1977,53 @@
     <message>
         <location filename="../mainwindow.ui" line="1882"/>
         <source>Show data for LTSpice</source>
-        <translation>显示 LTSpice 的数据</translation>
+        <translation>顯示 LTSpice 的數據</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1654"/>
         <source>Show last result first</source>
-        <translation>首先显示最后结果</translation>
+        <translation>首先顯示最後結果</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1700"/>
         <source>Show calculation numbering</source>
-        <translation>显示计算编号</translation>
+        <translation>顯示計算編號</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1976"/>
         <source>Show confirm dialog to clear results</source>
-        <translation>显示确认对话框以清除结果</translation>
+        <translation>顯示確認對話框以清除結果</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1908"/>
         <location filename="../mainwindow.ui" line="2816"/>
         <source>Saturation current</source>
-        <translation>饱和电流</translation>
+        <translation>飽和電流</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2361"/>
         <source>Theme</source>
-        <translation>主题</translation>
+        <translation>主題</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2416"/>
         <source>Ferrite cores</source>
-        <translation>铁氧体磁芯</translation>
+        <translation>鐵氧體磁芯</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2683"/>
         <source>Versions history</source>
-        <translation>版本历史</translation>
+        <translation>版本歷史</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2695"/>
         <source>Air core toroid coil</source>
-        <translation>空芯环形线圈</translation>
+        <translation>空芯環形線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2706"/>
         <source>Default</source>
-        <translation>默认</translation>
+        <translation>默認</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2714"/>
@@ -2033,62 +2033,62 @@
     <message>
         <location filename="../mainwindow.ui" line="2723"/>
         <source>Pot core coil</source>
-        <translation>锅芯</translation>
+        <translation>鍋芯</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2731"/>
         <source>Sunny</source>
-        <translation>阳光明媚</translation>
+        <translation>陽光明媚</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2740"/>
         <source>E core coil</source>
-        <translation>电子芯线圈</translation>
+        <translation>電子芯線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2750"/>
         <source>Calculation with AL-factor</source>
-        <translation>使用 AL 因数计算</translation>
+        <translation>使用 AL 因數計算</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2759"/>
         <source>U core coil</source>
-        <translation>U芯线圈</translation>
+        <translation>U芯線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2768"/>
         <source>Audio system filter (crossover) coil</source>
-        <translation>音频系统滤波器（分频器）线圈</translation>
+        <translation>音頻系統濾波器（分頻器）線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2777"/>
         <source>Toroidal inductor at RF</source>
-        <translation>射频环形电感</translation>
+        <translation>射頻環形電感</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2786"/>
         <source>Bandspread Calculator</source>
-        <translation>范围拉伸电容器计算器</translation>
+        <translation>範圍拉伸電容器計算器</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2795"/>
         <source>RM core coil</source>
-        <translation>RM铁芯线圈</translation>
+        <translation>RM鐵芯線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2804"/>
         <source>Interface help</source>
-        <translation>界面帮助</translation>
+        <translation>介面幫助</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1950"/>
         <source>Save results on exit</source>
-        <translation>在退出时保存结果</translation>
+        <translation>在退出時保存結果</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2022"/>
         <source>Show confirm dialog before exit</source>
-        <translation>退出前显示确认对话框</translation>
+        <translation>退出前顯示確認對話框</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2292"/>
@@ -2137,12 +2137,12 @@
     <message>
         <location filename="../mainwindow.ui" line="262"/>
         <source>Multilayer foil-wound coil</source>
-        <translation>带箔缠绕的多层线圈</translation>
+        <translation>帶箔纏繞的多層線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1677"/>
         <source>Show text in tabular form</source>
-        <translation>以表格形式显示文字</translation>
+        <translation>以表格形式顯示文字</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2511"/>
@@ -2152,7 +2152,7 @@
     <message>
         <location filename="../mainwindow.ui" line="2535"/>
         <source>HomePage</source>
-        <translation>主页</translation>
+        <translation>主頁</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2562"/>
@@ -2167,17 +2167,17 @@
     <message>
         <location filename="../mainwindow.ui" line="2607"/>
         <source>Coil on a ferrite rod</source>
-        <translation>线圈在铁氧体棒上</translation>
+        <translation>線圈在鐵氧體棒上</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2625"/>
         <source>Meander coil on PCB</source>
-        <translation>PCB上的曲折线圈</translation>
+        <translation>PCB上的曲折線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2634"/>
         <source>Search coil of a metal detector</source>
-        <translation>搜索金属探測器的线圈</translation>
+        <translation>搜索金屬探測器的線圈</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2644"/>
@@ -2192,7 +2192,7 @@
     <message>
         <location filename="../mainwindow.ui" line="2665"/>
         <source>Influence of the shield of a coil</source>
-        <translation>线圈屏蔽的影响</translation>
+        <translation>線圈屏蔽的影響</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2674"/>
@@ -2571,7 +2571,7 @@
         <location filename="../mainwindow.cpp" line="1278"/>
         <location filename="../mainwindow.cpp" line="1881"/>
         <source>Layers number beetween insulating pads</source>
-        <translation>绝缘垫之间的层的数目</translation>
+        <translation>絕緣墊之間的層的數目</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1425"/>
@@ -2615,7 +2615,7 @@
         <location filename="../mainwindow.cpp" line="4661"/>
         <location filename="../mainwindow.cpp" line="4704"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3693"/>
@@ -2643,7 +2643,7 @@
         <location filename="../mainwindow.cpp" line="4679"/>
         <location filename="../mainwindow.cpp" line="4708"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4769"/>
@@ -2673,7 +2673,7 @@
         <location filename="../mainwindow.cpp" line="5929"/>
         <location filename="../mainwindow.cpp" line="5965"/>
         <source>Input</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4774"/>
@@ -2761,7 +2761,7 @@
         <location filename="../mainwindow.cpp" line="5849"/>
         <location filename="../mainwindow.cpp" line="5850"/>
         <source>Ohm</source>
-        <translation>欧姆</translation>
+        <translation>歐姆</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="499"/>
@@ -2769,7 +2769,7 @@
         <location filename="../mainwindow.cpp" line="2312"/>
         <location filename="../mainwindow.cpp" line="6315"/>
         <source>Confirmation</source>
-        <translation>确认</translation>
+        <translation>確認</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="500"/>
@@ -2777,7 +2777,7 @@
         <location filename="../mainwindow.cpp" line="2313"/>
         <location filename="../mainwindow.cpp" line="6316"/>
         <source>Are you sure?</source>
-        <translation>你确定吗？</translation>
+        <translation>你確定嗎？</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="503"/>
@@ -2793,24 +2793,24 @@
         <location filename="../mainwindow.cpp" line="2317"/>
         <location filename="../mainwindow.cpp" line="6320"/>
         <source>No</source>
-        <translation>没有</translation>
+        <translation>沒有</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="863"/>
         <source>Something gone wrong</source>
-        <translation>出了点问题</translation>
+        <translation>出了點問題</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1170"/>
         <location filename="../mainwindow.cpp" line="1766"/>
         <source>Number of sides of the former</source>
-        <translation>前的边的数量</translation>
+        <translation>前的邊的數量</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1328"/>
         <location filename="../mainwindow.cpp" line="1939"/>
         <source>Former width</source>
-        <translation>前者的宽度</translation>
+        <translation>前者的寬度</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1329"/>
@@ -2822,7 +2822,7 @@
         <location filename="../mainwindow.cpp" line="1379"/>
         <location filename="../mainwindow.cpp" line="1998"/>
         <source>Foil width</source>
-        <translation>铝箔宽度</translation>
+        <translation>鋁箔寬度</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1380"/>
@@ -2834,7 +2834,7 @@
         <location filename="../mainwindow.cpp" line="1427"/>
         <location filename="../mainwindow.cpp" line="2048"/>
         <source>Magnetic permeability</source>
-        <translation>磁导率</translation>
+        <translation>磁導率</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1428"/>
@@ -2846,7 +2846,7 @@
         <location filename="../mainwindow.cpp" line="1466"/>
         <location filename="../mainwindow.cpp" line="2095"/>
         <source>Substrate dielectric loss</source>
-        <translation>基板介电损耗</translation>
+        <translation>基板介電損耗</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1512"/>
@@ -2862,19 +2862,19 @@
         <location filename="../mainwindow.cpp" line="5291"/>
         <location filename="../mainwindow.cpp" line="5880"/>
         <source>Effective magnetic path length</source>
-        <translation>有效磁路长度</translation>
+        <translation>有效磁路長度</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="5294"/>
         <location filename="../mainwindow.cpp" line="5883"/>
         <source>Effective area of magnetic path</source>
-        <translation>磁路有效面积</translation>
+        <translation>磁路有效面積</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="5297"/>
         <location filename="../mainwindow.cpp" line="5886"/>
         <source>Effective volume</source>
-        <translation>有效容积</translation>
+        <translation>有效容積</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="5357"/>
@@ -2895,7 +2895,7 @@
         <location filename="../mainwindow.cpp" line="5948"/>
         <location filename="../mainwindow.cpp" line="6252"/>
         <source>Inside dimension</source>
-        <translation>内部尺寸</translation>
+        <translation>內部尺寸</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="2850"/>
@@ -3007,7 +3007,7 @@
         <location filename="../mainwindow.cpp" line="4743"/>
         <location filename="../mainwindow.cpp" line="4755"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="3210"/>
@@ -3015,7 +3015,7 @@
         <location filename="../mainwindow.cpp" line="3848"/>
         <location filename="../mainwindow.cpp" line="4351"/>
         <source>The number of sides must be integer and at least three!</source>
-        <translation>边的数量必须是整数, 并且至少有三个!</translation>
+        <translation>邊的數量必須是整數, 並且至少有三個!</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4898"/>
@@ -3025,29 +3025,29 @@
         <location filename="../mainwindow.cpp" line="5570"/>
         <location filename="../mainwindow.cpp" line="5662"/>
         <source>Input data for LTSpice</source>
-        <translation>LTSpice 的输入数据</translation>
+        <translation>LTSpice 的輸入數據</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="5258"/>
         <location filename="../mainwindow.cpp" line="5845"/>
         <source>Length of the foil</source>
-        <translation>铝箔长度</translation>
+        <translation>鋁箔長度</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="5361"/>
         <location filename="../mainwindow.cpp" line="5954"/>
         <source>Invalid input parameter combination</source>
-        <translation>输入参数组合无效</translation>
+        <translation>輸入參數組合無效</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="6316"/>
         <source> calculation will be deleted</source>
-        <translation> 计算将被删除</translation>
+        <translation> 計算將被刪除</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="789"/>
         <source>Delete this result</source>
-        <translation>删除结果</translation>
+        <translation>刪除結果</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="6224"/>
@@ -3055,7 +3055,7 @@
         <location filename="../mainwindow.cpp" line="6253"/>
         <location filename="../mainwindow.cpp" line="6269"/>
         <source>PCB trace thickness</source>
-        <translation>PCB走线厚度</translation>
+        <translation>PCB走線厚度</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4790"/>
@@ -3104,7 +3104,7 @@
         <location filename="../mainwindow.cpp" line="5721"/>
         <location filename="../mainwindow.cpp" line="5808"/>
         <source>Weight of wire</source>
-        <translation>电线重量</translation>
+        <translation>電線重量</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4868"/>
@@ -3129,7 +3129,7 @@
         <location filename="../mainwindow.cpp" line="5542"/>
         <location filename="../mainwindow.cpp" line="5634"/>
         <source>Reactance of the coil</source>
-        <translation>线圈的电抗</translation>
+        <translation>線圈的電抗</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4874"/>
@@ -3309,7 +3309,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="5183"/>
         <source>Number of interlayers</source>
-        <translation>夹层数</translation>
+        <translation>夾層數</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="4911"/>
@@ -3347,12 +3347,12 @@
     <message>
         <location filename="../meander_pcb.ui" line="29"/>
         <source>Meander coil on PCB</source>
-        <translation>PCB上的曲折线圈</translation>
+        <translation>PCB上的曲折線圈</translation>
     </message>
     <message>
         <location filename="../meander_pcb.ui" line="87"/>
         <source>Data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="60"/>
@@ -3391,22 +3391,22 @@
     <message>
         <location filename="../meander_pcb.cpp" line="104"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="114"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="118"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="129"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../meander_pcb.cpp" line="136"/>
@@ -3429,17 +3429,17 @@
     <message>
         <location filename="../multiloop.ui" line="35"/>
         <source>Search coil of a metal detector</source>
-        <translation>搜索金属探测器的线圈</translation>
+        <translation>搜索金屬探測器的線圈</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="105"/>
         <source>Reverse calculation</source>
-        <translation>反向计算</translation>
+        <translation>反向計算</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="125"/>
         <source>Data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../multiloop.ui" line="191"/>
@@ -3501,18 +3501,18 @@
     <message>
         <location filename="../multiloop.cpp" line="123"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="139"/>
         <location filename="../multiloop.cpp" line="216"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="143"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="156"/>
@@ -3522,7 +3522,7 @@
     <message>
         <location filename="../multiloop.cpp" line="161"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="172"/>
@@ -3543,7 +3543,7 @@
     <message>
         <location filename="../multiloop.cpp" line="179"/>
         <source>Mean diameter</source>
-        <translation>平均直径</translation>
+        <translation>平均直徑</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="181"/>
@@ -3558,7 +3558,7 @@
     <message>
         <location filename="../multiloop.cpp" line="183"/>
         <source>Ohm</source>
-        <translation>欧姆</translation>
+        <translation>歐姆</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="188"/>
@@ -3568,7 +3568,7 @@
     <message>
         <location filename="../multiloop.cpp" line="192"/>
         <source>Weight of wire</source>
-        <translation>电线重量</translation>
+        <translation>電線重量</translation>
     </message>
     <message>
         <location filename="../multiloop.cpp" line="192"/>
@@ -3606,7 +3606,7 @@
     <message>
         <location filename="../options.ui" line="100"/>
         <source>nF</source>
-        <translation>纳法</translation>
+        <translation>納法</translation>
     </message>
     <message>
         <location filename="../options.ui" line="105"/>
@@ -3636,7 +3636,7 @@
     <message>
         <location filename="../options.ui" line="196"/>
         <source>mil</source>
-        <translation>密尔</translation>
+        <translation>密爾</translation>
     </message>
     <message>
         <location filename="../options.ui" line="207"/>
@@ -3646,7 +3646,7 @@
     <message>
         <location filename="../options.ui" line="238"/>
         <source>nH</source>
-        <translation>纳亨</translation>
+        <translation>納亨</translation>
     </message>
     <message>
         <location filename="../options.ui" line="243"/>
@@ -3661,7 +3661,7 @@
     <message>
         <location filename="../options.ui" line="259"/>
         <source>Wire gauge</source>
-        <translation>线规</translation>
+        <translation>線規</translation>
     </message>
     <message>
         <location filename="../options.ui" line="287"/>
@@ -3706,37 +3706,37 @@
     <message>
         <location filename="../options.ui" line="626"/>
         <source>Show last result first</source>
-        <translation>首先显示最后结果</translation>
+        <translation>首先顯示最後結果</translation>
     </message>
     <message>
         <location filename="../options.ui" line="643"/>
         <source>Show calculation numbering</source>
-        <translation>显示计算编号</translation>
+        <translation>顯示計算編號</translation>
     </message>
     <message>
         <location filename="../options.ui" line="740"/>
         <source>Show data for LTSpice</source>
-        <translation>显示 LTSpice 的数据</translation>
+        <translation>顯示 LTSpice 的數據</translation>
     </message>
     <message>
         <location filename="../options.ui" line="657"/>
         <source>Show title in results</source>
-        <translation>在结果中显示标题</translation>
+        <translation>在結果中顯示標題</translation>
     </message>
     <message>
         <location filename="../options.ui" line="451"/>
         <source>Show confirm dialog before exit</source>
-        <translation>退出前显示确认对话框</translation>
+        <translation>退出前顯示確認對話框</translation>
     </message>
     <message>
         <location filename="../options.ui" line="488"/>
         <source>Show confirm dialog to clear results</source>
-        <translation>显示确认对话框以清除结果</translation>
+        <translation>顯示確認對話框以清除結果</translation>
     </message>
     <message>
         <location filename="../options.ui" line="461"/>
         <source>Save results on exit</source>
-        <translation>在退出时保存结果</translation>
+        <translation>在退出時保存結果</translation>
     </message>
     <message>
         <location filename="../options.ui" line="511"/>
@@ -3751,47 +3751,47 @@
     <message>
         <location filename="../options.ui" line="768"/>
         <source>Sunny</source>
-        <translation>阳光明媚</translation>
+        <translation>陽光明媚</translation>
     </message>
     <message>
         <location filename="../options.ui" line="364"/>
         <source>Decimal and thousand separators</source>
-        <translation>十进制和千位分隔符</translation>
+        <translation>十進制和千位分隔符</translation>
     </message>
     <message>
         <location filename="../options.ui" line="116"/>
         <source>Number of decimal places</source>
-        <translation>小数点分隔符号后的符号数</translation>
+        <translation>小數點分隔符號後的符號數</translation>
     </message>
     <message>
         <location filename="../options.ui" line="370"/>
         <source>As in the current locale</source>
-        <translation>与当前语言环境一样</translation>
+        <translation>與當前語言環境一樣</translation>
     </message>
     <message>
         <location filename="../options.ui" line="380"/>
         <source>As in the English locale</source>
-        <translation>如在英语区域</translation>
+        <translation>如在英語區域</translation>
     </message>
     <message>
         <location filename="../options.ui" line="478"/>
         <source>Show confirm dialog to delete a result</source>
-        <translation>显示确认对话框以删除结果</translation>
+        <translation>顯示確認對話框以刪除結果</translation>
     </message>
     <message>
         <location filename="../options.ui" line="620"/>
         <source>Output field text</source>
-        <translation>输出字段文字</translation>
+        <translation>輸出字段文字</translation>
     </message>
     <message>
         <location filename="../options.ui" line="636"/>
         <source>Show text in tabular form</source>
-        <translation>以表格形式显示文字</translation>
+        <translation>以表格形式顯示文字</translation>
     </message>
     <message>
         <location filename="../options.ui" line="677"/>
         <source>Show values description</source>
-        <translation>显示值说明</translation>
+        <translation>顯示值說明</translation>
     </message>
     <message>
         <location filename="../options.ui" line="692"/>
@@ -3801,12 +3801,12 @@
     <message>
         <location filename="../options.ui" line="753"/>
         <source>Theme</source>
-        <translation>主题</translation>
+        <translation>主題</translation>
     </message>
     <message>
         <location filename="../options.ui" line="763"/>
         <source>Default</source>
-        <translation>默认</translation>
+        <translation>默認</translation>
     </message>
     <message>
         <location filename="../options.ui" line="773"/>
@@ -3869,22 +3869,22 @@
     <message>
         <location filename="../potcore.ui" line="17"/>
         <source>Pot core coil</source>
-        <translation>锅芯</translation>
+        <translation>鍋芯</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="43"/>
         <source>Select the type of the core</source>
-        <translation>选择核心的类型</translation>
+        <translation>選擇核心的類型</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="117"/>
         <source>Reverse calculation</source>
-        <translation>反向计算</translation>
+        <translation>反向計算</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="124"/>
         <source>Saturation current</source>
-        <translation>饱和电流</translation>
+        <translation>飽和電流</translation>
     </message>
     <message>
         <location filename="../potcore.ui" line="200"/>
@@ -3909,7 +3909,7 @@
     <message>
         <location filename="../potcore.cpp" line="53"/>
         <source>Custom</source>
-        <translation>自订</translation>
+        <translation>自訂</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="155"/>
@@ -3924,12 +3924,12 @@
     <message>
         <location filename="../potcore.cpp" line="157"/>
         <source>Centerpost diameter</source>
-        <translation>中心柱直径</translation>
+        <translation>中心柱直徑</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="158"/>
         <source>Centerpost hole diameter</source>
-        <translation>中柱孔直径</translation>
+        <translation>中柱孔直徑</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="159"/>
@@ -3949,12 +3949,12 @@
     <message>
         <location filename="../potcore.cpp" line="162"/>
         <source>Centerpost gap</source>
-        <translation>中心柱间隙</translation>
+        <translation>中心柱間隙</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="163"/>
         <source>Magnetic permeability</source>
-        <translation>磁导率</translation>
+        <translation>磁導率</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="211"/>
@@ -3985,26 +3985,26 @@
     <message>
         <location filename="../potcore.cpp" line="251"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="265"/>
         <location filename="../potcore.cpp" line="292"/>
         <location filename="../potcore.cpp" line="303"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="269"/>
         <location filename="../potcore.cpp" line="296"/>
         <location filename="../potcore.cpp" line="307"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="314"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="328"/>
@@ -4019,22 +4019,22 @@
     <message>
         <location filename="../potcore.cpp" line="335"/>
         <source>Effective magnetic path length</source>
-        <translation>有效磁路长度</translation>
+        <translation>有效磁路長度</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="338"/>
         <source>Effective area of magnetic path</source>
-        <translation>磁路有效面积</translation>
+        <translation>磁路有效面積</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="341"/>
         <source>Effective volume</source>
-        <translation>有效容积</translation>
+        <translation>有效容積</translation>
     </message>
     <message>
         <location filename="../potcore.cpp" line="344"/>
         <source>Effective magnetic permeability of the core</source>
-        <translation>磁芯有效磁导率</translation>
+        <translation>磁芯有效磁導率</translation>
     </message>
 </context>
 <context>
@@ -4060,17 +4060,17 @@
     <message>
         <location filename="../rf_toroid.ui" line="29"/>
         <source>Toroidal inductor at RF</source>
-        <translation>射频环形电感</translation>
+        <translation>射頻環形電感</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="52"/>
         <source>Input</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="211"/>
         <source>Select material of the toroid</source>
-        <translation>选择环形材料</translation>
+        <translation>選擇環形材料</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="517"/>
@@ -4085,12 +4085,12 @@
     <message>
         <location filename="../rf_toroid.ui" line="69"/>
         <source>Check the box for automatic calculation</source>
-        <translation>勾选自动计算框</translation>
+        <translation>勾選自動計算框</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="597"/>
         <source>Show data for LTSpice</source>
-        <translation>显示 LTSpice 的数据</translation>
+        <translation>顯示 LTSpice 的數據</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="614"/>
@@ -4106,7 +4106,7 @@
     <message>
         <location filename="../rf_toroid.ui" line="752"/>
         <source>Export results</source>
-        <translation>汇出结果</translation>
+        <translation>匯出結果</translation>
     </message>
     <message>
         <location filename="../rf_toroid.ui" line="781"/>
@@ -4122,7 +4122,7 @@
         <location filename="../rf_toroid.cpp" line="46"/>
         <location filename="../rf_toroid.cpp" line="64"/>
         <source>Manually</source>
-        <translation>手动</translation>
+        <translation>手動</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="59"/>
@@ -4174,22 +4174,22 @@
     <message>
         <location filename="../rf_toroid.cpp" line="231"/>
         <source>Initial magnetic permeability</source>
-        <translation>初始磁导率</translation>
+        <translation>初始磁導率</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="233"/>
         <source>Residual flux density</source>
-        <translation>残留通量密度</translation>
+        <translation>殘留通量密度</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="234"/>
         <source>Coercive Force</source>
-        <translation>矫顽力</translation>
+        <translation>矯頑力</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="250"/>
         <source>The frequency is out of range</source>
-        <translation>频率超出范围</translation>
+        <translation>頻率超出範圍</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="378"/>
@@ -4204,13 +4204,13 @@
         <location filename="../rf_toroid.cpp" line="378"/>
         <location filename="../rf_toroid.cpp" line="391"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="383"/>
         <location filename="../rf_toroid.cpp" line="489"/>
         <source>One or more dimensions have an invalid value!</source>
-        <translation>一个或多个维度的值无效！</translation>
+        <translation>一個或多個維度的值無效！</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="442"/>
@@ -4225,12 +4225,12 @@
     <message>
         <location filename="../rf_toroid.cpp" line="452"/>
         <source>Recommended wire diameter for singlelayer winding</source>
-        <translation>单层绕线推荐线径</translation>
+        <translation>單層繞線推薦線徑</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="460"/>
         <source>Equivalent series inductance</source>
-        <translation>等效串联电感</translation>
+        <translation>等效串聯電感</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="463"/>
@@ -4240,7 +4240,7 @@
     <message>
         <location filename="../rf_toroid.cpp" line="463"/>
         <source>Ohm</source>
-        <translation>欧姆</translation>
+        <translation>歐姆</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="467"/>
@@ -4250,22 +4250,22 @@
     <message>
         <location filename="../rf_toroid.cpp" line="471"/>
         <source>Input data for LTSpice</source>
-        <translation>LTSpice 的输入数据</translation>
+        <translation>LTSpice 的輸入數據</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="484"/>
         <source>The coil reactance is negative. The operating frequency is probably above the coil self-resonance frequency.</source>
-        <translation>线圈电抗为负。工作频率可能高于线圈自谐振频率。</translation>
+        <translation>線圈電抗為負。工作頻率可能高於線圈自諧振頻率。</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="494"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../rf_toroid.cpp" line="504"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
 </context>
 <context>
@@ -4273,22 +4273,22 @@
     <message>
         <location filename="../rmcore.ui" line="29"/>
         <source>RM core coil</source>
-        <translation>RM铁芯线圈</translation>
+        <translation>RM鐵芯線圈</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="62"/>
         <source>Select the type of the core</source>
-        <translation>选择核心的类型</translation>
+        <translation>選擇核心的類型</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="149"/>
         <source>Reverse calculation</source>
-        <translation>反向计算</translation>
+        <translation>反向計算</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="156"/>
         <source>Saturation current</source>
-        <translation>饱和电流</translation>
+        <translation>飽和電流</translation>
     </message>
     <message>
         <location filename="../rmcore.ui" line="232"/>
@@ -4313,12 +4313,12 @@
     <message>
         <location filename="../rmcore.cpp" line="146"/>
         <source>Centerpost gap</source>
-        <translation>中心柱间隙</translation>
+        <translation>中心柱間隙</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="147"/>
         <source>Magnetic permeability</source>
-        <translation>磁导率</translation>
+        <translation>磁導率</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="201"/>
@@ -4347,25 +4347,25 @@
     <message>
         <location filename="../rmcore.cpp" line="225"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="241"/>
         <location filename="../rmcore.cpp" line="260"/>
         <location filename="../rmcore.cpp" line="271"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="264"/>
         <location filename="../rmcore.cpp" line="275"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="296"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="312"/>
@@ -4380,22 +4380,22 @@
     <message>
         <location filename="../rmcore.cpp" line="319"/>
         <source>Effective magnetic path length</source>
-        <translation>有效磁路长度</translation>
+        <translation>有效磁路長度</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="322"/>
         <source>Effective area of magnetic path</source>
-        <translation>磁路有效面积</translation>
+        <translation>磁路有效面積</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="325"/>
         <source>Effective volume</source>
-        <translation>有效容积</translation>
+        <translation>有效容積</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="328"/>
         <source>Effective magnetic permeability of the core</source>
-        <translation>磁芯有效磁导率</translation>
+        <translation>磁芯有效磁導率</translation>
     </message>
 </context>
 <context>
@@ -4403,7 +4403,7 @@
     <message>
         <location filename="../scdockwidget.ui" line="21"/>
         <source>Saturation Current</source>
-        <translation>饱和电流</translation>
+        <translation>飽和電流</translation>
     </message>
     <message>
         <location filename="../scdockwidget.ui" line="34"/>
@@ -4419,17 +4419,17 @@
     <message>
         <location filename="../scdockwidget.cpp" line="21"/>
         <source>Manually</source>
-        <translation>手动</translation>
+        <translation>手動</translation>
     </message>
     <message>
         <location filename="../scdockwidget.cpp" line="133"/>
         <source>Saturation current</source>
-        <translation>饱和电流</translation>
+        <translation>飽和電流</translation>
     </message>
     <message>
         <location filename="../scdockwidget.cpp" line="133"/>
         <source>mA</source>
-        <translation>毫安</translation>
+        <translation>嘛</translation>
     </message>
 </context>
 <context>
@@ -4437,17 +4437,17 @@
     <message>
         <location filename="../shield.ui" line="35"/>
         <source>Influence of the shield of a coil</source>
-        <translation>线圈屏蔽的影响</translation>
+        <translation>線圈屏蔽的影響</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="129"/>
         <source>Form of the coil shield</source>
-        <translation>线圈屏蔽的形式</translation>
+        <translation>線圈屏蔽的形式</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="138"/>
         <source>Cylinder</source>
-        <translation>圆筒</translation>
+        <translation>圓筒</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="151"/>
@@ -4457,7 +4457,7 @@
     <message>
         <location filename="../shield.ui" line="179"/>
         <source>Data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../shield.ui" line="245"/>
@@ -4488,7 +4488,7 @@
     <message>
         <location filename="../shield.cpp" line="69"/>
         <source>Winding diameter</source>
-        <translation>绕组直径</translation>
+        <translation>繞組直徑</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="71"/>
@@ -4498,12 +4498,12 @@
     <message>
         <location filename="../shield.cpp" line="73"/>
         <source>Diameter of the coil shield</source>
-        <translation>线圈屏蔽的直径</translation>
+        <translation>線圈屏蔽的直徑</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="75"/>
         <source>Height of the coil shield</source>
-        <translation>线圈屏蔽的高度</translation>
+        <translation>線圈屏蔽的高度</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="146"/>
@@ -4517,22 +4517,22 @@
     <message>
         <location filename="../shield.cpp" line="146"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="157"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="161"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="179"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="187"/>
@@ -4542,12 +4542,12 @@
     <message>
         <location filename="../shield.cpp" line="188"/>
         <source>Inductance of the shielded coil</source>
-        <translation>屏蔽线圈的电感</translation>
+        <translation>屏蔽線圈的電感</translation>
     </message>
     <message>
         <location filename="../shield.cpp" line="190"/>
         <source>Relative reducing of the inductance</source>
-        <translation>相对减少电感</translation>
+        <translation>相對減少電感</translation>
     </message>
 </context>
 <context>
@@ -4555,22 +4555,22 @@
     <message>
         <location filename="../ucore.ui" line="43"/>
         <source>Select the type of the core</source>
-        <translation>选择核心的类型</translation>
+        <translation>選擇核心的類型</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="17"/>
         <source>U core coil</source>
-        <translation>U芯线圈</translation>
+        <translation>U芯線圈</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="141"/>
         <source>Reverse calculation</source>
-        <translation>反向计算</translation>
+        <translation>反向計算</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="148"/>
         <source>Saturation current</source>
-        <translation>饱和电流</translation>
+        <translation>飽和電流</translation>
     </message>
     <message>
         <location filename="../ucore.ui" line="224"/>
@@ -4600,7 +4600,7 @@
     <message>
         <location filename="../ucore.cpp" line="129"/>
         <source>Magnetic permeability</source>
-        <translation>磁导率</translation>
+        <translation>磁導率</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="158"/>
@@ -4631,7 +4631,7 @@
     <message>
         <location filename="../ucore.cpp" line="226"/>
         <source>One or more inputs are empty!</source>
-        <translation>一个或多个输入为空！</translation>
+        <translation>一個或多個輸入為空！</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="240"/>
@@ -4640,7 +4640,7 @@
         <location filename="../ucore.cpp" line="276"/>
         <location filename="../ucore.cpp" line="287"/>
         <source>One or more inputs have an illegal format!</source>
-        <translation>一个或多个输入具有非法格式！</translation>
+        <translation>一個或多個輸入具有非法格式！</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="244"/>
@@ -4648,12 +4648,12 @@
         <location filename="../ucore.cpp" line="280"/>
         <location filename="../ucore.cpp" line="291"/>
         <source>One or more inputs are equal to null!</source>
-        <translation>一个或多个输入等于零！</translation>
+        <translation>一個或多個輸入等於零！</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="311"/>
         <source>Input data</source>
-        <translation>输入数据</translation>
+        <translation>輸入數據</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="326"/>
@@ -4668,17 +4668,17 @@
     <message>
         <location filename="../ucore.cpp" line="333"/>
         <source>Effective magnetic path length</source>
-        <translation>有效磁路长度</translation>
+        <translation>有效磁路長度</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="336"/>
         <source>Effective area of magnetic path</source>
-        <translation>磁路有效面积</translation>
+        <translation>磁路有效面積</translation>
     </message>
     <message>
         <location filename="../ucore.cpp" line="339"/>
         <source>Effective volume</source>
-        <translation>有效容积</translation>
+        <translation>有效容積</translation>
     </message>
 </context>
 </TS>
