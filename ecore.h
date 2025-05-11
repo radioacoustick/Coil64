@@ -25,6 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QDesktopServices>
 #include <QUrl>
 
+#include "mthread_calculate.h"
 #include "system_functions.h"
 #include "resolves.h"
 
@@ -53,6 +54,8 @@ private slots:
     void on_checkBox_isReverce_clicked();
     void on_pushButton_help_clicked();
     void on_pushButton_calculate_clicked();
+    void get_ECore_Result(_CoilResult result);
+    void on_calculation_finished();
     void on_toolButton_saturation_toggled(bool checked);
 
 private:
@@ -62,6 +65,7 @@ private:
     QLocale loc;
     double N, ind, A, B, C, D, E, F, s, g, mu;
     int currStdCore;
+    MThread_calculate *thread;
 };
 
 #endif // ECORE_H

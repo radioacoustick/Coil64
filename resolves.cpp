@@ -188,7 +188,7 @@ double Ingrnd(double phi, double kphitheta, double sinpsi, double cos2psi, doubl
     return result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t, bool isRoundWire, unsigned int accuracy){
+double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t, bool isRoundWire, unsigned int accuracy, bool *isStop){
     // by Robert Weaver from http://electronbunker.ca/eb/CalcMethods2d.html (Version 1.0, 2011-03-25)
     // edited by Valery Kustarev 2018-12-16
 
@@ -274,6 +274,8 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
     }
     grandtotal = 0;
     while (a < Lw) {
+        if(*isStop)
+            return -1.0;
         dx = b - a;
         m = 1;
         CurrentErr = 2 * MaxErr;
@@ -288,7 +290,11 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
         //   Initialize LastResult to trapezoidal area for test purposes
 
         LastIntg = Sum2 / 2 * dx;
-        while ((CurrentErr > MaxErr) || (m < 1024)) {
+        while (CurrentErr > MaxErr) {
+            if(*isStop)
+                return -1.0;
+            if(m > 1024)
+                break;
             m = 2 * m;
             dx = dx / 2;
             Sum = 0;
@@ -314,7 +320,7 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
     return result;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double solveHelicalInductance(double N, double _p, double _Dk, double _dw, double _w, double _t, double *lw, bool isRoundWire, unsigned int accuracy){
+double solveHelicalInductance(double N, double _p, double _Dk, double _dw, double _w, double _t, double *lw, bool isRoundWire, unsigned int accuracy, bool *isStop){
     double lW, dw = 0, w = 0, t = 0;
     double psi;
     double sinpsi;
@@ -332,60 +338,64 @@ double solveHelicalInductance(double N, double _p, double _Dk, double _dw, doubl
     psi = atan(sinpsi / sqrt(1 - sinpsi * sinpsi));
     lW = M_PI * N * Dk / cos(psi);
     if (isRoundWire){
-        Result = HeliCoilS(lW, psi, Dk / 2, dw, 0, 0, isRoundWire, accuracy);
+        Result = HeliCoilS(lW, psi, Dk / 2, dw, 0, 0, isRoundWire, accuracy, isStop);
     } else {
-        Result = HeliCoilS(lW, psi, Dk / 2, 0, w, t, isRoundWire, accuracy);
+        Result = HeliCoilS(lW, psi, Dk / 2, 0, w, t, isRoundWire, accuracy, isStop);
     }
     *lw = lW;
     return (Result);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double I, double *lw, double *iDk, unsigned int accuracy){
-  double Ind, N_max, N_min, N, k, Kw, rA, rP;
-  k = 2;
-  N_min = 0;
-  rA = sqrt((1 / M_PI) * (0.5 * n * pow(0.5 * Dk,2) * sin(2 * M_PI / n)));
-  rP = (0.5 / M_PI) * (Dk * n * sin(M_PI / n));
-  Kw = sqrt(1 / 369.0);
-  *iDk = 2 * (((Kw * pow(rP,2)) + ((2 - Kw) * pow(rA,2))) / (2 * rA));
-  N = sqrt(I / (0.0002 * M_PI * *iDk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 /
-    pow((0.755 + 1 / k), 1.44)))));
-  _CoilResult res;
-  getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy);
-  Ind = res.sec;
-  while (Ind < I){
-    N_min = N;
-    N_max = 2 * N;
-    N = (N_max + N_min) / 2;
-    getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy);
+double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double I, double *lw, double *iDk, unsigned int accuracy, bool *isStop){
+    double Ind, N_max, N_min, N, k, Kw, rA, rP;
+    k = 2;
+    N_min = 0;
+    rA = sqrt((1 / M_PI) * (0.5 * n * pow(0.5 * Dk,2) * sin(2 * M_PI / n)));
+    rP = (0.5 / M_PI) * (Dk * n * sin(M_PI / n));
+    Kw = sqrt(1 / 369.0);
+    *iDk = 2 * (((Kw * pow(rP,2)) + ((2 - Kw) * pow(rA,2))) / (2 * rA));
+    N = sqrt(I / (0.0002 * M_PI * *iDk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 /
+                                                                         pow((0.755 + 1 / k), 1.44)))));
+    _CoilResult res;
+    getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy, isStop);
     Ind = res.sec;
-  }
-  N_max = N;
-  while (fabs(1 - (Ind / I)) > 0.001){
-    N = (N_min + N_max) / 2;
-    getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy);
-    Ind = res.sec;
-    if (Ind > I)
-      N_max = N;
-    else
-      N_min = N;
-  }
-  *lw = res.thd;
-  return N;
+    while (Ind < I){
+        if(*isStop)
+            return -1.0;
+        N_min = N;
+        N_max = 2 * N;
+        N = (N_max + N_min) / 2;
+        getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy, isStop);
+        Ind = res.sec;
+    }
+    N_max = N;
+    while (fabs(1 - (Ind / I)) > 0.001){
+        if(*isStop)
+            return -1.0;
+        N = (N_min + N_max) / 2;
+        getOneLayerI_Poligonal(Dk, dw, p, N, n, &res, accuracy, isStop);
+        Ind = res.sec;
+        if (Ind > I)
+            N_max = N;
+        else
+            N_min = N;
+    }
+    *lw = res.thd;
+    return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerN_Poligonal(double I, double Dk, double dw, double  p, double n, _CoilResult *result, unsigned int accuracy){
+double getOneLayerN_Poligonal(double I, double Dk, double dw, double  p, double n, _CoilResult *result, unsigned int accuracy, bool *isStop){
 
-  double N, lw, iDk;
+  double N, lw = 0, iDk;
 
-  N = deriveOneLayerPoligonalN(Dk, dw, p, n, I, &lw, &iDk, accuracy);
+  N = deriveOneLayerPoligonalN(Dk, dw, p, n, I, &lw, &iDk, accuracy, isStop);
   result->sec = p * N;
   result->thd = lw;
   result->seven = iDk;
   return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getOneLayerI_Poligonal(double Dk, double dw, double p, double N, double n, _CoilResult *result, unsigned int accuracy){
+void getOneLayerI_Poligonal(double Dk, double dw, double p, double N, double n, _CoilResult *result, unsigned int accuracy, bool *isStop){
 
   double Kw, rA, rP, lk, iDk, lw;
 
@@ -394,7 +404,7 @@ void getOneLayerI_Poligonal(double Dk, double dw, double p, double N, double n, 
   rP = (0.5 / M_PI) * (Dk * n * sin(M_PI / n));
   Kw = sqrt(1 / (1 + 368.0 * (lk / Dk)));
   iDk = 2.0 * (((Kw * pow(rP, 2)) + ((2.0 - Kw) * pow(rA, 2))) / (2.0 * rA));
-  result->sec = solveHelicalInductance(N, p, iDk, dw, 0, 0, &lw, true, accuracy);
+  result->sec = solveHelicalInductance(N, p, iDk, dw, 0, 0, &lw, true, accuracy, isStop);
   result->thd = lw;
   result->seven = iDk;
 }
@@ -419,24 +429,27 @@ void getFerriteCoreMagConst(double l1, double l2, double l3, double l4, double l
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// PUBLIC FUNCTIONS REALIZATION
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw, unsigned int accuracy){
+double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, double *lw, unsigned int accuracy, bool *isStop){
 
     double ind, N_max, N_min, N, k;
     k = 2;
     N_min = 0;
-
     N = sqrt(I / (0.0002 * M_PI * Dk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 / pow((0.755 + 1 / k), 1.44)))));
-    ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy);
+    ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy, isStop);
     while (ind < I) {
+        if(*isStop)
+            return -1.0;
         N_min = N;
         N_max = 2 * N;
         N = (N_max + N_min) / 2;
-        ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy);
+        ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy, isStop);
     }
     N_max = N;
     while (fabs(1 - (ind / I)) > 0.001) {
+        if(*isStop)
+            return -1.0;
         N = (N_min + N_max) / 2;
-        ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy);
+        ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy, isStop);
         if (ind > I) {
             N_max = N;
         } else {
@@ -446,14 +459,16 @@ double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, doub
     return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *result, unsigned int accuracy){
-    double dw = 0, lTmp = 0, N = 0, k, lw, dw_max = 0.25 * D, dw_min = 0, Dk;
+double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *result, unsigned int accuracy, bool *isStop){
+    double dw = 0, lTmp = 0, N = 0, k, lw = 0, dw_max = 0.25 * D, dw_min = 0, Dk;
     int i = 0;
     while (fabs(1 - lTmp/L) > 0.05){
+        if(*isStop)
+            return -1.0;
         dw = (dw_min + dw_max) / 2;
         k = odCalc(dw);
         Dk = D + k;
-        N = getOneLayerN_withRoundWire(Dk, dw, k, I, &lw, accuracy);
+        N = getOneLayerN_withRoundWire(Dk, dw, k, I, &lw, accuracy, isStop);
         lTmp = N * k + k;
         if (lTmp > L){
             dw_max = dw;
@@ -461,7 +476,7 @@ double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *
             dw_min = dw;
         }
         i++;
-        if (i > 500)
+        if (i > 5000)
             return 0;
     }
     result->sec = lw;
@@ -469,28 +484,32 @@ double getOneLayerN_byWindingLength( double D, double L, double I, _CoilResult *
     return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy){
-    return solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy);
+double getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy, bool *isStop){
+    return solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy, isStop);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double I, double *lw, unsigned int accuracy){
+double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double I, double *lw, unsigned int accuracy, bool *isStop){
 
     double ind, N_max, N_min, N, k;
     k = 2;
     N_min = 0;
 
     N = sqrt(I / (0.0002 * M_PI * Dk * (log(1 + M_PI / (2 * k)) + 1 / (2.3004 + 3.437 * k + 1.763 * k * k - 0.47 / pow((0.755 + 1 / k), 1.44)))));
-    ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy);
+    ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy, isStop);
     while (ind < I) {
+        if(*isStop)
+            return -1.0;
         N_min = N;
         N_max = 2 * N;
         N = (N_max + N_min) / 2;
-        ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy);
+        ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy, isStop);
     }
     N_max = N;
     while (fabs(1 - (ind / I)) > 0.001) {
+        if(*isStop)
+            return -1.0;
         N = (N_min + N_max) / 2;
-        ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy);
+        ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy, isStop);
         if (ind > I) {
             N_max = N;
         } else {
@@ -501,11 +520,11 @@ double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw, unsigned int accuracy){
-    return solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy);
+double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw, unsigned int accuracy, bool *isStop){
+    return solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy, isStop);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerN(double I, double D, double dw, double k, double lk, double gap, long Ng, _CoilResult *result, bool isOrthocyclic){
+void getMultiLayerN(double I, double D, double dw, double k, double lk, double gap, long Ng, _CoilResult *result, bool isOrthocyclic, bool *isStop){
     double n_g = 0;
     double jg = 0;
     D = D / 10;
@@ -520,13 +539,17 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
     int nLayer = 0;
     double lw = 0;
     double r0 = (D + k) / 2;
-    unsigned long int N = 0;
+    unsigned long N = 0;
     int Nl = (int) floor(lk / k); // number of turns in layer
     if (isOrthocyclic)
         Nl = (int) floor((lk - 0.5 * k) / k);
     double g = exp(-0.25) * dw / 2;
     while (Ltotal < I) // start calculation loop increasing N-turns to reach requiring inductance (I)
     {
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         N++;
         int Nc = (N - 1) % Nl; // position of N-turn in layer
         nLayer = (int) floor((N - 1) / Nl); // current layer for N-turn
@@ -549,10 +572,8 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
         lw = lw + find_Helix_turn_length(ny, k); // length of wire with the current turn
         double M = 0; // start calculation loop of the mutual inductance - current turn (N) + all another turns (j)
         if (N > 1) {
-            int j;
-            for (j = N; j >= 2; j--) {
+            for (int j = N; j >= 2; j--) {
                 double Jc = (j - 2) % Nl;
-
                 double jx; // x-offset of turn
                 if ((isOrthocyclic) && ((nLayer % 2) != 0)){
                    jx = Jc * k + 0.5 * k;
@@ -596,7 +617,7 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
     // NumberInterLayer (Number of inter-layers);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result, bool isOrthocyclic)
+void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result, bool isOrthocyclic, bool *isStop)
 {
     D = D / 10;
     lk = lk / 10;
@@ -612,6 +633,10 @@ void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _Coi
         Nl = (int) floor((lk - 0.5 * k) / k);
     double g = exp(-0.25) * dw / 2;
     for (int w = 1; w < N + 1; w++){
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         Nc = (w - 1) % Nl;
         nLayer = (int) floor((w - 1) / Nl);
         if ((isOrthocyclic) && ((nLayer % 2) != 0)){
@@ -627,6 +652,10 @@ void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _Coi
         lw = lw + find_Helix_turn_length(ny, k);
         M = 0;
         if (w > 1) {
+            if(*isStop){
+                result->N = -1.0;
+                return;
+            }
             for (int j = w; j >= 2; j--) {
                 Jc = (j - 2) % Nl;
                 if ((isOrthocyclic) && ((nLayer % 2) != 0)){
@@ -655,10 +684,9 @@ void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _Coi
     result->thd = lw * 0.01; //length of wire
     result->fourth = Rdc; //resistance to DC
     result->five = thickness; //coil thickness
-
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic){
+void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic, bool *isStop){
     double bTmp, nTmp, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, n_g = 0, jg = 0, ind1, ind2, N1, N2;
     int n, Nl, j, Nc, Jc, nLayer, jLayer;
     ind1 = 0;
@@ -682,6 +710,10 @@ void getMultiLayerI(double D, double lk, double dw, double k, double c, double g
         Nl = (int) floor((lk - 0.5 * k) / k);
     g = exp(-0.25) * dw / 2;
     while (bTmp < c) {
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         n++;
         Nc = (n - 1) % Nl;
         nLayer = (int) floor((n - 1) / Nl);
@@ -704,6 +736,10 @@ void getMultiLayerI(double D, double lk, double dw, double k, double c, double g
         M = 0;
         if (n > 1) {
             for (j = n; j >= 2; j--) {
+                if(*isStop){
+                    result->N = -1.0;
+                    return;
+                }
                 Jc = (j - 2) % Nl;
                 if ((isOrthocyclic) && ((nLayer % 2) != 0)){
                     jx = Jc * k + 0.5 * k;
@@ -744,7 +780,7 @@ void getMultiLayerI(double D, double lk, double dw, double k, double c, double g
     result->fourth = N2;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result, bool isOrthocyclic){
+void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result, bool isOrthocyclic, bool *isStop){
 
     double dw, bTmp, tmpR, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, N1, N2;
     int n, Nl, j, Nc, Jc, nLayer = 0, jLayer;
@@ -776,8 +812,11 @@ void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, do
     lk = lk / 10;
     k = k / 10;
     c = c /10;
-    bTmp = 0;
     for (int z = 0; z < 67; ++z){
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         dw = aWire[z][0] / 10;
         Ltotal = 0;
         // initialize variable of total self-inductance
@@ -790,6 +829,10 @@ void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, do
         g = exp(-0.25) * dw / 2;
         tmpR = 0;
         while (tmpR <= Rm){
+            if(*isStop){
+                result->N = -1.0;
+                return;
+            }
             n++;
             Nc = (n - 1) %  Nl;
             nLayer = (int) floor((n - 1) / Nl);
@@ -807,6 +850,10 @@ void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, do
             M = 0;
             if (n > 1){
                 for (j = n; j >= 2; j--){
+                    if(*isStop){
+                        result->N = -1.0;
+                        return;
+                    }
                     Jc = (j - 2) % Nl;
                     if ((isOrthocyclic) && ((nLayer % 2) != 0)){
                         jx = Jc * k + 0.5 * k;
@@ -840,7 +887,7 @@ void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, do
     result->fourth = N2;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result){
+void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result, bool *isStop){
 
     double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd,
             Msub, lw, Km, Ks, Lcor, cTmp = 0, nTmp = 0, ind1 = 0, ind2, N1, N2;
@@ -857,9 +904,12 @@ void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw
     a0 = a + k;
     b0 = b + k;
     lw = 0;
-    nLayer = 0;
     Nl = floor(l / k); // Number of turns in layer
     while (cTmp < (c + k)) {
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         n++;
         Nc = (n - 1) % Nl; // Position of the turn on x
         nLayer = floor((n - 1) / Nl); // Position of the turn on y
@@ -877,6 +927,10 @@ void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw
         Msub = 0;
         if (n > 1){
             for (int j = n; j >= 2; j--){
+                if(*isStop){
+                    result->N = -1.0;
+                    return;
+                }
                 Jc = (j - 2) % Nl; // position of previous turn on x
                 jx = Jc * k; // x-offset of previous turn
                 jLayer = floor((j - 2) / Nl); // Position of the turn on y
@@ -914,7 +968,7 @@ void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw
     result->fourth = N2;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result){
+void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double dw, double k, _CoilResult *result, bool *isStop){
     //Calculation formulas of multilayer inductor with rectangular former https://coil32.net/multilayer-rectangular.html
 
     double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd, Msub, lw, Km, Ks, Lcor, Rdc;
@@ -933,12 +987,16 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
     nLayer = 0;
     Nl = floor(l / k); // Number of turns in layer
     while (Ltotal < Ind){
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         n++;
         Nc = (n - 1) % Nl; // Position of the turn on x
         nLayer = floor((n - 1) / Nl); // Position of the turn on y
         nx = Nc * k; // x-offset of current turn
         ny = nLayer * k; // y-offset of current turn
-        lengthNa = a0 + 2 * k * (nLayer); Rdc = (0.0175 * lw * 1E-4 * 4) / (M_PI * dw * dw);// lenght of straight conductor of current turn (side a)
+        lengthNa = a0 + 2 * k * (nLayer);// lenght of straight conductor of current turn (side a)
         lengthNb = b0 + 2 * k * (nLayer); // lenght of straight conductor of current turn (side b)
         lw += 2 * (a0 + b0 + 2 * k * (nLayer));
         Ladd = SelfInductanceStraightWire(lengthNa, dw) + SelfInductanceStraightWire(lengthNb, dw); // half of self-inductance of the current turn
@@ -982,7 +1040,7 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
     result->five = (nLayer + 1) * k * 10; //coil thickness
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, double dw, double k, _CoilResult *result){
+void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, double dw, double k, _CoilResult *result, bool *isStop){
     double a0, b0, D, Db, Da, nx, ny, jx, jy, lengthNa, lengthNb, lengthJa, lengthJb, Ltotal, Ladd, Lsub, Madd, Msub, lw, Km, Ks, Lcor;
     int Nc, Nl, Jc, nLayer, jLayer;
 
@@ -998,6 +1056,10 @@ void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, doubl
     nLayer = 0;
     Nl = floor(l / k); // Number of turns in layer
     for (int n = 1; n < N + 1; n++){
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         Nc = (n - 1) % Nl; // Position of the turn on x
         nLayer = floor((n - 1) / Nl); // Position of the turn on y
         nx = Nc * k; // x-offset of current turn
@@ -1014,6 +1076,10 @@ void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, doubl
         Msub = 0;
         if (n > 1){
             for (int j = n; j >= 2; j--){
+                if(*isStop){
+                    result->N = -1.0;
+                    return;
+                }
                 Jc = (j - 2) % Nl; // position of previous turn on x
                 jx = Jc * k; // x-offset of previous turn
                 jLayer = floor((j - 2) / Nl); // Position of the turn on y
@@ -1043,7 +1109,7 @@ void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, doubl
     result->five = (nLayer + 1) * k * 10; //coil thickness
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _CoilResult *result){
+void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _CoilResult *result, bool *isStop){
     D = D / 10;
     w = w / 10;
     t = t /10;
@@ -1055,12 +1121,16 @@ void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _Co
     double r0 = (D + t) / 2;
     double Ltotal = 0;
     while (Ltotal <= I) {
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         N++;
         double ny = r0 + k * (N - 1);
         double Lns = Mut(ny, ny, g, 0);
         double M = 0;
         if (N > 1) {
-            for (double j = N; j >= 2; j--) {
+            for (int j = N; j >= 2; j--) {
                 double jy = r0 + k * (j - 2);
                 double r = ny - jy;
                 double gmd = exp(((r * r) / (w * w)) * log(r) + 0.5 * (1 - ((r * r) / (w * w))) * log(w * w + r * r) + (2 * r / w) * atan(w / r) - 1.5);
@@ -1086,7 +1156,7 @@ void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _Co
     result->five = Rdca;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result) {
+void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result, bool *isStop) {
     D = D / 10;
     w = w / 10;
     t = t / 10;
@@ -1096,11 +1166,19 @@ void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _Coil
     double r0 = (D + t) / 2;
     double Ltotal = 0;
     for (int N = 1; N <= _N; N++) {
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         double ny = r0 + k * (N - 1);
         double Lns = Mut(ny, ny, g, 0);
         double M = 0;
         if (N > 1) {
-            for (double j = N; j >= 2; j--) {
+            for (int j = N; j >= 2; j--) {
+                if(*isStop){
+                    result->N = -1.0;
+                    return;
+                }
                 double jy = r0 + k * (j - 2);
                 double r = ny - jy;
                 double gmd = exp(((r * r) / (w * w)) * log(r) + 0.5 * (1 - ((r * r) / (w * w))) * log(w * w + r * r) + (2 * r / w) * atan(w / r) - 1.5);
@@ -1194,10 +1272,14 @@ double getFerriteI(double N, double Do, double Di, double h, double mu, double C
     return 2e-04 * mu * he * N * N * log(Do / Di);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getPCB_N (double I, double D, double d, double ratio, int layout, _CoilResult *result) {
+void getPCB_N (double I, double D, double d, double ratio, int layout, _CoilResult *result, bool *isStop) {
 
     double N = 0.5, s = 0, W = 0, iTmp = 0;
     while (iTmp < I) {
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         N = N + 0.01;
         s = (D - d) / (2 * N);
         W = s * ratio;
@@ -1364,13 +1446,13 @@ double getPCB_RectI(int N, double A, double B, double s, double w, double th, _C
     return rectPCBSpiral(N, a, b, s, w, th);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getPCB_RectN (double I, double A, double B, double _a, double th, double ratio, _CoilResult *result) {
+void getPCB_RectN (double I, double A, double B, double _a, double th, double ratio, _CoilResult *result, bool *isStop) {
     double a = A - (A - _a) / 2.0;
     result->N = 0;
     result->sec = 0;
     result->thd = 0;
     int n_min = 2;
-    int n_max = 10000;
+    int n_max = 1000000;
     double s_min = (A - _a) / (n_min - 1) / 2;
     double w_min = s_min * ratio;
     double b_min = B - (n_min - 1) * s_min;
@@ -1386,6 +1468,10 @@ void getPCB_RectN (double I, double A, double B, double _a, double th, double ra
         double w = 0;
         int n_tmp = n_max / 2;
         do {
+            if(*isStop){
+                result->N = -1.0;
+                return;
+            }
             s = (A - _a) / (n_tmp - 1) / 2;
             w = s * ratio;
             double b = B - (n_tmp - 1) * s;
@@ -1401,13 +1487,16 @@ void getPCB_RectN (double I, double A, double B, double _a, double th, double ra
         } while (abs(n_max - n_min) > 1);
         if (!is_PCB_Rect_valid(n_tmp, s, w, B))
             return;
+        if(n_tmp == 999999)
+            return;
         result->N = n_tmp;
         result->sec = s;
         result->thd = w;
     }
+    return;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result) {
+void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result, bool *isStop) {
     Di = Di / 10;
     dw = dw / 10;
     s = s / 10;
@@ -1418,6 +1507,10 @@ void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result) {
     double w = 0;
     double Ltotal = 0;
     while (Ltotal < I) {
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         N++;
         double ny = r0 + k * (N - 1);
         double Lns = Mut(ny, ny, g, 0);
@@ -1438,7 +1531,7 @@ void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result) {
     result->thd = Do;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result) {
+void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result, bool *isStop) {
 
     Di = Di / 10;
     Do = Do / 10;
@@ -1449,6 +1542,10 @@ void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result) {
     double r0 = (Di + dw) / 2;
     double Ltotal = 0;
     for (int N = 1; N < _N; N++) {
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         double ny = r0 + k * (N - 1);
         double Lns = Mut(ny, ny, g, 0);
         double M = 0;
@@ -1499,7 +1596,7 @@ void findToroidPemeability(double N, double I, double Do, double Di, double h, d
     result->sec = al;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, double s, double dw, double p, _CoilResult *result) {
+void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, double s, double dw, double p, _CoilResult *result, bool *isStop) {
     //Based on "The Inductance of Ferrite Rod Antennas Issue" by Alan Payne
     //[10.1][10.2] http://g3rbj.co.uk/wp-content/uploads/2014/06/Web-The-Inductance-of-Ferrite-Rod-Antennas-issue-3.pdf
 
@@ -1518,6 +1615,10 @@ void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, doubl
     double e0 = 8.8542e-12;
     double dLp = -1e-4 * Dk * ((p / dw) - 1) * ((12 - (p / dw)) / 4);
     while (iTmp < I) {
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
         N++;
         lc = N * p;
         double k = lc / Dk;
@@ -1584,16 +1685,21 @@ double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *r
     return ind;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result){
+unsigned long findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result){
     double tmpI = 0;
-    double N = 1;
-    unsigned long int i = 0;
-    while (tmpI <= I){
-        i++;
+    unsigned long N_max = ULONG_MAX;
+    unsigned long N_min = 0;
+    unsigned long N = (N_max - N_min) / 2;
+    if(findMultiloop_I(N, Di, dw, dt, result) <= I)
+        return N_max;
+    while ((N_max - N_min) > 1){
+        N = (N_max + N_min) / 2;
         tmpI = findMultiloop_I(N, Di, dw, dt, result);
-        N += 0.1;
-        if ((N > 1e7) || ((i == 1) && (tmpI > I)))
-            return -1;
+        if(tmpI > I){
+            N_max = N;
+        } else {
+            N_min = N;
+        }
     }
     return N;
 }
@@ -1605,7 +1711,7 @@ double findRoundLoop_I(double D, double dw, double mu){
 double findRoundLoop_D(double Ind, double dw, double mu){
     double tmpI = 0;
     double D = 2 * dw;
-    unsigned long int i = 0;
+    unsigned long i = 0;
     while (tmpI <= Ind){
         i++;
         tmpI = findRoundLoop_I(D, dw, mu);
@@ -1634,7 +1740,7 @@ double findIsoIsoscelesTriangleLoop_I(double _a, double _b, double dw, double mu
 double findIsoIsoscelesTriangleLoop_a(double Ind, double dw, double mu){
     double tmpI = 0;
     double  a = 2 * dw;
-    unsigned long int i = 0;
+    unsigned long i = 0;
     while (tmpI <= Ind){
         i++;
         tmpI = findIsoIsoscelesTriangleLoop_I(a, a, dw, mu);
@@ -1665,7 +1771,7 @@ double findRectangleLoop_I(double _a, double _b, double dw, double mu){
 double findRectangleLoop_a(double Ind, double dw, double mu){
     double tmpI = 0;
     double  a = 2 * dw;
-    unsigned long int i = 0;
+    unsigned long i = 0;
     while (tmpI <= Ind){
         i++;
         tmpI = findRectangleLoop_I(a, a, dw, mu);
@@ -1739,13 +1845,22 @@ double findPotCore_I(double N, double D1, double D2, double D3, double D4, doubl
     return ind;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-long findPotCore_N(double Ind, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result)
+unsigned long findPotCore_N(double Ind, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result)
 {
     double tmpI = 0;
-    unsigned long int N = 0;
-    while (tmpI <= Ind){
-        N++;
+    unsigned long N_max = ULONG_MAX;
+    unsigned long N_min = 0;
+    unsigned long N = (N_max - N_min) / 2;
+    if(findPotCore_I(N_max,D1,D2,D3,D4,h1,h2,g,b,mu, result) <= Ind)
+        return N_max;
+    while ((N_max - N_min) > 1){
+        N = (N_max + N_min) / 2;
         tmpI = findPotCore_I(N,D1,D2,D3,D4,h1,h2,g,b,mu, result);
+        if(tmpI > Ind){
+            N_max = N;
+        } else {
+            N_min = N;
+        }
     }
     return N;
 }
@@ -1793,14 +1908,23 @@ double findECore_I(double N, double A, double B, double C, double D, double E, d
     return ind;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-long findECore_N(double Ind, double A, double B, double C, double D, double E, double F, double g, double b, double mu,
+unsigned long findECore_N(double Ind, double A, double B, double C, double D, double E, double F, double g, double b, double mu,
                  bool isEI, bool isRound, _CoilResult *result)
 {
     double tmpI = 0;
-    unsigned long int N = 0;
-    while (tmpI <= Ind){
-        N++;
+    unsigned long N_max = ULONG_MAX;
+    unsigned long N_min = 0;
+    unsigned long N = (N_max - N_min) / 2;
+    if(findECore_I(N,A,B,C,D,E,F,g,b,mu,isEI,isRound,result) <= Ind)
+        return N_max;
+    while ((N_max - N_min) > 1){
+        N = (N_max + N_min) / 2;
         tmpI = findECore_I(N,A,B,C,D,E,F,g,b,mu,isEI,isRound,result);
+        if(tmpI > Ind){
+            N_max = N;
+        } else {
+            N_min = N;
+        }
     }
     return N;
 }
@@ -1850,18 +1974,28 @@ double findUCore_I(double N, double A, double B, double C, double D, double E, d
     return ind;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-long findUCore_N(double Ind, double A, double B, double C, double D, double E, double F, double s, double mu, _CoilResult *result)
+unsigned long findUCore_N(double Ind, double A, double B, double C, double D, double E, double F, double s, double mu, _CoilResult *result)
 {
     double tmpI = 0;
-    unsigned long int N = 0;
-    while (tmpI <= Ind){
-        N++;
+    unsigned long N_max = ULONG_MAX;
+    unsigned long N_min = 0;
+    unsigned long N = (N_max - N_min) / 2;
+    if(findUCore_I(N_max,A,B,C,D,E,F,s,mu,result) <= Ind)
+        return N_max;
+    while ((N_max - N_min) > 1){
+        N = (N_max + N_min) / 2;
         tmpI = findUCore_I(N,A,B,C,D,E,F,s,mu,result);
+        if(tmpI > Ind){
+            N_max = N;
+        } else {
+            N_min = N;
+        }
     }
     return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findRMCore_I (double N, double a, double b, double c, double e, double d2, double d3, double d4, double h1,  double h2, double g, double mu, int type, _CoilResult *result){
+double findRMCore_I (double N, double a, double b, double c, double e, double d2, double d3, double d4, double h1,  double h2,
+                     double g, double mu, int type, _CoilResult *result){
 
      double h = 0.5 * (h1 - h2);
      double alpha = M_PI / 2.0;
@@ -1922,13 +2056,23 @@ double findRMCore_I (double N, double a, double b, double c, double e, double d2
      return ind;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-long findRMCore_N (double Ind, double a, double b, double c, double e, double d2, double d3, double d4, double h1,  double h2, double g, double mu, int type, _CoilResult *result)
+unsigned long findRMCore_N (double Ind, double a, double b, double c, double e, double d2, double d3, double d4, double h1,  double h2,
+                            double g, double mu, int type, _CoilResult *result)
 {
     double tmpI = 0;
-    unsigned long int N = 0;
-    while (tmpI <= Ind){
-        N++;
+    unsigned long N_max = ULONG_MAX;
+    unsigned long N_min = 0;
+    unsigned long N = (N_max - N_min) / 2;
+    if(findRMCore_I (N, a, b, c, e, d2, d3, d4, h1, h2, g, mu, type, result) <= Ind)
+        return N_max;
+    while ((N_max - N_min) > 1){
+        N = (N_max + N_min) / 2;
         tmpI = findRMCore_I (N, a, b, c, e, d2, d3, d4, h1, h2, g, mu, type, result);
+        if(tmpI > Ind){
+            N_max = N;
+        } else {
+            N_min = N;
+        }
     }
     return N;
 }

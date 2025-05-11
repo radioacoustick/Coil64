@@ -24,13 +24,14 @@ Loop::Loop(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
     lw = 0.0;
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);
     ui->lineEdit_3->setValidator(dv);
     ui->lineEdit_N->setValidator(dv);
+    thread = nullptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Loop::~Loop()
@@ -249,25 +250,11 @@ void Loop::on_pushButton_3_clicked()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Loop::on_pushButton_clicked()
 {
-    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
-    QString sImage = "";
-    QString sInput = "";
-    QString sResult = "";
     bool ok4;
     mu = loc.toDouble(ui->lineEdit_4->text(), &ok4);
     if(!ok4){
         showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
         return;
-    }
-    if(loopKind == 0){
-        sCaption += " (" + ui->radioButton_round->text() +  + ")";
-        sImage = "<img src=\":/images/res/loop0.png\">";
-    } else if (loopKind == 1){
-        sCaption += " (" + ui->radioButton_triangle->text() +  + ")";
-        sImage = "<img src=\":/images/res/loop3.png\">";
-    } else if (loopKind == 2){
-        sCaption += " (" + ui->radioButton_rectangle->text() +  + ")";
-        sImage = "<img src=\":/images/res/loop4.png\">";
     }
     if (ui->checkBox_isReverce->isChecked()){
         if ((ui->lineEdit_N->text().isEmpty())||(ui->lineEdit_3->text().isEmpty())){
@@ -289,34 +276,7 @@ void Loop::on_pushButton_clicked()
             showWarning(tr("Warning"), tr("One or more inputs are equal to null!"));
             return;
         }
-        sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
-        sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text(), ui->label_N_m->text()) + "<br/>";
-        sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "</p>";
-        sResult = "<p><u>" + tr("Result") + ":</u><br/>";
-        if(loopKind == 0){
-            a = findRoundLoop_D(ind, dw, mu);
-            sResult += formattedOutput(fOpt, tr("Loop diameter") + " D: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
-                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
-            lw = a * M_PI;
-        } else if (loopKind == 1){
-            a = findIsoIsoscelesTriangleLoop_a(ind, dw, mu);
-            b = a;
-            sResult += formattedOutput(fOpt, tr("The side of the equilateral triangle") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
-                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
-            lw = 3.0 * a;
-        } else if (loopKind == 2){
-            a = findRectangleLoop_a(ind, dw, mu);
-            b = a;
-            sResult += formattedOutput(fOpt, tr("The side of quadrate") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
-                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
-            lw = 4.0 * a;
-        }
-        if (a < 0){
-            a = 0;
-            b = 0;
-            showWarning(tr("Warning"),tr("Coil can not be realized") + "!");
-            return;
-        }
+        thread = new MThread_calculate(_SingleLoop, -1, ind, dw, mu, 0, 0, 0, 0, 0,Cu,0,0,0,0,0,ui->checkBox_isReverce->isChecked(),false,loopKind);
     } else {
         if ((ui->lineEdit_1->text().isEmpty())||(ui->lineEdit_3->text().isEmpty())){
             showWarning(tr("Warning"), tr("One or more inputs are empty!"));
@@ -352,19 +312,68 @@ void Loop::on_pushButton_clicked()
                 return;
             }
         }
+        thread = new MThread_calculate(_SingleLoop, -1, a, b, dw, mu, 0, 0, 0, 0,Cu,0,0,0,0,0,ui->checkBox_isReverce->isChecked(),false,loopKind);
+    }
+    connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_Singleloop_Result(_CoilResult)));
+    connect(thread, SIGNAL(finished()), this, SLOT(on_calculation_finished()));
+    thread->start();
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Loop::get_Singleloop_Result(_CoilResult result)
+{
+    QString sCaption = QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion() + " - " + windowTitle();
+    QString sImage = "";
+    QString sInput = "";
+    QString sResult = "";
+    if(loopKind == 0){
+        sCaption += " (" + ui->radioButton_round->text() +  + ")";
+        sImage = "<img src=\":/images/res/loop0.png\">";
+    } else if (loopKind == 1){
+        sCaption += " (" + ui->radioButton_triangle->text() +  + ")";
+        sImage = "<img src=\":/images/res/loop3.png\">";
+    } else if (loopKind == 2){
+        sCaption += " (" + ui->radioButton_rectangle->text() +  + ")";
+        sImage = "<img src=\":/images/res/loop4.png\">";
+    }
+    if (ui->checkBox_isReverce->isChecked()){
+        sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
+        sInput += formattedOutput(fOpt, ui->label_N->text(), ui->lineEdit_N->text(), ui->label_N_m->text()) + "<br/>";
+        sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "</p>";
+        sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+        a = result.N;
+        if(loopKind == 0){
+            sResult += formattedOutput(fOpt, tr("Loop diameter") + " D: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+            lw = a * M_PI;
+        } else if (loopKind == 1){
+            b = a;
+            sResult += formattedOutput(fOpt, tr("The side of the equilateral triangle") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+            lw = 3.0 * a;
+        } else if (loopKind == 2){
+            b = a;
+            sResult += formattedOutput(fOpt, tr("The side of quadrate") + " a = b: ", roundTo(a / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                                       qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+            lw = 4.0 * a;
+        }
+        if (a < 0){
+            a = 0;
+            b = 0;
+            showWarning(tr("Warning"),tr("Coil can not be realized") + "!");
+            return;
+        }
+    } else {
         sInput = "<p><u>" + tr("Dimensions") + ":</u><br/>";
         sInput += formattedOutput(fOpt, ui->label_1->text(), ui->lineEdit_1->text(), ui->label_01->text()) + "<br/>";
         if (loopKind != 0)
             sInput += formattedOutput(fOpt, ui->label_2->text(), ui->lineEdit_2->text(), ui->label_02->text()) + "<br/>";
         sInput += formattedOutput(fOpt, ui->label_3->text(), ui->lineEdit_3->text(), ui->label_03->text()) + "</p>";
+        ind = result.N;
         if(loopKind == 0){
-            ind = findRoundLoop_I(a, dw, mu);
             lw = a * M_PI;
         } else if (loopKind == 1){
-            ind = findIsoIsoscelesTriangleLoop_I(a, b, dw, mu);
             lw = 2 * a + b;
         } else if (loopKind == 2){
-            ind = findRectangleLoop_I(a, b, dw, mu);
             lw = 2 * a + 2 * b;
         }
         sResult = "<p><u>" + tr("Result") + ":</u><br/>";
@@ -383,5 +392,11 @@ void Loop::on_pushButton_clicked()
     }
     sResult += "</p>";
     emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Loop::on_calculation_finished()
+{
+    thread->deleteLater();
+    thread = nullptr;
 }
 

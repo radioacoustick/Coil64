@@ -24,7 +24,7 @@ AirCoreToroid::AirCoreToroid(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
     ui->lineEdit_1->setValidator(dv);
     ui->lineEdit_2->setValidator(dv);

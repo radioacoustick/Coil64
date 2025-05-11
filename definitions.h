@@ -18,17 +18,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #ifndef DEFINES
 #define DEFINES
 
+#include <float.h>
+
 #define APP_NAME "Coil64"
-#define VERSION "2.2.34"
+#define VERSION "2.3.35"
 #define PROGRAM_SITE "https://coil32.net"
 #define VERSION_FILE "qversion.txt"
 #define CLEAR_CHAR 0x274C
 #define LIST_SEPARATOR "$"
 #define AWG_REG_EX "([0]{1,4})|([1-3]{1}[0-9]{1})|(40)|([1-9]{1})"
-#define MAX_DOUBLE 1.79769e+308
 #define PORTABLE_SAVE_LOCATION "/Save"
 #define USER_SAVE_LOCATION "/Coil64/Save"
 #define AUTOSAVE_FILENAME "/autosave.htm"
+#define TIMER_INTERVAL 3000
 
 #endif // DEFINES
 

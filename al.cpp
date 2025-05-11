@@ -25,7 +25,7 @@ AL::AL(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     iv = new QIntValidator();
     ui->lineEdit_L_1->setValidator(dv);
     ui->lineEdit_L_2->setValidator(dv);

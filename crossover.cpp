@@ -34,7 +34,7 @@ Crossover::Crossover(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     ui->lineEdit_ind->setValidator(dv);
     ui->comboBox_N_m->addItem(qApp->translate("Context","microH"));
     ui->comboBox_N_m->addItem(qApp->translate("Context","mH"));

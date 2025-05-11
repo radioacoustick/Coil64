@@ -12,7 +12,7 @@ SaturationDockWidget::SaturationDockWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     ui->lineEdit_N->setValidator(dv);
     ui->lineEdit_mu->setValidator(dv);
     ui->lineEdit_le->setValidator(dv);
@@ -61,6 +61,8 @@ void SaturationDockWidget::getOpt(_OptionStruct gOpt)
 {
     *fOpt = gOpt;
     ui->label_le_unit->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
+    ui->groupBox_material->setTitle(tr("Material"));
+    ui->groupBox_result->setTitle(tr("Result"));
     QSettings *settings;
     defineAppSettings(settings);
     settings->beginGroup( "Saturation_Dock" );

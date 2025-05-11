@@ -24,7 +24,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QDoubleValidator>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QTimer>
 
+#include "mthread_calculate.h"
 #include "system_functions.h"
 #include "resolves.h"
 
@@ -48,8 +50,12 @@ private slots:
     void getCurrentLocale(QLocale locale);
     void on_pushButton_close_clicked();
     void on_pushButton_calculate_clicked();
+    void get_ferriteRod_Result(_CoilResult result);
     void on_pushButton_clicked();
     void on_lineEdit_dw_editingFinished();
+    void on_timer();
+    void on_calculation_started();
+    void on_calculation_finished();
 
 private:
     Ui::Ferrite_Rod *ui;
@@ -57,6 +63,8 @@ private:
     QDoubleValidator *dv;
     QRegExpValidator *awgV;
     QLocale loc;
+    MThread_calculate *thread;
+    QTimer *timer;
 };
 
 #endif // FERRITE_ROD_H

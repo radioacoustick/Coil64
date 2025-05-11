@@ -274,7 +274,7 @@ int trackingLocalOscillator(double f_low, double f_high, double f_i, double Cv_l
               select the value with the minimum frequency discrepancy.*/
                 const int MESH = 200;
                 double step = (range->at(1) - range->at(0)) / (MESH - 1);
-                double delta = MAX_DOUBLE;
+                double delta = DBL_MAX;
                 double Cpad_entr = 0.0;
                 double Ctrim_entr = 0.0;
                 for (int i = 0; i < MESH; i++){
@@ -295,7 +295,7 @@ int trackingLocalOscillator(double f_low, double f_high, double f_i, double Cv_l
                         }
                     }
                 }
-                if (delta != MAX_DOUBLE)
+                if (delta != DBL_MAX)
                     result = nlsm(f_low, f_high, f_i, Cv_low, Cv_high, Cstray, *ind, Cpad_entr, Ctrim_entr, data, conFreq, accuracy, isHighSideInjection, maxDelta);
                 else
                     result = 1;

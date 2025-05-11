@@ -26,6 +26,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QDesktopServices>
 #include <QUrl>
 
+#include "mthread_calculate.h"
 #include "system_functions.h"
 #include "resolves.h"
 
@@ -51,8 +52,9 @@ private slots:
     void on_radioButton_triangle_clicked();
     void on_radioButton_rectangle_clicked();
     void on_checkBox_isReverce_clicked();
-
     void on_pushButton_clicked();
+    void get_Singleloop_Result(_CoilResult result);
+    void on_calculation_finished();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
 
@@ -63,7 +65,7 @@ private:
     QDoubleValidator *dv;
     QRegExpValidator *awgV;
     QLocale loc;
-
+    MThread_calculate *thread;
     int loopKind;
     double ind, a, b, dw, lw, mu;
 };

@@ -34,7 +34,7 @@ Ferrite_Rod::Ferrite_Rod(QWidget *parent) :
     ui->label_dw->setText(tr("Wire diameter") + " dw:");
     ui->label_p->setText(tr("Winding pitch") + " p:");
 
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     awgV = new QRegExpValidator(QRegExp(AWG_REG_EX));
     ui->lineEdit_ind->setValidator(dv);
     ui->lineEdit_Dr->setValidator(dv);
@@ -44,6 +44,10 @@ Ferrite_Rod::Ferrite_Rod(QWidget *parent) :
     ui->lineEdit_s->setValidator(dv);
     ui->lineEdit_dw->setValidator(dv);
     ui->lineEdit_p->setValidator(dv);
+
+    timer = new QTimer();
+    connect(timer, SIGNAL(timeout()), this, SLOT(on_timer()));
+    thread = nullptr;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Ferrite_Rod::~Ferrite_Rod()
@@ -75,10 +79,15 @@ Ferrite_Rod::~Ferrite_Rod()
     settings->setValue("dw", dw);
     settings->setValue("p", p);
     settings->endGroup();
+    if(thread != nullptr){
+        if(thread->isRunning())
+            thread->abort();
+    }
     delete settings;
     delete fOpt;
     delete awgV;
     delete dv;
+    delete timer;
     delete ui;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,6 +158,13 @@ void Ferrite_Rod::on_pushButton_close_clicked()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Ferrite_Rod::on_pushButton_calculate_clicked()
 {
+    if(thread != nullptr){
+        if(thread->isRunning()){
+            ui->pushButton_calculate->setEnabled(false);
+            thread->abort();
+            return;
+        }
+    }
     if ((ui->lineEdit_ind->text().isEmpty())||(ui->lineEdit_Dr->text().isEmpty())||(ui->lineEdit_Lr->text().isEmpty())||(ui->lineEdit_mu->text().isEmpty())
             ||(ui->lineEdit_dc->text().isEmpty())||(ui->lineEdit_s->text().isEmpty())||(ui->lineEdit_dw->text().isEmpty())||(ui->lineEdit_p->text().isEmpty())){
         showWarning(tr("Warning"), tr("One or more inputs are empty!"));
@@ -196,8 +212,17 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
         showWarning(tr("Warning"), "dc > 2*Dr");
         return;
     }
-    _CoilResult result;
-    findFerriteRodN(I, Lr, Dr, mu, dc, s, dw, p, &result);
+    thread = new MThread_calculate( _Rod_Core, -2, I, Lr, Dr, mu, dc, s, dw, p);
+    connect(thread, SIGNAL(sendResult(_CoilResult)), this, SLOT(get_ferriteRod_Result(_CoilResult)));
+    connect(thread, SIGNAL(started()), this, SLOT(on_calculation_started()));
+    connect(thread, SIGNAL(finished()), this, SLOT(on_calculation_finished()));
+    thread->start();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Ferrite_Rod::get_ferriteRod_Result(_CoilResult result)
+{
+    double Lr = loc.toDouble(ui->lineEdit_Lr->text())*fOpt->dwLengthMultiplier;
+    double s = loc.toDouble(ui->lineEdit_s->text())*fOpt->dwLengthMultiplier;
     if (result.thd > (3*Lr/4)){
         showWarning(tr("Warning"), "lc > ¾Lr");
         return;
@@ -219,12 +244,17 @@ void Ferrite_Rod::on_pushButton_calculate_clicked()
     sInput += formattedOutput(fOpt, ui->label_s->text(), ui->lineEdit_s->text(), ui->label_s_m->text()) + "<br/>";
     sInput += formattedOutput(fOpt, ui->label_dw->text(), ui->lineEdit_dw->text(), ui->label_dw_m->text()) + "<br/>";
     sInput += formattedOutput(fOpt, ui->label_p->text(), ui->lineEdit_p->text(), ui->label_p_m->text()) + "</p>";
-    QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
-    sResult += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", QString::number(result.N)) + "<br/>";
-    sResult += formattedOutput(fOpt, tr("Length of winding") + " lc = ", roundTo(result.thd/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
-                               qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
-    sResult += formattedOutput(fOpt, tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = ", roundTo(result.sec, loc, 0));
-    sResult += "</p>";
+    QString sResult = "";
+    if (result.N > 0){
+        QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+        sResult += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", QString::number(result.N)) + "<br/>";
+        sResult += formattedOutput(fOpt, tr("Length of winding") + " lc = ", roundTo(result.thd/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
+                                   qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
+        sResult += formattedOutput(fOpt, tr("Effective magnetic permeability of the core") + " μ<sub>e</sub> = ", roundTo(result.sec, loc, 0));
+        sResult += "</p>";
+    } else {
+        sResult += "<span style=\"color:red;\">" + tr("Calculation was aborted") + "</span>";
+    }
     emit sendResult(sCaption + LIST_SEPARATOR + sImage + LIST_SEPARATOR + sInput + LIST_SEPARATOR + sResult);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -250,4 +280,28 @@ void Ferrite_Rod::on_lineEdit_dw_editingFinished()
     if (d > 0){
         ui->lineEdit_p->setText( roundTo(k_m / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Ferrite_Rod::on_timer()
+{
+    timer->stop();
+    ui->pushButton_calculate->setEnabled(true);
+    ui->pushButton_calculate->setText(tr("Abort"));
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Ferrite_Rod::on_calculation_started()
+{
+    timer->start(TIMER_INTERVAL);
+    this->setCursor(Qt::WaitCursor);
+    ui->pushButton_calculate->setEnabled(false);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Ferrite_Rod::on_calculation_finished()
+{
+    timer->stop();
+    ui->pushButton_calculate->setEnabled(true);
+    ui->pushButton_calculate->setText(tr("Calculate"));
+    this->setCursor(Qt::ArrowCursor);
+    thread->deleteLater();
+    thread = nullptr;
 }

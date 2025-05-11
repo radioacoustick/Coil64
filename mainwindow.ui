@@ -355,7 +355,7 @@
           <enum>Qt::ClickFocus</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="tab_1">
           <attribute name="title">
@@ -864,6 +864,16 @@
                </widget>
               </item>
              </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_saturationCurrent">
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
+             </property>
+             <property name="text">
+              <string>Saturation current</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -1387,6 +1397,13 @@
                  </widget>
                 </item>
                </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBox_saturationCurrent_2">
+               <property name="text">
+                <string>Saturation current</string>
+               </property>
               </widget>
              </item>
              <item>
@@ -2339,7 +2356,7 @@
      <x>0</x>
      <y>0</y>
      <width>1239</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -2424,7 +2441,6 @@
     <addaction name="separator"/>
     <addaction name="actionFerrite_toroid_permeability"/>
     <addaction name="actionAL_factor_calculation"/>
-    <addaction name="actionSaturation_current"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuActions"/>
@@ -2808,6 +2824,9 @@
    </property>
   </action>
   <action name="actionSaturation_current">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="res.qrc">
      <normaloff>:/menu_ico/res/ico2-magnetic.png</normaloff>:/menu_ico/res/ico2-magnetic.png</iconset>

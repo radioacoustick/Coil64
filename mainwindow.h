@@ -1,4 +1,4 @@
-/* mainwindow.h - header text to Coil64 - Radio frequency inductor and choke calculator
+﻿/* mainwindow.h - header text to Coil64 - Radio frequency inductor and choke calculator
 Copyright (C) 2019 Kustarev V.
 
 This program is free software; you can redistribute it and/or modify
@@ -141,6 +141,10 @@ private slots:
     void on_radioButton_ZF_clicked();
     void on_checkBox_isInsulation_toggled(bool checked);
     void on_checkBox_isInsulation2_toggled(bool checked);
+    void on_toolButton_Saturation_toggled(bool checked);
+    void on_checkBox_saturationCurrent_toggled(bool checked);
+    void on_checkBox_saturationCurrent_2_toggled(bool checked);
+    void showSaturationDockWidget(bool isShow);
 
     void get_onelayerN_roundW_Result(_CoilResult result);
     void get_onelayerN_rectW_Result(_CoilResult result);
@@ -174,6 +178,9 @@ private slots:
     void checkMaterial1(Material *mt);
     void checkMaterial2(Material *mt);
     void on_dockWidgetClosed();
+    void on_timer();
+    void on_calculation_started();
+    void on_calculation_finished();
 
     void on_actionOptions_triggered();
     void on_actionExit_triggered();
@@ -215,8 +222,6 @@ private slots:
     void on_toolButton_Color_clicked();
     void on_toolButton_Desc_clicked();
     void on_toolButton_column_clicked();
-    void on_toolButton_Saturation_clicked();
-    void showSaturationDockWidget(bool isShow);
 
     void on_actionFerrite_toroid_permeability_triggered();
     void on_actionCoil_on_a_ferrite_rod_triggered();
@@ -234,7 +239,6 @@ private slots:
     void on_actionCross_over_inductor_triggered();
     void on_actionBandspread_Calculator_triggered();
     void on_actionRM_core_coil_triggered();
-    void on_actionSaturation_current_triggered();
 
 private:
     Ui::MainWindow *mui;
@@ -250,6 +254,8 @@ private:
     QLocale loc;
     QMenu *popupmenu;
     SaturationDockWidget *satCurrentDockWidget;
+    MThread_calculate *thread;
+    QTimer *timer;
 };
 
 #endif // MAINWINDOW_H

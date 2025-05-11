@@ -201,7 +201,7 @@ Amidon::Amidon(QWidget *parent) :
     ui->setupUi(this);
     fOpt = new _OptionStruct;
     fOpt->mainFontSize = 0;
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     tTorDimen = new QList<double>{0,0,0};
     fTorDimen = new QList<double>{0,0,0};
     ui->lineEdit_ind->setValidator(dv);

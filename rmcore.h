@@ -25,6 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QDesktopServices>
 #include <QUrl>
 
+#include "mthread_calculate.h"
 #include "system_functions.h"
 #include "resolves.h"
 
@@ -52,6 +53,8 @@ private slots:
     void on_comboBox_currentIndexChanged(int index);
     void on_pushButton_help_clicked();
     void on_pushButton_calculate_clicked();
+    void get_RMCore_Result(_CoilResult result);
+    void on_calculation_finished();
     void on_toolButton_saturation_toggled(bool checked);
 
 private:
@@ -61,6 +64,7 @@ private:
     QLocale loc;
     double N, ind, a, b, c, e, d2, d3, d4, h1, h2, g, mu;
     int currTypeCore;
+    MThread_calculate *thread;
 };
 
 #endif // RMCORE_H

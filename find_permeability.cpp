@@ -26,7 +26,7 @@ Find_Permeability::Find_Permeability(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     ui->lineEdit_ind->setValidator(dv);
     ui->lineEdit_N->setValidator(dv);
     ui->lineEdit_1->setValidator(dv);

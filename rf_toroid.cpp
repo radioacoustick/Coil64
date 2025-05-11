@@ -33,7 +33,7 @@ RF_Toroid::RF_Toroid(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     ui->lineEdit_N->setValidator(dv);
     ui->lineEdit_f->setValidator(dv);
     ui->lineEdit_d->setValidator(dv);

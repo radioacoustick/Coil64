@@ -138,62 +138,67 @@
         <translation>Автор</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="207"/>
+        <location filename="../about.ui" line="188"/>
         <source>Name: Valery Kustarev</source>
         <translation>Имя: Валерий Кустарев</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="405"/>
+        <location filename="../about.ui" line="232"/>
+        <source>Contributors</source>
+        <translation>Участники</translation>
+    </message>
+    <message>
+        <location filename="../about.ui" line="474"/>
         <source>Thanks</source>
         <translation>Благодарности</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="427"/>
+        <location filename="../about.ui" line="496"/>
         <source>Thanks for reports and program testing:</source>
         <translation>Благодарю за тестирование программы:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="448"/>
+        <location filename="../about.ui" line="517"/>
         <source>Translations</source>
         <translation>Переводы</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="474"/>
+        <location filename="../about.ui" line="543"/>
         <source>I would like to thank the following people who volunteered to translate Coil64:</source>
         <translation>Я хотел бы поблагодарить следующих людей, которые вызвались переводить Coil64:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="531"/>
+        <location filename="../about.ui" line="600"/>
         <source>The current version of the Coil64 has been compiled by using the following libraries:</source>
         <translation>Текущая версия Coil64 была скомпилирована с использованием следующих библиотек:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="502"/>
+        <location filename="../about.ui" line="571"/>
         <source>License</source>
         <translation>Лицензия</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="232"/>
+        <location filename="../about.ui" line="298"/>
         <source>The open source code of the following developers was used:</source>
         <translation>Использовался открытый исходный код следующих разработчиков:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="391"/>
+        <location filename="../about.ui" line="460"/>
         <source>I hope, Coil64 will be useful in your radioamateur creativity. 73!</source>
         <translation>Надеюсь, что приложение Coil64 будет полезно для радиолюбителей при изготовлении самодельных индуктивных элементов. 73!</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="519"/>
+        <location filename="../about.ui" line="588"/>
         <source>Libraries</source>
         <translation>Библиотеки</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="640"/>
+        <location filename="../about.ui" line="709"/>
         <source>Free Icons:</source>
         <translation>Бесплатные иконки:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="695"/>
+        <location filename="../about.ui" line="764"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
@@ -870,37 +875,37 @@
 <context>
     <name>Context</name>
     <message>
-        <location filename="../system_functions.cpp" line="349"/>
+        <location filename="../system_functions.cpp" line="352"/>
         <source>cm</source>
         <translation>см</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="354"/>
+        <location filename="../system_functions.cpp" line="357"/>
         <source>in</source>
         <translation>дюйм</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="359"/>
+        <location filename="../system_functions.cpp" line="362"/>
         <source>mil</source>
         <translation>мил</translation>
     </message>
     <message>
         <location filename="../al.cpp" line="79"/>
         <location filename="../find_permeability.cpp" line="150"/>
-        <location filename="../mainwindow.cpp" line="5290"/>
-        <location filename="../mainwindow.cpp" line="5879"/>
+        <location filename="../mainwindow.cpp" line="5357"/>
+        <location filename="../mainwindow.cpp" line="5969"/>
         <location filename="../rf_toroid.cpp" line="468"/>
-        <location filename="../system_functions.cpp" line="325"/>
+        <location filename="../system_functions.cpp" line="328"/>
         <source>nH</source>
         <translation>нГн</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="287"/>
+        <location filename="../system_functions.cpp" line="290"/>
         <source>Hz</source>
         <translation>Гц</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="292"/>
+        <location filename="../system_functions.cpp" line="295"/>
         <source>kHz</source>
         <translation>кГц</translation>
     </message>
@@ -913,7 +918,7 @@
         <location filename="../amidon.cpp" line="775"/>
         <location filename="../amidon.cpp" line="777"/>
         <location filename="../amidon.cpp" line="779"/>
-        <location filename="../system_functions.cpp" line="297"/>
+        <location filename="../system_functions.cpp" line="300"/>
         <source>MHz</source>
         <translation>МГц</translation>
     </message>
@@ -926,44 +931,44 @@
     <message>
         <location filename="../rf_toroid.cpp" line="466"/>
         <location filename="../rf_toroid.cpp" line="483"/>
-        <location filename="../system_functions.cpp" line="306"/>
+        <location filename="../system_functions.cpp" line="309"/>
         <source>pF</source>
         <translation>пФ</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="39"/>
-        <location filename="../system_functions.cpp" line="330"/>
+        <location filename="../system_functions.cpp" line="333"/>
         <source>microH</source>
         <translation>мкГн</translation>
     </message>
     <message>
         <location filename="../crossover.cpp" line="40"/>
-        <location filename="../system_functions.cpp" line="335"/>
+        <location filename="../system_functions.cpp" line="338"/>
         <source>mH</source>
         <translation>мГн</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="344"/>
+        <location filename="../system_functions.cpp" line="347"/>
         <source>mm</source>
         <translation>мм</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="383"/>
+        <location filename="../system_functions.cpp" line="386"/>
         <source>m</source>
         <translation>м</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="393"/>
+        <location filename="../system_functions.cpp" line="396"/>
         <source>fit</source>
         <translation>фут</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="316"/>
+        <location filename="../system_functions.cpp" line="319"/>
         <source>microF</source>
         <translation>мкФ</translation>
     </message>
     <message>
-        <location filename="../system_functions.cpp" line="311"/>
+        <location filename="../system_functions.cpp" line="314"/>
         <source>nF</source>
         <translation>нФ</translation>
     </message>
@@ -1185,7 +1190,7 @@
     </message>
     <message>
         <location filename="../ecore.cpp" line="221"/>
-        <location filename="../ecore.cpp" line="357"/>
+        <location filename="../ecore.cpp" line="372"/>
         <source>Inductance</source>
         <translation>Индуктивность</translation>
     </message>
@@ -1199,10 +1204,10 @@
         <location filename="../ecore.cpp" line="284"/>
         <location filename="../ecore.cpp" line="288"/>
         <location filename="../ecore.cpp" line="292"/>
-        <location filename="../ecore.cpp" line="299"/>
-        <location filename="../ecore.cpp" line="303"/>
-        <location filename="../ecore.cpp" line="310"/>
-        <location filename="../ecore.cpp" line="314"/>
+        <location filename="../ecore.cpp" line="298"/>
+        <location filename="../ecore.cpp" line="302"/>
+        <location filename="../ecore.cpp" line="309"/>
+        <location filename="../ecore.cpp" line="313"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
@@ -1214,52 +1219,57 @@
     <message>
         <location filename="../ecore.cpp" line="259"/>
         <location filename="../ecore.cpp" line="268"/>
-        <location filename="../ecore.cpp" line="299"/>
-        <location filename="../ecore.cpp" line="310"/>
+        <location filename="../ecore.cpp" line="298"/>
+        <location filename="../ecore.cpp" line="309"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Одно или несколько значений имеют недопустимый формат!</translation>
     </message>
     <message>
         <location filename="../ecore.cpp" line="272"/>
-        <location filename="../ecore.cpp" line="303"/>
-        <location filename="../ecore.cpp" line="314"/>
+        <location filename="../ecore.cpp" line="302"/>
+        <location filename="../ecore.cpp" line="313"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Одно или несколько значений равны нулю!</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="340"/>
+        <location filename="../ecore.cpp" line="354"/>
         <source>Input data</source>
         <translation>Входные данные</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="355"/>
+        <location filename="../ecore.cpp" line="370"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="360"/>
+        <location filename="../ecore.cpp" line="375"/>
         <source>Number of turns of the coil</source>
         <translation>Число витков катушки</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="362"/>
+        <location filename="../ecore.cpp" line="377"/>
         <source>Effective magnetic path length</source>
         <translation>Эффективная длина магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="365"/>
+        <location filename="../ecore.cpp" line="380"/>
         <source>Effective area of magnetic path</source>
         <translation>Эффективная площадь магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="368"/>
+        <location filename="../ecore.cpp" line="383"/>
         <source>Effective volume</source>
         <translation>Эффективный объем</translation>
     </message>
     <message>
-        <location filename="../ecore.cpp" line="371"/>
+        <location filename="../ecore.cpp" line="386"/>
         <source>Effective magnetic permeability of the core</source>
         <translation>Эффективная магнитная проницаемость сердечника</translation>
+    </message>
+    <message>
+        <location filename="../ecore.cpp" line="395"/>
+        <source>Coil can not be realized</source>
+        <translation>Катушка не может быть реализована</translation>
     </message>
 </context>
 <context>
@@ -1302,6 +1312,7 @@
     </message>
     <message>
         <location filename="../ferrite_rod.ui" line="523"/>
+        <location filename="../ferrite_rod.cpp" line="303"/>
         <source>Calculate</source>
         <translation>Рассчитать</translation>
     </message>
@@ -1356,70 +1367,80 @@
         <translation>Шаг намотки</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="118"/>
+        <location filename="../ferrite_rod.cpp" line="127"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="154"/>
-        <location filename="../ferrite_rod.cpp" line="172"/>
-        <location filename="../ferrite_rod.cpp" line="176"/>
-        <location filename="../ferrite_rod.cpp" line="180"/>
-        <location filename="../ferrite_rod.cpp" line="184"/>
+        <location filename="../ferrite_rod.cpp" line="170"/>
         <location filename="../ferrite_rod.cpp" line="188"/>
         <location filename="../ferrite_rod.cpp" line="192"/>
         <location filename="../ferrite_rod.cpp" line="196"/>
-        <location filename="../ferrite_rod.cpp" line="202"/>
-        <location filename="../ferrite_rod.cpp" line="206"/>
-        <location filename="../ferrite_rod.cpp" line="246"/>
+        <location filename="../ferrite_rod.cpp" line="200"/>
+        <location filename="../ferrite_rod.cpp" line="204"/>
+        <location filename="../ferrite_rod.cpp" line="208"/>
+        <location filename="../ferrite_rod.cpp" line="212"/>
+        <location filename="../ferrite_rod.cpp" line="227"/>
+        <location filename="../ferrite_rod.cpp" line="231"/>
+        <location filename="../ferrite_rod.cpp" line="276"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="154"/>
+        <location filename="../ferrite_rod.cpp" line="170"/>
         <source>One or more inputs are empty!</source>
         <translation>Один или несколько полей ввода пусты!</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="172"/>
-        <location filename="../ferrite_rod.cpp" line="246"/>
+        <location filename="../ferrite_rod.cpp" line="188"/>
+        <location filename="../ferrite_rod.cpp" line="276"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Одно или несколько значений имеют недопустимый формат!</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="176"/>
+        <location filename="../ferrite_rod.cpp" line="192"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Одно или несколько значений равны нулю!</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="206"/>
+        <location filename="../ferrite_rod.cpp" line="231"/>
         <source>Distance from coil edge to core edge less than 1/8 Lr</source>
         <translation>Расстояние от края катушки до края сердечника менее 1/8 Lr</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="211"/>
+        <location filename="../ferrite_rod.cpp" line="236"/>
         <source>Input data</source>
         <translation>Входные данные</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="222"/>
+        <location filename="../ferrite_rod.cpp" line="249"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="223"/>
+        <location filename="../ferrite_rod.cpp" line="250"/>
         <source>Number of turns of the coil</source>
         <translation>Число витков катушки</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="224"/>
+        <location filename="../ferrite_rod.cpp" line="251"/>
         <source>Length of winding</source>
         <translation>Длина намотки</translation>
     </message>
     <message>
-        <location filename="../ferrite_rod.cpp" line="226"/>
+        <location filename="../ferrite_rod.cpp" line="253"/>
         <source>Effective magnetic permeability of the core</source>
         <translation>Эффективная магнитная проницаемость сердечника</translation>
+    </message>
+    <message>
+        <location filename="../ferrite_rod.cpp" line="256"/>
+        <source>Calculation was aborted</source>
+        <translation>Расчет был прерван</translation>
+    </message>
+    <message>
+        <location filename="../ferrite_rod.cpp" line="289"/>
+        <source>Abort</source>
+        <translation>Прервать</translation>
     </message>
 </context>
 <context>
@@ -1548,7 +1569,7 @@
     </message>
     <message>
         <location filename="../loop.ui" line="221"/>
-        <location filename="../loop.cpp" line="355"/>
+        <location filename="../loop.cpp" line="366"/>
         <source>Dimensions</source>
         <translation>Размеры</translation>
     </message>
@@ -1568,109 +1589,109 @@
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="95"/>
+        <location filename="../loop.cpp" line="96"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="107"/>
+        <location filename="../loop.cpp" line="108"/>
         <source>Wire diameter</source>
         <translation>Диаметр провода</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="136"/>
-        <location filename="../loop.cpp" line="298"/>
+        <location filename="../loop.cpp" line="137"/>
+        <location filename="../loop.cpp" line="345"/>
         <source>Loop diameter</source>
         <translation>Диаметр петли</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="161"/>
-        <location filename="../loop.cpp" line="167"/>
+        <location filename="../loop.cpp" line="162"/>
+        <location filename="../loop.cpp" line="168"/>
         <source>Side of triangle</source>
         <translation>Сторона треугольника</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="192"/>
-        <location filename="../loop.cpp" line="198"/>
+        <location filename="../loop.cpp" line="193"/>
+        <location filename="../loop.cpp" line="199"/>
         <source>Side of rectangle</source>
         <translation>Сторона прямоугольника</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="259"/>
-        <location filename="../loop.cpp" line="274"/>
-        <location filename="../loop.cpp" line="285"/>
-        <location filename="../loop.cpp" line="289"/>
-        <location filename="../loop.cpp" line="317"/>
-        <location filename="../loop.cpp" line="322"/>
-        <location filename="../loop.cpp" line="333"/>
-        <location filename="../loop.cpp" line="337"/>
-        <location filename="../loop.cpp" line="342"/>
-        <location filename="../loop.cpp" line="347"/>
-        <location filename="../loop.cpp" line="351"/>
+        <location filename="../loop.cpp" line="256"/>
+        <location filename="../loop.cpp" line="261"/>
+        <location filename="../loop.cpp" line="272"/>
+        <location filename="../loop.cpp" line="276"/>
+        <location filename="../loop.cpp" line="282"/>
+        <location filename="../loop.cpp" line="293"/>
+        <location filename="../loop.cpp" line="297"/>
+        <location filename="../loop.cpp" line="302"/>
+        <location filename="../loop.cpp" line="307"/>
+        <location filename="../loop.cpp" line="311"/>
+        <location filename="../loop.cpp" line="362"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="274"/>
-        <location filename="../loop.cpp" line="322"/>
-        <location filename="../loop.cpp" line="342"/>
+        <location filename="../loop.cpp" line="261"/>
+        <location filename="../loop.cpp" line="282"/>
+        <location filename="../loop.cpp" line="302"/>
         <source>One or more inputs are empty!</source>
         <translation>Один или несколько полей ввода пусты!</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="259"/>
-        <location filename="../loop.cpp" line="285"/>
-        <location filename="../loop.cpp" line="333"/>
-        <location filename="../loop.cpp" line="347"/>
+        <location filename="../loop.cpp" line="256"/>
+        <location filename="../loop.cpp" line="272"/>
+        <location filename="../loop.cpp" line="293"/>
+        <location filename="../loop.cpp" line="307"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Одно или несколько значений имеют недопустимый формат!</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="108"/>
+        <location filename="../loop.cpp" line="109"/>
         <source>Wire magnetic permeability</source>
         <translation>Магнитная проницаемость провода</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="289"/>
-        <location filename="../loop.cpp" line="337"/>
-        <location filename="../loop.cpp" line="351"/>
+        <location filename="../loop.cpp" line="276"/>
+        <location filename="../loop.cpp" line="297"/>
+        <location filename="../loop.cpp" line="311"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Одно или несколько значений равны нулю!</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="292"/>
+        <location filename="../loop.cpp" line="339"/>
         <source>Input data</source>
         <translation>Входные данные</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="295"/>
-        <location filename="../loop.cpp" line="370"/>
+        <location filename="../loop.cpp" line="342"/>
+        <location filename="../loop.cpp" line="379"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="304"/>
+        <location filename="../loop.cpp" line="350"/>
         <source>The side of the equilateral triangle</source>
         <translation>Сторона равностороннего треугольника</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="310"/>
+        <location filename="../loop.cpp" line="355"/>
         <source>The side of quadrate</source>
         <translation>Сторона квадрата</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="317"/>
+        <location filename="../loop.cpp" line="362"/>
         <source>Coil can not be realized</source>
         <translation>Катушка не может быть реализована</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="380"/>
+        <location filename="../loop.cpp" line="389"/>
         <source>Length of wire without leads</source>
         <translation>Длина провода без учета выводов</translation>
     </message>
     <message>
-        <location filename="../loop.cpp" line="212"/>
-        <location filename="../loop.cpp" line="371"/>
+        <location filename="../loop.cpp" line="213"/>
+        <location filename="../loop.cpp" line="380"/>
         <source>Inductance</source>
         <translation>Индуктивность</translation>
     </message>
@@ -1713,17 +1734,17 @@
         <translation>Плоская спиральная</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1999"/>
+        <location filename="../mainwindow.ui" line="2016"/>
         <source>Show confirm dialog to delete a result</source>
         <translation>Показать диалог подтверждения при удалении результата</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2499"/>
+        <location filename="../mainwindow.ui" line="2515"/>
         <source>About Coil64</source>
         <translation>О Coil64</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2598"/>
+        <location filename="../mainwindow.ui" line="2614"/>
         <source>Ferrite toroid permeability</source>
         <translation>Проницаемость ферритового кольца</translation>
     </message>
@@ -1733,49 +1754,49 @@
         <translation>Катушка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1066"/>
-        <location filename="../mainwindow.cpp" line="1123"/>
-        <location filename="../mainwindow.cpp" line="1169"/>
-        <location filename="../mainwindow.cpp" line="1652"/>
-        <location filename="../mainwindow.cpp" line="1714"/>
-        <location filename="../mainwindow.cpp" line="1765"/>
-        <location filename="../mainwindow.cpp" line="5355"/>
-        <location filename="../mainwindow.cpp" line="6237"/>
-        <location filename="../mainwindow.cpp" line="6267"/>
+        <location filename="../mainwindow.cpp" line="1115"/>
+        <location filename="../mainwindow.cpp" line="1172"/>
+        <location filename="../mainwindow.cpp" line="1218"/>
+        <location filename="../mainwindow.cpp" line="1705"/>
+        <location filename="../mainwindow.cpp" line="1767"/>
+        <location filename="../mainwindow.cpp" line="1818"/>
+        <location filename="../mainwindow.cpp" line="5421"/>
+        <location filename="../mainwindow.cpp" line="6316"/>
+        <location filename="../mainwindow.cpp" line="6346"/>
         <source>Winding pitch</source>
         <translation>Шаг намотки</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="756"/>
-        <location filename="../mainwindow.ui" line="1292"/>
+        <location filename="../mainwindow.ui" line="1302"/>
         <source>Wire material:</source>
         <translation>Материал провода:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="765"/>
-        <location filename="../mainwindow.ui" line="1301"/>
-        <location filename="../mainwindow.cpp" line="5260"/>
-        <location filename="../mainwindow.cpp" line="5849"/>
+        <location filename="../mainwindow.ui" line="1311"/>
+        <location filename="../mainwindow.cpp" line="5326"/>
+        <location filename="../mainwindow.cpp" line="5938"/>
         <source>Copper</source>
         <translation>Медь</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="778"/>
-        <location filename="../mainwindow.ui" line="1314"/>
+        <location filename="../mainwindow.ui" line="1324"/>
         <source>Silver</source>
         <translation>Серебро</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="788"/>
-        <location filename="../mainwindow.ui" line="1324"/>
-        <location filename="../mainwindow.cpp" line="5261"/>
-        <location filename="../mainwindow.cpp" line="5850"/>
+        <location filename="../mainwindow.ui" line="1334"/>
+        <location filename="../mainwindow.cpp" line="5327"/>
+        <location filename="../mainwindow.cpp" line="5939"/>
         <source>Aluminum</source>
         <translation>Алюминий</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="798"/>
-        <location filename="../mainwindow.ui" line="1334"/>
+        <location filename="../mainwindow.ui" line="1344"/>
         <source>Tin</source>
         <translation>Олово</translation>
     </message>
@@ -1785,63 +1806,64 @@
         <translation>Отношение W/s:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="895"/>
-        <location filename="../mainwindow.cpp" line="970"/>
-        <location filename="../mainwindow.cpp" line="2495"/>
-        <location filename="../mainwindow.cpp" line="2519"/>
-        <location filename="../mainwindow.cpp" line="5437"/>
-        <location filename="../mainwindow.cpp" line="5523"/>
-        <location filename="../mainwindow.cpp" line="5614"/>
-        <location filename="../mainwindow.cpp" line="5699"/>
-        <location filename="../mainwindow.cpp" line="5730"/>
-        <location filename="../mainwindow.cpp" line="5759"/>
-        <location filename="../mainwindow.cpp" line="5784"/>
-        <location filename="../mainwindow.cpp" line="5817"/>
-        <location filename="../mainwindow.cpp" line="5839"/>
-        <location filename="../mainwindow.cpp" line="5875"/>
-        <location filename="../mainwindow.cpp" line="5941"/>
-        <location filename="../mainwindow.cpp" line="5972"/>
+        <location filename="../mainwindow.ui" line="905"/>
+        <location filename="../mainwindow.cpp" line="1018"/>
+        <location filename="../mainwindow.cpp" line="2551"/>
+        <location filename="../mainwindow.cpp" line="2575"/>
+        <location filename="../mainwindow.cpp" line="5508"/>
+        <location filename="../mainwindow.cpp" line="5597"/>
+        <location filename="../mainwindow.cpp" line="5691"/>
+        <location filename="../mainwindow.cpp" line="5779"/>
+        <location filename="../mainwindow.cpp" line="5810"/>
+        <location filename="../mainwindow.cpp" line="5842"/>
+        <location filename="../mainwindow.cpp" line="5870"/>
+        <location filename="../mainwindow.cpp" line="5903"/>
+        <location filename="../mainwindow.cpp" line="5928"/>
+        <location filename="../mainwindow.cpp" line="5965"/>
+        <location filename="../mainwindow.cpp" line="6029"/>
+        <location filename="../mainwindow.cpp" line="6060"/>
         <source>Inductance</source>
         <translation>Индуктивность</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="718"/>
-        <location filename="../mainwindow.ui" line="1350"/>
+        <location filename="../mainwindow.ui" line="1360"/>
         <source>Select initial data of the calculation</source>
         <translation>Выбрать начальные данные расчета</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1417"/>
+        <location filename="../mainwindow.ui" line="1434"/>
         <source>LC circuit</source>
         <translation>LC контур</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1425"/>
+        <location filename="../mainwindow.ui" line="1442"/>
         <source>Initial conditions of calculation of a circuit</source>
         <translation>Начальные условия расчета контура</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1434"/>
+        <location filename="../mainwindow.ui" line="1451"/>
         <source>The capacitance and the inductance are known</source>
         <translation>Известны емкость и индуктивность</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1447"/>
+        <location filename="../mainwindow.ui" line="1464"/>
         <source>The capacitance and the frequency are known </source>
         <translation>Известны емкость и частота</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1457"/>
+        <location filename="../mainwindow.ui" line="1474"/>
         <source>The inductance and the frequency are known</source>
         <translation>Известны индуктивность и частота</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2390"/>
+        <location filename="../mainwindow.ui" line="2407"/>
         <source>Additional calculations</source>
         <translation>Дополнительный расчет</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1587"/>
+        <location filename="../mainwindow.ui" line="1604"/>
+        <location filename="../mainwindow.cpp" line="868"/>
         <source>Calculate</source>
         <translation>Рассчитать</translation>
     </message>
@@ -1871,50 +1893,50 @@
         <translation>Катушка на печатной плате</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1467"/>
+        <location filename="../mainwindow.ui" line="1484"/>
         <source>The impedance and the frequency are known</source>
         <translation>Известны импеданс и частота</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2159"/>
-        <location filename="../mainwindow.cpp" line="316"/>
-        <location filename="../mainwindow.cpp" line="409"/>
+        <location filename="../mainwindow.ui" line="2176"/>
+        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="437"/>
         <source>Copy selected to clipboard</source>
         <translation>Скопировать выделенное в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2188"/>
-        <location filename="../mainwindow.ui" line="2547"/>
-        <location filename="../mainwindow.ui" line="2550"/>
-        <location filename="../mainwindow.cpp" line="317"/>
-        <location filename="../mainwindow.cpp" line="410"/>
+        <location filename="../mainwindow.ui" line="2205"/>
+        <location filename="../mainwindow.ui" line="2563"/>
+        <location filename="../mainwindow.ui" line="2566"/>
+        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="438"/>
         <source>Copy all to clipboard</source>
         <translation>Скопировать все в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2130"/>
-        <location filename="../mainwindow.ui" line="2523"/>
-        <location filename="../mainwindow.cpp" line="319"/>
-        <location filename="../mainwindow.cpp" line="411"/>
-        <location filename="../mainwindow.cpp" line="2400"/>
+        <location filename="../mainwindow.ui" line="2147"/>
+        <location filename="../mainwindow.ui" line="2539"/>
+        <location filename="../mainwindow.cpp" line="322"/>
+        <location filename="../mainwindow.cpp" line="439"/>
+        <location filename="../mainwindow.cpp" line="2456"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2217"/>
-        <location filename="../mainwindow.ui" line="2616"/>
-        <location filename="../mainwindow.cpp" line="322"/>
-        <location filename="../mainwindow.cpp" line="413"/>
+        <location filename="../mainwindow.ui" line="2234"/>
+        <location filename="../mainwindow.ui" line="2632"/>
+        <location filename="../mainwindow.cpp" line="325"/>
+        <location filename="../mainwindow.cpp" line="441"/>
         <source>Clear all</source>
         <translation>Очистить все</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2256"/>
+        <location filename="../mainwindow.ui" line="2273"/>
         <source>Print all</source>
         <translation>Распечатать все</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1768"/>
+        <location filename="../mainwindow.ui" line="1785"/>
         <source>Show images in result</source>
         <translation>Показывать изображения в результатах</translation>
     </message>
@@ -1950,187 +1972,189 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="684"/>
-        <location filename="../mainwindow.ui" line="1258"/>
+        <location filename="../mainwindow.ui" line="1268"/>
         <source>Wire has insulation</source>
         <translation>Провод имеет изоляцию</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1736"/>
+        <location filename="../mainwindow.ui" line="1753"/>
         <source>Show title in results</source>
         <translation>Показывать заголовки в результатах</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1797"/>
+        <location filename="../mainwindow.ui" line="1814"/>
         <source>Show values description</source>
         <translation>Показывать описание значений</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1817"/>
+        <location filename="../mainwindow.ui" line="1834"/>
         <source>Use colored value text</source>
         <translation>Использовать цветной текст значений</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1856"/>
+        <location filename="../mainwindow.ui" line="1873"/>
         <source>Show additional results for single-layer coils</source>
         <translation>Показывать дополнительные результаты для однослойных катушек</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1882"/>
+        <location filename="../mainwindow.ui" line="1899"/>
         <source>Show data for LTSpice</source>
         <translation>Показать данные для LTSpice</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1654"/>
+        <location filename="../mainwindow.ui" line="1671"/>
         <source>Show last result first</source>
         <translation>Показать последние результаты первыми</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1700"/>
+        <location filename="../mainwindow.ui" line="1717"/>
         <source>Show calculation numbering</source>
         <translation>Показывать нумерацию расчетов</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1976"/>
+        <location filename="../mainwindow.ui" line="1993"/>
         <source>Show confirm dialog to clear results</source>
         <translation>Показать диалог подтверждения при очистке результатов</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1908"/>
-        <location filename="../mainwindow.ui" line="2816"/>
+        <location filename="../mainwindow.ui" line="875"/>
+        <location filename="../mainwindow.ui" line="1405"/>
+        <location filename="../mainwindow.ui" line="1925"/>
+        <location filename="../mainwindow.ui" line="2835"/>
         <source>Saturation current</source>
         <translation>Ток насыщения</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2361"/>
+        <location filename="../mainwindow.ui" line="2378"/>
         <source>Theme</source>
         <translation>Тема</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2416"/>
+        <location filename="../mainwindow.ui" line="2433"/>
         <source>Ferrite cores</source>
         <translation>Ферритовые сердечники</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2683"/>
+        <location filename="../mainwindow.ui" line="2699"/>
         <source>Versions history</source>
         <translation>История версий</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2695"/>
+        <location filename="../mainwindow.ui" line="2711"/>
         <source>Air core toroid coil</source>
         <translation>Тороидальная катушка без сердечника</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2706"/>
+        <location filename="../mainwindow.ui" line="2722"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2714"/>
+        <location filename="../mainwindow.ui" line="2730"/>
         <source>Dark</source>
         <translation>Темная</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2723"/>
+        <location filename="../mainwindow.ui" line="2739"/>
         <source>Pot core coil</source>
         <translation>Катушка в броневом сердечнике</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2731"/>
+        <location filename="../mainwindow.ui" line="2747"/>
         <source>Sunny</source>
         <translation>Солнечная</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2740"/>
+        <location filename="../mainwindow.ui" line="2756"/>
         <source>E core coil</source>
         <translation>Ш-образный сердечник</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2750"/>
+        <location filename="../mainwindow.ui" line="2766"/>
         <source>Calculation with AL-factor</source>
         <translation>Расчет с коэффициентом AL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2759"/>
+        <location filename="../mainwindow.ui" line="2775"/>
         <source>U core coil</source>
         <translation>П-образный сердечник</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2768"/>
+        <location filename="../mainwindow.ui" line="2784"/>
         <source>Audio system filter (crossover) coil</source>
         <translation>Катушка фильтра (кроссовера) аудиосистемы</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2777"/>
+        <location filename="../mainwindow.ui" line="2793"/>
         <source>Toroidal inductor at RF</source>
         <translation>Катушка на ферритовом кольце на ВЧ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2786"/>
+        <location filename="../mainwindow.ui" line="2802"/>
         <source>Bandspread Calculator</source>
         <translation>Расчет сопрягающих конденсаторов</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2795"/>
+        <location filename="../mainwindow.ui" line="2811"/>
         <source>RM core coil</source>
         <translation>RM сердечник</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2804"/>
+        <location filename="../mainwindow.ui" line="2820"/>
         <source>Interface help</source>
         <translation>Помощь по интерфейсу</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1950"/>
+        <location filename="../mainwindow.ui" line="1967"/>
         <source>Save results on exit</source>
         <translation>Сохранять результаты при выходе</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2022"/>
+        <location filename="../mainwindow.ui" line="2039"/>
         <source>Show confirm dialog before exit</source>
         <translation>Показать диалог подтверждения перед выходом</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2292"/>
         <location filename="../mainwindow.ui" line="2309"/>
-        <location filename="../mainwindow.ui" line="2487"/>
+        <location filename="../mainwindow.ui" line="2326"/>
+        <location filename="../mainwindow.ui" line="2503"/>
         <source>Context help</source>
         <translation>Контекстная справка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2347"/>
+        <location filename="../mainwindow.ui" line="2364"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2357"/>
+        <location filename="../mainwindow.ui" line="2374"/>
         <source>&amp;Customize</source>
         <translation>&amp;Настройки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2376"/>
+        <location filename="../mainwindow.ui" line="2393"/>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2402"/>
+        <location filename="../mainwindow.ui" line="2419"/>
         <source>Actions</source>
         <translation>Действия</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2410"/>
+        <location filename="../mainwindow.ui" line="2427"/>
         <source>Branded cores</source>
         <translation>Фирменные сердечники</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2460"/>
+        <location filename="../mainwindow.ui" line="2476"/>
         <source>&amp;Exit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2058"/>
-        <location filename="../mainwindow.ui" line="2472"/>
-        <location filename="../mainwindow.ui" line="2475"/>
+        <location filename="../mainwindow.ui" line="2075"/>
+        <location filename="../mainwindow.ui" line="2488"/>
+        <location filename="../mainwindow.ui" line="2491"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
@@ -2140,1204 +2164,1230 @@
         <translation>Многослойная катушка намотанная фольгой</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1677"/>
+        <location filename="../mainwindow.ui" line="1694"/>
         <source>Show text in tabular form</source>
         <translation>Показывать текст в табличной форме</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2511"/>
+        <location filename="../mainwindow.ui" line="2527"/>
         <source>Check for &amp;update</source>
         <translation>Проверить &amp;обновления</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2535"/>
+        <location filename="../mainwindow.ui" line="2551"/>
         <source>HomePage</source>
         <translation>Домашнаяя страница</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2562"/>
+        <location filename="../mainwindow.ui" line="2578"/>
         <source>Print</source>
         <translation>Печать</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2574"/>
+        <location filename="../mainwindow.ui" line="2590"/>
         <source>To null initial data</source>
         <translation>Обнулить исходные данные</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2607"/>
+        <location filename="../mainwindow.ui" line="2623"/>
         <source>Coil on a ferrite rod</source>
         <translation>Катушка на ферритовом стержне</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2625"/>
+        <location filename="../mainwindow.ui" line="2641"/>
         <source>Meander coil on PCB</source>
         <translation>Печатная катушка в форме меандра</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2634"/>
+        <location filename="../mainwindow.ui" line="2650"/>
         <source>Search coil of a metal detector</source>
         <translation>Поисковая катушка металлоискателя</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2644"/>
+        <location filename="../mainwindow.ui" line="2660"/>
         <source>A one-turn loop coil</source>
         <translation>Одновитковая петля</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2653"/>
+        <location filename="../mainwindow.ui" line="2669"/>
         <source>Donate</source>
         <translation>Пожертвовать</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2665"/>
+        <location filename="../mainwindow.ui" line="2681"/>
         <source>Influence of the shield of a coil</source>
         <translation>Влияние экрана катушки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2674"/>
+        <location filename="../mainwindow.ui" line="2690"/>
         <source>Amidon cores</source>
         <translation>Сердечники Амидон</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2101"/>
-        <location filename="../mainwindow.ui" line="2586"/>
-        <location filename="../mainwindow.cpp" line="320"/>
-        <location filename="../mainwindow.cpp" line="412"/>
-        <location filename="../mainwindow.cpp" line="2362"/>
+        <location filename="../mainwindow.ui" line="2118"/>
+        <location filename="../mainwindow.ui" line="2602"/>
+        <location filename="../mainwindow.cpp" line="323"/>
+        <location filename="../mainwindow.cpp" line="440"/>
+        <location filename="../mainwindow.cpp" line="2418"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="110"/>
-        <location filename="../mainwindow.cpp" line="401"/>
+        <location filename="../mainwindow.cpp" line="113"/>
+        <location filename="../mainwindow.cpp" line="429"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="840"/>
+        <location filename="../mainwindow.cpp" line="888"/>
         <source>Error. Can not open URL: </source>
         <translation>Ошибка: Не могу открыть URL:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="861"/>
+        <location filename="../mainwindow.cpp" line="909"/>
         <source>The version is up to date: </source>
         <translation>Установлена последняя версия:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="866"/>
+        <location filename="../mainwindow.cpp" line="914"/>
         <source>There is a new version of the app.</source>
         <translation>Есть новая версия приложения.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="867"/>
+        <location filename="../mainwindow.cpp" line="915"/>
         <source>Please visit the URL to download</source>
         <translation>Пожалуйста посетите URL для загрузки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1045"/>
-        <location filename="../mainwindow.cpp" line="1146"/>
-        <location filename="../mainwindow.cpp" line="1200"/>
-        <location filename="../mainwindow.cpp" line="1253"/>
-        <location filename="../mainwindow.cpp" line="1308"/>
-        <location filename="../mainwindow.cpp" line="1403"/>
-        <location filename="../mainwindow.cpp" line="1490"/>
-        <location filename="../mainwindow.cpp" line="1567"/>
-        <location filename="../mainwindow.cpp" line="1624"/>
-        <location filename="../mainwindow.cpp" line="1736"/>
-        <location filename="../mainwindow.cpp" line="1799"/>
-        <location filename="../mainwindow.cpp" line="1849"/>
-        <location filename="../mainwindow.cpp" line="1913"/>
-        <location filename="../mainwindow.cpp" line="2113"/>
-        <location filename="../mainwindow.cpp" line="2605"/>
-        <location filename="../mainwindow.cpp" line="2853"/>
+        <location filename="../mainwindow.cpp" line="1094"/>
+        <location filename="../mainwindow.cpp" line="1195"/>
+        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1302"/>
+        <location filename="../mainwindow.cpp" line="1357"/>
+        <location filename="../mainwindow.cpp" line="1455"/>
+        <location filename="../mainwindow.cpp" line="1542"/>
+        <location filename="../mainwindow.cpp" line="1620"/>
+        <location filename="../mainwindow.cpp" line="1677"/>
+        <location filename="../mainwindow.cpp" line="1789"/>
+        <location filename="../mainwindow.cpp" line="1852"/>
+        <location filename="../mainwindow.cpp" line="1902"/>
+        <location filename="../mainwindow.cpp" line="1966"/>
+        <location filename="../mainwindow.cpp" line="2169"/>
+        <location filename="../mainwindow.cpp" line="2693"/>
+        <location filename="../mainwindow.cpp" line="2915"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1122"/>
-        <location filename="../mainwindow.cpp" line="1277"/>
-        <location filename="../mainwindow.cpp" line="1381"/>
-        <location filename="../mainwindow.cpp" line="1713"/>
-        <location filename="../mainwindow.cpp" line="1880"/>
-        <location filename="../mainwindow.cpp" line="2000"/>
+        <location filename="../mainwindow.cpp" line="1171"/>
+        <location filename="../mainwindow.cpp" line="1326"/>
+        <location filename="../mainwindow.cpp" line="1430"/>
+        <location filename="../mainwindow.cpp" line="1766"/>
+        <location filename="../mainwindow.cpp" line="1933"/>
+        <location filename="../mainwindow.cpp" line="2053"/>
         <source>Insulation thickness</source>
         <translation>Толщина изоляции</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1423"/>
-        <location filename="../mainwindow.cpp" line="2044"/>
-        <location filename="../mainwindow.cpp" line="2139"/>
-        <location filename="../mainwindow.cpp" line="5252"/>
-        <location filename="../mainwindow.cpp" line="5382"/>
-        <location filename="../mainwindow.cpp" line="5847"/>
-        <location filename="../mainwindow.cpp" line="5944"/>
-        <location filename="../mainwindow.cpp" line="6222"/>
-        <location filename="../mainwindow.cpp" line="6235"/>
+        <location filename="../mainwindow.cpp" line="1475"/>
+        <location filename="../mainwindow.cpp" line="2100"/>
+        <location filename="../mainwindow.cpp" line="2195"/>
+        <location filename="../mainwindow.cpp" line="5318"/>
+        <location filename="../mainwindow.cpp" line="5450"/>
+        <location filename="../mainwindow.cpp" line="5936"/>
+        <location filename="../mainwindow.cpp" line="6032"/>
+        <location filename="../mainwindow.cpp" line="6301"/>
+        <location filename="../mainwindow.cpp" line="6314"/>
         <source>Outside diameter</source>
         <translation>Внешний диаметр</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1424"/>
-        <location filename="../mainwindow.cpp" line="1510"/>
-        <location filename="../mainwindow.cpp" line="2045"/>
-        <location filename="../mainwindow.cpp" line="2140"/>
-        <location filename="../mainwindow.cpp" line="6223"/>
-        <location filename="../mainwindow.cpp" line="6236"/>
+        <location filename="../mainwindow.cpp" line="1476"/>
+        <location filename="../mainwindow.cpp" line="1562"/>
+        <location filename="../mainwindow.cpp" line="2101"/>
+        <location filename="../mainwindow.cpp" line="2196"/>
+        <location filename="../mainwindow.cpp" line="6302"/>
+        <location filename="../mainwindow.cpp" line="6315"/>
         <source>Inside diameter</source>
         <translation>Внутренний диаметр</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="971"/>
-        <location filename="../mainwindow.cpp" line="1533"/>
-        <location filename="../mainwindow.cpp" line="2509"/>
-        <location filename="../mainwindow.cpp" line="2521"/>
-        <location filename="../mainwindow.cpp" line="2533"/>
+        <location filename="../mainwindow.cpp" line="1019"/>
+        <location filename="../mainwindow.cpp" line="1585"/>
+        <location filename="../mainwindow.cpp" line="2565"/>
+        <location filename="../mainwindow.cpp" line="2577"/>
+        <location filename="../mainwindow.cpp" line="2589"/>
         <source>Frequency</source>
         <translation>Частота</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="499"/>
-        <location filename="../mainwindow.cpp" line="2173"/>
-        <location filename="../mainwindow.cpp" line="2312"/>
-        <location filename="../mainwindow.cpp" line="6315"/>
+        <location filename="../mainwindow.cpp" line="509"/>
+        <location filename="../mainwindow.cpp" line="2229"/>
+        <location filename="../mainwindow.cpp" line="2368"/>
+        <location filename="../mainwindow.cpp" line="6394"/>
         <source>Confirmation</source>
         <translation>Подтверждение</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="500"/>
-        <location filename="../mainwindow.cpp" line="2174"/>
-        <location filename="../mainwindow.cpp" line="2313"/>
-        <location filename="../mainwindow.cpp" line="6316"/>
+        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="2230"/>
+        <location filename="../mainwindow.cpp" line="2369"/>
+        <location filename="../mainwindow.cpp" line="6395"/>
         <source>Are you sure?</source>
         <translation>Вы уверены?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="503"/>
-        <location filename="../mainwindow.cpp" line="2177"/>
-        <location filename="../mainwindow.cpp" line="2316"/>
-        <location filename="../mainwindow.cpp" line="6319"/>
+        <location filename="../mainwindow.cpp" line="513"/>
+        <location filename="../mainwindow.cpp" line="2233"/>
+        <location filename="../mainwindow.cpp" line="2372"/>
+        <location filename="../mainwindow.cpp" line="6398"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="504"/>
-        <location filename="../mainwindow.cpp" line="2178"/>
-        <location filename="../mainwindow.cpp" line="2317"/>
-        <location filename="../mainwindow.cpp" line="6320"/>
+        <location filename="../mainwindow.cpp" line="514"/>
+        <location filename="../mainwindow.cpp" line="2234"/>
+        <location filename="../mainwindow.cpp" line="2373"/>
+        <location filename="../mainwindow.cpp" line="6399"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="840"/>
-        <location filename="../mainwindow.cpp" line="863"/>
-        <location filename="../mainwindow.cpp" line="2911"/>
-        <location filename="../mainwindow.cpp" line="2920"/>
-        <location filename="../mainwindow.cpp" line="2937"/>
-        <location filename="../mainwindow.cpp" line="2942"/>
-        <location filename="../mainwindow.cpp" line="2948"/>
-        <location filename="../mainwindow.cpp" line="2967"/>
-        <location filename="../mainwindow.cpp" line="2992"/>
-        <location filename="../mainwindow.cpp" line="3012"/>
+        <location filename="../mainwindow.cpp" line="888"/>
+        <location filename="../mainwindow.cpp" line="911"/>
+        <location filename="../mainwindow.cpp" line="2973"/>
+        <location filename="../mainwindow.cpp" line="2982"/>
+        <location filename="../mainwindow.cpp" line="2999"/>
+        <location filename="../mainwindow.cpp" line="3004"/>
+        <location filename="../mainwindow.cpp" line="3010"/>
         <location filename="../mainwindow.cpp" line="3029"/>
-        <location filename="../mainwindow.cpp" line="3035"/>
-        <location filename="../mainwindow.cpp" line="3040"/>
-        <location filename="../mainwindow.cpp" line="3046"/>
-        <location filename="../mainwindow.cpp" line="3057"/>
-        <location filename="../mainwindow.cpp" line="3078"/>
-        <location filename="../mainwindow.cpp" line="3084"/>
-        <location filename="../mainwindow.cpp" line="3096"/>
+        <location filename="../mainwindow.cpp" line="3054"/>
+        <location filename="../mainwindow.cpp" line="3074"/>
+        <location filename="../mainwindow.cpp" line="3091"/>
+        <location filename="../mainwindow.cpp" line="3097"/>
+        <location filename="../mainwindow.cpp" line="3102"/>
         <location filename="../mainwindow.cpp" line="3108"/>
-        <location filename="../mainwindow.cpp" line="3113"/>
-        <location filename="../mainwindow.cpp" line="3118"/>
-        <location filename="../mainwindow.cpp" line="3123"/>
+        <location filename="../mainwindow.cpp" line="3119"/>
         <location filename="../mainwindow.cpp" line="3140"/>
         <location filename="../mainwindow.cpp" line="3146"/>
-        <location filename="../mainwindow.cpp" line="3152"/>
-        <location filename="../mainwindow.cpp" line="3163"/>
-        <location filename="../mainwindow.cpp" line="3181"/>
-        <location filename="../mainwindow.cpp" line="3189"/>
-        <location filename="../mainwindow.cpp" line="3205"/>
-        <location filename="../mainwindow.cpp" line="3210"/>
-        <location filename="../mainwindow.cpp" line="3215"/>
-        <location filename="../mainwindow.cpp" line="3220"/>
+        <location filename="../mainwindow.cpp" line="3158"/>
+        <location filename="../mainwindow.cpp" line="3170"/>
+        <location filename="../mainwindow.cpp" line="3175"/>
+        <location filename="../mainwindow.cpp" line="3180"/>
+        <location filename="../mainwindow.cpp" line="3185"/>
+        <location filename="../mainwindow.cpp" line="3202"/>
+        <location filename="../mainwindow.cpp" line="3208"/>
+        <location filename="../mainwindow.cpp" line="3214"/>
         <location filename="../mainwindow.cpp" line="3225"/>
-        <location filename="../mainwindow.cpp" line="3241"/>
-        <location filename="../mainwindow.cpp" line="3246"/>
+        <location filename="../mainwindow.cpp" line="3243"/>
         <location filename="../mainwindow.cpp" line="3251"/>
+        <location filename="../mainwindow.cpp" line="3267"/>
+        <location filename="../mainwindow.cpp" line="3272"/>
         <location filename="../mainwindow.cpp" line="3277"/>
-        <location filename="../mainwindow.cpp" line="3286"/>
+        <location filename="../mainwindow.cpp" line="3282"/>
+        <location filename="../mainwindow.cpp" line="3287"/>
         <location filename="../mainwindow.cpp" line="3303"/>
         <location filename="../mainwindow.cpp" line="3308"/>
-        <location filename="../mainwindow.cpp" line="3314"/>
-        <location filename="../mainwindow.cpp" line="3319"/>
-        <location filename="../mainwindow.cpp" line="3343"/>
-        <location filename="../mainwindow.cpp" line="3360"/>
-        <location filename="../mainwindow.cpp" line="3366"/>
-        <location filename="../mainwindow.cpp" line="3371"/>
-        <location filename="../mainwindow.cpp" line="3378"/>
+        <location filename="../mainwindow.cpp" line="3313"/>
+        <location filename="../mainwindow.cpp" line="3339"/>
+        <location filename="../mainwindow.cpp" line="3348"/>
+        <location filename="../mainwindow.cpp" line="3365"/>
+        <location filename="../mainwindow.cpp" line="3370"/>
+        <location filename="../mainwindow.cpp" line="3376"/>
         <location filename="../mainwindow.cpp" line="3381"/>
-        <location filename="../mainwindow.cpp" line="3387"/>
-        <location filename="../mainwindow.cpp" line="3406"/>
-        <location filename="../mainwindow.cpp" line="3412"/>
-        <location filename="../mainwindow.cpp" line="3418"/>
-        <location filename="../mainwindow.cpp" line="3421"/>
-        <location filename="../mainwindow.cpp" line="3427"/>
-        <location filename="../mainwindow.cpp" line="3432"/>
-        <location filename="../mainwindow.cpp" line="3437"/>
-        <location filename="../mainwindow.cpp" line="3442"/>
-        <location filename="../mainwindow.cpp" line="3453"/>
-        <location filename="../mainwindow.cpp" line="3473"/>
-        <location filename="../mainwindow.cpp" line="3479"/>
-        <location filename="../mainwindow.cpp" line="3491"/>
-        <location filename="../mainwindow.cpp" line="3501"/>
-        <location filename="../mainwindow.cpp" line="3513"/>
-        <location filename="../mainwindow.cpp" line="3525"/>
-        <location filename="../mainwindow.cpp" line="3536"/>
-        <location filename="../mainwindow.cpp" line="3544"/>
-        <location filename="../mainwindow.cpp" line="3560"/>
-        <location filename="../mainwindow.cpp" line="3565"/>
-        <location filename="../mainwindow.cpp" line="3571"/>
-        <location filename="../mainwindow.cpp" line="3582"/>
-        <location filename="../mainwindow.cpp" line="3594"/>
-        <location filename="../mainwindow.cpp" line="3599"/>
-        <location filename="../mainwindow.cpp" line="3615"/>
-        <location filename="../mainwindow.cpp" line="3620"/>
-        <location filename="../mainwindow.cpp" line="3625"/>
-        <location filename="../mainwindow.cpp" line="3630"/>
-        <location filename="../mainwindow.cpp" line="3646"/>
-        <location filename="../mainwindow.cpp" line="3663"/>
-        <location filename="../mainwindow.cpp" line="3669"/>
-        <location filename="../mainwindow.cpp" line="3689"/>
-        <location filename="../mainwindow.cpp" line="3693"/>
-        <location filename="../mainwindow.cpp" line="3697"/>
-        <location filename="../mainwindow.cpp" line="3718"/>
-        <location filename="../mainwindow.cpp" line="3734"/>
+        <location filename="../mainwindow.cpp" line="3405"/>
+        <location filename="../mainwindow.cpp" line="3422"/>
+        <location filename="../mainwindow.cpp" line="3428"/>
+        <location filename="../mainwindow.cpp" line="3433"/>
+        <location filename="../mainwindow.cpp" line="3440"/>
+        <location filename="../mainwindow.cpp" line="3443"/>
+        <location filename="../mainwindow.cpp" line="3449"/>
+        <location filename="../mainwindow.cpp" line="3468"/>
+        <location filename="../mainwindow.cpp" line="3474"/>
+        <location filename="../mainwindow.cpp" line="3480"/>
+        <location filename="../mainwindow.cpp" line="3483"/>
+        <location filename="../mainwindow.cpp" line="3489"/>
+        <location filename="../mainwindow.cpp" line="3494"/>
+        <location filename="../mainwindow.cpp" line="3499"/>
+        <location filename="../mainwindow.cpp" line="3504"/>
+        <location filename="../mainwindow.cpp" line="3515"/>
+        <location filename="../mainwindow.cpp" line="3535"/>
+        <location filename="../mainwindow.cpp" line="3541"/>
+        <location filename="../mainwindow.cpp" line="3553"/>
+        <location filename="../mainwindow.cpp" line="3563"/>
+        <location filename="../mainwindow.cpp" line="3575"/>
+        <location filename="../mainwindow.cpp" line="3587"/>
+        <location filename="../mainwindow.cpp" line="3598"/>
+        <location filename="../mainwindow.cpp" line="3606"/>
+        <location filename="../mainwindow.cpp" line="3622"/>
+        <location filename="../mainwindow.cpp" line="3627"/>
+        <location filename="../mainwindow.cpp" line="3633"/>
+        <location filename="../mainwindow.cpp" line="3644"/>
+        <location filename="../mainwindow.cpp" line="3656"/>
+        <location filename="../mainwindow.cpp" line="3661"/>
+        <location filename="../mainwindow.cpp" line="3677"/>
+        <location filename="../mainwindow.cpp" line="3682"/>
+        <location filename="../mainwindow.cpp" line="3687"/>
+        <location filename="../mainwindow.cpp" line="3692"/>
+        <location filename="../mainwindow.cpp" line="3708"/>
+        <location filename="../mainwindow.cpp" line="3732"/>
         <location filename="../mainwindow.cpp" line="3738"/>
-        <location filename="../mainwindow.cpp" line="3742"/>
-        <location filename="../mainwindow.cpp" line="3746"/>
-        <location filename="../mainwindow.cpp" line="3768"/>
-        <location filename="../mainwindow.cpp" line="3780"/>
-        <location filename="../mainwindow.cpp" line="3784"/>
-        <location filename="../mainwindow.cpp" line="3788"/>
-        <location filename="../mainwindow.cpp" line="3792"/>
-        <location filename="../mainwindow.cpp" line="3815"/>
-        <location filename="../mainwindow.cpp" line="3832"/>
-        <location filename="../mainwindow.cpp" line="3836"/>
-        <location filename="../mainwindow.cpp" line="3840"/>
-        <location filename="../mainwindow.cpp" line="3844"/>
-        <location filename="../mainwindow.cpp" line="3848"/>
-        <location filename="../mainwindow.cpp" line="3871"/>
-        <location filename="../mainwindow.cpp" line="3886"/>
-        <location filename="../mainwindow.cpp" line="3890"/>
-        <location filename="../mainwindow.cpp" line="3894"/>
-        <location filename="../mainwindow.cpp" line="3911"/>
-        <location filename="../mainwindow.cpp" line="3928"/>
-        <location filename="../mainwindow.cpp" line="3932"/>
+        <location filename="../mainwindow.cpp" line="3758"/>
+        <location filename="../mainwindow.cpp" line="3762"/>
+        <location filename="../mainwindow.cpp" line="3766"/>
+        <location filename="../mainwindow.cpp" line="3786"/>
+        <location filename="../mainwindow.cpp" line="3802"/>
+        <location filename="../mainwindow.cpp" line="3806"/>
+        <location filename="../mainwindow.cpp" line="3810"/>
+        <location filename="../mainwindow.cpp" line="3814"/>
+        <location filename="../mainwindow.cpp" line="3835"/>
+        <location filename="../mainwindow.cpp" line="3847"/>
+        <location filename="../mainwindow.cpp" line="3851"/>
+        <location filename="../mainwindow.cpp" line="3855"/>
+        <location filename="../mainwindow.cpp" line="3859"/>
+        <location filename="../mainwindow.cpp" line="3881"/>
+        <location filename="../mainwindow.cpp" line="3898"/>
+        <location filename="../mainwindow.cpp" line="3902"/>
+        <location filename="../mainwindow.cpp" line="3906"/>
+        <location filename="../mainwindow.cpp" line="3910"/>
+        <location filename="../mainwindow.cpp" line="3914"/>
         <location filename="../mainwindow.cpp" line="3936"/>
-        <location filename="../mainwindow.cpp" line="3954"/>
-        <location filename="../mainwindow.cpp" line="3970"/>
-        <location filename="../mainwindow.cpp" line="3974"/>
-        <location filename="../mainwindow.cpp" line="3978"/>
-        <location filename="../mainwindow.cpp" line="3995"/>
-        <location filename="../mainwindow.cpp" line="4005"/>
-        <location filename="../mainwindow.cpp" line="4009"/>
-        <location filename="../mainwindow.cpp" line="4013"/>
+        <location filename="../mainwindow.cpp" line="3951"/>
+        <location filename="../mainwindow.cpp" line="3955"/>
+        <location filename="../mainwindow.cpp" line="3959"/>
+        <location filename="../mainwindow.cpp" line="3975"/>
+        <location filename="../mainwindow.cpp" line="3992"/>
+        <location filename="../mainwindow.cpp" line="3996"/>
+        <location filename="../mainwindow.cpp" line="4000"/>
         <location filename="../mainwindow.cpp" line="4017"/>
         <location filename="../mainwindow.cpp" line="4033"/>
-        <location filename="../mainwindow.cpp" line="4050"/>
-        <location filename="../mainwindow.cpp" line="4054"/>
-        <location filename="../mainwindow.cpp" line="4058"/>
-        <location filename="../mainwindow.cpp" line="4076"/>
-        <location filename="../mainwindow.cpp" line="4082"/>
-        <location filename="../mainwindow.cpp" line="4090"/>
-        <location filename="../mainwindow.cpp" line="4104"/>
-        <location filename="../mainwindow.cpp" line="4108"/>
-        <location filename="../mainwindow.cpp" line="4113"/>
+        <location filename="../mainwindow.cpp" line="4037"/>
+        <location filename="../mainwindow.cpp" line="4041"/>
+        <location filename="../mainwindow.cpp" line="4057"/>
+        <location filename="../mainwindow.cpp" line="4067"/>
+        <location filename="../mainwindow.cpp" line="4071"/>
+        <location filename="../mainwindow.cpp" line="4075"/>
+        <location filename="../mainwindow.cpp" line="4079"/>
+        <location filename="../mainwindow.cpp" line="4094"/>
+        <location filename="../mainwindow.cpp" line="4111"/>
         <location filename="../mainwindow.cpp" line="4115"/>
         <location filename="../mainwindow.cpp" line="4119"/>
-        <location filename="../mainwindow.cpp" line="4123"/>
-        <location filename="../mainwindow.cpp" line="4148"/>
-        <location filename="../mainwindow.cpp" line="4152"/>
+        <location filename="../mainwindow.cpp" line="4136"/>
+        <location filename="../mainwindow.cpp" line="4142"/>
+        <location filename="../mainwindow.cpp" line="4150"/>
+        <location filename="../mainwindow.cpp" line="4164"/>
+        <location filename="../mainwindow.cpp" line="4168"/>
+        <location filename="../mainwindow.cpp" line="4173"/>
         <location filename="../mainwindow.cpp" line="4175"/>
-        <location filename="../mainwindow.cpp" line="4181"/>
-        <location filename="../mainwindow.cpp" line="4196"/>
-        <location filename="../mainwindow.cpp" line="4200"/>
-        <location filename="../mainwindow.cpp" line="4204"/>
-        <location filename="../mainwindow.cpp" line="4223"/>
-        <location filename="../mainwindow.cpp" line="4239"/>
-        <location filename="../mainwindow.cpp" line="4243"/>
-        <location filename="../mainwindow.cpp" line="4247"/>
-        <location filename="../mainwindow.cpp" line="4251"/>
-        <location filename="../mainwindow.cpp" line="4272"/>
-        <location filename="../mainwindow.cpp" line="4284"/>
-        <location filename="../mainwindow.cpp" line="4288"/>
-        <location filename="../mainwindow.cpp" line="4292"/>
-        <location filename="../mainwindow.cpp" line="4296"/>
-        <location filename="../mainwindow.cpp" line="4318"/>
-        <location filename="../mainwindow.cpp" line="4335"/>
-        <location filename="../mainwindow.cpp" line="4339"/>
-        <location filename="../mainwindow.cpp" line="4343"/>
-        <location filename="../mainwindow.cpp" line="4347"/>
-        <location filename="../mainwindow.cpp" line="4351"/>
-        <location filename="../mainwindow.cpp" line="4372"/>
-        <location filename="../mainwindow.cpp" line="4398"/>
-        <location filename="../mainwindow.cpp" line="4403"/>
-        <location filename="../mainwindow.cpp" line="4407"/>
-        <location filename="../mainwindow.cpp" line="4441"/>
-        <location filename="../mainwindow.cpp" line="4458"/>
-        <location filename="../mainwindow.cpp" line="4462"/>
-        <location filename="../mainwindow.cpp" line="4479"/>
-        <location filename="../mainwindow.cpp" line="4496"/>
-        <location filename="../mainwindow.cpp" line="4500"/>
-        <location filename="../mainwindow.cpp" line="4504"/>
-        <location filename="../mainwindow.cpp" line="4526"/>
-        <location filename="../mainwindow.cpp" line="4536"/>
-        <location filename="../mainwindow.cpp" line="4540"/>
-        <location filename="../mainwindow.cpp" line="4544"/>
+        <location filename="../mainwindow.cpp" line="4179"/>
+        <location filename="../mainwindow.cpp" line="4183"/>
+        <location filename="../mainwindow.cpp" line="4207"/>
+        <location filename="../mainwindow.cpp" line="4211"/>
+        <location filename="../mainwindow.cpp" line="4235"/>
+        <location filename="../mainwindow.cpp" line="4241"/>
+        <location filename="../mainwindow.cpp" line="4256"/>
+        <location filename="../mainwindow.cpp" line="4260"/>
+        <location filename="../mainwindow.cpp" line="4264"/>
+        <location filename="../mainwindow.cpp" line="4282"/>
+        <location filename="../mainwindow.cpp" line="4298"/>
+        <location filename="../mainwindow.cpp" line="4302"/>
+        <location filename="../mainwindow.cpp" line="4306"/>
+        <location filename="../mainwindow.cpp" line="4310"/>
+        <location filename="../mainwindow.cpp" line="4330"/>
+        <location filename="../mainwindow.cpp" line="4342"/>
+        <location filename="../mainwindow.cpp" line="4346"/>
+        <location filename="../mainwindow.cpp" line="4350"/>
+        <location filename="../mainwindow.cpp" line="4354"/>
+        <location filename="../mainwindow.cpp" line="4375"/>
+        <location filename="../mainwindow.cpp" line="4392"/>
+        <location filename="../mainwindow.cpp" line="4396"/>
+        <location filename="../mainwindow.cpp" line="4400"/>
+        <location filename="../mainwindow.cpp" line="4404"/>
+        <location filename="../mainwindow.cpp" line="4408"/>
+        <location filename="../mainwindow.cpp" line="4428"/>
+        <location filename="../mainwindow.cpp" line="4454"/>
+        <location filename="../mainwindow.cpp" line="4459"/>
+        <location filename="../mainwindow.cpp" line="4463"/>
+        <location filename="../mainwindow.cpp" line="4494"/>
+        <location filename="../mainwindow.cpp" line="4511"/>
+        <location filename="../mainwindow.cpp" line="4515"/>
+        <location filename="../mainwindow.cpp" line="4531"/>
         <location filename="../mainwindow.cpp" line="4548"/>
-        <location filename="../mainwindow.cpp" line="4563"/>
-        <location filename="../mainwindow.cpp" line="4580"/>
-        <location filename="../mainwindow.cpp" line="4584"/>
-        <location filename="../mainwindow.cpp" line="4588"/>
-        <location filename="../mainwindow.cpp" line="4605"/>
-        <location filename="../mainwindow.cpp" line="4617"/>
-        <location filename="../mainwindow.cpp" line="4621"/>
+        <location filename="../mainwindow.cpp" line="4552"/>
+        <location filename="../mainwindow.cpp" line="4556"/>
+        <location filename="../mainwindow.cpp" line="4576"/>
+        <location filename="../mainwindow.cpp" line="4586"/>
+        <location filename="../mainwindow.cpp" line="4590"/>
+        <location filename="../mainwindow.cpp" line="4594"/>
+        <location filename="../mainwindow.cpp" line="4598"/>
+        <location filename="../mainwindow.cpp" line="4612"/>
         <location filename="../mainwindow.cpp" line="4629"/>
         <location filename="../mainwindow.cpp" line="4633"/>
         <location filename="../mainwindow.cpp" line="4637"/>
-        <location filename="../mainwindow.cpp" line="4641"/>
-        <location filename="../mainwindow.cpp" line="4645"/>
-        <location filename="../mainwindow.cpp" line="4661"/>
-        <location filename="../mainwindow.cpp" line="4675"/>
-        <location filename="../mainwindow.cpp" line="4679"/>
-        <location filename="../mainwindow.cpp" line="4683"/>
-        <location filename="../mainwindow.cpp" line="4704"/>
+        <location filename="../mainwindow.cpp" line="4653"/>
+        <location filename="../mainwindow.cpp" line="4665"/>
+        <location filename="../mainwindow.cpp" line="4669"/>
+        <location filename="../mainwindow.cpp" line="4677"/>
+        <location filename="../mainwindow.cpp" line="4681"/>
+        <location filename="../mainwindow.cpp" line="4685"/>
+        <location filename="../mainwindow.cpp" line="4689"/>
+        <location filename="../mainwindow.cpp" line="4693"/>
         <location filename="../mainwindow.cpp" line="4708"/>
-        <location filename="../mainwindow.cpp" line="4719"/>
-        <location filename="../mainwindow.cpp" line="4731"/>
-        <location filename="../mainwindow.cpp" line="4743"/>
-        <location filename="../mainwindow.cpp" line="4755"/>
-        <location filename="../mainwindow.cpp" line="4790"/>
+        <location filename="../mainwindow.cpp" line="4722"/>
+        <location filename="../mainwindow.cpp" line="4726"/>
+        <location filename="../mainwindow.cpp" line="4730"/>
+        <location filename="../mainwindow.cpp" line="4753"/>
+        <location filename="../mainwindow.cpp" line="4757"/>
+        <location filename="../mainwindow.cpp" line="4768"/>
+        <location filename="../mainwindow.cpp" line="4780"/>
+        <location filename="../mainwindow.cpp" line="4792"/>
+        <location filename="../mainwindow.cpp" line="4804"/>
+        <location filename="../mainwindow.cpp" line="4839"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="861"/>
-        <location filename="../mainwindow.cpp" line="869"/>
+        <location filename="../mainwindow.cpp" line="909"/>
+        <location filename="../mainwindow.cpp" line="917"/>
         <source>Information</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="863"/>
+        <location filename="../mainwindow.cpp" line="911"/>
         <source>Something gone wrong</source>
         <translation>Что то пошло не так</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1020"/>
-        <location filename="../mainwindow.cpp" line="1063"/>
-        <location filename="../mainwindow.cpp" line="1119"/>
-        <location filename="../mainwindow.cpp" line="1166"/>
-        <location filename="../mainwindow.cpp" line="1220"/>
-        <location filename="../mainwindow.cpp" line="1273"/>
-        <location filename="../mainwindow.cpp" line="1378"/>
-        <location filename="../mainwindow.cpp" line="1593"/>
-        <location filename="../mainwindow.cpp" line="1649"/>
-        <location filename="../mainwindow.cpp" line="1710"/>
-        <location filename="../mainwindow.cpp" line="1762"/>
-        <location filename="../mainwindow.cpp" line="1825"/>
-        <location filename="../mainwindow.cpp" line="1875"/>
-        <location filename="../mainwindow.cpp" line="1997"/>
+        <location filename="../mainwindow.cpp" line="1069"/>
+        <location filename="../mainwindow.cpp" line="1112"/>
+        <location filename="../mainwindow.cpp" line="1168"/>
+        <location filename="../mainwindow.cpp" line="1215"/>
+        <location filename="../mainwindow.cpp" line="1269"/>
+        <location filename="../mainwindow.cpp" line="1322"/>
+        <location filename="../mainwindow.cpp" line="1427"/>
+        <location filename="../mainwindow.cpp" line="1646"/>
+        <location filename="../mainwindow.cpp" line="1702"/>
+        <location filename="../mainwindow.cpp" line="1763"/>
+        <location filename="../mainwindow.cpp" line="1815"/>
+        <location filename="../mainwindow.cpp" line="1878"/>
+        <location filename="../mainwindow.cpp" line="1928"/>
+        <location filename="../mainwindow.cpp" line="2050"/>
         <source>Former diameter</source>
         <translation>Диаметр каркаса</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1064"/>
-        <location filename="../mainwindow.cpp" line="1167"/>
-        <location filename="../mainwindow.cpp" line="1222"/>
-        <location filename="../mainwindow.cpp" line="1275"/>
-        <location filename="../mainwindow.cpp" line="1331"/>
-        <location filename="../mainwindow.cpp" line="1426"/>
-        <location filename="../mainwindow.cpp" line="1511"/>
-        <location filename="../mainwindow.cpp" line="1594"/>
-        <location filename="../mainwindow.cpp" line="1650"/>
-        <location filename="../mainwindow.cpp" line="1763"/>
-        <location filename="../mainwindow.cpp" line="1828"/>
-        <location filename="../mainwindow.cpp" line="1878"/>
-        <location filename="../mainwindow.cpp" line="1943"/>
-        <location filename="../mainwindow.cpp" line="2047"/>
-        <location filename="../mainwindow.cpp" line="2141"/>
-        <location filename="../mainwindow.cpp" line="2599"/>
-        <location filename="../mainwindow.cpp" line="2849"/>
-        <location filename="../mainwindow.cpp" line="4853"/>
-        <location filename="../mainwindow.cpp" line="4855"/>
+        <location filename="../mainwindow.cpp" line="1113"/>
+        <location filename="../mainwindow.cpp" line="1216"/>
+        <location filename="../mainwindow.cpp" line="1271"/>
+        <location filename="../mainwindow.cpp" line="1324"/>
+        <location filename="../mainwindow.cpp" line="1380"/>
+        <location filename="../mainwindow.cpp" line="1478"/>
+        <location filename="../mainwindow.cpp" line="1563"/>
+        <location filename="../mainwindow.cpp" line="1647"/>
+        <location filename="../mainwindow.cpp" line="1703"/>
+        <location filename="../mainwindow.cpp" line="1816"/>
+        <location filename="../mainwindow.cpp" line="1881"/>
+        <location filename="../mainwindow.cpp" line="1931"/>
+        <location filename="../mainwindow.cpp" line="1996"/>
+        <location filename="../mainwindow.cpp" line="2103"/>
+        <location filename="../mainwindow.cpp" line="2197"/>
+        <location filename="../mainwindow.cpp" line="2687"/>
+        <location filename="../mainwindow.cpp" line="2911"/>
+        <location filename="../mainwindow.cpp" line="4902"/>
+        <location filename="../mainwindow.cpp" line="4904"/>
         <source>Wire diameter</source>
         <translation>Диаметр провода</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1021"/>
-        <location filename="../mainwindow.cpp" line="1065"/>
-        <location filename="../mainwindow.cpp" line="1168"/>
-        <location filename="../mainwindow.cpp" line="1223"/>
-        <location filename="../mainwindow.cpp" line="1276"/>
-        <location filename="../mainwindow.cpp" line="1332"/>
-        <location filename="../mainwindow.cpp" line="1595"/>
-        <location filename="../mainwindow.cpp" line="1651"/>
-        <location filename="../mainwindow.cpp" line="1764"/>
-        <location filename="../mainwindow.cpp" line="1829"/>
-        <location filename="../mainwindow.cpp" line="1879"/>
-        <location filename="../mainwindow.cpp" line="1944"/>
+        <location filename="../mainwindow.cpp" line="1070"/>
+        <location filename="../mainwindow.cpp" line="1114"/>
+        <location filename="../mainwindow.cpp" line="1217"/>
+        <location filename="../mainwindow.cpp" line="1272"/>
+        <location filename="../mainwindow.cpp" line="1325"/>
+        <location filename="../mainwindow.cpp" line="1381"/>
+        <location filename="../mainwindow.cpp" line="1648"/>
+        <location filename="../mainwindow.cpp" line="1704"/>
+        <location filename="../mainwindow.cpp" line="1817"/>
+        <location filename="../mainwindow.cpp" line="1882"/>
+        <location filename="../mainwindow.cpp" line="1932"/>
+        <location filename="../mainwindow.cpp" line="1997"/>
         <source>Wire diameter with insulation</source>
         <translation>Диаметр провода с изоляцией</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1120"/>
-        <location filename="../mainwindow.cpp" line="1711"/>
+        <location filename="../mainwindow.cpp" line="854"/>
+        <source>Abort</source>
+        <translation>Прервать</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1169"/>
+        <location filename="../mainwindow.cpp" line="1764"/>
         <source>Wire width</source>
         <translation>Ширина провода</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1121"/>
-        <location filename="../mainwindow.cpp" line="1712"/>
+        <location filename="../mainwindow.cpp" line="1170"/>
+        <location filename="../mainwindow.cpp" line="1765"/>
         <source>Wire thickness</source>
         <translation>Толщина провода</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1170"/>
-        <location filename="../mainwindow.cpp" line="1766"/>
+        <location filename="../mainwindow.cpp" line="1219"/>
+        <location filename="../mainwindow.cpp" line="1819"/>
         <source>Number of sides of the former</source>
         <translation>Число сторон каркаса</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1221"/>
-        <location filename="../mainwindow.cpp" line="1274"/>
-        <location filename="../mainwindow.cpp" line="1330"/>
-        <location filename="../mainwindow.cpp" line="1826"/>
-        <location filename="../mainwindow.cpp" line="1876"/>
-        <location filename="../mainwindow.cpp" line="1941"/>
-        <location filename="../mainwindow.cpp" line="2619"/>
+        <location filename="../mainwindow.cpp" line="1270"/>
+        <location filename="../mainwindow.cpp" line="1323"/>
+        <location filename="../mainwindow.cpp" line="1379"/>
+        <location filename="../mainwindow.cpp" line="1879"/>
+        <location filename="../mainwindow.cpp" line="1929"/>
+        <location filename="../mainwindow.cpp" line="1994"/>
+        <location filename="../mainwindow.cpp" line="2707"/>
         <source>Winding length</source>
         <translation>Длина намотки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1278"/>
-        <location filename="../mainwindow.cpp" line="1881"/>
+        <location filename="../mainwindow.cpp" line="1327"/>
+        <location filename="../mainwindow.cpp" line="1934"/>
         <source>Layers number beetween insulating pads</source>
         <translation>Число слоев между изолирующими прокладками</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1328"/>
-        <location filename="../mainwindow.cpp" line="1939"/>
+        <location filename="../mainwindow.cpp" line="1377"/>
+        <location filename="../mainwindow.cpp" line="1992"/>
         <source>Former width</source>
         <translation>Ширина каркаса</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1329"/>
-        <location filename="../mainwindow.cpp" line="1940"/>
+        <location filename="../mainwindow.cpp" line="1378"/>
+        <location filename="../mainwindow.cpp" line="1993"/>
         <source>Former height</source>
         <translation>Высота каркаса</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1379"/>
-        <location filename="../mainwindow.cpp" line="1998"/>
+        <location filename="../mainwindow.cpp" line="1428"/>
+        <location filename="../mainwindow.cpp" line="2051"/>
         <source>Foil width</source>
         <translation>Ширина фольги</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1380"/>
-        <location filename="../mainwindow.cpp" line="1999"/>
+        <location filename="../mainwindow.cpp" line="1429"/>
+        <location filename="../mainwindow.cpp" line="2052"/>
         <source>Foil thickness</source>
         <translation>Толщина фольги</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1425"/>
-        <location filename="../mainwindow.cpp" line="2046"/>
+        <location filename="../mainwindow.cpp" line="1477"/>
+        <location filename="../mainwindow.cpp" line="2102"/>
         <source>Core height</source>
         <translation>Высота сердечника</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1427"/>
-        <location filename="../mainwindow.cpp" line="2048"/>
+        <location filename="../mainwindow.cpp" line="1479"/>
+        <location filename="../mainwindow.cpp" line="2104"/>
         <source>Magnetic permeability</source>
         <translation>Магнитная проницаемость</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1428"/>
-        <location filename="../mainwindow.cpp" line="2063"/>
+        <location filename="../mainwindow.cpp" line="1480"/>
+        <location filename="../mainwindow.cpp" line="2119"/>
         <source>Chamfer</source>
         <translation>Фаска</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1466"/>
-        <location filename="../mainwindow.cpp" line="2095"/>
+        <location filename="../mainwindow.cpp" line="1518"/>
+        <location filename="../mainwindow.cpp" line="2151"/>
         <source>Substrate dielectric loss</source>
         <translation>Потери диэлектрика подложки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3210"/>
-        <location filename="../mainwindow.cpp" line="3565"/>
-        <location filename="../mainwindow.cpp" line="3848"/>
-        <location filename="../mainwindow.cpp" line="4351"/>
+        <location filename="../mainwindow.cpp" line="3272"/>
+        <location filename="../mainwindow.cpp" line="3627"/>
+        <location filename="../mainwindow.cpp" line="3914"/>
+        <location filename="../mainwindow.cpp" line="4408"/>
         <source>The number of sides must be integer and at least three!</source>
         <translation>Число сторон должно быть целым и не менее трех!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3663"/>
-        <location filename="../mainwindow.cpp" line="3669"/>
-        <location filename="../mainwindow.cpp" line="3718"/>
-        <location filename="../mainwindow.cpp" line="3768"/>
-        <location filename="../mainwindow.cpp" line="3815"/>
-        <location filename="../mainwindow.cpp" line="3871"/>
-        <location filename="../mainwindow.cpp" line="3911"/>
-        <location filename="../mainwindow.cpp" line="3954"/>
-        <location filename="../mainwindow.cpp" line="3995"/>
-        <location filename="../mainwindow.cpp" line="4033"/>
-        <location filename="../mainwindow.cpp" line="4076"/>
-        <location filename="../mainwindow.cpp" line="4082"/>
-        <location filename="../mainwindow.cpp" line="4175"/>
-        <location filename="../mainwindow.cpp" line="4181"/>
-        <location filename="../mainwindow.cpp" line="4223"/>
-        <location filename="../mainwindow.cpp" line="4272"/>
-        <location filename="../mainwindow.cpp" line="4318"/>
-        <location filename="../mainwindow.cpp" line="4372"/>
-        <location filename="../mainwindow.cpp" line="4441"/>
-        <location filename="../mainwindow.cpp" line="4479"/>
-        <location filename="../mainwindow.cpp" line="4526"/>
-        <location filename="../mainwindow.cpp" line="4563"/>
-        <location filename="../mainwindow.cpp" line="4605"/>
-        <location filename="../mainwindow.cpp" line="4661"/>
-        <location filename="../mainwindow.cpp" line="4704"/>
+        <location filename="../mainwindow.cpp" line="3732"/>
+        <location filename="../mainwindow.cpp" line="3738"/>
+        <location filename="../mainwindow.cpp" line="3786"/>
+        <location filename="../mainwindow.cpp" line="3835"/>
+        <location filename="../mainwindow.cpp" line="3881"/>
+        <location filename="../mainwindow.cpp" line="3936"/>
+        <location filename="../mainwindow.cpp" line="3975"/>
+        <location filename="../mainwindow.cpp" line="4017"/>
+        <location filename="../mainwindow.cpp" line="4057"/>
+        <location filename="../mainwindow.cpp" line="4094"/>
+        <location filename="../mainwindow.cpp" line="4136"/>
+        <location filename="../mainwindow.cpp" line="4142"/>
+        <location filename="../mainwindow.cpp" line="4235"/>
+        <location filename="../mainwindow.cpp" line="4241"/>
+        <location filename="../mainwindow.cpp" line="4282"/>
+        <location filename="../mainwindow.cpp" line="4330"/>
+        <location filename="../mainwindow.cpp" line="4375"/>
+        <location filename="../mainwindow.cpp" line="4428"/>
+        <location filename="../mainwindow.cpp" line="4494"/>
+        <location filename="../mainwindow.cpp" line="4531"/>
+        <location filename="../mainwindow.cpp" line="4576"/>
+        <location filename="../mainwindow.cpp" line="4612"/>
+        <location filename="../mainwindow.cpp" line="4653"/>
+        <location filename="../mainwindow.cpp" line="4708"/>
+        <location filename="../mainwindow.cpp" line="4753"/>
         <source>One or more inputs are empty!</source>
         <translation>Один или несколько полей ввода пусты!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3693"/>
-        <location filename="../mainwindow.cpp" line="3738"/>
-        <location filename="../mainwindow.cpp" line="3784"/>
-        <location filename="../mainwindow.cpp" line="3836"/>
-        <location filename="../mainwindow.cpp" line="3890"/>
-        <location filename="../mainwindow.cpp" line="3932"/>
-        <location filename="../mainwindow.cpp" line="3974"/>
-        <location filename="../mainwindow.cpp" line="4009"/>
-        <location filename="../mainwindow.cpp" line="4054"/>
-        <location filename="../mainwindow.cpp" line="4108"/>
-        <location filename="../mainwindow.cpp" line="4152"/>
-        <location filename="../mainwindow.cpp" line="4200"/>
-        <location filename="../mainwindow.cpp" line="4243"/>
-        <location filename="../mainwindow.cpp" line="4288"/>
-        <location filename="../mainwindow.cpp" line="4339"/>
-        <location filename="../mainwindow.cpp" line="4403"/>
-        <location filename="../mainwindow.cpp" line="4462"/>
-        <location filename="../mainwindow.cpp" line="4500"/>
-        <location filename="../mainwindow.cpp" line="4540"/>
-        <location filename="../mainwindow.cpp" line="4584"/>
-        <location filename="../mainwindow.cpp" line="4617"/>
+        <location filename="../mainwindow.cpp" line="3762"/>
+        <location filename="../mainwindow.cpp" line="3806"/>
+        <location filename="../mainwindow.cpp" line="3851"/>
+        <location filename="../mainwindow.cpp" line="3902"/>
+        <location filename="../mainwindow.cpp" line="3955"/>
+        <location filename="../mainwindow.cpp" line="3996"/>
+        <location filename="../mainwindow.cpp" line="4037"/>
+        <location filename="../mainwindow.cpp" line="4071"/>
+        <location filename="../mainwindow.cpp" line="4115"/>
+        <location filename="../mainwindow.cpp" line="4168"/>
+        <location filename="../mainwindow.cpp" line="4211"/>
+        <location filename="../mainwindow.cpp" line="4260"/>
+        <location filename="../mainwindow.cpp" line="4302"/>
+        <location filename="../mainwindow.cpp" line="4346"/>
+        <location filename="../mainwindow.cpp" line="4396"/>
+        <location filename="../mainwindow.cpp" line="4459"/>
+        <location filename="../mainwindow.cpp" line="4515"/>
+        <location filename="../mainwindow.cpp" line="4552"/>
+        <location filename="../mainwindow.cpp" line="4590"/>
         <location filename="../mainwindow.cpp" line="4633"/>
-        <location filename="../mainwindow.cpp" line="4679"/>
-        <location filename="../mainwindow.cpp" line="4708"/>
+        <location filename="../mainwindow.cpp" line="4665"/>
+        <location filename="../mainwindow.cpp" line="4681"/>
+        <location filename="../mainwindow.cpp" line="4726"/>
+        <location filename="../mainwindow.cpp" line="4757"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Одно или несколько значений равны нулю!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4898"/>
-        <location filename="../mainwindow.cpp" line="4985"/>
-        <location filename="../mainwindow.cpp" line="5074"/>
-        <location filename="../mainwindow.cpp" line="5484"/>
-        <location filename="../mainwindow.cpp" line="5570"/>
-        <location filename="../mainwindow.cpp" line="5662"/>
+        <location filename="../mainwindow.cpp" line="4947"/>
+        <location filename="../mainwindow.cpp" line="5036"/>
+        <location filename="../mainwindow.cpp" line="5128"/>
+        <location filename="../mainwindow.cpp" line="5555"/>
+        <location filename="../mainwindow.cpp" line="5644"/>
+        <location filename="../mainwindow.cpp" line="5739"/>
         <source>Input data for LTSpice</source>
         <translation>Входные данные для LTSpice</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5258"/>
-        <location filename="../mainwindow.cpp" line="5845"/>
+        <location filename="../mainwindow.cpp" line="4962"/>
+        <location filename="../mainwindow.cpp" line="5049"/>
+        <location filename="../mainwindow.cpp" line="5141"/>
+        <location filename="../mainwindow.cpp" line="5195"/>
+        <location filename="../mainwindow.cpp" line="5246"/>
+        <location filename="../mainwindow.cpp" line="5298"/>
+        <location filename="../mainwindow.cpp" line="5330"/>
+        <location filename="../mainwindow.cpp" line="5427"/>
+        <location filename="../mainwindow.cpp" line="5460"/>
+        <location filename="../mainwindow.cpp" line="5568"/>
+        <location filename="../mainwindow.cpp" line="5657"/>
+        <location filename="../mainwindow.cpp" line="5752"/>
+        <location filename="../mainwindow.cpp" line="5816"/>
+        <location filename="../mainwindow.cpp" line="5847"/>
+        <location filename="../mainwindow.cpp" line="5909"/>
+        <location filename="../mainwindow.cpp" line="5942"/>
+        <location filename="../mainwindow.cpp" line="6070"/>
+        <source>Calculation was aborted</source>
+        <translation>Расчет был прерван</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="5324"/>
+        <location filename="../mainwindow.cpp" line="5934"/>
         <source>Length of the foil</source>
         <translation>Длина фольги</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5291"/>
-        <location filename="../mainwindow.cpp" line="5880"/>
+        <location filename="../mainwindow.cpp" line="5358"/>
+        <location filename="../mainwindow.cpp" line="5970"/>
         <source>Effective magnetic path length</source>
         <translation>Эффективная длина магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5294"/>
-        <location filename="../mainwindow.cpp" line="5883"/>
+        <location filename="../mainwindow.cpp" line="5361"/>
+        <location filename="../mainwindow.cpp" line="5973"/>
         <source>Effective area of magnetic path</source>
         <translation>Эффективная площадь магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5297"/>
-        <location filename="../mainwindow.cpp" line="5886"/>
+        <location filename="../mainwindow.cpp" line="5364"/>
+        <location filename="../mainwindow.cpp" line="5976"/>
         <source>Effective volume</source>
         <translation>Эффективный объем</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5361"/>
-        <location filename="../mainwindow.cpp" line="5954"/>
+        <location filename="../mainwindow.cpp" line="5429"/>
+        <location filename="../mainwindow.cpp" line="6042"/>
         <source>Invalid input parameter combination</source>
         <translation>Недопустимая комбинация входных параметров</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6250"/>
-        <location filename="../mainwindow.cpp" line="6251"/>
-        <location filename="../mainwindow.cpp" line="6265"/>
-        <location filename="../mainwindow.cpp" line="6266"/>
+        <location filename="../mainwindow.cpp" line="6329"/>
+        <location filename="../mainwindow.cpp" line="6330"/>
+        <location filename="../mainwindow.cpp" line="6344"/>
+        <location filename="../mainwindow.cpp" line="6345"/>
         <source>Outside dimension</source>
         <translation>Внешний размер</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5948"/>
-        <location filename="../mainwindow.cpp" line="6252"/>
+        <location filename="../mainwindow.cpp" line="6036"/>
+        <location filename="../mainwindow.cpp" line="6331"/>
         <source>Inside dimension</source>
         <translation>Внутренний размер</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6316"/>
+        <location filename="../mainwindow.cpp" line="6395"/>
         <source> calculation will be deleted</source>
         <translation> расчет будет удален</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2911"/>
-        <location filename="../mainwindow.cpp" line="2920"/>
-        <location filename="../mainwindow.cpp" line="2937"/>
-        <location filename="../mainwindow.cpp" line="2942"/>
-        <location filename="../mainwindow.cpp" line="2948"/>
-        <location filename="../mainwindow.cpp" line="2967"/>
-        <location filename="../mainwindow.cpp" line="2992"/>
-        <location filename="../mainwindow.cpp" line="3012"/>
+        <location filename="../mainwindow.cpp" line="2973"/>
+        <location filename="../mainwindow.cpp" line="2982"/>
+        <location filename="../mainwindow.cpp" line="2999"/>
+        <location filename="../mainwindow.cpp" line="3004"/>
+        <location filename="../mainwindow.cpp" line="3010"/>
         <location filename="../mainwindow.cpp" line="3029"/>
-        <location filename="../mainwindow.cpp" line="3035"/>
-        <location filename="../mainwindow.cpp" line="3040"/>
-        <location filename="../mainwindow.cpp" line="3046"/>
-        <location filename="../mainwindow.cpp" line="3057"/>
-        <location filename="../mainwindow.cpp" line="3078"/>
-        <location filename="../mainwindow.cpp" line="3084"/>
-        <location filename="../mainwindow.cpp" line="3096"/>
+        <location filename="../mainwindow.cpp" line="3054"/>
+        <location filename="../mainwindow.cpp" line="3074"/>
+        <location filename="../mainwindow.cpp" line="3091"/>
+        <location filename="../mainwindow.cpp" line="3097"/>
+        <location filename="../mainwindow.cpp" line="3102"/>
         <location filename="../mainwindow.cpp" line="3108"/>
-        <location filename="../mainwindow.cpp" line="3113"/>
-        <location filename="../mainwindow.cpp" line="3118"/>
-        <location filename="../mainwindow.cpp" line="3123"/>
+        <location filename="../mainwindow.cpp" line="3119"/>
         <location filename="../mainwindow.cpp" line="3140"/>
         <location filename="../mainwindow.cpp" line="3146"/>
-        <location filename="../mainwindow.cpp" line="3152"/>
-        <location filename="../mainwindow.cpp" line="3163"/>
-        <location filename="../mainwindow.cpp" line="3181"/>
-        <location filename="../mainwindow.cpp" line="3189"/>
-        <location filename="../mainwindow.cpp" line="3205"/>
-        <location filename="../mainwindow.cpp" line="3215"/>
-        <location filename="../mainwindow.cpp" line="3220"/>
+        <location filename="../mainwindow.cpp" line="3158"/>
+        <location filename="../mainwindow.cpp" line="3170"/>
+        <location filename="../mainwindow.cpp" line="3175"/>
+        <location filename="../mainwindow.cpp" line="3180"/>
+        <location filename="../mainwindow.cpp" line="3185"/>
+        <location filename="../mainwindow.cpp" line="3202"/>
+        <location filename="../mainwindow.cpp" line="3208"/>
+        <location filename="../mainwindow.cpp" line="3214"/>
         <location filename="../mainwindow.cpp" line="3225"/>
-        <location filename="../mainwindow.cpp" line="3241"/>
-        <location filename="../mainwindow.cpp" line="3246"/>
+        <location filename="../mainwindow.cpp" line="3243"/>
         <location filename="../mainwindow.cpp" line="3251"/>
+        <location filename="../mainwindow.cpp" line="3267"/>
         <location filename="../mainwindow.cpp" line="3277"/>
-        <location filename="../mainwindow.cpp" line="3286"/>
+        <location filename="../mainwindow.cpp" line="3282"/>
+        <location filename="../mainwindow.cpp" line="3287"/>
         <location filename="../mainwindow.cpp" line="3303"/>
         <location filename="../mainwindow.cpp" line="3308"/>
-        <location filename="../mainwindow.cpp" line="3314"/>
-        <location filename="../mainwindow.cpp" line="3319"/>
-        <location filename="../mainwindow.cpp" line="3343"/>
-        <location filename="../mainwindow.cpp" line="3360"/>
-        <location filename="../mainwindow.cpp" line="3366"/>
-        <location filename="../mainwindow.cpp" line="3371"/>
-        <location filename="../mainwindow.cpp" line="3378"/>
+        <location filename="../mainwindow.cpp" line="3313"/>
+        <location filename="../mainwindow.cpp" line="3339"/>
+        <location filename="../mainwindow.cpp" line="3348"/>
+        <location filename="../mainwindow.cpp" line="3365"/>
+        <location filename="../mainwindow.cpp" line="3370"/>
+        <location filename="../mainwindow.cpp" line="3376"/>
         <location filename="../mainwindow.cpp" line="3381"/>
-        <location filename="../mainwindow.cpp" line="3387"/>
-        <location filename="../mainwindow.cpp" line="3406"/>
-        <location filename="../mainwindow.cpp" line="3412"/>
-        <location filename="../mainwindow.cpp" line="3418"/>
-        <location filename="../mainwindow.cpp" line="3421"/>
-        <location filename="../mainwindow.cpp" line="3427"/>
-        <location filename="../mainwindow.cpp" line="3432"/>
-        <location filename="../mainwindow.cpp" line="3437"/>
-        <location filename="../mainwindow.cpp" line="3442"/>
-        <location filename="../mainwindow.cpp" line="3453"/>
-        <location filename="../mainwindow.cpp" line="3473"/>
-        <location filename="../mainwindow.cpp" line="3479"/>
-        <location filename="../mainwindow.cpp" line="3491"/>
-        <location filename="../mainwindow.cpp" line="3501"/>
-        <location filename="../mainwindow.cpp" line="3513"/>
-        <location filename="../mainwindow.cpp" line="3525"/>
-        <location filename="../mainwindow.cpp" line="3536"/>
-        <location filename="../mainwindow.cpp" line="3544"/>
-        <location filename="../mainwindow.cpp" line="3560"/>
-        <location filename="../mainwindow.cpp" line="3571"/>
-        <location filename="../mainwindow.cpp" line="3582"/>
-        <location filename="../mainwindow.cpp" line="3594"/>
-        <location filename="../mainwindow.cpp" line="3599"/>
-        <location filename="../mainwindow.cpp" line="3615"/>
-        <location filename="../mainwindow.cpp" line="3620"/>
-        <location filename="../mainwindow.cpp" line="3625"/>
-        <location filename="../mainwindow.cpp" line="3630"/>
-        <location filename="../mainwindow.cpp" line="3646"/>
-        <location filename="../mainwindow.cpp" line="3689"/>
-        <location filename="../mainwindow.cpp" line="3734"/>
-        <location filename="../mainwindow.cpp" line="3780"/>
-        <location filename="../mainwindow.cpp" line="3832"/>
-        <location filename="../mainwindow.cpp" line="3886"/>
-        <location filename="../mainwindow.cpp" line="3928"/>
-        <location filename="../mainwindow.cpp" line="3970"/>
-        <location filename="../mainwindow.cpp" line="4005"/>
-        <location filename="../mainwindow.cpp" line="4050"/>
-        <location filename="../mainwindow.cpp" line="4090"/>
-        <location filename="../mainwindow.cpp" line="4104"/>
-        <location filename="../mainwindow.cpp" line="4123"/>
-        <location filename="../mainwindow.cpp" line="4148"/>
-        <location filename="../mainwindow.cpp" line="4196"/>
-        <location filename="../mainwindow.cpp" line="4239"/>
-        <location filename="../mainwindow.cpp" line="4284"/>
-        <location filename="../mainwindow.cpp" line="4335"/>
-        <location filename="../mainwindow.cpp" line="4398"/>
-        <location filename="../mainwindow.cpp" line="4458"/>
-        <location filename="../mainwindow.cpp" line="4496"/>
-        <location filename="../mainwindow.cpp" line="4536"/>
-        <location filename="../mainwindow.cpp" line="4580"/>
-        <location filename="../mainwindow.cpp" line="4621"/>
+        <location filename="../mainwindow.cpp" line="3405"/>
+        <location filename="../mainwindow.cpp" line="3422"/>
+        <location filename="../mainwindow.cpp" line="3428"/>
+        <location filename="../mainwindow.cpp" line="3433"/>
+        <location filename="../mainwindow.cpp" line="3440"/>
+        <location filename="../mainwindow.cpp" line="3443"/>
+        <location filename="../mainwindow.cpp" line="3449"/>
+        <location filename="../mainwindow.cpp" line="3468"/>
+        <location filename="../mainwindow.cpp" line="3474"/>
+        <location filename="../mainwindow.cpp" line="3480"/>
+        <location filename="../mainwindow.cpp" line="3483"/>
+        <location filename="../mainwindow.cpp" line="3489"/>
+        <location filename="../mainwindow.cpp" line="3494"/>
+        <location filename="../mainwindow.cpp" line="3499"/>
+        <location filename="../mainwindow.cpp" line="3504"/>
+        <location filename="../mainwindow.cpp" line="3515"/>
+        <location filename="../mainwindow.cpp" line="3535"/>
+        <location filename="../mainwindow.cpp" line="3541"/>
+        <location filename="../mainwindow.cpp" line="3553"/>
+        <location filename="../mainwindow.cpp" line="3563"/>
+        <location filename="../mainwindow.cpp" line="3575"/>
+        <location filename="../mainwindow.cpp" line="3587"/>
+        <location filename="../mainwindow.cpp" line="3598"/>
+        <location filename="../mainwindow.cpp" line="3606"/>
+        <location filename="../mainwindow.cpp" line="3622"/>
+        <location filename="../mainwindow.cpp" line="3633"/>
+        <location filename="../mainwindow.cpp" line="3644"/>
+        <location filename="../mainwindow.cpp" line="3656"/>
+        <location filename="../mainwindow.cpp" line="3661"/>
+        <location filename="../mainwindow.cpp" line="3677"/>
+        <location filename="../mainwindow.cpp" line="3682"/>
+        <location filename="../mainwindow.cpp" line="3687"/>
+        <location filename="../mainwindow.cpp" line="3692"/>
+        <location filename="../mainwindow.cpp" line="3708"/>
+        <location filename="../mainwindow.cpp" line="3758"/>
+        <location filename="../mainwindow.cpp" line="3802"/>
+        <location filename="../mainwindow.cpp" line="3847"/>
+        <location filename="../mainwindow.cpp" line="3898"/>
+        <location filename="../mainwindow.cpp" line="3951"/>
+        <location filename="../mainwindow.cpp" line="3992"/>
+        <location filename="../mainwindow.cpp" line="4033"/>
+        <location filename="../mainwindow.cpp" line="4067"/>
+        <location filename="../mainwindow.cpp" line="4111"/>
+        <location filename="../mainwindow.cpp" line="4150"/>
+        <location filename="../mainwindow.cpp" line="4164"/>
+        <location filename="../mainwindow.cpp" line="4183"/>
+        <location filename="../mainwindow.cpp" line="4207"/>
+        <location filename="../mainwindow.cpp" line="4256"/>
+        <location filename="../mainwindow.cpp" line="4298"/>
+        <location filename="../mainwindow.cpp" line="4342"/>
+        <location filename="../mainwindow.cpp" line="4392"/>
+        <location filename="../mainwindow.cpp" line="4454"/>
+        <location filename="../mainwindow.cpp" line="4511"/>
+        <location filename="../mainwindow.cpp" line="4548"/>
+        <location filename="../mainwindow.cpp" line="4586"/>
         <location filename="../mainwindow.cpp" line="4629"/>
-        <location filename="../mainwindow.cpp" line="4645"/>
-        <location filename="../mainwindow.cpp" line="4675"/>
-        <location filename="../mainwindow.cpp" line="4719"/>
-        <location filename="../mainwindow.cpp" line="4731"/>
-        <location filename="../mainwindow.cpp" line="4743"/>
-        <location filename="../mainwindow.cpp" line="4755"/>
+        <location filename="../mainwindow.cpp" line="4669"/>
+        <location filename="../mainwindow.cpp" line="4677"/>
+        <location filename="../mainwindow.cpp" line="4693"/>
+        <location filename="../mainwindow.cpp" line="4722"/>
+        <location filename="../mainwindow.cpp" line="4768"/>
+        <location filename="../mainwindow.cpp" line="4780"/>
+        <location filename="../mainwindow.cpp" line="4792"/>
+        <location filename="../mainwindow.cpp" line="4804"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Одно или несколько значений имеют недопустимый формат!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4769"/>
+        <location filename="../mainwindow.cpp" line="4818"/>
         <source>LC tank calculation</source>
         <translation>Расчет LC контура</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4771"/>
-        <location filename="../mainwindow.cpp" line="4806"/>
-        <location filename="../mainwindow.cpp" line="4922"/>
-        <location filename="../mainwindow.cpp" line="5006"/>
-        <location filename="../mainwindow.cpp" line="5099"/>
-        <location filename="../mainwindow.cpp" line="5146"/>
-        <location filename="../mainwindow.cpp" line="5194"/>
-        <location filename="../mainwindow.cpp" line="5243"/>
-        <location filename="../mainwindow.cpp" line="5272"/>
-        <location filename="../mainwindow.cpp" line="5340"/>
-        <location filename="../mainwindow.cpp" line="5373"/>
-        <location filename="../mainwindow.cpp" line="5406"/>
-        <location filename="../mainwindow.cpp" line="5505"/>
-        <location filename="../mainwindow.cpp" line="5591"/>
-        <location filename="../mainwindow.cpp" line="5687"/>
-        <location filename="../mainwindow.cpp" line="5744"/>
-        <location filename="../mainwindow.cpp" line="5772"/>
-        <location filename="../mainwindow.cpp" line="5831"/>
-        <location filename="../mainwindow.cpp" line="5861"/>
-        <location filename="../mainwindow.cpp" line="5929"/>
-        <location filename="../mainwindow.cpp" line="5965"/>
+        <location filename="../mainwindow.cpp" line="4820"/>
+        <location filename="../mainwindow.cpp" line="4855"/>
+        <location filename="../mainwindow.cpp" line="4971"/>
+        <location filename="../mainwindow.cpp" line="5058"/>
+        <location filename="../mainwindow.cpp" line="5154"/>
+        <location filename="../mainwindow.cpp" line="5204"/>
+        <location filename="../mainwindow.cpp" line="5255"/>
+        <location filename="../mainwindow.cpp" line="5307"/>
+        <location filename="../mainwindow.cpp" line="5339"/>
+        <location filename="../mainwindow.cpp" line="5405"/>
+        <location filename="../mainwindow.cpp" line="5439"/>
+        <location filename="../mainwindow.cpp" line="5475"/>
+        <location filename="../mainwindow.cpp" line="5577"/>
+        <location filename="../mainwindow.cpp" line="5666"/>
+        <location filename="../mainwindow.cpp" line="5765"/>
+        <location filename="../mainwindow.cpp" line="5825"/>
+        <location filename="../mainwindow.cpp" line="5856"/>
+        <location filename="../mainwindow.cpp" line="5918"/>
+        <location filename="../mainwindow.cpp" line="5951"/>
+        <location filename="../mainwindow.cpp" line="6017"/>
+        <location filename="../mainwindow.cpp" line="6051"/>
         <source>Input</source>
         <translation>Ввод</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4774"/>
-        <location filename="../mainwindow.cpp" line="4841"/>
-        <location filename="../mainwindow.cpp" line="4938"/>
-        <location filename="../mainwindow.cpp" line="5027"/>
-        <location filename="../mainwindow.cpp" line="5106"/>
-        <location filename="../mainwindow.cpp" line="5154"/>
-        <location filename="../mainwindow.cpp" line="5201"/>
-        <location filename="../mainwindow.cpp" line="5249"/>
-        <location filename="../mainwindow.cpp" line="5280"/>
-        <location filename="../mainwindow.cpp" line="5349"/>
-        <location filename="../mainwindow.cpp" line="5378"/>
-        <location filename="../mainwindow.cpp" line="5434"/>
-        <location filename="../mainwindow.cpp" line="5520"/>
-        <location filename="../mainwindow.cpp" line="5611"/>
-        <location filename="../mainwindow.cpp" line="5697"/>
-        <location filename="../mainwindow.cpp" line="5757"/>
-        <location filename="../mainwindow.cpp" line="5782"/>
-        <location filename="../mainwindow.cpp" line="5837"/>
+        <location filename="../mainwindow.cpp" line="4823"/>
+        <location filename="../mainwindow.cpp" line="4890"/>
+        <location filename="../mainwindow.cpp" line="4989"/>
+        <location filename="../mainwindow.cpp" line="5081"/>
+        <location filename="../mainwindow.cpp" line="5163"/>
+        <location filename="../mainwindow.cpp" line="5214"/>
+        <location filename="../mainwindow.cpp" line="5264"/>
+        <location filename="../mainwindow.cpp" line="5315"/>
+        <location filename="../mainwindow.cpp" line="5347"/>
+        <location filename="../mainwindow.cpp" line="5416"/>
+        <location filename="../mainwindow.cpp" line="5446"/>
+        <location filename="../mainwindow.cpp" line="5505"/>
+        <location filename="../mainwindow.cpp" line="5594"/>
+        <location filename="../mainwindow.cpp" line="5688"/>
+        <location filename="../mainwindow.cpp" line="5777"/>
+        <location filename="../mainwindow.cpp" line="5840"/>
         <location filename="../mainwindow.cpp" line="5868"/>
-        <location filename="../mainwindow.cpp" line="5938"/>
-        <location filename="../mainwindow.cpp" line="5970"/>
+        <location filename="../mainwindow.cpp" line="5926"/>
+        <location filename="../mainwindow.cpp" line="5958"/>
+        <location filename="../mainwindow.cpp" line="6026"/>
+        <location filename="../mainwindow.cpp" line="6058"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4723"/>
+        <location filename="../mainwindow.cpp" line="4772"/>
         <source>Frequency of a circuit</source>
         <translation>Частота контура</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4735"/>
-        <location filename="../mainwindow.cpp" line="4764"/>
+        <location filename="../mainwindow.cpp" line="4784"/>
+        <location filename="../mainwindow.cpp" line="4813"/>
         <source>Inductance of a circuit</source>
         <translation>Индуктивность контура</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2531"/>
-        <location filename="../mainwindow.cpp" line="4778"/>
-        <location filename="../mainwindow.cpp" line="4889"/>
-        <location filename="../mainwindow.cpp" line="4976"/>
-        <location filename="../mainwindow.cpp" line="5065"/>
-        <location filename="../mainwindow.cpp" line="5475"/>
-        <location filename="../mainwindow.cpp" line="5561"/>
-        <location filename="../mainwindow.cpp" line="5653"/>
+        <location filename="../mainwindow.cpp" line="2587"/>
+        <location filename="../mainwindow.cpp" line="4827"/>
+        <location filename="../mainwindow.cpp" line="4938"/>
+        <location filename="../mainwindow.cpp" line="5027"/>
+        <location filename="../mainwindow.cpp" line="5119"/>
+        <location filename="../mainwindow.cpp" line="5546"/>
+        <location filename="../mainwindow.cpp" line="5635"/>
+        <location filename="../mainwindow.cpp" line="5730"/>
         <source>Characteristic impedance</source>
         <translation>Характеристическое сопротивление</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2535"/>
-        <location filename="../mainwindow.cpp" line="2846"/>
-        <location filename="../mainwindow.cpp" line="4778"/>
-        <location filename="../mainwindow.cpp" line="4869"/>
-        <location filename="../mainwindow.cpp" line="4871"/>
-        <location filename="../mainwindow.cpp" line="4881"/>
-        <location filename="../mainwindow.cpp" line="4889"/>
-        <location filename="../mainwindow.cpp" line="4956"/>
-        <location filename="../mainwindow.cpp" line="4957"/>
-        <location filename="../mainwindow.cpp" line="4967"/>
-        <location filename="../mainwindow.cpp" line="4976"/>
-        <location filename="../mainwindow.cpp" line="5045"/>
-        <location filename="../mainwindow.cpp" line="5046"/>
-        <location filename="../mainwindow.cpp" line="5056"/>
-        <location filename="../mainwindow.cpp" line="5065"/>
-        <location filename="../mainwindow.cpp" line="5133"/>
-        <location filename="../mainwindow.cpp" line="5180"/>
-        <location filename="../mainwindow.cpp" line="5232"/>
-        <location filename="../mainwindow.cpp" line="5260"/>
-        <location filename="../mainwindow.cpp" line="5261"/>
-        <location filename="../mainwindow.cpp" line="5455"/>
-        <location filename="../mainwindow.cpp" line="5456"/>
-        <location filename="../mainwindow.cpp" line="5466"/>
-        <location filename="../mainwindow.cpp" line="5475"/>
-        <location filename="../mainwindow.cpp" line="5541"/>
-        <location filename="../mainwindow.cpp" line="5542"/>
-        <location filename="../mainwindow.cpp" line="5552"/>
-        <location filename="../mainwindow.cpp" line="5561"/>
-        <location filename="../mainwindow.cpp" line="5633"/>
-        <location filename="../mainwindow.cpp" line="5634"/>
-        <location filename="../mainwindow.cpp" line="5644"/>
-        <location filename="../mainwindow.cpp" line="5653"/>
-        <location filename="../mainwindow.cpp" line="5705"/>
-        <location filename="../mainwindow.cpp" line="5806"/>
-        <location filename="../mainwindow.cpp" line="5849"/>
-        <location filename="../mainwindow.cpp" line="5850"/>
+        <location filename="../mainwindow.cpp" line="2591"/>
+        <location filename="../mainwindow.cpp" line="2908"/>
+        <location filename="../mainwindow.cpp" line="4827"/>
+        <location filename="../mainwindow.cpp" line="4918"/>
+        <location filename="../mainwindow.cpp" line="4920"/>
+        <location filename="../mainwindow.cpp" line="4930"/>
+        <location filename="../mainwindow.cpp" line="4938"/>
+        <location filename="../mainwindow.cpp" line="5007"/>
+        <location filename="../mainwindow.cpp" line="5008"/>
+        <location filename="../mainwindow.cpp" line="5018"/>
+        <location filename="../mainwindow.cpp" line="5027"/>
+        <location filename="../mainwindow.cpp" line="5099"/>
+        <location filename="../mainwindow.cpp" line="5100"/>
+        <location filename="../mainwindow.cpp" line="5110"/>
+        <location filename="../mainwindow.cpp" line="5119"/>
+        <location filename="../mainwindow.cpp" line="5190"/>
+        <location filename="../mainwindow.cpp" line="5240"/>
+        <location filename="../mainwindow.cpp" line="5295"/>
+        <location filename="../mainwindow.cpp" line="5326"/>
+        <location filename="../mainwindow.cpp" line="5327"/>
+        <location filename="../mainwindow.cpp" line="5526"/>
+        <location filename="../mainwindow.cpp" line="5527"/>
+        <location filename="../mainwindow.cpp" line="5537"/>
+        <location filename="../mainwindow.cpp" line="5546"/>
+        <location filename="../mainwindow.cpp" line="5615"/>
+        <location filename="../mainwindow.cpp" line="5616"/>
+        <location filename="../mainwindow.cpp" line="5626"/>
+        <location filename="../mainwindow.cpp" line="5635"/>
+        <location filename="../mainwindow.cpp" line="5710"/>
+        <location filename="../mainwindow.cpp" line="5711"/>
+        <location filename="../mainwindow.cpp" line="5721"/>
+        <location filename="../mainwindow.cpp" line="5730"/>
+        <location filename="../mainwindow.cpp" line="5785"/>
+        <location filename="../mainwindow.cpp" line="5892"/>
+        <location filename="../mainwindow.cpp" line="5938"/>
+        <location filename="../mainwindow.cpp" line="5939"/>
         <source>Ohm</source>
         <translation>Ом</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1512"/>
+        <location filename="../mainwindow.cpp" line="1564"/>
         <source>Gap between turns</source>
         <translation>Промежуток между витками</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1532"/>
+        <location filename="../mainwindow.cpp" line="1584"/>
         <source>Number of turns</source>
         <translation>Число витков</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5357"/>
-        <location filename="../mainwindow.cpp" line="6238"/>
-        <location filename="../mainwindow.cpp" line="6268"/>
+        <location filename="../mainwindow.cpp" line="5423"/>
+        <location filename="../mainwindow.cpp" line="6317"/>
+        <location filename="../mainwindow.cpp" line="6347"/>
         <source>Width of a PCB trace</source>
         <translation>Ширина печатной дорожки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2850"/>
+        <location filename="../mainwindow.cpp" line="2912"/>
         <source>mm</source>
         <translation>мм</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="789"/>
+        <location filename="../mainwindow.cpp" line="799"/>
         <source>Delete this result</source>
         <translation>Удалить этот результат</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6224"/>
-        <location filename="../mainwindow.cpp" line="6239"/>
-        <location filename="../mainwindow.cpp" line="6253"/>
-        <location filename="../mainwindow.cpp" line="6269"/>
+        <location filename="../mainwindow.cpp" line="6303"/>
+        <location filename="../mainwindow.cpp" line="6318"/>
+        <location filename="../mainwindow.cpp" line="6332"/>
+        <location filename="../mainwindow.cpp" line="6348"/>
         <source>PCB trace thickness</source>
         <translation>Толщина печатного проводника</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4790"/>
+        <location filename="../mainwindow.cpp" line="4839"/>
         <source>Wrong data was entered</source>
         <translation>Данные введены неверно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4847"/>
-        <location filename="../mainwindow.cpp" line="4944"/>
-        <location filename="../mainwindow.cpp" line="5033"/>
-        <location filename="../mainwindow.cpp" line="5120"/>
-        <location filename="../mainwindow.cpp" line="5167"/>
-        <location filename="../mainwindow.cpp" line="5218"/>
-        <location filename="../mainwindow.cpp" line="5288"/>
-        <location filename="../mainwindow.cpp" line="5388"/>
-        <location filename="../mainwindow.cpp" line="5443"/>
-        <location filename="../mainwindow.cpp" line="5529"/>
-        <location filename="../mainwindow.cpp" line="5621"/>
-        <location filename="../mainwindow.cpp" line="5711"/>
-        <location filename="../mainwindow.cpp" line="5794"/>
-        <location filename="../mainwindow.cpp" line="5877"/>
-        <location filename="../mainwindow.cpp" line="5978"/>
+        <location filename="../mainwindow.cpp" line="4896"/>
+        <location filename="../mainwindow.cpp" line="4995"/>
+        <location filename="../mainwindow.cpp" line="5087"/>
+        <location filename="../mainwindow.cpp" line="5177"/>
+        <location filename="../mainwindow.cpp" line="5227"/>
+        <location filename="../mainwindow.cpp" line="5281"/>
+        <location filename="../mainwindow.cpp" line="5355"/>
+        <location filename="../mainwindow.cpp" line="5456"/>
+        <location filename="../mainwindow.cpp" line="5514"/>
+        <location filename="../mainwindow.cpp" line="5603"/>
+        <location filename="../mainwindow.cpp" line="5698"/>
+        <location filename="../mainwindow.cpp" line="5791"/>
+        <location filename="../mainwindow.cpp" line="5880"/>
+        <location filename="../mainwindow.cpp" line="5967"/>
+        <location filename="../mainwindow.cpp" line="6066"/>
         <source>Length of wire without leads</source>
         <translation>Длина провода без учета выводов</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4859"/>
-        <location filename="../mainwindow.cpp" line="4946"/>
-        <location filename="../mainwindow.cpp" line="5035"/>
-        <location filename="../mainwindow.cpp" line="5445"/>
-        <location filename="../mainwindow.cpp" line="5531"/>
-        <location filename="../mainwindow.cpp" line="5623"/>
+        <location filename="../mainwindow.cpp" line="4908"/>
+        <location filename="../mainwindow.cpp" line="4997"/>
+        <location filename="../mainwindow.cpp" line="5089"/>
+        <location filename="../mainwindow.cpp" line="5516"/>
+        <location filename="../mainwindow.cpp" line="5605"/>
+        <location filename="../mainwindow.cpp" line="5700"/>
         <source>Length of winding</source>
         <translation>Длина намотки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4868"/>
-        <location filename="../mainwindow.cpp" line="4954"/>
-        <location filename="../mainwindow.cpp" line="5043"/>
-        <location filename="../mainwindow.cpp" line="5134"/>
-        <location filename="../mainwindow.cpp" line="5181"/>
-        <location filename="../mainwindow.cpp" line="5231"/>
-        <location filename="../mainwindow.cpp" line="5453"/>
-        <location filename="../mainwindow.cpp" line="5537"/>
-        <location filename="../mainwindow.cpp" line="5629"/>
-        <location filename="../mainwindow.cpp" line="5721"/>
-        <location filename="../mainwindow.cpp" line="5808"/>
+        <location filename="../mainwindow.cpp" line="4917"/>
+        <location filename="../mainwindow.cpp" line="5005"/>
+        <location filename="../mainwindow.cpp" line="5097"/>
+        <location filename="../mainwindow.cpp" line="5191"/>
+        <location filename="../mainwindow.cpp" line="5241"/>
+        <location filename="../mainwindow.cpp" line="5294"/>
+        <location filename="../mainwindow.cpp" line="5524"/>
+        <location filename="../mainwindow.cpp" line="5611"/>
+        <location filename="../mainwindow.cpp" line="5706"/>
+        <location filename="../mainwindow.cpp" line="5801"/>
+        <location filename="../mainwindow.cpp" line="5894"/>
         <source>Weight of wire</source>
         <translation>Вес провода</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4868"/>
-        <location filename="../mainwindow.cpp" line="4954"/>
-        <location filename="../mainwindow.cpp" line="5043"/>
-        <location filename="../mainwindow.cpp" line="5134"/>
-        <location filename="../mainwindow.cpp" line="5181"/>
-        <location filename="../mainwindow.cpp" line="5231"/>
-        <location filename="../mainwindow.cpp" line="5453"/>
-        <location filename="../mainwindow.cpp" line="5537"/>
-        <location filename="../mainwindow.cpp" line="5629"/>
-        <location filename="../mainwindow.cpp" line="5721"/>
-        <location filename="../mainwindow.cpp" line="5808"/>
+        <location filename="../mainwindow.cpp" line="4917"/>
+        <location filename="../mainwindow.cpp" line="5005"/>
+        <location filename="../mainwindow.cpp" line="5097"/>
+        <location filename="../mainwindow.cpp" line="5191"/>
+        <location filename="../mainwindow.cpp" line="5241"/>
+        <location filename="../mainwindow.cpp" line="5294"/>
+        <location filename="../mainwindow.cpp" line="5524"/>
+        <location filename="../mainwindow.cpp" line="5611"/>
+        <location filename="../mainwindow.cpp" line="5706"/>
+        <location filename="../mainwindow.cpp" line="5801"/>
+        <location filename="../mainwindow.cpp" line="5894"/>
         <source>g</source>
         <translation>г</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4871"/>
-        <location filename="../mainwindow.cpp" line="4957"/>
-        <location filename="../mainwindow.cpp" line="5046"/>
-        <location filename="../mainwindow.cpp" line="5456"/>
-        <location filename="../mainwindow.cpp" line="5542"/>
-        <location filename="../mainwindow.cpp" line="5634"/>
+        <location filename="../mainwindow.cpp" line="4920"/>
+        <location filename="../mainwindow.cpp" line="5008"/>
+        <location filename="../mainwindow.cpp" line="5100"/>
+        <location filename="../mainwindow.cpp" line="5527"/>
+        <location filename="../mainwindow.cpp" line="5616"/>
+        <location filename="../mainwindow.cpp" line="5711"/>
         <source>Reactance of the coil</source>
         <translation>Реактивное сопротивление катушки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4874"/>
-        <location filename="../mainwindow.cpp" line="4960"/>
-        <location filename="../mainwindow.cpp" line="5049"/>
-        <location filename="../mainwindow.cpp" line="5459"/>
-        <location filename="../mainwindow.cpp" line="5545"/>
-        <location filename="../mainwindow.cpp" line="5637"/>
+        <location filename="../mainwindow.cpp" line="4923"/>
+        <location filename="../mainwindow.cpp" line="5011"/>
+        <location filename="../mainwindow.cpp" line="5103"/>
+        <location filename="../mainwindow.cpp" line="5530"/>
+        <location filename="../mainwindow.cpp" line="5619"/>
+        <location filename="../mainwindow.cpp" line="5714"/>
         <source>Self capacitance</source>
         <translation>Собственная емкость</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4879"/>
-        <location filename="../mainwindow.cpp" line="4965"/>
-        <location filename="../mainwindow.cpp" line="5054"/>
-        <location filename="../mainwindow.cpp" line="5359"/>
-        <location filename="../mainwindow.cpp" line="5464"/>
-        <location filename="../mainwindow.cpp" line="5550"/>
-        <location filename="../mainwindow.cpp" line="5642"/>
-        <location filename="../mainwindow.cpp" line="5952"/>
+        <location filename="../mainwindow.cpp" line="4928"/>
+        <location filename="../mainwindow.cpp" line="5016"/>
+        <location filename="../mainwindow.cpp" line="5108"/>
+        <location filename="../mainwindow.cpp" line="5425"/>
+        <location filename="../mainwindow.cpp" line="5535"/>
+        <location filename="../mainwindow.cpp" line="5624"/>
+        <location filename="../mainwindow.cpp" line="5719"/>
+        <location filename="../mainwindow.cpp" line="6040"/>
         <source>Coil constructive Q-factor</source>
         <translation>Конструктивная добротность катушки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4881"/>
-        <location filename="../mainwindow.cpp" line="4967"/>
-        <location filename="../mainwindow.cpp" line="5056"/>
-        <location filename="../mainwindow.cpp" line="5466"/>
-        <location filename="../mainwindow.cpp" line="5552"/>
-        <location filename="../mainwindow.cpp" line="5644"/>
+        <location filename="../mainwindow.cpp" line="4930"/>
+        <location filename="../mainwindow.cpp" line="5018"/>
+        <location filename="../mainwindow.cpp" line="5110"/>
+        <location filename="../mainwindow.cpp" line="5537"/>
+        <location filename="../mainwindow.cpp" line="5626"/>
+        <location filename="../mainwindow.cpp" line="5721"/>
         <source>Loss resistance</source>
         <translation>Сопротивление потерь</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4884"/>
-        <location filename="../mainwindow.cpp" line="4970"/>
-        <location filename="../mainwindow.cpp" line="5059"/>
-        <location filename="../mainwindow.cpp" line="5469"/>
-        <location filename="../mainwindow.cpp" line="5555"/>
-        <location filename="../mainwindow.cpp" line="5647"/>
+        <location filename="../mainwindow.cpp" line="4933"/>
+        <location filename="../mainwindow.cpp" line="5021"/>
+        <location filename="../mainwindow.cpp" line="5113"/>
+        <location filename="../mainwindow.cpp" line="5540"/>
+        <location filename="../mainwindow.cpp" line="5629"/>
+        <location filename="../mainwindow.cpp" line="5724"/>
         <source>Additional results for parallel LC circuit at the working frequency</source>
         <translation>Дополнительные результаты для параллельного LC контура на рабочей частоте</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2497"/>
-        <location filename="../mainwindow.cpp" line="2507"/>
-        <location filename="../mainwindow.cpp" line="4747"/>
-        <location filename="../mainwindow.cpp" line="4762"/>
-        <location filename="../mainwindow.cpp" line="4886"/>
-        <location filename="../mainwindow.cpp" line="4972"/>
-        <location filename="../mainwindow.cpp" line="5061"/>
-        <location filename="../mainwindow.cpp" line="5471"/>
-        <location filename="../mainwindow.cpp" line="5557"/>
-        <location filename="../mainwindow.cpp" line="5649"/>
+        <location filename="../mainwindow.cpp" line="2553"/>
+        <location filename="../mainwindow.cpp" line="2563"/>
+        <location filename="../mainwindow.cpp" line="4796"/>
+        <location filename="../mainwindow.cpp" line="4811"/>
+        <location filename="../mainwindow.cpp" line="4935"/>
+        <location filename="../mainwindow.cpp" line="5023"/>
+        <location filename="../mainwindow.cpp" line="5115"/>
+        <location filename="../mainwindow.cpp" line="5542"/>
+        <location filename="../mainwindow.cpp" line="5631"/>
+        <location filename="../mainwindow.cpp" line="5726"/>
         <source>Circuit capacitance</source>
         <translation>Емкость контура</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4892"/>
-        <location filename="../mainwindow.cpp" line="4979"/>
-        <location filename="../mainwindow.cpp" line="5068"/>
-        <location filename="../mainwindow.cpp" line="5478"/>
-        <location filename="../mainwindow.cpp" line="5564"/>
-        <location filename="../mainwindow.cpp" line="5656"/>
+        <location filename="../mainwindow.cpp" line="4941"/>
+        <location filename="../mainwindow.cpp" line="5030"/>
+        <location filename="../mainwindow.cpp" line="5122"/>
+        <location filename="../mainwindow.cpp" line="5549"/>
+        <location filename="../mainwindow.cpp" line="5638"/>
+        <location filename="../mainwindow.cpp" line="5733"/>
         <source>Equivalent resistance</source>
         <translation>Эквивалентное (эффективное) сопротивление</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4894"/>
-        <location filename="../mainwindow.cpp" line="4981"/>
-        <location filename="../mainwindow.cpp" line="5070"/>
-        <location filename="../mainwindow.cpp" line="5480"/>
-        <location filename="../mainwindow.cpp" line="5566"/>
-        <location filename="../mainwindow.cpp" line="5658"/>
+        <location filename="../mainwindow.cpp" line="4943"/>
+        <location filename="../mainwindow.cpp" line="5032"/>
+        <location filename="../mainwindow.cpp" line="5124"/>
+        <location filename="../mainwindow.cpp" line="5551"/>
+        <location filename="../mainwindow.cpp" line="5640"/>
+        <location filename="../mainwindow.cpp" line="5735"/>
         <source>Bandwidth</source>
         <translation>Полоса пропускания</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4894"/>
-        <location filename="../mainwindow.cpp" line="4981"/>
-        <location filename="../mainwindow.cpp" line="5070"/>
-        <location filename="../mainwindow.cpp" line="5480"/>
-        <location filename="../mainwindow.cpp" line="5566"/>
-        <location filename="../mainwindow.cpp" line="5658"/>
+        <location filename="../mainwindow.cpp" line="4943"/>
+        <location filename="../mainwindow.cpp" line="5032"/>
+        <location filename="../mainwindow.cpp" line="5124"/>
+        <location filename="../mainwindow.cpp" line="5551"/>
+        <location filename="../mainwindow.cpp" line="5640"/>
+        <location filename="../mainwindow.cpp" line="5735"/>
         <source>kHz</source>
         <translation>кГц</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4905"/>
-        <location filename="../mainwindow.cpp" line="4992"/>
-        <location filename="../mainwindow.cpp" line="5081"/>
-        <location filename="../mainwindow.cpp" line="5491"/>
-        <location filename="../mainwindow.cpp" line="5577"/>
-        <location filename="../mainwindow.cpp" line="5669"/>
+        <location filename="../mainwindow.cpp" line="4954"/>
+        <location filename="../mainwindow.cpp" line="5043"/>
+        <location filename="../mainwindow.cpp" line="5135"/>
+        <location filename="../mainwindow.cpp" line="5562"/>
+        <location filename="../mainwindow.cpp" line="5651"/>
+        <location filename="../mainwindow.cpp" line="5746"/>
         <source>Working frequency</source>
         <translation>Рабочая частота</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4876"/>
-        <location filename="../mainwindow.cpp" line="4905"/>
-        <location filename="../mainwindow.cpp" line="4962"/>
-        <location filename="../mainwindow.cpp" line="4992"/>
-        <location filename="../mainwindow.cpp" line="5051"/>
-        <location filename="../mainwindow.cpp" line="5081"/>
-        <location filename="../mainwindow.cpp" line="5461"/>
-        <location filename="../mainwindow.cpp" line="5491"/>
-        <location filename="../mainwindow.cpp" line="5547"/>
-        <location filename="../mainwindow.cpp" line="5577"/>
-        <location filename="../mainwindow.cpp" line="5639"/>
-        <location filename="../mainwindow.cpp" line="5669"/>
+        <location filename="../mainwindow.cpp" line="4925"/>
+        <location filename="../mainwindow.cpp" line="4954"/>
+        <location filename="../mainwindow.cpp" line="5013"/>
+        <location filename="../mainwindow.cpp" line="5043"/>
+        <location filename="../mainwindow.cpp" line="5105"/>
+        <location filename="../mainwindow.cpp" line="5135"/>
+        <location filename="../mainwindow.cpp" line="5532"/>
+        <location filename="../mainwindow.cpp" line="5562"/>
+        <location filename="../mainwindow.cpp" line="5621"/>
+        <location filename="../mainwindow.cpp" line="5651"/>
+        <location filename="../mainwindow.cpp" line="5716"/>
+        <location filename="../mainwindow.cpp" line="5746"/>
         <source>Coil self-resonance frequency</source>
         <translation>Частота собственного резонанса катушки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1792"/>
-        <location filename="../mainwindow.cpp" line="1827"/>
-        <location filename="../mainwindow.cpp" line="1877"/>
-        <location filename="../mainwindow.cpp" line="1907"/>
-        <location filename="../mainwindow.cpp" line="1942"/>
-        <location filename="../mainwindow.cpp" line="2821"/>
-        <location filename="../mainwindow.cpp" line="2832"/>
-        <location filename="../mainwindow.cpp" line="5110"/>
-        <location filename="../mainwindow.cpp" line="5157"/>
-        <location filename="../mainwindow.cpp" line="5206"/>
-        <location filename="../mainwindow.cpp" line="5702"/>
-        <location filename="../mainwindow.cpp" line="5787"/>
+        <location filename="../mainwindow.cpp" line="1845"/>
+        <location filename="../mainwindow.cpp" line="1880"/>
+        <location filename="../mainwindow.cpp" line="1930"/>
+        <location filename="../mainwindow.cpp" line="1960"/>
+        <location filename="../mainwindow.cpp" line="1995"/>
+        <location filename="../mainwindow.cpp" line="2883"/>
+        <location filename="../mainwindow.cpp" line="2894"/>
+        <location filename="../mainwindow.cpp" line="5167"/>
+        <location filename="../mainwindow.cpp" line="5217"/>
+        <location filename="../mainwindow.cpp" line="5269"/>
+        <location filename="../mainwindow.cpp" line="5782"/>
+        <location filename="../mainwindow.cpp" line="5873"/>
         <source>Thickness of the coil</source>
         <translation>Толщина катушки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5114"/>
-        <location filename="../mainwindow.cpp" line="5161"/>
-        <location filename="../mainwindow.cpp" line="5212"/>
+        <location filename="../mainwindow.cpp" line="5171"/>
+        <location filename="../mainwindow.cpp" line="5221"/>
+        <location filename="../mainwindow.cpp" line="5275"/>
         <source>Dimensions of inductor</source>
         <translation>Габаритные размеры катушки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1793"/>
-        <location filename="../mainwindow.cpp" line="2845"/>
-        <location filename="../mainwindow.cpp" line="4869"/>
-        <location filename="../mainwindow.cpp" line="4956"/>
-        <location filename="../mainwindow.cpp" line="5045"/>
-        <location filename="../mainwindow.cpp" line="5133"/>
-        <location filename="../mainwindow.cpp" line="5180"/>
-        <location filename="../mainwindow.cpp" line="5232"/>
-        <location filename="../mainwindow.cpp" line="5260"/>
-        <location filename="../mainwindow.cpp" line="5261"/>
-        <location filename="../mainwindow.cpp" line="5455"/>
-        <location filename="../mainwindow.cpp" line="5541"/>
-        <location filename="../mainwindow.cpp" line="5633"/>
-        <location filename="../mainwindow.cpp" line="5705"/>
-        <location filename="../mainwindow.cpp" line="5806"/>
-        <location filename="../mainwindow.cpp" line="5849"/>
-        <location filename="../mainwindow.cpp" line="5850"/>
+        <location filename="../mainwindow.cpp" line="1846"/>
+        <location filename="../mainwindow.cpp" line="2907"/>
+        <location filename="../mainwindow.cpp" line="4918"/>
+        <location filename="../mainwindow.cpp" line="5007"/>
+        <location filename="../mainwindow.cpp" line="5099"/>
+        <location filename="../mainwindow.cpp" line="5190"/>
+        <location filename="../mainwindow.cpp" line="5240"/>
+        <location filename="../mainwindow.cpp" line="5295"/>
+        <location filename="../mainwindow.cpp" line="5326"/>
+        <location filename="../mainwindow.cpp" line="5327"/>
+        <location filename="../mainwindow.cpp" line="5526"/>
+        <location filename="../mainwindow.cpp" line="5615"/>
+        <location filename="../mainwindow.cpp" line="5710"/>
+        <location filename="../mainwindow.cpp" line="5785"/>
+        <location filename="../mainwindow.cpp" line="5892"/>
+        <location filename="../mainwindow.cpp" line="5938"/>
+        <location filename="../mainwindow.cpp" line="5939"/>
         <source>Resistance of the coil</source>
         <translation>Сопротивление катушки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4892"/>
-        <location filename="../mainwindow.cpp" line="4979"/>
-        <location filename="../mainwindow.cpp" line="5068"/>
-        <location filename="../mainwindow.cpp" line="5478"/>
-        <location filename="../mainwindow.cpp" line="5564"/>
-        <location filename="../mainwindow.cpp" line="5656"/>
+        <location filename="../mainwindow.cpp" line="4941"/>
+        <location filename="../mainwindow.cpp" line="5030"/>
+        <location filename="../mainwindow.cpp" line="5122"/>
+        <location filename="../mainwindow.cpp" line="5549"/>
+        <location filename="../mainwindow.cpp" line="5638"/>
+        <location filename="../mainwindow.cpp" line="5733"/>
         <source>kOhm</source>
         <translation>кОм</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5135"/>
-        <location filename="../mainwindow.cpp" line="5182"/>
-        <location filename="../mainwindow.cpp" line="5205"/>
-        <location filename="../mainwindow.cpp" line="5722"/>
-        <location filename="../mainwindow.cpp" line="5809"/>
+        <location filename="../mainwindow.cpp" line="5192"/>
+        <location filename="../mainwindow.cpp" line="5242"/>
+        <location filename="../mainwindow.cpp" line="5268"/>
+        <location filename="../mainwindow.cpp" line="5802"/>
+        <location filename="../mainwindow.cpp" line="5895"/>
         <source>Number of layers</source>
         <translation>Число слоев</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="5183"/>
+        <location filename="../mainwindow.cpp" line="5243"/>
         <source>Number of interlayers</source>
         <translation>Число прокладок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4911"/>
-        <location filename="../mainwindow.cpp" line="5301"/>
-        <location filename="../mainwindow.cpp" line="5302"/>
-        <location filename="../mainwindow.cpp" line="5890"/>
-        <location filename="../mainwindow.cpp" line="5891"/>
+        <location filename="../mainwindow.cpp" line="4960"/>
+        <location filename="../mainwindow.cpp" line="5368"/>
+        <location filename="../mainwindow.cpp" line="5369"/>
+        <location filename="../mainwindow.cpp" line="5980"/>
+        <location filename="../mainwindow.cpp" line="5981"/>
         <source>Coil can not be realized</source>
         <translation>Катушка не может быть реализована</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1791"/>
-        <location filename="../mainwindow.cpp" line="1906"/>
-        <location filename="../mainwindow.cpp" line="2817"/>
-        <location filename="../mainwindow.cpp" line="2828"/>
-        <location filename="../mainwindow.cpp" line="4842"/>
-        <location filename="../mainwindow.cpp" line="4939"/>
-        <location filename="../mainwindow.cpp" line="5028"/>
-        <location filename="../mainwindow.cpp" line="5108"/>
-        <location filename="../mainwindow.cpp" line="5156"/>
-        <location filename="../mainwindow.cpp" line="5204"/>
-        <location filename="../mainwindow.cpp" line="5251"/>
-        <location filename="../mainwindow.cpp" line="5283"/>
-        <location filename="../mainwindow.cpp" line="5354"/>
-        <location filename="../mainwindow.cpp" line="5381"/>
-        <location filename="../mainwindow.cpp" line="5729"/>
-        <location filename="../mainwindow.cpp" line="5758"/>
-        <location filename="../mainwindow.cpp" line="5816"/>
+        <location filename="../mainwindow.cpp" line="1844"/>
+        <location filename="../mainwindow.cpp" line="1959"/>
+        <location filename="../mainwindow.cpp" line="2879"/>
+        <location filename="../mainwindow.cpp" line="2890"/>
+        <location filename="../mainwindow.cpp" line="4891"/>
+        <location filename="../mainwindow.cpp" line="4990"/>
+        <location filename="../mainwindow.cpp" line="5082"/>
+        <location filename="../mainwindow.cpp" line="5165"/>
+        <location filename="../mainwindow.cpp" line="5216"/>
+        <location filename="../mainwindow.cpp" line="5267"/>
+        <location filename="../mainwindow.cpp" line="5317"/>
+        <location filename="../mainwindow.cpp" line="5350"/>
+        <location filename="../mainwindow.cpp" line="5420"/>
+        <location filename="../mainwindow.cpp" line="5449"/>
+        <location filename="../mainwindow.cpp" line="5809"/>
+        <location filename="../mainwindow.cpp" line="5841"/>
+        <location filename="../mainwindow.cpp" line="5902"/>
         <source>Number of turns of the coil</source>
         <translation>Число витков катушки</translation>
     </message>
@@ -3443,7 +3493,7 @@
     </message>
     <message>
         <location filename="../multiloop.ui" line="191"/>
-        <location filename="../multiloop.cpp" line="168"/>
+        <location filename="../multiloop.cpp" line="186"/>
         <source>Dimensions</source>
         <translation>Размеры</translation>
     </message>
@@ -3463,115 +3513,118 @@
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="59"/>
-        <location filename="../multiloop.cpp" line="229"/>
+        <location filename="../multiloop.cpp" line="60"/>
+        <location filename="../multiloop.cpp" line="257"/>
         <source>Number of turns</source>
         <translation>Число витков</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="61"/>
+        <location filename="../multiloop.cpp" line="62"/>
         <source>Inside diameter</source>
         <translation>Внутренний диаметр</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="63"/>
+        <location filename="../multiloop.cpp" line="64"/>
         <source>Wire diameter</source>
         <translation>Диаметр провода</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="65"/>
+        <location filename="../multiloop.cpp" line="66"/>
         <source>Wire diameter with insulation</source>
         <translation>Диаметр провода с изоляцией</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="93"/>
+        <location filename="../multiloop.cpp" line="94"/>
         <source>AWG</source>
         <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="123"/>
-        <location filename="../multiloop.cpp" line="139"/>
-        <location filename="../multiloop.cpp" line="143"/>
-        <location filename="../multiloop.cpp" line="147"/>
-        <location filename="../multiloop.cpp" line="156"/>
-        <location filename="../multiloop.cpp" line="216"/>
+        <location filename="../multiloop.cpp" line="124"/>
+        <location filename="../multiloop.cpp" line="131"/>
+        <location filename="../multiloop.cpp" line="137"/>
+        <location filename="../multiloop.cpp" line="149"/>
+        <location filename="../multiloop.cpp" line="153"/>
+        <location filename="../multiloop.cpp" line="157"/>
+        <location filename="../multiloop.cpp" line="244"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="123"/>
+        <location filename="../multiloop.cpp" line="124"/>
         <source>One or more inputs are empty!</source>
         <translation>Один или несколько полей ввода пусты!</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="139"/>
-        <location filename="../multiloop.cpp" line="216"/>
+        <location filename="../multiloop.cpp" line="149"/>
+        <location filename="../multiloop.cpp" line="244"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Одно или несколько значений имеют недопустимый формат!</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="143"/>
+        <location filename="../multiloop.cpp" line="131"/>
+        <location filename="../multiloop.cpp" line="137"/>
+        <location filename="../multiloop.cpp" line="153"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Одно или несколько значений равны нулю!</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="156"/>
+        <location filename="../multiloop.cpp" line="214"/>
         <source>Coil can not be realized</source>
         <translation>Катушка не может быть реализована</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="161"/>
+        <location filename="../multiloop.cpp" line="179"/>
         <source>Input data</source>
         <translation>Входные данные</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="172"/>
+        <location filename="../multiloop.cpp" line="191"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="174"/>
-        <location filename="../multiloop.cpp" line="234"/>
+        <location filename="../multiloop.cpp" line="193"/>
+        <location filename="../multiloop.cpp" line="262"/>
         <source>Inductance</source>
         <translation>Индуктивность</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="177"/>
+        <location filename="../multiloop.cpp" line="196"/>
         <source>Number of turns of the coil</source>
         <translation>Число витков катушки</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="179"/>
+        <location filename="../multiloop.cpp" line="198"/>
         <source>Mean diameter</source>
         <translation>Средний диаметр</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="181"/>
+        <location filename="../multiloop.cpp" line="200"/>
         <source>Thickness of the coil</source>
         <translation>Толщина катушки</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="183"/>
+        <location filename="../multiloop.cpp" line="202"/>
         <source>Resistance of the coil</source>
         <translation>Сопротивление катушки</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="183"/>
+        <location filename="../multiloop.cpp" line="202"/>
         <source>Ohm</source>
         <translation>Ом</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="188"/>
+        <location filename="../multiloop.cpp" line="207"/>
         <source>Length of wire without leads</source>
         <translation>Длина провода без учета выводов</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="192"/>
+        <location filename="../multiloop.cpp" line="211"/>
         <source>Weight of wire</source>
         <translation>Вес провода</translation>
     </message>
     <message>
-        <location filename="../multiloop.cpp" line="192"/>
+        <location filename="../multiloop.cpp" line="211"/>
         <source>g</source>
         <translation>г</translation>
     </message>
@@ -3912,69 +3965,69 @@
         <translation>Пользовательский</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="155"/>
+        <location filename="../potcore.cpp" line="156"/>
         <source>Outside diameter</source>
         <translation>Внешний диаметр</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="156"/>
+        <location filename="../potcore.cpp" line="157"/>
         <source>Inside diameter</source>
         <translation>Внутренний диаметр</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="157"/>
+        <location filename="../potcore.cpp" line="158"/>
         <source>Centerpost diameter</source>
         <translation>Диаметр внутреннего столба</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="158"/>
+        <location filename="../potcore.cpp" line="159"/>
         <source>Centerpost hole diameter</source>
         <translation>Диаметр отверстия внутреннего столба</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="159"/>
+        <location filename="../potcore.cpp" line="160"/>
         <source>Core height</source>
         <translation>Высота сердечника</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="160"/>
+        <location filename="../potcore.cpp" line="161"/>
         <source>Centerpost height</source>
         <translation>Высота внутреннего столба</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="161"/>
+        <location filename="../potcore.cpp" line="162"/>
         <source>Slot size</source>
         <translation>Размер выреза</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="162"/>
+        <location filename="../potcore.cpp" line="163"/>
         <source>Centerpost gap</source>
         <translation>Зазор внутреннего столба</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="163"/>
+        <location filename="../potcore.cpp" line="164"/>
         <source>Magnetic permeability</source>
         <translation>Магнитная проницаемость</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="211"/>
+        <location filename="../potcore.cpp" line="212"/>
         <source>Number of turns</source>
         <translation>Число витков</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="216"/>
-        <location filename="../potcore.cpp" line="330"/>
+        <location filename="../potcore.cpp" line="217"/>
+        <location filename="../potcore.cpp" line="345"/>
         <source>Inductance</source>
         <translation>Индуктивность</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="251"/>
-        <location filename="../potcore.cpp" line="265"/>
-        <location filename="../potcore.cpp" line="269"/>
-        <location filename="../potcore.cpp" line="273"/>
-        <location filename="../potcore.cpp" line="277"/>
-        <location filename="../potcore.cpp" line="281"/>
-        <location filename="../potcore.cpp" line="285"/>
+        <location filename="../potcore.cpp" line="252"/>
+        <location filename="../potcore.cpp" line="266"/>
+        <location filename="../potcore.cpp" line="270"/>
+        <location filename="../potcore.cpp" line="274"/>
+        <location filename="../potcore.cpp" line="278"/>
+        <location filename="../potcore.cpp" line="282"/>
+        <location filename="../potcore.cpp" line="286"/>
         <location filename="../potcore.cpp" line="292"/>
         <location filename="../potcore.cpp" line="296"/>
         <location filename="../potcore.cpp" line="303"/>
@@ -3983,58 +4036,63 @@
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="251"/>
+        <location filename="../potcore.cpp" line="252"/>
         <source>One or more inputs are empty!</source>
         <translation>Один или несколько полей ввода пусты!</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="265"/>
+        <location filename="../potcore.cpp" line="266"/>
         <location filename="../potcore.cpp" line="292"/>
         <location filename="../potcore.cpp" line="303"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Одно или несколько значений имеют недопустимый формат!</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="269"/>
+        <location filename="../potcore.cpp" line="270"/>
         <location filename="../potcore.cpp" line="296"/>
         <location filename="../potcore.cpp" line="307"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Одно или несколько значений равны нулю!</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="314"/>
+        <location filename="../potcore.cpp" line="328"/>
         <source>Input data</source>
         <translation>Входные данные</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="328"/>
+        <location filename="../potcore.cpp" line="343"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="333"/>
+        <location filename="../potcore.cpp" line="348"/>
         <source>Number of turns of the coil</source>
         <translation>Число витков катушки</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="335"/>
+        <location filename="../potcore.cpp" line="350"/>
         <source>Effective magnetic path length</source>
         <translation>Эффективная длина магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="338"/>
+        <location filename="../potcore.cpp" line="353"/>
         <source>Effective area of magnetic path</source>
         <translation>Эффективная площадь магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="341"/>
+        <location filename="../potcore.cpp" line="356"/>
         <source>Effective volume</source>
         <translation>Эффективный объем</translation>
     </message>
     <message>
-        <location filename="../potcore.cpp" line="344"/>
+        <location filename="../potcore.cpp" line="359"/>
         <source>Effective magnetic permeability of the core</source>
         <translation>Эффективная магнитная проницаемость сердечника</translation>
+    </message>
+    <message>
+        <location filename="../potcore.cpp" line="368"/>
+        <source>Coil can not be realized</source>
+        <translation>Катушка не может быть реализована</translation>
     </message>
 </context>
 <context>
@@ -4099,22 +4157,22 @@
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="707"/>
+        <location filename="../rf_toroid.ui" line="710"/>
         <source>Context help</source>
         <translation>Контекстная справка</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="752"/>
+        <location filename="../rf_toroid.ui" line="755"/>
         <source>Export results</source>
         <translation>Экспортировать результат</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="781"/>
+        <location filename="../rf_toroid.ui" line="784"/>
         <source>Calculate</source>
         <translation>Рассчитать</translation>
     </message>
     <message>
-        <location filename="../rf_toroid.ui" line="813"/>
+        <location filename="../rf_toroid.ui" line="816"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
@@ -4311,91 +4369,96 @@
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="146"/>
+        <location filename="../rmcore.cpp" line="147"/>
         <source>Centerpost gap</source>
         <translation>Зазор внутреннего столба</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="147"/>
+        <location filename="../rmcore.cpp" line="148"/>
         <source>Magnetic permeability</source>
         <translation>Магнитная проницаемость</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="201"/>
+        <location filename="../rmcore.cpp" line="202"/>
         <source>Number of turns</source>
         <translation>Число витков</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="206"/>
-        <location filename="../rmcore.cpp" line="314"/>
+        <location filename="../rmcore.cpp" line="207"/>
+        <location filename="../rmcore.cpp" line="332"/>
         <source>Inductance</source>
         <translation>Индуктивность</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="225"/>
-        <location filename="../rmcore.cpp" line="241"/>
-        <location filename="../rmcore.cpp" line="245"/>
-        <location filename="../rmcore.cpp" line="249"/>
-        <location filename="../rmcore.cpp" line="253"/>
+        <location filename="../rmcore.cpp" line="226"/>
+        <location filename="../rmcore.cpp" line="242"/>
+        <location filename="../rmcore.cpp" line="246"/>
+        <location filename="../rmcore.cpp" line="250"/>
+        <location filename="../rmcore.cpp" line="254"/>
         <location filename="../rmcore.cpp" line="260"/>
         <location filename="../rmcore.cpp" line="264"/>
-        <location filename="../rmcore.cpp" line="271"/>
-        <location filename="../rmcore.cpp" line="275"/>
+        <location filename="../rmcore.cpp" line="272"/>
+        <location filename="../rmcore.cpp" line="276"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="225"/>
+        <location filename="../rmcore.cpp" line="226"/>
         <source>One or more inputs are empty!</source>
         <translation>Один или несколько полей ввода пусты!</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="241"/>
+        <location filename="../rmcore.cpp" line="242"/>
         <location filename="../rmcore.cpp" line="260"/>
-        <location filename="../rmcore.cpp" line="271"/>
+        <location filename="../rmcore.cpp" line="272"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Одно или несколько значений имеют недопустимый формат!</translation>
     </message>
     <message>
         <location filename="../rmcore.cpp" line="264"/>
-        <location filename="../rmcore.cpp" line="275"/>
+        <location filename="../rmcore.cpp" line="276"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Одно или несколько значений равны нулю!</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="296"/>
+        <location filename="../rmcore.cpp" line="313"/>
         <source>Input data</source>
         <translation>Входные данные</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="312"/>
+        <location filename="../rmcore.cpp" line="330"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="317"/>
+        <location filename="../rmcore.cpp" line="335"/>
         <source>Number of turns of the coil</source>
         <translation>Число витков катушки</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="319"/>
+        <location filename="../rmcore.cpp" line="337"/>
         <source>Effective magnetic path length</source>
         <translation>Эффективная длина магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="322"/>
+        <location filename="../rmcore.cpp" line="340"/>
         <source>Effective area of magnetic path</source>
         <translation>Эффективная площадь магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="325"/>
+        <location filename="../rmcore.cpp" line="343"/>
         <source>Effective volume</source>
         <translation>Эффективный объем</translation>
     </message>
     <message>
-        <location filename="../rmcore.cpp" line="328"/>
+        <location filename="../rmcore.cpp" line="346"/>
         <source>Effective magnetic permeability of the core</source>
         <translation>Эффективная магнитная проницаемость сердечника</translation>
+    </message>
+    <message>
+        <location filename="../rmcore.cpp" line="355"/>
+        <source>Coil can not be realized</source>
+        <translation>Катушка не может быть реализована</translation>
     </message>
 </context>
 <context>
@@ -4408,11 +4471,13 @@
     <message>
         <location filename="../scdockwidget.ui" line="34"/>
         <location filename="../scdockwidget.cpp" line="26"/>
+        <location filename="../scdockwidget.cpp" line="64"/>
         <source>Material</source>
         <translation>Материал</translation>
     </message>
     <message>
         <location filename="../scdockwidget.ui" line="139"/>
+        <location filename="../scdockwidget.cpp" line="65"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
@@ -4422,12 +4487,12 @@
         <translation>Вручную</translation>
     </message>
     <message>
-        <location filename="../scdockwidget.cpp" line="133"/>
+        <location filename="../scdockwidget.cpp" line="135"/>
         <source>Saturation current</source>
         <translation>Ток насыщения</translation>
     </message>
     <message>
-        <location filename="../scdockwidget.cpp" line="133"/>
+        <location filename="../scdockwidget.cpp" line="135"/>
         <source>mA</source>
         <translation>мА</translation>
     </message>
@@ -4593,92 +4658,97 @@
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="128"/>
+        <location filename="../ucore.cpp" line="129"/>
         <source>Slot size</source>
         <translation>Размер выреза</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="129"/>
+        <location filename="../ucore.cpp" line="130"/>
         <source>Magnetic permeability</source>
         <translation>Магнитная проницаемость</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="158"/>
+        <location filename="../ucore.cpp" line="159"/>
         <source>Number of turns</source>
         <translation>Число витков</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="163"/>
-        <location filename="../ucore.cpp" line="328"/>
+        <location filename="../ucore.cpp" line="164"/>
+        <location filename="../ucore.cpp" line="346"/>
         <source>Inductance</source>
         <translation>Индуктивность</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="226"/>
-        <location filename="../ucore.cpp" line="240"/>
-        <location filename="../ucore.cpp" line="244"/>
-        <location filename="../ucore.cpp" line="253"/>
-        <location filename="../ucore.cpp" line="261"/>
-        <location filename="../ucore.cpp" line="265"/>
-        <location filename="../ucore.cpp" line="269"/>
+        <location filename="../ucore.cpp" line="227"/>
+        <location filename="../ucore.cpp" line="241"/>
+        <location filename="../ucore.cpp" line="245"/>
+        <location filename="../ucore.cpp" line="254"/>
+        <location filename="../ucore.cpp" line="262"/>
+        <location filename="../ucore.cpp" line="266"/>
+        <location filename="../ucore.cpp" line="270"/>
         <location filename="../ucore.cpp" line="276"/>
         <location filename="../ucore.cpp" line="280"/>
-        <location filename="../ucore.cpp" line="287"/>
-        <location filename="../ucore.cpp" line="291"/>
+        <location filename="../ucore.cpp" line="288"/>
+        <location filename="../ucore.cpp" line="292"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="226"/>
+        <location filename="../ucore.cpp" line="227"/>
         <source>One or more inputs are empty!</source>
         <translation>Один или несколько полей ввода пусты!</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="240"/>
-        <location filename="../ucore.cpp" line="253"/>
-        <location filename="../ucore.cpp" line="261"/>
+        <location filename="../ucore.cpp" line="241"/>
+        <location filename="../ucore.cpp" line="254"/>
+        <location filename="../ucore.cpp" line="262"/>
         <location filename="../ucore.cpp" line="276"/>
-        <location filename="../ucore.cpp" line="287"/>
+        <location filename="../ucore.cpp" line="288"/>
         <source>One or more inputs have an illegal format!</source>
         <translation>Одно или несколько значений имеют недопустимый формат!</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="244"/>
-        <location filename="../ucore.cpp" line="265"/>
+        <location filename="../ucore.cpp" line="245"/>
+        <location filename="../ucore.cpp" line="266"/>
         <location filename="../ucore.cpp" line="280"/>
-        <location filename="../ucore.cpp" line="291"/>
+        <location filename="../ucore.cpp" line="292"/>
         <source>One or more inputs are equal to null!</source>
         <translation>Одно или несколько значений равны нулю!</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="311"/>
+        <location filename="../ucore.cpp" line="328"/>
         <source>Input data</source>
         <translation>Входные данные</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="326"/>
+        <location filename="../ucore.cpp" line="344"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="331"/>
+        <location filename="../ucore.cpp" line="349"/>
         <source>Number of turns of the coil</source>
         <translation>Число витков катушки</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="333"/>
+        <location filename="../ucore.cpp" line="351"/>
         <source>Effective magnetic path length</source>
         <translation>Эффективная длина магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="336"/>
+        <location filename="../ucore.cpp" line="354"/>
         <source>Effective area of magnetic path</source>
         <translation>Эффективная площадь магнитной цепи</translation>
     </message>
     <message>
-        <location filename="../ucore.cpp" line="339"/>
+        <location filename="../ucore.cpp" line="357"/>
         <source>Effective volume</source>
         <translation>Эффективный объем</translation>
+    </message>
+    <message>
+        <location filename="../ucore.cpp" line="369"/>
+        <source>Coil can not be realized</source>
+        <translation>Катушка не может быть реализована</translation>
     </message>
 </context>
 </TS>

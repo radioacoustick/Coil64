@@ -23,7 +23,7 @@ Bandspread::Bandspread(QWidget *parent) :
 {
     ui->setupUi(this);
     fOpt = new _OptionStruct;
-    dv = new QDoubleValidator(0.0, MAX_DOUBLE, 380);
+    dv = new QDoubleValidator(0.0, DBL_MAX, 380);
     ui->lineEdit_ind->setValidator(dv);
     ui->lineEdit_flo->setValidator(dv);
     ui->lineEdit_fhi->setValidator(dv);
@@ -270,7 +270,7 @@ void Bandspread::on_pushButton_calculate_clicked()
         QVector<double> *range = new QVector<double>();
         calcInductanceRange(f_low, f_high, Cv_min, Cv_max, Cs, range, fOpt->dwAccuracy);
         double Lmin = 0.0;
-        double Lmax = MAX_DOUBLE;
+        double Lmax = DBL_MAX;
         if (!range->isEmpty()){
             Lmin = range->at(0);
             Lmax = range->at(1);

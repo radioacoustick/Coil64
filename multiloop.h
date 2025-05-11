@@ -27,6 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QDesktopServices>
 #include <QUrl>
 
+#include "mthread_calculate.h"
 #include "system_functions.h"
 #include "resolves.h"
 
@@ -50,6 +51,8 @@ private slots:
     void getOpt(_OptionStruct gOpt);
     void getCurrentLocale(QLocale locale);
     void on_pushButton_clicked();
+    void get_Multiloop_Result(_CoilResult result);
+    void on_calculation_finished();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
     void on_lineEdit_2_editingFinished();
@@ -63,7 +66,8 @@ private:
     QLocale loc;
     double ind;
     double dw;
-    int nTurns;
+    double nTurns;
+    MThread_calculate *thread;
 };
 
 #endif // MULTILOOP_H
