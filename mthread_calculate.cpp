@@ -282,6 +282,13 @@ void MThread_calculate::run(){
                 }
                 break;
             }
+            case _Multisection:{
+                //thread = new MThread_calculate( _Multisection, -1, D, c, l, s, dw, k, 0, 0, Cu, 0, 0, 0, 0, 0, false, false, M);
+                //double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic, bool *isStop, int sec, double s
+                bool isOrthocyclic = !!arg7;
+                getMultiLayerI(arg1, arg3, arg5, arg6, arg2, 0, -1, &result, isOrthocyclic, &isAbort, index, arg4);
+                break;
+            }
             default:
                 break;
             }

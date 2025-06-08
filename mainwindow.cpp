@@ -1509,6 +1509,9 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->lineEdit_3->setVisible(true);
             mui->label_3->setVisible(true);
             mui->label_03->setVisible(true);
+            mui->lineEdit_4->setVisible(true);
+            mui->label_4->setVisible(true);
+            mui->label_04->setVisible(true);
             mui->lineEdit_5->setVisible(false);
             mui->label_5->setVisible(false);
             mui->label_05->setVisible(false);
@@ -3247,7 +3250,7 @@ void MainWindow::on_lineEdit_4_editingFinished()
             break;
         }
         case _PCB_coil:{
-            data->th = loc.toDouble(mui->lineEdit_3->text(), &ok)*myOpt->dwLengthMultiplier;
+            data->th = loc.toDouble(mui->lineEdit_4->text(), &ok)*myOpt->dwLengthMultiplier;
             if (!ok) showWarning(tr("Warning"), tr("One or more inputs have an illegal format!"));
             break;
         }
@@ -6143,6 +6146,18 @@ void MainWindow::on_actionRM_core_coil_triggered()
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     fRMcore->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionMulti_section_multilayer_coil_triggered()
+{
+    Multisection *multisection = new Multisection();
+    multisection->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(multisection, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), multisection, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), multisection, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    multisection->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionCoil_on_a_ferrite_rod_triggered()

@@ -53,7 +53,8 @@ enum _FerriteCoreCalc
 enum _AdditionalCalc
 {
     _Multiloop = 0,
-    _SingleLoop
+    _SingleLoop,
+    _Multisection
 };
 
 #pragma pack(push,1)
@@ -137,8 +138,9 @@ enum _AdditionalCalc
     double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw, unsigned int accuracy, bool *isStop); //get Inductance for One-layer coil with round wire
     void getOneLayerI_Poligonal(double Dk, double dw, double h, double N, double n, _CoilResult *result, unsigned int accuracy, bool *isStop);
     void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _CoilResult *result, bool isOrthocyclic, bool *isStop); //get Inductance for Multi-layer coil
-    void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic, bool *isStop); //get Inductance for Multi-layer coil
-    void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result, bool isOrthocyclic, bool *isStop);
+    void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result,
+                        bool isOrthocyclic, bool *isStop, int sec = 1, double s = 0); //get Inductance for Multi-layer coil
+    void getMultiLayerI_fromResistance (double D, double lk, double c, double k, double Rm, _CoilResult *result, bool isOrthocyclic, bool *isStop);
     void getMultiLayerI_rectFormer(double a, double b, double l, double c, double dw, double k, _CoilResult *result, bool *isStop);
     void getMultiLayerI_rectFormer_byN(double N, double a, double b, double l, double dw, double k, _CoilResult *result, bool *isStop);
     void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _CoilResult *result, bool *isStop);

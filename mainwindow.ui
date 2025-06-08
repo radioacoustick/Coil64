@@ -2413,6 +2413,7 @@
     <addaction name="actionShiels_influence"/>
     <addaction name="actionCross_over_inductor"/>
     <addaction name="actionBandspread_Calculator"/>
+    <addaction name="actionMulti_section_multilayer_coil"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -2833,6 +2834,15 @@
    </property>
    <property name="text">
     <string>Saturation current</string>
+   </property>
+  </action>
+  <action name="actionMulti_section_multilayer_coil">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-multi-section.png</normaloff>:/menu_ico/res/ico1-multi-section.png</iconset>
+   </property>
+   <property name="text">
+    <string>Multi-section multilayer coil</string>
    </property>
   </action>
  </widget>

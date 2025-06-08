@@ -31,6 +31,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     mainwindow.cpp \
+    multisection.cpp \
     resolves.cpp \
     bessel.cpp \
     resolve_q.cpp \
@@ -59,6 +60,7 @@ SOURCES += main.cpp\
     scdockwidget.cpp
 
 HEADERS  += mainwindow.h \
+    multisection.h \
     proxystyle.h \
     resolves.h \
     bessel.h \
@@ -91,6 +93,7 @@ HEADERS  += mainwindow.h \
     scdockwidget.h
 
 FORMS    += mainwindow.ui \
+    multisection.ui \
     options.ui \
     about.ui \
     find_permeability.ui \

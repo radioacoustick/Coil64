@@ -246,7 +246,7 @@ void Ferrite_Rod::get_ferriteRod_Result(_CoilResult result)
     sInput += formattedOutput(fOpt, ui->label_p->text(), ui->lineEdit_p->text(), ui->label_p_m->text()) + "</p>";
     QString sResult = "";
     if (result.N > 0){
-        QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
+        sResult = "<p><u>" + tr("Result") + ":</u><br/>";
         sResult += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", QString::number(result.N)) + "<br/>";
         sResult += formattedOutput(fOpt, tr("Length of winding") + " lc = ", roundTo(result.thd/fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy),
                                    qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";

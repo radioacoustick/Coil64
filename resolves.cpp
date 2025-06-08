@@ -293,7 +293,7 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
         while (CurrentErr > MaxErr) {
             if(*isStop)
                 return -1.0;
-            if(m > 1024)
+            if(m > 4096)
                 break;
             m = 2 * m;
             dx = dx / 2;
@@ -369,7 +369,7 @@ double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double
         Ind = res.sec;
     }
     N_max = N;
-    while (fabs(1 - (Ind / I)) > 0.001){
+    do{
         if(*isStop)
             return -1.0;
         N = (N_min + N_max) / 2;
@@ -379,7 +379,9 @@ double deriveOneLayerPoligonalN(double Dk, double dw, double p, double n, double
             N_max = N;
         else
             N_min = N;
-    }
+        if (fabs(N_max - N_min) < pow(10, -((double)accuracy + 3)))
+            break;
+    } while (fabs(1 - (Ind / I)) > pow(10, -((double)accuracy)));
     *lw = res.thd;
     return N;
 }
@@ -445,7 +447,7 @@ double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, doub
         ind = solveHelicalInductance(N, p, Dk, dw, 0, 0, lw, true, accuracy, isStop);
     }
     N_max = N;
-    while (fabs(1 - (ind / I)) > 0.001) {
+    do {
         if(*isStop)
             return -1.0;
         N = (N_min + N_max) / 2;
@@ -455,7 +457,9 @@ double getOneLayerN_withRoundWire(double Dk, double dw, double p, double I, doub
         } else {
             N_min = N;
         }
-    }
+        if (fabs(N_max - N_min) < pow(10, -((double)accuracy + 3)))
+            break;
+    } while (fabs(1 - (ind / I)) > pow(10, -((double)accuracy)));
     return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -505,7 +509,7 @@ double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double
         ind = solveHelicalInductance(N, p, Dk, 0, w, t, lw, false, accuracy, isStop);
     }
     N_max = N;
-    while (fabs(1 - (ind / I)) > 0.001) {
+    do {
         if(*isStop)
             return -1.0;
         N = (N_min + N_max) / 2;
@@ -515,9 +519,10 @@ double getOneLayerN_withRectWire(double Dk, double w, double t, double p, double
         } else {
             N_min = N;
         }
-    }
+        if (fabs(N_max - N_min) < pow(10, -((double)accuracy + 3)))
+            break;
+    } while (fabs(1 - (ind / I)) > pow(10, -((double)accuracy)));
     return N;
-
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double getOneLayerI_withRectWire(double Dk, double w, double t, double p, double N, double *lw, unsigned int accuracy, bool *isStop){
@@ -686,37 +691,33 @@ void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _Coi
     result->five = thickness; //coil thickness
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic, bool *isStop){
-    double bTmp, nTmp, lw, Lns, Ltotal, r0, M, g, nx, ny, jx, jy, n_g = 0, jg = 0, ind1, ind2, N1, N2;
-    int n, Nl, j, Nc, Jc, nLayer, jLayer;
-    ind1 = 0;
-    D = D / 10;
-    lk = lk / 10;
-    c = c / 10;
-    nTmp = 0;
-    bTmp = 0;
-    dw = dw / 10;
-    k = k / 10;
-    gap = gap / 10;
+void getMultiLayerI(double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic, bool *isStop, int sec, double s){
+    double bTmp = 0, nTmp = 0, Lns, Ltotal = 0, M, nx, ny, jx, jy, n_g = 0, jg = 0, ind1 = 0, ind2, N1, N2, sec_offset = 0, sec_offset2 = 0;
+    int n = 0, j, Nc, Jc, nLayer, jLayer;
+    D /= 10;
+    lk /= 10;
+    c /= 10;
+    dw /= 10;
+    k /= 10;
+    s /= 10;
+    gap /= 10;
     if (Ng == -1) {
         gap = 0;
     }
-    Ltotal = 0; // initialize variable of total self-inductance
-    lw = 0;
-    r0 = (D + k) / 2;
-    n = 0;
-    Nl = (int) floor(lk / k);
+    double r0 = (D + k) / 2;
+    int Nl1 = (int) floor(lk / k); //number of turns in the single section single layer
     if (isOrthocyclic)
-        Nl = (int) floor((lk - 0.5 * k) / k);
-    g = exp(-0.25) * dw / 2;
+        Nl1 = (int) floor((lk - 0.5 * k) / k);
+    int Nl = Nl1 * sec; //number of turns in the all sections single layer
+    double g = exp(-0.25) * dw / 2;
     while (bTmp < c) {
         if(*isStop){
             result->N = -1.0;
             return;
         }
-        n++;
-        Nc = (n - 1) % Nl;
-        nLayer = (int) floor((n - 1) / Nl);
+        n++;//increase turn counter
+        Nc = (n - 1) % Nl; //n-turn position
+        nLayer = (int) floor((n - 1) / Nl);//layer position
         if (((nLayer % Ng) == 0) && (nLayer > 0)) {
             n_g = gap;
         } else {
@@ -726,14 +727,18 @@ void getMultiLayerI(double D, double lk, double dw, double k, double c, double g
             nx = Nc * k + 0.5 * k;
         } else
             nx = Nc * k;
+        if(((n - 1) % Nl1 == 0) && ((n - 1) % Nl != 0))
+            sec_offset += s;
+        else if(((n - 1) % Nl1 == 0) && ((n - 1) % Nl == 0))
+            sec_offset = 0;
+        nx += sec_offset;
         if (isOrthocyclic){
             ny = r0 + dens * k * nLayer + n_g;
         } else
             ny = r0 + k * nLayer + n_g;
-        Lns = Mut(ny, ny, g, 0);
-        // self inductance of current turn
-        lw = lw + find_Helix_turn_length(ny, k);
+        Lns = Mut(ny, ny, g, 0); // self inductance of current turn
         M = 0;
+        sec_offset2 = sec_offset;
         if (n > 1) {
             for (j = n; j >= 2; j--) {
                 if(*isStop){
@@ -745,6 +750,11 @@ void getMultiLayerI(double D, double lk, double dw, double k, double c, double g
                     jx = Jc * k + 0.5 * k;
                 } else
                     jx = Jc * k;
+                if(((j - 1) % Nl1 == 0) && ((j - 1) % Nl != 0))
+                    sec_offset2 -= s;
+                else if(((j - 1) % Nl1 == 0) && ((j - 1) % Nl == 0))
+                    sec_offset2 = sec_offset;
+                jx += sec_offset2;
                 jLayer = (int) floor((j - 2) / Nl);
                 if (((jLayer % Ng) == 0) && (jLayer > 0)) {
                     jg = gap;
@@ -1448,52 +1458,34 @@ double getPCB_RectI(int N, double A, double B, double s, double w, double th, _C
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getPCB_RectN (double I, double A, double B, double _a, double th, double ratio, _CoilResult *result, bool *isStop) {
     double a = A - (A - _a) / 2.0;
+    double iTmp = 0;
+    double s = 0;
+    double w = 0;
     result->N = 0;
     result->sec = 0;
     result->thd = 0;
-    int n_min = 2;
-    int n_max = 1000000;
-    double s_min = (A - _a) / (n_min - 1) / 2;
-    double w_min = s_min * ratio;
-    double b_min = B - (n_min - 1) * s_min;
-    double s_max = (A - _a) / (n_max - 1) / 2;
-    double w_max = s_max * ratio;
-    double b_max = B - (n_max - 1) * s_max;
-    double i_min = rectPCBSpiral(n_min, a, b_min, s_min, w_min , th);
-    double i_max = rectPCBSpiral(n_max, a, b_max, s_max, w_max , th);
-    if ((i_min > I) || (i_max < I)){
-        return;
-    } else {
-        double s = 0;
-        double w = 0;
-        int n_tmp = n_max / 2;
-        do {
-            if(*isStop){
-                result->N = -1.0;
-                return;
-            }
-            s = (A - _a) / (n_tmp - 1) / 2;
-            w = s * ratio;
-            double b = B - (n_tmp - 1) * s;
-            double iTmp = rectPCBSpiral(n_tmp, a, b, s, w , th);
-            if ((fabs(iTmp - I) / I) < 0.05)
+    for (int N = 2; N < 10000; N++){
+        if(*isStop){
+            result->N = -1.0;
+            return;
+        }
+        s = (A - _a) / (N - 1) / 2;
+        w = s * ratio;
+        double b = B - (N - 1) * s;
+        iTmp = rectPCBSpiral(N, a, b, s, w , th);
+        if(!std::isnormal(iTmp) || (iTmp < 0))
+            return;
+        if (iTmp > I){
+            if (is_PCB_Rect_valid(N, s, w, B)){
+                result->N = N;
+                result->sec = s;
+                result->thd = w;
                 break;
-            if (iTmp > I){
-                n_max = n_tmp;
             } else {
-                n_min = n_tmp;
+                break;
             }
-            n_tmp = (n_min + n_max) / 2;
-        } while (abs(n_max - n_min) > 1);
-        if (!is_PCB_Rect_valid(n_tmp, s, w, B))
-            return;
-        if(n_tmp == 999999)
-            return;
-        result->N = n_tmp;
-        result->sec = s;
-        result->thd = w;
+        }
     }
-    return;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result, bool *isStop) {

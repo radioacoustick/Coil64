@@ -57,14 +57,10 @@ Multiloop::~Multiloop()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Multiloop::getOpt(_OptionStruct gOpt){
     *fOpt = gOpt;
-    QString tmp_txt = tr("Number of turns") + " N:";
-    ui->label_N->setText(tmp_txt);
-    tmp_txt = tr("Inside diameter") + " Di:";
-    ui->label_1->setText(tmp_txt);
-    tmp_txt = tr("Wire diameter") + " d:";
-    ui->label_2->setText(tmp_txt);
-    tmp_txt = tr("Wire diameter with insulation") + " do:";
-    ui->label_3->setText(tmp_txt);
+    ui->label_N->setText(tr("Number of turns") + " N:");
+    ui->label_1->setText(tr("Inside diameter") + " Di:");
+    ui->label_2->setText(tr("Wire diameter") + " d:");
+    ui->label_3->setText(tr("Wire diameter with insulation") + " do:");
     ui->label_N_m->setText(qApp->translate("Context", fOpt->ssInductanceMeasureUnit.toUtf8()));
     ui->label_01->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
     ui->label_02->setText(qApp->translate("Context", fOpt->ssLengthMeasureUnit.toUtf8()));
