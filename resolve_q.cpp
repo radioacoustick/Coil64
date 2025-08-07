@@ -196,7 +196,7 @@ double lookup_Psi(double Df, double dw, double pt, double N, double fm, Material
     P = pt / 10;
     rc = Df / 20;
     f = fm * 1e3;
-    si = 1e-11 / mtrl[mt][Rho];
+    si = 1e-11 / MTRL[mt][Rho];
     eta = d / P;
     zeta = P / rc;
     ro = (N - 1) * zeta;
@@ -226,7 +226,7 @@ double get_Xir(Material mt, double fm, double dw){
     double y, z, f, r, delta_i, delta_i_prim;
     f = fm * 1e3;
     r = dw / 2000;
-    delta_i = sqrt(mtrl[mt][Rho] / (f * M_PI * mu0 * (1 + mtrl[mt][Chi])));
+    delta_i = sqrt(MTRL[mt][Rho] / (f * M_PI * MU0 * (1 + MTRL[mt][Chi])));
     delta_i_prim = delta_i * (1 - exp(-r / delta_i));
     z = 0.62006 * r / delta_i;
     y = 0.189774 / pow((1 + 0.272481 * pow((pow(z, 1.82938) - pow(z, -0.99457)), 2)), 1.0941);
@@ -239,7 +239,7 @@ double get_Xir(Material mt, double fm, double dw){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double get_Xic(Material mt, double f, double w, double t){
     //AC resistance factor formula 4.8.1
-    double delta = sqrt(mtrl[mt][Rho] / (f * M_PI * mu0 * (1 + mtrl[mt][Chi])));
+    double delta = sqrt(MTRL[mt][Rho] / (f * M_PI * MU0 * (1 + MTRL[mt][Chi])));
     double p = sqrt(w * t)/(1.26 * delta);
     double Ff = 1 - exp(-0.026 * p);
     double x = ((2 * delta / t) * (1 + t / w) + 8 * pow(delta / t, 3)/(w / t)) / (pow(w / t, 0.33)*exp(-3.5*(t / delta)) + 1);
@@ -265,7 +265,7 @@ unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa,
     r = dw / 2000;
     p = pm / 1000;
     WireLength = M_PI * N * sqrt(D * D + p * p / 4);
-    Rdc = mtrl[mt][Rho] * WireLength / (M_PI * r * r);
+    Rdc = MTRL[mt][Rho] * WireLength / (M_PI * r * r);
     Xi = get_Xir(mt, fm, dw);
     Psi = lookup_Psi(Df, dw, pm, N, fm, mt);
     Rac0 = Rdc * (1 + ((Xi - 1) * Psi * (N - 1 + 1 / Psi)) / N);
@@ -295,7 +295,7 @@ unsigned long int solve_Qc(double I, double Df, double pm, double _w, double _t,
     t = _t / 1000;
     p = pm / 1000;
     WireLength = M_PI * N * sqrt(D * D + p * p / 4);
-    Rdc = mtrl[mt][Rho] * WireLength / (w * t);
+    Rdc = MTRL[mt][Rho] * WireLength / (w * t);
     Xi = get_Xic(mt, f, w, t);
     Psi = lookup_Psi(Df, _w, pm, N, fm, mt);
     Rac0 = Rdc * (1 + ((Xi - 1) * Psi * (N - 1 + 1 / Psi)) / N);
@@ -346,8 +346,8 @@ double solve_Qpcb(long N, double _I, double _D, double _d, double _W, double _t,
         break;
     }
     double Qs = 1 / tand;
-    double Rdc = mtrl[1][Rho] * StripLength / (W * t);
-    double delta = sqrt(mtrl[1][Rho] / (f * M_PI * mu0 * (1 + mtrl[1][Chi])));
+    double Rdc = MTRL[1][Rho] * StripLength / (W * t);
+    double delta = sqrt(MTRL[1][Rho] / (f * M_PI * MU0 * (1 + MTRL[1][Chi])));
     double Xi  = t / (delta*(1 - exp(-t/delta)));
     double Psi = (Xi / 3) * pow(3 * W / (2 * s), 4);
     double Rac = Rdc * (Xi + Psi);

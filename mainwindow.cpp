@@ -4913,9 +4913,9 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result)
         }
         Material mt = Cu;
         checkMaterial1(&mt);
-        double dencity = mtrl[mt][Dencity];
+        double dencity = MTRL[mt][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.sec;
-        double Resistivity = mtrl[mt][Rho]*1e6;
+        double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
@@ -5001,9 +5001,9 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result)
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
         checkMaterial1(&mt);
-        double dencity = mtrl[mt][Dencity];
+        double dencity = MTRL[mt][Dencity];
         double mass = dencity * w * t * result.sec;
-        double Resistivity = mtrl[mt][Rho]*1e6;
+        double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
         double reactance = 2 * M_PI * I * f;
@@ -5093,9 +5093,9 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result)
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
         checkMaterial1(&mt);
-        double dencity = mtrl[mt][Dencity];
+        double dencity = MTRL[mt][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.thd;
-        double Resistivity = mtrl[mt][Rho]*1e6;
+        double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
         double reactance = 2 * M_PI * I * f;
@@ -5185,9 +5185,9 @@ void MainWindow::get_multilayerN_Result(_CoilResult result)
         } else {
             d = loc.toDouble(mui->lineEdit_3->text())*myOpt->dwLengthMultiplier;
         }
-        double dencity = mtrl[Cu][Dencity];
+        double dencity = MTRL[Cu][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.sec;
-        double Resistivity = mtrl[Cu][Rho]*1e6;
+        double Resistivity = MTRL[Cu][Rho]*1e6;
         double Rdc = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
         data->Rdc = Rdc;
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(Rdc, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
@@ -5235,9 +5235,9 @@ void MainWindow::get_multilayerNgap_Result(_CoilResult result)
         } else {
             d = loc.toDouble(mui->lineEdit_3->text())*myOpt->dwLengthMultiplier;
         }
-        double dencity = mtrl[Cu][Dencity];
+        double dencity = MTRL[Cu][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.sec;
-        double Resistivity = mtrl[Cu][Rho]*1e6;
+        double Resistivity = MTRL[Cu][Rho]*1e6;
         double Rdc = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
         data->Rdc = Rdc;
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(Rdc, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
@@ -5289,9 +5289,9 @@ void MainWindow::get_multilayerN_Rect_Result(_CoilResult result)
         } else {
             d = loc.toDouble(mui->lineEdit_4->text())*myOpt->dwLengthMultiplier;
         }
-        double dencity = mtrl[Cu][Dencity];
+        double dencity = MTRL[Cu][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.thd;
-        double Resistivity = mtrl[Cu][Rho]*1e6;
+        double Resistivity = MTRL[Cu][Rho]*1e6;
         double Rdc = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
         data->Rdc = Rdc;
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
@@ -5413,6 +5413,7 @@ void MainWindow::get_pcbN_Result(_CoilResult result)
     if (mui->comboBox_checkPCB->currentIndex() == 2)
         sInput += formattedOutput(myOpt, mui->label_3->text(), mui->lineEdit_3->text(), mui->label_03->text()) + "<br/>";
     sInput += formattedOutput(myOpt, mui->label_4->text(), mui->lineEdit_4->text(), mui->label_04->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_6->text(), mui->lineEdit_6->text()) + "<br/>";
     sInput += formattedOutput(myOpt, mui->groupBox_6->title(), loc.toString((double)mui->horizontalSlider->value()/100)) + "</p>";
     QString sResult = "";
     if ((result.N > 0) && (result.sec > 0) && (result.thd > 0)){
@@ -5520,9 +5521,9 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result)
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
         checkMaterial2(&mt);
-        double dencity = mtrl[mt][Dencity];
+        double dencity = MTRL[mt][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.sec;
-        double Resistivity = mtrl[mt][Rho]*1e6;
+        double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
         double reactance = 2 * M_PI * I * f;
@@ -5609,11 +5610,11 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result)
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
         checkMaterial2(&mt);
-        double dencity = mtrl[mt][Dencity];
+        double dencity = MTRL[mt][Dencity];
         double mass = dencity * w * t * result.sec;
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
         double reactance = 2 * M_PI * I * f;
-        double Resistivity = mtrl[mt][Rho]*1e6;
+        double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
         sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
@@ -5704,11 +5705,11 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result)
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
         checkMaterial2(&mt);
-        double dencity = mtrl[mt][Dencity];
+        double dencity = MTRL[mt][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * lW;
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
         double reactance = 2 * M_PI * I * f;
-        double Resistivity = mtrl[mt][Rho]*1e6;
+        double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * lW * 4) / (M_PI * d * d); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
         sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
@@ -5799,7 +5800,7 @@ void MainWindow::get_multilayerI_Result(_CoilResult result)
             } else {
                 d = loc.toDouble(mui->lineEdit_4_2->text())*myOpt->dwLengthMultiplier;
             }
-            double dencity = mtrl[Cu][Dencity];
+            double dencity = MTRL[Cu][Dencity];
             double mass = 0.25 * dencity * M_PI * d * d * result.thd;
             sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
             sResult += formattedOutput(myOpt, tr("Number of layers") + " Nl = ", loc.toString(result.sec));
@@ -5888,9 +5889,9 @@ void MainWindow::get_multilayerI_Rect_Result(_CoilResult result)
             } else {
                 d = loc.toDouble(mui->lineEdit_5_2->text())*myOpt->dwLengthMultiplier;
             }
-            double dencity = mtrl[Cu][Dencity];
+            double dencity = MTRL[Cu][Dencity];
             double mass = 0.25 * dencity * M_PI * d * d * result.thd;
-            double Resistivity = mtrl[Cu][Rho]*1e6;
+            double Resistivity = MTRL[Cu][Rho]*1e6;
             double Rdc = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
             sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(Rdc, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
             data->Rdc = result.fourth;
@@ -6025,7 +6026,8 @@ void MainWindow::get_pcbI_Result(_CoilResult result)
     sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
     sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
     sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), mui->label_04_2->text()) + "<br/>";
-    sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text(), mui->label_05_2->text()) + "</p>";
+    sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text(), mui->label_05_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_6_2->text(), mui->lineEdit_6_2->text()) + "</p>";
     QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if (result.N > 0){
         data->inductance = result.N;
@@ -6158,6 +6160,18 @@ void MainWindow::on_actionMulti_section_multilayer_coil_triggered()
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     multisection->exec();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionCoupled_coils_triggered()
+{
+    CoupledCoil *coupledcoil = new CoupledCoil();
+    coupledcoil->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(coupledcoil, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(this, SIGNAL(sendOpt(_OptionStruct)), coupledcoil, SLOT(getOpt(_OptionStruct)));
+    connect(this, SIGNAL(sendLocale(QLocale)), coupledcoil, SLOT(getCurrentLocale(QLocale)));
+    emit sendLocale(loc);
+    emit sendOpt(*myOpt);
+    coupledcoil->exec();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionCoil_on_a_ferrite_rod_triggered()

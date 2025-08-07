@@ -2414,6 +2414,7 @@
     <addaction name="actionCross_over_inductor"/>
     <addaction name="actionBandspread_Calculator"/>
     <addaction name="actionMulti_section_multilayer_coil"/>
+    <addaction name="actionCoupled_coils"/>
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
@@ -2843,6 +2844,15 @@
    </property>
    <property name="text">
     <string>Multi-section multilayer coil</string>
+   </property>
+  </action>
+  <action name="actionCoupled_coils">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/menu_ico/res/ico1-coupled.png</normaloff>:/menu_ico/res/ico1-coupled.png</iconset>
+   </property>
+   <property name="text">
+    <string>Coupled coils</string>
    </property>
   </action>
  </widget>

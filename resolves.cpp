@@ -17,12 +17,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 
 #include "resolves.h"
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///ROUTINE FUNCTIONS
+///PRIVATE FUNCTIONS REALIZATION
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//static_assert(true);
 #pragma pack(push,1)
 struct _Elliptic{
-    double Fk;
+    double Kk;
     double Ek;
 };
 #pragma pack(pop)
@@ -81,7 +81,7 @@ QString converttoAWG(double d, bool *isOK){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double find_Archimedean_spiral_length(int n, double a) {
   //function to calculate the Archimedean spiral length
-  double phi = 2 * n * M_PI;
+  double phi = 2.0 * n * M_PI;
   double l = (a / (4 * M_PI)) * (phi * sqrt(1 + phi * phi) + log(phi + sqrt(1 + phi * phi)));
   return l;
 }
@@ -104,7 +104,7 @@ double getToroidEqCrossSec(double OD, double ID, double he){
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double getSaturationCurrent(double Bs, double le, double mu, double N){
-    return 1e-4 * Bs * le / (mu0 * mu * N); // le [mm], Bs [Gs], return value in [mA]
+    return 1e-4 * Bs * le / (MU0 * mu * N); // le [mm], Bs [Gs], return value in [mA]
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double find_Helix_turn_length(double r, double p){
@@ -118,7 +118,7 @@ double rosaKm(double n){
     double n5 = n3 * n2;
     double n7 = n5 * n2;
     double n9 = n7 * n2;
-    return (log(2 * M_PI) - 1.5 - log(n) / (6 * n) - 0.33084236 / n - 1 / (120 * n3) + 1 / (504 * n5) - 0.0011923 / n7 + 0.0005068 / n9);
+    return (log(2.0 * M_PI) - 1.5 - log(n) / (6.0 * n) - 0.33084236 / n - 1.0 / (120.0 * n3) + 1.0 / (504.0 * n5) - 0.0011923 / n7 + 0.0005068 / n9);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double rosaKs(double x){
@@ -126,37 +126,62 @@ double rosaKs(double x){
     return (1.25 - log(2 * x));
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void EF(double c, _Elliptic *result){
+void compEllipticIntegrals(double c, _Elliptic *result){
     //the complete elliptic integrals of the first and second kind
-    double a = 1;
-    double b = sqrt(1 - pow(c, 2));
-    double E = 1 - pow(c, 2) / 2;
-    double i = 1;
+    double a = 1.0;
+    double b = sqrt(1.0 - pow(c, 2));
+    double E = 1.0 - pow(c, 2) / 2.0;
+    double i = 1.0;
     while (fabs(a - b) > 1e-15) {
-        double a1 = (a + b) / 2;
+        double a1 = (a + b) / 2.0;
         double b1 = sqrt(a * b);
-        E = E - i * pow((a - b) / 2, 2);
-        i = 2 * i;
+        E = E - i * pow((a - b) / 2.0, 2);
+        i = 2.0 * i;
         a = a1;
         b = b1;
     }
-    double Fk = M_PI / (2 * a);
+    double Fk = M_PI / (2.0 * a);
     double Ek = E * Fk;
     result->Ek = Ek;
-    result->Fk = Fk;
+    result->Kk = Fk;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double Mut(double r1, double r2, double x, double g){
-    //Mutual inductance of two coaxial circular filaments
+double Mutual(double r1, double r2, double x, double g){
+    //got from https://www.coe.ufrj.br/~acmq/tesla/maxwell.pdf, Universidade Federal do Rio de Janeiro, de Queiroz, Antonio C. M
+    //Mutual inductance between two coaxial circular filaments (for multilayer coils computatiom)
     //r1,r2 - radii of the two circular filaments
     //x - distance between the centres of the circular filaments
     //g - Geometric Mean Distance
     double l = sqrt(pow(r2 - r1, 2) + pow(x, 2));
-    double c = 2 * sqrt(r1 * r2) / sqrt(pow(r1 + r2, 2) + pow(l - g, 2));
-    _Elliptic Ec;
-    EF(c, &Ec);
-    double result = -0.004 * M_PI * sqrt(r1 * r2) * ((c - 2 / c) * Ec.Fk + (2 / c) * Ec.Ek);
+    double k = 2 * sqrt(r1 * r2) / sqrt(pow(r1 + r2, 2) + pow(l - g, 2));
+    _Elliptic mEll;
+    compEllipticIntegrals(k, &mEll);
+    double result = -0.004 * M_PI * sqrt(r1 * r2) * ((k - 2 / k) * mEll.Kk + (2 / k) * mEll.Ek);
     return (result);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double Mut(double r1,double r2,double x)
+{
+  // Got from https://electronbunker.ca/eb/CalcMethods1b.html, author Robert Weaver
+  // Mutual inductance between two coaxial circular filaments (for coupled coils computatiom)
+  // r1,r2 are radii of the respective loops in cm
+  // x is the axial distance separating them in cm
+  double a = sqrt((r1 + r2) * (r1 + r2) + x * x);
+  double b = sqrt((r1 - r2) * (r1 - r2) + x * x);
+  double c = a - b;
+  double ci = 1.0;
+  double cs = c * c;
+  double co = 0.0;
+  do{
+    double ao = (a + b) / 2;
+    b = sqrt(a * b);
+    a = ao;
+    co = c;
+    c = a - b;
+    ci = 2.0 * ci;
+    cs = cs + ci * c * c;
+  } while (c < co);
+  return 0.0005 * M_PI * M_PI * cs / a;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double SelfInductanceStraightWire(double l, double dw){
@@ -183,14 +208,12 @@ double MutInductanceStraightWire(double L1, double l2, double D){
 double Ingrnd(double phi, double kphitheta, double sinpsi, double cos2psi, double rr, double y){
     // by Robert Weaver from http://electronbunker.ca/eb/CalcMethods2d.html
     //Integrand function called by HeliCoilS()
-    double result = (1 + cos2psi * (cos(kphitheta) - 1)) / sqrt(2 * rr * (1 - cos(kphitheta)) + (sinpsi * phi - y) *
-                                                                (sinpsi * phi - y));
-    return result;
+    return (1.0 + cos2psi * (cos(kphitheta) - 1)) / sqrt(2 * rr * (1 - cos(kphitheta)) + (sinpsi * phi - y) * (sinpsi * phi - y));
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t, bool isRoundWire, unsigned int accuracy, bool *isStop){
-    // by Robert Weaver from http://electronbunker.ca/eb/CalcMethods2d.html (Version 1.0, 2011-03-25)
-    // edited by Valery Kustarev 2018-12-16
+    // by Robert Weaver from https://electronbunker.ca/eb/CalcMethods2c.html ( PDF, Appendix A, Version 1.0, 2012-11-27)
+    // Last edited by Valery Kustarev 2025-08-05
 
     // Uses helical filament mutual inductance formula
     // evaluated using Simpson's rule, and conductor gmd
@@ -212,8 +235,7 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
     double sinpsic, psic, g, rr, psio, ThetaO, Y0, cosThetaO, k1, k2, t1, t0, c2s, ss, k, a, b, grandtotal;
     double dx, MaxErr, CurrentErr, kat, kbt, Sum2, LastIntg, Sum, phi, kpt, Integral, aaa, bbb, ccc, ddd;
     int m;
-    int err = ceil((float)accuracy / 2);
-    MaxErr = pow(10,-err);
+    MaxErr = pow(10, -(double)accuracy);
     Integral = 0;
     //  grandtotal = 0;
     if (Lw > 2 * M_PI * r) {
@@ -250,7 +272,7 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
         Y0 = 0;
     } else {
         //  Use Newton-Raphson method
-        k1 = (g * g) / (2 * r * r) - 1;
+        k1 = (g * g) / (2 * rr) - 1;
         k2 = tan(psio);
         k2 = 0.5 * k2 * k2;
         t1 = g / r * sin(psi);
@@ -268,10 +290,9 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
     k = cos(psi) / r;
     // Start of Simpson's rule code
     a = 0;
-    b = Lw / 32768;
-    if (b > Lw) {
+    b = Lw / 32768.0;
+    if (b > Lw)
         b = Lw;
-    }
     grandtotal = 0;
     while (a < Lw) {
         if(*isStop)
@@ -290,34 +311,29 @@ double HeliCoilS(double Lw, double psi, double r, double dw, double w, double t,
         //   Initialize LastResult to trapezoidal area for test purposes
 
         LastIntg = Sum2 / 2 * dx;
-        while (CurrentErr > MaxErr) {
+        while ((CurrentErr > MaxErr) || (m < 512)) {
             if(*isStop)
                 return -1.0;
-            if(m > 4096)
-                break;
-            m = 2 * m;
+            m *= 2;
             dx = dx / 2;
-            Sum = 0;
-            int max= round((float)m/2);
-            for (int i = 1; i <= max; i++){
-                phi = 2 * i * dx + a;
+            Sum = 0.0;
+            for (int i = 1; i <= m; i += 2){
+                phi = i * dx + a;
                 kpt = k * phi;
-                Sum = Sum + (Lw - phi) * (Ingrnd(-phi, -kpt - ThetaO, ss, c2s, rr, Y0) + Ingrnd(phi, kpt - ThetaO, ss, c2s, rr, Y0));
+                Sum += (Lw - phi) * (Ingrnd(-phi, -kpt - ThetaO, ss, c2s, rr, Y0) + Ingrnd(phi, kpt - ThetaO, ss, c2s, rr, Y0));
             }
-            Integral = (4 * (Sum) + Sum2) * dx / 3;
-            CurrentErr = fabs((Integral) / (LastIntg) - 1);
+            Integral = (4.0 * Sum + Sum2) * dx / 3.0;
+            CurrentErr = fabs(Integral / LastIntg - 1.0);
             LastIntg = Integral;
-            Sum2 = Sum2 + Sum * 2;
+            Sum2 += Sum * 2.0;
         }
         grandtotal += Integral;
         a = b;
-        b = b * 2;
-        if (b > Lw) {
+        b *= 2.0;
+        if (b > Lw)
             b = Lw;
-        }
     }
-    double result = 1e-1 * grandtotal;
-    return result;
+    return 1e-1 * grandtotal;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double solveHelicalInductance(double N, double _p, double _Dk, double _dw, double _w, double _t, double *lw, bool isRoundWire, unsigned int accuracy, bool *isStop){
@@ -570,10 +586,10 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
             nx = Nc * k;
         double ny; // y-offset of turn
         if (isOrthocyclic){
-            ny = r0 + dens * k * nLayer + n_g;
+            ny = r0 + DENS * k * nLayer + n_g;
         } else
             ny = r0 + k * nLayer + n_g;
-        double Lns = Mut(ny, ny, g, 0); // self inductance of current turn
+        double Lns = Mutual(ny, ny, g, 0); // self inductance of current turn
         lw = lw + find_Helix_turn_length(ny, k); // length of wire with the current turn
         double M = 0; // start calculation loop of the mutual inductance - current turn (N) + all another turns (j)
         if (N > 1) {
@@ -592,25 +608,25 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
                 }
                 double jy;
                 if (isOrthocyclic){
-                   jy = r0 + dens * k * jLayer + jg;
+                   jy = r0 + DENS * k * jLayer + jg;
                 } else
                     jy = r0 + k * jLayer + jg;
-                M = M + 2 * Mut(ny, jy, nx - jx, g); // mutual inductance
+                M = M + 2 * Mutual(ny, jy, nx - jx, g); // mutual inductance
                 // between current
                 // N-turn and j-turn
             }
         }
         Ltotal += Lns + M; // total summary inductance (adding self-inductance and mutual inductance of current N-turn)
     }
-    double Resistivity = mtrl[Cu][Rho]*1e2;
+    double Resistivity = MTRL[Cu][Rho]*1e2;
     double R = (Resistivity * lw * 4) / (M_PI * dw * dw); // resistance of the wire
     double lw0 = lw / 100;
     double NumberInterLayer = (double) floor(nLayer / Ng);
     double c;
     if (isOrthocyclic)
-        c = (nLayer * dens * k + k + NumberInterLayer * gap) *10;
+        c = ((nLayer + 1) * DENS * k + k + NumberInterLayer * gap) *10;
     else
-        c = (nLayer * k  + NumberInterLayer * gap) * 10;
+        c = ((nLayer + 1) * k  + NumberInterLayer * gap) * 10;
     result->N = R;
     result->sec = lw0;
     result->thd = nLayer + 1;
@@ -649,10 +665,10 @@ void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _Coi
         } else
             nx = Nc * k;
         if (isOrthocyclic){
-            ny = r0 + dens * k * nLayer;
+            ny = r0 + DENS * k * nLayer;
         } else
             ny = r0 + k * nLayer;
-        Lns = Mut(ny, ny, g, 0);
+        Lns = Mutual(ny, ny, g, 0);
         // self inductance of current turn
         lw = lw + find_Helix_turn_length(ny, k);
         M = 0;
@@ -669,19 +685,19 @@ void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _Coi
                     jx = Jc * k;
                 jLayer = (int) floor((j - 2) / Nl);
                 if (isOrthocyclic){
-                    jy = r0 + dens * k * jLayer;
+                    jy = r0 + DENS * k * jLayer;
                 } else
                     jy = r0 + k * jLayer;
-                M = M + 2 * Mut(ny, jy, nx - jx, g);
+                M = M + 2 * Mutual(ny, jy, nx - jx, g);
             }
         }
         Ltotal += Lns + M;
     }
-    double Resistivity = mtrl[Cu][Rho]*1e2;
+    double Resistivity = MTRL[Cu][Rho]*1e2;
     double Rdc = (Resistivity * lw * 4) / (M_PI * dw * dw);
     double thickness = 0.0;
     if (isOrthocyclic)
-        thickness = (nLayer * dens * k + k) * 10;
+        thickness = ((nLayer + 1) * DENS * k + k) * 10;
     else
         thickness = (nLayer + 1) * k * 10;
     result->N = Ltotal; //inductance value
@@ -733,10 +749,10 @@ void getMultiLayerI(double D, double lk, double dw, double k, double c, double g
             sec_offset = 0;
         nx += sec_offset;
         if (isOrthocyclic){
-            ny = r0 + dens * k * nLayer + n_g;
+            ny = r0 + DENS * k * nLayer + n_g;
         } else
             ny = r0 + k * nLayer + n_g;
-        Lns = Mut(ny, ny, g, 0); // self inductance of current turn
+        Lns = Mutual(ny, ny, g, 0); // self inductance of current turn
         M = 0;
         sec_offset2 = sec_offset;
         if (n > 1) {
@@ -762,24 +778,24 @@ void getMultiLayerI(double D, double lk, double dw, double k, double c, double g
                     jg = 0;
                 }
                 if (isOrthocyclic){
-                    jy = r0 + dens * k * jLayer + jg;
+                    jy = r0 + DENS * k * jLayer + jg;
                 } else
                     jy = r0 + k * jLayer + jg;
-                M = M + 2 * Mut(ny, jy, nx - jx, g);
+                M = M + 2 * Mutual(ny, jy, nx - jx, g);
             }
         }
         Ltotal += Lns + M;
         if (nTmp < c - k) {
             if (isOrthocyclic)
-                nTmp = (nLayer * dens * k + k);
+                nTmp = (nLayer * DENS * k + k);
             else
                 nTmp = (nLayer + 1) * k;
             ind1 = Ltotal;
         }
         if (isOrthocyclic)
-            bTmp = ((nLayer + 1) * dens * k);
+            bTmp = ((nLayer + 1) * DENS * k);
         else
-            bTmp = nLayer * k;
+            bTmp = (nLayer + 1) * k;
     }
     N1 = n - Nl;
     N2 = n + Nl;
@@ -851,10 +867,10 @@ void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, do
             } else
                 nx = Nc * k;
             if (isOrthocyclic){
-                ny = r0 + dens * k * nLayer;
+                ny = r0 + DENS * k * nLayer;
             } else
                 ny = r0 + k * nLayer;
-            Lns = Mut(ny, ny, g, 0);
+            Lns = Mutual(ny, ny, g, 0);
             // self inductance of current turn
             lw +=find_Helix_turn_length(ny, k);
             M = 0;
@@ -871,18 +887,18 @@ void  getMultiLayerI_fromResistance (double D, double lk, double c, double k, do
                         jx = Jc * k;
                     jLayer = (int) floor((j - 2) / Nl);
                     if (isOrthocyclic){
-                        jy = r0 + dens * k * jLayer;
+                        jy = r0 + DENS * k * jLayer;
                     } else
                         jy = r0 + k * jLayer;
-                    M = M + 2 * Mut(ny, jy, nx - jx, g);
+                    M = M + 2 * Mutual(ny, jy, nx - jx, g);
                 }
             }
             Ltotal += Lns + M;
-            double Resistivity = mtrl[Cu][Rho] * 1e2;
+            double Resistivity = MTRL[Cu][Rho] * 1e2;
             tmpR = (Resistivity * lw * 4) / (M_PI * dw * dw);
         }
         if (isOrthocyclic)
-            bTmp = (nLayer * dens * k + k);
+            bTmp = (nLayer * DENS * k + k);
         else
             bTmp = (nLayer + 1) * k;
         if (bTmp > (c - k))
@@ -1041,7 +1057,7 @@ void getMultiLayerN_rectFormer(double Ind, double a, double b, double l, double 
         Lcor = 0.0002 * M_PI * (a + b) * n * (Ks + Km);
         Ltotal -= Lcor;
     }
-    double Resistivity = mtrl[Cu][Rho]*1e2;
+    double Resistivity = MTRL[Cu][Rho]*1e2;
     Rdc = (Resistivity * lw * 4) / (M_PI * dw * dw);
     result->N = n; //number of turns
     result->sec = nLayer + 1; //number of layers
@@ -1137,7 +1153,7 @@ void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _Co
         }
         N++;
         double ny = r0 + k * (N - 1);
-        double Lns = Mut(ny, ny, g, 0);
+        double Lns = Mutual(ny, ny, g, 0);
         double M = 0;
         if (N > 1) {
             for (int j = N; j >= 2; j--) {
@@ -1147,7 +1163,7 @@ void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _Co
                 double gmr = sqrt(ny*jy);
                 double ra = (gmd + sqrt(gmd * gmd + 4 * gmr * gmr)) / 2;
                 double rb = ra - gmd;
-                M = M + 2 * Mut(ra, rb, 0, gmd);
+                M = M + 2 * Mutual(ra, rb, 0, gmd);
             }
         }
         Ltotal += Lns + M;
@@ -1155,8 +1171,8 @@ void getMultilayerN_Foil(double D, double w, double t, double ins, double I, _Co
     double th = k * (N - 1);
     double Do = (D + 2 * th) *10;
     double Length_spiral = find_actual_spiral_length(N, D, k) * 10;
-    double Resistivity_cu = mtrl[Cu][Rho]*1e2;
-    double Resistivity_al = mtrl[Al][Rho]*1e2;
+    double Resistivity_cu = MTRL[Cu][Rho]*1e2;
+    double Resistivity_al = MTRL[Al][Rho]*1e2;
     double Rdcc = (Resistivity_cu * Length_spiral) / (w * t) / 10; // resistance of the copper foil
     double Rdca = (Resistivity_al * Length_spiral) / (w * t) / 10; // resistance of the aliminum foil
     result->N = N;
@@ -1181,7 +1197,7 @@ void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _Coil
             return;
         }
         double ny = r0 + k * (N - 1);
-        double Lns = Mut(ny, ny, g, 0);
+        double Lns = Mutual(ny, ny, g, 0);
         double M = 0;
         if (N > 1) {
             for (int j = N; j >= 2; j--) {
@@ -1195,7 +1211,7 @@ void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _Coil
                 double gmr = sqrt(ny*jy);
                 double ra = (gmd + sqrt(gmd * gmd + 4 * gmr * gmr)) / 2;
                 double rb = ra - gmd;
-                M = M + 2 * Mut(ra, rb, 0, gmd);
+                M = M + 2 * Mutual(ra, rb, 0, gmd);
             }
         }
         Ltotal += Lns + M;
@@ -1203,8 +1219,8 @@ void getMultilayerI_Foil(double D, double w, double t, double ins, int _N, _Coil
     double th = k * (_N - 1);
     double Do = (D + 2 * th) *10;
     double Length_spiral = find_actual_spiral_length(_N, D, k) * 10;
-    double Resistivity_cu = mtrl[Cu][Rho]*1e2;
-    double Resistivity_al = mtrl[Al][Rho]*1e2;
+    double Resistivity_cu = MTRL[Cu][Rho]*1e2;
+    double Resistivity_al = MTRL[Al][Rho]*1e2;
     double Rdcc = (Resistivity_cu * Length_spiral) / (w * t) / 10; // resistance of the copper foil
     double Rdca = (Resistivity_al * Length_spiral) / (w * t) / 10; // resistance of the aliminum foil
     result->N = Ltotal;
@@ -1330,7 +1346,7 @@ double getPCB_I(double N, double _d, double _s, int layout, _CoilResult *result)
     double D = d + 2 * s * N;
     double Davg = (D + d) / 2;
     double fi = (D - d) / (D + d);
-    double I = mu0 * N * N * Davg * c1 * 0.5 * (log(c2 / fi) + c3 * fi + c4 * fi * fi);
+    double I = MU0 * N * N * Davg * c1 * 0.5 * (log(c2 / fi) + c3 * fi + c4 * fi * fi);
 
     result->five = D / 1e3;
     return (I);
@@ -1505,12 +1521,12 @@ void getSpiralN(double I, double Di, double dw, double s, _CoilResult *result, b
         }
         N++;
         double ny = r0 + k * (N - 1);
-        double Lns = Mut(ny, ny, g, 0);
+        double Lns = Mutual(ny, ny, g, 0);
         double M = 0;
         if (N > 1) {
             for (int j = N; j >= 2; j--) {
                 double jy = r0 + k * (j - 2);
-                M = M + 2 * Mut(ny, jy, 0, g);
+                M = M + 2 * Mutual(ny, jy, 0, g);
             }
         }
         Ltotal += Lns + M;
@@ -1539,12 +1555,12 @@ void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result, bo
             return;
         }
         double ny = r0 + k * (N - 1);
-        double Lns = Mut(ny, ny, g, 0);
+        double Lns = Mutual(ny, ny, g, 0);
         double M = 0;
         if (N > 1) {
             for (int j = N; j >= 2; j--) {
                 double jy = r0 + k * (j - 2);
-                M = M + 2 * Mut(ny, jy, 0, g);
+                M = M + 2 * Mutual(ny, jy, 0, g);
             }
         }
         Ltotal += Lns + M;
@@ -1672,7 +1688,7 @@ double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *r
     result->N = 2 * a; //Mean coil diameter (mm)
     result->sec = c; //coil thickness (mm)
     result->thd = 2e-3 * M_PI * a * N; //length of the wire (m)
-    double Resistivity_cu = mtrl[Cu][Rho]*1e2;
+    double Resistivity_cu = MTRL[Cu][Rho]*1e2;
     result->fourth = (Resistivity_cu * result->thd * 100 * 4) / (M_PI * dw * dw * 0.01); //Resistance to DC (Ohm)
     return ind;
 }
@@ -1795,6 +1811,41 @@ double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw)
     return N;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+double findOneLayerMutualInductance(double D1, double D2, double l1, double l2, double x, double dw, int N1, int N2, bool *isStop)
+{
+    //Got from https://electronbunker.ca/eb/CalcMethods1b.html
+    D1 /= 10;
+    D2 /= 10;
+    l1 /= 10;
+    l2 /= 10;
+    x /= 10;
+    dw /= 10;
+    double r01 = D1 / 2;
+    double r02 = D2 / 2;
+    double p1 = l1 / N1;
+    double p2 = l2 / N2;
+    double M = 0.0;
+    for (int i = 0; i < N1; i++){
+        if(*isStop){
+            return -1.0;
+        }
+        for (int j = 0; j < N2; j++){
+            if(*isStop){
+                return -1.0;
+            }
+            double z = j * p2 - i * p1 + x;
+            double r = sqrt((r02 - r01) * (r02 - r01) + z * z);
+            if (r < dw)
+                return 0.0;
+            M += Mut(r01, r02, z);
+            if(!std::isnormal( M )){
+                return 0.0;
+            }
+        }
+    }
+    return M;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double findPotCore_I(double N, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result)
 {
     double r1 = 0.5 * D4;
@@ -1830,7 +1881,7 @@ double findPotCore_I(double N, double D1, double D2, double D3, double D4, doubl
     double le = C1 * C1 / C2;
     double Ae = C1 / C2;
     double mu_e = mu / (1 + g * mu / le);
-    double ind = 1000 * N * N * mu0 * mu_e / C1;
+    double ind = 1000 * N * N * MU0 * mu_e / C1;
     result->N = le;
     result->sec = Ae;
     result->thd = mu_e;
@@ -1893,7 +1944,7 @@ double findECore_I(double N, double A, double B, double C, double D, double E, d
     double le = c.C1 * c.C1 / c.C2;
     double Ae = c.C1 / c.C2;
     double mu_e = mu / (1 + g * mu / le);
-    double ind = 1000 * N * N * mu0 * mu_e / c.C1;
+    double ind = 1000 * N * N * MU0 * mu_e / c.C1;
     result->N = le;
     result->sec = Ae;
     result->thd = mu_e;
@@ -1960,7 +2011,7 @@ double findUCore_I(double N, double A, double B, double C, double D, double E, d
     getFerriteCoreMagConst(l1,l2,l3,l4,l5,A1,A2,A3,A4,A5,&c);
     double le = c.C1 * c.C1 / c.C2;
     double Ae = c.C1 / c.C2;
-    double ind = 1000 * N * N * mu0 * mu / c.C1;
+    double ind = 1000 * N * N * MU0 * mu / c.C1;
     result->N = le;
     result->sec = Ae;
     return ind;
@@ -2041,7 +2092,7 @@ double findRMCore_I (double N, double a, double b, double c, double e, double d2
      double le = C1 * C1 / C2;
      double Ae = C1 / C2;
      double mu_e = mu / (1 + g * mu / le);
-     double ind = 1000 * N * N * mu0 * mu_e / C1;
+     double ind = 1000 * N * N * MU0 * mu_e / C1;
      result->N = le;
      result->sec = Ae;
      result->thd = mu_e;
@@ -2096,7 +2147,7 @@ void findBrooksCoil(double I, double d, double pa, double pr,
     double lengthWireLastLayer = (sqrt(ha * ha +pow( M_PI * (2 * c + d + 2 * hr * (nLayer - 1)), 2))) * (N - Nc * (nLayer - 1));
     lengthWire += lengthWireLastLayer;
     lengthWire = lengthWire / 1000;
-    double Resistivity = mtrl[Cu][Rho]*1e6;
+    double Resistivity = MTRL[Cu][Rho]*1e6;
     DCR = (Resistivity * lengthWire * 4) / (M_PI * d * d);   //Resistance of the wire to DC [Ohm]
     massWire = 2.225 * M_PI * d * d * lengthWire;           //Weight of the wire [g]
 }

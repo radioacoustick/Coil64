@@ -57,6 +57,7 @@
         <file>res/Coil4o.png</file>
         <file>res/bandspread-t.png</file>
         <file>res/multisection.png</file>
+        <file>res/Coupled-coils.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -163,6 +164,7 @@
         <file>res/ico2-windows-xp.png</file>
         <file>res/ico2-mxe.png</file>
         <file>res/ico1-multi-section.png</file>
+        <file>res/ico1-coupled.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>

@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <float.h>
 
 #define APP_NAME "Coil64"
-#define VERSION "2.3.36"
+#define VERSION "2.3.37"
 #define PROGRAM_SITE "https://coil32.net"
 #define VERSION_FILE "qversion.txt"
 #define CLEAR_CHAR 0x274C

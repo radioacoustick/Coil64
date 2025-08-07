@@ -974,6 +974,122 @@
     </message>
 </context>
 <context>
+    <name>CoupledCoil</name>
+    <message>
+        <location filename="../coupledcoil.ui" line="35"/>
+        <source>Coupled coils</source>
+        <translation>Bobines couplées</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.ui" line="370"/>
+        <source>Context help</source>
+        <translation>Aide contextuelle</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.ui" line="415"/>
+        <location filename="../coupledcoil.cpp" line="234"/>
+        <source>Calculate</source>
+        <translation>Calculer</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.ui" line="447"/>
+        <source>Close</source>
+        <translation>Fermer</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="84"/>
+        <source>AWG</source>
+        <translation>AWG</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="99"/>
+        <location filename="../coupledcoil.cpp" line="100"/>
+        <source>Winding diameter</source>
+        <translation>Diamètre d&apos;enroulement</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="101"/>
+        <source>Wire diameter</source>
+        <translation>Diamètre du fil</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="102"/>
+        <location filename="../coupledcoil.cpp" line="103"/>
+        <source>Winding length</source>
+        <translation>Longueur de l&apos;enroulement</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="104"/>
+        <source>Coils offset</source>
+        <translation>Bobines décalées</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="105"/>
+        <location filename="../coupledcoil.cpp" line="106"/>
+        <source>Number of turns</source>
+        <translation>Nombre de spires</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="156"/>
+        <location filename="../coupledcoil.cpp" line="160"/>
+        <location filename="../coupledcoil.cpp" line="166"/>
+        <location filename="../coupledcoil.cpp" line="170"/>
+        <source>Warning</source>
+        <translation>Attention</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="156"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Une ou plusieurs entrées ont un format illégal!</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="160"/>
+        <source>One or more inputs are equal to null!</source>
+        <translation>Une ou plusieurs entrées sont égales à null!</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="188"/>
+        <source>Input data</source>
+        <translation>Des données d&apos;entrée</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="199"/>
+        <source>Result</source>
+        <translation>Résultat</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="200"/>
+        <location filename="../coupledcoil.cpp" line="202"/>
+        <source>Inductance</source>
+        <translation>Inductance</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="204"/>
+        <source>Mutual Inductance</source>
+        <translation>Inductance mutuelle</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="206"/>
+        <source>Coupling coefficient</source>
+        <translation>Coefficient de couplage</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="209"/>
+        <source>Calculation was failed</source>
+        <translation>Le calcul a échoué</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="211"/>
+        <source>Calculation was aborted</source>
+        <translation>Le calcul a été interrompu</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="220"/>
+        <source>Abort</source>
+        <translation>Interrompre</translation>
+    </message>
+</context>
+<context>
     <name>Crossover</name>
     <message>
         <location filename="../crossover.ui" line="23"/>
@@ -1739,12 +1855,12 @@
         <translation>Afficher la boîte de dialogue de confirmation pour supprimer un résultat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2516"/>
+        <location filename="../mainwindow.ui" line="2517"/>
         <source>About Coil64</source>
         <translation>A propos de Coil64</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2615"/>
+        <location filename="../mainwindow.ui" line="2616"/>
         <source>Ferrite toroid permeability</source>
         <translation>Perméabilité au tore ferrite</translation>
     </message>
@@ -1761,8 +1877,8 @@
         <location filename="../mainwindow.cpp" line="1770"/>
         <location filename="../mainwindow.cpp" line="1821"/>
         <location filename="../mainwindow.cpp" line="5424"/>
-        <location filename="../mainwindow.cpp" line="6331"/>
-        <location filename="../mainwindow.cpp" line="6361"/>
+        <location filename="../mainwindow.cpp" line="6343"/>
+        <location filename="../mainwindow.cpp" line="6373"/>
         <source>Winding pitch</source>
         <translation>Pas d&apos;enroulement</translation>
     </message>
@@ -1906,8 +2022,8 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2205"/>
-        <location filename="../mainwindow.ui" line="2564"/>
-        <location filename="../mainwindow.ui" line="2567"/>
+        <location filename="../mainwindow.ui" line="2565"/>
+        <location filename="../mainwindow.ui" line="2568"/>
         <location filename="../mainwindow.cpp" line="320"/>
         <location filename="../mainwindow.cpp" line="438"/>
         <source>Copy all to clipboard</source>
@@ -1915,7 +2031,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2147"/>
-        <location filename="../mainwindow.ui" line="2540"/>
+        <location filename="../mainwindow.ui" line="2541"/>
         <location filename="../mainwindow.cpp" line="322"/>
         <location filename="../mainwindow.cpp" line="439"/>
         <location filename="../mainwindow.cpp" line="2459"/>
@@ -1924,7 +2040,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2234"/>
-        <location filename="../mainwindow.ui" line="2633"/>
+        <location filename="../mainwindow.ui" line="2634"/>
         <location filename="../mainwindow.cpp" line="325"/>
         <location filename="../mainwindow.cpp" line="441"/>
         <source>Clear all</source>
@@ -2020,7 +2136,7 @@
         <location filename="../mainwindow.ui" line="875"/>
         <location filename="../mainwindow.ui" line="1405"/>
         <location filename="../mainwindow.ui" line="1925"/>
-        <location filename="../mainwindow.ui" line="2836"/>
+        <location filename="../mainwindow.ui" line="2837"/>
         <source>Saturation current</source>
         <translation>Courant de saturation</translation>
     </message>
@@ -2030,84 +2146,89 @@
         <translation>Thème</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2434"/>
+        <location filename="../mainwindow.ui" line="2435"/>
         <source>Ferrite cores</source>
         <translation>Noyaux de ferrite</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2700"/>
+        <location filename="../mainwindow.ui" line="2701"/>
         <source>Versions history</source>
         <translation>Historique des versions</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2712"/>
+        <location filename="../mainwindow.ui" line="2713"/>
         <source>Air core toroid coil</source>
         <translation>Bobine toroïdale à noyau d&apos;air</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2723"/>
+        <location filename="../mainwindow.ui" line="2724"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2731"/>
+        <location filename="../mainwindow.ui" line="2732"/>
         <source>Dark</source>
         <translation>Sombre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2740"/>
+        <location filename="../mainwindow.ui" line="2741"/>
         <source>Pot core coil</source>
         <translation>Noyaux de pot</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2748"/>
+        <location filename="../mainwindow.ui" line="2749"/>
         <source>Sunny</source>
         <translation>Ensoleillé</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2757"/>
+        <location filename="../mainwindow.ui" line="2758"/>
         <source>E core coil</source>
         <translation>E bobine de noyau</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2767"/>
+        <location filename="../mainwindow.ui" line="2768"/>
         <source>Calculation with AL-factor</source>
         <translation>Calcul avec facteur AL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2776"/>
+        <location filename="../mainwindow.ui" line="2777"/>
         <source>U core coil</source>
         <translation>Bobine de noyau en U</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2785"/>
+        <location filename="../mainwindow.ui" line="2786"/>
         <source>Audio system filter (crossover) coil</source>
         <translation>Bobine de filtre de système audio (crossover)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2794"/>
+        <location filename="../mainwindow.ui" line="2795"/>
         <source>Toroidal inductor at RF</source>
         <translation>Inductance toroïdale à RF</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2803"/>
+        <location filename="../mainwindow.ui" line="2804"/>
         <source>Bandspread Calculator</source>
         <translation>Calculateur de condensateur d&apos;expansion</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2812"/>
+        <location filename="../mainwindow.ui" line="2813"/>
         <source>RM core coil</source>
         <translation>RM bobine de noyau</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2821"/>
+        <location filename="../mainwindow.ui" line="2822"/>
         <source>Interface help</source>
         <translation>Afficher la numérotation des calculs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2845"/>
+        <location filename="../mainwindow.ui" line="2846"/>
         <source>Multi-section multilayer coil</source>
-        <translation type="unfinished"></translation>
+        <translation>Bobine multicouche à sections multiples</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2855"/>
+        <source>Coupled coils</source>
+        <translation>Bobines couplées</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1967"/>
@@ -2122,7 +2243,7 @@
     <message>
         <location filename="../mainwindow.ui" line="2309"/>
         <location filename="../mainwindow.ui" line="2326"/>
-        <location filename="../mainwindow.ui" line="2504"/>
+        <location filename="../mainwindow.ui" line="2505"/>
         <source>Context help</source>
         <translation>Aide contextuelle</translation>
     </message>
@@ -2142,24 +2263,24 @@
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2420"/>
+        <location filename="../mainwindow.ui" line="2421"/>
         <source>Actions</source>
         <translation>Actes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2428"/>
+        <location filename="../mainwindow.ui" line="2429"/>
         <source>Branded cores</source>
         <translation>Cœurs de marque</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2477"/>
+        <location filename="../mainwindow.ui" line="2478"/>
         <source>&amp;Exit</source>
         <translation>&amp;Sortie</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2075"/>
-        <location filename="../mainwindow.ui" line="2489"/>
-        <location filename="../mainwindow.ui" line="2492"/>
+        <location filename="../mainwindow.ui" line="2490"/>
+        <location filename="../mainwindow.ui" line="2493"/>
         <source>Options</source>
         <translation>Options</translation>
     </message>
@@ -2174,63 +2295,63 @@
         <translation>Afficher la numérotation des calculs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2528"/>
+        <location filename="../mainwindow.ui" line="2529"/>
         <source>Check for &amp;update</source>
         <translation>&amp;Vérifier les mises à jour</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2552"/>
+        <location filename="../mainwindow.ui" line="2553"/>
         <source>HomePage</source>
         <translation>Page d&apos;accueil</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2579"/>
+        <location filename="../mainwindow.ui" line="2580"/>
         <source>Print</source>
         <translation>Impression</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2591"/>
+        <location filename="../mainwindow.ui" line="2592"/>
         <source>To null initial data</source>
         <translation>Remise a zéro des données</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2624"/>
+        <location filename="../mainwindow.ui" line="2625"/>
         <source>Coil on a ferrite rod</source>
         <translation>Bobine sur une tige de ferrite</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2642"/>
+        <location filename="../mainwindow.ui" line="2643"/>
         <source>Meander coil on PCB</source>
         <translation>Bobine de méandre sur le PCB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2651"/>
+        <location filename="../mainwindow.ui" line="2652"/>
         <source>Search coil of a metal detector</source>
         <translation>Bobine de recherche d&apos;un détecteur de métal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2661"/>
+        <location filename="../mainwindow.ui" line="2662"/>
         <source>A one-turn loop coil</source>
         <translation>Bobine en une boucle</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2670"/>
+        <location filename="../mainwindow.ui" line="2671"/>
         <source>Donate</source>
         <translation>Faire un don</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2682"/>
+        <location filename="../mainwindow.ui" line="2683"/>
         <source>Influence of the shield of a coil</source>
         <translation>Influence d&apos;un bouclier de bobine</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2691"/>
+        <location filename="../mainwindow.ui" line="2692"/>
         <source>Amidon cores</source>
         <translation>Cœurs d&apos;Amidon</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2118"/>
-        <location filename="../mainwindow.ui" line="2603"/>
+        <location filename="../mainwindow.ui" line="2604"/>
         <location filename="../mainwindow.cpp" line="323"/>
         <location filename="../mainwindow.cpp" line="440"/>
         <location filename="../mainwindow.cpp" line="2421"/>
@@ -2501,8 +2622,8 @@
         <location filename="../mainwindow.cpp" line="5453"/>
         <location filename="../mainwindow.cpp" line="5939"/>
         <location filename="../mainwindow.cpp" line="6035"/>
-        <location filename="../mainwindow.cpp" line="6316"/>
-        <location filename="../mainwindow.cpp" line="6329"/>
+        <location filename="../mainwindow.cpp" line="6328"/>
+        <location filename="../mainwindow.cpp" line="6341"/>
         <source>Outside diameter</source>
         <translation>Diamètre extérieur</translation>
     </message>
@@ -2511,8 +2632,8 @@
         <location filename="../mainwindow.cpp" line="1565"/>
         <location filename="../mainwindow.cpp" line="2104"/>
         <location filename="../mainwindow.cpp" line="2199"/>
-        <location filename="../mainwindow.cpp" line="6317"/>
-        <location filename="../mainwindow.cpp" line="6330"/>
+        <location filename="../mainwindow.cpp" line="6329"/>
+        <location filename="../mainwindow.cpp" line="6342"/>
         <source>Inside diameter</source>
         <translation>Diamètre interne</translation>
     </message>
@@ -2796,7 +2917,7 @@
         <location filename="../mainwindow.cpp" line="509"/>
         <location filename="../mainwindow.cpp" line="2232"/>
         <location filename="../mainwindow.cpp" line="2371"/>
-        <location filename="../mainwindow.cpp" line="6409"/>
+        <location filename="../mainwindow.cpp" line="6421"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
@@ -2804,7 +2925,7 @@
         <location filename="../mainwindow.cpp" line="510"/>
         <location filename="../mainwindow.cpp" line="2233"/>
         <location filename="../mainwindow.cpp" line="2372"/>
-        <location filename="../mainwindow.cpp" line="6410"/>
+        <location filename="../mainwindow.cpp" line="6422"/>
         <source>Are you sure?</source>
         <translation>Êtes-vous sûr?</translation>
     </message>
@@ -2812,7 +2933,7 @@
         <location filename="../mainwindow.cpp" line="513"/>
         <location filename="../mainwindow.cpp" line="2236"/>
         <location filename="../mainwindow.cpp" line="2375"/>
-        <location filename="../mainwindow.cpp" line="6413"/>
+        <location filename="../mainwindow.cpp" line="6425"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
@@ -2820,7 +2941,7 @@
         <location filename="../mainwindow.cpp" line="514"/>
         <location filename="../mainwindow.cpp" line="2237"/>
         <location filename="../mainwindow.cpp" line="2376"/>
-        <location filename="../mainwindow.cpp" line="6414"/>
+        <location filename="../mainwindow.cpp" line="6426"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
@@ -2933,22 +3054,22 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="5426"/>
-        <location filename="../mainwindow.cpp" line="6332"/>
-        <location filename="../mainwindow.cpp" line="6362"/>
+        <location filename="../mainwindow.cpp" line="6344"/>
+        <location filename="../mainwindow.cpp" line="6374"/>
         <source>Width of a PCB trace</source>
         <translation>Largeur d&apos;impression du conducteur</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6344"/>
-        <location filename="../mainwindow.cpp" line="6345"/>
-        <location filename="../mainwindow.cpp" line="6359"/>
-        <location filename="../mainwindow.cpp" line="6360"/>
+        <location filename="../mainwindow.cpp" line="6356"/>
+        <location filename="../mainwindow.cpp" line="6357"/>
+        <location filename="../mainwindow.cpp" line="6371"/>
+        <location filename="../mainwindow.cpp" line="6372"/>
         <source>Outside dimension</source>
         <translation>Dimension extérieure</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="6039"/>
-        <location filename="../mainwindow.cpp" line="6346"/>
+        <location filename="../mainwindow.cpp" line="6358"/>
         <source>Inside dimension</source>
         <translation>Dimension intérieure</translation>
     </message>
@@ -3095,7 +3216,7 @@
         <translation>Combinaison de paramètres d&apos;entrée non valide</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6410"/>
+        <location filename="../mainwindow.cpp" line="6422"/>
         <source> calculation will be deleted</source>
         <translation> le calcul sera supprimé</translation>
     </message>
@@ -3105,10 +3226,10 @@
         <translation>Supprimer ce résultat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6318"/>
-        <location filename="../mainwindow.cpp" line="6333"/>
-        <location filename="../mainwindow.cpp" line="6347"/>
-        <location filename="../mainwindow.cpp" line="6363"/>
+        <location filename="../mainwindow.cpp" line="6330"/>
+        <location filename="../mainwindow.cpp" line="6345"/>
+        <location filename="../mainwindow.cpp" line="6359"/>
+        <location filename="../mainwindow.cpp" line="6375"/>
         <source>PCB trace thickness</source>
         <translation>Épaisseur de trace de PCB</translation>
     </message>
@@ -3639,128 +3760,128 @@
     <message>
         <location filename="../multisection.ui" line="35"/>
         <source>Multi-section multilayer coil</source>
-        <translation type="unfinished"></translation>
+        <translation>Bobine multicouche à sections multiples</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="70"/>
         <source>Regular winding</source>
-        <translation type="unfinished">Bobinage régulier</translation>
+        <translation>Bobinage régulier</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="75"/>
         <source>Orthocyclic winding</source>
-        <translation type="unfinished">Enroulement orthocyclique</translation>
+        <translation>Enroulement orthocyclique</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="366"/>
         <source>Context help</source>
-        <translation type="unfinished">Aide contextuelle</translation>
+        <translation>Aide contextuelle</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="411"/>
-        <location filename="../multisection.cpp" line="239"/>
+        <location filename="../multisection.cpp" line="256"/>
         <source>Calculate</source>
-        <translation type="unfinished">Calculer</translation>
+        <translation>Calculer</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="443"/>
         <source>Close</source>
-        <translation type="unfinished">Fermer</translation>
+        <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="55"/>
+        <location filename="../multisection.cpp" line="74"/>
         <source>Former diameter</source>
-        <translation type="unfinished">Diamètre du noyau</translation>
+        <translation>Diamètre du noyau</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="56"/>
+        <location filename="../multisection.cpp" line="75"/>
         <source>Thickness of the coil</source>
-        <translation type="unfinished">Epaisseur de la bobine</translation>
+        <translation>Epaisseur de la bobine</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="57"/>
+        <location filename="../multisection.cpp" line="76"/>
         <source>Winding length</source>
-        <translation type="unfinished">Longueur de l&apos;enroulement</translation>
+        <translation>Longueur de l&apos;enroulement</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="58"/>
+        <location filename="../multisection.cpp" line="77"/>
         <source>Section winding spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Espacement des enroulements de section</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="59"/>
+        <location filename="../multisection.cpp" line="78"/>
         <source>Wire diameter</source>
-        <translation type="unfinished">Diamètre du fil</translation>
+        <translation>Diamètre du fil</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="60"/>
+        <location filename="../multisection.cpp" line="79"/>
         <source>Wire diameter with insulation</source>
-        <translation type="unfinished">Diamètre du fil avec isolation</translation>
+        <translation>Diamètre du fil avec isolation</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="61"/>
+        <location filename="../multisection.cpp" line="80"/>
         <source>Number of sections</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de sections</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="87"/>
+        <location filename="../multisection.cpp" line="106"/>
         <source>AWG</source>
-        <translation type="unfinished">AWG</translation>
+        <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="137"/>
-        <location filename="../multisection.cpp" line="157"/>
-        <location filename="../multisection.cpp" line="174"/>
-        <location filename="../multisection.cpp" line="178"/>
-        <source>Warning</source>
-        <translation type="unfinished">Attention</translation>
-    </message>
-    <message>
-        <location filename="../multisection.cpp" line="137"/>
-        <location filename="../multisection.cpp" line="174"/>
-        <source>One or more inputs have an illegal format!</source>
-        <translation type="unfinished">Une ou plusieurs entrées ont un format illégal!</translation>
-    </message>
-    <message>
-        <location filename="../multisection.cpp" line="157"/>
-        <source>One or more inputs are empty!</source>
-        <translation type="unfinished">Une ou plusieurs entrées sont vides!</translation>
-    </message>
-    <message>
-        <location filename="../multisection.cpp" line="178"/>
-        <source>One or more inputs are equal to null!</source>
-        <translation type="unfinished">Une ou plusieurs entrées sont égales à null!</translation>
-    </message>
-    <message>
+        <location filename="../multisection.cpp" line="156"/>
+        <location filename="../multisection.cpp" line="176"/>
         <location filename="../multisection.cpp" line="193"/>
+        <location filename="../multisection.cpp" line="197"/>
+        <source>Warning</source>
+        <translation>Attention</translation>
+    </message>
+    <message>
+        <location filename="../multisection.cpp" line="156"/>
+        <location filename="../multisection.cpp" line="193"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>Une ou plusieurs entrées ont un format illégal!</translation>
+    </message>
+    <message>
+        <location filename="../multisection.cpp" line="176"/>
+        <source>One or more inputs are empty!</source>
+        <translation>Une ou plusieurs entrées sont vides!</translation>
+    </message>
+    <message>
+        <location filename="../multisection.cpp" line="197"/>
+        <source>One or more inputs are equal to null!</source>
+        <translation>Une ou plusieurs entrées sont égales à null!</translation>
+    </message>
+    <message>
+        <location filename="../multisection.cpp" line="213"/>
         <source>Input data</source>
-        <translation type="unfinished">Des données d&apos;entrée</translation>
+        <translation>Des données d&apos;entrée</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="202"/>
-        <location filename="../multisection.cpp" line="204"/>
+        <location filename="../multisection.cpp" line="224"/>
+        <location filename="../multisection.cpp" line="226"/>
         <source>Result</source>
-        <translation type="unfinished">Résultat</translation>
+        <translation>Résultat</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="210"/>
+        <location filename="../multisection.cpp" line="227"/>
         <source>Number of turns of the coil</source>
-        <translation type="unfinished">Nombre de spires de la bobine</translation>
+        <translation>Nombre de spires de la bobine</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="211"/>
+        <location filename="../multisection.cpp" line="228"/>
         <source>Inductance</source>
-        <translation type="unfinished">Inductance</translation>
+        <translation>Inductance</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="216"/>
+        <location filename="../multisection.cpp" line="233"/>
         <source>Calculation was aborted</source>
-        <translation type="unfinished">Le calcul a été interrompu</translation>
+        <translation>Le calcul a été interrompu</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="225"/>
+        <location filename="../multisection.cpp" line="242"/>
         <source>Abort</source>
-        <translation type="unfinished">Interrompre</translation>
+        <translation>Interrompre</translation>
     </message>
 </context>
 <context>

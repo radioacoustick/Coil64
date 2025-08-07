@@ -48,6 +48,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "meander_pcb.h"
 #include "multiloop.h"
 #include "multisection.h"
+#include "coupledcoil.h"
 #include "loop.h"
 #include "shield.h"
 #include "amidon.h"
@@ -241,6 +242,7 @@ private slots:
     void on_actionBandspread_Calculator_triggered();
     void on_actionRM_core_coil_triggered();
     void on_actionMulti_section_multilayer_coil_triggered();
+    void on_actionCoupled_coils_triggered();
 
 private:
     Ui::MainWindow *mui;

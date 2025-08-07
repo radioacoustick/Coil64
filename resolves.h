@@ -54,7 +54,8 @@ enum _AdditionalCalc
 {
     _Multiloop = 0,
     _SingleLoop,
-    _Multisection
+    _Multisection,
+    _CoupledCoils
 };
 
 #pragma pack(push,1)
@@ -115,9 +116,9 @@ enum _AdditionalCalc
     enum Material {Al, Cu, Ag, Ti};
     enum _Mprop {Rho,Chi,Alpha,Dencity};
 
-    const double mu0 = 4e-7 * M_PI;
-    const double dens = 0.5 * sqrt(3.0);
-    double const mtrl[4][4] = {{ 2.824e-8, 2.21e-5, 0.0039, 2.69808 }, { 1.7241e-8, - 9.56e-6, 0.00393, 8.96 },
+    const double MU0 = 4e-7 * M_PI;
+    const double DENS = 0.5 * sqrt(3.0);
+    double const MTRL[4][4] = {{ 2.824e-8, 2.21e-5, 0.0039, 2.69808 }, { 1.7241e-8, - 9.56e-6, 0.00393, 8.96 },
                                { 1.59e-8, - 2.63e-5, 0.0038, 10.5 }, {1.15e-7, 2.4e-6, 0.0042, 7.29}};
     double const E24[25] = {1.0,1.1,1.2,1.3,1.5,1.6,1.8,2.0,2.2,2.4,2.7,3.0,3.3,3.6,3.9,4.3,4.7,5.1,5.6,6.2,6.8,7.5,8.2,9.1,10.0};
 
@@ -149,13 +150,9 @@ enum _AdditionalCalc
     double getPCB_RectI(int N, double A, double B, double s, double w, double th, _CoilResult *result);
     void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result, bool *isStop);
 
-    void findToroidPemeability(double N, double I, double Do, double Di, double h, double Ch, _CoilResult *result);
-    void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, double s, double dw, double p, _CoilResult *result, bool *isStop);
     void findMeadrPCB_I(double a, double d, double h, double W, int N, _CoilResult *result);
-
     double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *result);
     unsigned long findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result);
-
     double findRoundLoop_I(double D, double dw, double mu);
     double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw);
     double findRoundLoop_D(double Ind, double dw, double mu);
@@ -166,6 +163,10 @@ enum _AdditionalCalc
     double findSheildedInductance(double I, double D, double Ds, double l, double Hs);
     double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw);
     double findAirCoreRoundToroid_N(double Ind, double D1, double D2, double dw);
+    double findOneLayerMutualInductance(double D1, double D2, double l1, double l2, double x, double dw, int N1, int N2, bool *isStop);
+
+    void findToroidPemeability(double N, double I, double Do, double Di, double h, double Ch, _CoilResult *result);
+    void findFerriteRodN(double I, double Lr, double Dr, double mu, double dc, double s, double dw, double p, _CoilResult *result, bool *isStop);
     double findPotCore_I(double N, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result);
     unsigned long findPotCore_N(double Ind, double D1, double D2, double D3, double D4, double h1, double h2, double g, double b, double mu, _CoilResult *result);
     double findECore_I(double N, double A, double B, double C, double D, double E, double F, double g, double b, double mu, bool isEI, bool isRound, _CoilResult *result);

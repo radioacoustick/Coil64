@@ -30,6 +30,7 @@ TARGET = Coil64
 TEMPLATE = app
 
 SOURCES += main.cpp\
+    coupledcoil.cpp \
     mainwindow.cpp \
     multisection.cpp \
     resolves.cpp \
@@ -60,6 +61,7 @@ SOURCES += main.cpp\
     scdockwidget.cpp
 
 HEADERS  += mainwindow.h \
+    coupledcoil.h \
     multisection.h \
     proxystyle.h \
     resolves.h \
@@ -93,6 +95,7 @@ HEADERS  += mainwindow.h \
     scdockwidget.h
 
 FORMS    += mainwindow.ui \
+    coupledcoil.ui \
     multisection.ui \
     options.ui \
     about.ui \

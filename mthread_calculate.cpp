@@ -145,7 +145,7 @@ void MThread_calculate::run(){
             case _Onelayer_cw:
             case _Onelayer:{
                 //arg: Dk, d, p, N, f, 0, 0, mt
-                result.N = getOneLayerI_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg8, &isAbort);//number of turns
+                result.N = getOneLayerI_withRoundWire( arg1, arg2, arg3, arg4, &result.sec, arg8, &isAbort);//inductance
                 if(result.N > 0){
                     result.thd = find_Cs(arg3, arg1, arg3 * arg4); //self-capacitance
                     result.fourth = findSRF(arg3 * arg4, arg1, result.sec);//self-resonance frequency
@@ -283,10 +283,19 @@ void MThread_calculate::run(){
                 break;
             }
             case _Multisection:{
-                //thread = new MThread_calculate( _Multisection, -1, D, c, l, s, dw, k, 0, 0, Cu, 0, 0, 0, 0, 0, false, false, M);
-                //double D, double lk, double dw, double k, double c, double gap, long Ng, _CoilResult *result, bool isOrthocyclic, bool *isStop, int sec, double s
                 bool isOrthocyclic = !!arg7;
                 getMultiLayerI(arg1, arg3, arg5, arg6, arg2, 0, -1, &result, isOrthocyclic, &isAbort, index, arg4);
+                break;
+            }
+            case _CoupledCoils:{
+                //D1, D2, dw, l1, l2, N1, N2, fOpt->dwAccuracy
+                //getOneLayerI_withRoundWire(double Dk, double dw, double p, double N, double *lw, unsigned int accuracy, bool *isStop)
+                //double findOneLayerMutualInductance(double D1, double D2, double l1, double l2, double x, double dw, int N1, int N2, bool *isStop)
+                double p1 = arg4 / arg6;
+                double p2 = arg5 / arg7;
+                result.N = getOneLayerI_withRoundWire( arg1, arg3, p1, arg6, &result.seven, arg8, &isAbort);//inductance1
+                result.sec = getOneLayerI_withRoundWire( arg2, arg3, p2, arg7, &result.seven, arg8, &isAbort);//inductance2
+                result.thd = findOneLayerMutualInductance(arg1, arg2, arg4, arg5, tand, arg3, arg6, arg7, &isAbort);//mutual inductance
                 break;
             }
             default:

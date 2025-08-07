@@ -974,6 +974,122 @@
     </message>
 </context>
 <context>
+    <name>CoupledCoil</name>
+    <message>
+        <location filename="../coupledcoil.ui" line="35"/>
+        <source>Coupled coils</source>
+        <translation>کویل‌های کوپل شده</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.ui" line="370"/>
+        <source>Context help</source>
+        <translation>راهنماي محتوا</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.ui" line="415"/>
+        <location filename="../coupledcoil.cpp" line="234"/>
+        <source>Calculate</source>
+        <translation>محاسبه کردن</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.ui" line="447"/>
+        <source>Close</source>
+        <translation>نزدیک</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="84"/>
+        <source>AWG</source>
+        <translation>AWG</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="99"/>
+        <location filename="../coupledcoil.cpp" line="100"/>
+        <source>Winding diameter</source>
+        <translation>قطر سیم پیچ</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="101"/>
+        <source>Wire diameter</source>
+        <translation>قطر سیم</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="102"/>
+        <location filename="../coupledcoil.cpp" line="103"/>
+        <source>Winding length</source>
+        <translation>طول سیم پیچ</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="104"/>
+        <source>Coils offset</source>
+        <translation>کویل‌ها افست شده‌اند</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="105"/>
+        <location filename="../coupledcoil.cpp" line="106"/>
+        <source>Number of turns</source>
+        <translation>تعداد دور سیم پیچ(کویل</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="156"/>
+        <location filename="../coupledcoil.cpp" line="160"/>
+        <location filename="../coupledcoil.cpp" line="166"/>
+        <location filename="../coupledcoil.cpp" line="170"/>
+        <source>Warning</source>
+        <translation>اخطار</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="156"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>یک یا چند ورودی فرمت غیرقانونی دارند!</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="160"/>
+        <source>One or more inputs are equal to null!</source>
+        <translation>یک یا چند ورودی برابر با صفر است!</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="188"/>
+        <source>Input data</source>
+        <translation>داده های ورودی</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="199"/>
+        <source>Result</source>
+        <translation>نتایج</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="200"/>
+        <location filename="../coupledcoil.cpp" line="202"/>
+        <source>Inductance</source>
+        <translation>اندوکتانس</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="204"/>
+        <source>Mutual Inductance</source>
+        <translation>اندوکتانس متقابل</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="206"/>
+        <source>Coupling coefficient</source>
+        <translation>ضریب کوپلینگ</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="209"/>
+        <source>Calculation was failed</source>
+        <translation>محاسبه ناموفق بود</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="211"/>
+        <source>Calculation was aborted</source>
+        <translation>محاسبه لغو شد</translation>
+    </message>
+    <message>
+        <location filename="../coupledcoil.cpp" line="220"/>
+        <source>Abort</source>
+        <translation>قطع کردن</translation>
+    </message>
+</context>
+<context>
     <name>Crossover</name>
     <message>
         <location filename="../crossover.ui" line="23"/>
@@ -1739,12 +1855,12 @@
         <translation>گفتگوی تأیید را برای حذف نتیجه نمایش دهید</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2516"/>
+        <location filename="../mainwindow.ui" line="2517"/>
         <source>About Coil64</source>
         <translation>درباره Coil64</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2615"/>
+        <location filename="../mainwindow.ui" line="2616"/>
         <source>Ferrite toroid permeability</source>
         <translation>نفوذپذیری فریت ترویید</translation>
     </message>
@@ -1761,8 +1877,8 @@
         <location filename="../mainwindow.cpp" line="1770"/>
         <location filename="../mainwindow.cpp" line="1821"/>
         <location filename="../mainwindow.cpp" line="5424"/>
-        <location filename="../mainwindow.cpp" line="6331"/>
-        <location filename="../mainwindow.cpp" line="6361"/>
+        <location filename="../mainwindow.cpp" line="6343"/>
+        <location filename="../mainwindow.cpp" line="6373"/>
         <source>Winding pitch</source>
         <translation>گام سیم پیچی</translation>
     </message>
@@ -1906,8 +2022,8 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2205"/>
-        <location filename="../mainwindow.ui" line="2564"/>
-        <location filename="../mainwindow.ui" line="2567"/>
+        <location filename="../mainwindow.ui" line="2565"/>
+        <location filename="../mainwindow.ui" line="2568"/>
         <location filename="../mainwindow.cpp" line="320"/>
         <location filename="../mainwindow.cpp" line="438"/>
         <source>Copy all to clipboard</source>
@@ -1915,7 +2031,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2147"/>
-        <location filename="../mainwindow.ui" line="2540"/>
+        <location filename="../mainwindow.ui" line="2541"/>
         <location filename="../mainwindow.cpp" line="322"/>
         <location filename="../mainwindow.cpp" line="439"/>
         <location filename="../mainwindow.cpp" line="2459"/>
@@ -1924,7 +2040,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2234"/>
-        <location filename="../mainwindow.ui" line="2633"/>
+        <location filename="../mainwindow.ui" line="2634"/>
         <location filename="../mainwindow.cpp" line="325"/>
         <location filename="../mainwindow.cpp" line="441"/>
         <source>Clear all</source>
@@ -2020,7 +2136,7 @@
         <location filename="../mainwindow.ui" line="875"/>
         <location filename="../mainwindow.ui" line="1405"/>
         <location filename="../mainwindow.ui" line="1925"/>
-        <location filename="../mainwindow.ui" line="2836"/>
+        <location filename="../mainwindow.ui" line="2837"/>
         <source>Saturation current</source>
         <translation>جریان اشباع</translation>
     </message>
@@ -2030,84 +2146,89 @@
         <translation>موضوع</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2434"/>
+        <location filename="../mainwindow.ui" line="2435"/>
         <source>Ferrite cores</source>
         <translation>هسته های فریت</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2700"/>
+        <location filename="../mainwindow.ui" line="2701"/>
         <source>Versions history</source>
         <translation>تاریخچه نسخه ها</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2712"/>
+        <location filename="../mainwindow.ui" line="2713"/>
         <source>Air core toroid coil</source>
         <translation>سیم پیچ توروئید هسته هوا</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2723"/>
+        <location filename="../mainwindow.ui" line="2724"/>
         <source>Default</source>
         <translation>پیش فرض</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2731"/>
+        <location filename="../mainwindow.ui" line="2732"/>
         <source>Dark</source>
         <translation>تاریک</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2740"/>
+        <location filename="../mainwindow.ui" line="2741"/>
         <source>Pot core coil</source>
         <translation>هسته گلدان</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2748"/>
+        <location filename="../mainwindow.ui" line="2749"/>
         <source>Sunny</source>
         <translation>آفتابی</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2757"/>
+        <location filename="../mainwindow.ui" line="2758"/>
         <source>E core coil</source>
         <translation>سیم پیچ هسته ای</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2767"/>
+        <location filename="../mainwindow.ui" line="2768"/>
         <source>Calculation with AL-factor</source>
         <translation>محاسبه با ضریب AL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2776"/>
+        <location filename="../mainwindow.ui" line="2777"/>
         <source>U core coil</source>
         <translation>سیم پیچ هسته ای</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2785"/>
+        <location filename="../mainwindow.ui" line="2786"/>
         <source>Audio system filter (crossover) coil</source>
         <translation>سیم پیچ فیلتر سیستم صوتی (کراس اوور)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2794"/>
+        <location filename="../mainwindow.ui" line="2795"/>
         <source>Toroidal inductor at RF</source>
         <translation>سلف توروئیدال در RF</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2803"/>
+        <location filename="../mainwindow.ui" line="2804"/>
         <source>Bandspread Calculator</source>
         <translation>ماشین حساب خازن کوپلینگ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2812"/>
+        <location filename="../mainwindow.ui" line="2813"/>
         <source>RM core coil</source>
         <translation>سیم پیچ هسته RM</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2821"/>
+        <location filename="../mainwindow.ui" line="2822"/>
         <source>Interface help</source>
         <translation>کمک رابط</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2845"/>
+        <location filename="../mainwindow.ui" line="2846"/>
         <source>Multi-section multilayer coil</source>
-        <translation type="unfinished"></translation>
+        <translation>کویل چند لایه چند بخشی</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2855"/>
+        <source>Coupled coils</source>
+        <translation>کویل‌های کوپل شده</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1967"/>
@@ -2122,7 +2243,7 @@
     <message>
         <location filename="../mainwindow.ui" line="2309"/>
         <location filename="../mainwindow.ui" line="2326"/>
-        <location filename="../mainwindow.ui" line="2504"/>
+        <location filename="../mainwindow.ui" line="2505"/>
         <source>Context help</source>
         <translation>راهنماي محتوا</translation>
     </message>
@@ -2142,24 +2263,24 @@
         <translation>&amp;کمک</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2420"/>
+        <location filename="../mainwindow.ui" line="2421"/>
         <source>Actions</source>
         <translation>اقدامات</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2428"/>
+        <location filename="../mainwindow.ui" line="2429"/>
         <source>Branded cores</source>
         <translation>هسته های مارک دار</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2477"/>
+        <location filename="../mainwindow.ui" line="2478"/>
         <source>&amp;Exit</source>
         <translation>&amp; خروج</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2075"/>
-        <location filename="../mainwindow.ui" line="2489"/>
-        <location filename="../mainwindow.ui" line="2492"/>
+        <location filename="../mainwindow.ui" line="2490"/>
+        <location filename="../mainwindow.ui" line="2493"/>
         <source>Options</source>
         <translation>گزینه</translation>
     </message>
@@ -2174,63 +2295,63 @@
         <translation>نمایش متن به شکل جدول</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2528"/>
+        <location filename="../mainwindow.ui" line="2529"/>
         <source>Check for &amp;update</source>
         <translation>بررسی به روز رسانی</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2552"/>
+        <location filename="../mainwindow.ui" line="2553"/>
         <source>HomePage</source>
         <translation>صفحه نخست</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2579"/>
+        <location filename="../mainwindow.ui" line="2580"/>
         <source>Print</source>
         <translation>چاپ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2591"/>
+        <location filename="../mainwindow.ui" line="2592"/>
         <source>To null initial data</source>
         <translation>صفر کردن اطلاعات اولیه</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2624"/>
+        <location filename="../mainwindow.ui" line="2625"/>
         <source>Coil on a ferrite rod</source>
         <translation>کویل بر روی یک میله فریت</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2642"/>
+        <location filename="../mainwindow.ui" line="2643"/>
         <source>Meander coil on PCB</source>
         <translation>سیم پیچ در PCB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2651"/>
+        <location filename="../mainwindow.ui" line="2652"/>
         <source>Search coil of a metal detector</source>
         <translation>جستجوگر سیم پیچ یک آشکارساز فلزی</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2661"/>
+        <location filename="../mainwindow.ui" line="2662"/>
         <source>A one-turn loop coil</source>
         <translation>کویل تک حلقه ای</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2670"/>
+        <location filename="../mainwindow.ui" line="2671"/>
         <source>Donate</source>
         <translation>اهدا کنید</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2682"/>
+        <location filename="../mainwindow.ui" line="2683"/>
         <source>Influence of the shield of a coil</source>
         <translation>نفوذ سپر سیم پیچ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2691"/>
+        <location filename="../mainwindow.ui" line="2692"/>
         <source>Amidon cores</source>
         <translation>هسته های آمیدون</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="2118"/>
-        <location filename="../mainwindow.ui" line="2603"/>
+        <location filename="../mainwindow.ui" line="2604"/>
         <location filename="../mainwindow.cpp" line="323"/>
         <location filename="../mainwindow.cpp" line="440"/>
         <location filename="../mainwindow.cpp" line="2421"/>
@@ -2501,8 +2622,8 @@
         <location filename="../mainwindow.cpp" line="5453"/>
         <location filename="../mainwindow.cpp" line="5939"/>
         <location filename="../mainwindow.cpp" line="6035"/>
-        <location filename="../mainwindow.cpp" line="6316"/>
-        <location filename="../mainwindow.cpp" line="6329"/>
+        <location filename="../mainwindow.cpp" line="6328"/>
+        <location filename="../mainwindow.cpp" line="6341"/>
         <source>Outside diameter</source>
         <translation>قطر بیرونی</translation>
     </message>
@@ -2511,8 +2632,8 @@
         <location filename="../mainwindow.cpp" line="1565"/>
         <location filename="../mainwindow.cpp" line="2104"/>
         <location filename="../mainwindow.cpp" line="2199"/>
-        <location filename="../mainwindow.cpp" line="6317"/>
-        <location filename="../mainwindow.cpp" line="6330"/>
+        <location filename="../mainwindow.cpp" line="6329"/>
+        <location filename="../mainwindow.cpp" line="6342"/>
         <source>Inside diameter</source>
         <translation>قطر داخلی</translation>
     </message>
@@ -2796,7 +2917,7 @@
         <location filename="../mainwindow.cpp" line="509"/>
         <location filename="../mainwindow.cpp" line="2232"/>
         <location filename="../mainwindow.cpp" line="2371"/>
-        <location filename="../mainwindow.cpp" line="6409"/>
+        <location filename="../mainwindow.cpp" line="6421"/>
         <source>Confirmation</source>
         <translation>تائیدیه</translation>
     </message>
@@ -2804,7 +2925,7 @@
         <location filename="../mainwindow.cpp" line="510"/>
         <location filename="../mainwindow.cpp" line="2233"/>
         <location filename="../mainwindow.cpp" line="2372"/>
-        <location filename="../mainwindow.cpp" line="6410"/>
+        <location filename="../mainwindow.cpp" line="6422"/>
         <source>Are you sure?</source>
         <translation>شما مطمئن هستید؟</translation>
     </message>
@@ -2812,7 +2933,7 @@
         <location filename="../mainwindow.cpp" line="513"/>
         <location filename="../mainwindow.cpp" line="2236"/>
         <location filename="../mainwindow.cpp" line="2375"/>
-        <location filename="../mainwindow.cpp" line="6413"/>
+        <location filename="../mainwindow.cpp" line="6425"/>
         <source>Yes</source>
         <translation>بله</translation>
     </message>
@@ -2820,7 +2941,7 @@
         <location filename="../mainwindow.cpp" line="514"/>
         <location filename="../mainwindow.cpp" line="2237"/>
         <location filename="../mainwindow.cpp" line="2376"/>
-        <location filename="../mainwindow.cpp" line="6414"/>
+        <location filename="../mainwindow.cpp" line="6426"/>
         <source>No</source>
         <translation>نه</translation>
     </message>
@@ -2933,22 +3054,22 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="5426"/>
-        <location filename="../mainwindow.cpp" line="6332"/>
-        <location filename="../mainwindow.cpp" line="6362"/>
+        <location filename="../mainwindow.cpp" line="6344"/>
+        <location filename="../mainwindow.cpp" line="6374"/>
         <source>Width of a PCB trace</source>
         <translation>عرض هادی چاپ شده</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6344"/>
-        <location filename="../mainwindow.cpp" line="6345"/>
-        <location filename="../mainwindow.cpp" line="6359"/>
-        <location filename="../mainwindow.cpp" line="6360"/>
+        <location filename="../mainwindow.cpp" line="6356"/>
+        <location filename="../mainwindow.cpp" line="6357"/>
+        <location filename="../mainwindow.cpp" line="6371"/>
+        <location filename="../mainwindow.cpp" line="6372"/>
         <source>Outside dimension</source>
         <translation>بعد بیرونی</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="6039"/>
-        <location filename="../mainwindow.cpp" line="6346"/>
+        <location filename="../mainwindow.cpp" line="6358"/>
         <source>Inside dimension</source>
         <translation>بعد داخلی</translation>
     </message>
@@ -3095,7 +3216,7 @@
         <translation>ترکیب پارامتر ورودی نامعتبر است</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6410"/>
+        <location filename="../mainwindow.cpp" line="6422"/>
         <source> calculation will be deleted</source>
         <translation> محاسبه حذف خواهد شد</translation>
     </message>
@@ -3105,10 +3226,10 @@
         <translation>این نتیجه را حذف کنید</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="6318"/>
-        <location filename="../mainwindow.cpp" line="6333"/>
-        <location filename="../mainwindow.cpp" line="6347"/>
-        <location filename="../mainwindow.cpp" line="6363"/>
+        <location filename="../mainwindow.cpp" line="6330"/>
+        <location filename="../mainwindow.cpp" line="6345"/>
+        <location filename="../mainwindow.cpp" line="6359"/>
+        <location filename="../mainwindow.cpp" line="6375"/>
         <source>PCB trace thickness</source>
         <translatorcomment>ضخامت ردیابی PCB</translatorcomment>
         <translation></translation>
@@ -3640,128 +3761,128 @@
     <message>
         <location filename="../multisection.ui" line="35"/>
         <source>Multi-section multilayer coil</source>
-        <translation type="unfinished"></translation>
+        <translation>کویل چند لایه چند بخشی</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="70"/>
         <source>Regular winding</source>
-        <translation type="unfinished">سیم پیچی منظم</translation>
+        <translation>سیم پیچی منظم</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="75"/>
         <source>Orthocyclic winding</source>
-        <translation type="unfinished">سیم پیچی ارتوسیکلیک</translation>
+        <translation>سیم پیچی ارتوسیکلیک</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="366"/>
         <source>Context help</source>
-        <translation type="unfinished">راهنماي محتوا</translation>
+        <translation>راهنماي محتوا</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="411"/>
-        <location filename="../multisection.cpp" line="239"/>
+        <location filename="../multisection.cpp" line="256"/>
         <source>Calculate</source>
-        <translation type="unfinished">محاسبه کردن</translation>
+        <translation>محاسبه کردن</translation>
     </message>
     <message>
         <location filename="../multisection.ui" line="443"/>
         <source>Close</source>
-        <translation type="unfinished">نزدیک</translation>
+        <translation>نزدیک</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="55"/>
+        <location filename="../multisection.cpp" line="74"/>
         <source>Former diameter</source>
-        <translation type="unfinished">قطر استوانه</translation>
+        <translation>قطر استوانه</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="56"/>
+        <location filename="../multisection.cpp" line="75"/>
         <source>Thickness of the coil</source>
-        <translation type="unfinished">ضخامت کویل</translation>
+        <translation>ضخامت کویل</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="57"/>
+        <location filename="../multisection.cpp" line="76"/>
         <source>Winding length</source>
-        <translation type="unfinished">طول سیم پیچ</translation>
+        <translation>طول سیم پیچ</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="58"/>
+        <location filename="../multisection.cpp" line="77"/>
         <source>Section winding spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>فاصله سیم پیچ بخش</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="59"/>
+        <location filename="../multisection.cpp" line="78"/>
         <source>Wire diameter</source>
-        <translation type="unfinished">قطر سیم</translation>
+        <translation>قطر سیم</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="60"/>
+        <location filename="../multisection.cpp" line="79"/>
         <source>Wire diameter with insulation</source>
-        <translation type="unfinished">قطر سیم با عایق</translation>
+        <translation>قطر سیم با عایق</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="61"/>
+        <location filename="../multisection.cpp" line="80"/>
         <source>Number of sections</source>
-        <translation type="unfinished"></translation>
+        <translation>تعداد بخش‌ها</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="87"/>
+        <location filename="../multisection.cpp" line="106"/>
         <source>AWG</source>
-        <translation type="unfinished">AWG</translation>
+        <translation>AWG</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="137"/>
-        <location filename="../multisection.cpp" line="157"/>
-        <location filename="../multisection.cpp" line="174"/>
-        <location filename="../multisection.cpp" line="178"/>
-        <source>Warning</source>
-        <translation type="unfinished">اخطار</translation>
-    </message>
-    <message>
-        <location filename="../multisection.cpp" line="137"/>
-        <location filename="../multisection.cpp" line="174"/>
-        <source>One or more inputs have an illegal format!</source>
-        <translation type="unfinished">یک یا چند ورودی فرمت غیرقانونی دارند!</translation>
-    </message>
-    <message>
-        <location filename="../multisection.cpp" line="157"/>
-        <source>One or more inputs are empty!</source>
-        <translation type="unfinished">یک یا چند ورودی خالی است!</translation>
-    </message>
-    <message>
-        <location filename="../multisection.cpp" line="178"/>
-        <source>One or more inputs are equal to null!</source>
-        <translation type="unfinished">یک یا چند ورودی برابر با صفر است!</translation>
-    </message>
-    <message>
+        <location filename="../multisection.cpp" line="156"/>
+        <location filename="../multisection.cpp" line="176"/>
         <location filename="../multisection.cpp" line="193"/>
+        <location filename="../multisection.cpp" line="197"/>
+        <source>Warning</source>
+        <translation>اخطار</translation>
+    </message>
+    <message>
+        <location filename="../multisection.cpp" line="156"/>
+        <location filename="../multisection.cpp" line="193"/>
+        <source>One or more inputs have an illegal format!</source>
+        <translation>یک یا چند ورودی فرمت غیرقانونی دارند!</translation>
+    </message>
+    <message>
+        <location filename="../multisection.cpp" line="176"/>
+        <source>One or more inputs are empty!</source>
+        <translation>یک یا چند ورودی خالی است!</translation>
+    </message>
+    <message>
+        <location filename="../multisection.cpp" line="197"/>
+        <source>One or more inputs are equal to null!</source>
+        <translation>یک یا چند ورودی برابر با صفر است!</translation>
+    </message>
+    <message>
+        <location filename="../multisection.cpp" line="213"/>
         <source>Input data</source>
-        <translation type="unfinished">داده های ورودی</translation>
+        <translation>داده های ورودی</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="202"/>
-        <location filename="../multisection.cpp" line="204"/>
+        <location filename="../multisection.cpp" line="224"/>
+        <location filename="../multisection.cpp" line="226"/>
         <source>Result</source>
-        <translation type="unfinished">نتایج</translation>
+        <translation>نتایج</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="210"/>
+        <location filename="../multisection.cpp" line="227"/>
         <source>Number of turns of the coil</source>
-        <translation type="unfinished"></translation>
+        <translation>(تعداد دور سیم پیچ(کویل</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="211"/>
+        <location filename="../multisection.cpp" line="228"/>
         <source>Inductance</source>
-        <translation type="unfinished">اندوکتانس</translation>
+        <translation>اندوکتانس</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="216"/>
+        <location filename="../multisection.cpp" line="233"/>
         <source>Calculation was aborted</source>
-        <translation type="unfinished">محاسبه لغو شد</translation>
+        <translation>محاسبه لغو شد</translation>
     </message>
     <message>
-        <location filename="../multisection.cpp" line="225"/>
+        <location filename="../multisection.cpp" line="242"/>
         <source>Abort</source>
-        <translation type="unfinished">قطع کردن</translation>
+        <translation>قطع کردن</translation>
     </message>
 </context>
 <context>

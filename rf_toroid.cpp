@@ -205,7 +205,7 @@ void RF_Toroid::getCurrentLocale(QLocale locale)
 double RF_Toroid::getDCresistance(double N, double OD, double ID, double H, double dw)
 {
     double P = (OD - ID) + (2 * H);
-    double Resistivity = mtrl[Cu][Rho]*1e6;
+    double Resistivity = MTRL[Cu][Rho]*1e6;
     return N * (Resistivity * P * 4e-3) / (M_PI * dw * dw); // DC resistance of the wire;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -403,7 +403,7 @@ void RF_Toroid::on_pushButton_calculate_clicked()
             double k = 0.8584 * pow(cr, 3) / (h * (oR - iR)); //correction factor for the chamfer
             double he = h * (1 - k); //correction C1 with chamfer by correcting h
             double C1 = 2 * M_PI / (he * log(od / id)); // C1
-            double al = mu0 * m1  * 1e6 / C1; // AL-factor of the torus [nH/N^2]
+            double al = MU0 * m1  * 1e6 / C1; // AL-factor of the torus [nH/N^2]
             double lp = od - id + 2 * h;
             //start calculating the stray self-capacitance by
             //http://g3rbj.co.uk/wp-content/uploads/2015/08/Self-Resonance-in-Toroidal-Inductors.pdf

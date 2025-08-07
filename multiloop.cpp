@@ -202,7 +202,7 @@ void Multiloop::get_Multiloop_Result(_CoilResult result)
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(fOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy),
                                    qApp->translate("Context",_ssLengthMeasureUnit.toUtf8())) + "<br/>";
-        double dencity = mtrl[Cu][Dencity];
+        double dencity = MTRL[Cu][Dencity];
         double mass = 0.25 * dencity * M_PI * dw * dw * result.thd;
         sResult += formattedOutput(fOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, fOpt->dwAccuracy), tr("g")) + "<br/>";
         sResult += "</p>";
