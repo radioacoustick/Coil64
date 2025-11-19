@@ -1668,50 +1668,6 @@ void findMeadrPCB_I(double a, double d, double h, double W, int N, _CoilResult *
     result->sec = 2 * N * d + 2 * a;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *result){
-    //The author of the source code of this function is George Overton.
-    //The source code is used as an open with the consent of the author.
-    //The code is from the author's book "Inside the METAL DETECTOR" Appendix A
-    //https://www.facebook.com/Inside-the-Metal-Detector-222330481232886/
-    //https://www.geotech1.com
-
-    double c = sqrt(N) * dt;
-    double a = (Di + c) / 2;
-    double x = pow(c / 2 / a, 2);
-    double s1 = 0.0004 * M_PI * a;
-    double s2 = pow(N, 2);
-    double s3 = s1 * s2;
-    double s4 = 0.5 + x/12;
-    double s5 = log(8/x);
-    double s6 = (s4 * s5) - 0.85 + (0.2 * x);
-    double ind = s3 * s6; //Inductance (microH)
-    result->N = 2 * a; //Mean coil diameter (mm)
-    result->sec = c; //coil thickness (mm)
-    result->thd = 2e-3 * M_PI * a * N; //length of the wire (m)
-    double Resistivity_cu = MTRL[Cu][Rho]*1e2;
-    result->fourth = (Resistivity_cu * result->thd * 100 * 4) / (M_PI * dw * dw * 0.01); //Resistance to DC (Ohm)
-    return ind;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-unsigned long findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result){
-    double tmpI = 0;
-    unsigned long N_max = ULONG_MAX;
-    unsigned long N_min = 0;
-    unsigned long N = (N_max - N_min) / 2;
-    if(findMultiloop_I(N, Di, dw, dt, result) <= I)
-        return N_max;
-    while ((N_max - N_min) > 1){
-        N = (N_max + N_min) / 2;
-        tmpI = findMultiloop_I(N, Di, dw, dt, result);
-        if(tmpI > I){
-            N_max = N;
-        } else {
-            N_min = N;
-        }
-    }
-    return N;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 double findRoundLoop_I(double D, double dw, double mu){
     return mu * 0.0002 * M_PI * D * (log(8 * D / dw) - 2);
 }

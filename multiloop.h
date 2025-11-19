@@ -50,13 +50,21 @@ private slots:
 
     void getOpt(_OptionStruct gOpt);
     void getCurrentLocale(QLocale locale);
-    void on_pushButton_clicked();
+    void on_pushButton_calculate_clicked();
     void get_Multiloop_Result(_CoilResult result);
+    QString showCoilParameters(double T, double dw, double wlength, Material mt, QString head = "");
+    void on_pushButton_export_clicked();
     void on_calculation_finished();
-    void on_pushButton_2_clicked();
-    void on_pushButton_3_clicked();
+    void on_pushButton_close_clicked();
+    void on_pushButton_help_clicked();
     void on_lineEdit_2_editingFinished();
+    void on_lineEdit_dw_editingFinished();
+    void on_lineEdit_dw2_editingFinished();
+    void on_lineEdit_Di_editingFinished();
     void on_checkBox_isReverce_clicked();
+    void on_tabWidget_currentChanged(int index);
+    void on_toolButton_toggled(bool checked);
+    void on_checkBox_identical_toggled(bool checked);
 
 private:
     Ui::Multiloop *ui;
@@ -65,8 +73,10 @@ private:
     QRegExpValidator *awgV;
     QLocale loc;
     double ind;
-    double dw;
+    double dw, dt;
     double nTurns;
+    double Di;
+    bool isPlus, isIdentical;
     MThread_calculate *thread;
 };
 

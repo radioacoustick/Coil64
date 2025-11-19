@@ -32,6 +32,7 @@ TEMPLATE = app
 SOURCES += main.cpp\
     coupledcoil.cpp \
     mainwindow.cpp \
+    multiloop_utils.cpp \
     multisection.cpp \
     resolves.cpp \
     bessel.cpp \
@@ -62,6 +63,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     coupledcoil.h \
+    multiloop_utils.h \
     multisection.h \
     proxystyle.h \
     resolves.h \

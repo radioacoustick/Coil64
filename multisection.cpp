@@ -220,8 +220,6 @@ void Multisection::get_Multisection_Result(_CoilResult result)
     if (M > 1)
         sInput += formattedOutput(fOpt, ui->label_s->text(), ui->lineEdit_s->text(), ui->label_s_m->text()) + "<br/>";
     sInput += formattedOutput(fOpt, ui->label_M->text(), ui->lineEdit_M->text()) + "</p>";
-
-    sResult += "<p><u>" + tr("Result") + ":</u><br/>";
     if(result.N > 0){
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
         sResult += formattedOutput(fOpt, tr("Number of turns of the coil") + " N = ", loc.toString(result.thd) + "..." + loc.toString(result.fourth)) + "<br/>";

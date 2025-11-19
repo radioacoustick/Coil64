@@ -275,10 +275,26 @@ void MThread_calculate::run(){
                 break;
             }
             case _Multiloop:{
-                if(this->arg5 == 0){
-                    result.seven = findMultiloop_I(arg1,arg2,arg3,arg4, &result);
-                } else {
-                    result.six = findMultiloop_N(arg1,arg2,arg3,arg4, &result);
+                if(arg8 == 0){
+                    if(this->arg5 == 0){
+                        result.seven = findMultiloopO_I(arg1, arg2, arg4, &result);
+                    } else {
+                        result.six = findMultiloopO_N(arg1, arg2, arg4, &result);
+                    }
+                } else if(arg8 == 1){
+                     //thread = new MThread_calculate( _Multiloop, -1, Pin, indTx, indRx, 0, dt, 0, dt2, 1);
+                    //findMultiLoopD_N(double Ind, double Pin, double dt, _CoilResult *result, bool *isStop)
+                    result.N = findMultiLoopD_N(arg2, arg1, arg5, &result, &isAbort);
+                    double wlength1 = result.thd;
+                    double T1 = result.sec;
+                    result.seven = findMultiLoopD_N(arg3, arg1, arg7, &result, &isAbort);
+                    double wlength2 = result.thd;
+                    double T2 = result.sec;
+
+                    result.sec = T1;
+                    result.thd = wlength1;
+                    result.fourth = T2;
+                    result.five = wlength2;
                 }
                 break;
             }

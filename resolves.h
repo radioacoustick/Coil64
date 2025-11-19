@@ -22,6 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QString>
 #include <QtMath>
 #include <QVector>
+#include <QVector3D>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 #include "definitions.h"
@@ -151,8 +152,6 @@ enum _AdditionalCalc
     void getSpiralI(double Do, double Di, double dw, int _N, _CoilResult *result, bool *isStop);
 
     void findMeadrPCB_I(double a, double d, double h, double W, int N, _CoilResult *result);
-    double findMultiloop_I(double N, double Di, double dw, double dt, _CoilResult *result);
-    unsigned long findMultiloop_N(double I, double Di, double dw, double dt, _CoilResult *result);
     double findRoundLoop_I(double D, double dw, double mu);
     double findAirCoreRoundToroid_I(double N, double D1, double D2, double dw);
     double findRoundLoop_D(double Ind, double dw, double mu);

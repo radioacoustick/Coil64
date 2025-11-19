@@ -24,6 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include "resolves.h"
 #include "resolve_q.h"
 #include "resolve_srf_cs.h"
+#include "multiloop_utils.h"
 
 
 class MThread_calculate : public QThread

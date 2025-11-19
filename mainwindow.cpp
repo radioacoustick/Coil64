@@ -814,28 +814,29 @@ void MainWindow::showOutput(QString caption, QString image, QString input, QStri
     mui->pushButton_Calculate->setEnabled(true);
     this->setCursor(Qt::ArrowCursor);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::checkMaterial1(Material *mt){
-    if (mui->radioButton_2->isChecked()){
-        *mt = Ag;
-    }
-    else if (mui->radioButton_3->isChecked()){
-        *mt = Al;
-    }
-    else if (mui->radioButton_4->isChecked()){
-        *mt = Ti;
-    }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::checkMaterial2(Material *mt){
-    if (mui->radioButton_2_2->isChecked()){
-        *mt = Ag;
-    }
-    else if (mui->radioButton_3_2->isChecked()){
-        *mt = Al;
-    }
-    else if (mui->radioButton_4_2->isChecked()){
-        *mt = Ti;
+
+void MainWindow::checkMaterial(Material *mt, int tabSelected)
+{
+    if(tabSelected == 0){
+        if (mui->radioButton_2->isChecked()){
+            *mt = Ag;
+        }
+        else if (mui->radioButton_3->isChecked()){
+            *mt = Al;
+        }
+        else if (mui->radioButton_4->isChecked()){
+            *mt = Ti;
+        }
+    } else if(tabSelected == 1){
+        if (mui->radioButton_2_2->isChecked()){
+            *mt = Ag;
+        }
+        else if (mui->radioButton_3_2->isChecked()){
+            *mt = Al;
+        }
+        else if (mui->radioButton_4_2->isChecked()){
+            *mt = Ti;
+        }
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3774,7 +3775,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
 
                 double Dk = D + k;
                 Material mt = Cu;
-                checkMaterial1(&mt);
+                checkMaterial(&mt, tab);
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
                 mui->lineEdit_freq->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
                 mui->lineEdit_1->setText(loc.toString(D / myOpt->dwLengthMultiplier));
@@ -3822,7 +3823,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
 
                 double Dk = D + k;
                 Material mt = Cu;
-                checkMaterial1(&mt);
+                checkMaterial(&mt, tab);
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
                 mui->lineEdit_freq->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
                 mui->lineEdit_1->setText(loc.toString(D / myOpt->dwLengthMultiplier));
@@ -3866,7 +3867,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 data->frequency = f;
                 double Dk = D + t + ins;
                 Material mt = Cu;
-                checkMaterial1(&mt);
+                checkMaterial(&mt, tab);
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
                 mui->lineEdit_freq->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
                 mui->lineEdit_1->setText(loc.toString(D / myOpt->dwLengthMultiplier));
@@ -3923,7 +3924,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 double Dk = D + k;
                 double _n = (double) n;
                 Material mt = Cu;
-                checkMaterial1(&mt);
+                checkMaterial(&mt, tab);
                 mui->lineEdit_ind->setText(loc.toString(data->inductance / myOpt->dwInductanceMultiplier));
                 mui->lineEdit_freq->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
                 mui->lineEdit_1->setText(loc.toString(D / myOpt->dwLengthMultiplier));
@@ -4270,7 +4271,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 data->frequency = f;
                 double Dk = D + k;
                 Material mt = Cu;
-                checkMaterial2(&mt);
+                checkMaterial(&mt, tab);
                 mui->lineEdit_N->setText(loc.toString(N));
                 mui->lineEdit_freq2->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
                 mui->lineEdit_1_2->setText(loc.toString(D / myOpt->dwLengthMultiplier));
@@ -4316,7 +4317,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 data->frequency = f;
                 double Dk = D + k;
                 Material mt = Cu;
-                checkMaterial2(&mt);
+                checkMaterial(&mt, tab);
                 mui->lineEdit_N->setText(loc.toString(N));
                 mui->lineEdit_freq2->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
                 mui->lineEdit_1_2->setText(loc.toString(D / myOpt->dwLengthMultiplier));
@@ -4360,7 +4361,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 data->frequency = f;
                 double Dk = D + t + ins;
                 Material mt = Cu;
-                checkMaterial2(&mt);
+                checkMaterial(&mt, tab);
                 mui->lineEdit_N->setText(loc.toString(N));
                 mui->lineEdit_freq->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
                 mui->lineEdit_1_2->setText(loc.toString(D / myOpt->dwLengthMultiplier));
@@ -4415,7 +4416,7 @@ void MainWindow::on_pushButton_Calculate_clicked()
                 double Dk = D + k;
                 double _n = (double) n;
                 Material mt = Cu;
-                checkMaterial2(&mt);
+                checkMaterial(&mt, tab);
                 mui->lineEdit_N->setText(loc.toString(N));
                 mui->lineEdit_freq2->setText(loc.toString(data->frequency / myOpt->dwFrequencyMultiplier));
                 mui->lineEdit_1_2->setText(loc.toString(D / myOpt->dwLengthMultiplier));
@@ -4912,17 +4913,17 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result)
                                        qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         }
         Material mt = Cu;
-        checkMaterial1(&mt);
+        checkMaterial(&mt, mui->tabWidget->currentIndex());
         double dencity = MTRL[mt][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.sec;
         double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
-        double reactance = 2 * M_PI * I * f;
-        sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
-        sResult += "<br/><br/>";
         if (f < 0.7 * result.fourth){
+            double reactance = 2 * M_PI * I * f;
+            sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+            sResult += "<br/><br/>";
             sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
@@ -4956,6 +4957,8 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result)
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
             mui->statusBar->showMessage(message);
+            sResult += "<br/>" + formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                       qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             sResult += "<span style=\"color:blue;\">" + message + "</span>";
         }
         sResult += "</p>";
@@ -5000,17 +5003,17 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (result.N * p + w)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
-        checkMaterial1(&mt);
+        checkMaterial(&mt, mui->tabWidget->currentIndex());
         double dencity = MTRL[mt][Dencity];
         double mass = dencity * w * t * result.sec;
         double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
-        double reactance = 2 * M_PI * I * f;
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
-        sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
-        sResult += "<br/><br/>";
         if (f < 0.7 * result.fourth){
+            double reactance = 2 * M_PI * I * f;
+            sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+            sResult += "<br/><br/>";
             sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
@@ -5045,6 +5048,8 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result)
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
             mui->statusBar->showMessage(message);
+            sResult += "<br/>" + formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                       qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             sResult += "<span style=\"color:blue;\">" + message + "</span>";
         }
         sResult += "</p>";
@@ -5092,17 +5097,17 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (result.N * p + k)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
-        checkMaterial1(&mt);
+        checkMaterial(&mt, mui->tabWidget->currentIndex());
         double dencity = MTRL[mt][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.thd;
         double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.thd * 4) / (M_PI * d * d); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
-        double reactance = 2 * M_PI * I * f;
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
-        sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
-        sResult += "<br/><br/>";
         if (f < 0.7 * result.five){
+            double reactance = 2 * M_PI * I * f;
+            sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+            sResult += "<br/><br/>";
             sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.fourth/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
@@ -5137,6 +5142,8 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result)
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
             mui->statusBar->showMessage(message);
+            sResult += "<br/>" + formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                       qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             sResult += "<span style=\"color:blue;\">" + message + "</span>";
         }
         sResult += "</p>";
@@ -5520,17 +5527,17 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (N * p + k)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
-        checkMaterial2(&mt);
+        checkMaterial(&mt, mui->tabWidget->currentIndex());
         double dencity = MTRL[mt][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * result.sec;
         double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.sec * 4) / (M_PI * d * d); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
-        double reactance = 2 * M_PI * I * f;
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
-        sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
-        sResult += "<br/><br/>";
         if (f < 0.7 * result.fourth){
+            double reactance = 2 * M_PI * I * f;
+            sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+            sResult += "<br/><br/>";
             sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
@@ -5565,6 +5572,8 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result)
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
             mui->statusBar->showMessage(message);
+            sResult += "<br/>" + formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                       qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             sResult += "<span style=\"color:blue;\">" + message + "</span>";
         }
         sResult += "</p>";
@@ -5609,17 +5618,17 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (N * p + w)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy ),
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
-        checkMaterial2(&mt);
+        checkMaterial(&mt, mui->tabWidget->currentIndex());
         double dencity = MTRL[mt][Dencity];
         double mass = dencity * w * t * result.sec;
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
-        double reactance = 2 * M_PI * I * f;
         double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * result.sec) / (w * t); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
-        sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
-        sResult += "<br/><br/>";
         if (f < 0.7 * result.fourth){
+            double reactance = 2 * M_PI * I * f;
+            sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+            sResult += "<br/><br/>";
             sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.thd/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
@@ -5654,6 +5663,8 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result)
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
             mui->statusBar->showMessage(message);
+            sResult += "<br/>" + formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                       qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             sResult += "<span style=\"color:blue;\">" + message + "</span>";
         }
         sResult += "</p>";
@@ -5704,17 +5715,17 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Length of winding") + " l = ", roundTo( (N * p + k)/myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         Material mt = Cu;
-        checkMaterial2(&mt);
+        checkMaterial(&mt, mui->tabWidget->currentIndex());
         double dencity = MTRL[mt][Dencity];
         double mass = 0.25 * dencity * M_PI * d * d * lW;
         sResult += formattedOutput(myOpt, tr("Weight of wire") + " m = ", roundTo(mass, loc, myOpt->dwAccuracy), tr("g")) + "<br/>";
-        double reactance = 2 * M_PI * I * f;
         double Resistivity = MTRL[mt][Rho]*1e6;
         double R = (Resistivity * lW * 4) / (M_PI * d * d); // DC resistance of the wire
         sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(R, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
-        sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
-        sResult += "<br/><br/>";
         if (f < 0.7 * result.five){
+            double reactance = 2 * M_PI * I * f;
+            sResult += formattedOutput(myOpt, tr("Reactance of the coil") + " X = ", roundTo(reactance, loc, myOpt->dwAccuracy), tr("Ohm"));
+            sResult += "<br/><br/>";
             sResult += formattedOutput(myOpt, tr("Self capacitance") + " Cs = ", roundTo(result.fourth/myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
@@ -5749,6 +5760,8 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result)
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
             mui->statusBar->showMessage(message);
+            sResult += "<br/>" + formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
+                                       qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             sResult += "<span style=\"color:blue;\">" + message + "</span>";
         }
         sResult += "</p>";
@@ -5783,7 +5796,7 @@ void MainWindow::get_multilayerI_Result(_CoilResult result)
             sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
             data->inductance = result.N;
-            sResult += formattedOutput(myOpt, tr("Thickness of the coil") + " c = " + roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
+            sResult += formattedOutput(myOpt, tr("Thickness of the coil") + " c = ", roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
             data->c = result.five;
             sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(result.fourth, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";

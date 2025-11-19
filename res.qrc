@@ -58,6 +58,7 @@
         <file>res/bandspread-t.png</file>
         <file>res/multisection.png</file>
         <file>res/Coupled-coils.png</file>
+        <file>res/d-coil.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>

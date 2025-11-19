@@ -177,8 +177,7 @@ private slots:
     void resetUiFont();
     void invertGUIconColor();
     void showOutput(QString caption, QString image, QString input, QString result);
-    void checkMaterial1(Material *mt);
-    void checkMaterial2(Material *mt);
+    void checkMaterial(Material *mt, int tabSelected);
     void on_dockWidgetClosed();
     void on_timer();
     void on_calculation_started();

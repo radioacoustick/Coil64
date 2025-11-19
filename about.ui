@@ -725,7 +725,7 @@ p, li { white-space: pre-wrap; }
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Free Icons:</string>
+                <string notr="true">Free Icons8 icons:</string>
                </property>
                <property name="margin">
                 <number>10</number>
@@ -735,7 +735,7 @@ p, li { white-space: pre-wrap; }
              <item>
               <widget class="QLabel" name="label">
                <property name="text">
-                <string notr="true">&lt;a href=&quot;https://github.com/icons8/windows-10-icons&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;https://github.com/icons8/windows-10-icons&lt;/span&gt;&lt;/a&gt;</string>
+                <string notr="true">&lt;a href=&quot;https://github.com/icons8/windows-10-icons&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;https://github.com/icons8/windows-10-icons&lt;/span&gt;&lt;/a&gt; using &lt;a href=&quot;https://opensource.org/license/mit&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:DodgerBlue;&quot;&gt;The MIT License&lt;/span&gt;&lt;/a&gt;</string>
                </property>
                <property name="margin">
                 <number>10</number>
