@@ -226,7 +226,7 @@ void Crossover::fillTable(QStandardItem *item, int count, double wire_d, int awg
                              + "x" + roundTo(c / fOpt->dwLengthMultiplier, loc, 1));
     model->setItem(count - 1, 4, item);
     QString _wire_length = formatLength(lengthWire, fOpt->dwLengthMultiplier);
-    QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+    QStringList list = _wire_length.split(" ", skip_empty_parts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("Length of wire without leads") + "\n[" +

@@ -26,6 +26,9 @@ QT       += printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+# Qt6 compatibility
+greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
+
 TARGET = Coil64
 TEMPLATE = app
 
