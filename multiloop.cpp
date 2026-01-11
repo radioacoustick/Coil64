@@ -451,7 +451,7 @@ QString Multiloop::showCoilParameters(double T, double dw, double wlength, Mater
     double resistance = (Resistivity * wlength * 100 * 4) / (M_PI * dw * dw * 0.01); //Resistance to DC (Ohm)
     result += head  + formattedOutput(fOpt, tr("Resistance of the coil") + " R = ", roundTo(resistance, loc, fOpt->dwAccuracy), tr("Ohm")) + "<br/>";
     QString _wire_length = formatLength(wlength, fOpt->dwLengthMultiplier);
-    QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+    QStringList list = _wire_length.split(" ", skip_empty_parts);
     QString d_wire_length = list[0];
     QString _ssLengthMeasureUnit = list[1];
     result += head  + formattedOutput(fOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, fOpt->dwAccuracy),

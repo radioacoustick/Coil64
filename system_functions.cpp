@@ -22,6 +22,13 @@ QString getOSVersion(){
     if(osVersion.isEmpty())
     {
 #if defined(Q_OS_MAC)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        // Qt6: Use QSysInfo::productType() and productVersion()
+        osVersion.append(QSysInfo::currentCpuArchitecture()).append(QLatin1Char('-'));
+        osVersion.append(QSysInfo::productType()).append(QLatin1Char(' '));
+        osVersion.append(QSysInfo::productVersion());
+#else
+        // Qt5: Use deprecated MacintoshVersion enum
         switch(QSysInfo::MacintoshVersion)
         {
         case QSysInfo::MV_SIERRA:
@@ -73,6 +80,7 @@ QString getOSVersion(){
             osVersion.append(QSysInfo::productVersion());
             break;
         }
+#endif
 #elif defined(Q_WS_X11) || defined(Q_OS_LINUX)
         utsname buf;
         if(uname(&buf) != -1)
@@ -89,12 +97,31 @@ QString getOSVersion(){
                     strList << file.readLine();
                 }
                 file.close();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+                int index = -1;
+                QRegularExpression re("^PRETTY_NAME.*");
+                for (int i = 0; i < strList.size(); ++i) {
+                    if (re.match(strList[i]).hasMatch()) {
+                        index = i;
+                        break;
+                    }
+                }
+#else
                 int index=strList.indexOf(QRegExp("^PRETTY_NAME.*"));
+#endif
                 QString sname = strList[index];
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+                QStringList _name = sname.split(QRegularExpression("="), skip_empty_parts);
+#else
                 QStringList _name = sname.split(QRegExp("="), skip_empty_parts);
+#endif
                 QString name = _name[1];
                 name.truncate(name.lastIndexOf('\n'));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+                name.remove(QRegularExpression("\""));
+#else
                 name.remove(QRegExp("\""));
+#endif
                 osVersion.append(QLatin1String("(")).append(name).append(QLatin1Char(')'));
             }
         }
@@ -103,6 +130,13 @@ QString getOSVersion(){
             osVersion = QLatin1String("Linux/Unix(unknown)");
         }
 #elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        // Qt6: Use QSysInfo::productType() and productVersion()
+        osVersion.append(QSysInfo::currentCpuArchitecture()).append(QLatin1String(" - "));
+        osVersion.append(QSysInfo::productType()).append(QLatin1Char(' '));
+        osVersion.append(QSysInfo::productVersion());
+#else
+        // Qt5: Use deprecated WindowsVersion enum
         osVersion.append((QSysInfo::currentCpuArchitecture().toLatin1())).append(QLatin1String(" - "));
         switch(QSysInfo::WindowsVersion)
         {
@@ -169,6 +203,7 @@ QString getOSVersion(){
             osVersion.append(QLatin1String(" (NT-based)"));
         else if(QSysInfo::WindowsVersion & QSysInfo::WV_DOS_based)
             osVersion.append(QLatin1String(" (MS-DOS-based)"));
+#endif
 #else
         return QLatin1String("Unknown");
 #endif
@@ -410,7 +445,18 @@ bool isAppPortable(){
     result = false;
 #elif defined(Q_WS_WIN) || defined(Q_OS_WIN)
     QStringList env_list(QProcess::systemEnvironment());
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    int idx = -1;
+    QRegularExpression re("^PROGRAMFILES=.*", QRegularExpression::CaseInsensitiveOption);
+    for (int i = 0; i < env_list.size(); ++i) {
+        if (re.match(env_list[i]).hasMatch()) {
+            idx = i;
+            break;
+        }
+    }
+#else
     int idx = env_list.indexOf(QRegExp("^PROGRAMFILES=.*", Qt::CaseInsensitive));
+#endif
     QStringList programFilesEnv = env_list[idx].split('=');
     QString programFilesDir = programFilesEnv[1];
     appPath.truncate(appPath.indexOf('/',3));
@@ -451,8 +497,8 @@ QString defineSavePath(){
     return savePath;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-QPixmap reversePixmapColors(const QPixmap *pm){
-    QImage image(pm->toImage());
+QPixmap reversePixmapColors(const QPixmap &pm){
+    QImage image(pm.toImage());
     image.invertPixels();
     QPixmap am = QPixmap::fromImage(image);
     return am;
@@ -469,7 +515,11 @@ QIcon reverseIconColors(QIcon ico){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QString roundTo(double num, QLocale locale, int accuracy){
     QString snum = locale.toString(num, 'f', accuracy);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    char decSeparator = locale.decimalPoint().at(0).toLatin1();
+#else
     char decSeparator = locale.decimalPoint().toLatin1();
+#endif
     std::string str = snum.toStdString();
     std::size_t found = str.find(decSeparator);
     if (found != std::string::npos){

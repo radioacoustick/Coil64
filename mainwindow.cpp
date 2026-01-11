@@ -26,7 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     mui->setupUi(this);
     net_manager = new QNetworkAccessManager();
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     net_manager->setNetworkAccessible(QNetworkAccessManager::Accessible);
+#endif
     connect(net_manager, SIGNAL(finished(QNetworkReply*)), SLOT(checkAppVersion(QNetworkReply*)));
     QString title = qApp->applicationName();
     title.append(" v");
@@ -890,10 +892,10 @@ void MainWindow::checkAppVersion(QNetworkReply *reply){
     } else {
         bool isRequirestUpdate = false;
         QString internetVersiontext = reply->readAll();
-        QStringList internetVersion = internetVersiontext.split(QRegExp("\\."), skip_empty_parts);
+        QStringList internetVersion = splitByRegex(internetVersiontext, "\\.");
         QString str = "%1";
         QString localVersiontext = str.arg(qApp->applicationVersion());
-        QStringList localVersion = localVersiontext.split(QRegExp("\\."), skip_empty_parts);
+        QStringList localVersion = splitByRegex(localVersiontext, "\\.");
         QString iMajor = internetVersion[0];
         QString iMinor = internetVersion[1];
         QString iRelease = internetVersion[2];
@@ -2472,7 +2474,7 @@ void MainWindow::on_actionSave_triggered()
             }
             if ((ext == ".odf") || (ext == ".pdf")){
                 QString oldTxt = document->toHtml();
-                QString newText = document->toHtml().remove(CLEAR_CHAR);
+                QString newText = document->toHtml().remove(QChar(CLEAR_CHAR));
                 document->setHtml(newText);
                 if (ext == ".odf"){
                     QTextDocumentWriter textwriter(fileName);
@@ -2482,7 +2484,11 @@ void MainWindow::on_actionSave_triggered()
                 if (ext == ".pdf"){
                     QPrinter printer(QPrinter::PrinterResolution);
                     printer.setOutputFormat(QPrinter::PdfFormat);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+                    printer.setPageSize(QPageSize::A4);
+#else
                     printer.setPaperSize(QPrinter::A4);
+#endif
                     printer.setOutputFileName(fileName);
                     printer.setPageMargins(QMarginsF(50, 50, 50, 50));
                     QFont oldFont(document->defaultFont());
@@ -2493,7 +2499,11 @@ void MainWindow::on_actionSave_triggered()
                     else
                         newFont.setPointSize(6);
                     document->setDefaultFont(newFont);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+                    document->setPageSize(printer.pageRect(QPrinter::DevicePixel).size());
+#else
                     document->setPageSize(printer.pageRect().size());
+#endif
                     document->print(&printer);
                     document->setDefaultFont(oldFont);
                 }
@@ -4894,7 +4904,7 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result)
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
         sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", roundTo(result.N, loc, myOpt->dwAccuracy)) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -4995,7 +5005,7 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result)
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
         sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", roundTo(result.N, loc, myOpt->dwAccuracy)) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5089,7 +5099,7 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result)
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
         sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", roundTo(result.N, loc, myOpt->dwAccuracy)) + "<br/>";
         QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5181,7 +5191,7 @@ void MainWindow::get_multilayerN_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Dimensions of inductor") + " S: ", mui->lineEdit_2->text() + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier))
                                    + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier)), qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5231,7 +5241,7 @@ void MainWindow::get_multilayerNgap_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Dimensions of inductor") + " S: ", mui->lineEdit_2->text() + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier))
                                    + "x" + loc.toString(ceil(width / myOpt->dwLengthMultiplier)), qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5285,7 +5295,7 @@ void MainWindow::get_multilayerN_Rect_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Dimensions of inductor") + " S: ", mui->lineEdit_3->text() + "x" + loc.toString(ceil(width))
                                    + "x" + loc.toString(ceil(height)) + " ", qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5328,7 +5338,7 @@ void MainWindow::get_multilayerN_Foil_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Outside diameter") + " Do = ", roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         QString _foil_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _foil_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _foil_length.split(" ", skip_empty_parts);
         QString d_foil_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of the foil") + " lf = ", roundTo(d_foil_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5359,7 +5369,7 @@ void MainWindow::get_ferrToroidN_Result(_CoilResult result)
         data->N = result.N;
         sResult += formattedOutput(myOpt, tr("Number of turns of the coil") + " N = ", roundTo(result.N, loc, myOpt->dwAccuracy)) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5461,7 +5471,7 @@ void MainWindow::get_spiralN_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Outside diameter") + " Do = ", roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
                                    qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5519,7 +5529,7 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(I/myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
                                    qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5610,7 +5620,7 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(I/myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
                                    qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5707,7 +5717,7 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result)
                                    qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
         double lW = result.thd;
         QString _wire_length = formatLength(lW, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5802,7 +5812,7 @@ void MainWindow::get_multilayerI_Result(_CoilResult result)
             sResult += formattedOutput(myOpt, tr("Resistance of the coil") + " Rdc = ", roundTo(result.fourth, loc, myOpt->dwAccuracy), tr("Ohm")) + "<br/>";
             data->Rdc = result.fourth;
             QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
-            QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+            QStringList list = _wire_length.split(" ", skip_empty_parts);
             QString d_wire_length = list[0];
             QString _ssLengthMeasureUnit = list[1];
             sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5891,7 +5901,7 @@ void MainWindow::get_multilayerI_Rect_Result(_CoilResult result)
                                        qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
             data->c = result.five;
             QString _wire_length = formatLength(result.thd, myOpt->dwLengthMultiplier);
-            QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+            QStringList list = _wire_length.split(" ", skip_empty_parts);
             QString d_wire_length = list[0];
             QString _ssLengthMeasureUnit = list[1];
             sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5945,7 +5955,7 @@ void MainWindow::get_multilayerI_Foil_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N, loc, myOpt->dwAccuracy),
                                    qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
         QString _foil_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _foil_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _foil_length.split(" ", skip_empty_parts);
         QString d_foil_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of the foil") + " lf = ", roundTo(d_foil_length.toDouble(), loc, myOpt->dwAccuracy),
@@ -5976,7 +5986,7 @@ void MainWindow::get_ferriteI_Result(_CoilResult result)
     if (result.sec > 0) {
         data->inductance = result.N;
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
@@ -6078,7 +6088,7 @@ void MainWindow::get_spiralI_Result(_CoilResult result)
         sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
                                    qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
         QString _wire_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         sResult += formattedOutput(myOpt, tr("Length of wire without leads") + " lw = ", roundTo(d_wire_length.toDouble(), loc, myOpt->dwAccuracy),

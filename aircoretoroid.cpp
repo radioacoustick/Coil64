@@ -297,7 +297,7 @@ void AirCoreToroid::on_pushButton_calculate_clicked()
     }
     if (lw > 0){
         QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
-        QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+        QStringList list = _wire_length.split(" ", skip_empty_parts);
         QString d_wire_length = list[0];
         QString _ssLengthMeasureUnit = list[1];
         if (d_wire_length != "-100"){

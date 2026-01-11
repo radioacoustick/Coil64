@@ -39,10 +39,38 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <sys/utsname.h>
 #endif
 
+// Qt5/Qt6 compatibility
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+  #include <QRegularExpression>
+  #include <QRegularExpressionValidator>
+  using QRegExpValidator = QRegularExpressionValidator;
+  #define QRegExp QRegularExpression
+  #define QRegExp_SkipEmptyParts Qt::SkipEmptyParts
+#elif QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+  #include <QRegExp>
+  #include <QRegExpValidator>
+  #define QRegExp_SkipEmptyParts Qt::SkipEmptyParts
+#else
+  #include <QRegExp>
+  #include <QRegExpValidator>
+  #define QRegExp_SkipEmptyParts QString::SkipEmptyParts
+#endif
+
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
   const auto skip_empty_parts = Qt::SkipEmptyParts;
 #else
   const auto skip_empty_parts = QString::SkipEmptyParts;
+#endif
+
+// Helper function for splitting strings with regex pattern (Qt5/Qt6 compatible)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+inline QStringList splitByRegex(const QString &str, const QString &pattern) {
+    return str.split(QRegularExpression(pattern), Qt::SkipEmptyParts);
+}
+#else
+inline QStringList splitByRegex(const QString &str, const QString &pattern) {
+    return str.split(QRegExp(pattern), skip_empty_parts);
+}
 #endif
 
 enum _StyleGUI {
@@ -110,7 +138,7 @@ QStringList getValueTextColorNames(int styleGUI);
 QLocale getLanguageLocale (QString lang);
 void completeOptionsStructure(_OptionStruct *opt);
 QString formatLength(double length, double lengthMultiplyer);
-QPixmap reversePixmapColors(const QPixmap *pm);
+QPixmap reversePixmapColors(const QPixmap &pm);
 QIcon reverseIconColors(QIcon ico);
 QString roundTo(double num, QLocale locale, int accuracy);
 QRadioButton *getCheckedRadioButton(QWidget *w);

@@ -935,7 +935,7 @@ void Amidon::onCalculate()
                     if (ui->tabWidget->currentIndex() == _FToroid)
                         lw = getToroidWireLength(fTorDimen->at(0), fTorDimen->at(1), fTorDimen->at(2), dw, N, &one_layer_dw);
                     QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
-                    QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+                    QStringList list = _wire_length.split(" ", skip_empty_parts);
                     QString d_wire_length = list[0];
                     QString _ssLengthMeasureUnit = list[1];
                     double dw1 = std::min(max_dw, one_layer_dw);
@@ -1150,7 +1150,7 @@ void Amidon::on_lineEdit_dw_textChanged(const QString &arg1)
             if (ui->tabWidget->currentIndex() == _FToroid)
                 lw = getToroidWireLength(fTorDimen->at(0), fTorDimen->at(1), fTorDimen->at(2), d, N);
             QString _wire_length = formatLength(lw, fOpt->dwLengthMultiplier);
-            QStringList list = _wire_length.split(QRegExp(" "), skip_empty_parts);
+            QStringList list = _wire_length.split(" ", skip_empty_parts);
             QString d_wire_length = list[0];
             QString _ssLengthMeasureUnit = list[1];
             int i0 = result.indexOf(">", result.lastIndexOf("lw ="));
@@ -1191,7 +1191,11 @@ void Amidon::on_pushButton_export_clicked()
     sImage = QString("<img src=\"data:image/png;base64,") + byteArray.toBase64() + "\"/>";
     QByteArray byteArray2;
     QBuffer buffer2(&byteArray2);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    ui->image->pixmap().save(&buffer2, "PNG");
+#else
     ui->image->pixmap()->save(&buffer2, "PNG");
+#endif
     sImage += QString("<br/><img src=\"data:image/png;base64,") + byteArray2.toBase64() + "\"/>";
     QString sInput = "<p><u>" + tr("Input data") + ":</u><br/>";
     sInput += formattedOutput(fOpt, ui->groupBox_ind->title() + " L: ", ui->lineEdit_ind->text(), ui->label_2->text()) + "<br/>";
