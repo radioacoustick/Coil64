@@ -179,6 +179,7 @@ private slots:
     void showOutput(QString caption, QString image, QString input, QString result);
     void checkMaterial(Material *mt, int tabSelected);
     void on_dockWidgetClosed();
+    void on_LTSpice_show_shanged(bool isShow);
     void on_timer();
     void on_calculation_started();
     void on_calculation_finished();
@@ -219,7 +220,7 @@ private slots:
     void on_toolButton_lShowFirst_clicked();
     void on_toolButton_Open_clicked();
     void on_toolButton_Save_clicked();
-    void on_toolButton_ltspice_clicked();
+    void on_toolButton_ltspice_toggled(bool checked);
     void on_toolButton_Color_clicked();
     void on_toolButton_Desc_clicked();
     void on_toolButton_column_clicked();

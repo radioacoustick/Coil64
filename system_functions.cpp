@@ -16,6 +16,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 */
 
 #include "system_functions.h"
+#if defined(__linux__) && defined(__GLIBC__)
+#include <gnu/libc-version.h>
+#endif
+#include <QSslSocket>
 
 QString getOSVersion(){
     static QString osVersion;
@@ -531,6 +535,13 @@ QString roundTo(double num, QLocale locale, int accuracy){
     return res_num;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::pair<QString, QString> getResistancePair(double value, QLocale loc, int precision) {
+    if (value >= 1000.0) {
+        return { roundTo(value / 1000.0, loc, precision), "kOhm" };
+    }
+    return { roundTo(value, loc, precision), "Ohm" };
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QStringList getValueTextColorNames(int styleGUI)
 {
     QStringList colorNames =  (QStringList()<<"blue"<<"darkCyan"<<"red"<<"green"<<"black"<<"yellow"<<"cyan"<<"magenta"<<"gray");
@@ -587,4 +598,190 @@ QString formattedOutput(_OptionStruct *mOpt, QString header, QString value, QStr
     else
         output = header + " <span>" + value + "</span> " + footer;
     return output;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// functions to create tab "libraries" of the About Window
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString cppStandard()
+{
+#if __cplusplus >= 202302L
+    return "C++23";
+#elif __cplusplus >= 202002L
+    return "C++20";
+#elif __cplusplus >= 201703L
+    return "C++17";
+#elif __cplusplus >= 201402L
+    return "C++14";
+#elif __cplusplus >= 201103L
+    return "C++11";
+#elif __cplusplus >= 199711L
+    return "C++98";
+#else
+    return "pre-standard C++";
+#endif
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString compilerName()
+{
+#if defined(__MINGW32__)
+    return "MinGW32";
+#elif defined(__MINGW64__)
+    return "MinGW64";
+#elif defined(_MSC_VER)
+    return "MSVC";
+#elif defined(__clang__)
+    return "Clang";
+#elif defined(__GNUC__)
+    return "GCC";
+#else
+    return "Unknown compiler";
+#endif
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString compilerVersion()
+{
+#if defined(__clang__)
+    return QString("%1.%2.%3")
+        .arg(__clang_major__)
+        .arg(__clang_minor__)
+        .arg(__clang_patchlevel__);
+
+#elif defined(__GNUC__)
+    return QString("%1.%2.%3")
+        .arg(__GNUC__)
+        .arg(__GNUC_MINOR__)
+        .arg(__GNUC_PATCHLEVEL__);
+
+#elif defined(_MSC_VER)
+    return QString("%1.%2")
+        .arg(_MSC_VER / 100)
+        .arg(_MSC_VER % 100);
+
+#else
+    return "?";
+#endif
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString targetCpu()
+{
+#if defined(__x86_64__) || defined(_M_X64)
+    return "x86_64 (64-bit)";
+#elif defined(__i386__) || defined(_M_IX86)
+    return "i686 (32-bit)";
+#elif defined(__aarch64__)
+    return "arm64";
+#elif defined(__arm__)
+    return "arm";
+#elif defined(__wasm32__)
+    return "wasm32";
+#elif defined(__riscv)
+    return "riscv";
+#else
+    return "unknown-cpu";
+#endif
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString targetBitness()
+{
+#if QT_POINTER_SIZE == 8
+    return "64-bit";
+#elif QT_POINTER_SIZE == 4
+    return "32-bit";
+#else
+    return "unknown-bitness";
+#endif
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString osBitness()
+{
+    const QString arch = QSysInfo::currentCpuArchitecture();
+    return arch.contains("64") ? "64-bit" : "32-bit";
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString formatCompileDate()
+{
+    // __DATE__ = "Mmm dd yyyy"
+    QString dateStr(__DATE__);
+    QString monthStr = dateStr.left(3);
+    QString dayStr = dateStr.mid(4, 2).trimmed();
+    QString yearStr = dateStr.mid(7, 4);
+
+    QString monthNum;
+    if (monthStr == "Jan") monthNum = "01";
+    else if (monthStr == "Feb") monthNum = "02";
+    else if (monthStr == "Mar") monthNum = "03";
+    else if (monthStr == "Apr") monthNum = "04";
+    else if (monthStr == "May") monthNum = "05";
+    else if (monthStr == "Jun") monthNum = "06";
+    else if (monthStr == "Jul") monthNum = "07";
+    else if (monthStr == "Aug") monthNum = "08";
+    else if (monthStr == "Sep") monthNum = "09";
+    else if (monthStr == "Oct") monthNum = "10";
+    else if (monthStr == "Nov") monthNum = "11";
+    else if (monthStr == "Dec") monthNum = "12";
+    else monthNum = "00";
+    // Return in format YYYY-MM-DD
+    return QString("%1-%2-%3").arg(yearStr).arg(monthNum).arg(dayStr);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+static QString buildType()
+{
+#ifdef QT_DEBUG
+    return "Debug";
+#else
+    return "Release";
+#endif
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString systemLocaleInfo()
+{
+    QLocale l = QLocale::system();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    return QString(" | %1 (%2, %3)").arg(l.name(), QLocale::languageToString(l.language()), QLocale::territoryToString(l.territory()));
+#else
+    return QString(" | %1 (%2)").arg(l.name(), QLocale::languageToString(l.language()), QLocale::countryToString(l.country()));
+#endif
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString getAppBuildInfo()
+{
+    QString hInfo = "<html><head/><body><p>";
+    hInfo.append("<b>").append(QCoreApplication::applicationName());
+    hInfo.append(" v").append(QCoreApplication::applicationVersion());
+    hInfo.append(" (").append(targetBitness()).append(")").append("</b></p><p>");
+#if defined(Q_OS_WIN)
+#if QT_VERSION > QT_VERSION_CHECK(5, 7, 1)
+    hInfo.append("<img src=\":/menu_ico/res/ico2-windows.png\" style=\"vertical-align: middle;\"/> Windows 7-11");
+#else
+    hInfo.append("<img src=\":/menu_ico/res/ico2-windows-xp.png\" style=\"vertical-align: middle;\"/> Windows XP");
+#endif
+#elif defined(Q_OS_LINUX)
+    hInfo.append("<img src=\":/menu_ico/res/ico2-linux.png\" style=\"vertical-align: middle;\"/> Linux");
+#elif defined(Q_OS_MACOS)
+    hInfo.append("<img src=\":/menu_ico/res/ico2-mac-os.png\" style=\"vertical-align: middle;\"/> macOS");
+#elif defined(Q_OS_IOS)
+    hInfo.append("<img src=\":/menu_ico/res/ico2-apple.png\" style=\"vertical-align: middle;\"/> iOS");
+#elif defined(Q_OS_FREEBSD)
+    hInfo.append("<img src=\":/menu_ico/res/ico2-bsd.png\" style=\"vertical-align: middle;\"/> FreeBSD");
+#elif defined(Q_OS_UNIX)
+    hInfo.append("Unix");
+#else
+    hInfo.append("Unknown OS");
+#endif
+    hInfo.append(" | ").append(QString("Qt %1").arg(QT_VERSION_STR));
+#ifdef QT_STATIC
+    hInfo.append(" static");
+#else
+    hInfo.append(" shared");
+#endif
+    hInfo.append("<hr/>Compiler: ").append(compilerName() + " " + compilerVersion()).append(", ");
+    hInfo.append(cppStandard()).append(", ").append(QString("%1").arg(targetCpu()));
+#if defined(__linux__) && defined(__GLIBC__)
+    hInfo.append(" | ").append(QString("glibc %1").arg(gnu_get_libc_version()));
+#endif
+    hInfo.append("<hr/>").append(buildType() + ": ").append(QString("%1 %2").arg(formatCompileDate()).arg(__TIME__));
+    hInfo.append("<hr/>OS: ").append(QString("%1, %2").arg(QSysInfo::prettyProductName()).arg(osBitness()));
+    hInfo.append(systemLocaleInfo());
+    hInfo.append("</p></body></html>");
+    return hInfo;
 }

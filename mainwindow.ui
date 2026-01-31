@@ -1902,7 +1902,7 @@
            <string notr="true">margin-right:3</string>
           </property>
           <property name="text">
-           <string notr="true">...</string>
+           <string notr="true"/>
           </property>
           <property name="icon">
            <iconset resource="res.qrc">

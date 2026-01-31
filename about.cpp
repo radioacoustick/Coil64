@@ -63,6 +63,7 @@ About::About(QWidget *parent) :
     title.append(" v");
     title.append(QCoreApplication::applicationVersion());
     ui->label_2->setText(title);
+
     ui->tabWidget->setCurrentIndex(0);
 
     QResource r( ":/txt/res/gpl-3.0.html" );
@@ -74,6 +75,7 @@ About::About(QWidget *parent) :
     QResource r3( ":/txt/res/thanks.html" );
     QByteArray b3( reinterpret_cast< const char* >( r3.data() ), r3.size() );
     ui->textBrowser_3->setHtml(QString::fromStdString(b3.toStdString()));
+    ui->label_comp_info->setText(getAppBuildInfo());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 About::~About()
@@ -92,7 +94,7 @@ void About::getStyleGUI(int styleGUI)
         ui->label_18->setPixmap(reversePixmapColors(*ui->label_18->pixmap()));
 #endif
         ui->pushButton->setIcon(reverseIconColors(ui->pushButton->icon()));
-        reverseLabelRichTextIconColor(ui->label_13);
+        reverseLabelRichTextIconColor(ui->label_comp_info);
         reverseLabelRichTextIconColor(ui->label_21);
     }
 }

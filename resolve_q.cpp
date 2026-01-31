@@ -276,7 +276,8 @@ unsigned long int solve_Qr(double I, double Df, double pm, double dw, double fa,
     R_ind = 1 / (1 / Rl + 1 / Rc);
     double Q = (R_ind / Rac) * (1 - fa / fsr);
     double ESR = R_ind / Q;
-    result->seven = ESR;
+    if(result != NULL)
+        result->seven = ESR;
     return round(Q);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -426,7 +426,7 @@ void Multiloop::get_Multiloop_Result(_CoilResult result)
             double nTurnsRX = result.seven;
             double ro = 1000 * sqrt(indRX / Crx);
             double Resistivity = MTRL[mt][Rho]*1e2;
-            double resistance = (Resistivity * result.thd * 100 * 4) / (M_PI * dw2 * dw2 * 0.01); //Resistance to DC (Ohm)
+            double resistance = (Resistivity * result.five * 100 * 4) / (M_PI * dw2 * dw2 * 0.01); //Resistance to DC (Ohm)
             double Qrx = ro / resistance;
             if((result.seven == 10000) || (result.seven < 2)){
                 sResult += "<span style=\"color:red;\">RX " + tr("Coil can not be realized") + "! </span>";
@@ -625,6 +625,8 @@ void Multiloop::on_tabWidget_currentChanged(int index)
             }
             ui->lineEdit_do->setText(roundTo(dt / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
         }
+        ui->lineEdit_N->setFocus();
+        ui->lineEdit_N->selectAll();
     } else if (index == 1){
         ui->image->setPixmap(QPixmap(":/images/res/d-coil.png"));
         if (dw > 0){
@@ -635,6 +637,8 @@ void Multiloop::on_tabWidget_currentChanged(int index)
             }
             ui->lineEdit_dt->setText(roundTo(dt / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
         }
+        ui->lineEdit_Ftx->setFocus();
+        ui->lineEdit_Ftx->selectAll();
     }
     ui->label_result->setText("");
 }

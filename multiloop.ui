@@ -80,6 +80,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="currentIndex">
           <number>1</number>
          </property>
@@ -363,6 +366,9 @@
                         <height>16</height>
                        </size>
                       </property>
+                      <property name="focusPolicy">
+                       <enum>Qt::NoFocus</enum>
+                      </property>
                       <property name="text">
                        <string notr="true">-</string>
                       </property>
@@ -461,6 +467,9 @@
                </item>
                <item>
                 <widget class="QCheckBox" name="checkBox_identical">
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
                  <property name="text">
                   <string>Identical coils</string>
                  </property>
@@ -1027,9 +1036,18 @@
   <tabstop>lineEdit_Di</tabstop>
   <tabstop>lineEdit_d</tabstop>
   <tabstop>lineEdit_do</tabstop>
-  <tabstop>pushButton_calculate</tabstop>
-  <tabstop>pushButton_close</tabstop>
-  <tabstop>pushButton_help</tabstop>
+  <tabstop>lineEdit_Ftx</tabstop>
+  <tabstop>toolButton</tabstop>
+  <tabstop>lineEdit_deltaF</tabstop>
+  <tabstop>lineEdit_Pin</tabstop>
+  <tabstop>checkBox_identical</tabstop>
+  <tabstop>lineEdit_Ctx</tabstop>
+  <tabstop>lineEdit_Rtx</tabstop>
+  <tabstop>lineEdit_dw</tabstop>
+  <tabstop>lineEdit_dt</tabstop>
+  <tabstop>lineEdit_Crx</tabstop>
+  <tabstop>lineEdit_dw2</tabstop>
+  <tabstop>lineEdit_dt2</tabstop>
  </tabstops>
  <resources>
   <include location="res.qrc"/>

@@ -624,7 +624,7 @@ void getMultiLayerN(double I, double D, double dw, double k, double lk, double g
     double NumberInterLayer = (double) floor(nLayer / Ng);
     double c;
     if (isOrthocyclic)
-        c = ((nLayer + 1) * DENS * k + k + NumberInterLayer * gap) *10;
+        c = ((nLayer * DENS + 1) * k + NumberInterLayer * gap) *10;
     else
         c = ((nLayer + 1) * k  + NumberInterLayer * gap) * 10;
     result->N = R;
@@ -697,7 +697,7 @@ void getMultiLayerI_byN(double D, double lk, double dw, double k, double N, _Coi
     double Rdc = (Resistivity * lw * 4) / (M_PI * dw * dw);
     double thickness = 0.0;
     if (isOrthocyclic)
-        thickness = ((nLayer + 1) * DENS * k + k) * 10;
+        thickness = (nLayer * DENS + 1) * k * 10;
     else
         thickness = (nLayer + 1) * k * 10;
     result->N = Ltotal; //inductance value

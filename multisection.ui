@@ -65,6 +65,9 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboBox_is_orthocyclic">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <item>
         <property name="text">
          <string>Regular winding</string>
@@ -459,10 +462,13 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>comboBox_is_orthocyclic</tabstop>
   <tabstop>lineEdit_D</tabstop>
+  <tabstop>lineEdit_l</tabstop>
   <tabstop>lineEdit_c</tabstop>
   <tabstop>lineEdit_d</tabstop>
   <tabstop>lineEdit_k</tabstop>
+  <tabstop>lineEdit_s</tabstop>
   <tabstop>lineEdit_M</tabstop>
  </tabstops>
  <resources>

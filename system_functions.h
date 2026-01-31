@@ -32,6 +32,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses
 #include <QFile>
 #include <QDir>
 #include <QIcon>
+#include <QtGlobal>
+
 
 #include "definitions.h"
 
@@ -141,7 +143,9 @@ QString formatLength(double length, double lengthMultiplyer);
 QPixmap reversePixmapColors(const QPixmap &pm);
 QIcon reverseIconColors(QIcon ico);
 QString roundTo(double num, QLocale locale, int accuracy);
+std::pair<QString, QString> getResistancePair(double value, QLocale loc, int precision);
 QRadioButton *getCheckedRadioButton(QWidget *w);
 QString formattedOutput(_OptionStruct *mOpt, QString header, QString value, QString footer = NULL);
-
+QString getAppBuildInfo();
+QString targetBitness();
 #endif // SYSTEM_FUNCTIONS_H

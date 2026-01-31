@@ -30,9 +30,9 @@ MainWindow::MainWindow(QWidget *parent) :
     net_manager->setNetworkAccessible(QNetworkAccessManager::Accessible);
 #endif
     connect(net_manager, SIGNAL(finished(QNetworkReply*)), SLOT(checkAppVersion(QNetworkReply*)));
-    QString title = qApp->applicationName();
+    QString title = QCoreApplication::applicationName();
     title.append(" v");
-    title.append(qApp->applicationVersion());
+    title.append(QCoreApplication::applicationVersion());
     setWindowTitle(title);
     translator = new QTranslator(qApp);
     timer = new QTimer();
@@ -97,7 +97,7 @@ MainWindow::MainWindow(QWidget *parent) :
         this->calc_count = 0;
     settings->endGroup();
 
-    translator->load(":/lang/res/translations/Coil64_" + lang);
+    (void) translator->load(":/lang/res/translations/Coil64_" + lang);
     qApp->installTranslator(translator);
 
     //Start add language menu group if additional languages are available
@@ -353,15 +353,16 @@ MainWindow::MainWindow(QWidget *parent) :
             if (!fileName.isEmpty()){
                 QTextDocument *document = mui->textBrowser->document();
                 QFile file(fileName);
-                file.open(QIODevice::ReadOnly);
-                document->setHtml(file.readAll().data());
-                file.close();
-                QTextCursor c = mui->textBrowser->textCursor();
-                if(myOpt->isLastShowingFirst)
-                    c.movePosition(QTextCursor::Start);
-                else
-                    c.movePosition(QTextCursor::End);
-                mui->textBrowser->setTextCursor(c);
+                if(file.open(QIODevice::ReadOnly)){
+                    document->setHtml(file.readAll().data());
+                    file.close();
+                    QTextCursor c = mui->textBrowser->textCursor();
+                    if(myOpt->isLastShowingFirst)
+                        c.movePosition(QTextCursor::Start);
+                    else
+                        c.movePosition(QTextCursor::End);
+                    mui->textBrowser->setTextCursor(c);
+                }
             }
         }
     }
@@ -420,7 +421,7 @@ void MainWindow::setLanguage(){
     emit sendLocale(loc);
     emit sendOpt(*myOpt);
     emit sendOptToDock(*myOpt);
-    translator->load(":/lang/res/translations/Coil64_" + lang);
+    (void) translator->load(":/lang/res/translations/Coil64_" + lang);
     qApp->installTranslator(translator);
     mui->retranslateUi(this);
     QList<QMenu*> menus = this->menuBar()->findChildren<QMenu*>();
@@ -571,10 +572,11 @@ void MainWindow::closeEvent(QCloseEvent *event){
             if (!sD.exists())
                 sD.mkpath(savePath);
             QFile file(savePath + AUTOSAVE_FILENAME);
-            file.open(QIODevice::WriteOnly);
-            file.write(document->toHtml().toUtf8());
-            file.close();
-            settings->setValue("calc_count", calc_count);
+            if(file.open(QIODevice::WriteOnly)){
+                file.write(document->toHtml().toUtf8());
+                file.close();
+                settings->setValue("calc_count", calc_count);
+            }
         }
         if (satCurrentDockWidget != nullptr){
             myOpt->isDockWidgetFloating = satCurrentDockWidget->isFloating();
@@ -848,6 +850,12 @@ void MainWindow::on_dockWidgetClosed()
     mui->toolButton_Saturation->setChecked(false);
     mui->checkBox_saturationCurrent->setChecked(false);
     mui->checkBox_saturationCurrent_2->setChecked(false);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_LTSpice_show_shanged(bool isShow)
+{
+    mui->toolButton_ltspice->setChecked(isShow);
+    on_toolButton_ltspice_toggled(isShow);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_timer()
@@ -2431,9 +2439,10 @@ void MainWindow::on_actionOpen_triggered()
             else {
                 QTextDocument *document = mui->textBrowser->document();
                 QFile file(fileName);
-                file.open(QIODevice::ReadOnly);
-                document->setHtml(file.readAll().data());
-                file.close();
+                if(file.open(QIODevice::ReadOnly)){
+                    document->setHtml(file.readAll().data());
+                    file.close();
+                }
             }
         }
     }
@@ -2468,9 +2477,10 @@ void MainWindow::on_actionSave_triggered()
             }
             if (ext == ".htm"){
                 QFile file(fileName);
-                file.open(QIODevice::WriteOnly);
-                file.write(document->toHtml().toUtf8());
-                file.close();
+                if(file.open(QIODevice::WriteOnly)){
+                    file.write(document->toHtml().toUtf8());
+                    file.close();
+                }
             }
             if ((ext == ".odf") || (ext == ".pdf")){
                 QString oldTxt = document->toHtml();
@@ -2778,9 +2788,9 @@ void MainWindow::on_toolButton_showImg_clicked()
     myOpt->isInsertImage = mui->toolButton_showImg->isChecked();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MainWindow::on_toolButton_ltspice_clicked()
+void MainWindow::on_toolButton_ltspice_toggled(bool checked)
 {
-    myOpt->isShowLTSpice = mui->toolButton_ltspice->isChecked();
+    myOpt->isShowLTSpice = checked;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_toolButton_Color_clicked()
@@ -4939,30 +4949,36 @@ void MainWindow::get_onelayerN_roundW_Result(_CoilResult result)
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             double Ql = (double)result.six;
-            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q<sub>0</sub> = ", QString::number(result.six)) + "<br/>";
             double ESR = result.seven;
             sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
             if(myOpt->isAdditionalResult){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
                 data->capacitance = CalcLC2(I, f);
-                sResult += " => "  + tr("Circuit capacitance") + ": Ck = " + roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + " "
-                        + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("Circuit capacitance") + ": Ck = ",
+                                                    roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                                    qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
                 double ro = 1000 * sqrt(I / data->capacitance);
-                sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
-                double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
+                sResult += "→ "  + formattedOutput(myOpt, tr("Characteristic impedance") + ": ρ = ", loc.toString(round(ro)) + " ", tr("Ohm")) + "<br/>";
+                double Qs= 1 / (0.001 + 1 / Ql);// Complete LC Q-factor including capacitor Q-factor equal to 1000
                 double Re = ro * Qs;
-                sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("LC-circuit Q-factor at Q<sub>C</sub>=1000") + ": Q<sub>U</sub> = ", QString::number((int) Qs)) + "<br/>";
+                auto res = getResistancePair(Re, loc, myOpt->dwAccuracy);
+                sResult += "→ " + formattedOutput(myOpt, tr("Equivalent resistance") + ": Re = ", res.first, tr(res.second.toLatin1())) + "<br/>";
                 double deltaf = 1000 * data->frequency / Qs;
-                sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy)+ " " + tr("kHz");
+                if(std::isnormal(deltaf))
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", roundTo(deltaf, loc, myOpt->dwAccuracy), tr("kHz")) + "</p>";
+                else
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", "∞") + "</p>";
             }
             if(myOpt->isShowLTSpice){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-                sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-                sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-                sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-                sResult += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+                sResult += "→ " + formattedOutput(myOpt, "Inductance: ", QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Series resistance: ", QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel resistance: ", QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel capacitance: ", QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p") + "</p>";
             }
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -5029,31 +5045,36 @@ void MainWindow::get_onelayerN_rectW_Result(_CoilResult result)
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             double Ql = (double)result.six;
-            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q<sub>0</sub> = ", QString::number(result.six)) + "<br/>";
             double ESR = result.seven;
             sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
             if(myOpt->isAdditionalResult){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
                 data->capacitance = CalcLC2(I, f);
-                sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
-                        roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
-                        + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("Circuit capacitance") + ": Ck = ",
+                                                    roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                                    qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
                 double ro = 1000 * sqrt(I / data->capacitance);
-                sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
-                double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
+                sResult += "→ "  + formattedOutput(myOpt, tr("Characteristic impedance") + ": ρ = ", loc.toString(round(ro)) + " ", tr("Ohm")) + "<br/>";
+                double Qs= 1 / (0.001 + 1 / Ql);// Complete LC Q-factor including capacitor Q-factor equal to 1000
                 double Re = ro * Qs;
-                sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("LC-circuit Q-factor at Q<sub>C</sub>=1000") + ": Q<sub>U</sub> = ", QString::number((int) Qs)) + "<br/>";
+                auto res = getResistancePair(Re, loc, myOpt->dwAccuracy);
+                sResult += "→ " + formattedOutput(myOpt, tr("Equivalent resistance") + ": Re = ", res.first, tr(res.second.toLatin1())) + "<br/>";
                 double deltaf = 1000 * data->frequency / Qs;
-                sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+                if(std::isnormal(deltaf))
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", roundTo(deltaf, loc, myOpt->dwAccuracy), tr("kHz")) + "</p>";
+                else
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", "∞") + "</p>";
             }
             if(myOpt->isShowLTSpice){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-                sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-                sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-                sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-                sResult += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+                sResult += "→ " + formattedOutput(myOpt, "Inductance: ", QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Series resistance: ", QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel resistance: ", QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel capacitance: ", QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p") + "</p>";
             }
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -5123,31 +5144,36 @@ void MainWindow::get_onelayerN_Poligonal_Result(_CoilResult result)
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = " + roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             double Ql = (double)result.six;
-            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q<sub>0</sub> = ", QString::number(result.six)) + "<br/>";
             double ESR = result.seven;
             sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
             if(myOpt->isAdditionalResult){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
                 data->capacitance = CalcLC2(I, f);
-                sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
-                        roundTo((data->capacitance - result.fourth) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
-                        + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("Circuit capacitance") + ": Ck = ",
+                                                    roundTo((data->capacitance - result.fourth) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                                    qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
                 double ro = 1000 * sqrt(I / data->capacitance);
-                sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
-                double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
+                sResult += "→ "  + formattedOutput(myOpt, tr("Characteristic impedance") + ": ρ = ", loc.toString(round(ro)) + " ", tr("Ohm")) + "<br/>";
+                double Qs= 1 / (0.001 + 1 / Ql);// Complete LC Q-factor including capacitor Q-factor equal to 1000
                 double Re = ro * Qs;
-                sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("LC-circuit Q-factor at Q<sub>C</sub>=1000") + ": Q<sub>U</sub> = ", QString::number((int) Qs)) + "<br/>";
+                auto res = getResistancePair(Re, loc, myOpt->dwAccuracy);
+                sResult += "→ " + formattedOutput(myOpt, tr("Equivalent resistance") + ": Re = ", res.first, tr(res.second.toLatin1())) + "<br/>";
                 double deltaf = 1000 * data->frequency / Qs;
-                sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+                if(std::isnormal(deltaf))
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", roundTo(deltaf, loc, myOpt->dwAccuracy), tr("kHz")) + "</p>";
+                else
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", "∞") + "</p>";
             }
             if(myOpt->isShowLTSpice){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-                sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-                sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-                sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-                sResult += "Parallel capacitance: " + QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+                sResult += "→ " + formattedOutput(myOpt, "Inductance: ", QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Series resistance: ", QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel resistance: ", QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel capacitance: ", QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p") + "</p>";
             }
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -5443,7 +5469,7 @@ void MainWindow::get_pcbN_Result(_CoilResult result)
                                   qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
         sResult += formattedOutput(myOpt, tr("Width of a PCB trace") + " W = ", roundTo(result.thd / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
                                   qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
-        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q ≈ ", QString::number(round(result.fourth)));
+        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q<sub>0</sub> ≈ ", QString::number(round(result.fourth)));
     } else if(result.N < 0){
         sResult += "<span style=\"color:red;\">" + tr("Calculation was aborted") + "</span>";
     } else {
@@ -5553,31 +5579,36 @@ void MainWindow::get_onelayerI_roundW_Result(_CoilResult result)
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             double Ql = (double)result.six;
-            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q<sub>0</sub> = ", QString::number(result.six)) + "<br/>";
             double ESR = result.seven;
             sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
             if(myOpt->isAdditionalResult){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
                 data->capacitance = CalcLC2(I, f);
-                sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
-                        roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
-                        + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("Circuit capacitance") + ": Ck = ",
+                                                    roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                                    qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
                 double ro = 1000 * sqrt(I / data->capacitance);
-                sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
-                double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
+                sResult += "→ "  + formattedOutput(myOpt, tr("Characteristic impedance") + ": ρ = ", loc.toString(round(ro)) + " ", tr("Ohm")) + "<br/>";
+                double Qs= 1 / (0.001 + 1 / Ql);// Complete LC Q-factor including capacitor Q-factor equal to 1000
                 double Re = ro * Qs;
-                sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
-                double deltaf = 1000 * f / Qs;
-                sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+                sResult += "→ "  + formattedOutput(myOpt, tr("LC-circuit Q-factor at Q<sub>C</sub>=1000") + ": Q<sub>U</sub> = ", QString::number((int) Qs)) + "<br/>";
+                auto res = getResistancePair(Re, loc, myOpt->dwAccuracy);
+                sResult += "→ " + formattedOutput(myOpt, tr("Equivalent resistance") + ": Re = ", res.first, tr(res.second.toLatin1())) + "<br/>";
+                double deltaf = 1000 * data->frequency / Qs;
+                if(std::isnormal(deltaf))
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", roundTo(deltaf, loc, myOpt->dwAccuracy), tr("kHz")) + "</p>";
+                else
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", "∞") + "</p>";
             }
             if(myOpt->isShowLTSpice){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-                sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-                sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-                sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-                sResult += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+                sResult += "→ " + formattedOutput(myOpt, "Inductance: ", QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Series resistance: ", QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" )+ "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel resistance: ", QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel capacitance: ", QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p") + "</p>";
             }
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -5644,31 +5675,36 @@ void MainWindow::get_onelayerI_rectW_Result(_CoilResult result)
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.fourth/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             double Ql = (double)result.six;
-            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q<sub>0</sub> = ", QString::number(result.six)) + "<br/>";
             double ESR = result.seven;
             sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
             if(myOpt->isAdditionalResult){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
                 data->capacitance = CalcLC2(I, f);
-                sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
-                        roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
-                        + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("Circuit capacitance") + ": Ck = ",
+                                                    roundTo((data->capacitance - result.thd) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                                    qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
                 double ro = 1000 * sqrt(I / data->capacitance);
-                sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("Characteristic impedance") + ": ρ = ", loc.toString(round(ro)) + " ", tr("Ohm")) + "<br/>";
                 double Qs= 1 / (0.001 + 1 / Ql);// Complete LC Q-factor including capacitor Q-factor equal to 1000
                 double Re = ro * Qs;
-                sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("LC-circuit Q-factor at Q<sub>C</sub>=1000") + ": Q<sub>U</sub> = ", QString::number((int) Qs)) + "<br/>";
+                auto res = getResistancePair(Re, loc, myOpt->dwAccuracy);
+                sResult += "→ " + formattedOutput(myOpt, tr("Equivalent resistance") + ": Re = ", res.first, tr(res.second.toLatin1())) + "<br/>";
                 double deltaf = 1000 * data->frequency / Qs;
-                sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+                if(std::isnormal(deltaf))
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", roundTo(deltaf, loc, myOpt->dwAccuracy), tr("kHz")) + "</p>";
+                else
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", "∞") + "</p>";
             }
             if(myOpt->isShowLTSpice){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-                sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-                sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-                sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-                sResult += "Parallel capacitance: " + QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+                sResult += "→ " + formattedOutput(myOpt, "Inductance: ", QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Series resistance: ", QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel resistance: ", QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel capacitance: ", QString::number(result.thd, 'f', myOpt->dwAccuracy) + "p") + "</p>";
             }
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -5709,7 +5745,7 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result)
     double p = loc.toDouble(mui->lineEdit_4_2->text())*myOpt->dwLengthMultiplier;
     double f = loc.toDouble(mui->lineEdit_freq2->text())*myOpt->dwFrequencyMultiplier;
     QString sResult = "";
-    if (result.N > 0){
+    if (result.sec > 0){
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
         double I = result.sec;
         data->inductance = result.sec;
@@ -5741,31 +5777,36 @@ void MainWindow::get_onelayerI_Poligonal_Result(_CoilResult result)
             sResult += formattedOutput(myOpt, tr("Coil self-resonance frequency") + " Fsr = ", roundTo(result.five/myOpt->dwFrequencyMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8())) + "<br/>";
             double Ql = (double)result.six;
-            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q = ", QString::number(result.six)) + "<br/>";
+            sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q<sub>0</sub> = ", QString::number(result.six)) + "<br/>";
             double ESR = result.seven;
             sResult += formattedOutput(myOpt, tr("Loss resistance") + " ESR = ", roundTo(ESR, loc, myOpt->dwAccuracy), tr("Ohm")) + "</p>";
             if(myOpt->isAdditionalResult){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Additional results for parallel LC circuit at the working frequency") + ":</u><br/>";
                 data->capacitance = CalcLC2(I, f);
-                sResult += " => "  + tr("Circuit capacitance") + ": Ck = " +
-                        roundTo((data->capacitance - result.fourth) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy) + ' '
-                        + qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8()) + "<br/>";
+                sResult += "→ "  + formattedOutput(myOpt, tr("Circuit capacitance") + ": Ck = ",
+                                                    roundTo((data->capacitance - result.fourth) / myOpt->dwCapacityMultiplier, loc, myOpt->dwAccuracy),
+                                                    qApp->translate("Context", myOpt->ssCapacityMeasureUnit.toUtf8())) + "<br/>";
                 double ro = 1000 * sqrt(I / data->capacitance);
-                sResult += " => " + tr("Characteristic impedance") + ": ρ = " + loc.toString(round(ro)) + " " + tr("Ohm") + "<br/>";
-                double Qs= 1 / (0.001 + 1 / Ql);  //Complete LC Q-factor including capacitor Q-factor equal to 1000
+                sResult += "→ "  + formattedOutput(myOpt, tr("Characteristic impedance") + ": ρ = ", loc.toString(round(ro)) + " ", tr("Ohm")) + "<br/>";
+                double Qs= 1 / (0.001 + 1 / Ql);// Complete LC Q-factor including capacitor Q-factor equal to 1000
                 double Re = ro * Qs;
-                sResult += " => "  + tr("Equivalent resistance") + ": Re = " + roundTo(Re / 1000, loc, myOpt->dwAccuracy) + " " + tr("kOhm") + "<br/>";
-                double deltaf = 1000 * f / Qs;
-                sResult += " => " + tr("Bandwidth") + ": 3dBΔf = " + roundTo(deltaf, loc, myOpt->dwAccuracy) + tr("kHz");
+                sResult += "→ "  + formattedOutput(myOpt, tr("LC-circuit Q-factor at Q<sub>C</sub>=1000") + ": Q<sub>U</sub> = ", QString::number((int) Qs)) + "<br/>";
+                auto res = getResistancePair(Re, loc, myOpt->dwAccuracy);
+                sResult += "→ " + formattedOutput(myOpt, tr("Equivalent resistance") + ": Re = ", res.first, tr(res.second.toLatin1())) + "<br/>";
+                double deltaf = 1000 * data->frequency / Qs;
+                if(std::isnormal(deltaf))
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", roundTo(deltaf, loc, myOpt->dwAccuracy), tr("kHz")) + "</p>";
+                else
+                    sResult += "→ "  + formattedOutput(myOpt, tr("Bandwidth") + ": 3dBΔf = ", "∞") + "</p>";
             }
             if(myOpt->isShowLTSpice){
                 sResult += "<hr/><p>";
                 sResult += "<u>" + tr("Input data for LTSpice") + ":</u><br/>";
-                sResult += "Inductance: " + QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ" + "<br/>";
-                sResult += "Series resistance: " + QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m" + "<br/>";
-                sResult += "Parallel resistance: " + QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k" + "<br/>";
-                sResult += "Parallel capacitance: " + QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p" + "</p>";
+                sResult += "→ " + formattedOutput(myOpt, "Inductance: ", QString::number(data->inductance * ((1 + Ql * Ql)/(Ql * Ql)), 'f', myOpt->dwAccuracy) + "μ") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Series resistance: ", QString::number(R * 1000, 'f', myOpt->dwAccuracy) + "m") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel resistance: ", QString::number((ESR * (1 + Ql * Ql)) / 1000, 'f', myOpt->dwAccuracy) + "k") + "<br/>";
+                sResult += "→ " + formattedOutput(myOpt, "Parallel capacitance: ", QString::number(result.fourth, 'f', myOpt->dwAccuracy) + "p") + "</p>";
             }
         } else {
             QString message = tr("Working frequency") + " > 0.7 * " + tr("Coil self-resonance frequency") + "!";
@@ -5803,7 +5844,7 @@ void MainWindow::get_multilayerI_Result(_CoilResult result)
     if(result.N > 0){
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
         if (mui->radioButton_6->isChecked()){
-            sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N, loc, myOpt->dwAccuracy),
+            sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
             data->inductance = result.N;
             sResult += formattedOutput(myOpt, tr("Thickness of the coil") + " c = ", roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
@@ -5894,7 +5935,7 @@ void MainWindow::get_multilayerI_Rect_Result(_CoilResult result)
     if(result.N > 0){
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
         if (mui->radioButton_6->isChecked()){
-            sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N, loc, myOpt->dwAccuracy),
+            sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
                                        qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
             data->inductance = result.N;
             sResult += formattedOutput(myOpt, tr("Thickness of the coil") + " c = ", roundTo(result.five / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy),
@@ -5952,7 +5993,7 @@ void MainWindow::get_multilayerI_Foil_Result(_CoilResult result)
     if(result.N > 0){
         sResult += "<p><u>" + tr("Result") + ":</u><br/>";
         data->inductance = result.N;
-        sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N, loc, myOpt->dwAccuracy),
+        sResult += formattedOutput(myOpt, tr("Inductance") + " L = ", roundTo(result.N / myOpt->dwInductanceMultiplier, loc, myOpt->dwAccuracy),
                                    qApp->translate("Context", myOpt->ssInductanceMeasureUnit.toUtf8())) + "<br/>";
         QString _foil_length = formatLength(result.sec, myOpt->dwLengthMultiplier);
         QStringList list = _foil_length.split(" ", skip_empty_parts);
@@ -6065,7 +6106,7 @@ void MainWindow::get_pcbI_Result(_CoilResult result)
                                       qApp->translate("Context", myOpt->ssLengthMeasureUnit.toUtf8())) + "<br/>";
             data->Di = QString::number(result.five, 'f', myOpt->dwAccuracy).toDouble();
         }
-        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q ≈ ", QString::number(round(result.fourth)));
+        sResult += formattedOutput(myOpt, tr("Coil constructive Q-factor") + " Q<sub>0</sub> ≈ ", QString::number(round(result.fourth)));
     } else
         sResult += tr("Invalid input parameter combination");
     sResult += "</p>";
@@ -6190,6 +6231,7 @@ void MainWindow::on_actionCoupled_coils_triggered()
     CoupledCoil *coupledcoil = new CoupledCoil();
     coupledcoil->setAttribute(Qt::WA_DeleteOnClose, true);
     connect(coupledcoil, SIGNAL(sendResult(QString)), this, SLOT(getAddCalculationResult(QString)));
+    connect(coupledcoil, SIGNAL(showLtspice(bool)), this, SLOT(on_LTSpice_show_shanged(bool)));
     connect(this, SIGNAL(sendOpt(_OptionStruct)), coupledcoil, SLOT(getOpt(_OptionStruct)));
     connect(this, SIGNAL(sendLocale(QLocale)), coupledcoil, SLOT(getCurrentLocale(QLocale)));
     emit sendLocale(loc);

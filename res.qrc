@@ -59,6 +59,7 @@
         <file>res/multisection.png</file>
         <file>res/Coupled-coils.png</file>
         <file>res/d-coil.png</file>
+        <file>res/Tapped-coil.png</file>
     </qresource>
     <qresource prefix="/txt">
         <file>res/translators.html</file>
@@ -166,6 +167,8 @@
         <file>res/ico2-mxe.png</file>
         <file>res/ico1-multi-section.png</file>
         <file>res/ico1-coupled.png</file>
+        <file>res/ico2-apple.png</file>
+        <file>res/ico2-bsd.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>res/translations/Coil64_bg.qm</file>
