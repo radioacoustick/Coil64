@@ -6054,7 +6054,7 @@ void MainWindow::get_ferriteI_Result(_CoilResult result)
         if(satCurrentDockWidget->isVisible()){
             _FerriteData ferriteData;
             ferriteData.N = loc.toDouble(mui->lineEdit_N->text());
-            ferriteData.mu = loc.toDouble(mui->lineEdit_4_2->text());
+            ferriteData.mu = loc.toDouble(mui->lineEdit_5_2->text());
             ferriteData.le = result.fourth;
             emit sendFerriteData(ferriteData);
         }
