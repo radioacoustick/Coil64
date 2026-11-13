@@ -1101,10 +1101,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->toolButton_showAdditional->setEnabled(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
-            if (myOpt->isAWG){
-                mui->label_02->setText(tr("AWG"));
-                mui->lineEdit_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_02, mui->lineEdit_2);
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
             mui->lineEdit_freq->setVisible(true);
@@ -1202,10 +1199,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->toolButton_showAdditional->setEnabled(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
-            if (myOpt->isAWG){
-                mui->label_02->setText(tr("AWG"));
-                mui->lineEdit_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_02, mui->lineEdit_2);
             mui->label_freq->setVisible(true);
             mui->label_freq_m->setVisible(true);
             mui->lineEdit_freq->setVisible(true);
@@ -1256,10 +1250,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(true);
             mui->toolButton_FAQ->setVisible(false);
             mui->toolButton_showAdditional->setEnabled(false);
-            if (myOpt->isAWG){
-                mui->label_03->setText(tr("AWG"));
-                mui->lineEdit_3->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_03, mui->lineEdit_3);
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
             mui->lineEdit_freq->setVisible(false);
@@ -1309,10 +1300,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->toolButton_showAdditional->setEnabled(false);
-            if (myOpt->isAWG){
-                mui->label_03->setText(tr("AWG"));
-                mui->lineEdit_3->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_03, mui->lineEdit_3);
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
             mui->lineEdit_freq->setVisible(false);
@@ -1364,10 +1352,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->toolButton_showAdditional->setEnabled(false);
-            if (myOpt->isAWG){
-                mui->label_04->setText(tr("AWG"));
-                mui->lineEdit_4->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_04, mui->lineEdit_4);
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
             mui->lineEdit_freq->setVisible(false);
@@ -1462,10 +1447,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             }
             mui->toolButton_Saturation->setEnabled(true);
             mui->toolButton_showAdditional->setEnabled(false);
-            if (myOpt->isAWG){
-                mui->label_04->setText(tr("AWG"));
-                mui->lineEdit_4->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_04, mui->lineEdit_4);
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
             mui->lineEdit_freq->setVisible(false);
@@ -1552,10 +1534,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->toolButton_showAdditional->setEnabled(false);
-            if (myOpt->isAWG){
-                mui->label_02->setText(tr("AWG"));
-                mui->lineEdit_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_02, mui->lineEdit_2);
             mui->label_freq->setVisible(false);
             mui->label_freq_m->setVisible(false);
             mui->lineEdit_freq->setVisible(false);
@@ -1630,10 +1609,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->toolButton_showAdditional->setEnabled(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
-            if (myOpt->isAWG){
-                mui->label_02_2->setText(tr("AWG"));
-                mui->lineEdit_2_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_02_2, mui->lineEdit_2_2);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
             mui->lineEdit_N->setFocus();
@@ -1687,10 +1663,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->toolButton_showAdditional->setEnabled(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
-            if (myOpt->isAWG){
-                mui->label_02_2->setText(tr("AWG"));
-                mui->lineEdit_2_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_02_2, mui->lineEdit_2_2);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
             mui->lineEdit_N->setFocus();
@@ -1799,10 +1772,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->toolButton_showAdditional->setEnabled(true);
             mui->toolButton_ltspice->setEnabled(true);
             mui->label_freq_m2->setText(qApp->translate("Context", myOpt->ssFrequencyMeasureUnit.toUtf8()));
-            if (myOpt->isAWG){
-                mui->label_02_2->setText(tr("AWG"));
-                mui->lineEdit_2_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_02_2, mui->lineEdit_2_2);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
             mui->lineEdit_N->setFocus();
@@ -1862,10 +1832,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(true);
             mui->toolButton_FAQ->setVisible(false);
             mui->toolButton_showAdditional->setEnabled(false);
-            if (myOpt->isAWG){
-                mui->label_04_2->setText(tr("AWG"));
-                mui->lineEdit_4_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_04_2, mui->lineEdit_4_2);
             mui->label_N->setVisible(false);
             mui->lineEdit_N->setVisible(false);
             mui->lineEdit_1_2->setFocus();
@@ -1912,10 +1879,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->toolButton_showAdditional->setEnabled(false);
-            if (myOpt->isAWG){
-                mui->label_04_2->setText(tr("AWG"));
-                mui->lineEdit_4_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_04_2, mui->lineEdit_4_2);
             mui->label_N->setVisible(false);
             mui->lineEdit_N->setVisible(false);
             mui->lineEdit_1_2->setFocus();
@@ -1976,10 +1940,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->toolButton_showAdditional->setEnabled(false);
-            if (myOpt->isAWG){
-                mui->label_05_2->setText(tr("AWG"));
-                mui->lineEdit_5_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_05_2, mui->lineEdit_5_2);
             mui->label_N->setVisible(false);
             mui->lineEdit_N->setVisible(false);
             mui->lineEdit_1_2->setFocus();
@@ -2116,6 +2077,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->label_3_2->setText(tr("Core height") + " h:");
             mui->label_4_2->setText(tr("Wire diameter") + " d:");
             mui->label_5_2->setText(tr("Magnetic permeability")+" μ:");
+            setWireDiameterField(mui->label_04_2, mui->lineEdit_4_2);
             mui->lineEdit_N->setText(roundTo(data->N, loc, myOpt->dwAccuracy));
             mui->lineEdit_N->selectAll();
             mui->lineEdit_1_2->setText(roundTo(data->Do / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
@@ -2179,10 +2141,7 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
             mui->comboBox_checkMLWinding->setVisible(false);
             mui->toolButton_FAQ->setVisible(false);
             mui->toolButton_showAdditional->setEnabled(false);
-            if (myOpt->isAWG){
-                mui->label_03_2->setText(tr("AWG"));
-                mui->lineEdit_3_2->setValidator(awgV);
-            }
+            setWireDiameterField(mui->label_03_2, mui->lineEdit_3_2);
             mui->label_N->setVisible(true);
             mui->lineEdit_N->setVisible(true);
             mui->lineEdit_N->setFocus();
@@ -2709,13 +2668,12 @@ void MainWindow::on_radioButton_5_1_toggled(bool checked)
     if (FormCoil == _Onelayer_cw){
         if (checked){
             mui->label_2->setText(tr("Wire diameter") + " d:");
+            setWireDiameterField(mui->label_02, mui->lineEdit_2);
             if (myOpt->isAWG){
                 if (data->d > 0){
                     mui->lineEdit_2->setText(converttoAWG(data->d));
                 } else
                     mui->lineEdit_2->setText("");
-                mui->label_02->setText(tr("AWG"));
-                mui->lineEdit_2->setValidator(awgV);
             } else {
                 mui->lineEdit_2->setText(roundTo(data->d / myOpt->dwLengthMultiplier, loc, myOpt->dwAccuracy));
             }
@@ -2930,13 +2888,13 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
         if (checked){
             mui->label_4_2->setText(tr("Resistance of the coil") + " Rdc:");
             mui->label_04_2->setText(tr("Ohm"));
+            mui->lineEdit_4_2->setValidator(dv);
             mui->lineEdit_4_2->setText(roundTo(data->Rdc, loc, myOpt->dwAccuracy));
         } else {
             mui->label_4_2->setText(tr("Wire diameter") + " d:");
-            mui->label_04_2->setText(tr("mm"));
+            setWireDiameterField(mui->label_04_2, mui->lineEdit_4_2);
             if (myOpt->isAWG){
                 if (data->d > 0){
-                    mui->label_04_2->setText(tr("AWG"));
                     mui->lineEdit_4_2->setText(converttoAWG(data->d));
                 } else {
                     mui->lineEdit_4_2->setText("");
@@ -2947,6 +2905,13 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
         mui->lineEdit_1_2->setFocus();
         mui->lineEdit_1_2->selectAll();
     }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Set the unit caption and validator of a wire-diameter field from Preferences.
+void MainWindow::setWireDiameterField(QLabel *unitLabel, QLineEdit *edit)
+{
+    unitLabel->setText(wireDiameterUnit(myOpt));
+    edit->setValidator(myOpt->isAWG ? static_cast<const QValidator*>(awgV) : static_cast<const QValidator*>(dv));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::getOptionStruct(_OptionStruct gOpt){
@@ -6021,7 +5986,7 @@ void MainWindow::get_ferriteI_Result(_CoilResult result)
     sInput += formattedOutput(myOpt, mui->label_1_2->text(), mui->lineEdit_1_2->text(), mui->label_01_2->text()) + "<br/>";
     sInput += formattedOutput(myOpt, mui->label_2_2->text(), mui->lineEdit_2_2->text(), mui->label_02_2->text()) + "<br/>";
     sInput += formattedOutput(myOpt, mui->label_3_2->text(), mui->lineEdit_3_2->text(), mui->label_03_2->text()) + "<br/>";
-    sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text()) + "<br/>";
+    sInput += formattedOutput(myOpt, mui->label_4_2->text(), mui->lineEdit_4_2->text(), wireDiameterUnit(myOpt)) + "<br/>";
     sInput += formattedOutput(myOpt, mui->label_5_2->text(), mui->lineEdit_5_2->text(), mui->label_05_2->text()) + "</p>";
     QString sResult = "<p><u>" + tr("Result") + ":</u><br/>";
     if (result.sec > 0) {

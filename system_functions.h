@@ -146,6 +146,7 @@ QString roundTo(double num, QLocale locale, int accuracy);
 std::pair<QString, QString> getResistancePair(double value, QLocale loc, int precision);
 QRadioButton *getCheckedRadioButton(QWidget *w);
 QString formattedOutput(_OptionStruct *mOpt, QString header, QString value, QString footer = NULL);
+QString wireDiameterUnit(const _OptionStruct *mOpt);
 QString getAppBuildInfo();
 QString targetBitness();
 #endif // SYSTEM_FUNCTIONS_H

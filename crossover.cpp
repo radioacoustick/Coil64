@@ -138,13 +138,14 @@ void Crossover::getOpt(_OptionStruct gOpt)
     if (fOpt->isAWG){
         for (int i = 32; i > maxAwgSize; i--)
             ui->comboBox->addItem(QString::number(i));
-        ui->label_wmax_unit->setText(tr("AWG"));
-        ui->label_wmin_unit->setText(tr("AWG"));
+        ui->label_wmax_unit->setText(wireDiameterUnit(fOpt));
+        ui->label_wmin_unit->setText(wireDiameterUnit(fOpt));
     } else {
+        // Show the metric wire series in the selected length unit; item data keeps the series index.
         for (int j = 0; j < mWire_size - 1; j++)
-            ui->comboBox->addItem(QString::number(mWire[j]));
-        ui->label_wmax_unit->setText(tr("mm"));
-        ui->label_wmin_unit->setText(tr("mm"));
+            ui->comboBox->addItem(loc.toString(mWire[j] / fOpt->dwLengthMultiplier, 'g', 3), j);
+        ui->label_wmax_unit->setText(wireDiameterUnit(fOpt));
+        ui->label_wmin_unit->setText(wireDiameterUnit(fOpt));
     }
     ui->comboBox_N_m->setCurrentIndex(indUnit);
     if (ui ->comboBox_N_m->currentIndex() == 0)
@@ -196,7 +197,7 @@ void Crossover::on_comboBox_currentIndexChanged(int index)
             ui->comboBox_2->addItem(QString::number(i));
     } else {
         for (int j = index + 1; j < mWire_size; j++)
-            ui->comboBox_2->addItem(QString::number(mWire[j]));
+            ui->comboBox_2->addItem(loc.toString(mWire[j] / fOpt->dwLengthMultiplier, 'g', 3), j);
     }
     ui->comboBox_2->setCurrentIndex(ui->comboBox_2->count() - 1);
 }
@@ -269,12 +270,8 @@ void Crossover::on_pushButton_calculate_clicked()
             fillTable(item, count, wire_d, i);
         }
     } else {
-        for (int j = 0; j < mWire_size; j++){
-            if (smin == QString::number(mWire[j]))
-                imin = j;
-            if (smax == QString::number(mWire[j]))
-                imax = j;
-        }
+        imin = ui->comboBox->currentData().toInt();   // index into mWire[], independent of the displayed unit
+        imax = ui->comboBox_2->currentData().toInt();
         for (int i = imin; i < imax + 1; i++){
             count++;
             verticalHeader.append(QString::number(count));

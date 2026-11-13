@@ -178,9 +178,9 @@ void Multiloop::getOpt(_OptionStruct gOpt){
         ui->lineEdit_N->setText(roundTo(ind / fOpt->dwInductanceMultiplier, loc, fOpt->dwAccuracy));
     ui->lineEdit_Di->setText(roundTo(Di / fOpt->dwLengthMultiplier, loc, fOpt->dwAccuracy));
     if (fOpt->isAWG){
-        ui->label_02->setText(tr("AWG"));
-        ui->label_dw->setText(tr("AWG"));
-        ui->label_dw2->setText(tr("AWG"));
+        ui->label_02->setText(wireDiameterUnit(fOpt));
+        ui->label_dw_m->setText(wireDiameterUnit(fOpt));
+        ui->label_dw2_m->setText(wireDiameterUnit(fOpt));
         ui->lineEdit_d->setValidator(awgV);
         ui->lineEdit_dw->setValidator(awgV);
         ui->lineEdit_dw2->setValidator(awgV);
