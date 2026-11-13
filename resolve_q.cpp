@@ -173,7 +173,7 @@ double LinearInterpolation_Table4_b(double r){
     unsigned int ri;
     double result = 0;
     if (r > 8.0) {
-        result = 4 / 19 - 3 / (5 * r);
+        result = 4.0 / 19.0 - 3.0 / (5.0 * r);
     } else {
         ri = 0;
         while ((r >= ra[ri]) && (ri < sizeof(ra)/sizeof(ra[0]) - 1)) {
